@@ -25,12 +25,16 @@
         
         <activity android:name=".EnergyBillActivity"
             android:label="@string/energy_label">
-            
         </activity>
+
         <activity android:name=".GasBillActivity"
             android:label="@string/gas_label">
-            
         </activity>
+
+        <activity android:name=".SettingsActivity"
+            android:label="@string/settings_label">
+        </activity>
+
     </application>
 
 </manifest>

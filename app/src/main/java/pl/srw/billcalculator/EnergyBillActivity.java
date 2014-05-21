@@ -2,7 +2,9 @@ package pl.srw.billcalculator;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
@@ -15,6 +17,12 @@ public class EnergyBillActivity extends Activity {
     private static final double AKCYZA = 0.02;
     private double sumNaleznoscNetto;
     private double naleznoscBrutto;
+    private double cenaZaEnergieCzynna;
+    private double cenaSkladnikJakosciowy;
+    private double cenaOplataSieciowa;
+    private double cenaOplataPrzejsciowa;
+    private double cenaOplStalaZaPrzesyl;
+    private double cenaOplataAbonamentowa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +54,7 @@ public class EnergyBillActivity extends Activity {
     private void setRozliczenieTable(int wskazanieBiezace, int wskazaniePoprzednie) {
         TableLayout componentsTable = (TableLayout) findViewById(R.id.table_rozliczenie);
 
-        double cenaZaEnergieCzynna = 0.2539;// TODO
-        double cenaSkladnikJakosciowy = 0.0108;
-        double cenaOplataSieciowa = 0.2192;
-        double cenaOplataPrzejsciowa = 0.77;
-        double cenaOplStalaZaPrzesyl = 1.78;
-        double cenaOplataAbonamentowa = 5.31;
+        setPrices();
 
         setRow(componentsTable, R.id.row_za_energie_czynna, R.string.strefa_calodobowa, R.string.za_energie_czynna, R.string.kWh, wskazanieBiezace, wskazaniePoprzednie, cenaZaEnergieCzynna);
         setRow(componentsTable, R.id.skladnik_jakosciowy, R.string.strefa_calodobowa, R.string.skladnik_jakosciowy, R.string.kWh, wskazanieBiezace, wskazaniePoprzednie, cenaSkladnikJakosciowy);
@@ -60,6 +63,34 @@ public class EnergyBillActivity extends Activity {
         setRow(componentsTable, R.id.row_oplata_stala_za_przesyl, R.string.strefa_pusta, R.string.oplata_stala_za_przesyl, R.string.mc, 0, 0, cenaOplStalaZaPrzesyl);
         setRow(componentsTable, R.id.row_oplata_abonamentowa, R.string.strefa_pusta, R.string.oplata_abonamentowa, R.string.mc, 0, 0, cenaOplataAbonamentowa);
         setComponentsSummary(componentsTable, R.id.row_sum);
+    }
+
+    private void setPrices() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String cenaZaEnergieCzynnaString = sharedPreferences.getString(
+                getString(R.string.preferences_za_energie_czynna), "0.0");
+        cenaZaEnergieCzynna = Double.parseDouble(cenaZaEnergieCzynnaString);
+
+        String cenaSkladnikJakosciowyString = sharedPreferences.getString(
+                getString(R.string.preferences_skladnik_jakosciowy), "0.0");
+        cenaSkladnikJakosciowy = Double.parseDouble(cenaSkladnikJakosciowyString);
+
+        String cenaOplataSieciowaString = sharedPreferences.getString(
+                getString(R.string.preferences_oplata_sieciowa), "0.0");
+        cenaOplataSieciowa = Double.parseDouble(cenaOplataSieciowaString);
+
+        String cenaOplataPrzejsciowaString = sharedPreferences.getString(
+                getString(R.string.preferences_oplata_przejsciowa), "0.0");
+        cenaOplataPrzejsciowa = Double.parseDouble(cenaOplataPrzejsciowaString);
+
+        String cenaOplStalaZaPrzesylString = sharedPreferences.getString(
+                getString(R.string.preferences_oplata_stala_za_przesyl), "0.0");
+        cenaOplStalaZaPrzesyl = Double.parseDouble(cenaOplStalaZaPrzesylString);
+
+        String cenaOplataAbonamentowaString = sharedPreferences.getString(
+                getString(R.string.preferences_oplata_abonamentowa), "0.0");
+        cenaOplataAbonamentowa = Double.parseDouble(cenaOplataAbonamentowaString);
     }
 
     private void setRow(View componentsTable, int rowId, int strefaId, int opisId, int jmId, int biezace, int poprzednie, double cena) {

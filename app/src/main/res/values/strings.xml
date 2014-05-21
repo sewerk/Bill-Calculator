@@ -4,6 +4,8 @@
     <string name="app_name">Kalculator rachunków</string>
     <string name="energy_label">Rachunek energii</string>
     <string name="gas_label">Rachunek gazu</string>
+    <string name="settings_label">Ustawienia</string>
+
     <string name="action_settings">Ustawienia</string>
     <string name="previous_reading">Wskazanie poprzednie</string>
     <string name="current_reading">Wskazanie bieżące</string>
@@ -26,5 +28,8 @@
 
     <string name="reading_error">Wartość wskazania bieżącego musi być większa niż poprzedniego!</string>
     <string name="date_error">\"Data \\"Do\\" musi być później niż data \\"Od\\"\"</string>
+
+    <string name="energy_prices">Ceny PGE</string>
+    <string name="gas_prices">Ceny PGNiG</string>
 
 </resources>

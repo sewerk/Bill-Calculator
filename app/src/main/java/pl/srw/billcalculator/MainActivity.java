@@ -1,12 +1,12 @@
 package pl.srw.billcalculator;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
-import android.view.KeyEvent;
+import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -14,8 +14,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-
-import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -165,4 +163,12 @@ public class MainActivity extends Activity {
         return true;
     }
 
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        if (item.getItemId() == R.id.action_settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        }
+        return super.onMenuItemSelected(featureId, item);
+    }
 }
