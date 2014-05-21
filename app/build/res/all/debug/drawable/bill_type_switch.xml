@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:drawable="@drawable/pgnig" android:state_checked="true" />
+    <item android:drawable="@drawable/pge" />
+</selector>
+<!-- From: file:/home/kseweryn/android-studio-workspace/BillCalculator/app/src/main/res/drawable/bill_type_switch.xml -->

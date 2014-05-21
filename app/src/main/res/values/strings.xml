@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Kalculator rachunków</string>
+    <string name="energy_label">Rachunek energii</string>
+    <string name="gas_label">Rachunek gazu</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="previous_reading">Wskazanie poprzednie</string>
+    <string name="current_reading">Wskazanie bieżące</string>
+    <string name="calculate">Oblicz</string>
+
+    <string name="strefa_calodobowa">całodobowa</string>
+    <string name="strefa_pusta"></string>
+    <string name="za_energie_czynna">za energię czynną</string>
+    <string name="skladnik_jakosciowy">składnik jakościowy</string>
+    <string name="oplata_sieciowa">opłata sieciowa</string>
+    <string name="oplata_przejsciowa">opłata przejściowa</string>
+    <string name="oplata_stala_za_przesyl">opł. stała za przesył</string>
+    <string name="oplata_abonamentowa">opłata abonamentowa</string>
+
+    <string name="kWh">kWh</string>
+    <string name="mc">m-c</string>
+    <string name="akcyza">Od %1$s kWh energii elektrycznej [ KOD CN 2716 00 00] naliczono akcyzę w kwocie %2$s zł.</string>
+    <string name="do_zaplaty">DO ZAPŁATY : %s zł</string>
+    <string name="za_okres">Za okres od %1$s do %2$s</string>
+
+    <string name="reading_error">Wartość wskazania bieżącego musi być większa niż poprzedniego!</string>
+    <string name="date_error">\"Data \\"Do\\" musi być później niż data \\"Od\\"\"</string>
+
+</resources>

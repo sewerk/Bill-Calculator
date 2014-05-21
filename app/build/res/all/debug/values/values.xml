@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: file:/home/kseweryn/android-studio-workspace/BillCalculator/app/src/main/res/values/dimens.xml -->
+    <eat-comment />
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- From: file:/home/kseweryn/android-studio-workspace/BillCalculator/app/src/main/res/values/strings.xml -->
+    <eat-comment />
+
+    <string name="action_settings">Ustawienia</string>
+    <string name="akcyza">Od %1$s kWh energii elektrycznej [ KOD CN 2716 00 00] naliczono akcyzę w kwocie %2$s zł.</string>
+    <string name="app_name">Kalculator rachunków</string>
+    <string name="calculate">Oblicz</string>
+    <string name="current_reading">Wskazanie bieżące</string>
+    <string name="date_error">\"Data \\"Do\\" musi być później niż data \\"Od\\"\"</string>
+    <string name="do_zaplaty">DO ZAPŁATY : %s zł</string>
+    <string name="energy_label">Rachunek energii</string>
+    <string name="gas_label">Rachunek gazu</string>
+    <string name="kWh">kWh</string>
+    <string name="mc">m-c</string>
+    <string name="oplata_abonamentowa">opłata abonamentowa</string>
+    <string name="oplata_przejsciowa">opłata przejściowa</string>
+    <string name="oplata_sieciowa">opłata sieciowa</string>
+    <string name="oplata_stala_za_przesyl">opł. stała za przesył</string>
+    <string name="previous_reading">Wskazanie poprzednie</string>
+    <string name="reading_error">Wartość wskazania bieżącego musi być większa niż poprzedniego!</string>
+    <string name="skladnik_jakosciowy">składnik jakościowy</string>
+    <string name="strefa_calodobowa">całodobowa</string>
+    <string name="strefa_pusta"></string>
+    <string name="za_energie_czynna">za energię czynną</string>
+    <string name="za_okres">Za okres od %1$s do %2$s</string>
+    <!-- From: file:/home/kseweryn/android-studio-workspace/BillCalculator/app/src/main/res/values/styles.xml -->
+    <eat-comment />
+
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+</resources>

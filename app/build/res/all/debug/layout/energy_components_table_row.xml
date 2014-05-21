@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="2dp">
+
+    <TextView
+        android:id="@+id/textView_strefa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="20dp"
+        android:text="@string/strefa_calodobowa" />
+
+    <TextView
+        android:id="@+id/textView_opis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="20dp"
+        android:text="@string/za_energie_czynna" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="20dp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/textView_Jm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="20dp"
+        android:text="@string/kWh" />
+
+    <TextView
+        android:id="@+id/textView_wskazanie_biezace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:paddingEnd="20dp"
+        android:text="16945" />
+
+    <TextView
+        android:id="@+id/textView_wskazanie_przeprzednie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:paddingEnd="20dp"
+        android:text="16798" />
+
+    <TextView
+        android:id="@+id/textView_ilosc_mc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:paddingEnd="20dp"
+        android:text="0,00" />
+
+    <TextView
+        android:id="@+id/textView_ilosc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:paddingEnd="20dp"
+        android:text="147" />
+
+    <TextView
+        android:id="@+id/textView_cena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:paddingEnd="20dp"
+        android:text="0,25339" />
+
+    <TextView
+        android:id="@+id/textView_naleznosc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:paddingEnd="20dp"
+        android:text="27,93" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="23" />
+</TableRow><!-- From: file:/home/kseweryn/android-studio-workspace/BillCalculator/app/src/main/res/layout/energy_components_table_row.xml -->

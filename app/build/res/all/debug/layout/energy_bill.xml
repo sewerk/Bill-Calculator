@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white" >
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:padding="2dp" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp" >
+
+            <ImageView
+                android:id="@+id/image_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pge"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:id="@+id/textView_nr_ewidencyjny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_logo"
+                android:text="NUMER EWIDENCYJNY: 020994107" />
+
+            <TextView
+                android:id="@+id/textView_tytul"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_nr_ewidencyjny"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:text="ODCZYT NA PODSTAWIE FAKTYCZNEGO STANU LICZNIKÓW" />
+
+            <TextView
+                android:id="@+id/textView_tytul2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_tytul"
+                android:layout_centerHorizontal="true"
+                android:text="ZA ENERGIĘ ELEKTRYCZNĄ I USŁUGI DYSTRYBUCJI" />
+
+            <TextView
+                android:id="@+id/textView_za_okres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_tytul2"
+                android:layout_centerHorizontal="true"
+                android:text="@string/za_okres" />
+
+            <TextView
+                android:id="@+id/textView_moc_umowna"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/table_rozliczenie"
+                android:layout_below="@id/textView_za_okres"
+                android:layout_marginTop="48dp"
+                android:text="Moc umowna: 4,0 kW" />
+
+            <include
+                layout="@layout/energy_components_table" />
+
+            <TextView
+                android:id="@+id/textView_akcyza"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/table_rozliczenie"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:text="@string/akcyza" />
+
+            <include
+                layout="@layout/energy_sum_table" />
+
+            <TextView
+                android:id="@+id/textView_do_zaplaty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/table_podsumowanie"
+                android:layout_below="@+id/table_podsumowanie"
+                android:layout_marginTop="8dp"
+                android:text="@string/do_zaplaty"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        </RelativeLayout>
+    </HorizontalScrollView>
+
+</ScrollView><!-- From: file:/home/kseweryn/android-studio-workspace/BillCalculator/app/src/main/res/layout/energy_bill.xml -->
