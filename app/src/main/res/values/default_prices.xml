@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="preferences_za_energie_czynna">cena_za_energie_czynna</string>
+    <string name="price_za_energie_czynna">0.2539</string>
+
+    <string name="preferences_skladnik_jakosciowy">cena_skladnik_jakosciowy</string>
+    <string name="price_skladnik_jakosciowy">0.0108</string>
+
+    <string name="preferences_oplata_sieciowa">cena_oplata_sieciowa</string>
+    <string name="price_oplata_sieciowa">0.2192</string>
+
+    <string name="preferences_oplata_przejsciowa">cena_oplata_przejsciowa</string>
+    <string name="price_oplata_przejsciowa">0.77</string>
+
+    <string name="preferences_oplata_stala_za_przesyl">cena_oplata_stala_za_przesyl</string>
+    <string name="price_oplata_stala_za_przesyl">1.78</string>
+
+    <string name="preferences_oplata_abonamentowa">cena_oplata_abonamentowa</string>
+    <string name="price_oplata_abonamentowa">5.31</string>
+</resources>

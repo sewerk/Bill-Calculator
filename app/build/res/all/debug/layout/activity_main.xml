@@ -61,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/editText_from"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="10dp"
         android:layout_toLeftOf="@id/editText_from"
         android:text="@string/previous_reading"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -71,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/editText_to"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="10dp"
         android:layout_toLeftOf="@id/editText_to"
         android:text="@string/current_reading"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -83,6 +83,7 @@
         android:layout_below="@id/editText_to"
         android:layout_alignRight="@id/editText_to"
         android:layout_marginTop="8dp"
+        android:freezesText="true"
         android:text=" Do "/>
 
     <TextView
@@ -100,6 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/textView_from_to"
         android:layout_alignBottom="@id/button_to"
+        android:freezesText="true"
         android:text=" Od "/>
 
     <TextView

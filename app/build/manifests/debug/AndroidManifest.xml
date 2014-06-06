@@ -12,11 +12,14 @@
         </activity>
         
         <activity android:label="@string/energy_label" android:name="pl.srw.billcalculator.EnergyBillActivity">
-            
         </activity>
+
         <activity android:label="@string/gas_label" android:name="pl.srw.billcalculator.GasBillActivity">
-            
         </activity>
+
+        <activity android:label="@string/settings_label" android:name="pl.srw.billcalculator.SettingsActivity">
+        </activity>
+
     </application>
 
 </manifest>

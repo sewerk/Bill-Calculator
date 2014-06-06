@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <PreferenceCategory
+        android:key="energy"
+        android:title="@string/energy_prices" >
+
+        <EditTextPreference
+            android:key="@string/preferences_za_energie_czynna"
+            android:defaultValue="@string/price_za_energie_czynna"
+            android:inputType="numberDecimal"
+            android:title="@string/za_energie_czynna" />
+
+        <EditTextPreference
+            android:key="@string/preferences_skladnik_jakosciowy"
+            android:defaultValue="@string/price_skladnik_jakosciowy"
+            android:inputType="numberDecimal"
+            android:title="@string/skladnik_jakosciowy" />
+
+        <EditTextPreference
+            android:key="@string/preferences_oplata_sieciowa"
+            android:defaultValue="@string/price_oplata_sieciowa"
+            android:inputType="numberDecimal"
+            android:title="@string/oplata_sieciowa" />
+
+        <EditTextPreference
+            android:key="@string/preferences_oplata_przejsciowa"
+            android:defaultValue="@string/price_oplata_przejsciowa"
+            android:inputType="numberDecimal"
+            android:title="@string/oplata_przejsciowa" />
+
+        <EditTextPreference
+            android:key="@string/preferences_oplata_stala_za_przesyl"
+            android:defaultValue="@string/price_oplata_stala_za_przesyl"
+            android:inputType="numberDecimal"
+            android:title="@string/oplata_stala_za_przesyl" />
+
+        <EditTextPreference
+            android:key="@string/preferences_oplata_abonamentowa"
+            android:defaultValue="@string/price_oplata_abonamentowa"
+            android:inputType="numberDecimal"
+            android:title="@string/oplata_abonamentowa" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
