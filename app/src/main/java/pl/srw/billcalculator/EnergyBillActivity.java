@@ -69,27 +69,27 @@ public class EnergyBillActivity extends Activity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         String cenaZaEnergieCzynnaString = sharedPreferences.getString(
-                getString(R.string.preferences_za_energie_czynna), "0.0");
+                getString(R.string.preferences_za_energie_czynna), getString(R.string.price_za_energie_czynna));
         cenaZaEnergieCzynna = Double.parseDouble(cenaZaEnergieCzynnaString);
 
         String cenaSkladnikJakosciowyString = sharedPreferences.getString(
-                getString(R.string.preferences_skladnik_jakosciowy), "0.0");
+                getString(R.string.preferences_skladnik_jakosciowy), getString(R.string.price_skladnik_jakosciowy));
         cenaSkladnikJakosciowy = Double.parseDouble(cenaSkladnikJakosciowyString);
 
         String cenaOplataSieciowaString = sharedPreferences.getString(
-                getString(R.string.preferences_oplata_sieciowa), "0.0");
+                getString(R.string.preferences_oplata_sieciowa), getString(R.string.price_oplata_sieciowa));
         cenaOplataSieciowa = Double.parseDouble(cenaOplataSieciowaString);
 
         String cenaOplataPrzejsciowaString = sharedPreferences.getString(
-                getString(R.string.preferences_oplata_przejsciowa), "0.0");
+                getString(R.string.preferences_oplata_przejsciowa), getString(R.string.price_oplata_przejsciowa));
         cenaOplataPrzejsciowa = Double.parseDouble(cenaOplataPrzejsciowaString);
 
         String cenaOplStalaZaPrzesylString = sharedPreferences.getString(
-                getString(R.string.preferences_oplata_stala_za_przesyl), "0.0");
+                getString(R.string.preferences_oplata_stala_za_przesyl), getString(R.string.price_oplata_stala_za_przesyl));
         cenaOplStalaZaPrzesyl = Double.parseDouble(cenaOplStalaZaPrzesylString);
 
         String cenaOplataAbonamentowaString = sharedPreferences.getString(
-                getString(R.string.preferences_oplata_abonamentowa), "0.0");
+                getString(R.string.preferences_oplata_abonamentowa), getString(R.string.price_oplata_abonamentowa));
         cenaOplataAbonamentowa = Double.parseDouble(cenaOplataAbonamentowaString);
     }
 
