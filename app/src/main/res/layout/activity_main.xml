@@ -30,96 +30,107 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 <!-- WSKAZANIA ============================-->
-    <EditText
-        android:id="@+id/editText_from"
+    <LinearLayout
+        android:id="@+id/linearLayout_from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView_tip"
         android:layout_below="@+id/textView_tip"
         android:layout_marginTop="48dp"
-        android:ems="5"
-        android:gravity="right"
-        android:inputType="number">
+        android:layout_centerHorizontal="true">
 
-        <requestFocus />
-    </EditText>
+        <TextView
+            android:id="@+id/textView_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="@string/previous_reading"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <EditText
-        android:id="@+id/editText_to"
+        <EditText
+            android:id="@+id/editText_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="5"
+            android:gravity="right"
+            android:inputType="number">
+
+            <requestFocus />
+        </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/editText_from"
-        android:layout_below="@id/editText_from"
-        android:ems="5"
-        android:gravity="right"
-        android:inputType="number">
+        android:layout_below="@id/linearLayout_from"
+        android:layout_alignRight="@id/linearLayout_from">
 
-    </EditText>
+        <TextView
+            android:id="@+id/textView_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="@string/current_reading"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/textView_from"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/editText_from"
-        android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@id/editText_from"
-        android:text="@string/previous_reading"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <EditText
+            android:id="@+id/editText_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="5"
+            android:gravity="right"
+            android:inputType="number">
 
-    <TextView
-        android:id="@+id/textView_to"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/editText_to"
-        android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@id/editText_to"
-        android:text="@string/current_reading"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        </EditText>
+
+    </LinearLayout>
+
 <!-- DATA ============================-->
-    <Button
-        android:id="@+id/button_to"
+
+    <LinearLayout
+        android:id="@+id/linearLayout_from_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editText_to"
-        android:layout_alignRight="@id/editText_to"
+        android:layout_below="@id/linearLayout_to"
         android:layout_marginTop="8dp"
-        android:freezesText="true"
-        android:text=" Do "/>
+        android:layout_centerHorizontal="true">
 
-    <TextView
-        android:id="@+id/textView_from_to"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/button_to"
-        android:layout_alignBaseline="@id/button_to"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text=" - "/>
+        <TextView
+            android:id="@+id/textView_za_okres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Za okres: "/>
+        <Button
+            android:id="@+id/button_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:freezesText="true"
+            android:text=" Od "/>
+        <TextView
+            android:id="@+id/textView_from_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=" - "/>
+        <Button
+            android:id="@+id/button_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:freezesText="true"
+            android:text=" Do "/>
 
-    <Button
-        android:id="@+id/button_from"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/textView_from_to"
-        android:layout_alignBottom="@id/button_to"
-        android:freezesText="true"
-        android:text=" Od "/>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView_za_okres"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/button_from"
-        android:layout_alignBaseline="@id/button_to"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Za okres: "/>
 
 <!-- OBLICZ =========================== -->
     <Button
         android:id="@+id/button_calculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editText_to"
-        android:layout_below="@+id/button_to"
+        android:layout_alignRight="@+id/linearLayout_to"
+        android:layout_below="@+id/linearLayout_from_to"
         android:layout_marginTop="24dp"
         android:text="@string/calculate" />
 
