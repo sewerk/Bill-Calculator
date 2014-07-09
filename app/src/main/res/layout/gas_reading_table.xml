@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <TableLayout
+        android:id="@+id/table_odczyt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_gr_taryfowa"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/border">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingEnd="50dp"
+                android:text="Numer gazomierza: 00M6G4  13000152731" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="20dp"
+                android:text="Odczyt poprzedni:" />
+
+            <TextView
+                android:id="@+id/textView_odczyt_poprzedni"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingEnd="30dp"
+                android:text="@string/odczyt_na_dzien" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:paddingEnd="20dp"
+                android:text="Odczyt bieżący: Rzeczywisty" />
+
+            <TextView
+                android:id="@+id/textView_odczyt_biezacy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingEnd="30dp"
+                android:text="@string/odczyt_na_dzien" />
+
+            <TextView
+                android:id="@+id/textView_zuzycie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/zuzycie" />
+
+        </TableRow>
+    </TableLayout>
+
+</merge>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <TableLayout
+        android:id="@+id/table_podsumowanie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_odczyt"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/border">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:background="@drawable/border">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:paddingEnd="100dp"
+                android:text="Suma [I]"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingEnd="30dp"
+                android:text="wartość netto [zł]" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingEnd="30dp"
+                android:text="kwota VAT [zł]" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="wartość brutto [zł]" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="100dp"
+                android:text="Sprzedaż VAT 23%" />
+
+            <TextView
+                android:id="@+id/textView_wartosc_netto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingEnd="30dp"
+                android:text="114,11" />
+
+            <TextView
+                android:id="@+id/textView_kwota_vat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingEnd="30dp"
+                android:text="26,25" />
+
+            <TextView
+                android:id="@+id/textView_wartosc_brutto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="140,36" />
+        </TableRow>
+    </TableLayout>
+
+</merge>

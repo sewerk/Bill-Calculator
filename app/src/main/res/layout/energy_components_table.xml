@@ -18,7 +18,7 @@
             layout="@layout/energy_components_table_row" />
 
         <include
-            android:id="@+id/skladnik_jakosciowy"
+            android:id="@+id/row_skladnik_jakosciowy"
             layout="@layout/energy_components_table_row" />
 
         <include

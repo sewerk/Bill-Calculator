@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="2dp">
+
+    <TextView
+        android:id="@+id/textView_oplata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="20dp"
+        android:text="@string/abonamentowa" />
+
+    <TextView
+        android:id="@+id/textView_okres_od"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="20dp"
+        android:text="01.01.2014" />
+
+    <TextView
+        android:id="@+id/textView_okres_do"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="20dp"
+        android:text="31.12.2014" />
+
+    <TextView
+        android:id="@+id/textView_ilosc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="50dp"
+        android:text="1,000" />
+
+    <TextView
+        android:id="@+id/textView_Jm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="20dp"
+        android:text="mc" />
+
+    <TextView
+        android:id="@+id/textView_cena_netto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:paddingEnd="20dp"
+        android:text="11,0400" />
+
+    <TextView
+        android:id="@+id/textView_wartosc_akcyzy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:paddingEnd="20dp"
+        android:text="ZW" />
+
+    <TextView
+        android:id="@+id/textView_wspolczynnik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:paddingEnd="20dp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/textView_stawka_vat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:paddingEnd="20dp"
+        android:text="23" />
+
+    <TextView
+        android:id="@+id/textView_wartosc_netto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="69,27" />
+
+</TableRow>

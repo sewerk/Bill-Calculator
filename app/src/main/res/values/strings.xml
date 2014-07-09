@@ -31,5 +31,14 @@
 
     <string name="energy_prices">Ceny PGE</string>
     <string name="gas_prices">Ceny PGNiG</string>
+    <string name="odczyt_OSD">Odczyt OSD: Numer gazomierza: 00M6G4 13000152731, odczyt na dzień: %1$s:   %2$s m\u00B3</string>
+    <string name="wartosc_faktury">Wartość faktury brutto: %1$s</string>
+    <string name="odczyt_na_dzien">na dzień %1$s    %2$s[m\u00B3]</string>
+    <string name="zuzycie">Zużycie:   %1$s[m\u00B3]</string>
+
+    <string name="abonamentowa">Abonamentowa</string>
+    <string name="paliwo_gazowe">Paliwo gazowe</string>
+    <string name="dystrybucyjna_stala">Dystrybucyjna stała</string>
+    <string name="dystrybucyjna_zmienna">Dystrybucyjna zmienna</string>
 
 </resources>

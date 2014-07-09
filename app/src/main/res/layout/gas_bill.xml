@@ -1,10 +1,10 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollView1"
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:padding="2dp">
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView1"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
@@ -12,16 +12,68 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/textView1"
+            <ImageView
+                android:id="@+id/image_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="NOT READY YET"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:src="@drawable/pgnig"
+                android:layout_centerHorizontal="true" />
 
+            <TextView
+                android:id="@+id/textView_roz_punktu_poboru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_logo"
+                android:layout_alignParentLeft="true"
+                android:text="Rozliczenie punktu poboru:"
+                android:paddingTop="24dp"/>
+
+            <TextView
+                android:id="@+id/textView_nr_punktu_poboru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/textView_roz_punktu_poboru"
+                android:layout_alignParentRight="true"
+                android:text="Numer punktu poboru: 7632361611" />
+
+            <TextView
+                android:id="@+id/textView_gr_taryfowa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_roz_punktu_poboru"
+                android:layout_alignParentLeft="true"
+                android:text="Grupa taryfowa: PGNiG: W-2.12T, OSD: W-2.1"
+                android:layout_marginTop="24dp"/>
+
+            <include
+                layout="@layout/gas_reading_table" />
+
+            <include
+                layout="@layout/gas_components_table" />
+
+            <TextView
+                android:id="@+id/textView_odczyt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/table_rozliczenie"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="24dp"
+                android:text="@string/odczyt_OSD" />
+
+            <include
+                layout="@layout/gas_sum_table" />
+
+            <TextView
+                android:id="@+id/textView_wartosc_faktury"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/table_podsumowanie"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="8dp"
+                android:text="@string/wartosc_faktury"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
         </RelativeLayout>
 
-    </HorizontalScrollView>
+    </ScrollView>
 
-</ScrollView>
+</HorizontalScrollView>
