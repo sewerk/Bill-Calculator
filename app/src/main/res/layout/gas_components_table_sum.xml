@@ -53,6 +53,7 @@
     </TableRow>
 
     <TableRow
+        android:id="@+id/row_sum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/border"

@@ -52,17 +52,17 @@ public class EnergyBillActivity extends Activity {
     }
 
     private void setRozliczenieTable(int wskazanieBiezace, int wskazaniePoprzednie) {
-        TableLayout componentsTable = (TableLayout) findViewById(R.id.table_rozliczenie);
+        TableLayout rozliczenieTable = (TableLayout) findViewById(R.id.table_rozliczenie);
 
         setPrices();
 
-        setRow(componentsTable, R.id.row_za_energie_czynna, R.string.strefa_calodobowa, R.string.za_energie_czynna, R.string.kWh, wskazanieBiezace, wskazaniePoprzednie, cenaZaEnergieCzynna);
-        setRow(componentsTable, R.id.row_skladnik_jakosciowy, R.string.strefa_calodobowa, R.string.skladnik_jakosciowy, R.string.kWh, wskazanieBiezace, wskazaniePoprzednie, cenaSkladnikJakosciowy);
-        setRow(componentsTable, R.id.row_oplata_sieciowa, R.string.strefa_calodobowa, R.string.oplata_sieciowa, R.string.kWh, wskazanieBiezace, wskazaniePoprzednie, cenaOplataSieciowa);
-        setRow(componentsTable, R.id.row_oplata_przejsciowa, R.string.strefa_pusta, R.string.oplata_przejsciowa, R.string.mc, 0, 0, cenaOplataPrzejsciowa);
-        setRow(componentsTable, R.id.row_oplata_stala_za_przesyl, R.string.strefa_pusta, R.string.oplata_stala_za_przesyl, R.string.mc, 0, 0, cenaOplStalaZaPrzesyl);
-        setRow(componentsTable, R.id.row_oplata_abonamentowa, R.string.strefa_pusta, R.string.oplata_abonamentowa, R.string.mc, 0, 0, cenaOplataAbonamentowa);
-        setComponentsSummary(componentsTable, R.id.row_sum);
+        setRow(rozliczenieTable, R.id.row_za_energie_czynna, R.string.strefa_calodobowa, R.string.za_energie_czynna, R.string.kWh, wskazanieBiezace, wskazaniePoprzednie, cenaZaEnergieCzynna);
+        setRow(rozliczenieTable, R.id.row_skladnik_jakosciowy, R.string.strefa_calodobowa, R.string.skladnik_jakosciowy, R.string.kWh, wskazanieBiezace, wskazaniePoprzednie, cenaSkladnikJakosciowy);
+        setRow(rozliczenieTable, R.id.row_oplata_sieciowa, R.string.strefa_calodobowa, R.string.oplata_sieciowa, R.string.kWh, wskazanieBiezace, wskazaniePoprzednie, cenaOplataSieciowa);
+        setRow(rozliczenieTable, R.id.row_oplata_przejsciowa, R.string.strefa_pusta, R.string.oplata_przejsciowa, R.string.m_c, 0, 0, cenaOplataPrzejsciowa);
+        setRow(rozliczenieTable, R.id.row_oplata_stala_za_przesyl, R.string.strefa_pusta, R.string.oplata_stala_za_przesyl, R.string.m_c, 0, 0, cenaOplStalaZaPrzesyl);
+        setRow(rozliczenieTable, R.id.row_oplata_abonamentowa, R.string.strefa_pusta, R.string.oplata_abonamentowa, R.string.m_c, 0, 0, cenaOplataAbonamentowa);
+        setPodsumowanieRozliczenia(rozliczenieTable, R.id.row_sum);
     }
 
     private void setPrices() {
@@ -166,7 +166,7 @@ public class EnergyBillActivity extends Activity {
         tv.setText(string);
     }
 
-    private void setComponentsSummary(View table, int rowId) {
+    private void setPodsumowanieRozliczenia(View table, int rowId) {
         View summary = table.findViewById(rowId);
         setTVInRow(summary, R.id.textView_naleznosc_ogolem, display00(sumNaleznoscNetto));
     }

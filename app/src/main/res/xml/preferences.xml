@@ -45,4 +45,34 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="gas"
+        android:title="@string/gas_prices" >
+
+        <EditTextPreference
+            android:key="@string/preferences_abonamentowa"
+            android:defaultValue="@string/price_abonamentowa"
+            android:inputType="numberDecimal"
+            android:title="@string/abonamentowa" />
+
+        <EditTextPreference
+            android:key="@string/preferences_paliwo_gazowe"
+            android:defaultValue="@string/price_paliwo_gazowe"
+            android:inputType="numberDecimal"
+            android:title="@string/paliwo_gazowe" />
+
+        <EditTextPreference
+            android:key="@string/preferences_dystrybucyjna_stala"
+            android:defaultValue="@string/price_dystrybucyjna_stala"
+            android:inputType="numberDecimal"
+            android:title="@string/dystrybucyjna_stala" />
+
+        <EditTextPreference
+            android:key="@string/preferences_dystrybucyjna_zmienna"
+            android:defaultValue="@string/price_dystrybucyjna_zmienna"
+            android:inputType="numberDecimal"
+            android:title="@string/dystrybucyjna_zmienna" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>

@@ -35,7 +35,6 @@
 
 
         <include
-            android:id="@+id/row_sum"
             layout="@layout/gas_components_table_sum" />
     </TableLayout>
 
