@@ -9,10 +9,22 @@ android {
         targetSdkVersion 19
     }
 
+    signingConfigs {
+        myConfig {
+            storeFile file('open.keystore.jks')
+            storePassword "billCalc"
+            keyAlias "openKey"
+            keyPassword "android"
+        }
+    }
+
     buildTypes {
+
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.myConfig
+            debuggable false
         }
     }
 }
