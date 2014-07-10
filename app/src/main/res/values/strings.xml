@@ -4,7 +4,7 @@
     <string name="app_name">Kalculator rachunków</string>
     <string name="energy_label">Rachunek energii</string>
     <string name="gas_label">Rachunek gazu</string>
-    <string name="settings_label">Ustawienia</string>
+    <string name="settings_label">Edytuj ceny</string>
 
     <string name="action_settings">Ustawienia</string>
     <string name="previous_reading">Wskazanie poprzednie</string>
@@ -33,8 +33,8 @@
     <string name="gas_prices">Ceny PGNiG</string>
 
     <string name="odczyt_OSD">Odczyt OSD: Numer gazomierza: 00M6G4 13000152731, odczyt na dzień:   %1$s:      %2$s m\u00B3</string>
-    <string name="wartosc_faktury">Wartość faktury brutto: %1$s</string>
-    <string name="odczyt_na_dzien">na dzień:   %1$s       %2$s [m\u00B3]</string>
+    <string name="wartosc_faktury">Wartość faktury brutto: %1$s zł</string>
+    <string name="odczyt_na_dzien">%1$s       %2$s [m\u00B3]</string>
     <string name="zuzycie">Zużycie:      %1$s [m\u00B3]</string>
 
     <string name="abonamentowa">Abonamentowa</string>
