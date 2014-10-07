@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -29,7 +30,7 @@ public class MainActivity extends Activity {
 
     private EditText etPreviousReading;
     private EditText etCurrentReading;
-    private ToggleButton bBillType;
+    private ImageButton bBillType;
     private Button bFromDate;
     private Button bToDate;
     private TextView tvForPeriod;
@@ -40,7 +41,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bBillType = (ToggleButton) findViewById(R.id.button_bill_type_switch);
+        bBillType = (ImageButton) findViewById(R.id.button_bill_type_switch);
         etPreviousReading = (EditText) findViewById(R.id.editText_from);
         etCurrentReading = (EditText) findViewById(R.id.editText_to);
         tvForPeriod = (TextView) findViewById(R.id.textView_za_okres);
@@ -136,8 +137,8 @@ public class MainActivity extends Activity {
         }
     }
 
-    private Intent getIntent(ToggleButton bBillType) {
-        if (!bBillType.isChecked()) {
+    private Intent getIntent(ImageButton bBillType) {
+        if (!bBillType.isPressed()) {
             return new Intent(this, EnergyBillActivity.class);
         } else {
             return new Intent(this, GasBillActivity.class);
