@@ -15,12 +15,11 @@
         <ImageButton
             android:id="@+id/button_bill_type_switch"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:scaleType="fitXY"
-            android:background="@drawable/bill_type_switch"/>
+            android:background="@drawable/bill_type_pge"/>
 
         <!--ToggleButton
             android:id="@+id/button_bill_type_switch"
