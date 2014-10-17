@@ -50,10 +50,23 @@ public class MainActivity extends Activity {
         bToDate = (Button) findViewById(R.id.button_to);
         bCalculate = (Button) findViewById(R.id.button_calculate);
 
+        setDefaultDates();
         onImageButtonClicked();
         onDateButtonClicked(bFromDate);
         onDateButtonClicked(bToDate);
         onCalculateClicked();
+    }
+
+    private void setDefaultDates() {
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+
+        bFromDate.setText(buildDateString(year, month, 1));
+        c.set(Calendar.DAY_OF_MONTH, 1);
+        c.add(Calendar.MONTH, 1);
+        c.add(Calendar.DAY_OF_MONTH, -1);
+        bToDate.setText(buildDateString(year, month, c.get(Calendar.DAY_OF_MONTH)));
     }
 
     private void onImageButtonClicked() {
@@ -88,14 +101,18 @@ public class MainActivity extends Activity {
                 return new DatePickerDialog.OnDateSetListener(){
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        button.setText(new StringBuilder().append(day)
-                                .append("/").append(month + 1).append("/").append(year)
-                                .append(" "));
+                        button.setText(buildDateString(year, month, day));
                         tvForPeriod.setError(null);
                     }
                 };
             }
         });
+    }
+
+    private StringBuilder buildDateString(int year, int month, int day) {
+        return new StringBuilder().append(day)
+                .append("/").append(month + 1).append("/").append(year)
+                .append(" ");
     }
 
     private void onCalculateClicked() {

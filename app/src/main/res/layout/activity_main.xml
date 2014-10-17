@@ -90,31 +90,41 @@
     <!-- DATA ============================-->
 
         <LinearLayout
-            android:id="@+id/linearLayout_from_to"
+            android:id="@+id/linearLayout_date_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearLayout_to"
             android:layout_marginTop="8dp"
-            android:layout_centerHorizontal="true">
+            android:layout_alignRight="@+id/linearLayout_to">
 
             <TextView
                 android:id="@+id/textView_za_okres"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Za okres: "/>
+                android:text="Za okres od: "/>
             <Button
                 android:id="@+id/button_from"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:freezesText="true"
                 android:text=" Od "/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_date_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearLayout_date_from"
+            android:layout_marginTop="8dp"
+            android:layout_alignRight="@+id/linearLayout_to">
+
             <TextView
                 android:id="@+id/textView_from_to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text=" - "/>
+                android:text="Za okres do:"/>
             <Button
                 android:id="@+id/button_to"
                 android:layout_width="wrap_content"
@@ -131,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignRight="@+id/linearLayout_to"
-            android:layout_below="@+id/linearLayout_from_to"
+            android:layout_below="@+id/linearLayout_date_to"
             android:layout_marginTop="24dp"
             android:text="@string/calculate" />
 
