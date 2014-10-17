@@ -14,7 +14,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,6 +21,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends Activity {
+
+    private static final int IMAGE_TYPE_KEY = 1109171014;
 
     public static final String READING_FROM = "READING_FROM";
     public static final String READING_TO = "READING_TO";
@@ -49,9 +50,26 @@ public class MainActivity extends Activity {
         bToDate = (Button) findViewById(R.id.button_to);
         bCalculate = (Button) findViewById(R.id.button_calculate);
 
+        onImageButtonClicked();
         onDateButtonClicked(bFromDate);
         onDateButtonClicked(bToDate);
         onCalculateClicked();
+    }
+
+    private void onImageButtonClicked() {
+        bBillType.setTag(IMAGE_TYPE_KEY, R.drawable.bill_type_pge);
+        bBillType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (((Integer) bBillType.getTag(IMAGE_TYPE_KEY)) == R.drawable.bill_type_pge) {
+                    bBillType.setBackgroundResource(R.drawable.bill_type_pgnig);
+                    bBillType.setTag(IMAGE_TYPE_KEY, R.drawable.bill_type_pgnig);
+                } else {
+                    bBillType.setBackgroundResource(R.drawable.bill_type_pge);
+                    bBillType.setTag(IMAGE_TYPE_KEY, R.drawable.bill_type_pge);
+                }
+            }
+        });
     }
 
     private void onDateButtonClicked(final Button button) {
@@ -87,7 +105,7 @@ public class MainActivity extends Activity {
                 if (!validateForm())
                     return;
 
-                Intent billResult = getIntent(bBillType);
+                Intent billResult = newIntentBy(bBillType);
                 fillParameters(billResult);
                 startActivity(billResult);
             }
@@ -137,8 +155,8 @@ public class MainActivity extends Activity {
         }
     }
 
-    private Intent getIntent(ImageButton bBillType) {
-        if (!bBillType.isPressed()) {
+    private Intent newIntentBy(ImageButton bBillType) {
+        if (bBillType.getTag(IMAGE_TYPE_KEY).equals(R.drawable.bill_type_pge)) {
             return new Intent(this, EnergyBillActivity.class);
         } else {
             return new Intent(this, GasBillActivity.class);
