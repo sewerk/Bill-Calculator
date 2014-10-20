@@ -26,7 +26,7 @@
     <string name="do_zaplaty">DO ZAPŁATY : %s zł</string>
     <string name="za_okres">Za okres od %1$s do %2$s</string>
 
-    <string name="reading_error">Wartość wskazania bieżącego musi być większa niż poprzedniego!</string>
+    <string name="reading_error">Wartość wskazania bieżącego musi być większa od poprzedniego!</string>
     <string name="date_error">\"Data \\"Do\\" musi być później niż data \\"Od\\"\"</string>
 
     <string name="energy_prices">Ceny PGE</string>
