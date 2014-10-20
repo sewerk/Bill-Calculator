@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none"
@@ -20,17 +21,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
             android:background="@drawable/bill_type_pge"/>
-
-        <!--ToggleButton
-            android:id="@+id/button_bill_type_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bill_type_switch"
-            android:textOff=""
-            android:textOn="" /-->
 
     <!-- WSKAZANIA ============================-->
         <LinearLayout
@@ -108,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:freezesText="true"
-                android:text=" Od "/>
+                tools:text="11/12/2014"/>
         </LinearLayout>
 
         <LinearLayout
@@ -130,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:freezesText="true"
-                android:text=" Do "/>
+                tools:text="31/12/2014"/>
 
         </LinearLayout>
 
