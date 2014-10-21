@@ -28,6 +28,7 @@ public class MainActivity extends Activity {
     public static final String READING_TO = "READING_TO";
     public static final String DATE_FROM = "DATE_FROM";
     public static final String DATE_TO = "DATE_TO";
+    public static final String DATE_PATTERN = "dd/MM/yyyy";
 
     private EditText etPreviousReading;
     private EditText etCurrentReading;
@@ -90,11 +91,22 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 final Calendar c = Calendar.getInstance();
+                c.setTime(readDateFrom(button));
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
                 new DatePickerDialog(MainActivity.this, getOnDateSetListener(button), year, month, day).show();
+            }
+
+            private Date readDateFrom(final Button button) {
+                SimpleDateFormat dateParser = new SimpleDateFormat(DATE_PATTERN);
+                try {
+                    return dateParser.parse(button.getText().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    return new Date();
+                }
             }
 
             private DatePickerDialog.OnDateSetListener getOnDateSetListener(final Button button) {
@@ -109,10 +121,10 @@ public class MainActivity extends Activity {
         });
     }
 
-    private StringBuilder buildDateString(int year, int month, int day) {
-        return new StringBuilder().append(day)
-                .append("/").append(month + 1).append("/").append(year)
-                .append(" ");
+    private String buildDateString(int year, int month, int day) {
+        Calendar c = Calendar.getInstance();
+        c.set(year, month, day);
+        return new SimpleDateFormat(DATE_PATTERN).format(c.getTime());
     }
 
     private void onCalculateClicked() {
@@ -153,7 +165,7 @@ public class MainActivity extends Activity {
         String toDate = bToDate.getText().toString();
         if (fromDate.length() < 8 || toDate.length() < 8)
             return false;
-        SimpleDateFormat formater = new SimpleDateFormat("d/MM/yyyy");
+        SimpleDateFormat formater = new SimpleDateFormat(DATE_PATTERN);
         try {
             Date from = formater.parse(fromDate);
             Date to = formater.parse(toDate);
