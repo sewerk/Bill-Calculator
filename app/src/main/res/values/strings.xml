@@ -7,6 +7,7 @@
     <string name="settings_label">Edytuj ceny</string>
 
     <string name="action_settings">Ustawienia</string>
+    <string name="action_info">O programie</string>
     <string name="previous_reading">Wskazanie poprzednie</string>
     <string name="current_reading">Wskazanie bieżące</string>
     <string name="calculate">Oblicz</string>
@@ -45,10 +46,10 @@
     <string name="mc">mc</string>
     <string name="m3">m\u00B3</string>
 
-    <string name="klauzula">Nazwy własne, logotypy oraz znaki towarowe są własnością firm dystrybucyjnych. Przedstawione wyliczenia są jedynie przybliżoną wartością stanu faktyczenego i nie mają podstawy by stanowić roszczenia finansowe.</string>
-    <string name="info">INFORMACJE</string>
-    <string name="description">Program służy do prognozowania wysokości rachunku elektrycznego i gazowego.</string>
-    <string name="version">Wersja 1.0.1</string>
+    <string name="klauzula">Nazwy własne, logotypy oraz znaki towarowe są własnością firm dystrybucyjnych. Przedstawione wyliczenia są jedynie przybliżoną wartością stanu faktyczenego i nie mają podstawy by stanowić roszczenia finansowego.</string>
+    <string name="info">O programie</string>
+    <string name="description">Program służy do prognozowania wysokości rachunku elektrycznego/gazowego.</string>
+    <string name="version_text">Wersja 1.0.1</string>
     <string name="about_label">O programie</string>
 
 </resources>

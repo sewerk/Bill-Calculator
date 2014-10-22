@@ -9,7 +9,8 @@ public class AboutActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.info);
+        setContentView(R.layout.about);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

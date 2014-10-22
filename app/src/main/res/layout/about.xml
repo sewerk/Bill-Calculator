@@ -8,43 +8,34 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <TextView
-        android:id="@+id/textView_info"
+        android:id="@+id/textView_ver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
+        android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/info" />
+        android:text="@string/version_text"/>
 
     <TextView
         android:id="@+id/textView_about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_info"
+        android:layout_below="@+id/textView_ver"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/description"/>
-
-    <TextView
-        android:id="@+id/textView_ver"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_about"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="@string/version"/>
 
     <ImageView
         android:id="@+id/imageView_emailme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_ver"
+        android:layout_below="@+id/textView_about"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:src="@drawable/button_pressed"/>
+        android:src="@drawable/ic_launcher"/>
 
     <TextView
         android:id="@+id/textView_klauzula"
@@ -54,6 +45,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/klauzula" />
 
 </RelativeLayout>
