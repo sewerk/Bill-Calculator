@@ -46,10 +46,10 @@
     <string name="mc">mc</string>
     <string name="m3">m\u00B3</string>
 
-    <string name="klauzula">Nazwy własne, logotypy oraz znaki towarowe są własnością firm dystrybucyjnych. Przedstawione wyliczenia są jedynie przybliżoną wartością stanu faktyczenego i nie mają podstawy by stanowić roszczenia finansowego.</string>
-    <string name="info">O programie</string>
-    <string name="description">Program służy do prognozowania wysokości rachunku elektrycznego/gazowego.</string>
-    <string name="version_text">Wersja 1.0.1</string>
     <string name="about_label">O programie</string>
+    <string name="version_text">Wersja 1.0.1</string>
+    <string name="description">Program służy do prognozowania wysokości rachunku elektrycznego/gazowego.</string>
+    <string name="emailme">Napisz do autora</string>
+    <string name="clause">Nazwy własne, logotypy oraz znaki towarowe są własnością firm dystrybucyjnych. Przedstawione wyliczenia są jedynie przybliżoną wartością stanu faktyczenego i nie mają podstawy by stanowić roszczenia finansowego.</string>
 
 </resources>
