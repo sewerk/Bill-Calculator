@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Kalculator rachunków</string>
+    <string name="app_name">Kalkulator rachunków</string>
     <string name="energy_label">Rachunek energii</string>
     <string name="gas_label">Rachunek gazu</string>
     <string name="settings_label">Edytuj ceny</string>
@@ -49,7 +49,8 @@
     <string name="about_label">O programie</string>
     <string name="version_text">Wersja 1.0.1</string>
     <string name="description">Program służy do prognozowania wysokości rachunku elektrycznego/gazowego.</string>
-    <string name="emailme">Napisz do autora</string>
+    <string name="emailme">Napisz co myślisz</string>
     <string name="clause">Nazwy własne, logotypy oraz znaki towarowe są własnością firm dystrybucyjnych. Przedstawione wyliczenia są jedynie przybliżoną wartością stanu faktyczenego i nie mają podstawy by stanowić roszczenia finansowego.</string>
+    <string name="email_client_missing">Nie wykryto klientów poczty e-mail</string>
 
 </resources>
