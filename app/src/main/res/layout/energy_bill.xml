@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/image_logo"
-                android:text="NUMER EWIDENCYJNY: 020994107" />
+                android:text="NUMER EWIDENCYJNY: 000000001" />
 
             <TextView
                 android:id="@+id/textView_tytul"

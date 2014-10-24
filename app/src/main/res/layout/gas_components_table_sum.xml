@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TableRow
         android:layout_width="wrap_content"
@@ -87,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:paddingEnd="20dp"
-            android:text="26,25" />
+            tools:text="26,25" />
 
         <TextView
             android:id="@+id/textView_wartosc_netto"
@@ -96,7 +97,7 @@
             android:layout_gravity="right"
             android:paddingEnd="20dp"
             android:layout_column="7"
-            android:text="114,11" />
+            tools:text="114,11" />
 
         <TextView
             android:id="@+id/textView_wartosc_brutto"
@@ -104,7 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_column="9"
-            android:text="140,36" />
+            tools:text="140,36" />
 
     </TableRow>
 

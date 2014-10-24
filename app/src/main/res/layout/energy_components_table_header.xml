@@ -12,7 +12,7 @@
             android:layout_height="wrap_content"
             android:layout_span="5"
             android:lines="1"
-            android:text="Licznik rozliczeniowy en. czynnej nr: 26906616" />
+            android:text="Licznik rozliczeniowy en. czynnej nr: 00000001" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/textView_roz_punktu_poboru"
                 android:layout_alignParentRight="true"
-                android:text="Numer punktu poboru: 7632361611" />
+                android:text="Numer punktu poboru: 0000000001" />
 
             <TextView
                 android:id="@+id/textView_gr_taryfowa"

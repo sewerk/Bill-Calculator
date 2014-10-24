@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:paddingEnd="40dp"
-                android:text="Numer gazomierza: 00M6G4  13000152731" />
+                android:text="Numer gazomierza: 000001  00000000001" />
 
             <TextView
                 android:layout_width="wrap_content"

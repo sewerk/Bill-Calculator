@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <TableLayout
         android:id="@+id/table_podsumowanie"
@@ -60,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:paddingEnd="30dp"
-                android:text="114,11" />
+                tools:text="114,11" />
 
             <TextView
                 android:id="@+id/textView_kwota_vat"
@@ -68,14 +69,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:paddingEnd="30dp"
-                android:text="26,25" />
+                tools:text="26,25" />
 
             <TextView
                 android:id="@+id/textView_wartosc_brutto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="140,36" />
+                tools:text="140,36" />
         </TableRow>
     </TableLayout>
 

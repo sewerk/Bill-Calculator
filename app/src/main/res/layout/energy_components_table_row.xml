@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="2dp">
@@ -37,7 +38,7 @@
         android:layout_height="wrap_content"
         android:gravity="right"
         android:paddingEnd="20dp"
-        android:text="16945" />
+        tools:text="16945" />
 
     <TextView
         android:id="@+id/textView_wskazanie_przeprzednie"
@@ -45,7 +46,7 @@
         android:layout_height="wrap_content"
         android:gravity="right"
         android:paddingEnd="20dp"
-        android:text="16798" />
+        tools:text="16798" />
 
     <TextView
         android:id="@+id/textView_ilosc_mc"
@@ -61,7 +62,7 @@
         android:layout_height="wrap_content"
         android:gravity="right"
         android:paddingEnd="20dp"
-        android:text="147" />
+        tools:text="147" />
 
     <TextView
         android:id="@+id/textView_cena"
@@ -69,7 +70,7 @@
         android:layout_height="wrap_content"
         android:gravity="right"
         android:paddingEnd="20dp"
-        android:text="0,25339" />
+        tools:text="0,25339" />
 
     <TextView
         android:id="@+id/textView_naleznosc"
@@ -77,7 +78,7 @@
         android:layout_height="wrap_content"
         android:gravity="right"
         android:paddingEnd="20dp"
-        android:text="27,93" />
+        tools:text="27,93" />
 
     <TextView
         android:layout_width="wrap_content"
