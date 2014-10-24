@@ -20,6 +20,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
+
 public class MainActivity extends Activity {
 
     private static final int IMAGE_TYPE_KEY = 1109171014;
@@ -30,32 +34,26 @@ public class MainActivity extends Activity {
     public static final String DATE_TO = "DATE_TO";
     public static final String DATE_PATTERN = "dd/MM/yyyy";
 
-    private EditText etPreviousReading;
-    private EditText etCurrentReading;
-    private ImageButton bBillType;
-    private Button bFromDate;
-    private Button bToDate;
-    private TextView tvForPeriod;
-    private Button bCalculate;
+    @InjectView(R.id.button_bill_type_switch) ImageButton bBillType;
+    @InjectView(R.id.editText_from) EditText etPreviousReading;
+    @InjectView(R.id.editText_to) EditText etCurrentReading;
+    @InjectView(R.id.button_from) Button bFromDate;
+    @InjectView(R.id.button_to) Button bToDate;
+    @InjectView(R.id.textView_za_okres) TextView tvForPeriod;
+    @InjectView(R.id.button_calculate) Button bCalculate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.inject(this);
 
-        bBillType = (ImageButton) findViewById(R.id.button_bill_type_switch);
-        etPreviousReading = (EditText) findViewById(R.id.editText_from);
-        etCurrentReading = (EditText) findViewById(R.id.editText_to);
-        tvForPeriod = (TextView) findViewById(R.id.textView_za_okres);
-        bFromDate = (Button) findViewById(R.id.button_from);
-        bToDate = (Button) findViewById(R.id.button_to);
-        bCalculate = (Button) findViewById(R.id.button_calculate);
+        initValues();
+    }
 
+    private void initValues() {
         setDefaultDates();
-        onImageButtonClicked();
-        onDateButtonClicked(bFromDate);
-        onDateButtonClicked(bToDate);
-        onCalculateClicked();
+        setBillTypeButtonInitValue();
     }
 
     private void setDefaultDates() {
@@ -70,55 +68,50 @@ public class MainActivity extends Activity {
         bToDate.setText(buildDateString(year, month, c.get(Calendar.DAY_OF_MONTH)));
     }
 
-    private void onImageButtonClicked() {
+    private void setBillTypeButtonInitValue() {
         bBillType.setTag(IMAGE_TYPE_KEY, R.drawable.bill_type_pge);
-        bBillType.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (((Integer) bBillType.getTag(IMAGE_TYPE_KEY)) == R.drawable.bill_type_pge) {
-                    bBillType.setBackgroundResource(R.drawable.bill_type_pgnig);
-                    bBillType.setTag(IMAGE_TYPE_KEY, R.drawable.bill_type_pgnig);
-                } else {
-                    bBillType.setBackgroundResource(R.drawable.bill_type_pge);
-                    bBillType.setTag(IMAGE_TYPE_KEY, R.drawable.bill_type_pge);
-                }
-            }
-        });
     }
 
-    private void onDateButtonClicked(final Button button) {
-        button.setOnClickListener(new View.OnClickListener() {
+    @OnClick(R.id.button_bill_type_switch)
+    public void changeBillType(final ImageButton billTypeButton) {
+        if (((Integer) billTypeButton.getTag(IMAGE_TYPE_KEY)) == R.drawable.bill_type_pge) {
+            billTypeButton.setBackgroundResource(R.drawable.bill_type_pgnig);
+            billTypeButton.setTag(IMAGE_TYPE_KEY, R.drawable.bill_type_pgnig);
+        } else {
+            billTypeButton.setBackgroundResource(R.drawable.bill_type_pge);
+            billTypeButton.setTag(IMAGE_TYPE_KEY, R.drawable.bill_type_pge);
+        }
+    }
+
+    @OnClick({R.id.button_from, R.id.button_to})
+    public void showDatePicker(final Button datePickerButton) {
+        final Calendar c = Calendar.getInstance();
+        c.setTime(readDateFrom(datePickerButton));
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        new DatePickerDialog(MainActivity.this, onDatePickedListener(datePickerButton), year, month, day).show();
+    }
+
+    private DatePickerDialog.OnDateSetListener onDatePickedListener(final Button button) {
+        return new DatePickerDialog.OnDateSetListener(){
             @Override
-            public void onClick(View view) {
-                final Calendar c = Calendar.getInstance();
-                c.setTime(readDateFrom(button));
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-
-                new DatePickerDialog(MainActivity.this, getOnDateSetListener(button), year, month, day).show();
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                button.setText(buildDateString(year, month, day));
+                tvForPeriod.setError(null);
             }
+        };
+    }
 
-            private Date readDateFrom(final Button button) {
-                SimpleDateFormat dateParser = new SimpleDateFormat(DATE_PATTERN);
-                try {
-                    return dateParser.parse(button.getText().toString());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                    return new Date();
-                }
-            }
-
-            private DatePickerDialog.OnDateSetListener getOnDateSetListener(final Button button) {
-                return new DatePickerDialog.OnDateSetListener(){
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        button.setText(buildDateString(year, month, day));
-                        tvForPeriod.setError(null);
-                    }
-                };
-            }
-        });
+    private Date readDateFrom(final Button button) {
+        SimpleDateFormat dateParser = new SimpleDateFormat(DATE_PATTERN);
+        try {
+            return dateParser.parse(button.getText().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return new Date();
+        }
     }
 
     private String buildDateString(int year, int month, int day) {
@@ -127,18 +120,14 @@ public class MainActivity extends Activity {
         return new SimpleDateFormat(DATE_PATTERN).format(c.getTime());
     }
 
-    private void onCalculateClicked() {
-        bCalculate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!validateForm())
-                    return;
+    @OnClick(R.id.button_calculate)
+    public void calculate() {
+        if (!validateForm())
+            return;
 
-                Intent billResult = newIntentBy(bBillType);
-                fillParameters(billResult);
-                startActivity(billResult);
-            }
-        });
+        Intent billResult = newIntentBy(bBillType);
+        fillParameters(billResult);
+        startActivity(billResult);
     }
 
     private boolean validateForm() {
