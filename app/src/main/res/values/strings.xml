@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<!-- Action bar -->
+    <string name="action_settings">Settings</string>
+    <string name="action_info">About</string>
+<!-- activity_main -->
+    <string name="app_name">Bill Calculator</string>
+    <string name="previous_reading">Previous reading</string>
+    <string name="current_reading">Current reading</string>
+    <string name="date_from">From date:</string>
+    <string name="date_to">To date:</string>
+    <string name="calculate">Calculate</string>
+    <string name="reading_error">Current reading need to exceed previous reading</string>
+    <string name="date_error">\"To date\" need to be later then \"From date\"</string>
 
-    <string name="app_name">Kalkulator rachunków</string>
-    <string name="energy_label">Rachunek energii</string>
-    <string name="gas_label">Rachunek gazu</string>
-    <string name="settings_label">Edytuj ceny</string>
-
-    <string name="action_settings">Ustawienia</string>
-    <string name="action_info">O programie</string>
-    <string name="previous_reading">Wskazanie poprzednie</string>
-    <string name="current_reading">Wskazanie bieżące</string>
-    <string name="calculate">Oblicz</string>
-
+<!-- energy_bill -->
+    <string name="energy_label">Energy bill</string>
     <string name="strefa_calodobowa">całodobowa</string>
     <string name="strefa_pusta"></string>
     <string name="za_energie_czynna">za energię czynną</string>
@@ -27,12 +30,13 @@
     <string name="do_zaplaty">DO ZAPŁATY : %s zł</string>
     <string name="za_okres">Za okres od %1$s do %2$s</string>
 
-    <string name="reading_error">Wartość wskazania bieżącego musi być większa od poprzedniego!</string>
-    <string name="date_error">\"Data \\"Do\\" musi być później niż data \\"Od\\"\"</string>
+<!-- Preferences -->
+    <string name="settings_label">Settings</string>
+    <string name="energy_prices">PGE prices</string>
+    <string name="gas_prices">PGNiG prices</string>
 
-    <string name="energy_prices">Ceny PGE</string>
-    <string name="gas_prices">Ceny PGNiG</string>
-
+<!-- gas_bill -->
+    <string name="gas_label">Gas bill</string>
     <string name="odczyt_OSD">Odczyt OSD: Numer gazomierza: 000001 00000000001, odczyt na dzień:   %1$s:      %2$s m\u00B3</string>
     <string name="wartosc_faktury">Wartość faktury brutto: %1$s zł</string>
     <string name="odczyt_na_dzien">%1$s       %2$s [m\u00B3]</string>
@@ -45,12 +49,12 @@
 
     <string name="mc">mc</string>
     <string name="m3">m\u00B3</string>
-
-    <string name="about_label">O programie</string>
-    <string name="version_text">Wersja 1.0.1</string>
-    <string name="description">Program służy do prognozowania wysokości rachunku za media</string>
-    <string name="emailme">Napisz co myślisz</string>
-    <string name="clause">Nazwy własne, logotypy oraz znaki towarowe są własnością firm dystrybucyjnych. Przedstawione wyliczenia są jedynie przybliżoną wartością stanu faktyczenego i nie mają podstawy by stanowić roszczenia finansowego.</string>
-    <string name="email_client_missing">Nie wykryto klientów poczty e-mail</string>
+<!-- about -->
+    <string name="about_label">About</string>
+    <string name="version_text">Version 1.0.1</string>
+    <string name="description">Application calculates the approximate value of utility bill</string>
+    <string name="emailme">write what you think</string>
+    <string name="clause">The names, logos and trade marks are owned by distribution companies. Given calculations are just approximate value of the bill and cannot be used as ground for financial claiming.</string>
+    <string name="email_client_missing">I could not find any e-mail client installed</string>
 
 </resources>

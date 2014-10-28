@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -37,9 +36,9 @@ public class MainActivity extends Activity {
     @InjectView(R.id.button_bill_type_switch) ImageButton bBillType;
     @InjectView(R.id.editText_from) EditText etPreviousReading;
     @InjectView(R.id.editText_to) EditText etCurrentReading;
-    @InjectView(R.id.button_from) Button bFromDate;
-    @InjectView(R.id.button_to) Button bToDate;
-    @InjectView(R.id.textView_za_okres) TextView tvForPeriod;
+    @InjectView(R.id.button_date_from) Button bFromDate;
+    @InjectView(R.id.button_date_to) Button bToDate;
+    @InjectView(R.id.textView_date_from) TextView tvForPeriod;
     @InjectView(R.id.button_calculate) Button bCalculate;
 
     @Override
@@ -83,7 +82,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    @OnClick({R.id.button_from, R.id.button_to})
+    @OnClick({R.id.button_date_from, R.id.button_date_to})
     public void showDatePicker(final Button datePickerButton) {
         final Calendar c = Calendar.getInstance();
         c.setTime(readDateFrom(datePickerButton));

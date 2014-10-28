@@ -90,13 +90,13 @@
             android:layout_alignRight="@+id/linearLayout_to">
 
             <TextView
-                android:id="@+id/textView_za_okres"
+                android:id="@+id/textView_date_from"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Za okres od: "/>
+                android:text="@string/date_from"/>
             <Button
-                android:id="@+id/button_from"
+                android:id="@+id/button_date_from"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:freezesText="true"
@@ -112,13 +112,13 @@
             android:layout_alignRight="@+id/linearLayout_to">
 
             <TextView
-                android:id="@+id/textView_from_to"
+                android:id="@+id/textView_date_to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Za okres do:"/>
+                android:text="@string/date_to"/>
             <Button
-                android:id="@+id/button_to"
+                android:id="@+id/button_date_to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:freezesText="true"

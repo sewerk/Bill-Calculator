@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!-- Action bar -->
+    <string name="action_settings">Ustawienia</string>
+    <string name="action_info">O programie</string>
+<!-- activity_main -->
+    <string name="app_name">Kalkulator rachunków</string>
+    <string name="previous_reading">Wskazanie poprzednie</string>
+    <string name="current_reading">Wskazanie bieżące</string>
+    <string name="date_from">Za okres od:</string>
+    <string name="date_to">Za okres do:</string>
+    <string name="calculate">Oblicz</string>
+    <string name="reading_error">Wartość wskazania bieżącego musi być większa od poprzedniego!</string>
+    <string name="date_error">Data \"Do\" musi być później niż data \"Od\"</string>
+<!-- energy_bill -->
+    <string name="energy_label">Rachunek za energię</string>
+<!-- gas_bill -->
+    <string name="gas_label">Rachunek za gaz</string>
+<!-- Preferences -->
+    <string name="settings_label">Ustawienia</string>
+    <string name="energy_prices">Ceny PGE</string>
+    <string name="gas_prices">Ceny PGNiG</string>
+<!-- about -->
+    <string name="about_label">O programie</string>
+    <string name="version_text">Wersja 1.0.1</string>
+    <string name="description">Aplikacja służy do obliczania przybliżonej wysokości rachunku za media</string>
+    <string name="emailme">napisz co myślisz</string>
+    <string name="clause">Nazwy własne, logotypy oraz znaki towarowe są własnością firm dystrybucyjnych. Przedstawione wyliczenia są jedynie przybliżoną wartością stanu faktyczenego i nie mają podstawy by stanowić roszczenia finansowego.</string>
+    <string name="email_client_missing">Nie wykryto klientów poczty e-mail</string>
+
+</resources>
