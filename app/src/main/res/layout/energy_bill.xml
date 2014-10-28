@@ -21,7 +21,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/pge"
-                android:layout_alignParentLeft="true" />
+                android:layout_alignParentLeft="true"
+                android:contentDescription="Energy bill logo"/>
 
             <TextView
                 android:id="@+id/textView_nr_ewidencyjny"
@@ -83,7 +84,7 @@
                 android:id="@+id/textView_do_zaplaty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/table_podsumowanie"
+                android:layout_alignLeft="@+id/table_podsumowanie"
                 android:layout_below="@+id/table_podsumowanie"
                 android:layout_marginTop="8dp"
                 android:text="@string/do_zaplaty"

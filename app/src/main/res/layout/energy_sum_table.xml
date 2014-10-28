@@ -18,28 +18,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:gravity="right"
-                android:paddingEnd="30dp"
+                android:gravity="end"
+                android:paddingRight="30dp"
                 android:text="Należność netto (zł)" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:paddingEnd="30dp"
+                android:gravity="end"
+                android:paddingRight="30dp"
                 android:text="Stawka VAT (%)" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:paddingEnd="30dp"
+                android:gravity="end"
+                android:paddingRight="30dp"
                 android:text="Kwota VAT (zł)" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:gravity="end"
                 android:text="Należność brutto (zł)" />
         </TableRow>
 
@@ -51,37 +51,37 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingEnd="30dp"
+                android:paddingRight="30dp"
                 android:text="Należność ogółem" />
 
             <TextView
                 android:id="@+id/textView_naleznosc_netto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:paddingEnd="30dp"
+                android:gravity="end"
+                android:paddingRight="30dp"
                 android:text="61,09" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingEnd="30dp"
+                android:paddingRight="30dp"
                 android:text="23" />
 
             <TextView
                 android:id="@+id/textView_kwota_vat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:paddingEnd="30dp"
+                android:gravity="end"
+                android:paddingRight="30dp"
                 android:text="14,05" />
 
             <TextView
                 android:id="@+id/textView_naleznosc_brutto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:gravity="end"
                 android:text="75,14" />
         </TableRow>
     </TableLayout>

@@ -62,7 +62,7 @@ public class EnergyBillActivity extends Activity {
         setRow(rozliczenieTable, R.id.row_oplata_przejsciowa, R.string.strefa_pusta, R.string.oplata_przejsciowa, R.string.m_c, 0, 0, cenaOplataPrzejsciowa);
         setRow(rozliczenieTable, R.id.row_oplata_stala_za_przesyl, R.string.strefa_pusta, R.string.oplata_stala_za_przesyl, R.string.m_c, 0, 0, cenaOplStalaZaPrzesyl);
         setRow(rozliczenieTable, R.id.row_oplata_abonamentowa, R.string.strefa_pusta, R.string.oplata_abonamentowa, R.string.m_c, 0, 0, cenaOplataAbonamentowa);
-        setPodsumowanieRozliczenia(rozliczenieTable, R.id.row_sum);
+        setPodsumowanieRozliczenia(rozliczenieTable);
     }
 
     private void setPrices() {
@@ -166,8 +166,8 @@ public class EnergyBillActivity extends Activity {
         tv.setText(string);
     }
 
-    private void setPodsumowanieRozliczenia(View table, int rowId) {
-        View summary = table.findViewById(rowId);
+    private void setPodsumowanieRozliczenia(View table) {
+        View summary = table.findViewById(R.id.row_sum);
         setTVInRow(summary, R.id.textView_naleznosc_ogolem, display00(sumNaleznoscNetto));
     }
 

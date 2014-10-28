@@ -10,8 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="8"
-        android:gravity="right"
-        android:paddingEnd="20dp"
+        android:gravity="end"
+        android:paddingRight="20dp"
         android:text="OGÓŁEM" />
 
     <TextView
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="9"
-        android:gravity="right"
-        android:paddingEnd="20dp"
+        android:gravity="end"
+        android:paddingRight="20dp"
         tools:text="61,09" />
 </TableRow>

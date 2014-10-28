@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content" >
 
         <ImageView
             android:id="@+id/image_logo"
@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:src="@drawable/billcalc"/>
+            android:src="@drawable/billcalc"
+            android:contentDescription="Application logo"/>
 
         <TextView
             android:id="@+id/textView_ver"
@@ -50,6 +51,7 @@
             android:layout_marginTop="16dp"
             android:layout_below="@id/textView_about"
             android:drawableLeft="@drawable/emailme"
+            android:drawableStart="@drawable/emailme"
             android:text="@string/emailme"
             android:gravity="center" />
 

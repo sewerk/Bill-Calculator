@@ -13,8 +13,8 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_span="2"
-            android:gravity="right"
-            android:paddingEnd="20dp"
+            android:gravity="end"
+            android:paddingRight="20dp"
             android:lines="1"
             android:text="wartość akcyzy [zł]" />
 
@@ -22,16 +22,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_span="2"
-            android:gravity="right"
-            android:paddingEnd="20dp"
+            android:gravity="end"
+            android:paddingRight="20dp"
             android:lines="1"
             android:text="stawka VAT [%]" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:paddingEnd="20dp"
+            android:gravity="end"
+            android:paddingRight="20dp"
             android:lines="1"
             android:text="kwota VAT [zł]" />
 
@@ -39,8 +39,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_span="2"
-            android:gravity="right"
-            android:paddingEnd="20dp"
+            android:gravity="end"
+            android:paddingRight="20dp"
             android:lines="1"
             android:text="wartość netto [zł]" />
 
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_span="2"
-            android:gravity="right"
+            android:gravity="end"
             android:lines="1"
             android:text="wartość brutto [zł]" />
     </TableRow>
@@ -63,22 +63,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingEnd="20dp"
+            android:paddingRight="20dp"
             android:text="[I] Razem sprzedaż" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:paddingEnd="20dp"
+            android:layout_gravity="end"
+            android:paddingRight="20dp"
             android:layout_column="2"
             android:text="0,00" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:paddingEnd="20dp"
+            android:layout_gravity="end"
+            android:paddingRight="20dp"
             android:layout_column="4"
             android:text="23" />
 
@@ -86,16 +86,16 @@
             android:id="@+id/textView_kwota_vat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:paddingEnd="20dp"
+            android:layout_gravity="end"
+            android:paddingRight="20dp"
             tools:text="26,25" />
 
         <TextView
             android:id="@+id/textView_wartosc_netto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:paddingEnd="20dp"
+            android:layout_gravity="end"
+            android:paddingRight="20dp"
             android:layout_column="7"
             tools:text="114,11" />
 
@@ -103,7 +103,7 @@
             android:id="@+id/textView_wartosc_brutto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:layout_column="9"
             tools:text="140,36" />
 

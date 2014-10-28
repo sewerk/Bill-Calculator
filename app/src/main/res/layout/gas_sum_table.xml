@@ -20,27 +20,27 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:paddingEnd="100dp"
+                android:paddingRight="100dp"
                 android:text="Suma [I]"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:paddingEnd="30dp"
+                android:gravity="end"
+                android:paddingRight="30dp"
                 android:text="wartość netto [zł]" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:paddingEnd="30dp"
+                android:gravity="end"
+                android:paddingRight="30dp"
                 android:text="kwota VAT [zł]" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:gravity="end"
                 android:text="wartość brutto [zł]" />
         </TableRow>
 
@@ -52,30 +52,30 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingEnd="100dp"
+                android:paddingRight="100dp"
                 android:text="Sprzedaż VAT 23%" />
 
             <TextView
                 android:id="@+id/textView_wartosc_netto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:paddingEnd="30dp"
+                android:gravity="end"
+                android:paddingRight="30dp"
                 tools:text="114,11" />
 
             <TextView
                 android:id="@+id/textView_kwota_vat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:paddingEnd="30dp"
+                android:gravity="end"
+                android:paddingRight="30dp"
                 tools:text="26,25" />
 
             <TextView
                 android:id="@+id/textView_wartosc_brutto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:gravity="end"
                 tools:text="140,36" />
         </TableRow>
     </TableLayout>

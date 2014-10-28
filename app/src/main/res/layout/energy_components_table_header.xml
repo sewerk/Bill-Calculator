@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:layout_span="3"
             android:text="Mnożna: 1" />
     </TableRow>
@@ -38,67 +38,67 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingEnd="20dp"
+            android:paddingRight="20dp"
             android:text="Strefa" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingEnd="20dp"
+            android:paddingRight="20dp"
             android:text="Opis" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingEnd="20dp"
+            android:paddingRight="20dp"
             android:text="PKWiU" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingEnd="20dp"
+            android:paddingRight="20dp"
             android:text="J. m." />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:paddingEnd="20dp"
+            android:gravity="end"
+            android:paddingRight="20dp"
             android:text="Wskazanie\nbieżące" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:paddingEnd="20dp"
+            android:gravity="end"
+            android:paddingRight="20dp"
             android:text="Wskazanie\npoprzednie" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:paddingEnd="20dp"
+            android:gravity="end"
+            android:paddingRight="20dp"
             android:text="Ilość\nm-c" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:paddingEnd="20dp"
+            android:gravity="end"
+            android:paddingRight="20dp"
             android:text="Ilość" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:paddingEnd="20dp"
+            android:gravity="end"
+            android:paddingRight="20dp"
             android:text="Cena\nnetto (zł)" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:paddingEnd="20dp"
+            android:gravity="end"
+            android:paddingRight="20dp"
             android:text="Należność\nnetto (zł)" />
 
         <TextView

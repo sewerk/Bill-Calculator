@@ -9,12 +9,12 @@ import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+
 import butterknife.OnClick;
 
 public class AboutActivity extends Activity {
 
     public static final String RECEIVER_EMAIL = "sewerk@gmail.com";
-    @InjectView(R.id.textView_emalme) TextView tvEmailme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

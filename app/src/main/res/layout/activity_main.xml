@@ -11,7 +11,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content" >
 
         <ImageButton
             android:id="@+id/button_bill_type_switch"
@@ -20,7 +20,8 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:background="@drawable/bill_type_pge"/>
+            android:background="@drawable/bill_type_pge"
+            android:contentDescription="Bill type switch"/>
 
     <!-- WSKAZANIA ============================-->
         <LinearLayout
@@ -45,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:ems="5"
                 android:maxLength="9"
-                android:gravity="right"
+                android:gravity="end"
                 android:inputType="number">
 
                 <requestFocus />
@@ -74,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:ems="5"
                 android:maxLength="9"
-                android:gravity="right"
+                android:gravity="end"
                 android:inputType="number" />
 
         </LinearLayout>

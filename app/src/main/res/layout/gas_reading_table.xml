@@ -17,8 +17,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:paddingEnd="40dp"
+                android:gravity="end"
+                android:paddingRight="40dp"
                 android:text="Numer gazomierza: 000001  00000000001" />
 
             <TextView
@@ -29,15 +29,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
                 android:text="na dzień:" />
 
             <TextView
                 android:id="@+id/textView_odczyt_poprzedni"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:paddingEnd="30dp"
+                android:gravity="end"
+                android:paddingRight="30dp"
                 android:text="@string/odczyt_na_dzien" />
 
         </TableRow>
@@ -51,28 +51,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
                 android:text="Odczyt bieżący: Rzeczywisty" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
                 android:text="na dzień:" />
 
             <TextView
                 android:id="@+id/textView_odczyt_biezacy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:paddingEnd="30dp"
+                android:gravity="end"
+                android:paddingRight="30dp"
                 android:text="@string/odczyt_na_dzien" />
 
             <TextView
                 android:id="@+id/textView_zuzycie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:gravity="end"
                 android:text="@string/zuzycie" />
 
         </TableRow>

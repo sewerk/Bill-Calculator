@@ -39,7 +39,6 @@ public class MainActivity extends Activity {
     @InjectView(R.id.button_date_from) Button bFromDate;
     @InjectView(R.id.button_date_to) Button bToDate;
     @InjectView(R.id.textView_date_from) TextView tvForPeriod;
-    @InjectView(R.id.button_calculate) Button bCalculate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
