@@ -10,6 +10,7 @@
     <string name="date_from">From date:</string>
     <string name="date_to">To date:</string>
     <string name="calculate">Calculate</string>
+    <string name="reading_missing">This field cannot be empty</string>
     <string name="reading_error">Current reading need to exceed previous reading</string>
     <string name="date_error">\"To date\" need to be later then \"From date\"</string>
 

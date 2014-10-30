@@ -44,6 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="5"
+                android:maxLength="9"
                 android:gravity="end"
                 android:inputType="number">
 
@@ -72,8 +73,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="5"
+                android:maxLength="9"
                 android:gravity="end"
-                android:inputType="number" />
+                android:inputType="number"
+                android:imeOptions="actionDone"/>
 
         </LinearLayout>
 
@@ -123,6 +126,18 @@
                 tools:text="31/12/2014"/>
 
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/editText_date_to_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/linearLayout_date_to"
+            android:layout_alignRight="@id/linearLayout_date_to"
+            android:clickable="false"
+            android:editable="false"
+            android:background="@android:color/transparent"
+            android:textColor="#FF0000"
+            tools:text="Problem with date"/>
 
 
     <!-- OBLICZ =========================== -->

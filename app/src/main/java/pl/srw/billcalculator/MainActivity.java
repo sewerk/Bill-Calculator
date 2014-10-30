@@ -7,12 +7,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -38,7 +42,7 @@ public class MainActivity extends Activity {
     @InjectView(R.id.editText_to) EditText etCurrentReading;
     @InjectView(R.id.button_date_from) Button bFromDate;
     @InjectView(R.id.button_date_to) Button bToDate;
-    @InjectView(R.id.textView_date_from) TextView tvForPeriod;
+    @InjectView(R.id.editText_date_to_error) TextView etToDateError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +101,7 @@ public class MainActivity extends Activity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 button.setText(buildDateString(year, month, day));
-                tvForPeriod.setError(null);
+                etToDateError.setError(null);
             }
         };
     }
@@ -129,38 +133,58 @@ public class MainActivity extends Activity {
     }
 
     private boolean validateForm() {
-        if (!valideteReadings()) {
-            etCurrentReading.setError(getString(R.string.reading_error));
-            showKeyboard(etCurrentReading);
+        return valideteReadings() && validateDates();
+    }
+
+    private boolean valideteReadings() {
+        String prev = etPreviousReading.getText().toString();
+        if (prev.isEmpty()) {
+            shake(etPreviousReading);
+            showError(etPreviousReading, R.string.reading_missing);
             return false;
         }
-        if (!validateDates()) {
-            tvForPeriod.setError(getString(R.string.date_error));
+        String current = etCurrentReading.getText().toString();
+        if (current.isEmpty()) {
+            shake(etCurrentReading);
+            showError(etCurrentReading, R.string.reading_missing);
+            return false;
+        }
+        if (!(Integer.parseInt(current) > Integer.parseInt(prev))) {
+            shake(etCurrentReading);
+            showError(etCurrentReading, R.string.reading_error);
             return false;
         }
         return true;
     }
 
-    private boolean valideteReadings() {
-        String prev = etPreviousReading.getText().toString();
-        String current = etCurrentReading.getText().toString();
-        return !prev.isEmpty() && !current.isEmpty() && Integer.parseInt(current) > Integer.parseInt(prev);
+    private void showError(EditText et, int error_id) {
+        et.setError(getString(error_id));
+        et.requestFocus();
+        showKeyboard(et);
     }
 
     private boolean validateDates() {
         String fromDate = bFromDate.getText().toString();
         String toDate = bToDate.getText().toString();
-        if (fromDate.length() < 8 || toDate.length() < 8)
-            return false;
         SimpleDateFormat formater = new SimpleDateFormat(DATE_PATTERN);
         try {
             Date from = formater.parse(fromDate);
             Date to = formater.parse(toDate);
-            return from.before(to);
+            if (!from.before(to)) {
+                shake(bToDate);
+                etToDateError.requestFocus();
+                etToDateError.setError(getString(R.string.date_error));
+                return false;
+            }
         } catch (ParseException e) {
             e.printStackTrace();
+            return false;
         }
-        return false;
+        return true;
+    }
+
+    private void shake(View target) {
+        YoYo.with(Techniques.Shake).playOn(target);
     }
 
     private void showKeyboard(TextView mTextView) {
