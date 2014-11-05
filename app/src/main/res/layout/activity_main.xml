@@ -138,7 +138,7 @@
             android:clickable="false"
             android:editable="false"
             android:background="@android:color/transparent"
-            android:textColor="#FF0000"
+            android:textColor="@android:color/transparent"
             tools:text="Problem with date"/>
 
     <!-- OBLICZ =========================== -->
