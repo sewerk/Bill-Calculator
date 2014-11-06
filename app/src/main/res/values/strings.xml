@@ -35,6 +35,10 @@
     <string name="settings_label">Settings</string>
     <string name="energy_prices">PGE prices</string>
     <string name="gas_prices">PGNiG prices</string>
+    <string name="check_prices_info_title">Check the prices for your bill plan</string>
+    <string name="check_price_info_message">Calculated value depends on your provider\'s bill plan and size of your resource consumption. Verify the prices for calculation.</string>
+    <string name="check_prices_info_ok">Check</string>
+    <string name="check_prices_info_cancel">Cancel</string>
 
 <!-- gas_bill -->
     <string name="gas_label">Gas bill</string>

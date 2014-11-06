@@ -21,6 +21,10 @@
     <string name="settings_label">Ustawienia</string>
     <string name="energy_prices">Ceny PGE</string>
     <string name="gas_prices">Ceny PGNiG</string>
+    <string name="check_prices_info_title">Sprawdź ceny twojej grupy taryfowej</string>
+    <string name="check_price_info_message">Wartość twojej faktury może sie róźnić w zależności od taryfy jaką posiadasz i wielkości zurzycia. Zweryfikuj ceny przed wyliczeniem.</string>
+    <string name="check_prices_info_ok">Sprawdź</string>
+    <string name="check_prices_info_cancel">Później</string>
 <!-- about -->
     <string name="about_label">O programie</string>
     <string name="version_text">Wersja 1.0.1</string>

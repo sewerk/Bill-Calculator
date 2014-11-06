@@ -36,6 +36,8 @@ public class MainActivity extends Activity {
     public static final String DATE_FROM = "DATE_FROM";
     public static final String DATE_TO = "DATE_TO";
     public static final String DATE_PATTERN = "dd/MM/yyyy";
+    public static final String SHARED_PREFERENCES_FILE = "PreferencesFile";
+    public static final String PREFERENCE_KEY_FIRST_LAUNCH = "first_launch";
 
     @InjectView(R.id.button_bill_type_switch) ImageButton bBillType;
     @InjectView(R.id.editText_from) EditText etPreviousReading;
@@ -43,6 +45,7 @@ public class MainActivity extends Activity {
     @InjectView(R.id.button_date_from) Button bFromDate;
     @InjectView(R.id.button_date_to) Button bToDate;
     @InjectView(R.id.editText_date_to_error) TextView etToDateError;
+    private CheckPricesDialogFragment checkPricesDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,34 @@ public class MainActivity extends Activity {
 
     private void setBillTypeButtonInitValue() {
         bBillType.setTag(IMAGE_TYPE_KEY, R.drawable.bill_type_pge);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (isFirstLaunch()) {
+            showCheckPricesDialog();
+        }
+    }
+
+    private boolean isFirstLaunch() {
+        return getSharedPreferences(SHARED_PREFERENCES_FILE, MODE_PRIVATE)
+                .getString(PREFERENCE_KEY_FIRST_LAUNCH, "").isEmpty();
+    }
+
+    private void showCheckPricesDialog() {
+        if (checkPricesDialog == null) {
+            checkPricesDialog = new CheckPricesDialogFragment();
+        }
+        checkPricesDialog.show(getFragmentManager(), PREFERENCE_KEY_FIRST_LAUNCH);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (checkPricesDialog != null) {
+            checkPricesDialog.dismiss();
+        }
     }
 
     @OnClick(R.id.button_bill_type_switch)
@@ -225,12 +256,22 @@ public class MainActivity extends Activity {
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         if (item.getItemId() == R.id.action_settings) {
-            startActivity(new Intent(this, SettingsActivity.class));
+            startSettings();
             return true;
         } else if (item.getItemId() == R.id.action_about) {
-            startActivity(new Intent(this, AboutActivity.class));
+            startAbout();
             return true;
         }
         return super.onMenuItemSelected(featureId, item);
     }
+
+    private void startAbout() {
+        startActivity(new Intent(this, AboutActivity.class));
+    }
+
+    public void startSettings() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
 }
