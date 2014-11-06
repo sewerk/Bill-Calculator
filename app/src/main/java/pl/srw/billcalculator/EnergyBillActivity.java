@@ -15,6 +15,8 @@ import java.text.DecimalFormat;
 public class EnergyBillActivity extends Activity {
 
     private static final double AKCYZA = 0.02;
+    public static final String PAY_VALUE_FORMAT = "0.00";
+    public static final String PRICE_FORMAT = "0.0000";
     private double sumNaleznoscNetto;
     private double naleznoscBrutto;
     private double cenaZaEnergieCzynna;
@@ -102,12 +104,8 @@ public class EnergyBillActivity extends Activity {
         setTVInRow(row, R.id.textView_wskazanie_przeprzednie, getWskazanie(poprzednie));
         setTVInRow(row, R.id.textView_ilosc_mc, getIloscMc(biezace, poprzednie));
         setTVInRow(row, R.id.textView_ilosc, getIlosc(biezace, poprzednie));
-        setTVInRow(row, R.id.textView_cena, getCena(cena));
+        setTVInRow(row, R.id.textView_cena, displayPrice(cena));
         setTVInRow(row, R.id.textView_naleznosc, getNaleznosc(biezace, poprzednie, cena));
-    }
-
-    private String getCena(double cena) {
-        return new DecimalFormat("0.0000").format(cena);
     }
 
     private String getWskazanie(int wskazanieVal) {
@@ -132,7 +130,7 @@ public class EnergyBillActivity extends Activity {
         else
             naleznosc = cena;
         sumNaleznoscNetto += naleznosc;
-        return display00(naleznosc);
+        return displayPayValue(naleznosc);
     }
 
     private String getIlosc(int biezace, int poprzednie) {
@@ -168,28 +166,32 @@ public class EnergyBillActivity extends Activity {
 
     private void setPodsumowanieRozliczenia(View table) {
         View summary = table.findViewById(R.id.row_sum);
-        setTVInRow(summary, R.id.textView_naleznosc_ogolem, display00(sumNaleznoscNetto));
+        setTVInRow(summary, R.id.textView_naleznosc_ogolem, displayPayValue(sumNaleznoscNetto));
     }
 
     private void setAkcyza() {
         double akcyza = sumNaleznoscNetto * AKCYZA;
-        setTV(R.id.textView_akcyza, getString(R.string.akcyza, display00(sumNaleznoscNetto), display00(akcyza)));
+        setTV(R.id.textView_akcyza, getString(R.string.akcyza, displayPayValue(sumNaleznoscNetto), displayPayValue(akcyza)));
     }
 
     private void setPodsumowanieTable() {
         TableLayout podsumowanie = (TableLayout) findViewById(R.id.table_podsumowanie);
-        setTVInRow(podsumowanie, R.id.textView_naleznosc_netto, display00(sumNaleznoscNetto));
+        setTVInRow(podsumowanie, R.id.textView_naleznosc_netto, displayPayValue(sumNaleznoscNetto));
         double kwotaVat = sumNaleznoscNetto * 0.23;
-        setTVInRow(podsumowanie, R.id.textView_kwota_vat, display00(kwotaVat));
+        setTVInRow(podsumowanie, R.id.textView_kwota_vat, displayPayValue(kwotaVat));
         naleznoscBrutto = sumNaleznoscNetto + kwotaVat;
-        setTVInRow(podsumowanie, R.id.textView_naleznosc_brutto, display00(naleznoscBrutto));
+        setTVInRow(podsumowanie, R.id.textView_naleznosc_brutto, displayPayValue(naleznoscBrutto));
     }
 
-    private String display00(double value) {
-        return new DecimalFormat("0.00").format(value);
+    private String displayPrice(double cena) {
+        return new DecimalFormat(PRICE_FORMAT).format(cena);
+    }
+
+    private String displayPayValue(double value) {
+        return new DecimalFormat(PAY_VALUE_FORMAT).format(value);
     }
 
     private void setDoZaplaty() {
-        setTV(R.id.textView_do_zaplaty, getString(R.string.do_zaplaty, display00(naleznoscBrutto)));
+        setTV(R.id.textView_do_zaplaty, getString(R.string.do_zaplaty, displayPayValue(naleznoscBrutto)));
     }
 }

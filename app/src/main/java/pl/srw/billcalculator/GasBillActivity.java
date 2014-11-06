@@ -14,6 +14,8 @@ import java.text.DecimalFormat;
 
 public class GasBillActivity extends Activity {
 
+    public static final String PRICE_FORMAT = "0.00000";
+    public static final String PAY_VALUE_FORMAT = "0.00";
     private String dateFrom;
     private String dateTo;
     private int readingFrom;
@@ -106,9 +108,9 @@ public class GasBillActivity extends Activity {
         setTV(row, R.id.textView_okres_do, dateTo);
         setTV(row, R.id.textView_ilosc, ilosc == 1 ? "1,000" : "" + ilosc);
         setTV(row, R.id.textView_Jm, jm);
-        setTV(row, R.id.textView_cena_netto, getCena(cenaNetto));
+        setTV(row, R.id.textView_cena_netto, displayPrice(cenaNetto));
         setTV(row, R.id.textView_wartosc_akcyzy, wartoscAkcyzy);
-        setTV(row, R.id.textView_wartosc_netto, display00(countWartosc(ilosc, cenaNetto)));
+        setTV(row, R.id.textView_wartosc_netto, displayPayValue(countWartosc(ilosc, cenaNetto)));
 
     }
 
@@ -121,11 +123,11 @@ public class GasBillActivity extends Activity {
     private void setPodsumowanieRozliczenia(View rozliczenie) {
         View podsumowanie = rozliczenie.findViewById(R.id.row_sum);
 
-        setTV(podsumowanie, R.id.textView_wartosc_netto, display00(sumWartoscNetto));
+        setTV(podsumowanie, R.id.textView_wartosc_netto, displayPayValue(sumWartoscNetto));
         kwotaVat = sumWartoscNetto * 0.23;
-        setTV(podsumowanie, R.id.textView_kwota_vat, display00(kwotaVat));
+        setTV(podsumowanie, R.id.textView_kwota_vat, displayPayValue(kwotaVat));
         wartoscBrutto = sumWartoscNetto + kwotaVat;
-        setTV(podsumowanie, R.id.textView_wartosc_brutto, display00(wartoscBrutto));
+        setTV(podsumowanie, R.id.textView_wartosc_brutto, displayPayValue(wartoscBrutto));
     }
 
     private void setOdczyt() {
@@ -135,13 +137,13 @@ public class GasBillActivity extends Activity {
     private void setPodsumowanieTable() {
         TableLayout podsumowanie = (TableLayout) findViewById(R.id.table_podsumowanie);
 
-        setTV(podsumowanie, R.id.textView_wartosc_netto, display00(sumWartoscNetto));
-        setTV(podsumowanie, R.id.textView_kwota_vat, display00(kwotaVat));
-        setTV(podsumowanie, R.id.textView_wartosc_brutto, display00(wartoscBrutto));
+        setTV(podsumowanie, R.id.textView_wartosc_netto, displayPayValue(sumWartoscNetto));
+        setTV(podsumowanie, R.id.textView_kwota_vat, displayPayValue(kwotaVat));
+        setTV(podsumowanie, R.id.textView_wartosc_brutto, displayPayValue(wartoscBrutto));
     }
 
     private void setWartoscFaktury() {
-        setTV(R.id.textView_wartosc_faktury, getString(R.string.wartosc_faktury, display00(wartoscBrutto)));
+        setTV(R.id.textView_wartosc_faktury, getString(R.string.wartosc_faktury, displayPayValue(wartoscBrutto)));
     }
 
     private void setTV(View parent, int tvId, String text) {
@@ -158,11 +160,11 @@ public class GasBillActivity extends Activity {
         tv.setText(text);
     }
 
-    private String getCena(double cena) {
-        return new DecimalFormat("0.0000").format(cena);
+    private String displayPrice(double cena) {
+        return new DecimalFormat(PRICE_FORMAT).format(cena);
     }
 
-    private String display00(double value) {
-        return new DecimalFormat("0.00").format(value);
+    private String displayPayValue(double value) {
+        return new DecimalFormat(PAY_VALUE_FORMAT).format(value);
     }
 }
