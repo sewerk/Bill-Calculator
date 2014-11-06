@@ -10,6 +10,9 @@ import android.view.KeyEvent;
 
 import java.util.Date;
 
+/**
+ * Created by Kamil Seweryn
+ */
 public class CheckPricesDialogFragment extends DialogFragment {
 
     @Override

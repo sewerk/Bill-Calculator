@@ -7,6 +7,9 @@ import android.preference.PreferenceFragment;
 
 import java.util.Map;
 
+/**
+ * Created by Kamil Seweryn
+ */
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override

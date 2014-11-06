@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 
+/**
+ * Created by Kamil Seweryn
+ */
 public class GasBillActivity extends Activity {
 
     public static final String PRICE_FORMAT = "0.00000";

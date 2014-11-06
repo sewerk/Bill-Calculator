@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 
+/**
+ * Created by Kamil Seweryn
+ */
 public class EnergyBillActivity extends Activity {
 
     private static final double AKCYZA = 0.02;

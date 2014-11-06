@@ -27,6 +27,9 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
+/**
+ * Created by Kamil Seweryn
+ */
 public class MainActivity extends Activity {
 
     private static final int IMAGE_TYPE_KEY = 1109171014;
