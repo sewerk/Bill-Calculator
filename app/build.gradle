@@ -9,23 +9,11 @@ android {
         targetSdkVersion 21
     }
 
-    signingConfigs {
-        myConfig {
-            storeFile file('open.keystore.jks')
-            storePassword "billCalc"
-            keyAlias "openKey"
-            keyPassword "android"
-        }
-    }
-
     buildTypes {
 
         release {
-            runProguard true
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-            signingConfig signingConfigs.myConfig
             debuggable false
         }
     }
