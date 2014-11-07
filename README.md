@@ -5,7 +5,7 @@ Bill-Calculator
 
 Calculates bill value for PGE and PGNiG providers
 
-Thanks
-------
+Reference
+---------
 - Thanks to daimajia for [AndroidViewAnimations](https://github.com/daimajia/AndroidViewAnimations)
 - Thanks to Jake Wharton for [Butter Knife](https://github.com/JakeWharton/butterknife)
