@@ -24,6 +24,7 @@ public class GasBillActivity extends Activity {
     private int readingFrom;
     private int readingTo;
 
+    private double wspKonwersji;
     private double oplataAbonamentowa;
     private double paliwoGazowe;
     private double dystrybucyjnaStala;
@@ -45,9 +46,10 @@ public class GasBillActivity extends Activity {
         readingFrom = intent.getIntExtra(MainActivity.READING_FROM, 0);
         readingTo = intent.getIntExtra(MainActivity.READING_TO, 0);
 
+        setPrices();
+
         setOdczytyTable();
         setRozliczenieTable();
-        setOdczyt();
         setPodsumowanieTable();
         setWartoscFaktury();
 	}
@@ -64,22 +66,35 @@ public class GasBillActivity extends Activity {
     private void setOdczytyTable() {
         TableLayout odczyty = (TableLayout) findViewById(R.id.table_odczyt);
 
-        setTV(odczyty, R.id.textView_odczyt_poprzedni, getString(R.string.odczyt_na_dzien, dateFrom, readingFrom));
-        setTV(odczyty, R.id.textView_odczyt_biezacy, getString(R.string.odczyt_na_dzien, dateTo, readingTo));
-        int zuzycie = readingTo - readingFrom;
+        setTV(odczyty, R.id.textView_odczyt_poprzedni_na_dzien, dateFrom);
+        setTV(odczyty, R.id.textView_odczyt_poprzedni, getString(R.string.odczyt_na_dzien, readingFrom));
+        setTV(odczyty, R.id.textView_odczyt_biezacy_na_dzien, dateTo);
+        setTV(odczyty, R.id.textView_odczyt_biezacy, getString(R.string.odczyt_na_dzien, readingTo));
+        int zuzycie = getZuzycie();
         setTV(odczyty, R.id.textView_zuzycie, getString(R.string.zuzycie, zuzycie));
+
+        setTV(odczyty, R.id.textView_zuzycie_razem, getString(R.string.zuzycie_razem, zuzycie));
+        setTV(odczyty, R.id.textView_wsp_konwersji, getString(R.string.wsp_konwersji, wspKonwersji));
+        int zuzycieKWh = getZuzycieKWh(zuzycie);
+        setTV(odczyty, R.id.textView_zuzycie_razem_kWh, getString(R.string.zuzycie_razem_kWh, zuzycieKWh));
+    }
+
+    private int getZuzycieKWh(int zuzycie) {
+        return (int) (zuzycie * wspKonwersji);
+    }
+
+    private int getZuzycie() {
+        return readingTo - readingFrom;
     }
 
     private void setRozliczenieTable() {
         TableLayout rozliczenie = (TableLayout) findViewById(R.id.table_rozliczenie);
-        int zuzycie = readingTo - readingFrom;
-
-        setPrices();
+        int zuzycie = getZuzycieKWh(getZuzycie());
 
         setRow(rozliczenie, R.id.row_abonamentowa, R.string.abonamentowa, 1, getString(R.string.mc), oplataAbonamentowa, "");
-        setRow(rozliczenie, R.id.row_paliwo_gazowe, R.string.paliwo_gazowe, zuzycie, getString(R.string.m3), paliwoGazowe, "ZW");
+        setRow(rozliczenie, R.id.row_paliwo_gazowe, R.string.paliwo_gazowe, zuzycie, getString(R.string.kWh), paliwoGazowe, "ZW");
         setRow(rozliczenie, R.id.row_dystrybucyjna_stala, R.string.dystrybucyjna_stala, 1, getString(R.string.mc), dystrybucyjnaStala, "");
-        setRow(rozliczenie, R.id.row_dystrybucyjna_zmienna, R.string.dystrybucyjna_zmienna, zuzycie, getString(R.string.m3), dystrybucyjnaZmienna, "");
+        setRow(rozliczenie, R.id.row_dystrybucyjna_zmienna, R.string.dystrybucyjna_zmienna, zuzycie, getString(R.string.kWh), dystrybucyjnaZmienna, "");
 
         setPodsumowanieRozliczenia(rozliczenie);
     }
@@ -102,6 +117,10 @@ public class GasBillActivity extends Activity {
         String dystrybucyjnaZmiennaString = sharedPreferences.getString(
                 getString(R.string.preferences_dystrybucyjna_zmienna), getString(R.string.price_dystrybucyjna_zmienna));
         dystrybucyjnaZmienna = Double.parseDouble(dystrybucyjnaZmiennaString);
+
+        String wspKonwersjiString = sharedPreferences.getString(
+                getString(R.string.preferences_wsp_konwersji), getString(R.string.price_wsp_konwersji));
+        wspKonwersji = Double.parseDouble(wspKonwersjiString);
     }
 
     private void setRow(TableLayout rozliczenie, int rowId, int oplataTextId, int ilosc, String jm, double cenaNetto, String wartoscAkcyzy) {
@@ -131,10 +150,6 @@ public class GasBillActivity extends Activity {
         setTV(podsumowanie, R.id.textView_kwota_vat, displayPayValue(kwotaVat));
         wartoscBrutto = sumWartoscNetto + kwotaVat;
         setTV(podsumowanie, R.id.textView_wartosc_brutto, displayPayValue(wartoscBrutto));
-    }
-
-    private void setOdczyt() {
-        setTV(R.id.textView_odczyt, getString(R.string.odczyt_OSD, dateTo, readingTo));
     }
 
     private void setPodsumowanieTable() {

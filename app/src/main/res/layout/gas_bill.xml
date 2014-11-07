@@ -16,6 +16,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
+            <TextView
+                android:id="@+id/textView_faktura_nr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Faktura VAT nr XXXXXXXX\nTyp faktury: ROZLICZENIOWY"/>
             <ImageView
                 android:id="@+id/image_logo"
                 android:layout_width="wrap_content"
@@ -47,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textView_roz_punktu_poboru"
                 android:layout_alignParentLeft="true"
-                android:text="Grupa taryfowa: PGNiG: W-2.12T, OSD: W-2.1"
+                android:text="Grupa taryfowa PGNiG: W-2.12T, OSD: W-2.1"
                 android:layout_marginTop="24dp"/>
 
             <include
@@ -55,15 +61,6 @@
 
             <include
                 layout="@layout/gas_components_table" />
-
-            <TextView
-                android:id="@+id/textView_odczyt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/table_rozliczenie"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="24dp"
-                android:text="@string/odczyt_OSD" />
 
             <include
                 layout="@layout/gas_sum_table" />

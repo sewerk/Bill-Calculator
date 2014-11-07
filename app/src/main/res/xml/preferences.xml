@@ -73,6 +73,12 @@
             android:inputType="numberDecimal"
             android:title="@string/dystrybucyjna_zmienna" />
 
+        <EditTextPreference
+            android:key="@string/preferences_wsp_konwersji"
+            android:defaultValue="@string/price_wsp_konwersji"
+            android:inputType="numberDecimal"
+            android:title="@string/wspolczynnik_konwersji" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

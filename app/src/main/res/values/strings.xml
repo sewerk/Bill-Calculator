@@ -42,15 +42,18 @@
 
 <!-- gas_bill -->
     <string name="gas_label">Gas bill</string>
-    <string name="odczyt_OSD" translatable="false">Odczyt OSD: Numer gazomierza: 000001 00000000001, odczyt na dzień:   %1$s:      %2$s m\u00B3</string>
     <string name="wartosc_faktury" translatable="false">Wartość faktury brutto: %1$s zł</string>
-    <string name="odczyt_na_dzien" translatable="false">%1$s       %2$s [m\u00B3]</string>
+    <string name="odczyt_na_dzien" translatable="false">%1$s [m\u00B3]</string>
     <string name="zuzycie" translatable="false">Zużycie:      %1$s [m\u00B3]</string>
+    <string name="zuzycie_razem" translatable="false">Zużycie razem: %1$s [m\u00B3]</string>
+    <string name="wsp_konwersji" translatable="false">Wsp. konwersji: %1$s</string>
+    <string name="zuzycie_razem_kWh" translatable="false">Zużycie razem: %1$s [kWh]</string>
 
     <string name="abonamentowa" translatable="false">Abonamentowa</string>
     <string name="paliwo_gazowe" translatable="false">Paliwo gazowe</string>
     <string name="dystrybucyjna_stala" translatable="false">Dystrybucyjna stała</string>
     <string name="dystrybucyjna_zmienna" translatable="false">Dystrybucyjna zmienna</string>
+    <string name="wspolczynnik_konwersji" translatable="false">Współczynnik konwersji</string>
 
     <string name="mc" translatable="false">mc</string>
     <string name="m3" translatable="false">m\u00B3</string>
