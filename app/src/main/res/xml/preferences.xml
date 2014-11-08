@@ -76,7 +76,7 @@
         <EditTextPreference
             android:key="@string/preferences_wsp_konwersji"
             android:defaultValue="@string/price_wsp_konwersji"
-            android:dialogMessage="Współczynnik konwersji wynosi średnie spalanie ciepła miesięczne w ostatnim okresie rozliczeniowym, podzielony przez wartość 3,6"
+            android:dialogMessage="Współczynnik konwersji wynosi średnie miesięczne ciepło spalania gazu w ostatnim okresie rozliczeniowym, podzielony przez wartość 3,6. Ciepło spalania to wartość kaloryczna 1m\u00B3 gazu obliczana przez  PSG sp. z o.o. Więcej na www.psgaz.pl/dlaklienta/18869/21361"
             android:inputType="numberDecimal"
             android:title="@string/wspolczynnik_konwersji" />
 
