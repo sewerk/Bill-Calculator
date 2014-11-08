@@ -14,34 +14,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <ImageView
-            android:id="@+id/image_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/billcalc"
-            android:contentDescription="Application logo"/>
-
-        <TextView
-            android:id="@+id/textView_ver"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
-            android:layout_below="@id/image_logo"
-            android:gravity="center"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/version_text"/>
 
         <TextView
             android:id="@+id/textView_about"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_ver"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
             android:gravity="center"
+            android:drawableLeft="@drawable/billcalc"
+            android:contentDescription="Application logo and description"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/description"/>
 
@@ -52,8 +34,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
             android:layout_below="@id/textView_about"
-            android:drawableLeft="@drawable/emailme"
-            android:drawableStart="@drawable/emailme"
+            android:drawableRight="@drawable/emailme"
             android:text="@string/emailme"
             android:gravity="center" />
 
@@ -67,6 +48,17 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/clause" />
+
+        <TextView
+            android:id="@+id/textView_ver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/textView_klauzula"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/version_text"/>
 
     </RelativeLayout>
 </ScrollView>
