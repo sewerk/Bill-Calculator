@@ -3,3 +3,6 @@ app/build/
 .idea/
 build/
 local.properties
+Bill-Calculator.iml
+app\app.iml
+BillCalculator.iml
