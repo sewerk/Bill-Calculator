@@ -10,24 +10,27 @@ import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
+import java.math.BigDecimal;
+
+import pl.srw.billcalculator.util.Display;
 
 /**
  * Created by Kamil Seweryn
  */
 public class EnergyBillActivity extends Activity {
 
-    private static final double AKCYZA = 0.02;
-    public static final String PAY_VALUE_FORMAT = "0.00";
-    public static final String PRICE_FORMAT = "0.0000";
-    private double sumNaleznoscNetto;
-    private double naleznoscBrutto;
-    private double cenaZaEnergieCzynna;
-    private double cenaSkladnikJakosciowy;
-    private double cenaOplataSieciowa;
-    private double cenaOplataPrzejsciowa;
-    private double cenaOplStalaZaPrzesyl;
-    private double cenaOplataAbonamentowa;
+    public static final int PRICE_SCALE = 4;
+    private static final BigDecimal AKCYZA = new BigDecimal("0.02");
+    private static final BigDecimal VAT = new BigDecimal("0.23");
+    private BigDecimal sumNaleznoscNetto = BigDecimal.ZERO;
+    private BigDecimal naleznoscBrutto;
+
+    private BigDecimal cenaZaEnergieCzynna;
+    private BigDecimal cenaSkladnikJakosciowy;
+    private BigDecimal cenaOplataSieciowa;
+    private BigDecimal cenaOplataPrzejsciowa;
+    private BigDecimal cenaOplStalaZaPrzesyl;
+    private BigDecimal cenaOplataAbonamentowa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,9 @@ public class EnergyBillActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
+
+        setPrices();
+
         setZaOkres(intent.getStringExtra(MainActivity.DATE_FROM), intent.getStringExtra(MainActivity.DATE_TO));
         setRozliczenieTable(intent.getIntExtra(MainActivity.READING_TO, 0), intent.getIntExtra(MainActivity.READING_FROM, 0));
         setAkcyza();
@@ -52,14 +58,40 @@ public class EnergyBillActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void setPrices() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String cenaZaEnergieCzynnaString = sharedPreferences.getString(
+                getString(R.string.preferences_za_energie_czynna), getString(R.string.price_za_energie_czynna));
+        cenaZaEnergieCzynna = new BigDecimal(cenaZaEnergieCzynnaString);
+
+        String cenaSkladnikJakosciowyString = sharedPreferences.getString(
+                getString(R.string.preferences_skladnik_jakosciowy), getString(R.string.price_skladnik_jakosciowy));
+        cenaSkladnikJakosciowy = new BigDecimal(cenaSkladnikJakosciowyString);
+
+        String cenaOplataSieciowaString = sharedPreferences.getString(
+                getString(R.string.preferences_oplata_sieciowa), getString(R.string.price_oplata_sieciowa));
+        cenaOplataSieciowa = new BigDecimal(cenaOplataSieciowaString);
+
+        String cenaOplataPrzejsciowaString = sharedPreferences.getString(
+                getString(R.string.preferences_oplata_przejsciowa), getString(R.string.price_oplata_przejsciowa));
+        cenaOplataPrzejsciowa = new BigDecimal(cenaOplataPrzejsciowaString);
+
+        String cenaOplStalaZaPrzesylString = sharedPreferences.getString(
+                getString(R.string.preferences_oplata_stala_za_przesyl), getString(R.string.price_oplata_stala_za_przesyl));
+        cenaOplStalaZaPrzesyl = new BigDecimal(cenaOplStalaZaPrzesylString);
+
+        String cenaOplataAbonamentowaString = sharedPreferences.getString(
+                getString(R.string.preferences_oplata_abonamentowa), getString(R.string.price_oplata_abonamentowa));
+        cenaOplataAbonamentowa = new BigDecimal(cenaOplataAbonamentowaString);
+    }
+
     private void setZaOkres(String from, String to) {
         setTV(R.id.textView_za_okres, getString(R.string.za_okres, from, to));
     }
 
     private void setRozliczenieTable(int wskazanieBiezace, int wskazaniePoprzednie) {
         TableLayout rozliczenieTable = (TableLayout) findViewById(R.id.table_rozliczenie);
-
-        setPrices();
 
         setRow(rozliczenieTable, R.id.row_za_energie_czynna, R.string.strefa_calodobowa, R.string.za_energie_czynna, R.string.kWh, wskazanieBiezace, wskazaniePoprzednie, cenaZaEnergieCzynna);
         setRow(rozliczenieTable, R.id.row_skladnik_jakosciowy, R.string.strefa_calodobowa, R.string.skladnik_jakosciowy, R.string.kWh, wskazanieBiezace, wskazaniePoprzednie, cenaSkladnikJakosciowy);
@@ -70,35 +102,7 @@ public class EnergyBillActivity extends Activity {
         setPodsumowanieRozliczenia(rozliczenieTable);
     }
 
-    private void setPrices() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        String cenaZaEnergieCzynnaString = sharedPreferences.getString(
-                getString(R.string.preferences_za_energie_czynna), getString(R.string.price_za_energie_czynna));
-        cenaZaEnergieCzynna = Double.parseDouble(cenaZaEnergieCzynnaString);
-
-        String cenaSkladnikJakosciowyString = sharedPreferences.getString(
-                getString(R.string.preferences_skladnik_jakosciowy), getString(R.string.price_skladnik_jakosciowy));
-        cenaSkladnikJakosciowy = Double.parseDouble(cenaSkladnikJakosciowyString);
-
-        String cenaOplataSieciowaString = sharedPreferences.getString(
-                getString(R.string.preferences_oplata_sieciowa), getString(R.string.price_oplata_sieciowa));
-        cenaOplataSieciowa = Double.parseDouble(cenaOplataSieciowaString);
-
-        String cenaOplataPrzejsciowaString = sharedPreferences.getString(
-                getString(R.string.preferences_oplata_przejsciowa), getString(R.string.price_oplata_przejsciowa));
-        cenaOplataPrzejsciowa = Double.parseDouble(cenaOplataPrzejsciowaString);
-
-        String cenaOplStalaZaPrzesylString = sharedPreferences.getString(
-                getString(R.string.preferences_oplata_stala_za_przesyl), getString(R.string.price_oplata_stala_za_przesyl));
-        cenaOplStalaZaPrzesyl = Double.parseDouble(cenaOplStalaZaPrzesylString);
-
-        String cenaOplataAbonamentowaString = sharedPreferences.getString(
-                getString(R.string.preferences_oplata_abonamentowa), getString(R.string.price_oplata_abonamentowa));
-        cenaOplataAbonamentowa = Double.parseDouble(cenaOplataAbonamentowaString);
-    }
-
-    private void setRow(View componentsTable, int rowId, int strefaId, int opisId, int jmId, int biezace, int poprzednie, double cena) {
+    private void setRow(View componentsTable, int rowId, int strefaId, int opisId, int jmId, int biezace, int poprzednie, BigDecimal cena) {
         View row = componentsTable.findViewById(rowId);
         setTVInRow(row, R.id.textView_strefa, strefaId);
         setTVInRow(row, R.id.textView_opis, opisId);
@@ -107,7 +111,7 @@ public class EnergyBillActivity extends Activity {
         setTVInRow(row, R.id.textView_wskazanie_przeprzednie, getWskazanie(poprzednie));
         setTVInRow(row, R.id.textView_ilosc_mc, getIloscMc(biezace, poprzednie));
         setTVInRow(row, R.id.textView_ilosc, getIlosc(biezace, poprzednie));
-        setTVInRow(row, R.id.textView_cena, displayPrice(cena));
+        setTVInRow(row, R.id.textView_cena, Display.price(cena, PRICE_SCALE));
         setTVInRow(row, R.id.textView_naleznosc, getNaleznosc(biezace, poprzednie, cena));
     }
 
@@ -125,15 +129,15 @@ public class EnergyBillActivity extends Activity {
             return "1,00";
     }
 
-    private String getNaleznosc(int biezace, int poprzednie, double cena) {
+    private String getNaleznosc(int biezace, int poprzednie, BigDecimal cena) {
         int ilosc = countIlosc(biezace, poprzednie);
-        double naleznosc;
+        BigDecimal naleznosc;
         if (ilosc > 0)
-            naleznosc = ilosc * cena;
+            naleznosc = cena.multiply(new BigDecimal(ilosc));
         else
             naleznosc = cena;
-        sumNaleznoscNetto += naleznosc;
-        return displayPayValue(naleznosc);
+        sumNaleznoscNetto = sumNaleznoscNetto.add(naleznosc);
+        return Display.toPay(naleznosc);
     }
 
     private String getIlosc(int biezace, int poprzednie) {
@@ -169,32 +173,24 @@ public class EnergyBillActivity extends Activity {
 
     private void setPodsumowanieRozliczenia(View table) {
         View summary = table.findViewById(R.id.row_sum);
-        setTVInRow(summary, R.id.textView_naleznosc_ogolem, displayPayValue(sumNaleznoscNetto));
+        setTVInRow(summary, R.id.textView_naleznosc_ogolem, Display.toPay(sumNaleznoscNetto));
     }
 
     private void setAkcyza() {
-        double akcyza = sumNaleznoscNetto * AKCYZA;
-        setTV(R.id.textView_akcyza, getString(R.string.akcyza, displayPayValue(sumNaleznoscNetto), displayPayValue(akcyza)));
+        BigDecimal akcyza = sumNaleznoscNetto.multiply(AKCYZA);
+        setTV(R.id.textView_akcyza, getString(R.string.akcyza, Display.toPay(sumNaleznoscNetto), Display.toPay(akcyza)));
     }
 
     private void setPodsumowanieTable() {
         TableLayout podsumowanie = (TableLayout) findViewById(R.id.table_podsumowanie);
-        setTVInRow(podsumowanie, R.id.textView_naleznosc_netto, displayPayValue(sumNaleznoscNetto));
-        double kwotaVat = sumNaleznoscNetto * 0.23;
-        setTVInRow(podsumowanie, R.id.textView_kwota_vat, displayPayValue(kwotaVat));
-        naleznoscBrutto = sumNaleznoscNetto + kwotaVat;
-        setTVInRow(podsumowanie, R.id.textView_naleznosc_brutto, displayPayValue(naleznoscBrutto));
-    }
-
-    private String displayPrice(double cena) {
-        return new DecimalFormat(PRICE_FORMAT).format(cena);
-    }
-
-    private String displayPayValue(double value) {
-        return new DecimalFormat(PAY_VALUE_FORMAT).format(value);
+        setTVInRow(podsumowanie, R.id.textView_naleznosc_netto, Display.toPay(sumNaleznoscNetto));
+        BigDecimal kwotaVat = sumNaleznoscNetto.multiply(VAT);
+        setTVInRow(podsumowanie, R.id.textView_kwota_vat, Display.toPay(kwotaVat));
+        naleznoscBrutto = sumNaleznoscNetto.add(kwotaVat);
+        setTVInRow(podsumowanie, R.id.textView_naleznosc_brutto, Display.toPay(naleznoscBrutto));
     }
 
     private void setDoZaplaty() {
-        setTV(R.id.textView_do_zaplaty, getString(R.string.do_zaplaty, displayPayValue(naleznoscBrutto)));
+        setTV(R.id.textView_do_zaplaty, getString(R.string.do_zaplaty, Display.toPay(naleznoscBrutto)));
     }
 }
