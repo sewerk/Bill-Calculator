@@ -1,9 +1,15 @@
 package pl.srw.billcalculator;
 
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.widget.TextView;
 
 import java.util.Map;
 
@@ -18,7 +24,22 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preferences);
+        setWspKonwersjiDescription();
         setSummary();
+    }
+
+    private void setWspKonwersjiDescription() {
+        EditTextPreference wspKonwersjiPreference = (EditTextPreference) findPreference(getString(R.string.preferences_wsp_konwersji));
+        wspKonwersjiPreference.setDialogMessage(Html.fromHtml(getString(R.string.wsp_konwersji_desc)));
+        wspKonwersjiPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Dialog dialog = ((EditTextPreference) preference).getDialog();
+                TextView tvDesc = (TextView) dialog.findViewById(android.R.id.message);
+                tvDesc.setMovementMethod(LinkMovementMethod.getInstance());
+                return false;
+            }
+        });
     }
 
     private void setSummary() {

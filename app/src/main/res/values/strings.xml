@@ -39,6 +39,8 @@
     <string name="check_price_info_message">Calculated value depends on your provider\'s bill plan and size of your resource consumption. Verify the prices for calculation.</string>
     <string name="check_prices_info_ok">Check</string>
     <string name="check_prices_info_cancel">Cancel</string>
+    <string name="wsp_konwersji_desc" translatable="false">Współczynnik konwersji wynosi średnie miesięczne ciepło spalania gazu w ostatnim okresie rozliczeniowym,
+        podzielony przez wartość 3,6. Ciepło spalania to wartość kaloryczna 1m\u00B3 gazu. Aktualną wartość można znaleźć na stronie <![CDATA[<a href="http://www.psgaz.pl/dlaklienta/18869/21361">PSG sp. z o.o.</a>]]></string>
 
 <!-- gas_bill -->
     <string name="gas_label">Gas bill</string>
