@@ -2,6 +2,7 @@ package pl.srw.billcalculator;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -33,8 +34,17 @@ public class AboutActivity extends Activity {
     }
 
     private void setLicenseLink() {
-        tvVersion.setText(Html.fromHtml(getString(R.string.version_text)));
+        tvVersion.setText(Html.fromHtml(getString(R.string.version_text, getApkVersion())));
         tvVersion.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    private String getApkVersion() {
+        try {
+            return getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     @OnClick(R.id.textView_emalme)
