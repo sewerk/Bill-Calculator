@@ -61,7 +61,7 @@
     <string name="m3" translatable="false">m\u00B3</string>
 <!-- about -->
     <string name="about_label">About</string>
-    <string name="version_text">Version 1.0.1<![CDATA[<br/>under <a href="http://opensource.org/licenses/MIT">MIT license</a>]]></string>
+    <string name="version_text">Version 1.1.0<![CDATA[<br/>under <a href="http://opensource.org/licenses/MIT">MIT license</a>]]></string>
     <string name="description">Application calculates the approximate value of utility bill</string>
     <string name="emailme"> ...write what you think</string>
     <string name="clause">The names, logos and trade marks are owned by distribution companies. Given calculations are just approximate value of the bill and cannot be used as ground for financial claiming.</string>
