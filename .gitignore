@@ -4,5 +4,5 @@ app/build/
 build/
 local.properties
 Bill-Calculator.iml
-app\app.iml
+app/app.iml
 BillCalculator.iml
