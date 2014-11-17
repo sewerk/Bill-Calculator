@@ -33,6 +33,18 @@ import butterknife.OnClick;
 public class MainActivity extends Activity {
 
     private static final int IMAGE_TYPE_KEY = 1109171014;
+    private static final String IMAGE_TYPE_STRING = "" + IMAGE_TYPE_KEY;
+
+    private enum BillType {
+        PGE(R.drawable.bill_type_pge),
+        PGNIG(R.drawable.bill_type_pgnig);
+
+        private int drawableId;
+
+        BillType(final int drawable) {
+            this.drawableId = drawable;
+        }
+    }
 
     public static final String READING_FROM = "READING_FROM";
     public static final String READING_TO = "READING_TO";
@@ -56,15 +68,15 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
-        initValues();
+        initValues(savedInstanceState);
     }
 
-    private void initValues() {
-        setDefaultDates();
-        setBillTypeButtonInitValue();
+    private void initValues(final Bundle savedInstanceState) {
+        initDates();
+        initBillType(savedInstanceState);
     }
 
-    private void setDefaultDates() {
+    private void initDates() {
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
@@ -76,8 +88,22 @@ public class MainActivity extends Activity {
         bToDate.setText(buildDateString(year, month, c.get(Calendar.DAY_OF_MONTH)));
     }
 
-    private void setBillTypeButtonInitValue() {
-        bBillType.setTag(IMAGE_TYPE_KEY, R.drawable.bill_type_pge);
+    private void initBillType(final Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            setBillType(restoreBillTypeFrom(savedInstanceState));
+        } else {
+            setBillType(BillType.PGE);
+        }
+    }
+
+    private BillType restoreBillTypeFrom(final Bundle state) {
+        return (BillType) state.getSerializable(IMAGE_TYPE_STRING);
+    }
+
+    @Override
+    protected void onSaveInstanceState(final Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(IMAGE_TYPE_STRING, getBillType());
     }
 
     @Override
@@ -109,14 +135,21 @@ public class MainActivity extends Activity {
     }
 
     @OnClick(R.id.button_bill_type_switch)
-    public void changeBillType(final ImageButton billTypeButton) {
-        if (((Integer) billTypeButton.getTag(IMAGE_TYPE_KEY)) == R.drawable.bill_type_pge) {
-            billTypeButton.setBackgroundResource(R.drawable.bill_type_pgnig);
-            billTypeButton.setTag(IMAGE_TYPE_KEY, R.drawable.bill_type_pgnig);
+    public void changeBillType() {
+        if (getBillType() == BillType.PGE) {
+            setBillType(BillType.PGNIG);
         } else {
-            billTypeButton.setBackgroundResource(R.drawable.bill_type_pge);
-            billTypeButton.setTag(IMAGE_TYPE_KEY, R.drawable.bill_type_pge);
+            setBillType(BillType.PGE);
         }
+    }
+
+    private BillType getBillType() {
+        return (BillType) bBillType.getTag(IMAGE_TYPE_KEY);
+    }
+
+    private void setBillType(BillType type) {
+        bBillType.setBackgroundResource(type.drawableId);
+        bBillType.setTag(IMAGE_TYPE_KEY, type);
     }
 
     @OnClick({R.id.button_date_from, R.id.button_date_to})
@@ -230,7 +263,7 @@ public class MainActivity extends Activity {
     }
 
     private Intent newIntentBy(ImageButton bBillType) {
-        if (bBillType.getTag(IMAGE_TYPE_KEY).equals(R.drawable.bill_type_pge)) {
+        if (getBillType() == BillType.PGE) {
             return new Intent(this, EnergyBillActivity.class);
         } else {
             return new Intent(this, GasBillActivity.class);
