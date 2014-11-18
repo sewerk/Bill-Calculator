@@ -39,22 +39,15 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textView_nr_ewidencyjny"
                 android:layout_centerHorizontal="true"
+                android:gravity="center"
                 android:layout_marginTop="24dp"
-                android:text="ODCZYT NA PODSTAWIE FAKTYCZNEGO STANU LICZNIKÓW" />
-
-            <TextView
-                android:id="@+id/textView_tytul2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textView_tytul"
-                android:layout_centerHorizontal="true"
-                android:text="ZA ENERGIĘ ELEKTRYCZNĄ I USŁUGI DYSTRYBUCJI" />
+                android:text="FAKTURA VAT NR XXXXXXXX\nZA ENERGIĘ ELEKTRYCZNĄ I USŁUGI DYSTRYBUCJI" />
 
             <TextView
                 android:id="@+id/textView_za_okres"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textView_tytul2"
+                android:layout_below="@id/textView_tytul"
                 android:layout_centerHorizontal="true"
                 android:text="@string/za_okres" />
 
