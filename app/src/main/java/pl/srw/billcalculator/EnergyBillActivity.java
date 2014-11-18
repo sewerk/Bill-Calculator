@@ -31,6 +31,8 @@ public class EnergyBillActivity extends Activity {
     private BigDecimal cenaOplataPrzejsciowa;
     private BigDecimal cenaOplStalaZaPrzesyl;
     private BigDecimal cenaOplataAbonamentowa;
+    private int readingFrom;
+    private int readingTo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +44,11 @@ public class EnergyBillActivity extends Activity {
 
         setPrices();
 
+        readingFrom = intent.getIntExtra(MainActivity.READING_FROM, 0);
+        readingTo = intent.getIntExtra(MainActivity.READING_TO, 0);
+
         setZaOkres(intent.getStringExtra(MainActivity.DATE_FROM), intent.getStringExtra(MainActivity.DATE_TO));
-        setRozliczenieTable(intent.getIntExtra(MainActivity.READING_TO, 0), intent.getIntExtra(MainActivity.READING_FROM, 0));
+        setRozliczenieTable();
         setAkcyza();
         setPodsumowanieTable();
         setDoZaplaty();
@@ -90,66 +95,43 @@ public class EnergyBillActivity extends Activity {
         setTV(R.id.textView_za_okres, getString(R.string.za_okres, from, to));
     }
 
-    private void setRozliczenieTable(int wskazanieBiezace, int wskazaniePoprzednie) {
+    private void setRozliczenieTable() {
         TableLayout rozliczenieTable = (TableLayout) findViewById(R.id.table_rozliczenie);
 
-        setRow(rozliczenieTable, R.id.row_za_energie_czynna, R.string.strefa_calodobowa, R.string.za_energie_czynna, R.string.kWh, wskazanieBiezace, wskazaniePoprzednie, cenaZaEnergieCzynna);
-        setRow(rozliczenieTable, R.id.row_skladnik_jakosciowy, R.string.strefa_calodobowa, R.string.skladnik_jakosciowy, R.string.kWh, wskazanieBiezace, wskazaniePoprzednie, cenaSkladnikJakosciowy);
-        setRow(rozliczenieTable, R.id.row_oplata_sieciowa, R.string.strefa_calodobowa, R.string.oplata_sieciowa, R.string.kWh, wskazanieBiezace, wskazaniePoprzednie, cenaOplataSieciowa);
-        setRow(rozliczenieTable, R.id.row_oplata_przejsciowa, R.string.strefa_pusta, R.string.oplata_przejsciowa, R.string.m_c, 0, 0, cenaOplataPrzejsciowa);
-        setRow(rozliczenieTable, R.id.row_oplata_stala_za_przesyl, R.string.strefa_pusta, R.string.oplata_stala_za_przesyl, R.string.m_c, 0, 0, cenaOplStalaZaPrzesyl);
-        setRow(rozliczenieTable, R.id.row_oplata_abonamentowa, R.string.strefa_pusta, R.string.oplata_abonamentowa, R.string.m_c, 0, 0, cenaOplataAbonamentowa);
+        setRow(rozliczenieTable, R.id.row_za_energie_czynna, R.string.strefa_calodobowa, R.string.za_energie_czynna, R.string.kWh, cenaZaEnergieCzynna);
+        setRow(rozliczenieTable, R.id.row_skladnik_jakosciowy, R.string.strefa_calodobowa, R.string.skladnik_jakosciowy, R.string.kWh, cenaSkladnikJakosciowy);
+        setRow(rozliczenieTable, R.id.row_oplata_sieciowa, R.string.strefa_calodobowa, R.string.oplata_sieciowa, R.string.kWh, cenaOplataSieciowa);
+        setRow(rozliczenieTable, R.id.row_oplata_przejsciowa, R.string.strefa_pusta, R.string.oplata_przejsciowa, R.string.m_c, cenaOplataPrzejsciowa);
+        setRow(rozliczenieTable, R.id.row_oplata_stala_za_przesyl, R.string.strefa_pusta, R.string.oplata_stala_za_przesyl, R.string.m_c, cenaOplStalaZaPrzesyl);
+        setRow(rozliczenieTable, R.id.row_oplata_abonamentowa, R.string.strefa_pusta, R.string.oplata_abonamentowa, R.string.m_c, cenaOplataAbonamentowa);
         setPodsumowanieRozliczenia(rozliczenieTable);
     }
 
-    private void setRow(View componentsTable, int rowId, int strefaId, int opisId, int jmId, int biezace, int poprzednie, BigDecimal cena) {
+    private void setRow(View componentsTable, int rowId, int strefaId, int opisId, int jmId, BigDecimal cena) {
         View row = componentsTable.findViewById(rowId);
         setTVInRow(row, R.id.textView_strefa, strefaId);
         setTVInRow(row, R.id.textView_opis, opisId);
         setTVInRow(row, R.id.textView_Jm, jmId);
-        setTVInRow(row, R.id.textView_wskazanie_biezace, getWskazanie(biezace));
-        setTVInRow(row, R.id.textView_wskazanie_przeprzednie, getWskazanie(poprzednie));
-        setTVInRow(row, R.id.textView_ilosc_mc, getIloscMc(biezace, poprzednie));
-        setTVInRow(row, R.id.textView_ilosc, getIlosc(biezace, poprzednie));
+        if (jmId == R.string.kWh) {
+            setTVInRow(row, R.id.textView_wskazanie_biezace, Integer.toString(readingTo));
+            setTVInRow(row, R.id.textView_wskazanie_przeprzednie, Integer.toString(readingFrom));
+            setTVInRow(row, R.id.textView_ilosc, Integer.toString(countZuzycie()));
+            setTVInRow(row, R.id.textView_naleznosc, getNaleznosc(cena, countZuzycie()));
+        } else {
+            setTVInRow(row, R.id.textView_ilosc_mc, "1,00");
+            setTVInRow(row, R.id.textView_naleznosc, getNaleznosc(cena, 1));
+        }
         setTVInRow(row, R.id.textView_cena, Display.price(cena, PRICE_SCALE));
-        setTVInRow(row, R.id.textView_naleznosc, getNaleznosc(biezace, poprzednie, cena));
     }
 
-    private String getWskazanie(int wskazanieVal) {
-        if (wskazanieVal > 0)
-            return Integer.toString(wskazanieVal);
-        else
-            return "";
-    }
-
-    private String getIloscMc(int biezace, int poprzednie) {
-        if (countIlosc(biezace, poprzednie) > 0)
-            return "0,00";
-        else
-            return "1,00";
-    }
-
-    private String getNaleznosc(int biezace, int poprzednie, BigDecimal cena) {
-        int ilosc = countIlosc(biezace, poprzednie);
-        BigDecimal naleznosc;
-        if (ilosc > 0)
-            naleznosc = cena.multiply(new BigDecimal(ilosc));
-        else
-            naleznosc = cena;
+    private String getNaleznosc(BigDecimal cena, int ilosc) {
+        BigDecimal naleznosc = cena.multiply(new BigDecimal(ilosc));
         sumNaleznoscNetto = sumNaleznoscNetto.add(naleznosc);
         return Display.toPay(naleznosc);
     }
 
-    private String getIlosc(int biezace, int poprzednie) {
-        int ilosc = countIlosc(biezace, poprzednie);
-        if (ilosc > 0)
-            return Integer.toString(ilosc);
-        else
-            return "";
-    }
-
-    private int countIlosc(int biezace, int poprzednie) {
-        return biezace - poprzednie;
+    private int countZuzycie() {
+        return readingTo - readingFrom;
     }
 
     private void setTVInRow(View row, int tvId, int stringId) {
@@ -177,8 +159,8 @@ public class EnergyBillActivity extends Activity {
     }
 
     private void setAkcyza() {
-        BigDecimal akcyza = sumNaleznoscNetto.multiply(AKCYZA);
-        setTV(R.id.textView_akcyza, getString(R.string.akcyza, Display.toPay(sumNaleznoscNetto), Display.toPay(akcyza)));
+        BigDecimal akcyza = AKCYZA.multiply(new BigDecimal(countZuzycie()));
+        setTV(R.id.textView_akcyza, getString(R.string.akcyza, countZuzycie(), Display.toPay(akcyza)));
     }
 
     private void setPodsumowanieTable() {
