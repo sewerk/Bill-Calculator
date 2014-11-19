@@ -150,6 +150,9 @@ public class MainActivity extends Activity {
     private void setBillType(BillType type) {
         bBillType.setBackgroundResource(type.drawableId);
         bBillType.setTag(IMAGE_TYPE_KEY, type);
+        YoYo.with(Techniques.BounceIn)
+                .duration(400)
+                .playOn(bBillType);
     }
 
     @OnClick({R.id.button_date_from, R.id.button_date_to})
