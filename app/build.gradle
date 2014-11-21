@@ -17,6 +17,11 @@ android {
             proguardFile getDefaultProguardFile('proguard-android-optimize.txt')
             zipAlignEnabled true
             debuggable false
+
+            applicationVariants.all { variant ->
+                def file = variant.outputFile
+                variant.outputFile = new File(file.parent, file.name.replace("app-release", "billcalc"))
+            }
         }
     }
 }
