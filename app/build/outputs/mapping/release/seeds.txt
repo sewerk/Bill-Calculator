@@ -1200,6 +1200,10 @@ pl.srw.billcalculator.R$id: int linearLayout_date_from
 pl.srw.billcalculator.R$id: int linearLayout_date_to
 pl.srw.billcalculator.R$id: int linearLayout_from
 pl.srw.billcalculator.R$id: int linearLayout_to
+pl.srw.billcalculator.R$id: int radioButton1
+pl.srw.billcalculator.R$id: int radioButton2
+pl.srw.billcalculator.R$id: int radioButton3
+pl.srw.billcalculator.R$id: int radioButton4
 pl.srw.billcalculator.R$id: int row_abonamentowa
 pl.srw.billcalculator.R$id: int row_dystrybucyjna_stala
 pl.srw.billcalculator.R$id: int row_dystrybucyjna_zmienna
@@ -1215,6 +1219,8 @@ pl.srw.billcalculator.R$id: int table_header
 pl.srw.billcalculator.R$id: int table_odczyt
 pl.srw.billcalculator.R$id: int table_podsumowanie
 pl.srw.billcalculator.R$id: int table_rozliczenie
+pl.srw.billcalculator.R$id: int textView
+pl.srw.billcalculator.R$id: int textView2
 pl.srw.billcalculator.R$id: int textView_Jm
 pl.srw.billcalculator.R$id: int textView_about
 pl.srw.billcalculator.R$id: int textView_akcyza
@@ -1265,6 +1271,7 @@ pl.srw.billcalculator.R$id: int textView_zuzycie_razem_kWh
 pl.srw.billcalculator.R$layout
 pl.srw.billcalculator.R$layout: int about
 pl.srw.billcalculator.R$layout: int activity_main
+pl.srw.billcalculator.R$layout: int check_prices
 pl.srw.billcalculator.R$layout: int energy_bill
 pl.srw.billcalculator.R$layout: int energy_components_table
 pl.srw.billcalculator.R$layout: int energy_components_table_header
@@ -1365,4 +1372,5 @@ pl.srw.billcalculator.SettingsActivity
 pl.srw.billcalculator.SettingsActivity: SettingsActivity()
 pl.srw.billcalculator.SettingsFragment
 pl.srw.billcalculator.SettingsFragment$1
+pl.srw.billcalculator.util.Dates
 pl.srw.billcalculator.util.Display

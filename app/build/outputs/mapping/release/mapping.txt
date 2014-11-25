@@ -2505,24 +2505,26 @@ pl.srw.billcalculator.EnergyBillActivity -> pl.srw.billcalculator.EnergyBillActi
     java.math.BigDecimal cenaOplataPrzejsciowa -> h
     java.math.BigDecimal cenaOplStalaZaPrzesyl -> i
     java.math.BigDecimal cenaOplataAbonamentowa -> j
-    int readingFrom -> k
-    int readingTo -> l
+    java.lang.String dateFrom -> k
+    java.lang.String dateTo -> l
+    int readingFrom -> m
+    int readingTo -> n
     void onCreate(android.os.Bundle) -> onCreate
     boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
     void setPrices() -> a
-    void setZaOkres(java.lang.String,java.lang.String) -> a
-    void setRozliczenieTable() -> b
-    void setRow(android.view.View,int,int,int,int,java.math.BigDecimal) -> a
+    void setZaOkres() -> b
+    void setRozliczenieTable() -> c
+    void setRow(android.view.View,int,int,int,int,int,java.math.BigDecimal) -> a
     java.lang.String getNaleznosc(java.math.BigDecimal,int) -> a
-    int countZuzycie() -> c
+    int countZuzycie() -> d
     void setTVInRow(android.view.View,int,int) -> a
     void setTVInRow(android.view.View,int,java.lang.String) -> a
     void setTV(android.widget.TextView,java.lang.String) -> a
     void setTV(int,java.lang.String) -> a
     void setPodsumowanieRozliczenia(android.view.View) -> a
-    void setAkcyza() -> d
-    void setPodsumowanieTable() -> e
-    void setDoZaplaty() -> f
+    void setAkcyza() -> e
+    void setPodsumowanieTable() -> f
+    void setDoZaplaty() -> g
 pl.srw.billcalculator.GasBillActivity -> pl.srw.billcalculator.GasBillActivity:
     java.math.BigDecimal VAT -> a
     java.lang.String dateFrom -> b
@@ -2544,8 +2546,8 @@ pl.srw.billcalculator.GasBillActivity -> pl.srw.billcalculator.GasBillActivity:
     int getZuzycieKWh(int) -> a
     int getZuzycie() -> c
     void setRozliczenieTable() -> d
-    void setRow(android.widget.TableLayout,int,int,int,java.lang.String,java.math.BigDecimal,java.lang.String) -> a
-    java.math.BigDecimal countWartosc(int,java.math.BigDecimal) -> a
+    void setRow(android.widget.TableLayout,int,int,int,int,java.math.BigDecimal,java.lang.String) -> a
+    java.lang.String getWartosc(int,java.math.BigDecimal) -> a
     void setPodsumowanieRozliczenia(android.view.View) -> a
     void setPodsumowanieTable() -> e
     void setWartoscFaktury() -> f
@@ -2576,7 +2578,6 @@ pl.srw.billcalculator.MainActivity -> pl.srw.billcalculator.MainActivity:
     void showDatePicker(android.widget.Button) -> a
     android.app.DatePickerDialog$OnDateSetListener onDatePickedListener(android.widget.Button) -> b
     java.util.Date readDateFrom(android.widget.Button) -> c
-    java.lang.String buildDateString(int,int,int) -> a
     void calculate() -> b
     boolean validateForm() -> h
     boolean valideteReadings() -> i
@@ -2590,7 +2591,6 @@ pl.srw.billcalculator.MainActivity -> pl.srw.billcalculator.MainActivity:
     boolean onMenuItemSelected(int,android.view.MenuItem) -> onMenuItemSelected
     void startAbout() -> k
     void startSettings() -> c
-    java.lang.String access$100(pl.srw.billcalculator.MainActivity,int,int,int) -> a
 pl.srw.billcalculator.MainActivity$$ViewInjector -> pl.srw.billcalculator.MainActivity$$ViewInjector:
     void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.MainActivity,java.lang.Object) -> inject
     void reset(pl.srw.billcalculator.MainActivity) -> reset
@@ -2631,6 +2631,10 @@ pl.srw.billcalculator.SettingsFragment -> pl.srw.billcalculator.SettingsFragment
 pl.srw.billcalculator.SettingsFragment$1 -> pl.srw.billcalculator.SettingsFragment$1:
     pl.srw.billcalculator.SettingsFragment this$0 -> a
     boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+pl.srw.billcalculator.util.Dates -> pl.srw.billcalculator.util.Dates:
+    java.util.Date parse(java.lang.String) -> a
+    java.lang.String format(int,int,int) -> a
+    int countMonth(java.lang.String,java.lang.String) -> a
 pl.srw.billcalculator.util.Display -> pl.srw.billcalculator.util.Display:
-    java.lang.String price(java.math.BigDecimal,int) -> a
+    java.lang.String withScale(java.math.BigDecimal,int) -> a
     java.lang.String toPay(java.math.BigDecimal) -> a
