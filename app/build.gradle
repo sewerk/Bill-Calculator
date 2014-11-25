@@ -2,9 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.1.0"
+    buildToolsVersion "21.1.1"
 
     defaultConfig {
+        versionCode 5
+        versionName "1.1.2"
         minSdkVersion 14
         targetSdkVersion 21
     }
@@ -19,8 +21,13 @@ android {
             debuggable false
 
             applicationVariants.all { variant ->
-                def file = variant.outputFile
-                variant.outputFile = new File(file.parent, file.name.replace("app-release", "billcalc"))
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = outputFile.name.replace("app-release", "billcalc")
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
             }
         }
     }

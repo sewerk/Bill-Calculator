@@ -96329,9 +96329,9 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 263):
+Constant Pool (count = 272):
   + Integer [16908332]
-  + Integer [2130903042]
+  + Integer [2130903043]
   + Integer [2131099652]
   + Integer [2131099665]
   + Integer [2131099674]
@@ -96357,17 +96357,11 @@ Constant Pool (count = 263):
   + Integer [2131099712]
   + Integer [2131099718]
   + Integer [2131099719]
-  + Integer [2131296278]
-  + Integer [2131296280]
-  + Integer [2131296281]
-  + Integer [2131296282]
-  + Integer [2131296283]
-  + Integer [2131296285]
+  + Integer [2131296284]
   + Integer [2131296286]
   + Integer [2131296287]
   + Integer [2131296288]
   + Integer [2131296289]
-  + Integer [2131296290]
   + Integer [2131296291]
   + Integer [2131296292]
   + Integer [2131296293]
@@ -96382,9 +96376,14 @@ Constant Pool (count = 263):
   + Integer [2131296302]
   + Integer [2131296303]
   + Integer [2131296304]
+  + Integer [2131296305]
+  + Integer [2131296306]
+  + Integer [2131296307]
+  + Integer [2131296308]
+  + Integer [2131296309]
+  + Integer [2131296310]
   + String [0.02]
   + String [0.23]
-  + String [1,00]
   + String [DATE_FROM]
   + String [DATE_TO]
   + String [READING_FROM]
@@ -96402,6 +96401,7 @@ Constant Pool (count = 263):
   + Class [java/lang/Object]
   + Class [java/math/BigDecimal]
   + Class [pl/srw/billcalculator/EnergyBillActivity]
+  + Class [pl/srw/billcalculator/util/Dates]
   + Class [pl/srw/billcalculator/util/Display]
   + Fieldref [java/math/BigDecimal.ZERO Ljava/math/BigDecimal;]
   + Fieldref [pl/srw/billcalculator/EnergyBillActivity.a Ljava/math/BigDecimal;]
@@ -96414,8 +96414,10 @@ Constant Pool (count = 263):
   + Fieldref [pl/srw/billcalculator/EnergyBillActivity.h Ljava/math/BigDecimal;]
   + Fieldref [pl/srw/billcalculator/EnergyBillActivity.i Ljava/math/BigDecimal;]
   + Fieldref [pl/srw/billcalculator/EnergyBillActivity.j Ljava/math/BigDecimal;]
-  + Fieldref [pl/srw/billcalculator/EnergyBillActivity.k I]
-  + Fieldref [pl/srw/billcalculator/EnergyBillActivity.l I]
+  + Fieldref [pl/srw/billcalculator/EnergyBillActivity.k Ljava/lang/String;]
+  + Fieldref [pl/srw/billcalculator/EnergyBillActivity.l Ljava/lang/String;]
+  + Fieldref [pl/srw/billcalculator/EnergyBillActivity.m I]
+  + Fieldref [pl/srw/billcalculator/EnergyBillActivity.n I]
   + Methodref [android/app/ActionBar.setDisplayHomeAsUpEnabled (Z)V]
   + Methodref [android/app/Activity.<init> ()V]
   + Methodref [android/app/Activity.onCreate (Landroid/os/Bundle;)V]
@@ -96435,23 +96437,24 @@ Constant Pool (count = 263):
   + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (ILjava/lang/String;)V]
   + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;)V]
   + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;II)V]
-  + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;IIIILjava/math/BigDecimal;)V]
+  + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;IIIIILjava/math/BigDecimal;)V]
   + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
   + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/widget/TextView;Ljava/lang/String;)V]
-  + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Ljava/lang/String;Ljava/lang/String;)V]
   + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Ljava/math/BigDecimal;I)Ljava/lang/String;]
   + Methodref [pl/srw/billcalculator/EnergyBillActivity.b ()V]
-  + Methodref [pl/srw/billcalculator/EnergyBillActivity.c ()I]
-  + Methodref [pl/srw/billcalculator/EnergyBillActivity.d ()V]
+  + Methodref [pl/srw/billcalculator/EnergyBillActivity.c ()V]
+  + Methodref [pl/srw/billcalculator/EnergyBillActivity.d ()I]
   + Methodref [pl/srw/billcalculator/EnergyBillActivity.e ()V]
   + Methodref [pl/srw/billcalculator/EnergyBillActivity.f ()V]
   + Methodref [pl/srw/billcalculator/EnergyBillActivity.findViewById (I)Landroid/view/View;]
+  + Methodref [pl/srw/billcalculator/EnergyBillActivity.g ()V]
   + Methodref [pl/srw/billcalculator/EnergyBillActivity.getActionBar ()Landroid/app/ActionBar;]
   + Methodref [pl/srw/billcalculator/EnergyBillActivity.getIntent ()Landroid/content/Intent;]
   + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I)Ljava/lang/String;]
   + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I[Ljava/lang/Object;)Ljava/lang/String;]
   + Methodref [pl/srw/billcalculator/EnergyBillActivity.onBackPressed ()V]
   + Methodref [pl/srw/billcalculator/EnergyBillActivity.setContentView (I)V]
+  + Methodref [pl/srw/billcalculator/util/Dates.a (Ljava/lang/String;Ljava/lang/String;)I]
   + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
   + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;I)Ljava/lang/String;]
   + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
@@ -96464,25 +96467,26 @@ Constant Pool (count = 263):
   + NameAndType [a (ILjava/lang/String;)V]
   + NameAndType [a (Landroid/view/View;)V]
   + NameAndType [a (Landroid/view/View;II)V]
-  + NameAndType [a (Landroid/view/View;IIIILjava/math/BigDecimal;)V]
+  + NameAndType [a (Landroid/view/View;IIIIILjava/math/BigDecimal;)V]
   + NameAndType [a (Landroid/view/View;ILjava/lang/String;)V]
   + NameAndType [a (Landroid/widget/TextView;Ljava/lang/String;)V]
-  + NameAndType [a (Ljava/lang/String;Ljava/lang/String;)V]
+  + NameAndType [a (Ljava/lang/String;Ljava/lang/String;)I]
   + NameAndType [a (Ljava/math/BigDecimal;)Ljava/lang/String;]
   + NameAndType [a (Ljava/math/BigDecimal;I)Ljava/lang/String;]
   + NameAndType [a Ljava/math/BigDecimal;]
   + NameAndType [add (Ljava/math/BigDecimal;)Ljava/math/BigDecimal;]
   + NameAndType [b ()V]
   + NameAndType [b Ljava/math/BigDecimal;]
-  + NameAndType [c ()I]
+  + NameAndType [c ()V]
   + NameAndType [c Ljava/math/BigDecimal;]
-  + NameAndType [d ()V]
+  + NameAndType [d ()I]
   + NameAndType [d Ljava/math/BigDecimal;]
   + NameAndType [e ()V]
   + NameAndType [e Ljava/math/BigDecimal;]
   + NameAndType [f ()V]
   + NameAndType [f Ljava/math/BigDecimal;]
   + NameAndType [findViewById (I)Landroid/view/View;]
+  + NameAndType [g ()V]
   + NameAndType [g Ljava/math/BigDecimal;]
   + NameAndType [getActionBar ()Landroid/app/ActionBar;]
   + NameAndType [getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
@@ -96496,9 +96500,11 @@ Constant Pool (count = 263):
   + NameAndType [h Ljava/math/BigDecimal;]
   + NameAndType [i Ljava/math/BigDecimal;]
   + NameAndType [j Ljava/math/BigDecimal;]
-  + NameAndType [k I]
-  + NameAndType [l I]
+  + NameAndType [k Ljava/lang/String;]
+  + NameAndType [l Ljava/lang/String;]
+  + NameAndType [m I]
   + NameAndType [multiply (Ljava/math/BigDecimal;)Ljava/math/BigDecimal;]
+  + NameAndType [n I]
   + NameAndType [onBackPressed ()V]
   + NameAndType [onCreate (Landroid/os/Bundle;)V]
   + NameAndType [onOptionsItemSelected (Landroid/view/MenuItem;)Z]
@@ -96522,28 +96528,28 @@ Constant Pool (count = 263):
   + Utf8 [(Landroid/view/MenuItem;)Z]
   + Utf8 [(Landroid/view/View;)V]
   + Utf8 [(Landroid/view/View;II)V]
-  + Utf8 [(Landroid/view/View;IIIILjava/math/BigDecimal;)V]
+  + Utf8 [(Landroid/view/View;IIIIILjava/math/BigDecimal;)V]
   + Utf8 [(Landroid/view/View;ILjava/lang/String;)V]
   + Utf8 [(Landroid/widget/TextView;Ljava/lang/String;)V]
   + Utf8 [(Ljava/lang/CharSequence;)V]
   + Utf8 [(Ljava/lang/String;)Ljava/lang/String;]
   + Utf8 [(Ljava/lang/String;)V]
   + Utf8 [(Ljava/lang/String;I)I]
+  + Utf8 [(Ljava/lang/String;Ljava/lang/String;)I]
   + Utf8 [(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
-  + Utf8 [(Ljava/lang/String;Ljava/lang/String;)V]
   + Utf8 [(Ljava/math/BigDecimal;)Ljava/lang/String;]
   + Utf8 [(Ljava/math/BigDecimal;)Ljava/math/BigDecimal;]
   + Utf8 [(Ljava/math/BigDecimal;I)Ljava/lang/String;]
   + Utf8 [(Z)V]
   + Utf8 [0.02]
   + Utf8 [0.23]
-  + Utf8 [1,00]
   + Utf8 [<clinit>]
   + Utf8 [<init>]
   + Utf8 [Code]
   + Utf8 [DATE_FROM]
   + Utf8 [DATE_TO]
   + Utf8 [I]
+  + Utf8 [Ljava/lang/String;]
   + Utf8 [Ljava/math/BigDecimal;]
   + Utf8 [READING_FROM]
   + Utf8 [READING_TO]
@@ -96581,11 +96587,14 @@ Constant Pool (count = 263):
   + Utf8 [java/math/BigDecimal]
   + Utf8 [k]
   + Utf8 [l]
+  + Utf8 [m]
   + Utf8 [multiply]
+  + Utf8 [n]
   + Utf8 [onBackPressed]
   + Utf8 [onCreate]
   + Utf8 [onOptionsItemSelected]
   + Utf8 [pl/srw/billcalculator/EnergyBillActivity]
+  + Utf8 [pl/srw/billcalculator/util/Dates]
   + Utf8 [pl/srw/billcalculator/util/Display]
   + Utf8 [setContentView]
   + Utf8 [setDisplayHomeAsUpEnabled]
@@ -96593,7 +96602,7 @@ Constant Pool (count = 263):
   + Utf8 [toString]
   + Utf8 [valueOf]
 
-Fields (count = 12):
+Fields (count = 14):
   + Field:        a Ljava/math/BigDecimal;
     Access flags: 0x1a
       = private static final java.math.BigDecimal a
@@ -96624,12 +96633,18 @@ Fields (count = 12):
   + Field:        j Ljava/math/BigDecimal;
     Access flags: 0x2
       = private java.math.BigDecimal j
-  + Field:        k I
+  + Field:        k Ljava/lang/String;
     Access flags: 0x2
-      = private int k
-  + Field:        l I
+      = private java.lang.String k
+  + Field:        l Ljava/lang/String;
     Access flags: 0x2
-      = private int l
+      = private java.lang.String l
+  + Field:        m I
+    Access flags: 0x2
+      = private int m
+  + Field:        n I
+    Access flags: 0x2
+      = private int n
 
 Methods (count = 18):
   - Method:       <init>()V
@@ -96638,7 +96653,7 @@ Methods (count = 18):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 12, locals = 1, stack = 2):
       [0] aload_0 v0
-      [1] invokespecial #88
+      [1] invokespecial #90
         + Methodref [android/app/Activity.<init> ()V]
       [4] aload_0 v0
       [5] getstatic #74
@@ -96652,73 +96667,79 @@ Methods (count = 18):
     Access flags: 0x4
       = protected void onCreate(android.os.Bundle)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 83, locals = 3, stack = 4):
+    + Code attribute instructions (code length = 91, locals = 3, stack = 4):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] invokespecial #89
+      [2] invokespecial #91
         + Methodref [android/app/Activity.onCreate (Landroid/os/Bundle;)V]
       [5] aload_0 v0
       [6] ldc #2
-        + Integer [2130903042]
-      [8] invokevirtual #122
+        + Integer [2130903043]
+      [8] invokevirtual #124
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.setContentView (I)V]
       [11] aload_0 v0
-      [12] invokevirtual #117
+      [12] invokevirtual #119
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.getActionBar ()Landroid/app/ActionBar;]
       [15] iconst_1
-      [16] invokevirtual #87
+      [16] invokevirtual #89
         + Methodref [android/app/ActionBar.setDisplayHomeAsUpEnabled (Z)V]
       [19] aload_0 v0
-      [20] invokevirtual #118
+      [20] invokevirtual #120
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.getIntent ()Landroid/content/Intent;]
       [23] astore_2 v2
       [24] aload_0 v0
-      [25] invokespecial #102
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a ()V]
-      [28] aload_0 v0
-      [29] aload_2 v2
-      [30] ldc #58
-        + String [READING_FROM]
-      [32] iconst_0
-      [33] invokevirtual #91
-        + Methodref [android/content/Intent.getIntExtra (Ljava/lang/String;I)I]
-      [36] putfield #85
-        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.k I]
-      [39] aload_0 v0
-      [40] aload_2 v2
-      [41] ldc #59
-        + String [READING_TO]
-      [43] iconst_0
-      [44] invokevirtual #91
-        + Methodref [android/content/Intent.getIntExtra (Ljava/lang/String;I)I]
-      [47] putfield #86
-        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.l I]
-      [50] aload_0 v0
-      [51] aload_2 v2
-      [52] ldc #56
+      [25] aload_2 v2
+      [26] ldc #55
         + String [DATE_FROM]
-      [54] invokevirtual #92
+      [28] invokevirtual #94
         + Methodref [android/content/Intent.getStringExtra (Ljava/lang/String;)Ljava/lang/String;]
-      [57] aload_2 v2
-      [58] ldc #57
+      [31] putfield #85
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.k Ljava/lang/String;]
+      [34] aload_0 v0
+      [35] aload_2 v2
+      [36] ldc #56
         + String [DATE_TO]
-      [60] invokevirtual #92
+      [38] invokevirtual #94
         + Methodref [android/content/Intent.getStringExtra (Ljava/lang/String;)Ljava/lang/String;]
-      [63] invokespecial #109
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Ljava/lang/String;Ljava/lang/String;)V]
+      [41] putfield #86
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.l Ljava/lang/String;]
+      [44] aload_0 v0
+      [45] aload_2 v2
+      [46] ldc #57
+        + String [READING_FROM]
+      [48] iconst_0
+      [49] invokevirtual #93
+        + Methodref [android/content/Intent.getIntExtra (Ljava/lang/String;I)I]
+      [52] putfield #87
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.m I]
+      [55] aload_0 v0
+      [56] aload_2 v2
+      [57] ldc #58
+        + String [READING_TO]
+      [59] iconst_0
+      [60] invokevirtual #93
+        + Methodref [android/content/Intent.getIntExtra (Ljava/lang/String;I)I]
+      [63] putfield #88
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.n I]
       [66] aload_0 v0
-      [67] invokespecial #111
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.b ()V]
+      [67] invokespecial #104
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a ()V]
       [70] aload_0 v0
-      [71] invokespecial #113
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.d ()V]
+      [71] invokespecial #112
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.b ()V]
       [74] aload_0 v0
-      [75] invokespecial #114
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.e ()V]
+      [75] invokespecial #113
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.c ()V]
       [78] aload_0 v0
       [79] invokespecial #115
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.e ()V]
+      [82] aload_0 v0
+      [83] invokespecial #116
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.f ()V]
-      [82] return
+      [86] aload_0 v0
+      [87] invokespecial #118
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.g ()V]
+      [90] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       onOptionsItemSelected(Landroid/view/MenuItem;)Z
@@ -96727,19 +96748,19 @@ Methods (count = 18):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 23, locals = 2, stack = 2):
       [0] aload_1 v1
-      [1] invokeinterface #126, 256
+      [1] invokeinterface #129, 256
         + InterfaceMethodref [android/view/MenuItem.getItemId ()I]
       [6] ldc #1
         + Integer [16908332]
       [8] ificmpne +9 (target=17)
       [11] aload_0 v0
-      [12] invokevirtual #121
+      [12] invokevirtual #123
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.onBackPressed ()V]
       [15] iconst_1
       [16] ireturn
       [17] aload_0 v0
       [18] aload_1 v1
-      [19] invokespecial #90
+      [19] invokespecial #92
         + Methodref [android/app/Activity.onOptionsItemSelected (Landroid/view/MenuItem;)Z]
       [22] ireturn
       Code attribute exceptions (count = 0):
@@ -96750,29 +96771,29 @@ Methods (count = 18):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 200, locals = 8, stack = 4):
       [0] aload_0 v0
-      [1] invokestatic #93
+      [1] invokestatic #95
         + Methodref [android/preference/PreferenceManager.getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
       [4] astore_1 v1
       [5] aload_1 v1
       [6] aload_0 v0
       [7] ldc #16
         + Integer [2131099694]
-      [9] invokevirtual #119
+      [9] invokevirtual #121
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I)Ljava/lang/String;]
       [12] aload_0 v0
       [13] ldc #22
         + Integer [2131099706]
-      [15] invokevirtual #119
+      [15] invokevirtual #121
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I)Ljava/lang/String;]
-      [18] invokeinterface #125, 768
+      [18] invokeinterface #128, 768
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [23] astore_2 v2
       [24] aload_0 v0
-      [25] new #71
+      [25] new #70
         + Class [java/math/BigDecimal]
       [28] dup
       [29] aload_2 v2
-      [30] invokespecial #99
+      [30] invokespecial #101
         + Methodref [java/math/BigDecimal.<init> (Ljava/lang/String;)V]
       [33] putfield #79
         + Fieldref [pl/srw/billcalculator/EnergyBillActivity.e Ljava/math/BigDecimal;]
@@ -96780,22 +96801,22 @@ Methods (count = 18):
       [37] aload_0 v0
       [38] ldc #15
         + Integer [2131099692]
-      [40] invokevirtual #119
+      [40] invokevirtual #121
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I)Ljava/lang/String;]
       [43] aload_0 v0
       [44] ldc #21
         + Integer [2131099704]
-      [46] invokevirtual #119
+      [46] invokevirtual #121
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I)Ljava/lang/String;]
-      [49] invokeinterface #125, 768
+      [49] invokeinterface #128, 768
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [54] astore_3 v3
       [55] aload_0 v0
-      [56] new #71
+      [56] new #70
         + Class [java/math/BigDecimal]
       [59] dup
       [60] aload_3 v3
-      [61] invokespecial #99
+      [61] invokespecial #101
         + Methodref [java/math/BigDecimal.<init> (Ljava/lang/String;)V]
       [64] putfield #80
         + Fieldref [pl/srw/billcalculator/EnergyBillActivity.f Ljava/math/BigDecimal;]
@@ -96803,22 +96824,22 @@ Methods (count = 18):
       [68] aload_0 v0
       [69] ldc #13
         + Integer [2131099689]
-      [71] invokevirtual #119
+      [71] invokevirtual #121
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I)Ljava/lang/String;]
       [74] aload_0 v0
       [75] ldc #19
         + Integer [2131099701]
-      [77] invokevirtual #119
+      [77] invokevirtual #121
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I)Ljava/lang/String;]
-      [80] invokeinterface #125, 768
+      [80] invokeinterface #128, 768
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [85] astore v4
       [87] aload_0 v0
-      [88] new #71
+      [88] new #70
         + Class [java/math/BigDecimal]
       [91] dup
       [92] aload v4
-      [94] invokespecial #99
+      [94] invokespecial #101
         + Methodref [java/math/BigDecimal.<init> (Ljava/lang/String;)V]
       [97] putfield #81
         + Fieldref [pl/srw/billcalculator/EnergyBillActivity.g Ljava/math/BigDecimal;]
@@ -96826,22 +96847,22 @@ Methods (count = 18):
       [101] aload_0 v0
       [102] ldc #12
         + Integer [2131099688]
-      [104] invokevirtual #119
+      [104] invokevirtual #121
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I)Ljava/lang/String;]
       [107] aload_0 v0
       [108] ldc #18
         + Integer [2131099700]
-      [110] invokevirtual #119
+      [110] invokevirtual #121
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I)Ljava/lang/String;]
-      [113] invokeinterface #125, 768
+      [113] invokeinterface #128, 768
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [118] astore v5
       [120] aload_0 v0
-      [121] new #71
+      [121] new #70
         + Class [java/math/BigDecimal]
       [124] dup
       [125] aload v5
-      [127] invokespecial #99
+      [127] invokespecial #101
         + Methodref [java/math/BigDecimal.<init> (Ljava/lang/String;)V]
       [130] putfield #82
         + Fieldref [pl/srw/billcalculator/EnergyBillActivity.h Ljava/math/BigDecimal;]
@@ -96849,22 +96870,22 @@ Methods (count = 18):
       [134] aload_0 v0
       [135] ldc #14
         + Integer [2131099690]
-      [137] invokevirtual #119
+      [137] invokevirtual #121
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I)Ljava/lang/String;]
       [140] aload_0 v0
       [141] ldc #20
         + Integer [2131099702]
-      [143] invokevirtual #119
+      [143] invokevirtual #121
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I)Ljava/lang/String;]
-      [146] invokeinterface #125, 768
+      [146] invokeinterface #128, 768
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [151] astore v6
       [153] aload_0 v0
-      [154] new #71
+      [154] new #70
         + Class [java/math/BigDecimal]
       [157] dup
       [158] aload v6
-      [160] invokespecial #99
+      [160] invokespecial #101
         + Methodref [java/math/BigDecimal.<init> (Ljava/lang/String;)V]
       [163] putfield #83
         + Fieldref [pl/srw/billcalculator/EnergyBillActivity.i Ljava/math/BigDecimal;]
@@ -96872,279 +96893,294 @@ Methods (count = 18):
       [167] aload_0 v0
       [168] ldc #11
         + Integer [2131099687]
-      [170] invokevirtual #119
+      [170] invokevirtual #121
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I)Ljava/lang/String;]
       [173] aload_0 v0
       [174] ldc #17
         + Integer [2131099699]
-      [176] invokevirtual #119
+      [176] invokevirtual #121
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I)Ljava/lang/String;]
-      [179] invokeinterface #125, 768
+      [179] invokeinterface #128, 768
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [184] astore v7
       [186] aload_0 v0
-      [187] new #71
+      [187] new #70
         + Class [java/math/BigDecimal]
       [190] dup
       [191] aload v7
-      [193] invokespecial #99
+      [193] invokespecial #101
         + Methodref [java/math/BigDecimal.<init> (Ljava/lang/String;)V]
       [196] putfield #84
         + Fieldref [pl/srw/billcalculator/EnergyBillActivity.j Ljava/math/BigDecimal;]
       [199] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
-  + Method:       a(Ljava/lang/String;Ljava/lang/String;)V
-    Access flags: 0x2
-      = private void a(java.lang.String,java.lang.String)
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 25, locals = 3, stack = 8):
-      [0] aload_0 v0
-      [1] ldc #28
-        + Integer [2131296278]
-      [3] aload_0 v0
-      [4] ldc #27
-        + Integer [2131099719]
-      [6] iconst_2
-      [7] anewarray #70
-        + Class [java/lang/Object]
-      [10] dup
-      [11] iconst_0
-      [12] aload_1 v1
-      [13] aastore
-      [14] dup
-      [15] iconst_1
-      [16] aload_2 v2
-      [17] aastore
-      [18] invokevirtual #120
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I[Ljava/lang/Object;)Ljava/lang/String;]
-      [21] invokespecial #103
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (ILjava/lang/String;)V]
-      [24] return
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 0):
   + Method:       b()V
     Access flags: 0x2
       = private void b()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 118, locals = 2, stack = 7):
+    + Code attribute instructions (code length = 31, locals = 1, stack = 8):
+      [0] aload_0 v0
+      [1] ldc #28
+        + Integer [2131296284]
+      [3] aload_0 v0
+      [4] ldc #27
+        + Integer [2131099719]
+      [6] iconst_2
+      [7] anewarray #69
+        + Class [java/lang/Object]
+      [10] dup
+      [11] iconst_0
+      [12] aload_0 v0
+      [13] getfield #85
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.k Ljava/lang/String;]
+      [16] aastore
+      [17] dup
+      [18] iconst_1
+      [19] aload_0 v0
+      [20] getfield #86
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.l Ljava/lang/String;]
+      [23] aastore
+      [24] invokevirtual #122
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I[Ljava/lang/Object;)Ljava/lang/String;]
+      [27] invokespecial #105
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (ILjava/lang/String;)V]
+      [30] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       c()V
+    Access flags: 0x2
+      = private void c()
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 141, locals = 4, stack = 8):
       [0] aload_0 v0
       [1] ldc #29
-        + Integer [2131296280]
-      [3] invokevirtual #116
+        + Integer [2131296286]
+      [3] invokevirtual #117
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.findViewById (I)Landroid/view/View;]
-      [6] checkcast #67
+      [6] checkcast #66
         + Class [android/widget/TableLayout]
       [9] astore_1 v1
       [10] aload_0 v0
-      [11] aload_1 v1
-      [12] ldc #33
-        + Integer [2131296285]
-      [14] ldc #24
-        + Integer [2131099711]
-      [16] ldc #26
-        + Integer [2131099718]
-      [18] ldc #5
-        + Integer [2131099674]
-      [20] aload_0 v0
-      [21] getfield #79
-        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.e Ljava/math/BigDecimal;]
-      [24] invokespecial #106
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;IIIILjava/math/BigDecimal;)V]
+      [11] invokespecial #114
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.d ()I]
+      [14] istore_2 v2
+      [15] aload_0 v0
+      [16] getfield #85
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.k Ljava/lang/String;]
+      [19] aload_0 v0
+      [20] getfield #86
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.l Ljava/lang/String;]
+      [23] invokestatic #125
+        + Methodref [pl/srw/billcalculator/util/Dates.a (Ljava/lang/String;Ljava/lang/String;)I]
+      [26] istore_3 v3
       [27] aload_0 v0
       [28] aload_1 v1
-      [29] ldc #34
-        + Integer [2131296286]
+      [29] ldc #33
+        + Integer [2131296291]
       [31] ldc #24
         + Integer [2131099711]
-      [33] ldc #23
-        + Integer [2131099710]
-      [35] ldc #5
+      [33] ldc #26
+        + Integer [2131099718]
+      [35] iload_2 v2
+      [36] ldc #5
         + Integer [2131099674]
-      [37] aload_0 v0
-      [38] getfield #80
-        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.f Ljava/math/BigDecimal;]
-      [41] invokespecial #106
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;IIIILjava/math/BigDecimal;)V]
-      [44] aload_0 v0
-      [45] aload_1 v1
-      [46] ldc #35
-        + Integer [2131296287]
-      [48] ldc #24
+      [38] aload_0 v0
+      [39] getfield #79
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.e Ljava/math/BigDecimal;]
+      [42] invokespecial #108
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;IIIIILjava/math/BigDecimal;)V]
+      [45] aload_0 v0
+      [46] aload_1 v1
+      [47] ldc #34
+        + Integer [2131296292]
+      [49] ldc #24
         + Integer [2131099711]
-      [50] ldc #9
-        + Integer [2131099681]
-      [52] ldc #5
+      [51] ldc #23
+        + Integer [2131099710]
+      [53] iload_2 v2
+      [54] ldc #5
         + Integer [2131099674]
-      [54] aload_0 v0
-      [55] getfield #81
+      [56] aload_0 v0
+      [57] getfield #80
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.f Ljava/math/BigDecimal;]
+      [60] invokespecial #108
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;IIIIILjava/math/BigDecimal;)V]
+      [63] aload_0 v0
+      [64] aload_1 v1
+      [65] ldc #35
+        + Integer [2131296293]
+      [67] ldc #24
+        + Integer [2131099711]
+      [69] ldc #9
+        + Integer [2131099681]
+      [71] iload_2 v2
+      [72] ldc #5
+        + Integer [2131099674]
+      [74] aload_0 v0
+      [75] getfield #81
         + Fieldref [pl/srw/billcalculator/EnergyBillActivity.g Ljava/math/BigDecimal;]
-      [58] invokespecial #106
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;IIIILjava/math/BigDecimal;)V]
-      [61] aload_0 v0
-      [62] aload_1 v1
-      [63] ldc #36
-        + Integer [2131296288]
-      [65] ldc #25
+      [78] invokespecial #108
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;IIIIILjava/math/BigDecimal;)V]
+      [81] aload_0 v0
+      [82] aload_1 v1
+      [83] ldc #36
+        + Integer [2131296294]
+      [85] ldc #25
         + Integer [2131099712]
-      [67] ldc #8
+      [87] ldc #8
         + Integer [2131099680]
-      [69] ldc #6
+      [89] iload_3 v3
+      [90] ldc #6
         + Integer [2131099676]
-      [71] aload_0 v0
-      [72] getfield #82
+      [92] aload_0 v0
+      [93] getfield #82
         + Fieldref [pl/srw/billcalculator/EnergyBillActivity.h Ljava/math/BigDecimal;]
-      [75] invokespecial #106
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;IIIILjava/math/BigDecimal;)V]
-      [78] aload_0 v0
-      [79] aload_1 v1
-      [80] ldc #37
-        + Integer [2131296289]
-      [82] ldc #25
+      [96] invokespecial #108
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;IIIIILjava/math/BigDecimal;)V]
+      [99] aload_0 v0
+      [100] aload_1 v1
+      [101] ldc #37
+        + Integer [2131296295]
+      [103] ldc #25
         + Integer [2131099712]
-      [84] ldc #10
+      [105] ldc #10
         + Integer [2131099682]
-      [86] ldc #6
+      [107] iload_3 v3
+      [108] ldc #6
         + Integer [2131099676]
-      [88] aload_0 v0
-      [89] getfield #83
+      [110] aload_0 v0
+      [111] getfield #83
         + Fieldref [pl/srw/billcalculator/EnergyBillActivity.i Ljava/math/BigDecimal;]
-      [92] invokespecial #106
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;IIIILjava/math/BigDecimal;)V]
-      [95] aload_0 v0
-      [96] aload_1 v1
-      [97] ldc #38
-        + Integer [2131296290]
-      [99] ldc #25
+      [114] invokespecial #108
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;IIIIILjava/math/BigDecimal;)V]
+      [117] aload_0 v0
+      [118] aload_1 v1
+      [119] ldc #38
+        + Integer [2131296296]
+      [121] ldc #25
         + Integer [2131099712]
-      [101] ldc #7
+      [123] ldc #7
         + Integer [2131099679]
-      [103] ldc #6
+      [125] iload_3 v3
+      [126] ldc #6
         + Integer [2131099676]
-      [105] aload_0 v0
-      [106] getfield #84
+      [128] aload_0 v0
+      [129] getfield #84
         + Fieldref [pl/srw/billcalculator/EnergyBillActivity.j Ljava/math/BigDecimal;]
-      [109] invokespecial #106
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;IIIILjava/math/BigDecimal;)V]
-      [112] aload_0 v0
-      [113] aload_1 v1
-      [114] invokespecial #104
+      [132] invokespecial #108
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;IIIIILjava/math/BigDecimal;)V]
+      [135] aload_0 v0
+      [136] aload_1 v1
+      [137] invokespecial #106
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;)V]
-      [117] return
+      [140] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
-  + Method:       a(Landroid/view/View;IIIILjava/math/BigDecimal;)V
+  + Method:       a(Landroid/view/View;IIIIILjava/math/BigDecimal;)V
     Access flags: 0x2
-      = private void a(android.view.View,int,int,int,int,java.math.BigDecimal)
+      = private void a(android.view.View,int,int,int,int,int,java.math.BigDecimal)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 149, locals = 8, stack = 6):
+    + Code attribute instructions (code length = 141, locals = 9, stack = 6):
       [0] aload_1 v1
       [1] iload_2 v2
-      [2] invokevirtual #94
+      [2] invokevirtual #96
         + Methodref [android/view/View.findViewById (I)Landroid/view/View;]
-      [5] astore v7
+      [5] astore v8
       [7] aload_0 v0
-      [8] aload v7
+      [8] aload v8
       [10] ldc #40
-        + Integer [2131296292]
+        + Integer [2131296298]
       [12] iload_3 v3
-      [13] invokespecial #105
+      [13] invokespecial #107
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;II)V]
       [16] aload_0 v0
-      [17] aload v7
+      [17] aload v8
       [19] ldc #41
-        + Integer [2131296293]
+        + Integer [2131296299]
       [21] iload v4
-      [23] invokespecial #105
+      [23] invokespecial #107
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;II)V]
       [26] aload_0 v0
-      [27] aload v7
+      [27] aload v8
       [29] ldc #42
-        + Integer [2131296294]
-      [31] iload v5
-      [33] invokespecial #105
+        + Integer [2131296300]
+      [31] iload v6
+      [33] invokespecial #107
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;II)V]
-      [36] iload v5
+      [36] iload v6
       [38] ldc #5
         + Integer [2131099674]
-      [40] ificmpne +69 (target=109)
+      [40] ificmpne +49 (target=89)
       [43] aload_0 v0
-      [44] aload v7
+      [44] aload v8
       [46] ldc #43
-        + Integer [2131296295]
+        + Integer [2131296301]
       [48] aload_0 v0
-      [49] getfield #86
-        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.l I]
-      [52] invokestatic #96
+      [49] getfield #88
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.n I]
+      [52] invokestatic #98
         + Methodref [java/lang/Integer.toString (I)Ljava/lang/String;]
-      [55] invokespecial #107
+      [55] invokespecial #109
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
       [58] aload_0 v0
-      [59] aload v7
+      [59] aload v8
       [61] ldc #44
-        + Integer [2131296296]
+        + Integer [2131296302]
       [63] aload_0 v0
-      [64] getfield #85
-        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.k I]
-      [67] invokestatic #96
+      [64] getfield #87
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.m I]
+      [67] invokestatic #98
         + Methodref [java/lang/Integer.toString (I)Ljava/lang/String;]
-      [70] invokespecial #107
+      [70] invokespecial #109
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
       [73] aload_0 v0
-      [74] aload v7
+      [74] aload v8
       [76] ldc #46
-        + Integer [2131296298]
-      [78] aload_0 v0
-      [79] invokespecial #112
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.c ()I]
-      [82] invokestatic #96
+        + Integer [2131296304]
+      [78] iload v5
+      [80] invokestatic #98
         + Methodref [java/lang/Integer.toString (I)Ljava/lang/String;]
-      [85] invokespecial #107
+      [83] invokespecial #109
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
-      [88] aload_0 v0
-      [89] aload v7
-      [91] ldc #48
-        + Integer [2131296300]
-      [93] aload_0 v0
-      [94] aload v6
-      [96] aload_0 v0
-      [97] invokespecial #112
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.c ()I]
-      [100] invokespecial #110
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Ljava/math/BigDecimal;I)Ljava/lang/String;]
-      [103] invokespecial #107
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
-      [106] goto +28 (target=134)
-      [109] aload_0 v0
-      [110] aload v7
-      [112] ldc #45
-        + Integer [2131296297]
-      [114] ldc #55
-        + String [1,00]
-      [116] invokespecial #107
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
-      [119] aload_0 v0
-      [120] aload v7
-      [122] ldc #48
-        + Integer [2131296300]
-      [124] aload_0 v0
-      [125] aload v6
-      [127] iconst_1
-      [128] invokespecial #110
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Ljava/math/BigDecimal;I)Ljava/lang/String;]
-      [131] invokespecial #107
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
-      [134] aload_0 v0
-      [135] aload v7
-      [137] ldc #47
-        + Integer [2131296299]
-      [139] aload v6
-      [141] iconst_4
-      [142] invokestatic #124
+      [86] goto +24 (target=110)
+      [89] aload_0 v0
+      [90] aload v8
+      [92] ldc #45
+        + Integer [2131296303]
+      [94] new #70
+        + Class [java/math/BigDecimal]
+      [97] dup
+      [98] iload v5
+      [100] invokespecial #100
+        + Methodref [java/math/BigDecimal.<init> (I)V]
+      [103] iconst_2
+      [104] invokestatic #127
         + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;I)Ljava/lang/String;]
-      [145] invokespecial #107
+      [107] invokespecial #109
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
-      [148] return
+      [110] aload_0 v0
+      [111] aload v8
+      [113] ldc #48
+        + Integer [2131296306]
+      [115] aload_0 v0
+      [116] aload v7
+      [118] iload v5
+      [120] invokespecial #111
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Ljava/math/BigDecimal;I)Ljava/lang/String;]
+      [123] invokespecial #109
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
+      [126] aload_0 v0
+      [127] aload v8
+      [129] ldc #47
+        + Integer [2131296305]
+      [131] aload v7
+      [133] iconst_4
+      [134] invokestatic #127
+        + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;I)Ljava/lang/String;]
+      [137] invokespecial #109
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
+      [140] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       a(Ljava/math/BigDecimal;I)Ljava/lang/String;
@@ -97153,13 +97189,13 @@ Methods (count = 18):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 30, locals = 4, stack = 4):
       [0] aload_1 v1
-      [1] new #71
+      [1] new #70
         + Class [java/math/BigDecimal]
       [4] dup
       [5] iload_2 v2
-      [6] invokespecial #98
+      [6] invokespecial #100
         + Methodref [java/math/BigDecimal.<init> (I)V]
-      [9] invokevirtual #101
+      [9] invokevirtual #103
         + Methodref [java/math/BigDecimal.multiply (Ljava/math/BigDecimal;)Ljava/math/BigDecimal;]
       [12] astore_3 v3
       [13] aload_0 v0
@@ -97167,27 +97203,27 @@ Methods (count = 18):
       [15] getfield #77
         + Fieldref [pl/srw/billcalculator/EnergyBillActivity.c Ljava/math/BigDecimal;]
       [18] aload_3 v3
-      [19] invokevirtual #100
+      [19] invokevirtual #102
         + Methodref [java/math/BigDecimal.add (Ljava/math/BigDecimal;)Ljava/math/BigDecimal;]
       [22] putfield #77
         + Fieldref [pl/srw/billcalculator/EnergyBillActivity.c Ljava/math/BigDecimal;]
       [25] aload_3 v3
-      [26] invokestatic #123
+      [26] invokestatic #126
         + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
       [29] areturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
-  + Method:       c()I
+  + Method:       d()I
     Access flags: 0x2
-      = private int c()
+      = private int d()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 10, locals = 1, stack = 2):
       [0] aload_0 v0
-      [1] getfield #86
-        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.l I]
+      [1] getfield #88
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.n I]
       [4] aload_0 v0
-      [5] getfield #85
-        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.k I]
+      [5] getfield #87
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.m I]
       [8] isub
       [9] ireturn
       Code attribute exceptions (count = 0):
@@ -97199,18 +97235,18 @@ Methods (count = 18):
     + Code attribute instructions (code length = 22, locals = 5, stack = 4):
       [0] aload_1 v1
       [1] iload_2 v2
-      [2] invokevirtual #94
+      [2] invokevirtual #96
         + Methodref [android/view/View.findViewById (I)Landroid/view/View;]
-      [5] checkcast #68
+      [5] checkcast #67
         + Class [android/widget/TextView]
       [8] astore v4
       [10] aload_0 v0
       [11] aload v4
       [13] aload_0 v0
       [14] iload_3 v3
-      [15] invokevirtual #119
+      [15] invokevirtual #121
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I)Ljava/lang/String;]
-      [18] invokespecial #108
+      [18] invokespecial #110
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/widget/TextView;Ljava/lang/String;)V]
       [21] return
       Code attribute exceptions (count = 0):
@@ -97222,15 +97258,15 @@ Methods (count = 18):
     + Code attribute instructions (code length = 18, locals = 5, stack = 3):
       [0] aload_1 v1
       [1] iload_2 v2
-      [2] invokevirtual #94
+      [2] invokevirtual #96
         + Methodref [android/view/View.findViewById (I)Landroid/view/View;]
-      [5] checkcast #68
+      [5] checkcast #67
         + Class [android/widget/TextView]
       [8] astore v4
       [10] aload_0 v0
       [11] aload v4
       [13] aload_3 v3
-      [14] invokespecial #108
+      [14] invokespecial #110
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/widget/TextView;Ljava/lang/String;)V]
       [17] return
       Code attribute exceptions (count = 0):
@@ -97242,7 +97278,7 @@ Methods (count = 18):
     + Code attribute instructions (code length = 6, locals = 3, stack = 2):
       [0] aload_1 v1
       [1] aload_2 v2
-      [2] invokevirtual #95
+      [2] invokevirtual #97
         + Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
       [5] return
       Code attribute exceptions (count = 0):
@@ -97254,14 +97290,14 @@ Methods (count = 18):
     + Code attribute instructions (code length = 15, locals = 4, stack = 2):
       [0] aload_0 v0
       [1] iload_1 v1
-      [2] invokevirtual #116
+      [2] invokevirtual #117
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.findViewById (I)Landroid/view/View;]
-      [5] checkcast #68
+      [5] checkcast #67
         + Class [android/widget/TextView]
       [8] astore_3 v3
       [9] aload_3 v3
       [10] aload_2 v2
-      [11] invokevirtual #95
+      [11] invokevirtual #97
         + Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
       [14] return
       Code attribute exceptions (count = 0):
@@ -97273,161 +97309,161 @@ Methods (count = 18):
     + Code attribute instructions (code length = 22, locals = 3, stack = 4):
       [0] aload_1 v1
       [1] ldc #39
-        + Integer [2131296291]
-      [3] invokevirtual #94
+        + Integer [2131296297]
+      [3] invokevirtual #96
         + Methodref [android/view/View.findViewById (I)Landroid/view/View;]
       [6] astore_2 v2
       [7] aload_0 v0
       [8] aload_2 v2
       [9] ldc #49
-        + Integer [2131296301]
+        + Integer [2131296307]
       [11] aload_0 v0
       [12] getfield #77
         + Fieldref [pl/srw/billcalculator/EnergyBillActivity.c Ljava/math/BigDecimal;]
-      [15] invokestatic #123
+      [15] invokestatic #126
         + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
-      [18] invokespecial #107
+      [18] invokespecial #109
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
       [21] return
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 0):
-  + Method:       d()V
-    Access flags: 0x2
-      = private void d()
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 52, locals = 2, stack = 8):
-      [0] getstatic #75
-        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.a Ljava/math/BigDecimal;]
-      [3] new #71
-        + Class [java/math/BigDecimal]
-      [6] dup
-      [7] aload_0 v0
-      [8] invokespecial #112
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.c ()I]
-      [11] invokespecial #98
-        + Methodref [java/math/BigDecimal.<init> (I)V]
-      [14] invokevirtual #101
-        + Methodref [java/math/BigDecimal.multiply (Ljava/math/BigDecimal;)Ljava/math/BigDecimal;]
-      [17] astore_1 v1
-      [18] aload_0 v0
-      [19] ldc #30
-        + Integer [2131296281]
-      [21] aload_0 v0
-      [22] ldc #3
-        + Integer [2131099652]
-      [24] iconst_2
-      [25] anewarray #70
-        + Class [java/lang/Object]
-      [28] dup
-      [29] iconst_0
-      [30] aload_0 v0
-      [31] invokespecial #112
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.c ()I]
-      [34] invokestatic #97
-        + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
-      [37] aastore
-      [38] dup
-      [39] iconst_1
-      [40] aload_1 v1
-      [41] invokestatic #123
-        + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
-      [44] aastore
-      [45] invokevirtual #120
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I[Ljava/lang/Object;)Ljava/lang/String;]
-      [48] invokespecial #103
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (ILjava/lang/String;)V]
-      [51] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       e()V
     Access flags: 0x2
       = private void e()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 73, locals = 3, stack = 4):
-      [0] aload_0 v0
-      [1] ldc #32
-        + Integer [2131296283]
-      [3] invokevirtual #116
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.findViewById (I)Landroid/view/View;]
-      [6] checkcast #67
-        + Class [android/widget/TableLayout]
-      [9] astore_1 v1
-      [10] aload_0 v0
-      [11] aload_1 v1
-      [12] ldc #50
-        + Integer [2131296302]
-      [14] aload_0 v0
-      [15] getfield #77
-        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.c Ljava/math/BigDecimal;]
-      [18] invokestatic #123
-        + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
-      [21] invokespecial #107
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
-      [24] aload_0 v0
-      [25] getfield #77
-        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.c Ljava/math/BigDecimal;]
-      [28] getstatic #76
-        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.b Ljava/math/BigDecimal;]
-      [31] invokevirtual #101
+    + Code attribute instructions (code length = 52, locals = 2, stack = 8):
+      [0] getstatic #75
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.a Ljava/math/BigDecimal;]
+      [3] new #70
+        + Class [java/math/BigDecimal]
+      [6] dup
+      [7] aload_0 v0
+      [8] invokespecial #114
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.d ()I]
+      [11] invokespecial #100
+        + Methodref [java/math/BigDecimal.<init> (I)V]
+      [14] invokevirtual #103
         + Methodref [java/math/BigDecimal.multiply (Ljava/math/BigDecimal;)Ljava/math/BigDecimal;]
-      [34] astore_2 v2
-      [35] aload_0 v0
-      [36] aload_1 v1
-      [37] ldc #51
-        + Integer [2131296303]
-      [39] aload_2 v2
-      [40] invokestatic #123
+      [17] astore_1 v1
+      [18] aload_0 v0
+      [19] ldc #30
+        + Integer [2131296287]
+      [21] aload_0 v0
+      [22] ldc #3
+        + Integer [2131099652]
+      [24] iconst_2
+      [25] anewarray #69
+        + Class [java/lang/Object]
+      [28] dup
+      [29] iconst_0
+      [30] aload_0 v0
+      [31] invokespecial #114
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.d ()I]
+      [34] invokestatic #99
+        + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
+      [37] aastore
+      [38] dup
+      [39] iconst_1
+      [40] aload_1 v1
+      [41] invokestatic #126
         + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
-      [43] invokespecial #107
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
-      [46] aload_0 v0
-      [47] aload_0 v0
-      [48] getfield #77
-        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.c Ljava/math/BigDecimal;]
-      [51] aload_2 v2
-      [52] invokevirtual #100
-        + Methodref [java/math/BigDecimal.add (Ljava/math/BigDecimal;)Ljava/math/BigDecimal;]
-      [55] putfield #78
-        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.d Ljava/math/BigDecimal;]
-      [58] aload_0 v0
-      [59] aload_1 v1
-      [60] ldc #52
-        + Integer [2131296304]
-      [62] aload_0 v0
-      [63] getfield #78
-        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.d Ljava/math/BigDecimal;]
-      [66] invokestatic #123
-        + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
-      [69] invokespecial #107
-        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
-      [72] return
+      [44] aastore
+      [45] invokevirtual #122
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I[Ljava/lang/Object;)Ljava/lang/String;]
+      [48] invokespecial #105
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (ILjava/lang/String;)V]
+      [51] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       f()V
     Access flags: 0x2
       = private void f()
     Class member attributes (count = 1):
+    + Code attribute instructions (code length = 73, locals = 3, stack = 4):
+      [0] aload_0 v0
+      [1] ldc #32
+        + Integer [2131296289]
+      [3] invokevirtual #117
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.findViewById (I)Landroid/view/View;]
+      [6] checkcast #66
+        + Class [android/widget/TableLayout]
+      [9] astore_1 v1
+      [10] aload_0 v0
+      [11] aload_1 v1
+      [12] ldc #50
+        + Integer [2131296308]
+      [14] aload_0 v0
+      [15] getfield #77
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.c Ljava/math/BigDecimal;]
+      [18] invokestatic #126
+        + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
+      [21] invokespecial #109
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
+      [24] aload_0 v0
+      [25] getfield #77
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.c Ljava/math/BigDecimal;]
+      [28] getstatic #76
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.b Ljava/math/BigDecimal;]
+      [31] invokevirtual #103
+        + Methodref [java/math/BigDecimal.multiply (Ljava/math/BigDecimal;)Ljava/math/BigDecimal;]
+      [34] astore_2 v2
+      [35] aload_0 v0
+      [36] aload_1 v1
+      [37] ldc #51
+        + Integer [2131296309]
+      [39] aload_2 v2
+      [40] invokestatic #126
+        + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
+      [43] invokespecial #109
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
+      [46] aload_0 v0
+      [47] aload_0 v0
+      [48] getfield #77
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.c Ljava/math/BigDecimal;]
+      [51] aload_2 v2
+      [52] invokevirtual #102
+        + Methodref [java/math/BigDecimal.add (Ljava/math/BigDecimal;)Ljava/math/BigDecimal;]
+      [55] putfield #78
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.d Ljava/math/BigDecimal;]
+      [58] aload_0 v0
+      [59] aload_1 v1
+      [60] ldc #52
+        + Integer [2131296310]
+      [62] aload_0 v0
+      [63] getfield #78
+        + Fieldref [pl/srw/billcalculator/EnergyBillActivity.d Ljava/math/BigDecimal;]
+      [66] invokestatic #126
+        + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
+      [69] invokespecial #109
+        + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
+      [72] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       g()V
+    Access flags: 0x2
+      = private void g()
+    Class member attributes (count = 1):
     + Code attribute instructions (code length = 27, locals = 1, stack = 8):
       [0] aload_0 v0
       [1] ldc #31
-        + Integer [2131296282]
+        + Integer [2131296288]
       [3] aload_0 v0
       [4] ldc #4
         + Integer [2131099665]
       [6] iconst_1
-      [7] anewarray #70
+      [7] anewarray #69
         + Class [java/lang/Object]
       [10] dup
       [11] iconst_0
       [12] aload_0 v0
       [13] getfield #78
         + Fieldref [pl/srw/billcalculator/EnergyBillActivity.d Ljava/math/BigDecimal;]
-      [16] invokestatic #123
+      [16] invokestatic #126
         + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
       [19] aastore
-      [20] invokevirtual #120
+      [20] invokevirtual #122
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.getString (I[Ljava/lang/Object;)Ljava/lang/String;]
-      [23] invokespecial #103
+      [23] invokespecial #105
         + Methodref [pl/srw/billcalculator/EnergyBillActivity.a (ILjava/lang/String;)V]
       [26] return
       Code attribute exceptions (count = 0):
@@ -97437,21 +97473,21 @@ Methods (count = 18):
       = static void <clinit>()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 25, locals = 0, stack = 3):
-      [0] new #71
+      [0] new #70
         + Class [java/math/BigDecimal]
       [3] dup
       [4] ldc #53
         + String [0.02]
-      [6] invokespecial #99
+      [6] invokespecial #101
         + Methodref [java/math/BigDecimal.<init> (Ljava/lang/String;)V]
       [9] putstatic #75
         + Fieldref [pl/srw/billcalculator/EnergyBillActivity.a Ljava/math/BigDecimal;]
-      [12] new #71
+      [12] new #70
         + Class [java/math/BigDecimal]
       [15] dup
       [16] ldc #54
         + String [0.23]
-      [18] invokespecial #99
+      [18] invokespecial #101
         + Methodref [java/math/BigDecimal.<init> (Ljava/lang/String;)V]
       [21] putstatic #76
         + Fieldref [pl/srw/billcalculator/EnergyBillActivity.b Ljava/math/BigDecimal;]
@@ -97472,9 +97508,9 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 292):
+Constant Pool (count = 295):
   + Integer [16908332]
-  + Integer [2130903048]
+  + Integer [2130903049]
   + Integer [2131099648]
   + Integer [2131099666]
   + Integer [2131099667]
@@ -97497,18 +97533,12 @@ Constant Pool (count = 292):
   + Integer [2131099720]
   + Integer [2131099721]
   + Integer [2131099722]
-  + Integer [2131296280]
-  + Integer [2131296283]
-  + Integer [2131296291]
-  + Integer [2131296294]
-  + Integer [2131296298]
-  + Integer [2131296303]
+  + Integer [2131296286]
+  + Integer [2131296289]
+  + Integer [2131296297]
+  + Integer [2131296300]
+  + Integer [2131296304]
   + Integer [2131296309]
-  + Integer [2131296310]
-  + Integer [2131296311]
-  + Integer [2131296312]
-  + Integer [2131296313]
-  + Integer [2131296314]
   + Integer [2131296315]
   + Integer [2131296316]
   + Integer [2131296317]
@@ -97524,9 +97554,14 @@ Constant Pool (count = 292):
   + Integer [2131296327]
   + Integer [2131296328]
   + Integer [2131296329]
+  + Integer [2131296330]
+  + Integer [2131296331]
+  + Integer [2131296332]
+  + Integer [2131296333]
+  + Integer [2131296334]
+  + Integer [2131296335]
   + String []
   + String [0.23]
-  + String [1,000]
   + String [DATE_FROM]
   + String [DATE_TO]
   + String [READING_FROM]
@@ -97547,6 +97582,7 @@ Constant Pool (count = 292):
   + Class [java/math/BigDecimal]
   + Class [java/math/RoundingMode]
   + Class [pl/srw/billcalculator/GasBillActivity]
+  + Class [pl/srw/billcalculator/util/Dates]
   + Class [pl/srw/billcalculator/util/Display]
   + Fieldref [java/math/BigDecimal.ZERO Ljava/math/BigDecimal;]
   + Fieldref [java/math/RoundingMode.HALF_UP Ljava/math/RoundingMode;]
@@ -97587,10 +97623,10 @@ Constant Pool (count = 292):
   + Methodref [pl/srw/billcalculator/GasBillActivity.a ()V]
   + Methodref [pl/srw/billcalculator/GasBillActivity.a (I)I]
   + Methodref [pl/srw/billcalculator/GasBillActivity.a (ILjava/lang/String;)V]
-  + Methodref [pl/srw/billcalculator/GasBillActivity.a (ILjava/math/BigDecimal;)Ljava/math/BigDecimal;]
+  + Methodref [pl/srw/billcalculator/GasBillActivity.a (ILjava/math/BigDecimal;)Ljava/lang/String;]
   + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;)V]
   + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
-  + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/widget/TableLayout;IIILjava/lang/String;Ljava/math/BigDecimal;Ljava/lang/String;)V]
+  + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/widget/TableLayout;IIIILjava/math/BigDecimal;Ljava/lang/String;)V]
   + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/widget/TextView;Ljava/lang/String;)V]
   + Methodref [pl/srw/billcalculator/GasBillActivity.b ()V]
   + Methodref [pl/srw/billcalculator/GasBillActivity.c ()I]
@@ -97604,6 +97640,7 @@ Constant Pool (count = 292):
   + Methodref [pl/srw/billcalculator/GasBillActivity.getString (I[Ljava/lang/Object;)Ljava/lang/String;]
   + Methodref [pl/srw/billcalculator/GasBillActivity.onBackPressed ()V]
   + Methodref [pl/srw/billcalculator/GasBillActivity.setContentView (I)V]
+  + Methodref [pl/srw/billcalculator/util/Dates.a (Ljava/lang/String;Ljava/lang/String;)I]
   + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
   + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;I)Ljava/lang/String;]
   + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
@@ -97616,11 +97653,12 @@ Constant Pool (count = 292):
   + NameAndType [a ()V]
   + NameAndType [a (I)I]
   + NameAndType [a (ILjava/lang/String;)V]
-  + NameAndType [a (ILjava/math/BigDecimal;)Ljava/math/BigDecimal;]
+  + NameAndType [a (ILjava/math/BigDecimal;)Ljava/lang/String;]
   + NameAndType [a (Landroid/view/View;)V]
   + NameAndType [a (Landroid/view/View;ILjava/lang/String;)V]
-  + NameAndType [a (Landroid/widget/TableLayout;IIILjava/lang/String;Ljava/math/BigDecimal;Ljava/lang/String;)V]
+  + NameAndType [a (Landroid/widget/TableLayout;IIIILjava/math/BigDecimal;Ljava/lang/String;)V]
   + NameAndType [a (Landroid/widget/TextView;Ljava/lang/String;)V]
+  + NameAndType [a (Ljava/lang/String;Ljava/lang/String;)I]
   + NameAndType [a (Ljava/math/BigDecimal;)Ljava/lang/String;]
   + NameAndType [a (Ljava/math/BigDecimal;I)Ljava/lang/String;]
   + NameAndType [a Ljava/math/BigDecimal;]
@@ -97678,7 +97716,7 @@ Constant Pool (count = 292):
   + Utf8 [(I)Ljava/lang/StringBuilder;]
   + Utf8 [(I)V]
   + Utf8 [(ILjava/lang/String;)V]
-  + Utf8 [(ILjava/math/BigDecimal;)Ljava/math/BigDecimal;]
+  + Utf8 [(ILjava/math/BigDecimal;)Ljava/lang/String;]
   + Utf8 [(ILjava/math/RoundingMode;)Ljava/math/BigDecimal;]
   + Utf8 [(I[Ljava/lang/Object;)Ljava/lang/String;]
   + Utf8 [(Landroid/content/Context;)Landroid/content/SharedPreferences;]
@@ -97686,20 +97724,20 @@ Constant Pool (count = 292):
   + Utf8 [(Landroid/view/MenuItem;)Z]
   + Utf8 [(Landroid/view/View;)V]
   + Utf8 [(Landroid/view/View;ILjava/lang/String;)V]
-  + Utf8 [(Landroid/widget/TableLayout;IIILjava/lang/String;Ljava/math/BigDecimal;Ljava/lang/String;)V]
+  + Utf8 [(Landroid/widget/TableLayout;IIIILjava/math/BigDecimal;Ljava/lang/String;)V]
   + Utf8 [(Landroid/widget/TextView;Ljava/lang/String;)V]
   + Utf8 [(Ljava/lang/CharSequence;)V]
   + Utf8 [(Ljava/lang/String;)Ljava/lang/String;]
   + Utf8 [(Ljava/lang/String;)Ljava/lang/StringBuilder;]
   + Utf8 [(Ljava/lang/String;)V]
   + Utf8 [(Ljava/lang/String;I)I]
+  + Utf8 [(Ljava/lang/String;Ljava/lang/String;)I]
   + Utf8 [(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
   + Utf8 [(Ljava/math/BigDecimal;)Ljava/lang/String;]
   + Utf8 [(Ljava/math/BigDecimal;)Ljava/math/BigDecimal;]
   + Utf8 [(Ljava/math/BigDecimal;I)Ljava/lang/String;]
   + Utf8 [(Z)V]
   + Utf8 [0.23]
-  + Utf8 [1,000]
   + Utf8 [<clinit>]
   + Utf8 [<init>]
   + Utf8 [Code]
@@ -97757,6 +97795,7 @@ Constant Pool (count = 292):
   + Utf8 [onCreate]
   + Utf8 [onOptionsItemSelected]
   + Utf8 [pl/srw/billcalculator/GasBillActivity]
+  + Utf8 [pl/srw/billcalculator/util/Dates]
   + Utf8 [pl/srw/billcalculator/util/Display]
   + Utf8 [setContentView]
   + Utf8 [setDisplayHomeAsUpEnabled]
@@ -97834,7 +97873,7 @@ Methods (count = 17):
         + Methodref [android/app/Activity.onCreate (Landroid/os/Bundle;)V]
       [5] aload_0 v0
       [6] ldc #2
-        + Integer [2130903048]
+        + Integer [2130903049]
       [8] invokevirtual #131
         + Methodref [pl/srw/billcalculator/GasBillActivity.setContentView (I)V]
       [11] aload_0 v0
@@ -97849,7 +97888,7 @@ Methods (count = 17):
       [23] astore_2 v2
       [24] aload_0 v0
       [25] aload_2 v2
-      [26] ldc #55
+      [26] ldc #54
         + String [DATE_FROM]
       [28] invokevirtual #96
         + Methodref [android/content/Intent.getStringExtra (Ljava/lang/String;)Ljava/lang/String;]
@@ -97857,7 +97896,7 @@ Methods (count = 17):
         + Fieldref [pl/srw/billcalculator/GasBillActivity.b Ljava/lang/String;]
       [34] aload_0 v0
       [35] aload_2 v2
-      [36] ldc #56
+      [36] ldc #55
         + String [DATE_TO]
       [38] invokevirtual #96
         + Methodref [android/content/Intent.getStringExtra (Ljava/lang/String;)Ljava/lang/String;]
@@ -97865,7 +97904,7 @@ Methods (count = 17):
         + Fieldref [pl/srw/billcalculator/GasBillActivity.c Ljava/lang/String;]
       [44] aload_0 v0
       [45] aload_2 v2
-      [46] ldc #57
+      [46] ldc #56
         + String [READING_FROM]
       [48] iconst_0
       [49] invokevirtual #95
@@ -97874,7 +97913,7 @@ Methods (count = 17):
         + Fieldref [pl/srw/billcalculator/GasBillActivity.d I]
       [55] aload_0 v0
       [56] aload_2 v2
-      [57] ldc #58
+      [57] ldc #57
         + String [READING_TO]
       [59] iconst_0
       [60] invokevirtual #95
@@ -97905,7 +97944,7 @@ Methods (count = 17):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 23, locals = 2, stack = 2):
       [0] aload_1 v1
-      [1] invokeinterface #135, 256
+      [1] invokeinterface #136, 256
         + InterfaceMethodref [android/view/MenuItem.getItemId ()I]
       [6] ldc #1
         + Integer [16908332]
@@ -97942,11 +97981,11 @@ Methods (count = 17):
         + Integer [2131099696]
       [15] invokevirtual #128
         + Methodref [pl/srw/billcalculator/GasBillActivity.getString (I)Ljava/lang/String;]
-      [18] invokeinterface #134, 768
+      [18] invokeinterface #135, 768
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [23] astore_2 v2
       [24] aload_0 v0
-      [25] new #72
+      [25] new #71
         + Class [java/math/BigDecimal]
       [28] dup
       [29] aload_2 v2
@@ -97965,11 +98004,11 @@ Methods (count = 17):
         + Integer [2131099703]
       [46] invokevirtual #128
         + Methodref [pl/srw/billcalculator/GasBillActivity.getString (I)Ljava/lang/String;]
-      [49] invokeinterface #134, 768
+      [49] invokeinterface #135, 768
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [54] astore_3 v3
       [55] aload_0 v0
-      [56] new #72
+      [56] new #71
         + Class [java/math/BigDecimal]
       [59] dup
       [60] aload_3 v3
@@ -97988,11 +98027,11 @@ Methods (count = 17):
         + Integer [2131099697]
       [77] invokevirtual #128
         + Methodref [pl/srw/billcalculator/GasBillActivity.getString (I)Ljava/lang/String;]
-      [80] invokeinterface #134, 768
+      [80] invokeinterface #135, 768
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [85] astore v4
       [87] aload_0 v0
-      [88] new #72
+      [88] new #71
         + Class [java/math/BigDecimal]
       [91] dup
       [92] aload v4
@@ -98011,11 +98050,11 @@ Methods (count = 17):
         + Integer [2131099698]
       [110] invokevirtual #128
         + Methodref [pl/srw/billcalculator/GasBillActivity.getString (I)Ljava/lang/String;]
-      [113] invokeinterface #134, 768
+      [113] invokeinterface #135, 768
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [118] astore v5
       [120] aload_0 v0
-      [121] new #72
+      [121] new #71
         + Class [java/math/BigDecimal]
       [124] dup
       [125] aload v5
@@ -98034,11 +98073,11 @@ Methods (count = 17):
         + Integer [2131099705]
       [143] invokevirtual #128
         + Methodref [pl/srw/billcalculator/GasBillActivity.getString (I)Ljava/lang/String;]
-      [146] invokeinterface #134, 768
+      [146] invokeinterface #135, 768
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [151] astore v6
       [153] aload_0 v0
-      [154] new #72
+      [154] new #71
         + Class [java/math/BigDecimal]
       [157] dup
       [158] aload v6
@@ -98056,16 +98095,16 @@ Methods (count = 17):
     + Code attribute instructions (code length = 194, locals = 4, stack = 9):
       [0] aload_0 v0
       [1] ldc #32
-        + Integer [2131296310]
+        + Integer [2131296316]
       [3] invokevirtual #125
         + Methodref [pl/srw/billcalculator/GasBillActivity.findViewById (I)Landroid/view/View;]
-      [6] checkcast #67
+      [6] checkcast #66
         + Class [android/widget/TableLayout]
       [9] astore_1 v1
       [10] aload_0 v0
       [11] aload_1 v1
       [12] ldc #44
-        + Integer [2131296322]
+        + Integer [2131296328]
       [14] aload_0 v0
       [15] getfield #79
         + Fieldref [pl/srw/billcalculator/GasBillActivity.b Ljava/lang/String;]
@@ -98074,12 +98113,12 @@ Methods (count = 17):
       [21] aload_0 v0
       [22] aload_1 v1
       [23] ldc #45
-        + Integer [2131296323]
+        + Integer [2131296329]
       [25] aload_0 v0
       [26] ldc #8
         + Integer [2131099678]
       [28] iconst_1
-      [29] anewarray #70
+      [29] anewarray #69
         + Class [java/lang/Object]
       [32] dup
       [33] iconst_0
@@ -98096,7 +98135,7 @@ Methods (count = 17):
       [48] aload_0 v0
       [49] aload_1 v1
       [50] ldc #46
-        + Integer [2131296324]
+        + Integer [2131296330]
       [52] aload_0 v0
       [53] getfield #80
         + Fieldref [pl/srw/billcalculator/GasBillActivity.c Ljava/lang/String;]
@@ -98105,12 +98144,12 @@ Methods (count = 17):
       [59] aload_0 v0
       [60] aload_1 v1
       [61] ldc #47
-        + Integer [2131296325]
+        + Integer [2131296331]
       [63] aload_0 v0
       [64] ldc #8
         + Integer [2131099678]
       [66] iconst_1
-      [67] anewarray #70
+      [67] anewarray #69
         + Class [java/lang/Object]
       [70] dup
       [71] iconst_0
@@ -98131,12 +98170,12 @@ Methods (count = 17):
       [91] aload_0 v0
       [92] aload_1 v1
       [93] ldc #48
-        + Integer [2131296326]
+        + Integer [2131296332]
       [95] aload_0 v0
       [96] ldc #22
         + Integer [2131099720]
       [98] iconst_1
-      [99] anewarray #70
+      [99] anewarray #69
         + Class [java/lang/Object]
       [102] dup
       [103] iconst_0
@@ -98151,12 +98190,12 @@ Methods (count = 17):
       [115] aload_0 v0
       [116] aload_1 v1
       [117] ldc #49
-        + Integer [2131296327]
+        + Integer [2131296333]
       [119] aload_0 v0
       [120] ldc #23
         + Integer [2131099721]
       [122] iconst_1
-      [123] anewarray #70
+      [123] anewarray #69
         + Class [java/lang/Object]
       [126] dup
       [127] iconst_0
@@ -98171,12 +98210,12 @@ Methods (count = 17):
       [139] aload_0 v0
       [140] aload_1 v1
       [141] ldc #50
-        + Integer [2131296328]
+        + Integer [2131296334]
       [143] aload_0 v0
       [144] ldc #21
         + Integer [2131099715]
       [146] iconst_1
-      [147] anewarray #70
+      [147] anewarray #69
         + Class [java/lang/Object]
       [150] dup
       [151] iconst_0
@@ -98196,12 +98235,12 @@ Methods (count = 17):
       [169] aload_0 v0
       [170] aload_1 v1
       [171] ldc #51
-        + Integer [2131296329]
+        + Integer [2131296335]
       [173] aload_0 v0
       [174] ldc #24
         + Integer [2131099722]
       [176] iconst_1
-      [177] anewarray #70
+      [177] anewarray #69
         + Class [java/lang/Object]
       [180] dup
       [181] iconst_0
@@ -98221,7 +98260,7 @@ Methods (count = 17):
       = private int a(int)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 26, locals = 2, stack = 3):
-      [0] new #72
+      [0] new #71
         + Class [java/math/BigDecimal]
       [3] dup
       [4] iload_1 v1
@@ -98261,13 +98300,13 @@ Methods (count = 17):
     Access flags: 0x2
       = private void d()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 113, locals = 3, stack = 8):
+    + Code attribute instructions (code length = 109, locals = 4, stack = 8):
       [0] aload_0 v0
       [1] ldc #25
-        + Integer [2131296280]
+        + Integer [2131296286]
       [3] invokevirtual #125
         + Methodref [pl/srw/billcalculator/GasBillActivity.findViewById (I)Landroid/view/View;]
-      [6] checkcast #67
+      [6] checkcast #66
         + Class [android/widget/TableLayout]
       [9] astore_1 v1
       [10] aload_0 v0
@@ -98278,93 +98317,90 @@ Methods (count = 17):
         + Methodref [pl/srw/billcalculator/GasBillActivity.a (I)I]
       [18] istore_2 v2
       [19] aload_0 v0
-      [20] aload_1 v1
-      [21] ldc #33
-        + Integer [2131296311]
-      [23] ldc #3
+      [20] getfield #79
+        + Fieldref [pl/srw/billcalculator/GasBillActivity.b Ljava/lang/String;]
+      [23] aload_0 v0
+      [24] getfield #80
+        + Fieldref [pl/srw/billcalculator/GasBillActivity.c Ljava/lang/String;]
+      [27] invokestatic #132
+        + Methodref [pl/srw/billcalculator/util/Dates.a (Ljava/lang/String;Ljava/lang/String;)I]
+      [30] istore_3 v3
+      [31] aload_0 v0
+      [32] aload_1 v1
+      [33] ldc #33
+        + Integer [2131296317]
+      [35] ldc #3
         + Integer [2131099648]
-      [25] iconst_1
-      [26] aload_0 v0
-      [27] ldc #7
+      [37] iload_3 v3
+      [38] ldc #7
         + Integer [2131099677]
-      [29] invokevirtual #128
-        + Methodref [pl/srw/billcalculator/GasBillActivity.getString (I)Ljava/lang/String;]
-      [32] aload_0 v0
-      [33] getfield #84
+      [40] aload_0 v0
+      [41] getfield #84
         + Fieldref [pl/srw/billcalculator/GasBillActivity.g Ljava/math/BigDecimal;]
-      [36] ldc #52
+      [44] ldc #52
         + String []
-      [38] invokespecial #118
-        + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/widget/TableLayout;IIILjava/lang/String;Ljava/math/BigDecimal;Ljava/lang/String;)V]
-      [41] aload_0 v0
-      [42] aload_1 v1
-      [43] ldc #34
-        + Integer [2131296312]
-      [45] ldc #9
+      [46] invokespecial #118
+        + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/widget/TableLayout;IIIILjava/math/BigDecimal;Ljava/lang/String;)V]
+      [49] aload_0 v0
+      [50] aload_1 v1
+      [51] ldc #34
+        + Integer [2131296318]
+      [53] ldc #9
         + Integer [2131099683]
-      [47] iload_2 v2
-      [48] aload_0 v0
-      [49] ldc #6
+      [55] iload_2 v2
+      [56] ldc #6
         + Integer [2131099674]
-      [51] invokevirtual #128
-        + Methodref [pl/srw/billcalculator/GasBillActivity.getString (I)Ljava/lang/String;]
-      [54] aload_0 v0
-      [55] getfield #85
+      [58] aload_0 v0
+      [59] getfield #85
         + Fieldref [pl/srw/billcalculator/GasBillActivity.h Ljava/math/BigDecimal;]
-      [58] ldc #59
+      [62] ldc #58
         + String [ZW]
-      [60] invokespecial #118
-        + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/widget/TableLayout;IIILjava/lang/String;Ljava/math/BigDecimal;Ljava/lang/String;)V]
-      [63] aload_0 v0
-      [64] aload_1 v1
-      [65] ldc #35
-        + Integer [2131296313]
-      [67] ldc #4
+      [64] invokespecial #118
+        + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/widget/TableLayout;IIIILjava/math/BigDecimal;Ljava/lang/String;)V]
+      [67] aload_0 v0
+      [68] aload_1 v1
+      [69] ldc #35
+        + Integer [2131296319]
+      [71] ldc #4
         + Integer [2131099666]
-      [69] iconst_1
-      [70] aload_0 v0
-      [71] ldc #7
+      [73] iload_3 v3
+      [74] ldc #7
         + Integer [2131099677]
-      [73] invokevirtual #128
-        + Methodref [pl/srw/billcalculator/GasBillActivity.getString (I)Ljava/lang/String;]
       [76] aload_0 v0
       [77] getfield #86
         + Fieldref [pl/srw/billcalculator/GasBillActivity.i Ljava/math/BigDecimal;]
       [80] ldc #52
         + String []
       [82] invokespecial #118
-        + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/widget/TableLayout;IIILjava/lang/String;Ljava/math/BigDecimal;Ljava/lang/String;)V]
+        + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/widget/TableLayout;IIIILjava/math/BigDecimal;Ljava/lang/String;)V]
       [85] aload_0 v0
       [86] aload_1 v1
       [87] ldc #36
-        + Integer [2131296314]
+        + Integer [2131296320]
       [89] ldc #5
         + Integer [2131099667]
       [91] iload_2 v2
-      [92] aload_0 v0
-      [93] ldc #6
+      [92] ldc #6
         + Integer [2131099674]
-      [95] invokevirtual #128
-        + Methodref [pl/srw/billcalculator/GasBillActivity.getString (I)Ljava/lang/String;]
-      [98] aload_0 v0
-      [99] getfield #87
+      [94] aload_0 v0
+      [95] getfield #87
         + Fieldref [pl/srw/billcalculator/GasBillActivity.j Ljava/math/BigDecimal;]
-      [102] ldc #52
+      [98] ldc #52
         + String []
-      [104] invokespecial #118
-        + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/widget/TableLayout;IIILjava/lang/String;Ljava/math/BigDecimal;Ljava/lang/String;)V]
-      [107] aload_0 v0
-      [108] aload_1 v1
-      [109] invokespecial #116
+      [100] invokespecial #118
+        + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/widget/TableLayout;IIIILjava/math/BigDecimal;Ljava/lang/String;)V]
+      [103] aload_0 v0
+      [104] aload_1 v1
+      [105] invokespecial #116
         + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;)V]
-      [112] return
+      [108] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
-  + Method:       a(Landroid/widget/TableLayout;IIILjava/lang/String;Ljava/math/BigDecimal;Ljava/lang/String;)V
+  + Method:       a(Landroid/widget/TableLayout;IIIILjava/math/BigDecimal;Ljava/lang/String;)V
     Access flags: 0x2
-      = private void a(android.widget.TableLayout,int,int,int,java.lang.String,java.math.BigDecimal,java.lang.String)
+      = private void a(android.widget.TableLayout,int,int,int,int,java.math.BigDecimal,java.lang.String)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 137, locals = 9, stack = 6):
+    + Code attribute instructions (code length = 158, locals = 9, stack = 6):
       [0] aload_1 v1
       [1] iload_2 v2
       [2] invokevirtual #99
@@ -98373,7 +98409,7 @@ Methods (count = 17):
       [7] aload_0 v0
       [8] aload v8
       [10] ldc #37
-        + Integer [2131296315]
+        + Integer [2131296321]
       [12] aload_0 v0
       [13] iload_3 v3
       [14] invokevirtual #128
@@ -98383,7 +98419,7 @@ Methods (count = 17):
       [20] aload_0 v0
       [21] aload v8
       [23] ldc #38
-        + Integer [2131296316]
+        + Integer [2131296322]
       [25] aload_0 v0
       [26] getfield #79
         + Fieldref [pl/srw/billcalculator/GasBillActivity.b Ljava/lang/String;]
@@ -98392,7 +98428,7 @@ Methods (count = 17):
       [32] aload_0 v0
       [33] aload v8
       [35] ldc #39
-        + Integer [2131296317]
+        + Integer [2131296323]
       [37] aload_0 v0
       [38] getfield #80
         + Fieldref [pl/srw/billcalculator/GasBillActivity.c Ljava/lang/String;]
@@ -98400,77 +98436,92 @@ Methods (count = 17):
         + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
       [44] aload_0 v0
       [45] aload v8
-      [47] ldc #29
-        + Integer [2131296298]
-      [49] iload v4
-      [51] iconst_1
-      [52] ificmpne +8 (target=60)
-      [55] ldc #54
-        + String [1,000]
-      [57] goto +23 (target=80)
-      [60] new #71
-        + Class [java/lang/StringBuilder]
-      [63] dup
-      [64] invokespecial #102
-        + Methodref [java/lang/StringBuilder.<init> ()V]
-      [67] ldc #52
-        + String []
-      [69] invokevirtual #104
-        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [72] iload v4
-      [74] invokevirtual #103
-        + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [77] invokevirtual #105
-        + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [80] invokespecial #117
+      [47] ldc #28
+        + Integer [2131296300]
+      [49] aload_0 v0
+      [50] iload v5
+      [52] invokevirtual #128
+        + Methodref [pl/srw/billcalculator/GasBillActivity.getString (I)Ljava/lang/String;]
+      [55] invokespecial #117
         + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
-      [83] aload_0 v0
-      [84] aload v8
-      [86] ldc #28
-        + Integer [2131296294]
-      [88] aload v5
+      [58] iload v5
+      [60] ldc #6
+        + Integer [2131099674]
+      [62] ificmpne +34 (target=96)
+      [65] aload_0 v0
+      [66] aload v8
+      [68] ldc #29
+        + Integer [2131296304]
+      [70] new #70
+        + Class [java/lang/StringBuilder]
+      [73] dup
+      [74] invokespecial #102
+        + Methodref [java/lang/StringBuilder.<init> ()V]
+      [77] ldc #52
+        + String []
+      [79] invokevirtual #104
+        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
+      [82] iload v4
+      [84] invokevirtual #103
+        + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
+      [87] invokevirtual #105
+        + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [90] invokespecial #117
         + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
-      [93] aload_0 v0
-      [94] aload v8
-      [96] ldc #40
-        + Integer [2131296318]
-      [98] aload v6
-      [100] iconst_5
-      [101] invokestatic #133
+      [93] goto +24 (target=117)
+      [96] aload_0 v0
+      [97] aload v8
+      [99] ldc #29
+        + Integer [2131296304]
+      [101] new #71
+        + Class [java/math/BigDecimal]
+      [104] dup
+      [105] iload v4
+      [107] invokespecial #106
+        + Methodref [java/math/BigDecimal.<init> (I)V]
+      [110] iconst_3
+      [111] invokestatic #134
         + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;I)Ljava/lang/String;]
-      [104] invokespecial #117
-        + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
-      [107] aload_0 v0
-      [108] aload v8
-      [110] ldc #41
-        + Integer [2131296319]
-      [112] aload v7
       [114] invokespecial #117
         + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
       [117] aload_0 v0
       [118] aload v8
-      [120] ldc #42
-        + Integer [2131296320]
-      [122] aload_0 v0
-      [123] iload v4
-      [125] aload v6
-      [127] invokespecial #115
-        + Methodref [pl/srw/billcalculator/GasBillActivity.a (ILjava/math/BigDecimal;)Ljava/math/BigDecimal;]
-      [130] invokestatic #132
-        + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
-      [133] invokespecial #117
+      [120] ldc #40
+        + Integer [2131296324]
+      [122] aload v6
+      [124] iconst_5
+      [125] invokestatic #134
+        + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;I)Ljava/lang/String;]
+      [128] invokespecial #117
         + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
-      [136] return
+      [131] aload_0 v0
+      [132] aload v8
+      [134] ldc #41
+        + Integer [2131296325]
+      [136] aload v7
+      [138] invokespecial #117
+        + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
+      [141] aload_0 v0
+      [142] aload v8
+      [144] ldc #42
+        + Integer [2131296326]
+      [146] aload_0 v0
+      [147] iload v4
+      [149] aload v6
+      [151] invokespecial #115
+        + Methodref [pl/srw/billcalculator/GasBillActivity.a (ILjava/math/BigDecimal;)Ljava/lang/String;]
+      [154] invokespecial #117
+        + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
+      [157] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
-  + Method:       a(ILjava/math/BigDecimal;)Ljava/math/BigDecimal;
+  + Method:       a(ILjava/math/BigDecimal;)Ljava/lang/String;
     Access flags: 0x2
-      = private java.math.BigDecimal a(int,java.math.BigDecimal)
+      = private java.lang.String a(int,java.math.BigDecimal)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 27, locals = 4, stack = 4):
+    + Code attribute instructions (code length = 30, locals = 4, stack = 4):
       [0] aload_2 v2
-      [1] new #72
+      [1] new #71
         + Class [java/math/BigDecimal]
       [4] dup
       [5] iload_1 v1
@@ -98489,7 +98540,9 @@ Methods (count = 17):
       [22] putfield #88
         + Fieldref [pl/srw/billcalculator/GasBillActivity.k Ljava/math/BigDecimal;]
       [25] aload_3 v3
-      [26] areturn
+      [26] invokestatic #133
+        + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
+      [29] areturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       a(Landroid/view/View;)V
@@ -98499,18 +98552,18 @@ Methods (count = 17):
     + Code attribute instructions (code length = 79, locals = 3, stack = 4):
       [0] aload_1 v1
       [1] ldc #27
-        + Integer [2131296291]
+        + Integer [2131296297]
       [3] invokevirtual #98
         + Methodref [android/view/View.findViewById (I)Landroid/view/View;]
       [6] astore_2 v2
       [7] aload_0 v0
       [8] aload_2 v2
       [9] ldc #42
-        + Integer [2131296320]
+        + Integer [2131296326]
       [11] aload_0 v0
       [12] getfield #88
         + Fieldref [pl/srw/billcalculator/GasBillActivity.k Ljava/math/BigDecimal;]
-      [15] invokestatic #132
+      [15] invokestatic #133
         + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
       [18] invokespecial #117
         + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
@@ -98527,11 +98580,11 @@ Methods (count = 17):
       [35] aload_0 v0
       [36] aload_2 v2
       [37] ldc #30
-        + Integer [2131296303]
+        + Integer [2131296309]
       [39] aload_0 v0
       [40] getfield #90
         + Fieldref [pl/srw/billcalculator/GasBillActivity.m Ljava/math/BigDecimal;]
-      [43] invokestatic #132
+      [43] invokestatic #133
         + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
       [46] invokespecial #117
         + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
@@ -98549,11 +98602,11 @@ Methods (count = 17):
       [64] aload_0 v0
       [65] aload_2 v2
       [66] ldc #43
-        + Integer [2131296321]
+        + Integer [2131296327]
       [68] aload_0 v0
       [69] getfield #89
         + Fieldref [pl/srw/billcalculator/GasBillActivity.l Ljava/math/BigDecimal;]
-      [72] invokestatic #132
+      [72] invokestatic #133
         + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
       [75] invokespecial #117
         + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
@@ -98567,42 +98620,42 @@ Methods (count = 17):
     + Code attribute instructions (code length = 53, locals = 2, stack = 4):
       [0] aload_0 v0
       [1] ldc #26
-        + Integer [2131296283]
+        + Integer [2131296289]
       [3] invokevirtual #125
         + Methodref [pl/srw/billcalculator/GasBillActivity.findViewById (I)Landroid/view/View;]
-      [6] checkcast #67
+      [6] checkcast #66
         + Class [android/widget/TableLayout]
       [9] astore_1 v1
       [10] aload_0 v0
       [11] aload_1 v1
       [12] ldc #42
-        + Integer [2131296320]
+        + Integer [2131296326]
       [14] aload_0 v0
       [15] getfield #88
         + Fieldref [pl/srw/billcalculator/GasBillActivity.k Ljava/math/BigDecimal;]
-      [18] invokestatic #132
+      [18] invokestatic #133
         + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
       [21] invokespecial #117
         + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
       [24] aload_0 v0
       [25] aload_1 v1
       [26] ldc #30
-        + Integer [2131296303]
+        + Integer [2131296309]
       [28] aload_0 v0
       [29] getfield #90
         + Fieldref [pl/srw/billcalculator/GasBillActivity.m Ljava/math/BigDecimal;]
-      [32] invokestatic #132
+      [32] invokestatic #133
         + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
       [35] invokespecial #117
         + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
       [38] aload_0 v0
       [39] aload_1 v1
       [40] ldc #43
-        + Integer [2131296321]
+        + Integer [2131296327]
       [42] aload_0 v0
       [43] getfield #89
         + Fieldref [pl/srw/billcalculator/GasBillActivity.l Ljava/math/BigDecimal;]
-      [46] invokestatic #132
+      [46] invokestatic #133
         + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
       [49] invokespecial #117
         + Methodref [pl/srw/billcalculator/GasBillActivity.a (Landroid/view/View;ILjava/lang/String;)V]
@@ -98616,19 +98669,19 @@ Methods (count = 17):
     + Code attribute instructions (code length = 27, locals = 1, stack = 8):
       [0] aload_0 v0
       [1] ldc #31
-        + Integer [2131296309]
+        + Integer [2131296315]
       [3] aload_0 v0
       [4] ldc #20
         + Integer [2131099714]
       [6] iconst_1
-      [7] anewarray #70
+      [7] anewarray #69
         + Class [java/lang/Object]
       [10] dup
       [11] iconst_0
       [12] aload_0 v0
       [13] getfield #89
         + Fieldref [pl/srw/billcalculator/GasBillActivity.l Ljava/math/BigDecimal;]
-      [16] invokestatic #132
+      [16] invokestatic #133
         + Methodref [pl/srw/billcalculator/util/Display.a (Ljava/math/BigDecimal;)Ljava/lang/String;]
       [19] aastore
       [20] invokevirtual #129
@@ -98647,7 +98700,7 @@ Methods (count = 17):
       [1] iload_2 v2
       [2] invokevirtual #98
         + Methodref [android/view/View.findViewById (I)Landroid/view/View;]
-      [5] checkcast #68
+      [5] checkcast #67
         + Class [android/widget/TextView]
       [8] astore v4
       [10] aload_0 v0
@@ -98667,7 +98720,7 @@ Methods (count = 17):
       [1] iload_1 v1
       [2] invokevirtual #125
         + Methodref [pl/srw/billcalculator/GasBillActivity.findViewById (I)Landroid/view/View;]
-      [5] checkcast #68
+      [5] checkcast #67
         + Class [android/widget/TextView]
       [8] astore_3 v3
       [9] aload_0 v0
@@ -98695,7 +98748,7 @@ Methods (count = 17):
       = static void <clinit>()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 13, locals = 0, stack = 3):
-      [0] new #72
+      [0] new #71
         + Class [java/math/BigDecimal]
       [3] dup
       [4] ldc #53
@@ -98721,15 +98774,15 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 394):
+Constant Pool (count = 370):
   + Integer [1109171014]
   + Integer [2130903041]
   + Integer [2131099661]
   + Integer [2131099707]
   + Integer [2131099708]
   + Integer [2131230720]
-  + Integer [2131296330]
-  + Integer [2131296331]
+  + Integer [2131296336]
+  + Integer [2131296337]
   + String []
   + String [1109171014]
   + String [DATE_FROM]
@@ -98737,7 +98790,6 @@ Constant Pool (count = 394):
   + String [PreferencesFile]
   + String [READING_FROM]
   + String [READING_TO]
-  + String [dd/MM/yyyy]
   + String [first_launch]
   + String [input_method]
   + Class [android/app/Activity]
@@ -98760,8 +98812,6 @@ Constant Pool (count = 394):
   + Class [java/lang/Integer]
   + Class [java/lang/Object]
   + Class [java/lang/String]
-  + Class [java/text/ParseException]
-  + Class [java/text/SimpleDateFormat]
   + Class [java/util/Calendar]
   + Class [java/util/Date]
   + Class [pl/srw/billcalculator/AboutActivity]
@@ -98772,6 +98822,7 @@ Constant Pool (count = 394):
   + Class [pl/srw/billcalculator/MainActivity$1]
   + Class [pl/srw/billcalculator/MainActivity$BillType]
   + Class [pl/srw/billcalculator/SettingsActivity]
+  + Class [pl/srw/billcalculator/util/Dates]
   + Long [400]
   + Fieldref [com/daimajia/androidanimations/library/Techniques.g Lcom/daimajia/androidanimations/library/Techniques;]
   + Fieldref [com/daimajia/androidanimations/library/Techniques.q Lcom/daimajia/androidanimations/library/Techniques;]
@@ -98816,23 +98867,15 @@ Constant Pool (count = 394):
   + Methodref [java/lang/Integer.parseInt (Ljava/lang/String;)I]
   + Methodref [java/lang/Object.toString ()Ljava/lang/String;]
   + Methodref [java/lang/String.isEmpty ()Z]
-  + Methodref [java/text/ParseException.printStackTrace ()V]
-  + Methodref [java/text/SimpleDateFormat.<init> (Ljava/lang/String;)V]
-  + Methodref [java/text/SimpleDateFormat.format (Ljava/util/Date;)Ljava/lang/String;]
-  + Methodref [java/text/SimpleDateFormat.parse (Ljava/lang/String;)Ljava/util/Date;]
   + Methodref [java/util/Calendar.add (II)V]
   + Methodref [java/util/Calendar.get (I)I]
   + Methodref [java/util/Calendar.getInstance ()Ljava/util/Calendar;]
-  + Methodref [java/util/Calendar.getTime ()Ljava/util/Date;]
   + Methodref [java/util/Calendar.set (II)V]
-  + Methodref [java/util/Calendar.set (III)V]
   + Methodref [java/util/Calendar.setTime (Ljava/util/Date;)V]
-  + Methodref [java/util/Date.<init> ()V]
   + Methodref [java/util/Date.before (Ljava/util/Date;)Z]
   + Methodref [pl/srw/billcalculator/CheckPricesDialogFragment.<init> ()V]
   + Methodref [pl/srw/billcalculator/CheckPricesDialogFragment.dismiss ()V]
   + Methodref [pl/srw/billcalculator/CheckPricesDialogFragment.show (Landroid/app/FragmentManager;Ljava/lang/String;)V]
-  + Methodref [pl/srw/billcalculator/MainActivity.a (III)Ljava/lang/String;]
   + Methodref [pl/srw/billcalculator/MainActivity.a (Landroid/content/Intent;)V]
   + Methodref [pl/srw/billcalculator/MainActivity.a (Landroid/os/Bundle;)V]
   + Methodref [pl/srw/billcalculator/MainActivity.a (Landroid/view/View;)V]
@@ -98862,13 +98905,14 @@ Constant Pool (count = 394):
   + Methodref [pl/srw/billcalculator/MainActivity.startActivity (Landroid/content/Intent;)V]
   + Methodref [pl/srw/billcalculator/MainActivity$1.<init> (Lpl/srw/billcalculator/MainActivity;Landroid/widget/Button;)V]
   + Methodref [pl/srw/billcalculator/MainActivity$BillType.a (Lpl/srw/billcalculator/MainActivity$BillType;)I]
+  + Methodref [pl/srw/billcalculator/util/Dates.a (III)Ljava/lang/String;]
+  + Methodref [pl/srw/billcalculator/util/Dates.a (Ljava/lang/String;)Ljava/util/Date;]
   + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
   + InterfaceMethodref [android/view/MenuItem.getItemId ()I]
   + InterfaceMethodref [java/lang/CharSequence.toString ()Ljava/lang/String;]
   + NameAndType [<init> ()V]
   + NameAndType [<init> (Landroid/content/Context;Landroid/app/DatePickerDialog$OnDateSetListener;III)V]
   + NameAndType [<init> (Landroid/content/Context;Ljava/lang/Class;)V]
-  + NameAndType [<init> (Ljava/lang/String;)V]
   + NameAndType [<init> (Lpl/srw/billcalculator/MainActivity;Landroid/widget/Button;)V]
   + NameAndType [a (III)Ljava/lang/String;]
   + NameAndType [a (J)Lcom/daimajia/androidanimations/library/YoYo$AnimationComposer;]
@@ -98881,6 +98925,7 @@ Constant Pool (count = 394):
   + NameAndType [a (Landroid/widget/ImageButton;)Landroid/content/Intent;]
   + NameAndType [a (Landroid/widget/TextView;)V]
   + NameAndType [a (Lcom/daimajia/androidanimations/library/Techniques;)Lcom/daimajia/androidanimations/library/YoYo$AnimationComposer;]
+  + NameAndType [a (Ljava/lang/String;)Ljava/util/Date;]
   + NameAndType [a (Lpl/srw/billcalculator/MainActivity$BillType;)I]
   + NameAndType [a (Lpl/srw/billcalculator/MainActivity$BillType;)V]
   + NameAndType [a Landroid/widget/ImageButton;]
@@ -98902,7 +98947,6 @@ Constant Pool (count = 394):
   + NameAndType [e Landroid/widget/Button;]
   + NameAndType [f ()V]
   + NameAndType [f Landroid/widget/TextView;]
-  + NameAndType [format (Ljava/util/Date;)Ljava/lang/String;]
   + NameAndType [g ()Lpl/srw/billcalculator/MainActivity$BillType;]
   + NameAndType [g Lcom/daimajia/androidanimations/library/Techniques;]
   + NameAndType [g Lpl/srw/billcalculator/CheckPricesDialogFragment;]
@@ -98919,7 +98963,6 @@ Constant Pool (count = 394):
   + NameAndType [getTag (I)Ljava/lang/Object;]
   + NameAndType [getText ()Landroid/text/Editable;]
   + NameAndType [getText ()Ljava/lang/CharSequence;]
-  + NameAndType [getTime ()Ljava/util/Date;]
   + NameAndType [h ()Z]
   + NameAndType [i ()Z]
   + NameAndType [inflate (ILandroid/view/Menu;)V]
@@ -98931,16 +98974,13 @@ Constant Pool (count = 394):
   + NameAndType [onPause ()V]
   + NameAndType [onResume ()V]
   + NameAndType [onSaveInstanceState (Landroid/os/Bundle;)V]
-  + NameAndType [parse (Ljava/lang/String;)Ljava/util/Date;]
   + NameAndType [parseInt (Ljava/lang/String;)I]
-  + NameAndType [printStackTrace ()V]
   + NameAndType [putExtra (Ljava/lang/String;I)Landroid/content/Intent;]
   + NameAndType [putExtra (Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;]
   + NameAndType [putSerializable (Ljava/lang/String;Ljava/io/Serializable;)V]
   + NameAndType [q Lcom/daimajia/androidanimations/library/Techniques;]
   + NameAndType [requestFocus ()Z]
   + NameAndType [set (II)V]
-  + NameAndType [set (III)V]
   + NameAndType [setBackgroundResource (I)V]
   + NameAndType [setContentView (I)V]
   + NameAndType [setError (Ljava/lang/CharSequence;)V]
@@ -98960,7 +99000,6 @@ Constant Pool (count = 394):
   + Utf8 [()Ljava/lang/CharSequence;]
   + Utf8 [()Ljava/lang/String;]
   + Utf8 [()Ljava/util/Calendar;]
-  + Utf8 [()Ljava/util/Date;]
   + Utf8 [()Lpl/srw/billcalculator/MainActivity$BillType;]
   + Utf8 [()V]
   + Utf8 [()Z]
@@ -98970,7 +99009,6 @@ Constant Pool (count = 394):
   + Utf8 [(I)V]
   + Utf8 [(II)V]
   + Utf8 [(III)Ljava/lang/String;]
-  + Utf8 [(III)V]
   + Utf8 [(ILandroid/view/Menu;)V]
   + Utf8 [(ILandroid/view/MenuItem;)Z]
   + Utf8 [(ILjava/lang/Object;)V]
@@ -98998,18 +99036,15 @@ Constant Pool (count = 394):
   + Utf8 [(Ljava/lang/String;)Ljava/io/Serializable;]
   + Utf8 [(Ljava/lang/String;)Ljava/lang/Object;]
   + Utf8 [(Ljava/lang/String;)Ljava/util/Date;]
-  + Utf8 [(Ljava/lang/String;)V]
   + Utf8 [(Ljava/lang/String;I)Landroid/content/Intent;]
   + Utf8 [(Ljava/lang/String;I)Landroid/content/SharedPreferences;]
   + Utf8 [(Ljava/lang/String;Ljava/io/Serializable;)V]
   + Utf8 [(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;]
   + Utf8 [(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
-  + Utf8 [(Ljava/util/Date;)Ljava/lang/String;]
   + Utf8 [(Ljava/util/Date;)V]
   + Utf8 [(Ljava/util/Date;)Z]
   + Utf8 [(Lpl/srw/billcalculator/MainActivity$BillType;)I]
   + Utf8 [(Lpl/srw/billcalculator/MainActivity$BillType;)V]
-  + Utf8 [(Lpl/srw/billcalculator/MainActivity;III)Ljava/lang/String;]
   + Utf8 [(Lpl/srw/billcalculator/MainActivity;Landroid/widget/Button;)V]
   + Utf8 [1109171014]
   + Utf8 [<init>]
@@ -99048,12 +99083,10 @@ Constant Pool (count = 394):
   + Utf8 [com/daimajia/androidanimations/library/YoYo]
   + Utf8 [com/daimajia/androidanimations/library/YoYo$AnimationComposer]
   + Utf8 [d]
-  + Utf8 [dd/MM/yyyy]
   + Utf8 [dismiss]
   + Utf8 [e]
   + Utf8 [f]
   + Utf8 [first_launch]
-  + Utf8 [format]
   + Utf8 [g]
   + Utf8 [get]
   + Utf8 [getFragmentManager]
@@ -99066,7 +99099,6 @@ Constant Pool (count = 394):
   + Utf8 [getSystemService]
   + Utf8 [getTag]
   + Utf8 [getText]
-  + Utf8 [getTime]
   + Utf8 [h]
   + Utf8 [i]
   + Utf8 [inflate]
@@ -99077,8 +99109,6 @@ Constant Pool (count = 394):
   + Utf8 [java/lang/Integer]
   + Utf8 [java/lang/Object]
   + Utf8 [java/lang/String]
-  + Utf8 [java/text/ParseException]
-  + Utf8 [java/text/SimpleDateFormat]
   + Utf8 [java/util/Calendar]
   + Utf8 [java/util/Date]
   + Utf8 [k]
@@ -99088,7 +99118,6 @@ Constant Pool (count = 394):
   + Utf8 [onPause]
   + Utf8 [onResume]
   + Utf8 [onSaveInstanceState]
-  + Utf8 [parse]
   + Utf8 [parseInt]
   + Utf8 [pl/srw/billcalculator/AboutActivity]
   + Utf8 [pl/srw/billcalculator/CheckPricesDialogFragment]
@@ -99098,7 +99127,7 @@ Constant Pool (count = 394):
   + Utf8 [pl/srw/billcalculator/MainActivity$1]
   + Utf8 [pl/srw/billcalculator/MainActivity$BillType]
   + Utf8 [pl/srw/billcalculator/SettingsActivity]
-  + Utf8 [printStackTrace]
+  + Utf8 [pl/srw/billcalculator/util/Dates]
   + Utf8 [putExtra]
   + Utf8 [putSerializable]
   + Utf8 [q]
@@ -99138,14 +99167,14 @@ Fields (count = 7):
     Access flags: 0x2
       = private pl.srw.billcalculator.CheckPricesDialogFragment g
 
-Methods (count = 32):
+Methods (count = 30):
   - Method:       <init>()V
     Access flags: 0x1
       = public MainActivity()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #64
+      [1] invokespecial #62
         + Methodref [android/app/Activity.<init> ()V]
       [4] return
       Code attribute exceptions (count = 0):
@@ -99157,19 +99186,19 @@ Methods (count = 32):
     + Code attribute instructions (code length = 21, locals = 2, stack = 2):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] invokespecial #65
+      [2] invokespecial #63
         + Methodref [android/app/Activity.onCreate (Landroid/os/Bundle;)V]
       [5] aload_0 v0
       [6] ldc #2
         + Integer [2130903041]
-      [8] invokevirtual #138
+      [8] invokevirtual #128
         + Methodref [pl/srw/billcalculator/MainActivity.setContentView (I)V]
       [11] aload_0 v0
-      [12] invokestatic #89
+      [12] invokestatic #87
         + Methodref [butterknife/ButterKnife.a (Landroid/app/Activity;)V]
       [15] aload_0 v0
       [16] aload_1 v1
-      [17] invokespecial #114
+      [17] invokespecial #104
         + Methodref [pl/srw/billcalculator/MainActivity.a (Landroid/os/Bundle;)V]
       [20] return
       Code attribute exceptions (count = 0):
@@ -99180,11 +99209,11 @@ Methods (count = 32):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 10, locals = 2, stack = 2):
       [0] aload_0 v0
-      [1] invokespecial #125
+      [1] invokespecial #115
         + Methodref [pl/srw/billcalculator/MainActivity.d ()V]
       [4] aload_0 v0
       [5] aload_1 v1
-      [6] invokespecial #120
+      [6] invokespecial #110
         + Methodref [pl/srw/billcalculator/MainActivity.b (Landroid/os/Bundle;)V]
       [9] return
       Code attribute exceptions (count = 0):
@@ -99193,61 +99222,59 @@ Methods (count = 32):
     Access flags: 0x2
       = private void d()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 67, locals = 4, stack = 6):
-      [0] invokestatic #102
+    + Code attribute instructions (code length = 65, locals = 4, stack = 5):
+      [0] invokestatic #96
         + Methodref [java/util/Calendar.getInstance ()Ljava/util/Calendar;]
       [3] astore_1 v1
       [4] aload_1 v1
       [5] iconst_1
-      [6] invokevirtual #101
+      [6] invokevirtual #95
         + Methodref [java/util/Calendar.get (I)I]
       [9] istore_2 v2
       [10] aload_1 v1
       [11] iconst_2
-      [12] invokevirtual #101
+      [12] invokevirtual #95
         + Methodref [java/util/Calendar.get (I)I]
       [15] istore_3 v3
       [16] aload_0 v0
-      [17] getfield #58
+      [17] getfield #56
         + Fieldref [pl/srw/billcalculator/MainActivity.d Landroid/widget/Button;]
-      [20] aload_0 v0
-      [21] iload_2 v2
-      [22] iload_3 v3
-      [23] iconst_1
-      [24] invokespecial #112
-        + Methodref [pl/srw/billcalculator/MainActivity.a (III)Ljava/lang/String;]
-      [27] invokevirtual #80
+      [20] iload_2 v2
+      [21] iload_3 v3
+      [22] iconst_1
+      [23] invokestatic #132
+        + Methodref [pl/srw/billcalculator/util/Dates.a (III)Ljava/lang/String;]
+      [26] invokevirtual #78
         + Methodref [android/widget/Button.setText (Ljava/lang/CharSequence;)V]
-      [30] aload_1 v1
-      [31] iconst_5
-      [32] iconst_1
-      [33] invokevirtual #104
+      [29] aload_1 v1
+      [30] iconst_5
+      [31] iconst_1
+      [32] invokevirtual #97
         + Methodref [java/util/Calendar.set (II)V]
-      [36] aload_1 v1
-      [37] iconst_2
-      [38] iconst_1
-      [39] invokevirtual #100
+      [35] aload_1 v1
+      [36] iconst_2
+      [37] iconst_1
+      [38] invokevirtual #94
         + Methodref [java/util/Calendar.add (II)V]
-      [42] aload_1 v1
-      [43] iconst_5
-      [44] iconst_m1
-      [45] invokevirtual #100
+      [41] aload_1 v1
+      [42] iconst_5
+      [43] iconst_m1
+      [44] invokevirtual #94
         + Methodref [java/util/Calendar.add (II)V]
-      [48] aload_0 v0
-      [49] getfield #59
+      [47] aload_0 v0
+      [48] getfield #57
         + Fieldref [pl/srw/billcalculator/MainActivity.e Landroid/widget/Button;]
-      [52] aload_0 v0
-      [53] iload_2 v2
-      [54] iload_3 v3
-      [55] aload_1 v1
-      [56] iconst_5
-      [57] invokevirtual #101
+      [51] iload_2 v2
+      [52] iload_3 v3
+      [53] aload_1 v1
+      [54] iconst_5
+      [55] invokevirtual #95
         + Methodref [java/util/Calendar.get (I)I]
-      [60] invokespecial #112
-        + Methodref [pl/srw/billcalculator/MainActivity.a (III)Ljava/lang/String;]
-      [63] invokevirtual #80
+      [58] invokestatic #132
+        + Methodref [pl/srw/billcalculator/util/Dates.a (III)Ljava/lang/String;]
+      [61] invokevirtual #78
         + Methodref [android/widget/Button.setText (Ljava/lang/CharSequence;)V]
-      [66] return
+      [64] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       b(Landroid/os/Bundle;)V
@@ -99260,15 +99287,15 @@ Methods (count = 32):
       [4] aload_0 v0
       [5] aload_0 v0
       [6] aload_1 v1
-      [7] invokespecial #123
+      [7] invokespecial #113
         + Methodref [pl/srw/billcalculator/MainActivity.c (Landroid/os/Bundle;)Lpl/srw/billcalculator/MainActivity$BillType;]
-      [10] invokespecial #119
+      [10] invokespecial #109
         + Methodref [pl/srw/billcalculator/MainActivity.a (Lpl/srw/billcalculator/MainActivity$BillType;)V]
       [13] goto +10 (target=23)
       [16] aload_0 v0
-      [17] getstatic #62
+      [17] getstatic #60
         + Fieldref [pl/srw/billcalculator/MainActivity$BillType.a Lpl/srw/billcalculator/MainActivity$BillType;]
-      [20] invokespecial #119
+      [20] invokespecial #109
         + Methodref [pl/srw/billcalculator/MainActivity.a (Lpl/srw/billcalculator/MainActivity$BillType;)V]
       [23] return
       Code attribute exceptions (count = 0):
@@ -99281,9 +99308,9 @@ Methods (count = 32):
       [0] aload_1 v1
       [1] ldc #10
         + String [1109171014]
-      [3] invokevirtual #75
+      [3] invokevirtual #73
         + Methodref [android/os/Bundle.getSerializable (Ljava/lang/String;)Ljava/io/Serializable;]
-      [6] checkcast #49
+      [6] checkcast #46
         + Class [pl/srw/billcalculator/MainActivity$BillType]
       [9] areturn
       Code attribute exceptions (count = 0):
@@ -99295,15 +99322,15 @@ Methods (count = 32):
     + Code attribute instructions (code length = 16, locals = 2, stack = 3):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] invokespecial #69
+      [2] invokespecial #67
         + Methodref [android/app/Activity.onSaveInstanceState (Landroid/os/Bundle;)V]
       [5] aload_1 v1
       [6] ldc #10
         + String [1109171014]
       [8] aload_0 v0
-      [9] invokespecial #128
+      [9] invokespecial #118
         + Methodref [pl/srw/billcalculator/MainActivity.g ()Lpl/srw/billcalculator/MainActivity$BillType;]
-      [12] invokevirtual #76
+      [12] invokevirtual #74
         + Methodref [android/os/Bundle.putSerializable (Ljava/lang/String;Ljava/io/Serializable;)V]
       [15] return
       Code attribute exceptions (count = 0):
@@ -99314,14 +99341,14 @@ Methods (count = 32):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 16, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #68
+      [1] invokespecial #66
         + Methodref [android/app/Activity.onResume ()V]
       [4] aload_0 v0
-      [5] invokespecial #126
+      [5] invokespecial #116
         + Methodref [pl/srw/billcalculator/MainActivity.e ()Z]
       [8] ifeq +7 (target=15)
       [11] aload_0 v0
-      [12] invokespecial #127
+      [12] invokespecial #117
         + Methodref [pl/srw/billcalculator/MainActivity.f ()V]
       [15] return
       Code attribute exceptions (count = 0):
@@ -99335,15 +99362,15 @@ Methods (count = 32):
       [1] ldc #13
         + String [PreferencesFile]
       [3] iconst_0
-      [4] invokevirtual #131
+      [4] invokevirtual #121
         + Methodref [pl/srw/billcalculator/MainActivity.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
-      [7] ldc #17
+      [7] ldc #16
         + String [first_launch]
       [9] ldc #9
         + String []
-      [11] invokeinterface #142, 768
+      [11] invokeinterface #134, 768
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
-      [16] invokevirtual #95
+      [16] invokevirtual #93
         + Methodref [java/lang/String.isEmpty ()Z]
       [19] ireturn
       Code attribute exceptions (count = 0):
@@ -99354,26 +99381,26 @@ Methods (count = 32):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 32, locals = 1, stack = 3):
       [0] aload_0 v0
-      [1] getfield #61
+      [1] getfield #59
         + Fieldref [pl/srw/billcalculator/MainActivity.g Lpl/srw/billcalculator/CheckPricesDialogFragment;]
       [4] ifnonnull +14 (target=18)
       [7] aload_0 v0
-      [8] new #44
+      [8] new #41
         + Class [pl/srw/billcalculator/CheckPricesDialogFragment]
       [11] dup
-      [12] invokespecial #109
+      [12] invokespecial #100
         + Methodref [pl/srw/billcalculator/CheckPricesDialogFragment.<init> ()V]
-      [15] putfield #61
+      [15] putfield #59
         + Fieldref [pl/srw/billcalculator/MainActivity.g Lpl/srw/billcalculator/CheckPricesDialogFragment;]
       [18] aload_0 v0
-      [19] getfield #61
+      [19] getfield #59
         + Fieldref [pl/srw/billcalculator/MainActivity.g Lpl/srw/billcalculator/CheckPricesDialogFragment;]
       [22] aload_0 v0
-      [23] invokevirtual #129
+      [23] invokevirtual #119
         + Methodref [pl/srw/billcalculator/MainActivity.getFragmentManager ()Landroid/app/FragmentManager;]
-      [26] ldc #17
+      [26] ldc #16
         + String [first_launch]
-      [28] invokevirtual #111
+      [28] invokevirtual #102
         + Methodref [pl/srw/billcalculator/CheckPricesDialogFragment.show (Landroid/app/FragmentManager;Ljava/lang/String;)V]
       [31] return
       Code attribute exceptions (count = 0):
@@ -99384,16 +99411,16 @@ Methods (count = 32):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 19, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #67
+      [1] invokespecial #65
         + Methodref [android/app/Activity.onPause ()V]
       [4] aload_0 v0
-      [5] getfield #61
+      [5] getfield #59
         + Fieldref [pl/srw/billcalculator/MainActivity.g Lpl/srw/billcalculator/CheckPricesDialogFragment;]
       [8] ifnull +10 (target=18)
       [11] aload_0 v0
-      [12] getfield #61
+      [12] getfield #59
         + Fieldref [pl/srw/billcalculator/MainActivity.g Lpl/srw/billcalculator/CheckPricesDialogFragment;]
-      [15] invokevirtual #110
+      [15] invokevirtual #101
         + Methodref [pl/srw/billcalculator/CheckPricesDialogFragment.dismiss ()V]
       [18] return
       Code attribute exceptions (count = 0):
@@ -99404,21 +99431,21 @@ Methods (count = 32):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 28, locals = 1, stack = 2):
       [0] aload_0 v0
-      [1] invokespecial #128
+      [1] invokespecial #118
         + Methodref [pl/srw/billcalculator/MainActivity.g ()Lpl/srw/billcalculator/MainActivity$BillType;]
-      [4] getstatic #62
+      [4] getstatic #60
         + Fieldref [pl/srw/billcalculator/MainActivity$BillType.a Lpl/srw/billcalculator/MainActivity$BillType;]
       [7] ifacmpne +13 (target=20)
       [10] aload_0 v0
-      [11] getstatic #63
+      [11] getstatic #61
         + Fieldref [pl/srw/billcalculator/MainActivity$BillType.b Lpl/srw/billcalculator/MainActivity$BillType;]
-      [14] invokespecial #119
+      [14] invokespecial #109
         + Methodref [pl/srw/billcalculator/MainActivity.a (Lpl/srw/billcalculator/MainActivity$BillType;)V]
       [17] goto +10 (target=27)
       [20] aload_0 v0
-      [21] getstatic #62
+      [21] getstatic #60
         + Fieldref [pl/srw/billcalculator/MainActivity$BillType.a Lpl/srw/billcalculator/MainActivity$BillType;]
-      [24] invokespecial #119
+      [24] invokespecial #109
         + Methodref [pl/srw/billcalculator/MainActivity.a (Lpl/srw/billcalculator/MainActivity$BillType;)V]
       [27] return
       Code attribute exceptions (count = 0):
@@ -99429,13 +99456,13 @@ Methods (count = 32):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 13, locals = 1, stack = 2):
       [0] aload_0 v0
-      [1] getfield #55
+      [1] getfield #53
         + Fieldref [pl/srw/billcalculator/MainActivity.a Landroid/widget/ImageButton;]
       [4] ldc #1
         + Integer [1109171014]
-      [6] invokevirtual #84
+      [6] invokevirtual #82
         + Methodref [android/widget/ImageButton.getTag (I)Ljava/lang/Object;]
-      [9] checkcast #49
+      [9] checkcast #46
         + Class [pl/srw/billcalculator/MainActivity$BillType]
       [12] areturn
       Code attribute exceptions (count = 0):
@@ -99446,33 +99473,33 @@ Methods (count = 32):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 42, locals = 2, stack = 3):
       [0] aload_0 v0
-      [1] getfield #55
+      [1] getfield #53
         + Fieldref [pl/srw/billcalculator/MainActivity.a Landroid/widget/ImageButton;]
       [4] aload_1 v1
-      [5] invokestatic #141
+      [5] invokestatic #131
         + Methodref [pl/srw/billcalculator/MainActivity$BillType.a (Lpl/srw/billcalculator/MainActivity$BillType;)I]
-      [8] invokevirtual #85
+      [8] invokevirtual #83
         + Methodref [android/widget/ImageButton.setBackgroundResource (I)V]
       [11] aload_0 v0
-      [12] getfield #55
+      [12] getfield #53
         + Fieldref [pl/srw/billcalculator/MainActivity.a Landroid/widget/ImageButton;]
       [15] ldc #1
         + Integer [1109171014]
       [17] aload_1 v1
-      [18] invokevirtual #86
+      [18] invokevirtual #84
         + Methodref [android/widget/ImageButton.setTag (ILjava/lang/Object;)V]
-      [21] getstatic #54
+      [21] getstatic #52
         + Fieldref [com/daimajia/androidanimations/library/Techniques.q Lcom/daimajia/androidanimations/library/Techniques;]
-      [24] invokestatic #90
+      [24] invokestatic #88
         + Methodref [com/daimajia/androidanimations/library/YoYo.a (Lcom/daimajia/androidanimations/library/Techniques;)Lcom/daimajia/androidanimations/library/YoYo$AnimationComposer;]
-      [27] ldc2_w #51
+      [27] ldc2_w #49
         + Long [400]
-      [30] invokevirtual #91
+      [30] invokevirtual #89
         + Methodref [com/daimajia/androidanimations/library/YoYo$AnimationComposer.a (J)Lcom/daimajia/androidanimations/library/YoYo$AnimationComposer;]
       [33] aload_0 v0
-      [34] getfield #55
+      [34] getfield #53
         + Fieldref [pl/srw/billcalculator/MainActivity.a Landroid/widget/ImageButton;]
-      [37] invokevirtual #92
+      [37] invokevirtual #90
         + Methodref [com/daimajia/androidanimations/library/YoYo$AnimationComposer.a (Landroid/view/View;)Lcom/daimajia/androidanimations/library/YoYo$YoYoString;]
       [40] pop
       [41] return
@@ -99483,45 +99510,45 @@ Methods (count = 32):
       = public void a(android.widget.Button)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 55, locals = 6, stack = 7):
-      [0] invokestatic #102
+      [0] invokestatic #96
         + Methodref [java/util/Calendar.getInstance ()Ljava/util/Calendar;]
       [3] astore_2 v2
       [4] aload_2 v2
       [5] aload_0 v0
       [6] aload_1 v1
-      [7] invokespecial #124
+      [7] invokespecial #114
         + Methodref [pl/srw/billcalculator/MainActivity.c (Landroid/widget/Button;)Ljava/util/Date;]
-      [10] invokevirtual #106
+      [10] invokevirtual #98
         + Methodref [java/util/Calendar.setTime (Ljava/util/Date;)V]
       [13] aload_2 v2
       [14] iconst_1
-      [15] invokevirtual #101
+      [15] invokevirtual #95
         + Methodref [java/util/Calendar.get (I)I]
       [18] istore_3 v3
       [19] aload_2 v2
       [20] iconst_2
-      [21] invokevirtual #101
+      [21] invokevirtual #95
         + Methodref [java/util/Calendar.get (I)I]
       [24] istore v4
       [26] aload_2 v2
       [27] iconst_5
-      [28] invokevirtual #101
+      [28] invokevirtual #95
         + Methodref [java/util/Calendar.get (I)I]
       [31] istore v5
-      [33] new #20
+      [33] new #19
         + Class [android/app/DatePickerDialog]
       [36] dup
       [37] aload_0 v0
       [38] aload_0 v0
       [39] aload_1 v1
-      [40] invokespecial #121
+      [40] invokespecial #111
         + Methodref [pl/srw/billcalculator/MainActivity.b (Landroid/widget/Button;)Landroid/app/DatePickerDialog$OnDateSetListener;]
       [43] iload_3 v3
       [44] iload v4
       [46] iload v5
-      [48] invokespecial #70
+      [48] invokespecial #68
         + Methodref [android/app/DatePickerDialog.<init> (Landroid/content/Context;Landroid/app/DatePickerDialog$OnDateSetListener;III)V]
-      [51] invokevirtual #71
+      [51] invokevirtual #69
         + Methodref [android/app/DatePickerDialog.show ()V]
       [54] return
       Code attribute exceptions (count = 0):
@@ -99531,12 +99558,12 @@ Methods (count = 32):
       = private android.app.DatePickerDialog$OnDateSetListener b(android.widget.Button)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 10, locals = 2, stack = 4):
-      [0] new #48
+      [0] new #45
         + Class [pl/srw/billcalculator/MainActivity$1]
       [3] dup
       [4] aload_0 v0
       [5] aload_1 v1
-      [6] invokespecial #140
+      [6] invokespecial #130
         + Methodref [pl/srw/billcalculator/MainActivity$1.<init> (Lpl/srw/billcalculator/MainActivity;Landroid/widget/Button;)V]
       [9] areturn
       Code attribute exceptions (count = 0):
@@ -99545,65 +99572,15 @@ Methods (count = 32):
     Access flags: 0x2
       = private java.util.Date c(android.widget.Button)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 37, locals = 4, stack = 3):
-      [0] new #40
-        + Class [java/text/SimpleDateFormat]
-      [3] dup
-      [4] ldc #16
-        + String [dd/MM/yyyy]
-      [6] invokespecial #97
-        + Methodref [java/text/SimpleDateFormat.<init> (Ljava/lang/String;)V]
-      [9] astore_2 v2
-      [10] aload_2 v2
-      [11] aload_1 v1
-      [12] invokevirtual #79
+    + Code attribute instructions (code length = 13, locals = 2, stack = 1):
+      [0] aload_1 v1
+      [1] invokevirtual #77
         + Methodref [android/widget/Button.getText ()Ljava/lang/CharSequence;]
-      [15] invokeinterface #144, 256
+      [4] invokeinterface #136, 256
         + InterfaceMethodref [java/lang/CharSequence.toString ()Ljava/lang/String;]
-      [20] invokevirtual #99
-        + Methodref [java/text/SimpleDateFormat.parse (Ljava/lang/String;)Ljava/util/Date;]
-      [23] areturn
-      [24] astore_3 v3
-      [25] aload_3 v3
-      [26] invokevirtual #96
-        + Methodref [java/text/ParseException.printStackTrace ()V]
-      [29] new #42
-        + Class [java/util/Date]
-      [32] dup
-      [33] invokespecial #107
-        + Methodref [java/util/Date.<init> ()V]
-      [36] areturn
-      Code attribute exceptions (count = 1):
-      - ExceptionInfo (10 -> 23: 24):
-      + Class [java/text/ParseException]
-      Code attribute attributes (attribute count = 0):
-  + Method:       a(III)Ljava/lang/String;
-    Access flags: 0x2
-      = private java.lang.String a(int,int,int)
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 31, locals = 5, stack = 4):
-      [0] invokestatic #102
-        + Methodref [java/util/Calendar.getInstance ()Ljava/util/Calendar;]
-      [3] astore v4
-      [5] aload v4
-      [7] iload_1 v1
-      [8] iload_2 v2
-      [9] iload_3 v3
-      [10] invokevirtual #105
-        + Methodref [java/util/Calendar.set (III)V]
-      [13] new #40
-        + Class [java/text/SimpleDateFormat]
-      [16] dup
-      [17] ldc #16
-        + String [dd/MM/yyyy]
-      [19] invokespecial #97
-        + Methodref [java/text/SimpleDateFormat.<init> (Ljava/lang/String;)V]
-      [22] aload v4
-      [24] invokevirtual #103
-        + Methodref [java/util/Calendar.getTime ()Ljava/util/Date;]
-      [27] invokevirtual #98
-        + Methodref [java/text/SimpleDateFormat.format (Ljava/util/Date;)Ljava/lang/String;]
-      [30] areturn
+      [9] invokestatic #133
+        + Methodref [pl/srw/billcalculator/util/Dates.a (Ljava/lang/String;)Ljava/util/Date;]
+      [12] areturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       b()V
@@ -99612,24 +99589,24 @@ Methods (count = 32):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 28, locals = 2, stack = 2):
       [0] aload_0 v0
-      [1] invokespecial #134
+      [1] invokespecial #124
         + Methodref [pl/srw/billcalculator/MainActivity.h ()Z]
       [4] ifne +4 (target=8)
       [7] return
       [8] aload_0 v0
       [9] aload_0 v0
-      [10] getfield #55
+      [10] getfield #53
         + Fieldref [pl/srw/billcalculator/MainActivity.a Landroid/widget/ImageButton;]
-      [13] invokespecial #117
+      [13] invokespecial #107
         + Methodref [pl/srw/billcalculator/MainActivity.a (Landroid/widget/ImageButton;)Landroid/content/Intent;]
       [16] astore_1 v1
       [17] aload_0 v0
       [18] aload_1 v1
-      [19] invokespecial #113
+      [19] invokespecial #103
         + Methodref [pl/srw/billcalculator/MainActivity.a (Landroid/content/Intent;)V]
       [22] aload_0 v0
       [23] aload_1 v1
-      [24] invokevirtual #139
+      [24] invokevirtual #129
         + Methodref [pl/srw/billcalculator/MainActivity.startActivity (Landroid/content/Intent;)V]
       [27] return
       Code attribute exceptions (count = 0):
@@ -99640,11 +99617,11 @@ Methods (count = 32):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 20, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #135
+      [1] invokespecial #125
         + Methodref [pl/srw/billcalculator/MainActivity.i ()Z]
       [4] ifeq +14 (target=18)
       [7] aload_0 v0
-      [8] invokespecial #136
+      [8] invokespecial #126
         + Methodref [pl/srw/billcalculator/MainActivity.j ()Z]
       [11] ifeq +7 (target=18)
       [14] iconst_1
@@ -99659,81 +99636,81 @@ Methods (count = 32):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 109, locals = 3, stack = 3):
       [0] aload_0 v0
-      [1] getfield #56
+      [1] getfield #54
         + Fieldref [pl/srw/billcalculator/MainActivity.b Landroid/widget/EditText;]
-      [4] invokevirtual #81
+      [4] invokevirtual #79
         + Methodref [android/widget/EditText.getText ()Landroid/text/Editable;]
-      [7] invokevirtual #94
+      [7] invokevirtual #92
         + Methodref [java/lang/Object.toString ()Ljava/lang/String;]
       [10] astore_1 v1
       [11] aload_1 v1
-      [12] invokevirtual #95
+      [12] invokevirtual #93
         + Methodref [java/lang/String.isEmpty ()Z]
       [15] ifeq +23 (target=38)
       [18] aload_0 v0
       [19] aload_0 v0
-      [20] getfield #56
+      [20] getfield #54
         + Fieldref [pl/srw/billcalculator/MainActivity.b Landroid/widget/EditText;]
-      [23] invokespecial #115
+      [23] invokespecial #105
         + Methodref [pl/srw/billcalculator/MainActivity.a (Landroid/view/View;)V]
       [26] aload_0 v0
       [27] aload_0 v0
-      [28] getfield #56
+      [28] getfield #54
         + Fieldref [pl/srw/billcalculator/MainActivity.b Landroid/widget/EditText;]
       [31] ldc #5
         + Integer [2131099708]
-      [33] invokespecial #116
+      [33] invokespecial #106
         + Methodref [pl/srw/billcalculator/MainActivity.a (Landroid/widget/EditText;I)V]
       [36] iconst_0
       [37] ireturn
       [38] aload_0 v0
-      [39] getfield #57
+      [39] getfield #55
         + Fieldref [pl/srw/billcalculator/MainActivity.c Landroid/widget/EditText;]
-      [42] invokevirtual #81
+      [42] invokevirtual #79
         + Methodref [android/widget/EditText.getText ()Landroid/text/Editable;]
-      [45] invokevirtual #94
+      [45] invokevirtual #92
         + Methodref [java/lang/Object.toString ()Ljava/lang/String;]
       [48] astore_2 v2
       [49] aload_2 v2
-      [50] invokevirtual #95
+      [50] invokevirtual #93
         + Methodref [java/lang/String.isEmpty ()Z]
       [53] ifeq +23 (target=76)
       [56] aload_0 v0
       [57] aload_0 v0
-      [58] getfield #57
+      [58] getfield #55
         + Fieldref [pl/srw/billcalculator/MainActivity.c Landroid/widget/EditText;]
-      [61] invokespecial #115
+      [61] invokespecial #105
         + Methodref [pl/srw/billcalculator/MainActivity.a (Landroid/view/View;)V]
       [64] aload_0 v0
       [65] aload_0 v0
-      [66] getfield #57
+      [66] getfield #55
         + Fieldref [pl/srw/billcalculator/MainActivity.c Landroid/widget/EditText;]
       [69] ldc #5
         + Integer [2131099708]
-      [71] invokespecial #116
+      [71] invokespecial #106
         + Methodref [pl/srw/billcalculator/MainActivity.a (Landroid/widget/EditText;I)V]
       [74] iconst_0
       [75] ireturn
       [76] aload_2 v2
-      [77] invokestatic #93
+      [77] invokestatic #91
         + Methodref [java/lang/Integer.parseInt (Ljava/lang/String;)I]
       [80] aload_1 v1
-      [81] invokestatic #93
+      [81] invokestatic #91
         + Methodref [java/lang/Integer.parseInt (Ljava/lang/String;)I]
       [84] ificmpgt +23 (target=107)
       [87] aload_0 v0
       [88] aload_0 v0
-      [89] getfield #57
+      [89] getfield #55
         + Fieldref [pl/srw/billcalculator/MainActivity.c Landroid/widget/EditText;]
-      [92] invokespecial #115
+      [92] invokespecial #105
         + Methodref [pl/srw/billcalculator/MainActivity.a (Landroid/view/View;)V]
       [95] aload_0 v0
       [96] aload_0 v0
-      [97] getfield #57
+      [97] getfield #55
         + Fieldref [pl/srw/billcalculator/MainActivity.c Landroid/widget/EditText;]
       [100] ldc #4
         + Integer [2131099707]
-      [102] invokespecial #116
+      [102] invokespecial #106
         + Methodref [pl/srw/billcalculator/MainActivity.a (Landroid/widget/EditText;I)V]
       [105] iconst_0
       [106] ireturn
@@ -99749,17 +99726,17 @@ Methods (count = 32):
       [0] aload_1 v1
       [1] aload_0 v0
       [2] iload_2 v2
-      [3] invokevirtual #132
+      [3] invokevirtual #122
         + Methodref [pl/srw/billcalculator/MainActivity.getString (I)Ljava/lang/String;]
-      [6] invokevirtual #83
+      [6] invokevirtual #81
         + Methodref [android/widget/EditText.setError (Ljava/lang/CharSequence;)V]
       [9] aload_1 v1
-      [10] invokevirtual #82
+      [10] invokevirtual #80
         + Methodref [android/widget/EditText.requestFocus ()Z]
       [13] pop
       [14] aload_0 v0
       [15] aload_1 v1
-      [16] invokespecial #118
+      [16] invokespecial #108
         + Methodref [pl/srw/billcalculator/MainActivity.a (Landroid/widget/TextView;)V]
       [19] return
       Code attribute exceptions (count = 0):
@@ -99768,94 +99745,75 @@ Methods (count = 32):
     Access flags: 0x2
       = private boolean j()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 105, locals = 6, stack = 3):
+    + Code attribute instructions (code length = 79, locals = 5, stack = 3):
       [0] aload_0 v0
-      [1] getfield #58
+      [1] getfield #56
         + Fieldref [pl/srw/billcalculator/MainActivity.d Landroid/widget/Button;]
-      [4] invokevirtual #79
+      [4] invokevirtual #77
         + Methodref [android/widget/Button.getText ()Ljava/lang/CharSequence;]
-      [7] invokeinterface #144, 256
+      [7] invokeinterface #136, 256
         + InterfaceMethodref [java/lang/CharSequence.toString ()Ljava/lang/String;]
       [12] astore_1 v1
       [13] aload_0 v0
-      [14] getfield #59
+      [14] getfield #57
         + Fieldref [pl/srw/billcalculator/MainActivity.e Landroid/widget/Button;]
-      [17] invokevirtual #79
+      [17] invokevirtual #77
         + Methodref [android/widget/Button.getText ()Ljava/lang/CharSequence;]
-      [20] invokeinterface #144, 256
+      [20] invokeinterface #136, 256
         + InterfaceMethodref [java/lang/CharSequence.toString ()Ljava/lang/String;]
       [25] astore_2 v2
-      [26] new #40
-        + Class [java/text/SimpleDateFormat]
-      [29] dup
-      [30] ldc #16
-        + String [dd/MM/yyyy]
-      [32] invokespecial #97
-        + Methodref [java/text/SimpleDateFormat.<init> (Ljava/lang/String;)V]
-      [35] astore_3 v3
-      [36] aload_3 v3
-      [37] aload_1 v1
-      [38] invokevirtual #99
-        + Methodref [java/text/SimpleDateFormat.parse (Ljava/lang/String;)Ljava/util/Date;]
-      [41] astore v4
-      [43] aload_3 v3
-      [44] aload_2 v2
-      [45] invokevirtual #99
-        + Methodref [java/text/SimpleDateFormat.parse (Ljava/lang/String;)Ljava/util/Date;]
-      [48] astore v5
-      [50] aload v4
-      [52] aload v5
-      [54] invokevirtual #108
+      [26] aload_1 v1
+      [27] invokestatic #133
+        + Methodref [pl/srw/billcalculator/util/Dates.a (Ljava/lang/String;)Ljava/util/Date;]
+      [30] astore_3 v3
+      [31] aload_2 v2
+      [32] invokestatic #133
+        + Methodref [pl/srw/billcalculator/util/Dates.a (Ljava/lang/String;)Ljava/util/Date;]
+      [35] astore v4
+      [37] aload_3 v3
+      [38] aload v4
+      [40] invokevirtual #99
         + Methodref [java/util/Date.before (Ljava/util/Date;)Z]
-      [57] ifne +34 (target=91)
-      [60] aload_0 v0
-      [61] aload_0 v0
-      [62] getfield #59
+      [43] ifne +34 (target=77)
+      [46] aload_0 v0
+      [47] aload_0 v0
+      [48] getfield #57
         + Fieldref [pl/srw/billcalculator/MainActivity.e Landroid/widget/Button;]
-      [65] invokespecial #115
+      [51] invokespecial #105
         + Methodref [pl/srw/billcalculator/MainActivity.a (Landroid/view/View;)V]
-      [68] aload_0 v0
-      [69] getfield #60
+      [54] aload_0 v0
+      [55] getfield #58
         + Fieldref [pl/srw/billcalculator/MainActivity.f Landroid/widget/TextView;]
-      [72] invokevirtual #87
+      [58] invokevirtual #85
         + Methodref [android/widget/TextView.requestFocus ()Z]
-      [75] pop
-      [76] aload_0 v0
-      [77] getfield #60
+      [61] pop
+      [62] aload_0 v0
+      [63] getfield #58
         + Fieldref [pl/srw/billcalculator/MainActivity.f Landroid/widget/TextView;]
-      [80] aload_0 v0
-      [81] ldc #3
+      [66] aload_0 v0
+      [67] ldc #3
         + Integer [2131099661]
-      [83] invokevirtual #132
+      [69] invokevirtual #122
         + Methodref [pl/srw/billcalculator/MainActivity.getString (I)Ljava/lang/String;]
-      [86] invokevirtual #88
+      [72] invokevirtual #86
         + Methodref [android/widget/TextView.setError (Ljava/lang/CharSequence;)V]
-      [89] iconst_0
-      [90] ireturn
-      [91] goto +12 (target=103)
-      [94] astore v4
-      [96] aload v4
-      [98] invokevirtual #96
-        + Methodref [java/text/ParseException.printStackTrace ()V]
-      [101] iconst_0
-      [102] ireturn
-      [103] iconst_1
-      [104] ireturn
-      Code attribute exceptions (count = 1):
-      - ExceptionInfo (36 -> 90: 94):
-      + Class [java/text/ParseException]
+      [75] iconst_0
+      [76] ireturn
+      [77] iconst_1
+      [78] ireturn
+      Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       a(Landroid/view/View;)V
     Access flags: 0x2
       = private void a(android.view.View)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 12, locals = 2, stack = 2):
-      [0] getstatic #53
+      [0] getstatic #51
         + Fieldref [com/daimajia/androidanimations/library/Techniques.g Lcom/daimajia/androidanimations/library/Techniques;]
-      [3] invokestatic #90
+      [3] invokestatic #88
         + Methodref [com/daimajia/androidanimations/library/YoYo.a (Lcom/daimajia/androidanimations/library/Techniques;)Lcom/daimajia/androidanimations/library/YoYo$AnimationComposer;]
       [6] aload_1 v1
-      [7] invokevirtual #92
+      [7] invokevirtual #90
         + Methodref [com/daimajia/androidanimations/library/YoYo$AnimationComposer.a (Landroid/view/View;)Lcom/daimajia/androidanimations/library/YoYo$YoYoString;]
       [10] pop
       [11] return
@@ -99867,11 +99825,11 @@ Methods (count = 32):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 22, locals = 3, stack = 3):
       [0] aload_0 v0
-      [1] ldc #18
+      [1] ldc #17
         + String [input_method]
-      [3] invokevirtual #133
+      [3] invokevirtual #123
         + Methodref [pl/srw/billcalculator/MainActivity.getSystemService (Ljava/lang/String;)Ljava/lang/Object;]
-      [6] checkcast #26
+      [6] checkcast #25
         + Class [android/view/inputmethod/InputMethodManager]
       [9] astore_2 v2
       [10] aload_2 v2
@@ -99879,7 +99837,7 @@ Methods (count = 32):
       [14] aload_2 v2
       [15] aload_1 v1
       [16] iconst_0
-      [17] invokevirtual #78
+      [17] invokevirtual #76
         + Methodref [android/view/inputmethod/InputMethodManager.showSoftInput (Landroid/view/View;I)Z]
       [20] pop
       [21] return
@@ -99891,27 +99849,27 @@ Methods (count = 32):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 32, locals = 2, stack = 4):
       [0] aload_0 v0
-      [1] invokespecial #128
+      [1] invokespecial #118
         + Methodref [pl/srw/billcalculator/MainActivity.g ()Lpl/srw/billcalculator/MainActivity$BillType;]
-      [4] getstatic #62
+      [4] getstatic #60
         + Fieldref [pl/srw/billcalculator/MainActivity$BillType.a Lpl/srw/billcalculator/MainActivity$BillType;]
       [7] ifacmpne +14 (target=21)
-      [10] new #21
+      [10] new #20
         + Class [android/content/Intent]
       [13] dup
       [14] aload_0 v0
-      [15] ldc #45
+      [15] ldc #42
         + Class [pl/srw/billcalculator/EnergyBillActivity]
-      [17] invokespecial #72
+      [17] invokespecial #70
         + Methodref [android/content/Intent.<init> (Landroid/content/Context;Ljava/lang/Class;)V]
       [20] areturn
-      [21] new #21
+      [21] new #20
         + Class [android/content/Intent]
       [24] dup
       [25] aload_0 v0
-      [26] ldc #46
+      [26] ldc #43
         + Class [pl/srw/billcalculator/GasBillActivity]
-      [28] invokespecial #72
+      [28] invokespecial #70
         + Methodref [android/content/Intent.<init> (Landroid/content/Context;Ljava/lang/Class;)V]
       [31] areturn
       Code attribute exceptions (count = 0):
@@ -99922,67 +99880,67 @@ Methods (count = 32):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 91, locals = 6, stack = 3):
       [0] aload_0 v0
-      [1] getfield #56
+      [1] getfield #54
         + Fieldref [pl/srw/billcalculator/MainActivity.b Landroid/widget/EditText;]
-      [4] invokevirtual #81
+      [4] invokevirtual #79
         + Methodref [android/widget/EditText.getText ()Landroid/text/Editable;]
-      [7] invokevirtual #94
+      [7] invokevirtual #92
         + Methodref [java/lang/Object.toString ()Ljava/lang/String;]
       [10] astore_2 v2
       [11] aload_1 v1
       [12] ldc #14
         + String [READING_FROM]
       [14] aload_2 v2
-      [15] invokestatic #93
+      [15] invokestatic #91
         + Methodref [java/lang/Integer.parseInt (Ljava/lang/String;)I]
-      [18] invokevirtual #73
+      [18] invokevirtual #71
         + Methodref [android/content/Intent.putExtra (Ljava/lang/String;I)Landroid/content/Intent;]
       [21] pop
       [22] aload_0 v0
-      [23] getfield #57
+      [23] getfield #55
         + Fieldref [pl/srw/billcalculator/MainActivity.c Landroid/widget/EditText;]
-      [26] invokevirtual #81
+      [26] invokevirtual #79
         + Methodref [android/widget/EditText.getText ()Landroid/text/Editable;]
-      [29] invokevirtual #94
+      [29] invokevirtual #92
         + Methodref [java/lang/Object.toString ()Ljava/lang/String;]
       [32] astore_3 v3
       [33] aload_1 v1
       [34] ldc #15
         + String [READING_TO]
       [36] aload_3 v3
-      [37] invokestatic #93
+      [37] invokestatic #91
         + Methodref [java/lang/Integer.parseInt (Ljava/lang/String;)I]
-      [40] invokevirtual #73
+      [40] invokevirtual #71
         + Methodref [android/content/Intent.putExtra (Ljava/lang/String;I)Landroid/content/Intent;]
       [43] pop
       [44] aload_0 v0
-      [45] getfield #58
+      [45] getfield #56
         + Fieldref [pl/srw/billcalculator/MainActivity.d Landroid/widget/Button;]
-      [48] invokevirtual #79
+      [48] invokevirtual #77
         + Methodref [android/widget/Button.getText ()Ljava/lang/CharSequence;]
-      [51] invokeinterface #144, 256
+      [51] invokeinterface #136, 256
         + InterfaceMethodref [java/lang/CharSequence.toString ()Ljava/lang/String;]
       [56] astore v4
       [58] aload_1 v1
       [59] ldc #11
         + String [DATE_FROM]
       [61] aload v4
-      [63] invokevirtual #74
+      [63] invokevirtual #72
         + Methodref [android/content/Intent.putExtra (Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;]
       [66] pop
       [67] aload_0 v0
-      [68] getfield #59
+      [68] getfield #57
         + Fieldref [pl/srw/billcalculator/MainActivity.e Landroid/widget/Button;]
-      [71] invokevirtual #79
+      [71] invokevirtual #77
         + Methodref [android/widget/Button.getText ()Ljava/lang/CharSequence;]
-      [74] invokeinterface #144, 256
+      [74] invokeinterface #136, 256
         + InterfaceMethodref [java/lang/CharSequence.toString ()Ljava/lang/String;]
       [79] astore v5
       [81] aload_1 v1
       [82] ldc #12
         + String [DATE_TO]
       [84] aload v5
-      [86] invokevirtual #74
+      [86] invokevirtual #72
         + Methodref [android/content/Intent.putExtra (Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;]
       [89] pop
       [90] return
@@ -99994,12 +99952,12 @@ Methods (count = 32):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 12, locals = 2, stack = 3):
       [0] aload_0 v0
-      [1] invokevirtual #130
+      [1] invokevirtual #120
         + Methodref [pl/srw/billcalculator/MainActivity.getMenuInflater ()Landroid/view/MenuInflater;]
       [4] ldc #6
         + Integer [2131230720]
       [6] aload_1 v1
-      [7] invokevirtual #77
+      [7] invokevirtual #75
         + Methodref [android/view/MenuInflater.inflate (ILandroid/view/Menu;)V]
       [10] iconst_1
       [11] ireturn
@@ -100011,31 +99969,31 @@ Methods (count = 32):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 41, locals = 3, stack = 3):
       [0] aload_2 v2
-      [1] invokeinterface #143, 256
+      [1] invokeinterface #135, 256
         + InterfaceMethodref [android/view/MenuItem.getItemId ()I]
       [6] ldc #7
-        + Integer [2131296330]
+        + Integer [2131296336]
       [8] ificmpne +9 (target=17)
       [11] aload_0 v0
-      [12] invokevirtual #122
+      [12] invokevirtual #112
         + Methodref [pl/srw/billcalculator/MainActivity.c ()V]
       [15] iconst_1
       [16] ireturn
       [17] aload_2 v2
-      [18] invokeinterface #143, 256
+      [18] invokeinterface #135, 256
         + InterfaceMethodref [android/view/MenuItem.getItemId ()I]
       [23] ldc #8
-        + Integer [2131296331]
+        + Integer [2131296337]
       [25] ificmpne +9 (target=34)
       [28] aload_0 v0
-      [29] invokespecial #137
+      [29] invokespecial #127
         + Methodref [pl/srw/billcalculator/MainActivity.k ()V]
       [32] iconst_1
       [33] ireturn
       [34] aload_0 v0
       [35] iload_1 v1
       [36] aload_2 v2
-      [37] invokespecial #66
+      [37] invokespecial #64
         + Methodref [android/app/Activity.onMenuItemSelected (ILandroid/view/MenuItem;)Z]
       [40] ireturn
       Code attribute exceptions (count = 0):
@@ -100046,15 +100004,15 @@ Methods (count = 32):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 15, locals = 1, stack = 5):
       [0] aload_0 v0
-      [1] new #21
+      [1] new #20
         + Class [android/content/Intent]
       [4] dup
       [5] aload_0 v0
-      [6] ldc #43
+      [6] ldc #40
         + Class [pl/srw/billcalculator/AboutActivity]
-      [8] invokespecial #72
+      [8] invokespecial #70
         + Methodref [android/content/Intent.<init> (Landroid/content/Context;Ljava/lang/Class;)V]
-      [11] invokevirtual #139
+      [11] invokevirtual #129
         + Methodref [pl/srw/billcalculator/MainActivity.startActivity (Landroid/content/Intent;)V]
       [14] return
       Code attribute exceptions (count = 0):
@@ -100064,34 +100022,20 @@ Methods (count = 32):
       = public void c()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 17, locals = 2, stack = 4):
-      [0] new #21
+      [0] new #20
         + Class [android/content/Intent]
       [3] dup
       [4] aload_0 v0
-      [5] ldc #50
+      [5] ldc #47
         + Class [pl/srw/billcalculator/SettingsActivity]
-      [7] invokespecial #72
+      [7] invokespecial #70
         + Methodref [android/content/Intent.<init> (Landroid/content/Context;Ljava/lang/Class;)V]
       [10] astore_1 v1
       [11] aload_0 v0
       [12] aload_1 v1
-      [13] invokevirtual #139
+      [13] invokevirtual #129
         + Methodref [pl/srw/billcalculator/MainActivity.startActivity (Landroid/content/Intent;)V]
       [16] return
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 0):
-  + Method:       a(Lpl/srw/billcalculator/MainActivity;III)Ljava/lang/String;
-    Access flags: 0x1008
-      = static synthetic java.lang.String a(pl.srw.billcalculator.MainActivity,int,int,int)
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 8, locals = 4, stack = 4):
-      [0] aload_0 v0
-      [1] iload_1 v1
-      [2] iload_2 v2
-      [3] iload_3 v3
-      [4] invokespecial #112
-        + Methodref [pl/srw/billcalculator/MainActivity.a (III)Ljava/lang/String;]
-      [7] areturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
 
@@ -100709,31 +100653,32 @@ _____________________________________________________________________
 Interfaces (count = 1):
   + Class [android/app/DatePickerDialog$OnDateSetListener]
 
-Constant Pool (count = 43):
+Constant Pool (count = 45):
   + Class [android/app/DatePickerDialog$OnDateSetListener]
   + Class [android/widget/Button]
   + Class [android/widget/TextView]
   + Class [java/lang/Object]
   + Class [pl/srw/billcalculator/MainActivity]
   + Class [pl/srw/billcalculator/MainActivity$1]
+  + Class [pl/srw/billcalculator/util/Dates]
   + Fieldref [pl/srw/billcalculator/MainActivity.f Landroid/widget/TextView;]
   + Fieldref [pl/srw/billcalculator/MainActivity$1.a Landroid/widget/Button;]
   + Fieldref [pl/srw/billcalculator/MainActivity$1.b Lpl/srw/billcalculator/MainActivity;]
   + Methodref [android/widget/Button.setText (Ljava/lang/CharSequence;)V]
   + Methodref [android/widget/TextView.setError (Ljava/lang/CharSequence;)V]
   + Methodref [java/lang/Object.<init> ()V]
-  + Methodref [pl/srw/billcalculator/MainActivity.a (Lpl/srw/billcalculator/MainActivity;III)Ljava/lang/String;]
+  + Methodref [pl/srw/billcalculator/util/Dates.a (III)Ljava/lang/String;]
   + NameAndType [<init> ()V]
-  + NameAndType [a (Lpl/srw/billcalculator/MainActivity;III)Ljava/lang/String;]
+  + NameAndType [a (III)Ljava/lang/String;]
   + NameAndType [a Landroid/widget/Button;]
   + NameAndType [b Lpl/srw/billcalculator/MainActivity;]
   + NameAndType [f Landroid/widget/TextView;]
   + NameAndType [setError (Ljava/lang/CharSequence;)V]
   + NameAndType [setText (Ljava/lang/CharSequence;)V]
   + Utf8 [()V]
+  + Utf8 [(III)Ljava/lang/String;]
   + Utf8 [(Landroid/widget/DatePicker;III)V]
   + Utf8 [(Ljava/lang/CharSequence;)V]
-  + Utf8 [(Lpl/srw/billcalculator/MainActivity;III)Ljava/lang/String;]
   + Utf8 [(Lpl/srw/billcalculator/MainActivity;Landroid/widget/Button;)V]
   + Utf8 [<init>]
   + Utf8 [Code]
@@ -100750,6 +100695,7 @@ Constant Pool (count = 43):
   + Utf8 [onDateSet]
   + Utf8 [pl/srw/billcalculator/MainActivity]
   + Utf8 [pl/srw/billcalculator/MainActivity$1]
+  + Utf8 [pl/srw/billcalculator/util/Dates]
   + Utf8 [setError]
   + Utf8 [setText]
 
@@ -100769,14 +100715,14 @@ Methods (count = 2):
     + Code attribute instructions (code length = 15, locals = 3, stack = 2):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] putfield #9
+      [2] putfield #10
         + Fieldref [pl/srw/billcalculator/MainActivity$1.b Lpl/srw/billcalculator/MainActivity;]
       [5] aload_0 v0
       [6] aload_2 v2
-      [7] putfield #8
+      [7] putfield #9
         + Fieldref [pl/srw/billcalculator/MainActivity$1.a Landroid/widget/Button;]
       [10] aload_0 v0
-      [11] invokespecial #12
+      [11] invokespecial #13
         + Methodref [java/lang/Object.<init> ()V]
       [14] return
       Code attribute exceptions (count = 0):
@@ -100785,29 +100731,26 @@ Methods (count = 2):
     Access flags: 0x1
       = public void onDateSet(android.widget.DatePicker,int,int,int)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 30, locals = 5, stack = 5):
+    + Code attribute instructions (code length = 26, locals = 5, stack = 4):
       [0] aload_0 v0
-      [1] getfield #8
+      [1] getfield #9
         + Fieldref [pl/srw/billcalculator/MainActivity$1.a Landroid/widget/Button;]
-      [4] aload_0 v0
-      [5] getfield #9
-        + Fieldref [pl/srw/billcalculator/MainActivity$1.b Lpl/srw/billcalculator/MainActivity;]
-      [8] iload_2 v2
-      [9] iload_3 v3
-      [10] iload v4
-      [12] invokestatic #13
-        + Methodref [pl/srw/billcalculator/MainActivity.a (Lpl/srw/billcalculator/MainActivity;III)Ljava/lang/String;]
-      [15] invokevirtual #10
+      [4] iload_2 v2
+      [5] iload_3 v3
+      [6] iload v4
+      [8] invokestatic #14
+        + Methodref [pl/srw/billcalculator/util/Dates.a (III)Ljava/lang/String;]
+      [11] invokevirtual #11
         + Methodref [android/widget/Button.setText (Ljava/lang/CharSequence;)V]
-      [18] aload_0 v0
-      [19] getfield #9
+      [14] aload_0 v0
+      [15] getfield #10
         + Fieldref [pl/srw/billcalculator/MainActivity$1.b Lpl/srw/billcalculator/MainActivity;]
-      [22] getfield #7
+      [18] getfield #8
         + Fieldref [pl/srw/billcalculator/MainActivity.f Landroid/widget/TextView;]
-      [25] aconst_null
-      [26] invokevirtual #11
+      [21] aconst_null
+      [22] invokevirtual #12
         + Methodref [android/widget/TextView.setError (Ljava/lang/CharSequence;)V]
-      [29] return
+      [25] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
 
@@ -101575,6 +101518,205 @@ Methods (count = 2):
         + Methodref [android/widget/TextView.setMovementMethod (Landroid/text/method/MovementMethod;)V]
       [25] iconst_0
       [26] ireturn
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+
+Class file attributes (count = 0):
+
+_____________________________________________________________________
++ Program class: pl/srw/billcalculator/util/Dates
+  Superclass:    java/lang/Object
+  Major version: 0x32
+  Minor version: 0x0
+    = target 1.6
+  Access flags:  0x21
+    = public class pl.srw.billcalculator.util.Dates extends java.lang.Object
+
+Interfaces (count = 0):
+
+Constant Pool (count = 62):
+  + String [dd/MM/yyyy]
+  + Class [java/lang/Object]
+  + Class [java/text/ParseException]
+  + Class [java/text/SimpleDateFormat]
+  + Class [java/util/Calendar]
+  + Class [java/util/Date]
+  + Class [pl/srw/billcalculator/util/Dates]
+  + Methodref [java/text/ParseException.printStackTrace ()V]
+  + Methodref [java/text/SimpleDateFormat.<init> (Ljava/lang/String;)V]
+  + Methodref [java/text/SimpleDateFormat.format (Ljava/util/Date;)Ljava/lang/String;]
+  + Methodref [java/text/SimpleDateFormat.parse (Ljava/lang/String;)Ljava/util/Date;]
+  + Methodref [java/util/Calendar.get (I)I]
+  + Methodref [java/util/Calendar.getInstance ()Ljava/util/Calendar;]
+  + Methodref [java/util/Calendar.getTime ()Ljava/util/Date;]
+  + Methodref [java/util/Calendar.set (III)V]
+  + Methodref [java/util/Calendar.setTimeInMillis (J)V]
+  + Methodref [java/util/Date.<init> ()V]
+  + Methodref [java/util/Date.getTime ()J]
+  + Methodref [pl/srw/billcalculator/util/Dates.a (Ljava/lang/String;)Ljava/util/Date;]
+  + NameAndType [<init> ()V]
+  + NameAndType [<init> (Ljava/lang/String;)V]
+  + NameAndType [a (Ljava/lang/String;)Ljava/util/Date;]
+  + NameAndType [format (Ljava/util/Date;)Ljava/lang/String;]
+  + NameAndType [get (I)I]
+  + NameAndType [getInstance ()Ljava/util/Calendar;]
+  + NameAndType [getTime ()J]
+  + NameAndType [getTime ()Ljava/util/Date;]
+  + NameAndType [parse (Ljava/lang/String;)Ljava/util/Date;]
+  + NameAndType [printStackTrace ()V]
+  + NameAndType [set (III)V]
+  + NameAndType [setTimeInMillis (J)V]
+  + Utf8 [()J]
+  + Utf8 [()Ljava/util/Calendar;]
+  + Utf8 [()Ljava/util/Date;]
+  + Utf8 [()V]
+  + Utf8 [(I)I]
+  + Utf8 [(III)Ljava/lang/String;]
+  + Utf8 [(III)V]
+  + Utf8 [(J)V]
+  + Utf8 [(Ljava/lang/String;)Ljava/util/Date;]
+  + Utf8 [(Ljava/lang/String;)V]
+  + Utf8 [(Ljava/lang/String;Ljava/lang/String;)I]
+  + Utf8 [(Ljava/util/Date;)Ljava/lang/String;]
+  + Utf8 [<init>]
+  + Utf8 [Code]
+  + Utf8 [a]
+  + Utf8 [dd/MM/yyyy]
+  + Utf8 [format]
+  + Utf8 [get]
+  + Utf8 [getInstance]
+  + Utf8 [getTime]
+  + Utf8 [java/lang/Object]
+  + Utf8 [java/text/ParseException]
+  + Utf8 [java/text/SimpleDateFormat]
+  + Utf8 [java/util/Calendar]
+  + Utf8 [java/util/Date]
+  + Utf8 [parse]
+  + Utf8 [pl/srw/billcalculator/util/Dates]
+  + Utf8 [printStackTrace]
+  + Utf8 [set]
+  + Utf8 [setTimeInMillis]
+
+Fields (count = 0):
+
+Methods (count = 3):
+  + Method:       a(Ljava/lang/String;)Ljava/util/Date;
+    Access flags: 0x9
+      = public static java.util.Date a(java.lang.String)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 29, locals = 3, stack = 3):
+      [0] new #4
+        + Class [java/text/SimpleDateFormat]
+      [3] dup
+      [4] ldc #1
+        + String [dd/MM/yyyy]
+      [6] invokespecial #9
+        + Methodref [java/text/SimpleDateFormat.<init> (Ljava/lang/String;)V]
+      [9] astore_1 v1
+      [10] aload_1 v1
+      [11] aload_0 v0
+      [12] invokevirtual #11
+        + Methodref [java/text/SimpleDateFormat.parse (Ljava/lang/String;)Ljava/util/Date;]
+      [15] areturn
+      [16] astore_2 v2
+      [17] aload_2 v2
+      [18] invokevirtual #8
+        + Methodref [java/text/ParseException.printStackTrace ()V]
+      [21] new #6
+        + Class [java/util/Date]
+      [24] dup
+      [25] invokespecial #17
+        + Methodref [java/util/Date.<init> ()V]
+      [28] areturn
+      Code attribute exceptions (count = 1):
+      - ExceptionInfo (10 -> 15: 16):
+      + Class [java/text/ParseException]
+      Code attribute attributes (attribute count = 0):
+  + Method:       a(III)Ljava/lang/String;
+    Access flags: 0x9
+      = public static java.lang.String a(int,int,int)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 28, locals = 4, stack = 4):
+      [0] invokestatic #13
+        + Methodref [java/util/Calendar.getInstance ()Ljava/util/Calendar;]
+      [3] astore_3 v3
+      [4] aload_3 v3
+      [5] iload_0 v0
+      [6] iload_1 v1
+      [7] iload_2 v2
+      [8] invokevirtual #15
+        + Methodref [java/util/Calendar.set (III)V]
+      [11] new #4
+        + Class [java/text/SimpleDateFormat]
+      [14] dup
+      [15] ldc #1
+        + String [dd/MM/yyyy]
+      [17] invokespecial #9
+        + Methodref [java/text/SimpleDateFormat.<init> (Ljava/lang/String;)V]
+      [20] aload_3 v3
+      [21] invokevirtual #14
+        + Methodref [java/util/Calendar.getTime ()Ljava/util/Date;]
+      [24] invokevirtual #10
+        + Methodref [java/text/SimpleDateFormat.format (Ljava/util/Date;)Ljava/lang/String;]
+      [27] areturn
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       a(Ljava/lang/String;Ljava/lang/String;)I
+    Access flags: 0x9
+      = public static int a(java.lang.String,java.lang.String)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 79, locals = 8, stack = 5):
+      [0] aload_0 v0
+      [1] invokestatic #19
+        + Methodref [pl/srw/billcalculator/util/Dates.a (Ljava/lang/String;)Ljava/util/Date;]
+      [4] astore_2 v2
+      [5] aload_1 v1
+      [6] invokestatic #19
+        + Methodref [pl/srw/billcalculator/util/Dates.a (Ljava/lang/String;)Ljava/util/Date;]
+      [9] astore_3 v3
+      [10] invokestatic #13
+        + Methodref [java/util/Calendar.getInstance ()Ljava/util/Calendar;]
+      [13] astore v4
+      [15] aload v4
+      [17] aload_3 v3
+      [18] invokevirtual #18
+        + Methodref [java/util/Date.getTime ()J]
+      [21] aload_2 v2
+      [22] invokevirtual #18
+        + Methodref [java/util/Date.getTime ()J]
+      [25] lsub
+      [26] invokevirtual #16
+        + Methodref [java/util/Calendar.setTimeInMillis (J)V]
+      [29] aload v4
+      [31] iconst_1
+      [32] invokevirtual #12
+        + Methodref [java/util/Calendar.get (I)I]
+      [35] sipush 1970
+      [38] isub
+      [39] istore v5
+      [41] aload v4
+      [43] iconst_5
+      [44] invokevirtual #12
+        + Methodref [java/util/Calendar.get (I)I]
+      [47] istore v6
+      [49] aload v4
+      [51] iconst_2
+      [52] invokevirtual #12
+        + Methodref [java/util/Calendar.get (I)I]
+      [55] iload v6
+      [57] bipush 14
+      [59] ificmple +7 (target=66)
+      [62] iconst_1
+      [63] goto +4 (target=67)
+      [66] iconst_0
+      [67] iadd
+      [68] istore v7
+      [70] iload v5
+      [72] bipush 12
+      [74] imul
+      [75] iload v7
+      [77] iadd
+      [78] ireturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
 

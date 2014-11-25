@@ -2158,7 +2158,6 @@ pl.srw.billcalculator.MainActivity:
     public static final java.lang.String READING_TO
     public static final java.lang.String DATE_FROM
     public static final java.lang.String DATE_TO
-    public static final java.lang.String DATE_PATTERN
     public static final java.lang.String SHARED_PREFERENCES_FILE
     public static final java.lang.String PREFERENCE_KEY_FIRST_LAUNCH
 pl.srw.billcalculator.R
@@ -2171,6 +2170,9 @@ pl.srw.billcalculator.R$menu
 pl.srw.billcalculator.R$string
 pl.srw.billcalculator.R$style
 pl.srw.billcalculator.R$xml
+pl.srw.billcalculator.util.Dates:
+    public static final java.lang.String DATE_PATTERN
+    11:11:public Dates()
 pl.srw.billcalculator.util.Display:
     public static final int PAY_VALUE_SCALE
     9:9:public Display()
