@@ -10,11 +10,11 @@ public class Display {
 
     public static final int PAY_VALUE_SCALE = 2;
 
-    public static String price(BigDecimal cena, int scale) {
-        return cena.setScale(scale, RoundingMode.HALF_UP).toString();
+    public static String withScale(BigDecimal value, int scale) {
+        return value.setScale(scale, RoundingMode.HALF_UP).toString();
     }
 
     public static String toPay(BigDecimal value) {
-        return price(value, PAY_VALUE_SCALE);
+        return withScale(value, PAY_VALUE_SCALE);
     }
 }

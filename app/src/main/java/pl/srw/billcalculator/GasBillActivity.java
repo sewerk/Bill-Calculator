@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 
 /**
@@ -117,32 +118,37 @@ public class GasBillActivity extends Activity {
     private void setRozliczenieTable() {
         TableLayout rozliczenie = (TableLayout) findViewById(R.id.table_rozliczenie);
         int zuzycie = getZuzycieKWh(getZuzycie());
+        int iloscMc = Dates.countMonth(dateFrom, dateTo);
 
-        setRow(rozliczenie, R.id.row_abonamentowa, R.string.abonamentowa, 1, getString(R.string.mc), oplataAbonamentowa, "");
-        setRow(rozliczenie, R.id.row_paliwo_gazowe, R.string.paliwo_gazowe, zuzycie, getString(R.string.kWh), paliwoGazowe, "ZW");
-        setRow(rozliczenie, R.id.row_dystrybucyjna_stala, R.string.dystrybucyjna_stala, 1, getString(R.string.mc), dystrybucyjnaStala, "");
-        setRow(rozliczenie, R.id.row_dystrybucyjna_zmienna, R.string.dystrybucyjna_zmienna, zuzycie, getString(R.string.kWh), dystrybucyjnaZmienna, "");
+        setRow(rozliczenie, R.id.row_abonamentowa, R.string.abonamentowa, iloscMc, R.string.mc, oplataAbonamentowa, "");
+        setRow(rozliczenie, R.id.row_paliwo_gazowe, R.string.paliwo_gazowe, zuzycie, R.string.kWh, paliwoGazowe, "ZW");
+        setRow(rozliczenie, R.id.row_dystrybucyjna_stala, R.string.dystrybucyjna_stala, iloscMc, R.string.mc, dystrybucyjnaStala, "");
+        setRow(rozliczenie, R.id.row_dystrybucyjna_zmienna, R.string.dystrybucyjna_zmienna, zuzycie, R.string.kWh, dystrybucyjnaZmienna, "");
 
         setPodsumowanieRozliczenia(rozliczenie);
     }
 
-    private void setRow(TableLayout rozliczenie, int rowId, int oplataTextId, int ilosc, String jm, BigDecimal cenaNetto, String wartoscAkcyzy) {
+    private void setRow(TableLayout rozliczenie, int rowId, int oplataTextId, int ilosc, int jmId, BigDecimal cenaNetto, String wartoscAkcyzy) {
         View row = rozliczenie.findViewById(rowId);
         setTV(row, R.id.textView_oplata, getString(oplataTextId));
         setTV(row, R.id.textView_okres_od, dateFrom);
         setTV(row, R.id.textView_okres_do, dateTo);
-        setTV(row, R.id.textView_ilosc, ilosc == 1 ? "1,000" : "" + ilosc);
-        setTV(row, R.id.textView_Jm, jm);
-        setTV(row, R.id.textView_cena_netto, Display.price(cenaNetto, PRICE_SCALE));
+        setTV(row, R.id.textView_Jm, getString(jmId));
+        if (jmId == R.string.kWh) {
+            setTV(row, R.id.textView_ilosc, "" + ilosc);
+        } else {
+            setTV(row, R.id.textView_ilosc, Display.withScale(new BigDecimal(ilosc), 3));
+        }
+        setTV(row, R.id.textView_cena_netto, Display.withScale(cenaNetto, PRICE_SCALE));
         setTV(row, R.id.textView_wartosc_akcyzy, wartoscAkcyzy);
-        setTV(row, R.id.textView_wartosc_netto, Display.toPay(countWartosc(ilosc, cenaNetto)));
+        setTV(row, R.id.textView_wartosc_netto, getWartosc(ilosc, cenaNetto));
 
     }
 
-    private BigDecimal countWartosc(int ilosc, BigDecimal cenaNetto) {
+    private String getWartosc(int ilosc, BigDecimal cenaNetto) {
         BigDecimal wartosc = cenaNetto.multiply(new BigDecimal(ilosc));
         sumWartoscNetto = sumWartoscNetto.add(wartosc);
-        return wartosc;
+        return Display.toPay(wartosc);
     }
 
     private void setPodsumowanieRozliczenia(View rozliczenie) {
