@@ -26,6 +26,7 @@ import java.util.Date;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import pl.srw.billcalculator.util.Dates;
 
 /**
  * Created by Kamil Seweryn
@@ -50,7 +51,6 @@ public class MainActivity extends Activity {
     public static final String READING_TO = "READING_TO";
     public static final String DATE_FROM = "DATE_FROM";
     public static final String DATE_TO = "DATE_TO";
-    public static final String DATE_PATTERN = "dd/MM/yyyy";
     public static final String SHARED_PREFERENCES_FILE = "PreferencesFile";
     public static final String PREFERENCE_KEY_FIRST_LAUNCH = "first_launch";
 
@@ -81,11 +81,11 @@ public class MainActivity extends Activity {
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
 
-        bFromDate.setText(buildDateString(year, month, 1));
+        bFromDate.setText(Dates.format(year, month, 1));
         c.set(Calendar.DAY_OF_MONTH, 1);
         c.add(Calendar.MONTH, 1);
         c.add(Calendar.DAY_OF_MONTH, -1);
-        bToDate.setText(buildDateString(year, month, c.get(Calendar.DAY_OF_MONTH)));
+        bToDate.setText(Dates.format(year, month, c.get(Calendar.DAY_OF_MONTH)));
     }
 
     private void initBillType(final Bundle savedInstanceState) {
@@ -170,26 +170,14 @@ public class MainActivity extends Activity {
         return new DatePickerDialog.OnDateSetListener(){
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                button.setText(buildDateString(year, month, day));
+                button.setText(Dates.format(year, month, day));
                 etToDateError.setError(null);
             }
         };
     }
 
     private Date readDateFrom(final Button button) {
-        SimpleDateFormat dateParser = new SimpleDateFormat(DATE_PATTERN);
-        try {
-            return dateParser.parse(button.getText().toString());
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return new Date();
-        }
-    }
-
-    private String buildDateString(int year, int month, int day) {
-        Calendar c = Calendar.getInstance();
-        c.set(year, month, day);
-        return new SimpleDateFormat(DATE_PATTERN).format(c.getTime());
+        return Dates.parse(button.getText().toString());
     }
 
     @OnClick(R.id.button_calculate)
@@ -236,18 +224,12 @@ public class MainActivity extends Activity {
     private boolean validateDates() {
         String fromDate = bFromDate.getText().toString();
         String toDate = bToDate.getText().toString();
-        SimpleDateFormat formater = new SimpleDateFormat(DATE_PATTERN);
-        try {
-            Date from = formater.parse(fromDate);
-            Date to = formater.parse(toDate);
-            if (!from.before(to)) {
-                shake(bToDate);
-                etToDateError.requestFocus();
-                etToDateError.setError(getString(R.string.date_error));
-                return false;
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
+        Date from = Dates.parse(fromDate);
+        Date to = Dates.parse(toDate);
+        if (!from.before(to)) {
+            shake(bToDate);
+            etToDateError.requestFocus();
+            etToDateError.setError(getString(R.string.date_error));
             return false;
         }
         return true;

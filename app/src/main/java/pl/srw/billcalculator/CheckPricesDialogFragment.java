@@ -20,7 +20,7 @@ public class CheckPricesDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setIcon(android.R.drawable.ic_menu_edit)
                 .setTitle(getString(R.string.check_prices_info_title))
-                .setView(R.layout.check_prices)
+                .setMessage(getString(R.string.check_price_info_message))
                 .setPositiveButton(R.string.check_prices_info_ok, positiveClickListener())
                 .setNegativeButton(getString(R.string.check_prices_info_cancel), negativeClickListener())
                 .setOnKeyListener(backButtonListener());
