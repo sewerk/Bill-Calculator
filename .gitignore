@@ -5,3 +5,4 @@ local.properties
 Bill-Calculator.iml
 app/app.iml
 BillCalculator.iml
+app/signing.gradle

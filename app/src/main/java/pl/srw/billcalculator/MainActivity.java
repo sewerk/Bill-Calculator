@@ -286,6 +286,12 @@ public class MainActivity extends Activity {
         return super.onMenuItemSelected(featureId, item);
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.slide_out_right);
+    }
+
     private void startAbout() {
         startActivity(new Intent(this, AboutActivity.class));
     }

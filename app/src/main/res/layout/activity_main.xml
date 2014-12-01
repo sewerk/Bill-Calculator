@@ -10,146 +10,21 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
 
         <ImageButton
             android:id="@+id/button_bill_type_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
             android:background="@drawable/bill_type_pge"
             android:contentDescription="Bill type switch"/>
 
-    <!-- WSKAZANIA ============================-->
-        <LinearLayout
-            android:id="@+id/linearLayout_from"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/button_bill_type_switch"
-            android:layout_marginTop="48dp"
-            android:layout_centerHorizontal="true">
+        <include layout="@layout/main_form" />
 
-            <TextView
-                android:id="@+id/textView_from"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="@string/previous_reading"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <EditText
-                android:id="@+id/editText_from"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="5"
-                android:maxLength="9"
-                android:gravity="end"
-                android:inputType="number">
-
-                <requestFocus />
-            </EditText>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout_to"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearLayout_from"
-            android:layout_alignRight="@id/linearLayout_from">
-
-            <TextView
-                android:id="@+id/textView_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="@string/current_reading"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <EditText
-                android:id="@+id/editText_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="5"
-                android:maxLength="9"
-                android:gravity="end"
-                android:inputType="number"
-                android:imeOptions="actionDone"/>
-
-        </LinearLayout>
-
-    <!-- DATA ============================-->
-
-        <LinearLayout
-            android:id="@+id/linearLayout_date_from"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearLayout_to"
-            android:layout_marginTop="8dp"
-            android:layout_alignRight="@+id/linearLayout_to">
-
-            <TextView
-                android:id="@+id/textView_date_from"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/date_from"/>
-            <Button
-                android:id="@+id/button_date_from"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:freezesText="true"
-                tools:text="11/12/2014"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout_date_to"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearLayout_date_from"
-            android:layout_marginTop="8dp"
-            android:layout_alignRight="@+id/linearLayout_to">
-
-            <TextView
-                android:id="@+id/textView_date_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/date_to"/>
-            <Button
-                android:id="@+id/button_date_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:freezesText="true"
-                tools:text="31/12/2014"/>
-
-        </LinearLayout>
-
-        <EditText
-            android:id="@+id/editText_date_to_error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/linearLayout_date_to"
-            android:layout_alignRight="@id/linearLayout_date_to"
-            android:clickable="false"
-            android:editable="false"
-            android:background="@android:color/transparent"
-            android:textColor="@android:color/transparent"
-            tools:text="Problem with date"/>
-
-    <!-- OBLICZ =========================== -->
-        <Button
-            android:id="@+id/button_calculate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/linearLayout_to"
-            android:layout_below="@+id/linearLayout_date_to"
-            android:layout_marginTop="24dp"
-            android:text="@string/calculate" />
-
-    </RelativeLayout>
+    </LinearLayout>
 </ScrollView>

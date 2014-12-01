@@ -1,25 +1,30 @@
 apply plugin: 'com.android.application'
+apply from: 'signing.gradle'
 
 android {
+
     compileSdkVersion 21
     buildToolsVersion "21.1.1"
 
     defaultConfig {
-        versionCode 5
-        versionName "1.1.2"
+        versionCode 6
+        versionName "1.2"
         minSdkVersion 14
         targetSdkVersion 21
+
+        testApplicationId "pl.srw.billcalculator.test"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+        testHandleProfiling true
+        testFunctionalTest true
     }
-    
+
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFile 'proguard-android.txt'
-            proguardFile getDefaultProguardFile('proguard-android-optimize.txt')
             zipAlignEnabled true
             debuggable false
-
             applicationVariants.all { variant ->
                 variant.outputs.each { output ->
                     def outputFile = output.outputFile
@@ -29,12 +34,12 @@ android {
                     }
                 }
             }
+            signingConfig signingConfigs.release
         }
     }
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:21.0.0'
     compile 'com.jakewharton:butterknife:5.1.2'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.easing:library:1.0.0@aar'
