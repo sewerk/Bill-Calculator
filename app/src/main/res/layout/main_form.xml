@@ -5,8 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:gravity="right"
-    android:layout_marginTop="16dp">
+    android:gravity="right">
 
 
     <!-- WSKAZANIA ============================-->
@@ -19,7 +18,7 @@
             android:id="@+id/textView_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="@dimen/small_padding"
             android:text="@string/previous_reading"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -41,13 +40,13 @@
         android:id="@+id/linearLayout_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="@dimen/small_padding">
 
         <TextView
             android:id="@+id/textView_to"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="@dimen/small_padding"
             android:text="@string/current_reading"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -69,7 +68,7 @@
         android:id="@+id/linearLayout_date_from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="@dimen/small_padding">
 
         <TextView
             android:id="@+id/textView_date_from"
@@ -88,7 +87,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="@dimen/small_padding">
 
         <LinearLayout
             android:id="@+id/linearLayout_date_to"
@@ -130,7 +129,7 @@
         android:id="@+id/button_calculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/double_padding"
         android:text="@string/calculate" />
 </LinearLayout>
 
