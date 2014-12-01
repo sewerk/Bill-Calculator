@@ -3,6 +3,7 @@ package pl.srw.billcalculator;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -49,9 +50,8 @@ public class AboutActivity extends Activity {
 
     @OnClick(R.id.textView_emalme)
     public void sendEmail() {
-        Intent i = new Intent(Intent.ACTION_SEND);
-        i.setType("message/rfc822");
-        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{RECEIVER_EMAIL});
+        Intent i = new Intent(Intent.ACTION_SENDTO);
+        i.setData(Uri.parse("mailto:" + RECEIVER_EMAIL));
         i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
         try {
             startActivity(Intent.createChooser(i, getString(R.string.emailme)));
