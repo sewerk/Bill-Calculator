@@ -33,19 +33,8 @@ import pl.srw.billcalculator.util.Dates;
  */
 public class MainActivity extends Activity {
 
-    private static final int IMAGE_TYPE_KEY = 1109171014;
-    private static final String IMAGE_TYPE_STRING = "" + IMAGE_TYPE_KEY;
-
-    private enum BillType {
-        PGE(R.drawable.bill_type_pge),
-        PGNIG(R.drawable.bill_type_pgnig);
-
-        private int drawableId;
-
-        BillType(final int drawable) {
-            this.drawableId = drawable;
-        }
-    }
+    public static final int IMAGE_TYPE_KEY = 1109171014;
+    public static final String IMAGE_TYPE_STRING = "" + IMAGE_TYPE_KEY;
 
     public static final String READING_FROM = "READING_FROM";
     public static final String READING_TO = "READING_TO";
