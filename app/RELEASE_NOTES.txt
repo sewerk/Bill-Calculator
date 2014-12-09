@@ -1,0 +1,13 @@
+v.1.2.1
+ - improve main layout for tablet
+ - fix send email to support only mail clients
+v.1.2
+ - changing layouts to linear
+ - animating finish
+v.1.1.2
+ - counting months from dates
+v.1.1.1
+ - small fixes
+ - animating switch btn
+v.1.1.0
+ - BASE release version
