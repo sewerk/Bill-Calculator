@@ -23,7 +23,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
-            android:id="@+id/editText_from"
+            android:id="@+id/editText_reading_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="5"
@@ -51,7 +51,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
-            android:id="@+id/editText_to"
+            android:id="@+id/editText_reading_to"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="5"

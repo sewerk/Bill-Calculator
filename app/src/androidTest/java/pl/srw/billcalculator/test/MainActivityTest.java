@@ -217,11 +217,11 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     }
 
     private EditText findReadingToView() {
-        return (EditText) sut.findViewById(R.id.editText_to);
+        return (EditText) sut.findViewById(R.id.editText_reading_to);
     }
 
     private EditText findReadingFromView() {
-        return (EditText) sut.findViewById(R.id.editText_from);
+        return (EditText) sut.findViewById(R.id.editText_reading_from);
     }
 
     private ImageButton findSwitchBillTypeButtonView() {

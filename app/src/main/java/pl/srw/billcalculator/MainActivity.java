@@ -42,8 +42,8 @@ public class MainActivity extends Activity {
     public static final String PREFERENCE_KEY_FIRST_LAUNCH = "first_launch";
 
     @InjectView(R.id.button_bill_type_switch) ImageButton bBillType;
-    @InjectView(R.id.editText_from) EditText etPreviousReading;
-    @InjectView(R.id.editText_to) EditText etCurrentReading;
+    @InjectView(R.id.editText_reading_from) EditText etPreviousReading;
+    @InjectView(R.id.editText_reading_to) EditText etCurrentReading;
     @InjectView(R.id.button_date_from) Button bFromDate;
     @InjectView(R.id.button_date_to) Button bToDate;
     @InjectView(R.id.editText_date_to_error) TextView etToDateError;
