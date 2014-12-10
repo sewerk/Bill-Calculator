@@ -18,8 +18,6 @@ import android.widget.TextView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -57,12 +55,12 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
-        initValues(savedInstanceState);
+        initValues();
     }
 
-    private void initValues(final Bundle savedInstanceState) {
+    private void initValues() {
         initDates();
-        initBillType(savedInstanceState);
+        initBillType();
     }
 
     private void initDates() {
@@ -77,22 +75,24 @@ public class MainActivity extends Activity {
         bToDate.setText(Dates.format(year, month, c.get(Calendar.DAY_OF_MONTH)));
     }
 
-    private void initBillType(final Bundle savedInstanceState) {
-        if (savedInstanceState != null) {
-            setBillType(restoreBillTypeFrom(savedInstanceState));
-        } else {
-            setBillType(BillType.PGE);
-        }
-    }
-
-    private BillType restoreBillTypeFrom(final Bundle state) {
-        return (BillType) state.getSerializable(IMAGE_TYPE_STRING);
+    private void initBillType() {
+        setBillType(BillType.PGE);
     }
 
     @Override
     protected void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(IMAGE_TYPE_STRING, getBillType());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(final Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        setBillType(restoreBillTypeFrom(savedInstanceState));
+    }
+
+    private BillType restoreBillTypeFrom(final Bundle state) {
+        return (BillType) state.getSerializable(IMAGE_TYPE_STRING);
     }
 
     @Override
@@ -174,7 +174,7 @@ public class MainActivity extends Activity {
         if (!validateForm())
             return;
 
-        Intent billResult = newIntentBy(bBillType);
+        Intent billResult = newBillIntent();
         fillParameters(billResult);
         startActivity(billResult);
     }
@@ -236,7 +236,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    private Intent newIntentBy(ImageButton bBillType) {
+    private Intent newBillIntent() {
         if (getBillType() == BillType.PGE) {
             return new Intent(this, EnergyBillActivity.class);
         } else {
