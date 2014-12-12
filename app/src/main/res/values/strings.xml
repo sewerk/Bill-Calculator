@@ -7,6 +7,11 @@
     <string name="app_name">Bill Calculator</string>
     <string name="previous_reading">Previous reading</string>
     <string name="current_reading">Current reading</string>
+    <string name="readings">Readings</string>
+    <string name="previous">prevoius:</string>
+    <string name="current">current:</string>
+    <string name="reading_day_time">day time:</string>
+    <string name="reading_night_time">night time:</string>
     <string name="date_from">From date:</string>
     <string name="date_to">To date:</string>
     <string name="calculate">Calculate</string>

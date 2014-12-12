@@ -32,5 +32,10 @@
     <string name="emailme"> ...napisz co myślisz</string>
     <string name="clause">Nazwy własne, logotypy oraz znaki towarowe są własnością firm dystrybucyjnych. Przedstawione wyliczenia są jedynie przybliżoną wartością stanu faktyczenego i nie mają podstawy by stanowić roszczenia finansowego.</string>
     <string name="email_client_missing">Nie wykryto klientów poczty e-mail</string>
+    <string name="previous">poprzednie:</string>
+    <string name="reading_day_time">strefa dzienna:</string>
+    <string name="reading_night_time">strefa nocna:</string>
+    <string name="readings">Wskazanie</string>
+    <string name="current">bieżące:</string>
 
 </resources>

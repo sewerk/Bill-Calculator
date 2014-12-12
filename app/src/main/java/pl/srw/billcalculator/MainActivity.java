@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +15,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -42,8 +46,16 @@ public class MainActivity extends Activity {
     public static final String PREFERENCE_KEY_FIRST_LAUNCH = "first_launch";
 
     @InjectView(R.id.button_bill_type_switch) ImageButton bBillType;
+    @InjectView(R.id.linearLayout_reading_from_to) LinearLayout llReadingG11;
     @InjectView(R.id.editText_reading_from) EditText etPreviousReading;
     @InjectView(R.id.editText_reading_to) EditText etCurrentReading;
+
+    @InjectView(R.id.tableLayout_readings) TableLayout tlReadingsG12;
+    @InjectView(R.id.editText_reading_day_from) EditText etDayPreviousReading;
+    @InjectView(R.id.editText_reading_day_to) EditText etDayCurrentReading;
+    @InjectView(R.id.editText_reading_night_from) EditText etNightPreviousReading;
+    @InjectView(R.id.editText_reading_night_to) EditText etNightCurrentReading;
+
     @InjectView(R.id.button_date_from) Button bFromDate;
     @InjectView(R.id.button_date_to) Button bToDate;
     @InjectView(R.id.editText_date_to_error) TextView etToDateError;
@@ -93,6 +105,23 @@ public class MainActivity extends Activity {
 
     private BillType restoreBillTypeFrom(final Bundle state) {
         return (BillType) state.getSerializable(IMAGE_TYPE_STRING);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        chooseReadings();
+    }
+
+    private void chooseReadings() {
+        SharedPreferences pricesPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (pricesPreferences.getBoolean(getString(R.string.preferences_taryfa_dwustrefowa), false)) {
+            llReadingG11.setVisibility(View.GONE);
+            tlReadingsG12.setVisibility(View.VISIBLE);
+        } else {
+            llReadingG11.setVisibility(View.VISIBLE);
+            tlReadingsG12.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -184,21 +213,36 @@ public class MainActivity extends Activity {
     }
 
     private boolean valideteReadings() {
-        String prev = etPreviousReading.getText().toString();
-        if (prev.isEmpty()) {
-            shake(etPreviousReading);
-            showError(etPreviousReading, R.string.reading_missing);
+        if (llReadingG11.getVisibility() == View.VISIBLE)
+            return validateReadingsG11();
+        else
+            return validateReadingsG12();
+    }
+
+    private boolean validateReadingsG11() {
+        return validateMissingValue(etPreviousReading) && validateMissingValue(etCurrentReading)
+                && validateValueOrder(etPreviousReading, etCurrentReading);
+    }
+
+    private boolean validateReadingsG12() {
+        return validateMissingValue(etDayPreviousReading) && validateMissingValue(etDayCurrentReading)
+                && validateMissingValue(etNightPreviousReading) && validateMissingValue(etNightCurrentReading)
+                && validateValueOrder(etDayPreviousReading, etDayCurrentReading) && validateValueOrder(etNightPreviousReading, etNightCurrentReading);
+    }
+
+    private boolean validateMissingValue(final EditText et) {
+        if (et.getText().toString().isEmpty()) {
+            shake(et);
+            showError(et, R.string.reading_missing);
             return false;
         }
-        String current = etCurrentReading.getText().toString();
-        if (current.isEmpty()) {
-            shake(etCurrentReading);
-            showError(etCurrentReading, R.string.reading_missing);
-            return false;
-        }
-        if (!(Integer.parseInt(current) > Integer.parseInt(prev))) {
-            shake(etCurrentReading);
-            showError(etCurrentReading, R.string.reading_error);
+        return true;
+    }
+
+    private boolean validateValueOrder(final EditText prev, final EditText curr) {
+        if (!(Integer.parseInt(curr.getText().toString()) > Integer.parseInt(prev.getText().toString()))) {
+            shake(curr);
+            showError(curr, R.string.reading_error);
             return false;
         }
         return true;

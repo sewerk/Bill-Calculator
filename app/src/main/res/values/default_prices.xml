@@ -38,9 +38,9 @@
     <string name="price_oplata_sieciowa" translatable="false">0.2192</string>
 
     <string name="preferences_oplata_sieciowa_G12dzien" translatable="false">cena_oplata_sieciowa_G12dzien</string>
-    <string name="price_oplata_sieciowa_G12dzien" translatable="false">0.2912</string><!--TODO-->
+    <string name="price_oplata_sieciowa_G12dzien" translatable="false">0.2192</string><!--TODO-->
     <string name="preferences_oplata_sieciowa_G12noc" translatable="false">cena_oplata_sieciowa_G12noc</string>
-    <string name="price_oplata_sieciowa_G12noc" translatable="false">0.2912</string><!--TODO-->
+    <string name="price_oplata_sieciowa_G12noc" translatable="false">0.2192</string><!--TODO-->
 
     <string name="preferences_oplata_przejsciowa" translatable="false">cena_oplata_przejsciowa</string>
     <string name="price_oplata_przejsciowa" translatable="false">0.77</string>
