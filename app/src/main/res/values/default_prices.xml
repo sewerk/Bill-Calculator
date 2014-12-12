@@ -2,15 +2,45 @@
 <resources>
 
     <!-- ENERGY -->
+    <string name="preferences_taryfa_dwustrefowa" translatable="false">taryfa_dwustrefowa</string>
+    <string name="preferences_G11" translatable="false">G11</string>
+    <string name="preferences_G12" translatable="false">G12</string>
 
     <string name="preferences_za_energie_czynna" translatable="false">cena_za_energie_czynna</string>
     <string name="price_za_energie_czynna" translatable="false">0.2539</string>
 
+    <string name="preferences_za_energie_czynna_G12dzien" translatable="false">cena_za_energie_czynna_G12dzien</string>
+    <string name="price_za_energie_czynna_G12dzien" translatable="false">0.2846</string>
+    <string name="preferences_za_energie_czynna_G12noc" translatable="false">cena_za_energie_czynna_G12noc</string>
+    <string name="price_za_energie_czynna_G12noc" translatable="false">0.1906</string>
+<!--
+    <string name="preferences_za_energie_czynna_dzien_G12w" translatable="false">cena_za_energie_czynna_dzien_G12w</string>
+    <string name="price_za_energie_czynna_dzien_G12w" translatable="false">0.2893</string>
+
+    <string name="preferences_za_energie_czynna_noc_G12w" translatable="false">cena_za_energie_czynna_noc_G12w</string>
+    <string name="price_za_energie_czynna_noc_G12w" translatable="false">0.216</string>
+
+    <string name="preferences_za_energie_czynna_dzien_G12n" translatable="false">cena_za_energie_czynna_dzien_G12n</string>
+    <string name="price_za_energie_czynna_dzien_G12n" translatable="false">0.2704</string>
+
+    <string name="preferences_za_energie_czynna_noc_G12n" translatable="false">cena_za_energie_czynna_noc_G12n</string>
+    <string name="price_za_energie_czynna_noc_G12n" translatable="false">0.2147</string>
+-->
     <string name="preferences_skladnik_jakosciowy" translatable="false">cena_skladnik_jakosciowy</string>
     <string name="price_skladnik_jakosciowy" translatable="false">0.0108</string>
 
+    <string name="preferences_skladnik_jakosciowy_G12dzien" translatable="false">cena_skladnik_jakosciowy_G12dzien</string>
+    <string name="price_skladnik_jakosciowy_G12dzien" translatable="false">0.0108</string><!--TODO-->
+    <string name="preferences_skladnik_jakosciowy_G12noc" translatable="false">cena_skladnik_jakosciowy_G12noc</string>
+    <string name="price_skladnik_jakosciowy_G12noc" translatable="false">0.0108</string><!--TODO-->
+
     <string name="preferences_oplata_sieciowa" translatable="false">cena_oplata_sieciowa</string>
     <string name="price_oplata_sieciowa" translatable="false">0.2192</string>
+
+    <string name="preferences_oplata_sieciowa_G12dzien" translatable="false">cena_oplata_sieciowa_G12dzien</string>
+    <string name="price_oplata_sieciowa_G12dzien" translatable="false">0.2912</string><!--TODO-->
+    <string name="preferences_oplata_sieciowa_G12noc" translatable="false">cena_oplata_sieciowa_G12noc</string>
+    <string name="price_oplata_sieciowa_G12noc" translatable="false">0.2912</string><!--TODO-->
 
     <string name="preferences_oplata_przejsciowa" translatable="false">cena_oplata_przejsciowa</string>
     <string name="price_oplata_przejsciowa" translatable="false">0.77</string>
