@@ -115,12 +115,12 @@ public class MainActivity extends Activity {
 
     private void chooseReadings() {
         SharedPreferences pricesPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (getBillType() == BillType.PGE
-                && pricesPreferences.getBoolean(getString(R.string.preferences_taryfa_dwustrefowa), false)
-                && llReadingG11.getVisibility() == View.VISIBLE) {
+        final boolean shouldShowDoubleReadings = getBillType() == BillType.PGE
+                && pricesPreferences.getBoolean(getString(R.string.preferences_taryfa_dwustrefowa), false);
+        if (shouldShowDoubleReadings) {
             llReadingG11.setVisibility(View.GONE);
             tlReadingsG12.setVisibility(View.VISIBLE);
-        } else if (llReadingG11.getVisibility() == View.GONE) {
+        } else {
             llReadingG11.setVisibility(View.VISIBLE);
             tlReadingsG12.setVisibility(View.GONE);
         }
