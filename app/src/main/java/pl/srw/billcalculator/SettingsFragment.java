@@ -18,37 +18,15 @@ import java.util.Map;
  */
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-    public static final int[] G12_DZIENNA_PREFERENCES = {
-            R.string.preferences_za_energie_czynna_G12dzien,
-            R.string.preferences_skladnik_jakosciowy_G12dzien,
-            R.string.preferences_oplata_sieciowa_G12dzien
-    };
-
-    public static final int[] G12_NOCNA_PREFERENCES = {
-            R.string.preferences_za_energie_czynna_G12noc,
-            R.string.preferences_skladnik_jakosciowy_G12noc,
-            R.string.preferences_oplata_sieciowa_G12noc
-    };
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preferences);
-        addPrefixForG12();
         changePreferenceVisibilityDependingOnTaryfa();
         setWspKonwersjiDescription();
         setSummary();
-    }
-
-    private void addPrefixForG12() {
-        for (int prefKeyId : G12_DZIENNA_PREFERENCES) {
-            findPreference(getString(prefKeyId)).setTitle(findPreference(getString(prefKeyId)).getTitle() + getString(R.string.postfix_strefa_dzienna));
-        }
-        for (int prefKeyId : G12_NOCNA_PREFERENCES) {
-            findPreference(getString(prefKeyId)).setTitle(findPreference(getString(prefKeyId)).getTitle() + getString(R.string.postfix_strefa_nocna));
-        }
     }
 
     private void changePreferenceVisibilityDependingOnTaryfa() {
