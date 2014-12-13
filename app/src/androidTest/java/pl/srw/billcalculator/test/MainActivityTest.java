@@ -6,6 +6,7 @@ import android.app.Instrumentation;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.UiThreadTest;
 import android.view.KeyEvent;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
 
 import pl.srw.billcalculator.BillType;
 import pl.srw.billcalculator.EnergyBillActivity;
@@ -27,6 +30,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
     private Activity sut;
     private Instrumentation mInstrumentation;
+    private SharedPreferences.Editor mPricePreferences;
 
     public MainActivityTest() {
         super(MainActivity.class);
@@ -37,6 +41,13 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         super.setUp();
         mInstrumentation = super.getInstrumentation();
         sut = getActivity();
+        mPricePreferences = PreferenceManager.getDefaultSharedPreferences(sut).edit();
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+        mPricePreferences.putBoolean(sut.getString(R.string.preferences_taryfa_dwustrefowa), false).commit();
+        super.tearDown();
     }
 
     public void testCheckPricesDialogShowUpOnce() {
@@ -60,6 +71,20 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     public void testBillTypeSwitchIsInitialized() {
         Object initialSwitchBtnTagValue = findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY);
         assertNotNull(initialSwitchBtnTagValue);
+    }
+
+    @UiThreadTest
+    public void testG12InfluenceOnlyPGEReadingsView() throws Throwable {
+        mPricePreferences.putBoolean(sut.getString(R.string.preferences_taryfa_dwustrefowa), true).commit();
+        //switch to PGNiG
+        findSwitchBillTypeButtonView().performClick();
+        assertEquals(View.VISIBLE, findReadingsG11View().getVisibility());
+        assertEquals(View.GONE, findReadingsG12View().getVisibility());
+
+        //switch to PGE
+        findSwitchBillTypeButtonView().performClick();
+        assertEquals(View.GONE, findReadingsG11View().getVisibility());
+        assertEquals(View.VISIBLE, findReadingsG12View().getVisibility());
     }
 
     @UiThreadTest
@@ -222,6 +247,14 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
     private EditText findReadingFromView() {
         return (EditText) sut.findViewById(R.id.editText_reading_from);
+    }
+
+    private LinearLayout findReadingsG11View() {
+        return (LinearLayout) sut.findViewById(R.id.linearLayout_reading_from_to);
+    }
+
+    private TableLayout findReadingsG12View() {
+        return (TableLayout) sut.findViewById(R.id.tableLayout_readings);
     }
 
     private ImageButton findSwitchBillTypeButtonView() {
