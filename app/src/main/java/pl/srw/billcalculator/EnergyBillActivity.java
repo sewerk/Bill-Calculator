@@ -32,11 +32,19 @@ public class EnergyBillActivity extends Activity {
     private BigDecimal cenaOplataPrzejsciowa;
     private BigDecimal cenaOplStalaZaPrzesyl;
     private BigDecimal cenaOplataAbonamentowa;
+    private BigDecimal cenaZaEnergieCzynnaDzien;
+    private BigDecimal cenaZaEnergieCzynnaNoc;
+    private BigDecimal cenaOplataSieciowaDzien;
+    private BigDecimal cenaOplataSieciowaNoc;
 
     private String dateFrom;
     private String dateTo;
     private int readingFrom;
     private int readingTo;
+    private int readingDayFrom;
+    private int readingDayTo;
+    private int readingNightFrom;
+    private int readingNightTo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +52,7 @@ public class EnergyBillActivity extends Activity {
         setContentView(R.layout.energy_bill);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent intent = getIntent();
-        dateFrom = intent.getStringExtra(MainActivity.DATE_FROM);
-        dateTo = intent.getStringExtra(MainActivity.DATE_TO);
-        readingFrom = intent.getIntExtra(MainActivity.READING_FROM, 0);
-        readingTo = intent.getIntExtra(MainActivity.READING_TO, 0);
-
+        readExtra(getIntent());
         setPrices();
 
         setZaOkres();
@@ -68,32 +71,51 @@ public class EnergyBillActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void readExtra(Intent intent) {
+        dateFrom = intent.getStringExtra(MainActivity.DATE_FROM);
+        dateTo = intent.getStringExtra(MainActivity.DATE_TO);
+
+        readingFrom = intent.getIntExtra(MainActivity.READING_FROM, -1);
+        readingTo = intent.getIntExtra(MainActivity.READING_TO, -1);
+
+        readingDayFrom = intent.getIntExtra(MainActivity.READING_DAY_FROM, -1);
+        readingDayTo = intent.getIntExtra(MainActivity.READING_DAY_TO, -1);
+        readingNightFrom = intent.getIntExtra(MainActivity.READING_NIGHT_FROM, -1);
+        readingNightTo = intent.getIntExtra(MainActivity.READING_NIGHT_TO, -1);
+    }
+
     private void setPrices() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        String cenaZaEnergieCzynnaString = sharedPreferences.getString(
-                getString(R.string.preferences_za_energie_czynna), getString(R.string.price_za_energie_czynna));
-        cenaZaEnergieCzynna = new BigDecimal(cenaZaEnergieCzynnaString);
+        if (isTaryfaDwustrefowa()) {
+            cenaZaEnergieCzynnaDzien = getPriceFrom(sharedPreferences,
+                    R.string.preferences_za_energie_czynna_G12dzien, R.string.price_za_energie_czynna_G12dzien);
+            cenaZaEnergieCzynnaNoc = getPriceFrom(sharedPreferences,
+                    R.string.preferences_za_energie_czynna_G12noc, R.string.price_za_energie_czynna_G12noc);
+            cenaOplataSieciowaDzien = getPriceFrom(sharedPreferences,
+                    R.string.preferences_oplata_sieciowa_G12dzien, R.string.price_oplata_sieciowa_G12dzien);
+            cenaOplataSieciowaNoc = getPriceFrom(sharedPreferences,
+                    R.string.preferences_oplata_sieciowa_G12noc, R.string.price_oplata_sieciowa_G12noc);
+        } else {
+            cenaZaEnergieCzynna = getPriceFrom(sharedPreferences,
+                    R.string.preferences_za_energie_czynna, R.string.price_za_energie_czynna);
+            cenaOplataSieciowa = getPriceFrom(sharedPreferences,
+                    R.string.preferences_oplata_sieciowa, R.string.price_oplata_sieciowa);
+        }
+        cenaSkladnikJakosciowy = getPriceFrom(sharedPreferences,
+                R.string.preferences_skladnik_jakosciowy, R.string.price_skladnik_jakosciowy);
 
-        String cenaSkladnikJakosciowyString = sharedPreferences.getString(
-                getString(R.string.preferences_skladnik_jakosciowy), getString(R.string.price_skladnik_jakosciowy));
-        cenaSkladnikJakosciowy = new BigDecimal(cenaSkladnikJakosciowyString);
+        cenaOplataPrzejsciowa = getPriceFrom(sharedPreferences,
+                R.string.preferences_oplata_przejsciowa, R.string.price_oplata_przejsciowa);
+        cenaOplStalaZaPrzesyl = getPriceFrom(sharedPreferences,
+                R.string.preferences_oplata_stala_za_przesyl, R.string.price_oplata_stala_za_przesyl);
+        cenaOplataAbonamentowa = getPriceFrom(sharedPreferences,
+                R.string.preferences_oplata_abonamentowa, R.string.price_oplata_abonamentowa);
+    }
 
-        String cenaOplataSieciowaString = sharedPreferences.getString(
-                getString(R.string.preferences_oplata_sieciowa), getString(R.string.price_oplata_sieciowa));
-        cenaOplataSieciowa = new BigDecimal(cenaOplataSieciowaString);
-
-        String cenaOplataPrzejsciowaString = sharedPreferences.getString(
-                getString(R.string.preferences_oplata_przejsciowa), getString(R.string.price_oplata_przejsciowa));
-        cenaOplataPrzejsciowa = new BigDecimal(cenaOplataPrzejsciowaString);
-
-        String cenaOplStalaZaPrzesylString = sharedPreferences.getString(
-                getString(R.string.preferences_oplata_stala_za_przesyl), getString(R.string.price_oplata_stala_za_przesyl));
-        cenaOplStalaZaPrzesyl = new BigDecimal(cenaOplStalaZaPrzesylString);
-
-        String cenaOplataAbonamentowaString = sharedPreferences.getString(
-                getString(R.string.preferences_oplata_abonamentowa), getString(R.string.price_oplata_abonamentowa));
-        cenaOplataAbonamentowa = new BigDecimal(cenaOplataAbonamentowaString);
+    private BigDecimal getPriceFrom(SharedPreferences sharedPreferences, int preferenceKey, int defaultValueKey) {
+        String cenaZaEnergieCzynnaString = sharedPreferences.getString(getString(preferenceKey), getString(defaultValueKey));
+        return new BigDecimal(cenaZaEnergieCzynnaString);
     }
 
     private void setZaOkres() {
@@ -102,32 +124,71 @@ public class EnergyBillActivity extends Activity {
 
     private void setRozliczenieTable() {
         TableLayout rozliczenieTable = (TableLayout) findViewById(R.id.table_rozliczenie);
-        int zuzycie = countZuzycie();
-        int iloscMc = Dates.countMonth(dateFrom, dateTo);
 
-        setRow(rozliczenieTable, R.id.row_za_energie_czynna, R.string.strefa_calodobowa, R.string.za_energie_czynna, zuzycie, R.string.kWh, cenaZaEnergieCzynna);
-        setRow(rozliczenieTable, R.id.row_skladnik_jakosciowy, R.string.strefa_calodobowa, R.string.skladnik_jakosciowy, zuzycie, R.string.kWh, cenaSkladnikJakosciowy);
-        setRow(rozliczenieTable, R.id.row_oplata_sieciowa, R.string.strefa_calodobowa, R.string.oplata_sieciowa, zuzycie, R.string.kWh, cenaOplataSieciowa);
+        if(isTaryfaDwustrefowa()) {
+            setTV(R.id.textView_taryfa, getString(R.string.taryfaG12_on_bill));
+            setG12Rows(rozliczenieTable, countDzienneZuzycie(), countNocneZuzycie());
+        } else {
+            setTV(R.id.textView_taryfa, getString(R.string.taryfaG11_on_bill));
+            setG11Rows(rozliczenieTable, countZuzycie());
+        }
+
+        int iloscMc = Dates.countMonth(dateFrom, dateTo);
         setRow(rozliczenieTable, R.id.row_oplata_przejsciowa, R.string.strefa_pusta, R.string.oplata_przejsciowa, iloscMc, R.string.m_c, cenaOplataPrzejsciowa);
         setRow(rozliczenieTable, R.id.row_oplata_stala_za_przesyl, R.string.strefa_pusta, R.string.oplata_stala_za_przesyl, iloscMc, R.string.m_c, cenaOplStalaZaPrzesyl);
         setRow(rozliczenieTable, R.id.row_oplata_abonamentowa, R.string.strefa_pusta, R.string.oplata_abonamentowa, iloscMc, R.string.m_c, cenaOplataAbonamentowa);
+
         setPodsumowanieRozliczenia(rozliczenieTable);
+    }
+
+    private boolean isTaryfaDwustrefowa() {
+        return readingDayTo > 0;
+    }
+
+    private void setG11Rows(TableLayout rozliczenieTable, int zuzycie) {
+        setRow(rozliczenieTable, R.id.row_za_energie_czynna, R.string.strefa_calodobowa, R.string.za_energie_czynna, zuzycie, R.string.kWh, cenaZaEnergieCzynna);
+        setRow(rozliczenieTable, R.id.row_skladnik_jakosciowy, R.string.strefa_calodobowa, R.string.skladnik_jakosciowy, zuzycie, R.string.kWh, cenaSkladnikJakosciowy);
+        setRow(rozliczenieTable, R.id.row_oplata_sieciowa, R.string.strefa_calodobowa, R.string.oplata_sieciowa, zuzycie, R.string.kWh, cenaOplataSieciowa);
+    }
+
+    private void setG12Rows(TableLayout rozliczenieTable, int dzienneZuzycie, int nocneZuzycie) {
+        setRow(rozliczenieTable, R.id.row_za_energie_czynna, R.string.strefa_dzienna, R.string.za_energie_czynna, dzienneZuzycie, R.string.kWh, cenaZaEnergieCzynnaDzien);
+        setRow(rozliczenieTable, R.id.row_skladnik_jakosciowy, R.string.strefa_dzienna, R.string.skladnik_jakosciowy, dzienneZuzycie, R.string.kWh, cenaSkladnikJakosciowy);
+        setRow(rozliczenieTable, R.id.row_oplata_sieciowa, R.string.strefa_dzienna, R.string.oplata_sieciowa, dzienneZuzycie, R.string.kWh, cenaOplataSieciowaDzien);
+
+        setRow(rozliczenieTable, R.id.row_za_energie_czynna2, R.string.strefa_nocna, R.string.za_energie_czynna, nocneZuzycie, R.string.kWh, cenaZaEnergieCzynnaNoc);
+        setRow(rozliczenieTable, R.id.row_skladnik_jakosciowy2, R.string.strefa_nocna, R.string.skladnik_jakosciowy, nocneZuzycie, R.string.kWh, cenaSkladnikJakosciowy);
+        setRow(rozliczenieTable, R.id.row_oplata_sieciowa2, R.string.strefa_nocna, R.string.oplata_sieciowa, nocneZuzycie, R.string.kWh, cenaOplataSieciowaNoc);
     }
 
     private void setRow(View componentsTable, int rowId, int strefaId, int opisId, int ilosc, int jmId, BigDecimal cena) {
         View row = componentsTable.findViewById(rowId);
+        row.setVisibility(View.VISIBLE);
+
         setTVInRow(row, R.id.textView_strefa, strefaId);
         setTVInRow(row, R.id.textView_opis, opisId);
         setTVInRow(row, R.id.textView_Jm, jmId);
         if (jmId == R.string.kWh) {
-            setTVInRow(row, R.id.textView_wskazanie_biezace, Integer.toString(readingTo));
-            setTVInRow(row, R.id.textView_wskazanie_przeprzednie, Integer.toString(readingFrom));
+            setReadingsInRow(row, strefaId);
             setTVInRow(row, R.id.textView_ilosc, Integer.toString(ilosc));
         } else {
             setTVInRow(row, R.id.textView_ilosc_mc, Display.withScale(new BigDecimal(ilosc), 2));
         }
         setTVInRow(row, R.id.textView_naleznosc, getNaleznosc(cena, ilosc));
         setTVInRow(row, R.id.textView_cena, Display.withScale(cena, PRICE_SCALE));
+    }
+
+    private void setReadingsInRow(View row, int strefaId) {
+        if (strefaId == R.string.strefa_dzienna) {
+            setTVInRow(row, R.id.textView_wskazanie_biezace, Integer.toString(readingDayTo));
+            setTVInRow(row, R.id.textView_wskazanie_przeprzednie, Integer.toString(readingDayFrom));
+        } else if (strefaId == R.string.strefa_nocna) {
+            setTVInRow(row, R.id.textView_wskazanie_biezace, Integer.toString(readingNightTo));
+            setTVInRow(row, R.id.textView_wskazanie_przeprzednie, Integer.toString(readingNightFrom));
+        } else {
+            setTVInRow(row, R.id.textView_wskazanie_biezace, Integer.toString(readingTo));
+            setTVInRow(row, R.id.textView_wskazanie_przeprzednie, Integer.toString(readingFrom));
+        }
     }
 
     private String getNaleznosc(BigDecimal cena, int ilosc) {
@@ -138,6 +199,14 @@ public class EnergyBillActivity extends Activity {
 
     private int countZuzycie() {
         return readingTo - readingFrom;
+    }
+
+    private int countDzienneZuzycie() {
+        return readingDayTo - readingDayFrom;
+    }
+
+    private int countNocneZuzycie() {
+        return readingNightTo - readingNightFrom;
     }
 
     private void setTVInRow(View row, int tvId, int stringId) {
@@ -165,8 +234,11 @@ public class EnergyBillActivity extends Activity {
     }
 
     private void setAkcyza() {
-        BigDecimal akcyza = AKCYZA.multiply(new BigDecimal(countZuzycie()));
-        setTV(R.id.textView_akcyza, getString(R.string.akcyza, countZuzycie(), Display.toPay(akcyza)));
+        int zuzycie = isTaryfaDwustrefowa()
+                ? countDzienneZuzycie() + countNocneZuzycie()
+                : countZuzycie();
+        BigDecimal akcyza = AKCYZA.multiply(new BigDecimal(zuzycie));
+        setTV(R.id.textView_akcyza, getString(R.string.akcyza, zuzycie, Display.toPay(akcyza)));
     }
 
     private void setPodsumowanieTable() {

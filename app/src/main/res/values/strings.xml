@@ -38,8 +38,10 @@
     <string name="oplata_sieciowa_G12dzien" translatable="false">opłata sieciowa (strefa dzienna)</string>
     <string name="oplata_sieciowa_G12noc" translatable="false">opłata sieciowa (strefa nocna)</string>
 
-    <string name="taryfaG11" translatable="false">Taryfa Komfortowa (G11)</string>
-    <string name="taryfaG12" translatable="false">Taryfa Elastyczna (G12)</string>
+    <string name="taryfaG11_in_preferences" translatable="false">Taryfa Komfortowa (G11)</string>
+    <string name="taryfaG12_in_preferences" translatable="false">Taryfa Elastyczna (G12)</string>
+    <string name="taryfaG11_on_bill" translatable="false">Taryfa: G11</string>
+    <string name="taryfaG12_on_bill" translatable="false">Taryfa: G12</string>
 
     <string name="kWh" translatable="false">kWh</string>
     <string name="m_c" translatable="false">m-c</string>

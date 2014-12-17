@@ -40,6 +40,10 @@ public class MainActivity extends Activity {
 
     public static final String READING_FROM = "READING_FROM";
     public static final String READING_TO = "READING_TO";
+    public static final String READING_DAY_FROM = "READING_DAY_FROM";
+    public static final String READING_DAY_TO = "READING_DAY_TO";
+    public static final String READING_NIGHT_FROM = "READING_NIGHT_FROM";
+    public static final String READING_NIGHT_TO = "READING_NIGHT_TO";
     public static final String DATE_FROM = "DATE_FROM";
     public static final String DATE_TO = "DATE_TO";
     public static final String SHARED_PREFERENCES_FILE = "PreferencesFile";
@@ -216,10 +220,14 @@ public class MainActivity extends Activity {
     }
 
     private boolean valideteReadings() {
-        if (llReadingG11.getVisibility() == View.VISIBLE)
+        if (isSingleReadingsVisible())
             return validateReadingsG11();
         else
             return validateReadingsG12();
+    }
+
+    private boolean isSingleReadingsVisible() {
+        return llReadingG11.getVisibility() == View.VISIBLE;
     }
 
     private boolean validateReadingsG11() {
@@ -292,15 +300,29 @@ public class MainActivity extends Activity {
     }
 
     private void fillParameters(Intent billResult) {
-        String prev = etPreviousReading.getText().toString();
-        billResult.putExtra(READING_FROM, Integer.parseInt(prev));
-        String current = etCurrentReading.getText().toString();
-        billResult.putExtra(READING_TO, Integer.parseInt(current));
+        if (isSingleReadingsVisible()) {
+            putIntExtra(billResult, READING_FROM, etPreviousReading);
+            putIntExtra(billResult, READING_TO, etCurrentReading);
+        } else {
+            putIntExtra(billResult, READING_DAY_FROM, etDayPreviousReading);
+            putIntExtra(billResult, READING_DAY_TO, etDayCurrentReading);
 
-        String fromDate = bFromDate.getText().toString();
-        billResult.putExtra(DATE_FROM, fromDate);
-        String toDate = bToDate.getText().toString();
-        billResult.putExtra(DATE_TO, toDate);
+            putIntExtra(billResult, READING_NIGHT_FROM, etNightPreviousReading);
+            putIntExtra(billResult, READING_NIGHT_TO, etNightCurrentReading);
+        }
+
+        putStringExtra(billResult, DATE_FROM, bFromDate);
+        putStringExtra(billResult, DATE_TO, bToDate);
+    }
+
+    private void putStringExtra(Intent intent, String key, TextView valueView) {
+        String fromDate = valueView.getText().toString();
+        intent.putExtra(key, fromDate);
+    }
+
+    private void putIntExtra(Intent intent, String key, TextView valueView) {
+        String prev = valueView.getText().toString();
+        intent.putExtra(key, Integer.parseInt(prev));
     }
 
     @Override

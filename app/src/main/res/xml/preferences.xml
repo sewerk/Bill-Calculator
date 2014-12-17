@@ -34,11 +34,11 @@
 
         <CheckBoxPreference
             android:key="@string/preferences_taryfa_dwustrefowa"
-            android:title="@string/taryfaG12"/>
+            android:title="@string/taryfaG12_in_preferences"/>
         <!-- G11 ============================================================ -->
         <PreferenceCategory
             android:key="@string/preferences_G11"
-            android:title="@string/taryfaG11">
+            android:title="@string/taryfaG11_in_preferences">
 
             <EditTextPreference
                 android:key="@string/preferences_za_energie_czynna"
@@ -57,7 +57,7 @@
         <PreferenceCategory
             android:key="@string/preferences_G12"
             android:dependency="@string/preferences_taryfa_dwustrefowa"
-            android:title="@string/taryfaG12">
+            android:title="@string/taryfaG12_in_preferences">
 
             <EditTextPreference
                 android:key="@string/preferences_za_energie_czynna_G12dzien"
