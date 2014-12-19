@@ -11,6 +11,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
@@ -244,7 +245,7 @@ public class EnergyBillActivity extends Activity {
     private void setPodsumowanieTable() {
         TableLayout podsumowanie = (TableLayout) findViewById(R.id.table_podsumowanie);
         setTVInRow(podsumowanie, R.id.textView_naleznosc_netto, Display.toPay(sumNaleznoscNetto));
-        BigDecimal kwotaVat = sumNaleznoscNetto.multiply(VAT);
+        BigDecimal kwotaVat = sumNaleznoscNetto.multiply(VAT).setScale(2, RoundingMode.HALF_UP);
         setTVInRow(podsumowanie, R.id.textView_kwota_vat, Display.toPay(kwotaVat));
         naleznoscBrutto = sumNaleznoscNetto.add(kwotaVat);
         setTVInRow(podsumowanie, R.id.textView_naleznosc_brutto, Display.toPay(naleznoscBrutto));

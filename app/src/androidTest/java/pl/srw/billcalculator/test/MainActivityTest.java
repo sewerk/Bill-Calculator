@@ -56,6 +56,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         //first access
         restartActivity();
 
+        getInstrumentation().waitForIdleSync();
         //check dialog show up
         final DialogFragment checkPricesDialog = (DialogFragment) sut.getFragmentManager().findFragmentByTag(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH);
         assertTrue(checkPricesDialog.getDialog().isShowing());
@@ -65,6 +66,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
         //check dialog do not show up on next launch
         restartActivity();
+        getInstrumentation().waitForIdleSync();
         assertNull(sut.getFragmentManager().findFragmentByTag(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH));
     }
 
@@ -203,6 +205,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
             }
         });
 
+        getInstrumentation().waitForIdleSync();
         //validate PGNIG bill show up
         Activity billActivity = getInstrumentation().waitForMonitorWithTimeout(pgnigBillMonitor, 5000L);
         billActivity.finish();
@@ -218,6 +221,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
             }
         });
 
+        getInstrumentation().waitForIdleSync();
         //validate PGE bill show up
         billActivity = getInstrumentation().waitForMonitorWithTimeout(pgeBillMonitor, 5000L);
         billActivity.finish();

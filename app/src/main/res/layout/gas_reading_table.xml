@@ -6,7 +6,7 @@
         android:id="@+id/table_odczyt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView_gr_taryfowa"
+        android:layout_below="@id/textView_taryfa"
         android:layout_alignParentLeft="true"
         android:background="@drawable/border">
 
