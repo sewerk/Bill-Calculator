@@ -1,4 +1,5 @@
 v.1.2.1
+ - adding G12 tariff for PGE provider
  - improve main layout for tablet
  - fix send email to support only mail clients
 v.1.2
