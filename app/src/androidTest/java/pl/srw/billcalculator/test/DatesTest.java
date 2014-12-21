@@ -34,5 +34,7 @@ public class DatesTest extends TestCase {
         assertEquals(2, Dates.countMonth("01/01/2015", "28/02/2015"));
         assertEquals(2, Dates.countMonth("17/03/2014", "15/05/2014"));
         assertEquals(1, Dates.countMonth("02/12/2014", "01/01/2015"));
+        assertEquals(6, Dates.countMonth("02/01/2014", "30/06/2014"));
+        assertEquals(12, Dates.countMonth("11/11/2014", "11/11/2015"));
     }
 }

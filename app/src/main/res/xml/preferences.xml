@@ -3,32 +3,15 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <PreferenceCategory
+    <PreferenceScreen
         android:key="energy"
         android:title="@string/energy_prices" >
-
-        <EditTextPreference
-            android:key="@string/preferences_za_energie_czynna"
-            android:defaultValue="@string/price_za_energie_czynna"
-            android:inputType="numberDecimal"
-            android:title="@string/za_energie_czynna" />
-
-        <EditTextPreference
-            android:key="@string/preferences_skladnik_jakosciowy"
-            android:defaultValue="@string/price_skladnik_jakosciowy"
-            android:inputType="numberDecimal"
-            android:title="@string/skladnik_jakosciowy" />
-
-        <EditTextPreference
-            android:key="@string/preferences_oplata_sieciowa"
-            android:defaultValue="@string/price_oplata_sieciowa"
-            android:inputType="numberDecimal"
-            android:title="@string/oplata_sieciowa" />
 
         <EditTextPreference
             android:key="@string/preferences_oplata_przejsciowa"
             android:defaultValue="@string/price_oplata_przejsciowa"
             android:inputType="numberDecimal"
+            android:dialogMessage="@string/oplata_przejsciowa_desc"
             android:title="@string/oplata_przejsciowa" />
 
         <EditTextPreference
@@ -43,9 +26,68 @@
             android:inputType="numberDecimal"
             android:title="@string/oplata_abonamentowa" />
 
-    </PreferenceCategory>
+        <EditTextPreference
+            android:key="@string/preferences_skladnik_jakosciowy"
+            android:defaultValue="@string/price_skladnik_jakosciowy"
+            android:inputType="numberDecimal"
+            android:title="@string/skladnik_jakosciowy" />
 
-    <PreferenceCategory
+        <CheckBoxPreference
+            android:key="@string/preferences_taryfa_dwustrefowa"
+            android:title="@string/taryfaG12_in_preferences"/>
+        <!-- G11 ============================================================ -->
+        <PreferenceCategory
+            android:key="@string/preferences_G11"
+            android:title="@string/taryfaG11_in_preferences">
+
+            <EditTextPreference
+                android:key="@string/preferences_za_energie_czynna"
+                android:defaultValue="@string/price_za_energie_czynna"
+                android:inputType="numberDecimal"
+                android:title="@string/za_energie_czynna" />
+
+            <EditTextPreference
+                android:key="@string/preferences_oplata_sieciowa"
+                android:defaultValue="@string/price_oplata_sieciowa"
+                android:inputType="numberDecimal"
+                android:title="@string/oplata_sieciowa" />
+
+        </PreferenceCategory>
+        <!-- G12 ============================================================ -->
+        <PreferenceCategory
+            android:key="@string/preferences_G12"
+            android:dependency="@string/preferences_taryfa_dwustrefowa"
+            android:title="@string/taryfaG12_in_preferences">
+
+            <EditTextPreference
+                android:key="@string/preferences_za_energie_czynna_G12dzien"
+                android:defaultValue="@string/price_za_energie_czynna_G12dzien"
+                android:inputType="numberDecimal"
+                android:title="@string/za_energie_czynna_G12dzien" />
+
+            <EditTextPreference
+                android:key="@string/preferences_za_energie_czynna_G12noc"
+                android:defaultValue="@string/price_za_energie_czynna_G12noc"
+                android:inputType="numberDecimal"
+                android:title="@string/za_energie_czynna_G12noc" />
+
+            <EditTextPreference
+                android:key="@string/preferences_oplata_sieciowa_G12dzien"
+                android:defaultValue="@string/price_oplata_sieciowa_G12dzien"
+                android:inputType="numberDecimal"
+                android:title="@string/oplata_sieciowa_G12dzien" />
+
+            <EditTextPreference
+                android:key="@string/preferences_oplata_sieciowa_G12noc"
+                android:defaultValue="@string/price_oplata_sieciowa_G12noc"
+                android:inputType="numberDecimal"
+                android:title="@string/oplata_sieciowa_G12noc" />
+
+        </PreferenceCategory>
+    </PreferenceScreen>
+
+    <!-- PGNIG ============================================================ -->
+    <PreferenceScreen
         android:key="gas"
         android:title="@string/gas_prices" >
 
@@ -79,6 +121,6 @@
             android:inputType="numberDecimal"
             android:title="@string/wspolczynnik_konwersji" />
 
-    </PreferenceCategory>
+    </PreferenceScreen>
 
 </PreferenceScreen>

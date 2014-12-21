@@ -360,6 +360,7 @@ com.nineoldandroids.view.ViewPropertyAnimatorPreHC$PropertyBundle
 com.nineoldandroids.view.animation.AnimatorProxy:
     163:167:public void setScrollX(int)
     176:180:public void setScrollY(int)
+hugo.weaving.DebugLog
 pl.srw.billcalculator.AboutActivity:
     public static final java.lang.String RECEIVER_EMAIL
 pl.srw.billcalculator.BuildConfig
@@ -368,10 +369,15 @@ pl.srw.billcalculator.EnergyBillActivity:
 pl.srw.billcalculator.GasBillActivity:
     public static final int PRICE_SCALE
 pl.srw.billcalculator.MainActivity:
-    private static final int IMAGE_TYPE_KEY
-    private static final java.lang.String IMAGE_TYPE_STRING
+    public static final java.lang.String TAG
+    public static final int IMAGE_TYPE_KEY
+    public static final java.lang.String IMAGE_TYPE_STRING
     public static final java.lang.String READING_FROM
     public static final java.lang.String READING_TO
+    public static final java.lang.String READING_DAY_FROM
+    public static final java.lang.String READING_DAY_TO
+    public static final java.lang.String READING_NIGHT_FROM
+    public static final java.lang.String READING_NIGHT_TO
     public static final java.lang.String DATE_FROM
     public static final java.lang.String DATE_TO
     public static final java.lang.String SHARED_PREFERENCES_FILE

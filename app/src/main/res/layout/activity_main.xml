@@ -20,11 +20,13 @@
             android:id="@+id/button_bill_type_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:background="@drawable/bill_type_pge"
             android:contentDescription="Bill type switch"/>
 
-        <include layout="@layout/main_form" />
+        <include layout="@layout/main_form"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/double_padding"/>
 
     </LinearLayout>
 </ScrollView>

@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/small_padding"
             android:background="@drawable/bill_type_pge"
             android:contentDescription="Bill type switch"/>
 

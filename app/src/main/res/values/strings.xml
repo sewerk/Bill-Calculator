@@ -7,23 +7,41 @@
     <string name="app_name">Bill Calculator</string>
     <string name="previous_reading">Previous reading</string>
     <string name="current_reading">Current reading</string>
+    <string name="readings">Readings</string>
+    <string name="previous">prevoius:</string>
+    <string name="current">current:</string>
+    <string name="reading_day_time">day time:</string>
+    <string name="reading_night_time">night time:</string>
     <string name="date_from">From date:</string>
     <string name="date_to">To date:</string>
     <string name="calculate">Calculate</string>
     <string name="reading_missing">This field cannot be empty</string>
-    <string name="reading_error">Current reading need to exceed previous reading</string>
+    <string name="reading_order_error">Current reading need to exceed previous reading</string>
     <string name="date_error">\"To date\" need to be later then \"From date\"</string>
 
 <!-- energy_bill -->
     <string name="energy_label">Energy bill</string>
     <string name="strefa_calodobowa" translatable="false">całodobowa</string>
+    <string name="strefa_dzienna" translatable="false">dzienna</string>
+    <string name="strefa_nocna" translatable="false">nocna</string>
     <string name="strefa_pusta" translatable="false"></string>
+
     <string name="za_energie_czynna" translatable="false">za energię czynną</string>
     <string name="skladnik_jakosciowy" translatable="false">składnik jakościowy</string>
     <string name="oplata_sieciowa" translatable="false">opłata sieciowa</string>
     <string name="oplata_przejsciowa" translatable="false">opłata przejściowa</string>
     <string name="oplata_stala_za_przesyl" translatable="false">opł. stała za przesył</string>
     <string name="oplata_abonamentowa" translatable="false">opłata abonamentowa</string>
+
+    <string name="za_energie_czynna_G12dzien" translatable="false">za energię czynną (strefa dzienna)</string>
+    <string name="za_energie_czynna_G12noc" translatable="false">za energię czynną (strefa nocna)</string>
+    <string name="oplata_sieciowa_G12dzien" translatable="false">opłata sieciowa (strefa dzienna)</string>
+    <string name="oplata_sieciowa_G12noc" translatable="false">opłata sieciowa (strefa nocna)</string>
+
+    <string name="taryfaG11_in_preferences" translatable="false">Taryfa Komfortowa (G11)</string>
+    <string name="taryfaG12_in_preferences" translatable="false">Taryfa Elastyczna (G12)</string>
+    <string name="taryfaG11_on_bill" translatable="false">Taryfa: G11</string>
+    <string name="taryfaG12_on_bill" translatable="false">Taryfa: G12</string>
 
     <string name="kWh" translatable="false">kWh</string>
     <string name="m_c" translatable="false">m-c</string>
@@ -41,6 +59,7 @@
     <string name="check_prices_info_cancel">Cancel</string>
     <string name="wsp_konwersji_desc" translatable="false">Współczynnik konwersji wynosi średnie miesięczne ciepło spalania gazu w ostatnim okresie rozliczeniowym,
         podzielony przez wartość 3,6. Ciepło spalania to wartość kaloryczna 1m\u00B3 gazu. Aktualną wartość można znaleźć na stronie <![CDATA[<a href="http://www.psgaz.pl/dlaklienta/18869/21361">PSG sp. z o.o.</a>]]></string>
+    <string name="oplata_przejsciowa_desc" translatable="false">Składnik opłaty przejściowej jest zależny od rocznego zużycia kWh:\n - do 500 kWH/rok wynosi 0.18 zł netto\n - od 500 do 1200 kWh/rok wynosi 0.77 zł netto\n - od 1200 kWh/rok wynosi 2.44 zł netto</string>
 
 <!-- gas_bill -->
     <string name="gas_label">Gas bill</string>
