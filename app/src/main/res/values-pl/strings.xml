@@ -11,7 +11,7 @@
     <string name="date_to">Za okres do:</string>
     <string name="calculate">Oblicz</string>
     <string name="reading_missing">Pole nie może być puste!</string>
-    <string name="reading_error">Wartość wskazania bieżącego musi być większa od poprzedniego!</string>
+    <string name="reading_order_error">Wartość wskazania bieżącego musi być większa od poprzedniego!</string>
     <string name="date_error">Data \"Za okres do\" musi być późniejsza niż \"Za okres od\"!</string>
 <!-- energy_bill -->
     <string name="energy_label">Rachunek za energię</string>

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,7 @@ import java.util.Date;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.util.Dates;
 
 /**
@@ -35,6 +37,7 @@ import pl.srw.billcalculator.util.Dates;
  */
 public class MainActivity extends Activity {
 
+    public static final String TAG = "MainActivity";
     public static final int IMAGE_TYPE_KEY = 1109171014;
     public static final String IMAGE_TYPE_STRING = "" + IMAGE_TYPE_KEY;
 
@@ -65,6 +68,7 @@ public class MainActivity extends Activity {
     @InjectView(R.id.editText_date_to_error) TextView etToDateError;
     private CheckPricesDialogFragment checkPricesDialog;
 
+    @DebugLog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,6 +134,7 @@ public class MainActivity extends Activity {
         }
     }
 
+    @DebugLog
     @Override
     protected void onResume() {
         super.onResume();
@@ -143,8 +148,10 @@ public class MainActivity extends Activity {
                 .getString(PREFERENCE_KEY_FIRST_LAUNCH, "").isEmpty();
     }
 
+    @DebugLog
     private void showCheckPricesDialog() {
         if (checkPricesDialog == null) {
+            Log.d(TAG, "need to create new Check Prices dialog");
             checkPricesDialog = new CheckPricesDialogFragment();
         }
         checkPricesDialog.show(getFragmentManager(), PREFERENCE_KEY_FIRST_LAUNCH);
@@ -205,6 +212,7 @@ public class MainActivity extends Activity {
         return Dates.parse(button.getText().toString());
     }
 
+    @DebugLog
     @OnClick(R.id.button_calculate)
     public void calculate() {
         if (!validateForm())
@@ -253,7 +261,7 @@ public class MainActivity extends Activity {
     private boolean validateValueOrder(final EditText prev, final EditText curr) {
         if (!(Integer.parseInt(curr.getText().toString()) > Integer.parseInt(prev.getText().toString()))) {
             shake(curr);
-            showError(curr, R.string.reading_error);
+            showError(curr, R.string.reading_order_error);
             return false;
         }
         return true;
