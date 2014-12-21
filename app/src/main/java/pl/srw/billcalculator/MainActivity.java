@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +16,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -24,6 +29,7 @@ import java.util.Date;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.util.Dates;
 
 /**
@@ -31,24 +37,38 @@ import pl.srw.billcalculator.util.Dates;
  */
 public class MainActivity extends Activity {
 
+    public static final String TAG = "MainActivity";
     public static final int IMAGE_TYPE_KEY = 1109171014;
     public static final String IMAGE_TYPE_STRING = "" + IMAGE_TYPE_KEY;
 
     public static final String READING_FROM = "READING_FROM";
     public static final String READING_TO = "READING_TO";
+    public static final String READING_DAY_FROM = "READING_DAY_FROM";
+    public static final String READING_DAY_TO = "READING_DAY_TO";
+    public static final String READING_NIGHT_FROM = "READING_NIGHT_FROM";
+    public static final String READING_NIGHT_TO = "READING_NIGHT_TO";
     public static final String DATE_FROM = "DATE_FROM";
     public static final String DATE_TO = "DATE_TO";
     public static final String SHARED_PREFERENCES_FILE = "PreferencesFile";
     public static final String PREFERENCE_KEY_FIRST_LAUNCH = "first_launch";
 
     @InjectView(R.id.button_bill_type_switch) ImageButton bBillType;
+    @InjectView(R.id.linearLayout_reading_from_to) LinearLayout llReadingG11;
     @InjectView(R.id.editText_reading_from) EditText etPreviousReading;
     @InjectView(R.id.editText_reading_to) EditText etCurrentReading;
+
+    @InjectView(R.id.tableLayout_readings) TableLayout tlReadingsG12;
+    @InjectView(R.id.editText_reading_day_from) EditText etDayPreviousReading;
+    @InjectView(R.id.editText_reading_day_to) EditText etDayCurrentReading;
+    @InjectView(R.id.editText_reading_night_from) EditText etNightPreviousReading;
+    @InjectView(R.id.editText_reading_night_to) EditText etNightCurrentReading;
+
     @InjectView(R.id.button_date_from) Button bFromDate;
     @InjectView(R.id.button_date_to) Button bToDate;
     @InjectView(R.id.editText_date_to_error) TextView etToDateError;
     private CheckPricesDialogFragment checkPricesDialog;
 
+    @DebugLog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +116,26 @@ public class MainActivity extends Activity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        chooseReadings();
+    }
+
+    private void chooseReadings() {
+        SharedPreferences pricesPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final boolean shouldShowDoubleReadings = getBillType() == BillType.PGE
+                && pricesPreferences.getBoolean(getString(R.string.preferences_taryfa_dwustrefowa), false);
+        if (shouldShowDoubleReadings) {
+            llReadingG11.setVisibility(View.GONE);
+            tlReadingsG12.setVisibility(View.VISIBLE);
+        } else {
+            llReadingG11.setVisibility(View.VISIBLE);
+            tlReadingsG12.setVisibility(View.GONE);
+        }
+    }
+
+    @DebugLog
+    @Override
     protected void onResume() {
         super.onResume();
         if (isFirstLaunch()) {
@@ -108,8 +148,10 @@ public class MainActivity extends Activity {
                 .getString(PREFERENCE_KEY_FIRST_LAUNCH, "").isEmpty();
     }
 
+    @DebugLog
     private void showCheckPricesDialog() {
         if (checkPricesDialog == null) {
+            Log.d(TAG, "need to create new Check Prices dialog");
             checkPricesDialog = new CheckPricesDialogFragment();
         }
         checkPricesDialog.show(getFragmentManager(), PREFERENCE_KEY_FIRST_LAUNCH);
@@ -130,6 +172,7 @@ public class MainActivity extends Activity {
         } else {
             setBillType(BillType.PGE);
         }
+        chooseReadings();
     }
 
     private BillType getBillType() {
@@ -169,6 +212,7 @@ public class MainActivity extends Activity {
         return Dates.parse(button.getText().toString());
     }
 
+    @DebugLog
     @OnClick(R.id.button_calculate)
     public void calculate() {
         if (!validateForm())
@@ -184,21 +228,40 @@ public class MainActivity extends Activity {
     }
 
     private boolean valideteReadings() {
-        String prev = etPreviousReading.getText().toString();
-        if (prev.isEmpty()) {
-            shake(etPreviousReading);
-            showError(etPreviousReading, R.string.reading_missing);
+        if (isSingleReadingsVisible())
+            return validateReadingsG11();
+        else
+            return validateReadingsG12();
+    }
+
+    private boolean isSingleReadingsVisible() {
+        return llReadingG11.getVisibility() == View.VISIBLE;
+    }
+
+    private boolean validateReadingsG11() {
+        return validateMissingValue(etPreviousReading) && validateMissingValue(etCurrentReading)
+                && validateValueOrder(etPreviousReading, etCurrentReading);
+    }
+
+    private boolean validateReadingsG12() {
+        return validateMissingValue(etDayPreviousReading) && validateMissingValue(etDayCurrentReading)
+                && validateMissingValue(etNightPreviousReading) && validateMissingValue(etNightCurrentReading)
+                && validateValueOrder(etDayPreviousReading, etDayCurrentReading) && validateValueOrder(etNightPreviousReading, etNightCurrentReading);
+    }
+
+    private boolean validateMissingValue(final EditText et) {
+        if (et.getText().toString().isEmpty()) {
+            shake(et);
+            showError(et, R.string.reading_missing);
             return false;
         }
-        String current = etCurrentReading.getText().toString();
-        if (current.isEmpty()) {
-            shake(etCurrentReading);
-            showError(etCurrentReading, R.string.reading_missing);
-            return false;
-        }
-        if (!(Integer.parseInt(current) > Integer.parseInt(prev))) {
-            shake(etCurrentReading);
-            showError(etCurrentReading, R.string.reading_error);
+        return true;
+    }
+
+    private boolean validateValueOrder(final EditText prev, final EditText curr) {
+        if (!(Integer.parseInt(curr.getText().toString()) > Integer.parseInt(prev.getText().toString()))) {
+            shake(curr);
+            showError(curr, R.string.reading_order_error);
             return false;
         }
         return true;
@@ -245,15 +308,29 @@ public class MainActivity extends Activity {
     }
 
     private void fillParameters(Intent billResult) {
-        String prev = etPreviousReading.getText().toString();
-        billResult.putExtra(READING_FROM, Integer.parseInt(prev));
-        String current = etCurrentReading.getText().toString();
-        billResult.putExtra(READING_TO, Integer.parseInt(current));
+        if (isSingleReadingsVisible()) {
+            putIntExtra(billResult, READING_FROM, etPreviousReading);
+            putIntExtra(billResult, READING_TO, etCurrentReading);
+        } else {
+            putIntExtra(billResult, READING_DAY_FROM, etDayPreviousReading);
+            putIntExtra(billResult, READING_DAY_TO, etDayCurrentReading);
 
-        String fromDate = bFromDate.getText().toString();
-        billResult.putExtra(DATE_FROM, fromDate);
-        String toDate = bToDate.getText().toString();
-        billResult.putExtra(DATE_TO, toDate);
+            putIntExtra(billResult, READING_NIGHT_FROM, etNightPreviousReading);
+            putIntExtra(billResult, READING_NIGHT_TO, etNightCurrentReading);
+        }
+
+        putStringExtra(billResult, DATE_FROM, bFromDate);
+        putStringExtra(billResult, DATE_TO, bToDate);
+    }
+
+    private void putStringExtra(Intent intent, String key, TextView valueView) {
+        String fromDate = valueView.getText().toString();
+        intent.putExtra(key, fromDate);
+    }
+
+    private void putIntExtra(Intent intent, String key, TextView valueView) {
+        String prev = valueView.getText().toString();
+        intent.putExtra(key, Integer.parseInt(prev));
     }
 
     @Override

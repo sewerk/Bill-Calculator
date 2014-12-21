@@ -11,7 +11,7 @@
     <string name="date_to">Za okres do:</string>
     <string name="calculate">Oblicz</string>
     <string name="reading_missing">Pole nie może być puste!</string>
-    <string name="reading_error">Wartość wskazania bieżącego musi być większa od poprzedniego!</string>
+    <string name="reading_order_error">Wartość wskazania bieżącego musi być większa od poprzedniego!</string>
     <string name="date_error">Data \"Za okres do\" musi być późniejsza niż \"Za okres od\"!</string>
 <!-- energy_bill -->
     <string name="energy_label">Rachunek za energię</string>
@@ -32,5 +32,10 @@
     <string name="emailme"> ...napisz co myślisz</string>
     <string name="clause">Nazwy własne, logotypy oraz znaki towarowe są własnością firm dystrybucyjnych. Przedstawione wyliczenia są jedynie przybliżoną wartością stanu faktyczenego i nie mają podstawy by stanowić roszczenia finansowego.</string>
     <string name="email_client_missing">Nie wykryto klientów poczty e-mail</string>
+    <string name="previous">poprzednie:</string>
+    <string name="reading_day_time">strefa dzienna:</string>
+    <string name="reading_night_time">strefa nocna:</string>
+    <string name="readings">Wskazanie</string>
+    <string name="current">bieżące:</string>
 
 </resources>

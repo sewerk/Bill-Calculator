@@ -15,11 +15,12 @@
             android:text="Licznik rozliczeniowy en. czynnej nr: 00000001" />
 
         <TextView
+            android:id="@+id/textView_taryfa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_span="3"
-            android:text="Taryfa: G11" />
+            android:text="@string/taryfaG11_on_bill" />
 
         <TextView
             android:layout_width="wrap_content"

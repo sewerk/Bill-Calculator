@@ -6,13 +6,19 @@ import android.app.Instrumentation;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.UiThreadTest;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
+
+import java.util.Date;
 
 import pl.srw.billcalculator.BillType;
 import pl.srw.billcalculator.EnergyBillActivity;
@@ -26,7 +32,6 @@ import pl.srw.billcalculator.R;
 public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
     private Activity sut;
-    private Instrumentation mInstrumentation;
 
     public MainActivityTest() {
         super(MainActivity.class);
@@ -35,7 +40,8 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        mInstrumentation = super.getInstrumentation();
+        changeToG11Tariff();
+        markAfterFirstLaunch();
         sut = getActivity();
     }
 
@@ -45,21 +51,44 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         //first access
         restartActivity();
 
+        assertTrue(getFirstLaunchPreferenceValue().isEmpty());
+
+        getInstrumentation().waitForIdleSync();
         //check dialog show up
-        final DialogFragment checkPricesDialog = (DialogFragment) sut.getFragmentManager().findFragmentByTag(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH);
+        final DialogFragment checkPricesDialog =
+                (DialogFragment) sut.getFragmentManager().findFragmentByTag(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH);
         assertTrue(checkPricesDialog.getDialog().isShowing());
 
         //close dialog to not show up any more
+        Log.d("testCheckPricesDialogShowUpOnce", "===== back button send");
         sendKeys(KeyEvent.KEYCODE_BACK);
 
         //check dialog do not show up on next launch
         restartActivity();
+
+        assertFalse(getFirstLaunchPreferenceValue().isEmpty());
+
+        getInstrumentation().waitForIdleSync();
         assertNull(sut.getFragmentManager().findFragmentByTag(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH));
     }
 
     public void testBillTypeSwitchIsInitialized() {
         Object initialSwitchBtnTagValue = findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY);
         assertNotNull(initialSwitchBtnTagValue);
+    }
+
+    @UiThreadTest
+    public void testG12InfluenceOnlyPGEReadingsView() throws Throwable {
+        changeToG12Tariff();
+        //switch to PGNiG
+        findSwitchBillTypeButtonView().performClick();
+        assertEquals(View.VISIBLE, findReadingsG11View().getVisibility());
+        assertEquals(View.GONE, findReadingsG12View().getVisibility());
+
+        //switch to PGE
+        findSwitchBillTypeButtonView().performClick();
+        assertEquals(View.GONE, findReadingsG11View().getVisibility());
+        assertEquals(View.VISIBLE, findReadingsG12View().getVisibility());
     }
 
     @UiThreadTest
@@ -121,13 +150,52 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         findCalculateView().performClick();
         assertEquals(sut.getString(R.string.reading_missing), findReadingFromView().getError());
 
-        //input values in incorrect order
+        //input value
         findReadingFromView().setText(readingMore);
-        findReadingToView().setText(readingLess);
+        // validate empty edit text
+        findCalculateView().performClick();
+        assertEquals(sut.getString(R.string.reading_missing), findReadingToView().getError());
 
+        //input values in incorrect order
+        findReadingToView().setText(readingLess);
         //validate values order
         findCalculateView().performClick();
-        assertEquals(sut.getString(R.string.reading_error), findReadingToView().getError());
+        assertEquals(sut.getString(R.string.reading_order_error), findReadingToView().getError());
+    }
+
+    public void testG12ReadingsValidationOnCalculate() throws Throwable {
+        //change to G12 tariff
+        changeToG12Tariff();
+        restartActivity();
+
+        // validate empty day from
+        performCalculate();
+        assertEquals(sut.getString(R.string.reading_missing), findReadingDayFromView().getError());
+        findReadingDayFromView().setText("12");
+
+        // validate empty day to
+        performCalculate();
+        assertEquals(sut.getString(R.string.reading_missing), findReadingDayToView().getError());
+        findReadingDayToView().setText("11");
+
+        // validate empty night from
+        performCalculate();
+        assertEquals(sut.getString(R.string.reading_missing), findReadingNightFromView().getError());
+        findReadingNightFromView().setText("10");
+
+        // validate empty night to
+        performCalculate();
+        assertEquals(sut.getString(R.string.reading_missing), findReadingNightToView().getError());
+        findReadingNightToView().setText("9");
+
+        // validate incorrect day readings order
+        performCalculate();
+        assertEquals(sut.getString(R.string.reading_order_error), findReadingDayToView().getError());
+        findReadingDayToView().setText("13");
+
+        // validate incorrect night readings order
+        performCalculate();
+        assertEquals(sut.getString(R.string.reading_order_error), findReadingNightToView().getError());
     }
 
     @UiThreadTest
@@ -160,8 +228,8 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     }
 
     public void testBillTypeSwitchChooseNextScreen() throws Throwable {
-        final String readingLess = "234";
-        final String readingMore = "345";
+        final int readingLess = 234;
+        final int readingMore = 345;
 
         Instrumentation.ActivityMonitor pgeBillMonitor = getInstrumentation().addMonitor(EnergyBillActivity.class.getName(), null, false);
         Instrumentation.ActivityMonitor pgnigBillMonitor = getInstrumentation().addMonitor(GasBillActivity.class.getName(), null, false);
@@ -171,8 +239,8 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
             @Override
             public void run() {
                 findSwitchBillTypeButtonView().setTag(MainActivity.IMAGE_TYPE_KEY, BillType.PGNIG);
-                findReadingFromView().setText(readingLess);
-                findReadingToView().setText(readingMore);
+                findReadingFromView().setText("" + readingLess);
+                findReadingToView().setText(""+readingMore);
 
                 findCalculateView().performClick();
             }
@@ -181,6 +249,8 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         //validate PGNIG bill show up
         Activity billActivity = getInstrumentation().waitForMonitorWithTimeout(pgnigBillMonitor, 5000L);
         billActivity.finish();
+        assertEquals(readingLess, billActivity.getIntent().getIntExtra(MainActivity.READING_FROM, -1));
+        assertEquals(readingMore, billActivity.getIntent().getIntExtra(MainActivity.READING_TO, -1));
         assertEquals(GasBillActivity.class, billActivity.getClass());
 
         //change bill type PGE and calculate
@@ -197,6 +267,40 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         billActivity = getInstrumentation().waitForMonitorWithTimeout(pgeBillMonitor, 5000L);
         billActivity.finish();
         assertEquals(EnergyBillActivity.class, billActivity.getClass());
+    }
+
+    public void testG12ReadingsPutToIntent() throws Throwable {
+        final int dayFrom = 12;
+        final int dayTo = 13;
+        final int nightFrom = 11;
+        final int nightTo = 13;
+        //change to G12 tariff
+        changeToG12Tariff();
+        restartActivity();
+
+        // input mandatory values
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                findReadingDayFromView().setText(""+dayFrom);
+                findReadingDayToView().setText(""+dayTo);
+                findReadingNightFromView().setText(""+nightFrom);
+                findReadingNightToView().setText(""+nightTo);
+
+                findCalculateView().performClick();
+            }
+        });
+
+        //validate PGNIG bill show up
+        Instrumentation.ActivityMonitor pgeBillMonitor =
+                getInstrumentation().addMonitor(EnergyBillActivity.class.getName(), null, false);
+        Activity billActivity = getInstrumentation().waitForMonitorWithTimeout(pgeBillMonitor, 5000L);
+        billActivity.finish();
+        
+        assertEquals(dayFrom, billActivity.getIntent().getIntExtra(MainActivity.READING_DAY_FROM, -1));
+        assertEquals(nightFrom, billActivity.getIntent().getIntExtra(MainActivity.READING_NIGHT_FROM, -1));
+        assertEquals(dayTo, billActivity.getIntent().getIntExtra(MainActivity.READING_DAY_TO, -1));
+        assertEquals(nightTo, billActivity.getIntent().getIntExtra(MainActivity.READING_NIGHT_TO, -1));
     }
 
     // ================================================================ private methods
@@ -216,20 +320,40 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         return (Button) sut.findViewById(R.id.button_date_from);
     }
 
-    private EditText findReadingToView() {
-        return (EditText) sut.findViewById(R.id.editText_reading_to);
-    }
-
     private EditText findReadingFromView() {
         return (EditText) sut.findViewById(R.id.editText_reading_from);
     }
 
-    private ImageButton findSwitchBillTypeButtonView() {
-        return (ImageButton) sut.findViewById(R.id.button_bill_type_switch);
+    private EditText findReadingToView() {
+        return (EditText) sut.findViewById(R.id.editText_reading_to);
     }
 
-    public Instrumentation getInstrumentation() {
-        return mInstrumentation;
+    private EditText findReadingDayFromView() {
+        return (EditText) sut.findViewById(R.id.editText_reading_day_from);
+    }
+
+    private EditText findReadingDayToView() {
+        return (EditText) sut.findViewById(R.id.editText_reading_day_to);
+    }
+
+    private EditText findReadingNightFromView() {
+        return (EditText) sut.findViewById(R.id.editText_reading_night_from);
+    }
+
+    private EditText findReadingNightToView() {
+        return (EditText) sut.findViewById(R.id.editText_reading_night_to);
+    }
+
+    private LinearLayout findReadingsG11View() {
+        return (LinearLayout) sut.findViewById(R.id.linearLayout_reading_from_to);
+    }
+
+    private TableLayout findReadingsG12View() {
+        return (TableLayout) sut.findViewById(R.id.tableLayout_readings);
+    }
+
+    private ImageButton findSwitchBillTypeButtonView() {
+        return (ImageButton) sut.findViewById(R.id.button_bill_type_switch);
     }
 
     private void requestFocus(final View view) throws Throwable {
@@ -241,17 +365,51 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         });
         getInstrumentation().waitForIdleSync();
     }
+
     private void restartActivity() {
         sut.finish();
         setActivity(null);
         sut = getActivity();
     }
 
-    private void clearPreferences() {
-        SharedPreferences.Editor editor = sut.getSharedPreferences(MainActivity.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE).edit();
-        editor.clear();
-        editor.commit();
+    private void performCalculate() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                findCalculateView().performClick();
+            }
+        });
     }
 
+    private void clearPreferences() {
+        SharedPreferences.Editor editor = sut.getSharedPreferences(MainActivity.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE).edit();
+        editor.clear().commit();
+    }
 
+    private void changeToG11Tariff() {
+        final Context context = getInstrumentation().getTargetContext();
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit().putBoolean(context.getString(R.string.preferences_taryfa_dwustrefowa), false)
+                .commit();
+    }
+
+    private void changeToG12Tariff() {
+        final Context context = getInstrumentation().getTargetContext();
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit().putBoolean(context.getString(R.string.preferences_taryfa_dwustrefowa), true)
+                .commit();
+    }
+
+    private void markAfterFirstLaunch() {
+        getInstrumentation().getTargetContext().
+                getSharedPreferences(MainActivity.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE)
+                .edit().putString(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH, new Date().toString())
+                .commit();
+    }
+
+    private String getFirstLaunchPreferenceValue() {
+        return sut.
+                getSharedPreferences(MainActivity.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE)
+                .getString(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH, "");
+    }
 }

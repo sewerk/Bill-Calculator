@@ -10,6 +10,8 @@ import android.view.KeyEvent;
 
 import java.util.Date;
 
+import hugo.weaving.DebugLog;
+
 /**
  * Created by Kamil Seweryn
  */
@@ -49,6 +51,7 @@ public class CheckPricesDialogFragment extends DialogFragment {
     private DialogInterface.OnKeyListener backButtonListener() {
         return new DialogInterface.OnKeyListener() {
             @Override
+            @DebugLog
             public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
                     markDialogProcessed();
@@ -58,6 +61,7 @@ public class CheckPricesDialogFragment extends DialogFragment {
         };
     }
 
+    @DebugLog
     private void markDialogProcessed() {
         getActivity().getSharedPreferences(MainActivity.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE)
                 .edit().putString(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH, new Date().toString()).commit();

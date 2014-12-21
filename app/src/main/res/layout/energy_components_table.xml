@@ -26,6 +26,18 @@
             layout="@layout/energy_components_table_row" />
 
         <include
+            android:id="@+id/row_za_energie_czynna2"
+            layout="@layout/energy_components_table_row" />
+
+        <include
+            android:id="@+id/row_skladnik_jakosciowy2"
+            layout="@layout/energy_components_table_row" />
+
+        <include
+            android:id="@+id/row_oplata_sieciowa2"
+            layout="@layout/energy_components_table_row" />
+
+        <include
             android:id="@+id/row_oplata_przejsciowa"
             layout="@layout/energy_components_table_row" />
 
