@@ -249,6 +249,7 @@ com.nineoldandroids.view.ViewPropertyAnimatorPreHC$AnimatorEventListener
 com.nineoldandroids.view.ViewPropertyAnimatorPreHC$NameValuesHolder
 com.nineoldandroids.view.ViewPropertyAnimatorPreHC$PropertyBundle
 com.nineoldandroids.view.animation.AnimatorProxy
+hugo.weaving.DebugLog
 pl.srw.billcalculator.AboutActivity
 pl.srw.billcalculator.AboutActivity: android.widget.TextView tvVersion
 pl.srw.billcalculator.AboutActivity: AboutActivity()
@@ -257,6 +258,9 @@ pl.srw.billcalculator.AboutActivity$$ViewInjector: AboutActivity$$ViewInjector()
 pl.srw.billcalculator.AboutActivity$$ViewInjector: void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.AboutActivity,java.lang.Object)
 pl.srw.billcalculator.AboutActivity$$ViewInjector: void reset(pl.srw.billcalculator.AboutActivity)
 pl.srw.billcalculator.AboutActivity$$ViewInjector$1
+pl.srw.billcalculator.BillType
+pl.srw.billcalculator.BillType: pl.srw.billcalculator.BillType[] values()
+pl.srw.billcalculator.BillType: pl.srw.billcalculator.BillType valueOf(java.lang.String)
 pl.srw.billcalculator.BuildConfig
 pl.srw.billcalculator.CheckPricesDialogFragment
 pl.srw.billcalculator.CheckPricesDialogFragment$1
@@ -268,8 +272,14 @@ pl.srw.billcalculator.GasBillActivity
 pl.srw.billcalculator.GasBillActivity: GasBillActivity()
 pl.srw.billcalculator.MainActivity
 pl.srw.billcalculator.MainActivity: android.widget.ImageButton bBillType
+pl.srw.billcalculator.MainActivity: android.widget.LinearLayout llReadingG11
 pl.srw.billcalculator.MainActivity: android.widget.EditText etPreviousReading
 pl.srw.billcalculator.MainActivity: android.widget.EditText etCurrentReading
+pl.srw.billcalculator.MainActivity: android.widget.TableLayout tlReadingsG12
+pl.srw.billcalculator.MainActivity: android.widget.EditText etDayPreviousReading
+pl.srw.billcalculator.MainActivity: android.widget.EditText etDayCurrentReading
+pl.srw.billcalculator.MainActivity: android.widget.EditText etNightPreviousReading
+pl.srw.billcalculator.MainActivity: android.widget.EditText etNightCurrentReading
 pl.srw.billcalculator.MainActivity: android.widget.Button bFromDate
 pl.srw.billcalculator.MainActivity: android.widget.Button bToDate
 pl.srw.billcalculator.MainActivity: android.widget.TextView etToDateError
@@ -283,14 +293,13 @@ pl.srw.billcalculator.MainActivity$$ViewInjector$2
 pl.srw.billcalculator.MainActivity$$ViewInjector$3
 pl.srw.billcalculator.MainActivity$$ViewInjector$4
 pl.srw.billcalculator.MainActivity$1
-pl.srw.billcalculator.MainActivity$BillType
-pl.srw.billcalculator.MainActivity$BillType: pl.srw.billcalculator.MainActivity$BillType[] values()
-pl.srw.billcalculator.MainActivity$BillType: pl.srw.billcalculator.MainActivity$BillType valueOf(java.lang.String)
 pl.srw.billcalculator.R
 pl.srw.billcalculator.R$attr
 pl.srw.billcalculator.R$dimen
 pl.srw.billcalculator.R$dimen: int activity_horizontal_margin
 pl.srw.billcalculator.R$dimen: int activity_vertical_margin
+pl.srw.billcalculator.R$dimen: int double_padding
+pl.srw.billcalculator.R$dimen: int small_padding
 pl.srw.billcalculator.R$drawable
 pl.srw.billcalculator.R$drawable: int bill_type_pge
 pl.srw.billcalculator.R$drawable: int bill_type_pgnig
@@ -310,13 +319,16 @@ pl.srw.billcalculator.R$id: int button_calculate
 pl.srw.billcalculator.R$id: int button_date_from
 pl.srw.billcalculator.R$id: int button_date_to
 pl.srw.billcalculator.R$id: int editText_date_to_error
-pl.srw.billcalculator.R$id: int editText_from
-pl.srw.billcalculator.R$id: int editText_to
+pl.srw.billcalculator.R$id: int editText_reading_day_from
+pl.srw.billcalculator.R$id: int editText_reading_day_to
+pl.srw.billcalculator.R$id: int editText_reading_from
+pl.srw.billcalculator.R$id: int editText_reading_night_from
+pl.srw.billcalculator.R$id: int editText_reading_night_to
+pl.srw.billcalculator.R$id: int editText_reading_to
 pl.srw.billcalculator.R$id: int image_logo
 pl.srw.billcalculator.R$id: int linearLayout_date_from
 pl.srw.billcalculator.R$id: int linearLayout_date_to
-pl.srw.billcalculator.R$id: int linearLayout_from
-pl.srw.billcalculator.R$id: int linearLayout_to
+pl.srw.billcalculator.R$id: int linearLayout_reading_from_to
 pl.srw.billcalculator.R$id: int radioButton1
 pl.srw.billcalculator.R$id: int radioButton2
 pl.srw.billcalculator.R$id: int radioButton3
@@ -327,11 +339,18 @@ pl.srw.billcalculator.R$id: int row_dystrybucyjna_zmienna
 pl.srw.billcalculator.R$id: int row_oplata_abonamentowa
 pl.srw.billcalculator.R$id: int row_oplata_przejsciowa
 pl.srw.billcalculator.R$id: int row_oplata_sieciowa
+pl.srw.billcalculator.R$id: int row_oplata_sieciowa2
 pl.srw.billcalculator.R$id: int row_oplata_stala_za_przesyl
 pl.srw.billcalculator.R$id: int row_paliwo_gazowe
 pl.srw.billcalculator.R$id: int row_skladnik_jakosciowy
+pl.srw.billcalculator.R$id: int row_skladnik_jakosciowy2
 pl.srw.billcalculator.R$id: int row_sum
 pl.srw.billcalculator.R$id: int row_za_energie_czynna
+pl.srw.billcalculator.R$id: int row_za_energie_czynna2
+pl.srw.billcalculator.R$id: int tableLayout_readings
+pl.srw.billcalculator.R$id: int tableRow_readings_G12dzienna
+pl.srw.billcalculator.R$id: int tableRow_readings_G12nocna
+pl.srw.billcalculator.R$id: int tableRow_readings_header
 pl.srw.billcalculator.R$id: int table_header
 pl.srw.billcalculator.R$id: int table_odczyt
 pl.srw.billcalculator.R$id: int table_podsumowanie
@@ -349,7 +368,6 @@ pl.srw.billcalculator.R$id: int textView_do_zaplaty
 pl.srw.billcalculator.R$id: int textView_emalme
 pl.srw.billcalculator.R$id: int textView_faktura_nr
 pl.srw.billcalculator.R$id: int textView_from
-pl.srw.billcalculator.R$id: int textView_gr_taryfowa
 pl.srw.billcalculator.R$id: int textView_ilosc
 pl.srw.billcalculator.R$id: int textView_ilosc_mc
 pl.srw.billcalculator.R$id: int textView_klauzula
@@ -371,6 +389,7 @@ pl.srw.billcalculator.R$id: int textView_opis
 pl.srw.billcalculator.R$id: int textView_oplata
 pl.srw.billcalculator.R$id: int textView_roz_punktu_poboru
 pl.srw.billcalculator.R$id: int textView_strefa
+pl.srw.billcalculator.R$id: int textView_taryfa
 pl.srw.billcalculator.R$id: int textView_to
 pl.srw.billcalculator.R$id: int textView_tytul
 pl.srw.billcalculator.R$id: int textView_ver
@@ -418,6 +437,7 @@ pl.srw.billcalculator.R$string: int check_prices_info_cancel
 pl.srw.billcalculator.R$string: int check_prices_info_ok
 pl.srw.billcalculator.R$string: int check_prices_info_title
 pl.srw.billcalculator.R$string: int clause
+pl.srw.billcalculator.R$string: int current
 pl.srw.billcalculator.R$string: int current_reading
 pl.srw.billcalculator.R$string: int date_error
 pl.srw.billcalculator.R$string: int date_from
@@ -439,20 +459,31 @@ pl.srw.billcalculator.R$string: int mc
 pl.srw.billcalculator.R$string: int odczyt_na_dzien
 pl.srw.billcalculator.R$string: int oplata_abonamentowa
 pl.srw.billcalculator.R$string: int oplata_przejsciowa
+pl.srw.billcalculator.R$string: int oplata_przejsciowa_desc
 pl.srw.billcalculator.R$string: int oplata_sieciowa
+pl.srw.billcalculator.R$string: int oplata_sieciowa_G12dzien
+pl.srw.billcalculator.R$string: int oplata_sieciowa_G12noc
 pl.srw.billcalculator.R$string: int oplata_stala_za_przesyl
 pl.srw.billcalculator.R$string: int paliwo_gazowe
+pl.srw.billcalculator.R$string: int preferences_G11
+pl.srw.billcalculator.R$string: int preferences_G12
 pl.srw.billcalculator.R$string: int preferences_abonamentowa
 pl.srw.billcalculator.R$string: int preferences_dystrybucyjna_stala
 pl.srw.billcalculator.R$string: int preferences_dystrybucyjna_zmienna
 pl.srw.billcalculator.R$string: int preferences_oplata_abonamentowa
 pl.srw.billcalculator.R$string: int preferences_oplata_przejsciowa
 pl.srw.billcalculator.R$string: int preferences_oplata_sieciowa
+pl.srw.billcalculator.R$string: int preferences_oplata_sieciowa_G12dzien
+pl.srw.billcalculator.R$string: int preferences_oplata_sieciowa_G12noc
 pl.srw.billcalculator.R$string: int preferences_oplata_stala_za_przesyl
 pl.srw.billcalculator.R$string: int preferences_paliwo_gazowe
 pl.srw.billcalculator.R$string: int preferences_skladnik_jakosciowy
+pl.srw.billcalculator.R$string: int preferences_taryfa_dwustrefowa
 pl.srw.billcalculator.R$string: int preferences_wsp_konwersji
 pl.srw.billcalculator.R$string: int preferences_za_energie_czynna
+pl.srw.billcalculator.R$string: int preferences_za_energie_czynna_G12dzien
+pl.srw.billcalculator.R$string: int preferences_za_energie_czynna_G12noc
+pl.srw.billcalculator.R$string: int previous
 pl.srw.billcalculator.R$string: int previous_reading
 pl.srw.billcalculator.R$string: int price_abonamentowa
 pl.srw.billcalculator.R$string: int price_dystrybucyjna_stala
@@ -460,23 +491,38 @@ pl.srw.billcalculator.R$string: int price_dystrybucyjna_zmienna
 pl.srw.billcalculator.R$string: int price_oplata_abonamentowa
 pl.srw.billcalculator.R$string: int price_oplata_przejsciowa
 pl.srw.billcalculator.R$string: int price_oplata_sieciowa
+pl.srw.billcalculator.R$string: int price_oplata_sieciowa_G12dzien
+pl.srw.billcalculator.R$string: int price_oplata_sieciowa_G12noc
 pl.srw.billcalculator.R$string: int price_oplata_stala_za_przesyl
 pl.srw.billcalculator.R$string: int price_paliwo_gazowe
 pl.srw.billcalculator.R$string: int price_skladnik_jakosciowy
 pl.srw.billcalculator.R$string: int price_wsp_konwersji
 pl.srw.billcalculator.R$string: int price_za_energie_czynna
-pl.srw.billcalculator.R$string: int reading_error
+pl.srw.billcalculator.R$string: int price_za_energie_czynna_G12dzien
+pl.srw.billcalculator.R$string: int price_za_energie_czynna_G12noc
+pl.srw.billcalculator.R$string: int reading_day_time
 pl.srw.billcalculator.R$string: int reading_missing
+pl.srw.billcalculator.R$string: int reading_night_time
+pl.srw.billcalculator.R$string: int reading_order_error
+pl.srw.billcalculator.R$string: int readings
 pl.srw.billcalculator.R$string: int settings_label
 pl.srw.billcalculator.R$string: int skladnik_jakosciowy
 pl.srw.billcalculator.R$string: int strefa_calodobowa
+pl.srw.billcalculator.R$string: int strefa_dzienna
+pl.srw.billcalculator.R$string: int strefa_nocna
 pl.srw.billcalculator.R$string: int strefa_pusta
+pl.srw.billcalculator.R$string: int taryfaG11_in_preferences
+pl.srw.billcalculator.R$string: int taryfaG11_on_bill
+pl.srw.billcalculator.R$string: int taryfaG12_in_preferences
+pl.srw.billcalculator.R$string: int taryfaG12_on_bill
 pl.srw.billcalculator.R$string: int version_text
 pl.srw.billcalculator.R$string: int wartosc_faktury
 pl.srw.billcalculator.R$string: int wsp_konwersji
 pl.srw.billcalculator.R$string: int wsp_konwersji_desc
 pl.srw.billcalculator.R$string: int wspolczynnik_konwersji
 pl.srw.billcalculator.R$string: int za_energie_czynna
+pl.srw.billcalculator.R$string: int za_energie_czynna_G12dzien
+pl.srw.billcalculator.R$string: int za_energie_czynna_G12noc
 pl.srw.billcalculator.R$string: int za_okres
 pl.srw.billcalculator.R$string: int zuzycie
 pl.srw.billcalculator.R$string: int zuzycie_razem
