@@ -10,8 +10,8 @@
     <string name="readings">Readings</string>
     <string name="previous">prevoius:</string>
     <string name="current">current:</string>
-    <string name="reading_day_time">day time:</string>
-    <string name="reading_night_time">night time:</string>
+    <string name="reading_day_time">day unit:</string>
+    <string name="reading_night_time">night unit:</string>
     <string name="date_from">From date:</string>
     <string name="date_to">To date:</string>
     <string name="calculate">Calculate</string>
@@ -54,7 +54,7 @@
     <string name="energy_prices">PGE prices</string>
     <string name="gas_prices">PGNiG prices</string>
     <string name="check_prices_info_title">Check the prices for your bill plan</string>
-    <string name="check_price_info_message">Calculated value depends on your provider\'s bill plan and size of your resource consumption. Verify the prices for calculation.</string>
+    <string name="check_price_info_message">Calculated value depends on your individual tariff, amount and time of usage. Verify the prices for calculations.</string>
     <string name="check_prices_info_ok">Check</string>
     <string name="check_prices_info_cancel">Cancel</string>
     <string name="wsp_konwersji_desc" translatable="false">Współczynnik konwersji wynosi średnie miesięczne ciepło spalania gazu w ostatnim okresie rozliczeniowym,
@@ -81,7 +81,7 @@
 <!-- about -->
     <string name="about_label">About</string>
     <string name="version_text">Version %1$s<![CDATA[<br/>under <a href="http://opensource.org/licenses/MIT">MIT license</a>]]></string>
-    <string name="description">Application calculates the approximate value of utility bill</string>
+    <string name="description">Application calculates the approximate cost of utility bill</string>
     <string name="emailme"> ...write what you think</string>
     <string name="clause">The names, logos and trade marks are owned by distribution companies. Given calculations are just approximate value of the bill and cannot be used as ground for financial claiming.</string>
     <string name="email_client_missing">I could not find any e-mail client installed</string>

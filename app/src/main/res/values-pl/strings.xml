@@ -22,13 +22,13 @@
     <string name="energy_prices">Ceny PGE</string>
     <string name="gas_prices">Ceny PGNiG</string>
     <string name="check_prices_info_title">Sprawdź ceny twojej grupy taryfowej</string>
-    <string name="check_price_info_message">Wartość twojej faktury może sie róźnić w zależności od taryfy jaką posiadasz i wielkości zurzycia. Zweryfikuj ceny przed wyliczeniem.</string>
+    <string name="check_price_info_message">Wartość twojej faktury może się róźnić w zależności od taryfy jaką posiadasz, pory dnia i wielkości zurzycia. Zweryfikuj ceny przed wyliczeniem.</string>
     <string name="check_prices_info_ok">Sprawdź</string>
     <string name="check_prices_info_cancel">Później</string>
 <!-- about -->
     <string name="about_label">O programie</string>
     <string name="version_text">Wersja %1$s<![CDATA[<br/>na <a href="http://opensource.org/licenses/MIT">licencji MIT</a>]]></string>
-    <string name="description">Aplikacja służy do obliczania przybliżonej wysokości rachunku za media przy taryfie ceny całodobowej</string>
+    <string name="description">Aplikacja służy do obliczania przybliżonej wysokości rachunku za media </string>
     <string name="emailme"> ...napisz co myślisz</string>
     <string name="clause">Nazwy własne, logotypy oraz znaki towarowe są własnością firm dystrybucyjnych. Przedstawione wyliczenia są jedynie przybliżoną wartością stanu faktyczenego i nie mają podstawy by stanowić roszczenia finansowego.</string>
     <string name="email_client_missing">Nie wykryto klientów poczty e-mail</string>
