@@ -96,7 +96,7 @@ public class MainActivity extends Activity {
     }
 
     private void initBillType() {
-        setBillType(BillType.PGE);
+        changeBillType(BillType.PGE);
     }
 
     @Override
@@ -108,7 +108,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onRestoreInstanceState(final Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        setBillType(restoreBillTypeFrom(savedInstanceState));
+        changeBillType(restoreBillTypeFrom(savedInstanceState));
     }
 
     private BillType restoreBillTypeFrom(final Bundle state) {
@@ -166,22 +166,22 @@ public class MainActivity extends Activity {
     }
 
     @OnClick(R.id.button_bill_type_switch)
-    public void changeBillType() {
+    public void switchBillType() {
         if (getBillType() == BillType.PGE) {
-            setBillType(BillType.PGNIG);
+            changeBillType(BillType.PGNIG);
         } else {
-            setBillType(BillType.PGE);
+            changeBillType(BillType.PGE);
         }
-        chooseReadings();
     }
 
     private BillType getBillType() {
         return (BillType) bBillType.getTag(IMAGE_TYPE_KEY);
     }
 
-    private void setBillType(BillType type) {
+    private void changeBillType(BillType type) {
         bBillType.setBackgroundResource(type.drawableId);
         bBillType.setTag(IMAGE_TYPE_KEY, type);
+        chooseReadings();
         YoYo.with(Techniques.BounceIn)
                 .duration(400)
                 .playOn(bBillType);

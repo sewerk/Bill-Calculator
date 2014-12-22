@@ -111,10 +111,10 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         final String dateToValue = "31/12/2014";
 
         final Bundle bundle = new Bundle();
-        //change state
         runTestOnUiThread(new Runnable() {
             @Override
             public void run() {
+                //change state
                 findSwitchBillTypeButtonView().setTag(MainActivity.IMAGE_TYPE_KEY, billTypeValue);
                 findReadingFromView().setText(readingFromValue);
                 findReadingToView().setText(readingToValue);
@@ -139,6 +139,34 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         assertEquals(readingToValue, findReadingToView().getText().toString());
         assertEquals(dateFromValue, findDateFromView().getText());
         assertEquals(dateToValue, findDateToView().getText());
+    }
+    
+    public void testScreenOrientationChangeDoesNotChangeReadingsLayout() throws Throwable {
+        changeToG12Tariff();
+
+        final Bundle bundle = new Bundle();
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                //change state
+                findSwitchBillTypeButtonView().performClick();
+                //save state
+                getInstrumentation().callActivityOnSaveInstanceState(sut, bundle);
+            }
+        });
+
+        restartActivity();
+        //restore state
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                getInstrumentation().callActivityOnRestoreInstanceState(sut, bundle);
+            }
+        });
+
+        assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY));
+        assertEquals(View.VISIBLE, findReadingsG11View().getVisibility());
+        assertEquals(View.GONE, findReadingsG12View().getVisibility());
     }
 
     @UiThreadTest
