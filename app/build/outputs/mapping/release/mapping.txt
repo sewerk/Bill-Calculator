@@ -955,9 +955,9 @@ pl.srw.billcalculator.MainActivity -> pl.srw.billcalculator.MainActivity:
     boolean isFirstLaunch() -> h
     void showCheckPricesDialog() -> i
     void onPause() -> onPause
-    void changeBillType() -> a
+    void switchBillType() -> a
     pl.srw.billcalculator.BillType getBillType() -> j
-    void setBillType(pl.srw.billcalculator.BillType) -> a
+    void changeBillType(pl.srw.billcalculator.BillType) -> a
     void showDatePicker(android.widget.Button) -> a
     android.app.DatePickerDialog$OnDateSetListener onDatePickedListener(android.widget.Button) -> b
     java.util.Date readDateFrom(android.widget.Button) -> c
