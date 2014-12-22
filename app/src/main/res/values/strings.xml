@@ -18,6 +18,8 @@
     <string name="reading_missing">This field cannot be empty</string>
     <string name="reading_order_error">Current reading need to exceed previous reading</string>
     <string name="date_error">\"To date\" need to be later then \"From date\"</string>
+    <string name="reading_hint_m3" translatable="false">[m\u00B3]</string>
+    <string name="reading_hint_kWh" translatable="false">[kWh]</string>
 
 <!-- energy_bill -->
     <string name="energy_label">Energy bill</string>
