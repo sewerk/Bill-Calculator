@@ -10,7 +10,7 @@
 
     <!-- READINGS G11 ============================-->
     <LinearLayout
-        android:id="@+id/linearLayout_reading_from_to"
+        android:id="@+id/linearLayout_readings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -35,6 +35,7 @@
                 android:ems="5"
                 android:maxLength="9"
                 android:gravity="end"
+                android:hint="@string/reading_hint_kWh"
                 android:inputType="number">
 
                 <requestFocus />
@@ -62,6 +63,7 @@
                 android:ems="5"
                 android:maxLength="9"
                 android:gravity="end"
+                android:hint="@string/reading_hint_kWh"
                 android:inputType="number"
                 android:imeOptions="actionDone"/>
 
@@ -70,7 +72,7 @@
     <!-- READINGS G12 ============================-->
 
     <TableLayout
-        android:id="@+id/tableLayout_readings"
+        android:id="@+id/tableLayout_G12_readings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -88,14 +90,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/previous"
+                android:text="@string/reading_day_time"
                 android:layout_gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/current"
+                android:text="@string/reading_night_time"
                 android:layout_gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -110,16 +112,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/reading_day_time"
+                android:text="@string/previous"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
                 android:id="@+id/editText_reading_day_from"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="4"
+                android:ems="5"
                 android:maxLength="9"
                 android:gravity="end"
+                android:hint="@string/reading_hint_kWh"
                 android:nextFocusDown="@+id/editText_reading_day_to"
                 android:inputType="number">
 
@@ -127,13 +130,14 @@
             </EditText>
 
             <EditText
-                android:id="@+id/editText_reading_day_to"
+                android:id="@+id/editText_reading_night_from"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="4"
+                android:ems="5"
                 android:maxLength="9"
                 android:gravity="end"
-                android:nextFocusDown="@+id/editText_reading_night_from"
+                android:hint="@string/reading_hint_kWh"
+                android:nextFocusDown="@+id/editText_reading_night_to"
                 android:inputType="number"/>
 
         </TableRow>
@@ -147,26 +151,28 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/reading_night_time"
+                android:text="@string/current"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/editText_reading_night_from"
+                android:id="@+id/editText_reading_day_to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="4"
+                android:ems="5"
                 android:maxLength="9"
                 android:gravity="end"
-                android:nextFocusDown="@+id/editText_reading_night_to"
+                android:hint="@string/reading_hint_kWh"
+                android:nextFocusDown="@+id/editText_reading_night_from"
                 android:inputType="number"/>
 
             <EditText
                 android:id="@+id/editText_reading_night_to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="4"
+                android:ems="5"
                 android:maxLength="9"
                 android:gravity="end"
+                android:hint="@string/reading_hint_kWh"
                 android:inputType="number"
                 android:imeOptions="actionDone"/>
 

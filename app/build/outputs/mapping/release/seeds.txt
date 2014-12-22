@@ -328,7 +328,7 @@ pl.srw.billcalculator.R$id: int editText_reading_to
 pl.srw.billcalculator.R$id: int image_logo
 pl.srw.billcalculator.R$id: int linearLayout_date_from
 pl.srw.billcalculator.R$id: int linearLayout_date_to
-pl.srw.billcalculator.R$id: int linearLayout_reading_from_to
+pl.srw.billcalculator.R$id: int linearLayout_readings
 pl.srw.billcalculator.R$id: int radioButton1
 pl.srw.billcalculator.R$id: int radioButton2
 pl.srw.billcalculator.R$id: int radioButton3
@@ -347,7 +347,7 @@ pl.srw.billcalculator.R$id: int row_skladnik_jakosciowy2
 pl.srw.billcalculator.R$id: int row_sum
 pl.srw.billcalculator.R$id: int row_za_energie_czynna
 pl.srw.billcalculator.R$id: int row_za_energie_czynna2
-pl.srw.billcalculator.R$id: int tableLayout_readings
+pl.srw.billcalculator.R$id: int tableLayout_G12_readings
 pl.srw.billcalculator.R$id: int tableRow_readings_G12dzienna
 pl.srw.billcalculator.R$id: int tableRow_readings_G12nocna
 pl.srw.billcalculator.R$id: int tableRow_readings_header
@@ -501,6 +501,8 @@ pl.srw.billcalculator.R$string: int price_za_energie_czynna
 pl.srw.billcalculator.R$string: int price_za_energie_czynna_G12dzien
 pl.srw.billcalculator.R$string: int price_za_energie_czynna_G12noc
 pl.srw.billcalculator.R$string: int reading_day_time
+pl.srw.billcalculator.R$string: int reading_hint_kWh
+pl.srw.billcalculator.R$string: int reading_hint_m3
 pl.srw.billcalculator.R$string: int reading_missing
 pl.srw.billcalculator.R$string: int reading_night_time
 pl.srw.billcalculator.R$string: int reading_order_error

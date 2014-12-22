@@ -53,11 +53,11 @@ public class MainActivity extends Activity {
     public static final String PREFERENCE_KEY_FIRST_LAUNCH = "first_launch";
 
     @InjectView(R.id.button_bill_type_switch) ImageButton bBillType;
-    @InjectView(R.id.linearLayout_reading_from_to) LinearLayout llReadingG11;
+    @InjectView(R.id.linearLayout_readings) LinearLayout llReadingG11;
     @InjectView(R.id.editText_reading_from) EditText etPreviousReading;
     @InjectView(R.id.editText_reading_to) EditText etCurrentReading;
 
-    @InjectView(R.id.tableLayout_readings) TableLayout tlReadingsG12;
+    @InjectView(R.id.tableLayout_G12_readings) TableLayout tlReadingsG12;
     @InjectView(R.id.editText_reading_day_from) EditText etDayPreviousReading;
     @InjectView(R.id.editText_reading_day_to) EditText etDayCurrentReading;
     @InjectView(R.id.editText_reading_night_from) EditText etNightPreviousReading;
@@ -96,7 +96,7 @@ public class MainActivity extends Activity {
     }
 
     private void initBillType() {
-        setBillType(BillType.PGE);
+        changeBillType(BillType.PGE);
     }
 
     @Override
@@ -108,7 +108,8 @@ public class MainActivity extends Activity {
     @Override
     protected void onRestoreInstanceState(final Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        setBillType(restoreBillTypeFrom(savedInstanceState));
+        changeBillType(restoreBillTypeFrom(savedInstanceState));
+        chooseReadings();
     }
 
     private BillType restoreBillTypeFrom(final Bundle state) {
@@ -122,15 +123,23 @@ public class MainActivity extends Activity {
     }
 
     private void chooseReadings() {
-        SharedPreferences pricesPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         final boolean shouldShowDoubleReadings = getBillType() == BillType.PGE
-                && pricesPreferences.getBoolean(getString(R.string.preferences_taryfa_dwustrefowa), false);
+                && PreferenceManager.getDefaultSharedPreferences(this)
+                        .getBoolean(getString(R.string.preferences_taryfa_dwustrefowa), false);
         if (shouldShowDoubleReadings) {
             llReadingG11.setVisibility(View.GONE);
             tlReadingsG12.setVisibility(View.VISIBLE);
         } else {
             llReadingG11.setVisibility(View.VISIBLE);
             tlReadingsG12.setVisibility(View.GONE);
+        }
+        
+        if (getBillType() == BillType.PGE) {
+            etCurrentReading.setHint(R.string.reading_hint_kWh);
+            etPreviousReading.setHint(R.string.reading_hint_kWh);
+        } else {
+            etCurrentReading.setHint(R.string.reading_hint_m3);
+            etPreviousReading.setHint(R.string.reading_hint_m3);
         }
     }
 
@@ -166,11 +175,11 @@ public class MainActivity extends Activity {
     }
 
     @OnClick(R.id.button_bill_type_switch)
-    public void changeBillType() {
+    public void switchBillType() {
         if (getBillType() == BillType.PGE) {
-            setBillType(BillType.PGNIG);
+            changeBillType(BillType.PGNIG);
         } else {
-            setBillType(BillType.PGE);
+            changeBillType(BillType.PGE);
         }
         chooseReadings();
     }
@@ -179,7 +188,7 @@ public class MainActivity extends Activity {
         return (BillType) bBillType.getTag(IMAGE_TYPE_KEY);
     }
 
-    private void setBillType(BillType type) {
+    private void changeBillType(BillType type) {
         bBillType.setBackgroundResource(type.drawableId);
         bBillType.setTag(IMAGE_TYPE_KEY, type);
         YoYo.with(Techniques.BounceIn)

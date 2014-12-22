@@ -45,7 +45,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         sut = getActivity();
     }
 
-    public void testCheckPricesDialogShowUpOnce() {
+    public void testCheckPricesDialogShowUpOnce() throws InterruptedException {
         //clear preferences to simulate first access
         clearPreferences();
         //first access
@@ -54,6 +54,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         assertTrue(getFirstLaunchPreferenceValue().isEmpty());
 
         getInstrumentation().waitForIdleSync();
+        Thread.sleep(1000L);//need to make sure the fragment dialog show up
         //check dialog show up
         final DialogFragment checkPricesDialog =
                 (DialogFragment) sut.getFragmentManager().findFragmentByTag(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH);
@@ -111,10 +112,10 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         final String dateToValue = "31/12/2014";
 
         final Bundle bundle = new Bundle();
-        //change state
         runTestOnUiThread(new Runnable() {
             @Override
             public void run() {
+                //change state
                 findSwitchBillTypeButtonView().setTag(MainActivity.IMAGE_TYPE_KEY, billTypeValue);
                 findReadingFromView().setText(readingFromValue);
                 findReadingToView().setText(readingToValue);
@@ -140,8 +141,70 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         assertEquals(dateFromValue, findDateFromView().getText());
         assertEquals(dateToValue, findDateToView().getText());
     }
+    
+    public void testScreenOrientationChangeDoesNotChangeReadingsLayout() throws Throwable {
+        changeToG12Tariff();
 
-    @UiThreadTest
+        final Bundle bundle = new Bundle();
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                //change state
+                findSwitchBillTypeButtonView().performClick();
+                //save state
+                getInstrumentation().callActivityOnSaveInstanceState(sut, bundle);
+            }
+        });
+
+        restartActivity();
+        //restore state
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                getInstrumentation().callActivityOnRestoreInstanceState(sut, bundle);
+            }
+        });
+
+        assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY));
+        assertEquals(View.VISIBLE, findReadingsG11View().getVisibility());
+        assertEquals(View.GONE, findReadingsG12View().getVisibility());
+    }
+
+    public void testReadingHintsShowAccordingToBillType() throws Throwable {
+        final Bundle bundle = new Bundle();
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                findSwitchBillTypeButtonView().performClick();
+                assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY));
+                assertEquals(sut.getString(R.string.reading_hint_m3), findReadingFromView().getHint());
+                assertEquals(sut.getString(R.string.reading_hint_m3), findReadingToView().getHint());
+
+                //save state
+                getInstrumentation().callActivityOnSaveInstanceState(sut, bundle);
+            }
+        });
+
+        restartActivity();
+        // restore state
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                getInstrumentation().callActivityOnRestoreInstanceState(sut, bundle);
+
+                assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY));
+                assertEquals(sut.getString(R.string.reading_hint_m3), findReadingFromView().getHint());
+                assertEquals(sut.getString(R.string.reading_hint_m3), findReadingToView().getHint());
+                
+                findSwitchBillTypeButtonView().performClick();
+                assertEquals(BillType.PGE, findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY));
+                assertEquals(sut.getString(R.string.reading_hint_kWh), findReadingFromView().getHint());
+                assertEquals(sut.getString(R.string.reading_hint_kWh), findReadingToView().getHint());
+            }
+        });
+    }
+
+        @UiThreadTest
     public void testReadingValidationOnCalculate() {
         final String readingLess = "234";
         final String readingMore = "345";
@@ -345,11 +408,11 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     }
 
     private LinearLayout findReadingsG11View() {
-        return (LinearLayout) sut.findViewById(R.id.linearLayout_reading_from_to);
+        return (LinearLayout) sut.findViewById(R.id.linearLayout_readings);
     }
 
     private TableLayout findReadingsG12View() {
-        return (TableLayout) sut.findViewById(R.id.tableLayout_readings);
+        return (TableLayout) sut.findViewById(R.id.tableLayout_G12_readings);
     }
 
     private ImageButton findSwitchBillTypeButtonView() {
