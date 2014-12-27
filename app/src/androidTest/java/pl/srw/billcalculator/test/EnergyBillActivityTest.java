@@ -126,9 +126,9 @@ public class EnergyBillActivityTest extends ActivityInstrumentationTestCase2<Ene
         setActivityIntent(intent);
 
         sut = getActivity();
-        checkNaleznoscInRow(R.string.preferences_za_energie_czynna, ilosc, R.id.row_za_energie_czynna);
-        checkNaleznoscInRow(R.string.preferences_skladnik_jakosciowy, ilosc, R.id.row_skladnik_jakosciowy);
-        checkNaleznoscInRow(R.string.preferences_oplata_sieciowa, ilosc, R.id.row_oplata_sieciowa);
+        checkNaleznoscInRow(R.string.preferences_pge_za_energie_czynna, ilosc, R.id.row_za_energie_czynna);
+        checkNaleznoscInRow(R.string.preferences_pge_skladnik_jakosciowy, ilosc, R.id.row_skladnik_jakosciowy);
+        checkNaleznoscInRow(R.string.preferences_pge_oplata_sieciowa, ilosc, R.id.row_oplata_sieciowa);
     }
 
     public void testSumCostForG11Readings() {
@@ -160,14 +160,14 @@ public class EnergyBillActivityTest extends ActivityInstrumentationTestCase2<Ene
         setActivityIntent(intent);
 
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(context.getString(R.string.preferences_za_energie_czynna_G12dzien), "1.01");
-        editor.putString(context.getString(R.string.preferences_za_energie_czynna_G12noc), "2.02");
-        editor.putString(context.getString(R.string.preferences_skladnik_jakosciowy), "3.03");
-        editor.putString(context.getString(R.string.preferences_oplata_sieciowa_G12dzien), "4.04");
-        editor.putString(context.getString(R.string.preferences_oplata_sieciowa_G12noc), "5.05");
-        editor.putString(context.getString(R.string.preferences_oplata_przejsciowa), "6.06");
-        editor.putString(context.getString(R.string.preferences_oplata_stala_za_przesyl), "7.07");
-        editor.putString(context.getString(R.string.preferences_oplata_abonamentowa), "8.08");
+        editor.putString(context.getString(R.string.preferences_pge_za_energie_czynna_G12dzien), "1.01");
+        editor.putString(context.getString(R.string.preferences_pge_za_energie_czynna_G12noc), "2.02");
+        editor.putString(context.getString(R.string.preferences_pge_skladnik_jakosciowy), "3.03");
+        editor.putString(context.getString(R.string.preferences_pge_oplata_sieciowa_G12dzien), "4.04");
+        editor.putString(context.getString(R.string.preferences_pge_oplata_sieciowa_G12noc), "5.05");
+        editor.putString(context.getString(R.string.preferences_pge_oplata_przejsciowa), "6.06");
+        editor.putString(context.getString(R.string.preferences_pge_oplata_stala_za_przesyl), "7.07");
+        editor.putString(context.getString(R.string.preferences_pge_oplata_abonamentowa), "8.08");
         editor.commit();
 
         sut = getActivity();
@@ -210,12 +210,12 @@ public class EnergyBillActivityTest extends ActivityInstrumentationTestCase2<Ene
 
     private BigDecimal countSum(int ilosc) {
         BigDecimal sum = BigDecimal.ZERO.setScale(2, BigDecimal.ROUND_HALF_UP);
-        return sum.add(countKoszt(getCena(R.string.preferences_za_energie_czynna), ilosc))
-                .add(countKoszt(getCena(R.string.preferences_skladnik_jakosciowy), ilosc))
-                .add(countKoszt(getCena(R.string.preferences_oplata_sieciowa), ilosc))
-                .add(getCena(R.string.preferences_oplata_przejsciowa))
-                .add(getCena(R.string.preferences_oplata_stala_za_przesyl))
-                .add(getCena(R.string.preferences_oplata_abonamentowa));
+        return sum.add(countKoszt(getCena(R.string.preferences_pge_za_energie_czynna), ilosc))
+                .add(countKoszt(getCena(R.string.preferences_pge_skladnik_jakosciowy), ilosc))
+                .add(countKoszt(getCena(R.string.preferences_pge_oplata_sieciowa), ilosc))
+                .add(getCena(R.string.preferences_pge_oplata_przejsciowa))
+                .add(getCena(R.string.preferences_pge_oplata_stala_za_przesyl))
+                .add(getCena(R.string.preferences_pge_oplata_abonamentowa));
     }
 
     private void assEqText(String expected, int tvId) {
@@ -254,16 +254,16 @@ public class EnergyBillActivityTest extends ActivityInstrumentationTestCase2<Ene
 
     private void setDefaultPrices() {
         SharedPreferences.Editor edit = preferences.edit();
-        setPreference(edit, R.string.preferences_za_energie_czynna, R.string.price_za_energie_czynna);
-        setPreference(edit, R.string.preferences_za_energie_czynna_G12dzien, R.string.price_za_energie_czynna_G12dzien);
-        setPreference(edit, R.string.preferences_za_energie_czynna_G12noc, R.string.price_za_energie_czynna_G12noc);
-        setPreference(edit, R.string.preferences_skladnik_jakosciowy, R.string.price_skladnik_jakosciowy);
-        setPreference(edit, R.string.preferences_oplata_sieciowa, R.string.price_oplata_sieciowa);
-        setPreference(edit, R.string.preferences_oplata_sieciowa_G12dzien, R.string.price_oplata_sieciowa_G12dzien);
-        setPreference(edit, R.string.preferences_oplata_sieciowa_G12noc, R.string.price_oplata_sieciowa_G12noc);
-        setPreference(edit, R.string.preferences_oplata_przejsciowa, R.string.price_oplata_przejsciowa);
-        setPreference(edit, R.string.preferences_oplata_stala_za_przesyl, R.string.price_oplata_stala_za_przesyl);
-        setPreference(edit, R.string.preferences_oplata_abonamentowa, R.string.price_oplata_abonamentowa);
+        setPreference(edit, R.string.preferences_pge_za_energie_czynna, R.string.price_za_energie_czynna);
+        setPreference(edit, R.string.preferences_pge_za_energie_czynna_G12dzien, R.string.price_za_energie_czynna_G12dzien);
+        setPreference(edit, R.string.preferences_pge_za_energie_czynna_G12noc, R.string.price_za_energie_czynna_G12noc);
+        setPreference(edit, R.string.preferences_pge_skladnik_jakosciowy, R.string.price_skladnik_jakosciowy);
+        setPreference(edit, R.string.preferences_pge_oplata_sieciowa, R.string.price_oplata_sieciowa);
+        setPreference(edit, R.string.preferences_pge_oplata_sieciowa_G12dzien, R.string.price_oplata_sieciowa_G12dzien);
+        setPreference(edit, R.string.preferences_pge_oplata_sieciowa_G12noc, R.string.price_oplata_sieciowa_G12noc);
+        setPreference(edit, R.string.preferences_pge_oplata_przejsciowa, R.string.price_oplata_przejsciowa);
+        setPreference(edit, R.string.preferences_pge_oplata_stala_za_przesyl, R.string.price_oplata_stala_za_przesyl);
+        setPreference(edit, R.string.preferences_pge_oplata_abonamentowa, R.string.price_oplata_abonamentowa);
         edit.commit();
     }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <!-- Action bar -->
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Change prices</string>
     <string name="action_info">About</string>
 <!-- activity_main -->
     <string name="app_name">Bill Calculator</string>
@@ -40,8 +40,6 @@
     <string name="oplata_sieciowa_G12dzien" translatable="false">opłata sieciowa (strefa dzienna)</string>
     <string name="oplata_sieciowa_G12noc" translatable="false">opłata sieciowa (strefa nocna)</string>
 
-    <string name="taryfaG11_in_preferences" translatable="false">Taryfa Komfortowa (G11)</string>
-    <string name="taryfaG12_in_preferences" translatable="false">Taryfa Elastyczna (G12)</string>
     <string name="taryfaG11_on_bill" translatable="false">Taryfa: G11</string>
     <string name="taryfaG12_on_bill" translatable="false">Taryfa: G12</string>
 
@@ -52,16 +50,26 @@
     <string name="za_okres" translatable="false">Za okres od %1$s do %2$s</string>
 
 <!-- Preferences -->
-    <string name="settings_label">Settings</string>
+    <string name="settings_label">Change prices</string>
     <string name="energy_prices">PGE prices</string>
+    <string name="settings_pge_summary">Tap to see prices for electricity from PGE</string>
     <string name="gas_prices">PGNiG prices</string>
-    <string name="check_prices_info_title">Check the prices for your bill plan</string>
-    <string name="check_price_info_message">Calculated value depends on your individual tariff, amount and time of usage. Verify the prices for calculations.</string>
+    <string name="settings_pgnig_summary">Tap to see prices for gas from PGNiG</string>
+    <string name="check_prices_info_title">Check your prices before calculation</string>
+    <string name="check_price_info_message">Calculated bill cost depends on prices, which differs according to individual tariff, as well as location, amount and time of usage. Enter the prices you get on your utility bill.</string>
     <string name="check_prices_info_ok">Check</string>
     <string name="check_prices_info_cancel">Cancel</string>
+    <string name="tariff" translatable="false">Taryfa</string>
+    <string name="taryfaG11_in_preferences" translatable="false">Taryfa jednostrefowa (G11)</string>
+    <string name="taryfaG12_in_preferences" translatable="false">Taryfa dwustrefowa (G12)</string>
+    <string-array name="pge_tariff_picks">
+        <item>Taryfa jednostrefowa (G11)</item>
+        <item>Taryfa dwustrefowa (G12)</item>
+    </string-array>
     <string name="wsp_konwersji_desc" translatable="false">Współczynnik konwersji wynosi średnie miesięczne ciepło spalania gazu w ostatnim okresie rozliczeniowym,
         podzielony przez wartość 3,6. Ciepło spalania to wartość kaloryczna 1m\u00B3 gazu. Aktualną wartość można znaleźć na stronie <![CDATA[<a href="http://www.psgaz.pl/dlaklienta/18869/21361">PSG sp. z o.o.</a>]]></string>
     <string name="oplata_przejsciowa_desc" translatable="false">Składnik opłaty przejściowej jest zależny od rocznego zużycia kWh:\n - do 500 kWH/rok wynosi 0.18 zł netto\n - od 500 do 1200 kWh/rok wynosi 0.77 zł netto\n - od 1200 kWh/rok wynosi 2.44 zł netto</string>
+    <string name="pge_tariff_desc" translatable="false">Plan taryfowy PGE ustala stawki za zużywanie energii w zależności od pory dnia. Jeśli posiadasz dwa odczyty na liczniku powinieneś wybrać taryfę dwustrefową.</string>
 
 <!-- gas_bill -->
     <string name="gas_label">Gas bill</string>

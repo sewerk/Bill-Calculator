@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.text.Html;
@@ -18,6 +19,9 @@ import java.util.Map;
  */
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
+    public static final String TARIFF_G11 = "G11";
+    public static final String TARIFF_G12 = "G12";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,18 +34,18 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     }
 
     private void changePreferenceVisibilityDependingOnTaryfa() {
-        CheckBoxPreference taryfaPreferece = (CheckBoxPreference) findPreference(getString(R.string.preferences_taryfa_dwustrefowa));
-        if (taryfaPreferece.isChecked()) {
-            findPreference(getString(R.string.preferences_G11)).setEnabled(false);
-            findPreference(getString(R.string.preferences_G12)).setEnabled(true);
+        ListPreference taryfaPreferece = (ListPreference) findPreference(getString(R.string.preferences_pge_tariff));
+        if (taryfaPreferece.getValue().equals(TARIFF_G12)) {
+            findPreference(getString(R.string.preferences_pge_category_G11)).setEnabled(false);
+            findPreference(getString(R.string.preferences_pge_category_G12)).setEnabled(true);
         } else {
-            findPreference(getString(R.string.preferences_G11)).setEnabled(true);
-            findPreference(getString(R.string.preferences_G12)).setEnabled(false);
+            findPreference(getString(R.string.preferences_pge_category_G11)).setEnabled(true);
+            findPreference(getString(R.string.preferences_pge_category_G12)).setEnabled(false);
         }
     }
 
     private void setWspKonwersjiDescription() {
-        EditTextPreference wspKonwersjiPreference = (EditTextPreference) findPreference(getString(R.string.preferences_wsp_konwersji));
+        EditTextPreference wspKonwersjiPreference = (EditTextPreference) findPreference(getString(R.string.preferences_pgnig_wsp_konwersji));
         wspKonwersjiPreference.setDialogMessage(Html.fromHtml(getString(R.string.wsp_konwersji_desc)));
         wspKonwersjiPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
@@ -85,11 +89,15 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         Preference preference = findPreference(key);
         if (preference instanceof EditTextPreference) {
             preference.setSummary(sharedPreferences.getString(key, "0.0"));
+        } else if (preference instanceof ListPreference) {
+            final String value = ((ListPreference) preference).getValue();
+            final int indexOfValue = ((ListPreference) preference).findIndexOfValue(value);
+            preference.setSummary(getResources().getStringArray(R.array.pge_tariff_picks)[indexOfValue]);
         }
     }
 
     private void changeTaryfa(final SharedPreferences sharedPreferences, final String key) {
-        if (key.equals(getString(R.string.preferences_taryfa_dwustrefowa))) {
+        if (key.equals(getString(R.string.preferences_pge_tariff))) {
             changePreferenceVisibilityDependingOnTaryfa();
         }
     }

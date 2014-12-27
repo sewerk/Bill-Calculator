@@ -25,6 +25,7 @@ import pl.srw.billcalculator.EnergyBillActivity;
 import pl.srw.billcalculator.GasBillActivity;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.SettingsFragment;
 
 /**
  * Created by Kamil Seweryn.
@@ -452,14 +453,14 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     private void changeToG11Tariff() {
         final Context context = getInstrumentation().getTargetContext();
         PreferenceManager.getDefaultSharedPreferences(context)
-                .edit().putBoolean(context.getString(R.string.preferences_taryfa_dwustrefowa), false)
+                .edit().putString(context.getString(R.string.preferences_pge_tariff), SettingsFragment.TARIFF_G11)
                 .commit();
     }
 
     private void changeToG12Tariff() {
         final Context context = getInstrumentation().getTargetContext();
         PreferenceManager.getDefaultSharedPreferences(context)
-                .edit().putBoolean(context.getString(R.string.preferences_taryfa_dwustrefowa), true)
+                .edit().putString(context.getString(R.string.preferences_pge_tariff), SettingsFragment.TARIFF_G12)
                 .commit();
     }
 

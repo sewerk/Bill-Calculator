@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -125,7 +124,7 @@ public class MainActivity extends Activity {
     private void chooseReadings() {
         final boolean shouldShowDoubleReadings = getBillType() == BillType.PGE
                 && PreferenceManager.getDefaultSharedPreferences(this)
-                        .getBoolean(getString(R.string.preferences_taryfa_dwustrefowa), false);
+                        .getString(getString(R.string.preferences_pge_tariff), "").equals(SettingsFragment.TARIFF_G12);
         if (shouldShowDoubleReadings) {
             llReadingG11.setVisibility(View.GONE);
             tlReadingsG12.setVisibility(View.VISIBLE);
