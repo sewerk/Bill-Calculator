@@ -5,6 +5,7 @@
     <string name="action_info">About</string>
 <!-- activity_main -->
     <string name="app_name">Bill Calculator</string>
+    <string name="tariff_change"><![CDATA[<a href="prices/pge/tariff">zmień</a>]]></string>
     <string name="previous_reading">Previous reading:</string>
     <string name="current_reading">Current reading:</string>
     <string name="readings">Readings</string>

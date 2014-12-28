@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,6 +53,10 @@ public class MainActivity extends Activity {
     public static final String PREFERENCE_KEY_FIRST_LAUNCH = "first_launch";
 
     @InjectView(R.id.button_bill_type_switch) ImageButton bBillType;
+    @InjectView(R.id.linearLayout_tariff) LinearLayout llTariff;
+    @InjectView(R.id.textView_tariff) TextView tvTariff;
+    @InjectView(R.id.textView_tariff_change) TextView tvTariffChange;
+    
     @InjectView(R.id.linearLayout_readings) LinearLayout llReadingG11;
     @InjectView(R.id.editText_reading_from) EditText etPreviousReading;
     @InjectView(R.id.editText_reading_to) EditText etCurrentReading;
@@ -80,6 +85,7 @@ public class MainActivity extends Activity {
     private void initValues() {
         initDates();
         initBillType();
+        makeLinkOnTariffChange();
     }
 
     private void initDates() {
@@ -98,6 +104,10 @@ public class MainActivity extends Activity {
         changeBillType(BillType.PGE);
     }
 
+    private void makeLinkOnTariffChange() {
+        tvTariffChange.setText(Html.fromHtml(getString(R.string.tariff_change)));
+    }
+
     @Override
     protected void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -109,6 +119,8 @@ public class MainActivity extends Activity {
         super.onRestoreInstanceState(savedInstanceState);
         changeBillType(restoreBillTypeFrom(savedInstanceState));
         chooseReadings();
+        setReadingsHint();
+        showPgeTariffLabel();
     }
 
     private BillType restoreBillTypeFrom(final Bundle state) {
@@ -119,12 +131,12 @@ public class MainActivity extends Activity {
     protected void onStart() {
         super.onStart();
         chooseReadings();
+        setTariffLabel();
     }
 
     private void chooseReadings() {
         final boolean shouldShowDoubleReadings = getBillType() == BillType.PGE
-                && PreferenceManager.getDefaultSharedPreferences(this)
-                        .getString(getString(R.string.preferences_pge_tariff), "").equals(SettingsFragment.TARIFF_G12);
+                && isPgeTariffG12();
         if (shouldShowDoubleReadings) {
             llReadingG11.setVisibility(View.GONE);
             tlReadingsG12.setVisibility(View.VISIBLE);
@@ -132,13 +144,18 @@ public class MainActivity extends Activity {
             llReadingG11.setVisibility(View.VISIBLE);
             tlReadingsG12.setVisibility(View.GONE);
         }
-        
-        if (getBillType() == BillType.PGE) {
-            etCurrentReading.setHint(R.string.reading_hint_kWh);
-            etPreviousReading.setHint(R.string.reading_hint_kWh);
+    }
+
+    private boolean isPgeTariffG12() {
+        return PreferenceManager.getDefaultSharedPreferences(this)
+                .getString(getString(R.string.preferences_pge_tariff), "").equals(SettingsFragment.TARIFF_G12);
+    }
+
+    private void setTariffLabel() {
+        if (isPgeTariffG12()) {
+            tvTariff.setText(R.string.taryfaG12_on_bill);
         } else {
-            etCurrentReading.setHint(R.string.reading_hint_m3);
-            etPreviousReading.setHint(R.string.reading_hint_m3);
+            tvTariff.setText(R.string.taryfaG11_on_bill);
         }
     }
 
@@ -181,6 +198,29 @@ public class MainActivity extends Activity {
             changeBillType(BillType.PGE);
         }
         chooseReadings();
+        setReadingsHint();
+        showPgeTariffLabel();
+    }
+
+    private void setReadingsHint() {
+        if (getBillType() == BillType.PGE) {
+            etCurrentReading.setHint(R.string.reading_hint_kWh);
+            etPreviousReading.setHint(R.string.reading_hint_kWh);
+        } else {
+            etCurrentReading.setHint(R.string.reading_hint_m3);
+            etPreviousReading.setHint(R.string.reading_hint_m3);
+        }
+    }
+
+    private void showPgeTariffLabel() {
+        if (getBillType() == BillType.PGE) {
+            llTariff.setVisibility(View.VISIBLE);
+            YoYo.with(Techniques.BounceIn)
+                    .duration(400)
+                    .playOn(llTariff);
+        } else {
+            llTariff.setVisibility(View.INVISIBLE);
+        }
     }
 
     private BillType getBillType() {
@@ -193,6 +233,12 @@ public class MainActivity extends Activity {
         YoYo.with(Techniques.BounceIn)
                 .duration(400)
                 .playOn(bBillType);
+    }
+    
+    @OnClick(R.id.textView_tariff_change)
+    public void moveToChangeTariff() {
+        //TODO: move to change tariff option
+        startSettings();
     }
 
     @OnClick({R.id.button_date_from, R.id.button_date_to})
