@@ -127,10 +127,10 @@ public class EnergyBillActivity extends Activity {
         TableLayout rozliczenieTable = (TableLayout) findViewById(R.id.table_rozliczenie);
 
         if(isTaryfaDwustrefowa()) {
-            setTV(R.id.textView_taryfa, getString(R.string.taryfaG12_on_bill));
+            setTV(R.id.textView_taryfa, getString(R.string.pge_tariff_G12_on_bill));
             setG12Rows(rozliczenieTable, countDzienneZuzycie(), countNocneZuzycie());
         } else {
-            setTV(R.id.textView_taryfa, getString(R.string.taryfaG11_on_bill));
+            setTV(R.id.textView_taryfa, getString(R.string.pge_tariff_G11_on_bill));
             setG11Rows(rozliczenieTable, countZuzycie());
         }
 

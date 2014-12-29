@@ -153,9 +153,9 @@ public class MainActivity extends Activity {
 
     private void setTariffLabel() {
         if (isPgeTariffG12()) {
-            tvTariff.setText(R.string.taryfaG12_on_bill);
+            tvTariff.setText(R.string.pge_tariff_G12_on_bill);
         } else {
-            tvTariff.setText(R.string.taryfaG11_on_bill);
+            tvTariff.setText(R.string.pge_tariff_G11_on_bill);
         }
     }
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <!-- Action bar -->
-    <string name="action_settings">Change prices</string>
     <string name="action_info">About</string>
+    <string name="action_settings">Settings</string>
 <!-- activity_main -->
     <string name="app_name">Bill Calculator</string>
-    <string name="tariff_change"><![CDATA[<a href="prices/pge/tariff">zmień</a>]]></string>
+    <string name="tariff_change" translatable="false"><![CDATA[<a href="prices/pge/tariff">change</a>]]></string>
     <string name="previous_reading">Previous reading:</string>
     <string name="current_reading">Current reading:</string>
     <string name="readings">Readings</string>
@@ -41,8 +41,8 @@
     <string name="oplata_sieciowa_G12dzien" translatable="false">opłata sieciowa (strefa dzienna)</string>
     <string name="oplata_sieciowa_G12noc" translatable="false">opłata sieciowa (strefa nocna)</string>
 
-    <string name="taryfaG11_on_bill" translatable="false">Taryfa: G11</string>
-    <string name="taryfaG12_on_bill" translatable="false">Taryfa: G12</string>
+    <string name="pge_tariff_G11_on_bill" translatable="false">Taryfa: G11</string>
+    <string name="pge_tariff_G12_on_bill" translatable="false">Taryfa: G12</string>
 
     <string name="kWh" translatable="false">kWh</string>
     <string name="m_c" translatable="false">m-c</string>
@@ -51,7 +51,7 @@
     <string name="za_okres" translatable="false">Za okres od %1$s do %2$s</string>
 
 <!-- Preferences -->
-    <string name="settings_label">Change prices</string>
+    <string name="settings_label">Settings</string>
     <string name="energy_prices">PGE prices</string>
     <string name="settings_pge_summary">Tap to see prices for electricity from PGE</string>
     <string name="gas_prices">PGNiG prices</string>
@@ -60,9 +60,9 @@
     <string name="check_price_info_message">Calculated bill cost depends on prices, which differs according to individual tariff, as well as location, amount and time of usage. Enter the prices you get on your utility bill.</string>
     <string name="check_prices_info_ok">Check</string>
     <string name="check_prices_info_cancel">Cancel</string>
-    <string name="tariff" translatable="false">Taryfa</string>
-    <string name="taryfaG11_in_preferences" translatable="false">Taryfa jednostrefowa (G11)</string>
-    <string name="taryfaG12_in_preferences" translatable="false">Taryfa dwustrefowa (G12)</string>
+    <string name="pge_tariff_in_preferences" translatable="false">TARYFA</string>
+    <string name="pge_tariff_G11_in_preferences" translatable="false">G11</string>
+    <string name="pge_tariff_G12_in_preferences" translatable="false">G12</string>
     <string-array name="pge_tariff_picks">
         <item>Taryfa jednostrefowa (G11)</item>
         <item>Taryfa dwustrefowa (G12)</item>

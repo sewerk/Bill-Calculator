@@ -47,7 +47,7 @@ public class EnergyBillActivityTest extends ActivityInstrumentationTestCase2<Ene
         setActivityIntent(intent);
 
         sut = getActivity();
-        String expected = sut.getString(R.string.taryfaG11_on_bill);
+        String expected = sut.getString(R.string.pge_tariff_G11_on_bill);
         assEqText(expected, R.id.textView_taryfa);
     }
 
@@ -57,7 +57,7 @@ public class EnergyBillActivityTest extends ActivityInstrumentationTestCase2<Ene
         setActivityIntent(intent);
 
         sut = getActivity();
-        String expected = sut.getString(R.string.taryfaG12_on_bill);
+        String expected = sut.getString(R.string.pge_tariff_G12_on_bill);
         assEqText(expected, R.id.textView_taryfa);
     }
 

@@ -10,10 +10,10 @@
 
         <ListPreference
             android:key="@string/preferences_pge_tariff"
-            android:title="@string/tariff"
+            android:title="@string/pge_tariff_in_preferences"
             android:entryValues="@array/preferences_pge_tariff_values"
             android:entries="@array/pge_tariff_picks"
-            android:summary="@string/taryfaG11_in_preferences"
+            android:summary="@string/pge_tariff_G11_in_preferences"
             android:defaultValue="G11" />
 
         <EditTextPreference
@@ -44,7 +44,7 @@
         <!-- G11 ============================================================ -->
         <PreferenceCategory
             android:key="@string/preferences_pge_category_G11"
-            android:title="@string/taryfaG11_in_preferences">
+            android:title="@string/pge_tariff_G11_in_preferences">
 
             <EditTextPreference
                 android:key="@string/preferences_pge_za_energie_czynna"
@@ -62,7 +62,7 @@
         <!-- G12 ============================================================ -->
         <PreferenceCategory
             android:key="@string/preferences_pge_category_G12"
-            android:title="@string/taryfaG12_in_preferences">
+            android:title="@string/pge_tariff_G12_in_preferences">
 
             <EditTextPreference
                 android:key="@string/preferences_pge_za_energie_czynna_G12dzien"

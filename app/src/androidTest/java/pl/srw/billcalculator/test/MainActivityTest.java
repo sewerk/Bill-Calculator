@@ -237,12 +237,12 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     }
 
     public void testG12InfluenceTariffLabel() {
-        assertEquals(sut.getString(R.string.taryfaG11_on_bill), findTariffLabelView().getText().toString());
+        assertEquals(sut.getString(R.string.pge_tariff_G11_on_bill), findTariffLabelView().getText().toString());
 
         changeToG12Tariff();
         restartActivity();
 
-        assertEquals(sut.getString(R.string.taryfaG12_on_bill), findTariffLabelView().getText().toString());
+        assertEquals(sut.getString(R.string.pge_tariff_G12_on_bill), findTariffLabelView().getText().toString());
     }
 
     @UiThreadTest

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <!-- Action bar -->
-    <string name="action_settings">Edycja cen</string>
+    <string name="action_settings">Ustawienia</string>
     <string name="action_info">O programie</string>
 <!-- activity_main -->
     <string name="app_name">Kalkulator rachunków</string>
+    <string name="tariff_change" translatable="false"><![CDATA[<a href="prices/pge/taryfa">zmień</a>]]></string>
     <string name="previous_reading">Wskazanie poprzednie:</string>
     <string name="current_reading">Wskazanie bieżące:</string>
     <string name="readings">Wskazanie</string>
@@ -23,7 +24,7 @@
 <!-- gas_bill -->
     <string name="gas_label">Rachunek za gaz</string>
 <!-- Preferences -->
-    <string name="settings_label">Edycja cen</string>
+    <string name="settings_label">Ustawienia</string>
     <string name="energy_prices">Ceny PGE</string>
     <string name="settings_pge_summary">Kliknij aby zobaczyć ceny za prąd od PGE</string>
     <string name="gas_prices">Ceny PGNiG</string>
