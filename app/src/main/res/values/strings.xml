@@ -5,7 +5,7 @@
     <string name="action_settings">Settings</string>
 <!-- activity_main -->
     <string name="app_name">Bill Calculator</string>
-    <string name="tariff_change" translatable="false"><![CDATA[<a href="prices/pge/tariff">change</a>]]></string>
+    <string name="tariff_change"><![CDATA[<a href="prices/pge/tariff">change</a>]]></string>
     <string name="previous_reading">Previous reading:</string>
     <string name="current_reading">Current reading:</string>
     <string name="readings">Readings</string>
@@ -63,7 +63,7 @@
     <string name="pge_tariff_in_preferences" translatable="false">TARYFA</string>
     <string name="pge_tariff_G11_in_preferences" translatable="false">G11</string>
     <string name="pge_tariff_G12_in_preferences" translatable="false">G12</string>
-    <string-array name="pge_tariff_picks">
+    <string-array name="pge_tariff_picks" translatable="false">
         <item>Taryfa jednostrefowa (G11)</item>
         <item>Taryfa dwustrefowa (G12)</item>
     </string-array>

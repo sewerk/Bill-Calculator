@@ -5,7 +5,7 @@
     <string name="action_info">O programie</string>
 <!-- activity_main -->
     <string name="app_name">Kalkulator rachunków</string>
-    <string name="tariff_change" translatable="false"><![CDATA[<a href="prices/pge/taryfa">zmień</a>]]></string>
+    <string name="tariff_change"><![CDATA[<a href="prices/pge/taryfa">zmień</a>]]></string>
     <string name="previous_reading">Wskazanie poprzednie:</string>
     <string name="current_reading">Wskazanie bieżące:</string>
     <string name="readings">Wskazanie</string>
