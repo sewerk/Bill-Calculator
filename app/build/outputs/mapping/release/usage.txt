@@ -383,6 +383,7 @@ pl.srw.billcalculator.MainActivity:
     public static final java.lang.String SHARED_PREFERENCES_FILE
     public static final java.lang.String PREFERENCE_KEY_FIRST_LAUNCH
 pl.srw.billcalculator.R
+pl.srw.billcalculator.R$array
 pl.srw.billcalculator.R$attr
 pl.srw.billcalculator.R$dimen
 pl.srw.billcalculator.R$drawable
@@ -392,6 +393,9 @@ pl.srw.billcalculator.R$menu
 pl.srw.billcalculator.R$string
 pl.srw.billcalculator.R$style
 pl.srw.billcalculator.R$xml
+pl.srw.billcalculator.SettingsFragment:
+    public static final java.lang.String TARIFF_G11
+    public static final java.lang.String TARIFF_G12
 pl.srw.billcalculator.util.Dates:
     public static final java.lang.String DATE_PATTERN
     11:11:public Dates()
