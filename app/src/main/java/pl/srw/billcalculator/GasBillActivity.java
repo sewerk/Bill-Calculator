@@ -71,23 +71,23 @@ public class GasBillActivity extends Activity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         String oplataAbonamentowaString = sharedPreferences.getString(
-                getString(R.string.preferences_abonamentowa), getString(R.string.price_abonamentowa));
+                getString(R.string.preferences_pgnig_abonamentowa), getString(R.string.price_abonamentowa));
         oplataAbonamentowa = new BigDecimal(oplataAbonamentowaString);
 
         String oplataPaliwoGazoweString = sharedPreferences.getString(
-                getString(R.string.preferences_paliwo_gazowe), getString(R.string.price_paliwo_gazowe));
+                getString(R.string.preferences_pgnig_paliwo_gazowe), getString(R.string.price_paliwo_gazowe));
         paliwoGazowe = new BigDecimal(oplataPaliwoGazoweString);
 
         String dystrybucyjnaStalaString = sharedPreferences.getString(
-                getString(R.string.preferences_dystrybucyjna_stala), getString(R.string.price_dystrybucyjna_stala));
+                getString(R.string.preferences_pgnig_dystrybucyjna_stala), getString(R.string.price_dystrybucyjna_stala));
         dystrybucyjnaStala = new BigDecimal(dystrybucyjnaStalaString);
 
         String dystrybucyjnaZmiennaString = sharedPreferences.getString(
-                getString(R.string.preferences_dystrybucyjna_zmienna), getString(R.string.price_dystrybucyjna_zmienna));
+                getString(R.string.preferences_pgnig_dystrybucyjna_zmienna), getString(R.string.price_dystrybucyjna_zmienna));
         dystrybucyjnaZmienna = new BigDecimal(dystrybucyjnaZmiennaString);
 
         String wspKonwersjiString = sharedPreferences.getString(
-                getString(R.string.preferences_wsp_konwersji), getString(R.string.price_wsp_konwersji));
+                getString(R.string.preferences_pgnig_wsp_konwersji), getString(R.string.price_wsp_konwersji));
         wspKonwersji = new BigDecimal(wspKonwersjiString);
     }
 

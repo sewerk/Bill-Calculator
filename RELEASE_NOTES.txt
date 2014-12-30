@@ -1,3 +1,10 @@
+v.1.2.3
+ - tariff label on main activity
+ - fix sw600 margin
+ - tariff pick on select list
+v.1.2.2
+ - reading hints
+ - bug fix: reading layout on restore state
 v.1.2.1
  - adding G12 tariff for PGE provider
  - improve main layout for tablet

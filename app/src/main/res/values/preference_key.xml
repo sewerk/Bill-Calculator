@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ENERGY -->
+    <string name="preferences_pge_category_G11" translatable="false">category_G11</string>
+    <string name="preferences_pge_category_G12" translatable="false">category_G12</string>
+    <string name="preferences_pge_tariff" translatable="false">pge_tariff</string>
+    <array name="preferences_pge_tariff_values">
+    <!-- TODO: check later if this can be changed -->
+        <item>G11</item>
+        <item>G12</item>
+    </array>
+
+    <string name="preferences_pge_za_energie_czynna" translatable="false">cena_za_energie_czynna</string>
+    <string name="preferences_pge_za_energie_czynna_G12dzien" translatable="false">cena_za_energie_czynna_G12dzien</string>
+    <string name="preferences_pge_za_energie_czynna_G12noc" translatable="false">cena_za_energie_czynna_G12noc</string>
+    <string name="preferences_pge_oplata_sieciowa" translatable="false">cena_oplata_sieciowa</string>
+    <string name="preferences_pge_oplata_sieciowa_G12dzien" translatable="false">cena_oplata_sieciowa_G12dzien</string>
+    <string name="preferences_pge_oplata_sieciowa_G12noc" translatable="false">cena_oplata_sieciowa_G12noc</string>
+    <string name="preferences_pge_skladnik_jakosciowy" translatable="false">cena_skladnik_jakosciowy</string>
+    <!-- [mc] -->
+    <string name="preferences_pge_oplata_przejsciowa" translatable="false">cena_oplata_przejsciowa</string>
+    <string name="preferences_pge_oplata_stala_za_przesyl" translatable="false">cena_oplata_stala_za_przesyl</string>
+    <string name="preferences_pge_oplata_abonamentowa" translatable="false">cena_oplata_abonamentowa</string>
+
+    <!-- GAS -->
+    <string name="preferences_pgnig_abonamentowa" translatable="false">abonamentowa</string>
+    <string name="preferences_pgnig_paliwo_gazowe" translatable="false">paliwo_gazowe</string>
+    <string name="preferences_pgnig_dystrybucyjna_stala" translatable="false">dystrybucyjna_stala</string>
+    <string name="preferences_pgnig_dystrybucyjna_zmienna" translatable="false">dystrybucyjna_zmienna</string>
+    <string name="preferences_pgnig_wsp_konwersji" translatable="false">wsp_konwersji</string>
+
+</resources>

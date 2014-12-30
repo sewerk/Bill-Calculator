@@ -90,28 +90,28 @@ public class EnergyBillActivity extends Activity {
 
         if (isTaryfaDwustrefowa()) {
             cenaZaEnergieCzynnaDzien = getPriceFrom(sharedPreferences,
-                    R.string.preferences_za_energie_czynna_G12dzien, R.string.price_za_energie_czynna_G12dzien);
+                    R.string.preferences_pge_za_energie_czynna_G12dzien, R.string.price_za_energie_czynna_G12dzien);
             cenaZaEnergieCzynnaNoc = getPriceFrom(sharedPreferences,
-                    R.string.preferences_za_energie_czynna_G12noc, R.string.price_za_energie_czynna_G12noc);
+                    R.string.preferences_pge_za_energie_czynna_G12noc, R.string.price_za_energie_czynna_G12noc);
             cenaOplataSieciowaDzien = getPriceFrom(sharedPreferences,
-                    R.string.preferences_oplata_sieciowa_G12dzien, R.string.price_oplata_sieciowa_G12dzien);
+                    R.string.preferences_pge_oplata_sieciowa_G12dzien, R.string.price_oplata_sieciowa_G12dzien);
             cenaOplataSieciowaNoc = getPriceFrom(sharedPreferences,
-                    R.string.preferences_oplata_sieciowa_G12noc, R.string.price_oplata_sieciowa_G12noc);
+                    R.string.preferences_pge_oplata_sieciowa_G12noc, R.string.price_oplata_sieciowa_G12noc);
         } else {
             cenaZaEnergieCzynna = getPriceFrom(sharedPreferences,
-                    R.string.preferences_za_energie_czynna, R.string.price_za_energie_czynna);
+                    R.string.preferences_pge_za_energie_czynna, R.string.price_za_energie_czynna);
             cenaOplataSieciowa = getPriceFrom(sharedPreferences,
-                    R.string.preferences_oplata_sieciowa, R.string.price_oplata_sieciowa);
+                    R.string.preferences_pge_oplata_sieciowa, R.string.price_oplata_sieciowa);
         }
         cenaSkladnikJakosciowy = getPriceFrom(sharedPreferences,
-                R.string.preferences_skladnik_jakosciowy, R.string.price_skladnik_jakosciowy);
+                R.string.preferences_pge_skladnik_jakosciowy, R.string.price_skladnik_jakosciowy);
 
         cenaOplataPrzejsciowa = getPriceFrom(sharedPreferences,
-                R.string.preferences_oplata_przejsciowa, R.string.price_oplata_przejsciowa);
+                R.string.preferences_pge_oplata_przejsciowa, R.string.price_oplata_przejsciowa);
         cenaOplStalaZaPrzesyl = getPriceFrom(sharedPreferences,
-                R.string.preferences_oplata_stala_za_przesyl, R.string.price_oplata_stala_za_przesyl);
+                R.string.preferences_pge_oplata_stala_za_przesyl, R.string.price_oplata_stala_za_przesyl);
         cenaOplataAbonamentowa = getPriceFrom(sharedPreferences,
-                R.string.preferences_oplata_abonamentowa, R.string.price_oplata_abonamentowa);
+                R.string.preferences_pge_oplata_abonamentowa, R.string.price_oplata_abonamentowa);
     }
 
     private BigDecimal getPriceFrom(SharedPreferences sharedPreferences, int preferenceKey, int defaultValueKey) {
@@ -127,10 +127,10 @@ public class EnergyBillActivity extends Activity {
         TableLayout rozliczenieTable = (TableLayout) findViewById(R.id.table_rozliczenie);
 
         if(isTaryfaDwustrefowa()) {
-            setTV(R.id.textView_taryfa, getString(R.string.taryfaG12_on_bill));
+            setTV(R.id.textView_taryfa, getString(R.string.pge_tariff_G12_on_bill));
             setG12Rows(rozliczenieTable, countDzienneZuzycie(), countNocneZuzycie());
         } else {
-            setTV(R.id.textView_taryfa, getString(R.string.taryfaG11_on_bill));
+            setTV(R.id.textView_taryfa, getString(R.string.pge_tariff_G11_on_bill));
             setG11Rows(rozliczenieTable, countZuzycie());
         }
 

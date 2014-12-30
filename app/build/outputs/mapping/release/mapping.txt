@@ -930,58 +930,67 @@ pl.srw.billcalculator.GasBillActivity -> pl.srw.billcalculator.GasBillActivity:
     void setTV(android.widget.TextView,java.lang.String) -> a
 pl.srw.billcalculator.MainActivity -> pl.srw.billcalculator.MainActivity:
     android.widget.ImageButton bBillType -> a
-    android.widget.LinearLayout llReadingG11 -> b
-    android.widget.EditText etPreviousReading -> c
-    android.widget.EditText etCurrentReading -> d
-    android.widget.TableLayout tlReadingsG12 -> e
-    android.widget.EditText etDayPreviousReading -> f
-    android.widget.EditText etDayCurrentReading -> g
-    android.widget.EditText etNightPreviousReading -> h
-    android.widget.EditText etNightCurrentReading -> i
-    android.widget.Button bFromDate -> j
-    android.widget.Button bToDate -> k
-    android.widget.TextView etToDateError -> l
-    pl.srw.billcalculator.CheckPricesDialogFragment checkPricesDialog -> m
+    android.widget.LinearLayout llTariff -> b
+    android.widget.TextView tvTariff -> c
+    android.widget.TextView tvTariffChange -> d
+    android.widget.LinearLayout llReadingG11 -> e
+    android.widget.EditText etPreviousReading -> f
+    android.widget.EditText etCurrentReading -> g
+    android.widget.TableLayout tlReadingsG12 -> h
+    android.widget.EditText etDayPreviousReading -> i
+    android.widget.EditText etDayCurrentReading -> j
+    android.widget.EditText etNightPreviousReading -> k
+    android.widget.EditText etNightCurrentReading -> l
+    android.widget.Button bFromDate -> m
+    android.widget.Button bToDate -> n
+    android.widget.TextView etToDateError -> o
+    pl.srw.billcalculator.CheckPricesDialogFragment checkPricesDialog -> p
     void onCreate(android.os.Bundle) -> onCreate
-    void initValues() -> d
-    void initDates() -> e
-    void initBillType() -> f
+    void initValues() -> e
+    void initDates() -> f
+    void initBillType() -> g
+    void makeLinkOnTariffChange() -> h
     void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
     void onRestoreInstanceState(android.os.Bundle) -> onRestoreInstanceState
     pl.srw.billcalculator.BillType restoreBillTypeFrom(android.os.Bundle) -> a
     void onStart() -> onStart
-    void chooseReadings() -> g
+    void chooseReadings() -> i
+    boolean isPgeTariffG12() -> j
+    void setTariffLabel() -> k
     void onResume() -> onResume
-    boolean isFirstLaunch() -> h
-    void showCheckPricesDialog() -> i
+    boolean isFirstLaunch() -> l
+    void showCheckPricesDialog() -> m
     void onPause() -> onPause
     void switchBillType() -> a
-    pl.srw.billcalculator.BillType getBillType() -> j
+    void setReadingsHint() -> n
+    void showPgeTariffLabel() -> o
+    pl.srw.billcalculator.BillType getBillType() -> p
     void changeBillType(pl.srw.billcalculator.BillType) -> a
+    void moveToChangeTariff() -> b
     void showDatePicker(android.widget.Button) -> a
     android.app.DatePickerDialog$OnDateSetListener onDatePickedListener(android.widget.Button) -> b
     java.util.Date readDateFrom(android.widget.Button) -> c
-    void calculate() -> b
-    boolean validateForm() -> k
-    boolean valideteReadings() -> l
-    boolean isSingleReadingsVisible() -> m
-    boolean validateReadingsG11() -> n
-    boolean validateReadingsG12() -> o
+    void calculate() -> c
+    boolean validateForm() -> q
+    boolean valideteReadings() -> r
+    boolean isSingleReadingsVisible() -> s
+    boolean validateReadingsG11() -> t
+    boolean validateReadingsG12() -> u
     boolean validateMissingValue(android.widget.EditText) -> a
     boolean validateValueOrder(android.widget.EditText,android.widget.EditText) -> a
     void showError(android.widget.EditText,int) -> a
-    boolean validateDates() -> p
+    boolean validateDates() -> v
     void shake(android.view.View) -> a
     void showKeyboard(android.widget.TextView) -> a
-    android.content.Intent newBillIntent() -> q
+    android.content.Intent newBillIntent() -> w
     void fillParameters(android.content.Intent) -> a
     void putStringExtra(android.content.Intent,java.lang.String,android.widget.TextView) -> a
     void putIntExtra(android.content.Intent,java.lang.String,android.widget.TextView) -> b
     boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
     boolean onMenuItemSelected(int,android.view.MenuItem) -> onMenuItemSelected
     void finish() -> finish
-    void startAbout() -> r
-    void startSettings() -> c
+    void startAbout() -> x
+    void startSettings() -> d
 pl.srw.billcalculator.MainActivity$$ViewInjector -> pl.srw.billcalculator.MainActivity$$ViewInjector:
     void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.MainActivity,java.lang.Object) -> inject
     void reset(pl.srw.billcalculator.MainActivity) -> reset
@@ -995,6 +1004,9 @@ pl.srw.billcalculator.MainActivity$$ViewInjector$3 -> pl.srw.billcalculator.Main
     pl.srw.billcalculator.MainActivity val$target -> a
     void onClick(android.view.View) -> onClick
 pl.srw.billcalculator.MainActivity$$ViewInjector$4 -> pl.srw.billcalculator.MainActivity$$ViewInjector$4:
+    pl.srw.billcalculator.MainActivity val$target -> a
+    void onClick(android.view.View) -> onClick
+pl.srw.billcalculator.MainActivity$$ViewInjector$5 -> pl.srw.billcalculator.MainActivity$$ViewInjector$5:
     pl.srw.billcalculator.MainActivity val$target -> a
     void onClick(android.view.View) -> onClick
 pl.srw.billcalculator.MainActivity$1 -> pl.srw.billcalculator.MainActivity$1:

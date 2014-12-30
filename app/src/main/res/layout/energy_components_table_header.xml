@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_span="3"
-            android:text="@string/taryfaG11_on_bill" />
+            android:text="@string/pge_tariff_G11_on_bill" />
 
         <TextView
             android:layout_width="wrap_content"

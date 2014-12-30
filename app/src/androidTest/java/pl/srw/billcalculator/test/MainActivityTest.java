@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
+import android.widget.TextView;
 
 import java.util.Date;
 
@@ -25,6 +26,7 @@ import pl.srw.billcalculator.EnergyBillActivity;
 import pl.srw.billcalculator.GasBillActivity;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.SettingsFragment;
 
 /**
  * Created by Kamil Seweryn.
@@ -91,7 +93,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         assertEquals(View.GONE, findReadingsG11View().getVisibility());
         assertEquals(View.VISIBLE, findReadingsG12View().getVisibility());
     }
-
+    
     @UiThreadTest
     public void testBillTypeSwitchOnClick() {
         ImageButton switchBtn = findSwitchBillTypeButtonView();
@@ -141,7 +143,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         assertEquals(dateFromValue, findDateFromView().getText());
         assertEquals(dateToValue, findDateToView().getText());
     }
-    
+
     public void testScreenOrientationChangeDoesNotChangeReadingsLayout() throws Throwable {
         changeToG12Tariff();
 
@@ -195,7 +197,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
                 assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY));
                 assertEquals(sut.getString(R.string.reading_hint_m3), findReadingFromView().getHint());
                 assertEquals(sut.getString(R.string.reading_hint_m3), findReadingToView().getHint());
-                
+
                 findSwitchBillTypeButtonView().performClick();
                 assertEquals(BillType.PGE, findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY));
                 assertEquals(sut.getString(R.string.reading_hint_kWh), findReadingFromView().getHint());
@@ -204,7 +206,46 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         });
     }
 
-        @UiThreadTest
+    public void testTariffLabelShowUpForPGE() throws Throwable {
+        final Bundle bundle = new Bundle();
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                findSwitchBillTypeButtonView().performClick();
+                assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY));
+                assertEquals(View.INVISIBLE, findTariffView().getVisibility());
+
+                //save state
+                getInstrumentation().callActivityOnSaveInstanceState(sut, bundle);
+            }
+        });
+
+        restartActivity();
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                // restore state
+                getInstrumentation().callActivityOnRestoreInstanceState(sut, bundle);
+                assertEquals(View.INVISIBLE, findTariffView().getVisibility());
+
+                findSwitchBillTypeButtonView().performClick();
+                assertEquals(BillType.PGE, findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY));
+                assertEquals(View.VISIBLE, findTariffView().getVisibility());
+            }
+        });
+
+    }
+
+    public void testG12InfluenceTariffLabel() {
+        assertEquals(sut.getString(R.string.pge_tariff_G11_on_bill), findTariffLabelView().getText().toString());
+
+        changeToG12Tariff();
+        restartActivity();
+
+        assertEquals(sut.getString(R.string.pge_tariff_G12_on_bill), findTariffLabelView().getText().toString());
+    }
+
+    @UiThreadTest
     public void testReadingValidationOnCalculate() {
         final String readingLess = "234";
         final String readingMore = "345";
@@ -414,7 +455,15 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     private TableLayout findReadingsG12View() {
         return (TableLayout) sut.findViewById(R.id.tableLayout_G12_readings);
     }
+    
+    private LinearLayout findTariffView() {
+        return (LinearLayout) sut.findViewById(R.id.linearLayout_tariff);
+    }
 
+    private TextView findTariffLabelView() {
+        return (TextView) sut.findViewById(R.id.textView_tariff);
+    }
+    
     private ImageButton findSwitchBillTypeButtonView() {
         return (ImageButton) sut.findViewById(R.id.button_bill_type_switch);
     }
@@ -452,14 +501,14 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     private void changeToG11Tariff() {
         final Context context = getInstrumentation().getTargetContext();
         PreferenceManager.getDefaultSharedPreferences(context)
-                .edit().putBoolean(context.getString(R.string.preferences_taryfa_dwustrefowa), false)
+                .edit().putString(context.getString(R.string.preferences_pge_tariff), SettingsFragment.TARIFF_G11)
                 .commit();
     }
 
     private void changeToG12Tariff() {
         final Context context = getInstrumentation().getTargetContext();
         PreferenceManager.getDefaultSharedPreferences(context)
-                .edit().putBoolean(context.getString(R.string.preferences_taryfa_dwustrefowa), true)
+                .edit().putString(context.getString(R.string.preferences_pge_tariff), SettingsFragment.TARIFF_G12)
                 .commit();
     }
 
