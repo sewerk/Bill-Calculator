@@ -20,7 +20,7 @@ import butterknife.OnClick;
  */
 public class AboutActivity extends Activity {
 
-    public static final String RECEIVER_EMAIL = "sewerk@gmail.com";
+    public static final String RECEIVER_EMAIL = "kalkulator.rachunkow@gmail.com";
 
     @InjectView(R.id.textView_ver) TextView tvVersion;
 
