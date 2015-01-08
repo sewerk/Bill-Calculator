@@ -28,7 +28,7 @@
                 android:text="@string/previous_reading"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <EditText
+            <pl.srw.billcalculator.InstantAutoComplete
                 android:id="@+id/editText_reading_from"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,10 +36,11 @@
                 android:maxLength="9"
                 android:gravity="end"
                 android:hint="@string/reading_hint_kWh"
-                android:inputType="number">
+                android:inputType="number"
+                android:imeOptions="actionNext">
 
                 <requestFocus />
-            </EditText>
+            </pl.srw.billcalculator.InstantAutoComplete>
 
         </LinearLayout>
 

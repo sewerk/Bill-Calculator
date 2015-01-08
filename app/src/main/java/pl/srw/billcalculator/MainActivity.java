@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -58,7 +60,7 @@ public class MainActivity extends Activity {
     @InjectView(R.id.textView_tariff_change) TextView tvTariffChange;
     
     @InjectView(R.id.linearLayout_readings) LinearLayout llReadingG11;
-    @InjectView(R.id.editText_reading_from) EditText etPreviousReading;
+    @InjectView(R.id.editText_reading_from) AutoCompleteTextView etPreviousReading;
     @InjectView(R.id.editText_reading_to) EditText etCurrentReading;
 
     @InjectView(R.id.tableLayout_G12_readings) TableLayout tlReadingsG12;
@@ -86,6 +88,7 @@ public class MainActivity extends Activity {
         initDates();
         initBillType();
         makeLinkOnTariffChange();
+        enableAutoComplete();
     }
 
     private void initDates() {
@@ -106,6 +109,10 @@ public class MainActivity extends Activity {
 
     private void makeLinkOnTariffChange() {
         tvTariffChange.setText(Html.fromHtml(getString(R.string.tariff_change)));
+    }
+
+    private void enableAutoComplete() {
+        etPreviousReading.setAdapter(new PreviousReadingsAdapter(this));
     }
 
     @Override
