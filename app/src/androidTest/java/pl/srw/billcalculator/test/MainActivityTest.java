@@ -356,6 +356,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         assertEquals(readingLess, billActivity.getIntent().getIntExtra(MainActivity.READING_FROM, -1));
         assertEquals(readingMore, billActivity.getIntent().getIntExtra(MainActivity.READING_TO, -1));
         assertEquals(GasBillActivity.class, billActivity.getClass());
+        getInstrumentation().removeMonitor(pgnigBillMonitor);
 
         //change bill type PGE and calculate
         runTestOnUiThread(new Runnable() {
@@ -371,6 +372,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         billActivity = getInstrumentation().waitForMonitorWithTimeout(pgeBillMonitor, 5000L);
         billActivity.finish();
         assertEquals(EnergyBillActivity.class, billActivity.getClass());
+        getInstrumentation().removeMonitor(pgeBillMonitor);
     }
 
     public void testG12ReadingsPutToIntent() throws Throwable {
@@ -405,6 +407,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         assertEquals(nightFrom, billActivity.getIntent().getIntExtra(MainActivity.READING_NIGHT_FROM, -1));
         assertEquals(dayTo, billActivity.getIntent().getIntExtra(MainActivity.READING_DAY_TO, -1));
         assertEquals(nightTo, billActivity.getIntent().getIntExtra(MainActivity.READING_NIGHT_TO, -1));
+        getInstrumentation().removeMonitor(pgeBillMonitor);
     }
 
     // ================================================================ private methods
