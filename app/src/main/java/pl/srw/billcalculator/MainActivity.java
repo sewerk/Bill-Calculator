@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -32,6 +31,10 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import hugo.weaving.DebugLog;
+import pl.srw.billcalculator.component.CheckPricesDialogFragment;
+import pl.srw.billcalculator.component.SettingsFragment;
+import pl.srw.billcalculator.data.PreviousReadingsAdapter;
+import pl.srw.billcalculator.type.BillType;
 import pl.srw.billcalculator.util.Dates;
 
 /**
@@ -407,7 +410,10 @@ public class MainActivity extends Activity {
             startSettings();
             return true;
         } else if (item.getItemId() == R.id.action_about) {
-            startAbout();
+            start(AboutActivity.class);
+            return true;
+        } else if (item.getItemId() == R.id.action_history) {
+            start(HistoryActivity.class);
             return true;
         }
         return super.onMenuItemSelected(featureId, item);
@@ -419,12 +425,12 @@ public class MainActivity extends Activity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.slide_out_right);
     }
 
-    private void startAbout() {
-        startActivity(new Intent(this, AboutActivity.class));
-    }
-
     public void startSettings() {
-        Intent intent = new Intent(this, SettingsActivity.class);
+        start(SettingsActivity.class);
+    }
+    
+    private void start(Class<? extends Activity> activityClass) {
+        Intent intent = new Intent(this, activityClass);
         startActivity(intent);
     }
 

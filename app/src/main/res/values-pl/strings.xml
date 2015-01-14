@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!-- Action bar -->
-    <string name="action_settings">Ustawienia</string>
-    <string name="action_info">O programie</string>
 <!-- activity_main -->
     <string name="app_name">Kalkulator rachunków</string>
     <string name="tariff_change"><![CDATA[<a href="prices/pge/taryfa">zmień</a>]]></string>

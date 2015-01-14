@@ -1,4 +1,4 @@
-package pl.srw.billcalculator;
+package pl.srw.billcalculator.component;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -11,6 +11,8 @@ import android.view.KeyEvent;
 import java.util.Date;
 
 import hugo.weaving.DebugLog;
+import pl.srw.billcalculator.MainActivity;
+import pl.srw.billcalculator.R;
 
 /**
  * Created by Kamil Seweryn

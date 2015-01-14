@@ -1,4 +1,4 @@
-package pl.srw.billcalculator;
+package pl.srw.billcalculator.data;
 
 import android.content.Context;
 import android.text.TextUtils;

@@ -33,6 +33,9 @@
 
         <activity android:name=".AboutActivity"
             android:label="@string/about_label" />
+        
+        <activity android:name=".HistoryActivity"
+            android:label="@string/history_label" />
 
     </application>
 

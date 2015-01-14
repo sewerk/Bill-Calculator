@@ -1,4 +1,4 @@
-package pl.srw.billcalculator;
+package pl.srw.billcalculator.component;
 
 import android.app.Dialog;
 import android.content.SharedPreferences;
@@ -13,6 +13,8 @@ import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
 import java.util.Map;
+
+import pl.srw.billcalculator.R;
 
 /**
  * Created by Kamil Seweryn

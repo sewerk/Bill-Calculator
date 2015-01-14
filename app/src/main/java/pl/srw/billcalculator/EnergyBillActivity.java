@@ -13,6 +13,8 @@ import android.widget.TextView;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import hugo.weaving.DebugLog;
+import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 
@@ -27,7 +29,8 @@ public class EnergyBillActivity extends Activity {
     private BigDecimal sumNaleznoscNetto = BigDecimal.ZERO;
     private BigDecimal naleznoscBrutto;
 
-    private BigDecimal cenaZaEnergieCzynna;//TODO: move to seperate class
+    //TODO: move to seperate class
+    private BigDecimal cenaZaEnergieCzynna;
     private BigDecimal cenaSkladnikJakosciowy;
     private BigDecimal cenaOplataSieciowa;
     private BigDecimal cenaOplataPrzejsciowa;
@@ -61,6 +64,13 @@ public class EnergyBillActivity extends Activity {
         setAkcyza();
         setPodsumowanieTable();
         setDoZaplaty();
+    }
+
+    @DebugLog
+    @Override
+    protected void onResume() {
+        super.onResume();
+        saveBill();
     }
 
     @Override
@@ -253,5 +263,54 @@ public class EnergyBillActivity extends Activity {
 
     private void setDoZaplaty() {
         setTV(R.id.textView_do_zaplaty, getString(R.string.do_zaplaty, Display.toPay(naleznoscBrutto)));
+    }
+
+    private void saveBill() { //TODO: move to separate class
+        new Thread(new Runnable() {
+            @Override
+            @DebugLog
+            public void run() {
+                final PgeBillDao dao = Database.getPgeBillDao();
+
+                PgeBill entry = new PgeBill();
+                putReadings(entry);
+                putDates(entry);
+                putPrices(entry);
+                dao.insert(entry);
+            }
+        }).start();
+    }
+
+    private void putReadings(PgeBill entry) {
+        if (isTaryfaDwustrefowa()) {
+            entry.setReadingDayFrom(readingDayFrom);
+            entry.setReadingDayTo(readingDayTo);
+            entry.setReadingNightFrom(readingNightFrom);
+            entry.setReadingNightTo(readingNightTo);
+        } else {
+            entry.setReadingFrom(readingFrom);
+            entry.setReadingTo(readingTo);
+        }
+    }
+
+    private void putDates(PgeBill entry) {
+        entry.setDateFrom(Dates.parse(dateFrom));
+        entry.setDateTo(Dates.parse(dateTo));
+    }
+
+    private void putPrices(PgeBill entry) {
+        entry.setCenaSkladnikJakosciowy(cenaSkladnikJakosciowy.toString());
+        entry.setCenaOplataPrzejsciowa(cenaOplataPrzejsciowa.toString());
+        entry.setCenaOplStalaZaPrzesyl(cenaOplStalaZaPrzesyl.toString());
+        entry.setCenaOplataAbonamentowa(cenaOplataAbonamentowa.toString());
+        if (isTaryfaDwustrefowa()) {
+            entry.setCenaZaEnergieCzynnaDzien(cenaZaEnergieCzynnaDzien.toString());
+            entry.setCenaZaEnergieCzynnaNoc(cenaZaEnergieCzynnaNoc.toString());
+            entry.setCenaOplataSieciowaDzien(cenaOplataSieciowaDzien.toString());
+            entry.setCenaOplataSieciowaNoc(cenaOplataSieciowaNoc.toString());
+        } else {
+            entry.setCenaZaEnergieCzynna(cenaZaEnergieCzynna.toString());
+            entry.setCenaOplataSieciowa(cenaOplataSieciowa.toString());
+        }
     }
 }

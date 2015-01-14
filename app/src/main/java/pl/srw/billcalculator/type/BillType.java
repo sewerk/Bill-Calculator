@@ -1,4 +1,6 @@
-package pl.srw.billcalculator;
+package pl.srw.billcalculator.type;
+
+import pl.srw.billcalculator.R;
 
 /**
  * Created by Kamil Seweryn.

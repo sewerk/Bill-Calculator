@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!-- Action bar -->
-    <string name="action_info">About</string>
-    <string name="action_settings">Settings</string>
 <!-- activity_main -->
     <string name="app_name">Bill Calculator</string>
     <string name="tariff_change"><![CDATA[<a href="prices/pge/tariff">change</a>]]></string>
@@ -96,5 +93,6 @@
     <string name="emailme"> ...write what you think</string>
     <string name="clause">The names, logos and trade marks are owned by distribution companies. Given calculations are just approximate value of the bill and cannot be used as ground for financial claiming.</string>
     <string name="email_client_missing">I could not find any e-mail client installed</string>
-
+<!-- history -->
+    <string name="history_label">History</string>
 </resources>

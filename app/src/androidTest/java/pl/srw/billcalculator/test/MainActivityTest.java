@@ -21,12 +21,12 @@ import android.widget.TextView;
 
 import java.util.Date;
 
-import pl.srw.billcalculator.BillType;
+import pl.srw.billcalculator.type.BillType;
 import pl.srw.billcalculator.EnergyBillActivity;
 import pl.srw.billcalculator.GasBillActivity;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.SettingsFragment;
+import pl.srw.billcalculator.component.SettingsFragment;
 
 /**
  * Created by Kamil Seweryn.

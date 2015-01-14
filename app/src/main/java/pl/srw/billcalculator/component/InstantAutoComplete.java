@@ -1,4 +1,4 @@
-package pl.srw.billcalculator;
+package pl.srw.billcalculator.component;
 
 import android.content.Context;
 import android.graphics.Rect;

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import pl.srw.billcalculator.component.SettingsFragment;
+
 /**
  * Created by Kamil Seweryn
  */
