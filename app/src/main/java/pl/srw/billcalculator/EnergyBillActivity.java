@@ -27,7 +27,7 @@ public class EnergyBillActivity extends Activity {
     private BigDecimal sumNaleznoscNetto = BigDecimal.ZERO;
     private BigDecimal naleznoscBrutto;
 
-    private BigDecimal cenaZaEnergieCzynna;
+    private BigDecimal cenaZaEnergieCzynna;//TODO: move to seperate class
     private BigDecimal cenaSkladnikJakosciowy;
     private BigDecimal cenaOplataSieciowa;
     private BigDecimal cenaOplataPrzejsciowa;
