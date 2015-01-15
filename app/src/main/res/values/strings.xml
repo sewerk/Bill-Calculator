@@ -5,7 +5,7 @@
     <string name="tariff_change"><![CDATA[<a href="prices/pge/tariff">change</a>]]></string>
     <string name="previous_reading">Previous reading:</string>
     <string name="current_reading">Current reading:</string>
-    <string name="readings">Readings</string>
+    <string name="reading">Reading</string>
     <string name="previous">prevoius:</string>
     <string name="current">current:</string>
     <string name="reading_day_time">day unit:</string>
@@ -95,4 +95,7 @@
     <string name="email_client_missing">I could not find any e-mail client installed</string>
 <!-- history -->
     <string name="history_label">History</string>
+    <string name="readings">Readings: %1$s - %2$s</string>
+    <string name="readingsG12">Readings: day(%1$s - %2$s), night(%3$s - %4$s)</string>
+
 </resources>
