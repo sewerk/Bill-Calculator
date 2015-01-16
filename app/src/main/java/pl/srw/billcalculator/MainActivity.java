@@ -34,6 +34,7 @@ import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.component.CheckPricesDialogFragment;
 import pl.srw.billcalculator.component.SettingsFragment;
 import pl.srw.billcalculator.data.PreviousReadingsAdapter;
+import pl.srw.billcalculator.persistence.CurrentReadingType;
 import pl.srw.billcalculator.type.BillType;
 import pl.srw.billcalculator.util.Dates;
 
@@ -67,15 +68,17 @@ public class MainActivity extends Activity {
     @InjectView(R.id.editText_reading_to) EditText etCurrentReading;
 
     @InjectView(R.id.tableLayout_G12_readings) TableLayout tlReadingsG12;
-    @InjectView(R.id.editText_reading_day_from) EditText etDayPreviousReading;
+    @InjectView(R.id.editText_reading_day_from) AutoCompleteTextView etDayPreviousReading;
     @InjectView(R.id.editText_reading_day_to) EditText etDayCurrentReading;
-    @InjectView(R.id.editText_reading_night_from) EditText etNightPreviousReading;
+    @InjectView(R.id.editText_reading_night_from) AutoCompleteTextView etNightPreviousReading;
     @InjectView(R.id.editText_reading_night_to) EditText etNightCurrentReading;
 
     @InjectView(R.id.button_date_from) Button bFromDate;
     @InjectView(R.id.button_date_to) Button bToDate;
     @InjectView(R.id.editText_date_to_error) TextView etToDateError;
     private CheckPricesDialogFragment checkPricesDialog;
+
+    private boolean historyChanged;
 
     @DebugLog
     @Override
@@ -115,7 +118,10 @@ public class MainActivity extends Activity {
     }
 
     private void enableAutoComplete() {
-        etPreviousReading.setAdapter(new PreviousReadingsAdapter(this));
+        etDayPreviousReading.setAdapter(new PreviousReadingsAdapter(this, CurrentReadingType.PGE_DAY_TO));
+        etNightPreviousReading.setAdapter(new PreviousReadingsAdapter(this, CurrentReadingType.PGE_NIGHT_TO));
+        etPreviousReading.setAdapter(new PreviousReadingsAdapter(this, CurrentReadingType.PGE_TO));
+        historyChanged = true;
     }
 
     @Override
@@ -128,7 +134,7 @@ public class MainActivity extends Activity {
     protected void onRestoreInstanceState(final Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         changeBillType(restoreBillTypeFrom(savedInstanceState));
-        chooseReadings();
+        chooseReadings(isPgeTariffG12());
         setReadingsHint();
         showPgeTariffLabel();
     }
@@ -140,13 +146,20 @@ public class MainActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        chooseReadings();
-        setTariffLabel();
+        boolean isPgeTariffG12 = isPgeTariffG12();
+        chooseReadings(isPgeTariffG12);
+        setTariffLabel(isPgeTariffG12);
+        updateAutoComplete();
     }
 
-    private void chooseReadings() {
-        final boolean shouldShowDoubleReadings = getBillType() == BillType.PGE
-                && isPgeTariffG12();
+    private boolean isPgeTariffG12() {
+        return PreferenceManager.getDefaultSharedPreferences(this)
+                .getString(getString(R.string.preferences_pge_tariff), "").equals(SettingsFragment.TARIFF_G12);
+    }
+
+    private void chooseReadings(final boolean isPgeTariffG12) {
+        final boolean shouldShowDoubleReadings =
+                getBillType() == BillType.PGE && isPgeTariffG12;
         if (shouldShowDoubleReadings) {
             llReadingG11.setVisibility(View.GONE);
             tlReadingsG12.setVisibility(View.VISIBLE);
@@ -156,17 +169,25 @@ public class MainActivity extends Activity {
         }
     }
 
-    private boolean isPgeTariffG12() {
-        return PreferenceManager.getDefaultSharedPreferences(this)
-                .getString(getString(R.string.preferences_pge_tariff), "").equals(SettingsFragment.TARIFF_G12);
-    }
-
-    private void setTariffLabel() {
-        if (isPgeTariffG12()) {
+    private void setTariffLabel(final boolean isPgeTariffG12) {
+        if (isPgeTariffG12) {
             tvTariff.setText(R.string.pge_tariff_G12_on_bill);
         } else {
             tvTariff.setText(R.string.pge_tariff_G11_on_bill);
         }
+    }
+
+    private void updateAutoComplete() {
+        if (historyChanged) {
+            updateAdapterData(etDayPreviousReading);
+            updateAdapterData(etNightPreviousReading);
+            updateAdapterData(etPreviousReading);
+            historyChanged = false;
+        }
+    }
+
+    private void updateAdapterData(final AutoCompleteTextView view) {
+        ((PreviousReadingsAdapter) view.getAdapter()).updateAll();
     }
 
     @DebugLog
@@ -207,7 +228,7 @@ public class MainActivity extends Activity {
         } else {
             changeBillType(BillType.PGE);
         }
-        chooseReadings();
+        chooseReadings(isPgeTariffG12());
         setReadingsHint();
         showPgeTariffLabel();
     }
@@ -240,6 +261,8 @@ public class MainActivity extends Activity {
     private void changeBillType(BillType type) {
         bBillType.setBackgroundResource(type.drawableId);
         bBillType.setTag(IMAGE_TYPE_KEY, type);
+        //TODO set autocomplete type
+        //TODO update autocomplete
         YoYo.with(Techniques.BounceIn)
                 .duration(400)
                 .playOn(bBillType);
@@ -285,6 +308,7 @@ public class MainActivity extends Activity {
         Intent billResult = newBillIntent();
         fillParameters(billResult);
         startActivity(billResult);
+        historyChanged = true;
     }
 
     private boolean validateForm() {

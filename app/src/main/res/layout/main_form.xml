@@ -37,7 +37,7 @@
                 android:gravity="end"
                 android:hint="@string/reading_hint_kWh"
                 android:inputType="number"
-                android:imeOptions="actionNext">
+                android:imeOptions="actionNext" >
 
                 <requestFocus />
             </pl.srw.billcalculator.component.InstantAutoComplete>
@@ -116,7 +116,7 @@
                 android:text="@string/previous"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <EditText
+            <pl.srw.billcalculator.component.InstantAutoComplete
                 android:id="@+id/editText_reading_day_from"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -124,13 +124,14 @@
                 android:maxLength="9"
                 android:gravity="end"
                 android:hint="@string/reading_hint_kWh"
-                android:nextFocusDown="@+id/editText_reading_day_to"
-                android:inputType="number">
+                android:nextFocusForward="@+id/editText_reading_day_to"
+                android:inputType="number"
+                android:imeOptions="actionNext" >
 
                 <requestFocus />
-            </EditText>
+            </pl.srw.billcalculator.component.InstantAutoComplete>
 
-            <EditText
+            <pl.srw.billcalculator.component.InstantAutoComplete
                 android:id="@+id/editText_reading_night_from"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -138,8 +139,9 @@
                 android:maxLength="9"
                 android:gravity="end"
                 android:hint="@string/reading_hint_kWh"
-                android:nextFocusDown="@+id/editText_reading_night_to"
-                android:inputType="number"/>
+                android:nextFocusForward="@+id/editText_reading_night_to"
+                android:inputType="number"
+                android:imeOptions="actionNext"/>
 
         </TableRow>
 

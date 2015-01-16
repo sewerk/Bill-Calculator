@@ -2,45 +2,57 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:background="@drawable/border">
 
     <CheckBox
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:visibility="invisible"/>
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/ll_bill_summary"
+        android:orientation="horizontal"
         android:layout_width="0dp"
-        android:layout_weight="6"
-        android:layout_height="match_parent"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/tv_for_period"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/za_okres"/>
+        android:layout_weight="8"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/bill_type_pge"
+        android:backgroundTint="#ddd">
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="5"
             android:layout_height="wrap_content"
             android:gravity="center">
 
             <TextView
-                android:id="@+id/tv_bill_type"
+                android:id="@+id/tv_for_period"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/energy_label"/>
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="01/01/2014 - 31/12/2015"/>
 
             <TextView
                 android:id="@+id/tv_readings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/readings"/>
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_amount"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="34445 zł"/>
+
     </LinearLayout>
 
     <ImageView

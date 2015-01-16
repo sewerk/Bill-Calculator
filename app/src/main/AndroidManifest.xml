@@ -6,6 +6,8 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
 
+    <!-- TODO permissions -->
+
     <application
         android:name=".BillCalculator"
         android:allowBackup="true"
