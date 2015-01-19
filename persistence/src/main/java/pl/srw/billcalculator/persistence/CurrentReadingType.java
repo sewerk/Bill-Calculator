@@ -1,16 +1,18 @@
 package pl.srw.billcalculator.persistence;
 
-import pl.srw.billcalculator.PgeBillDao;
+import pl.srw.billcalculator.db.dao.PgeBillDao;
+import pl.srw.billcalculator.db.dao.PgeG12BillDao;
+import pl.srw.billcalculator.db.dao.PgnigBillDao;
 
 /**
  * Created by Kamil Seweryn.
  */
 public enum CurrentReadingType {
 
-    PGNIG_TO(PgeBillDao.TABLENAME, PgeBillDao.Properties.ReadingTo.columnName),//TODO to be implemented
+    PGNIG_TO(PgnigBillDao.TABLENAME, PgeBillDao.Properties.ReadingTo.columnName),
     PGE_TO(PgeBillDao.TABLENAME, PgeBillDao.Properties.ReadingTo.columnName),
-    PGE_DAY_TO(PgeBillDao.TABLENAME, PgeBillDao.Properties.ReadingDayTo.columnName),
-    PGE_NIGHT_TO(PgeBillDao.TABLENAME, PgeBillDao.Properties.ReadingNightTo.columnName);
+    PGE_DAY_TO(PgeG12BillDao.TABLENAME, PgeG12BillDao.Properties.ReadingDayTo.columnName),
+    PGE_NIGHT_TO(PgeG12BillDao.TABLENAME, PgeG12BillDao.Properties.ReadingNightTo.columnName);
 
 
     private final String tableName;
