@@ -37,10 +37,7 @@
                 android:gravity="end"
                 android:hint="@string/reading_hint_kWh"
                 android:inputType="number"
-                android:imeOptions="actionNext" >
-
-                <requestFocus />
-            </pl.srw.billcalculator.component.InstantAutoComplete>
+                android:imeOptions="actionNext" />
 
         </LinearLayout>
 
@@ -126,10 +123,7 @@
                 android:hint="@string/reading_hint_kWh"
                 android:nextFocusForward="@+id/editText_reading_day_to"
                 android:inputType="number"
-                android:imeOptions="actionNext" >
-
-                <requestFocus />
-            </pl.srw.billcalculator.component.InstantAutoComplete>
+                android:imeOptions="actionNext" />
 
             <pl.srw.billcalculator.component.InstantAutoComplete
                 android:id="@+id/editText_reading_night_from"
