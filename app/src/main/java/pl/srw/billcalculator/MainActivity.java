@@ -78,7 +78,10 @@ public class MainActivity extends Activity {
     @InjectView(R.id.editText_date_to_error) TextView etToDateError;
     private CheckPricesDialogFragment checkPricesDialog;
 
-    private boolean historyChanged;
+    private PreviousReadingsAdapter dayReadingAdapter;
+    private PreviousReadingsAdapter nightReadingAdapter;
+    private PreviousReadingsAdapter pgeReadingAdapter;
+    private PreviousReadingsAdapter pgnigReadingsAdapter;
 
     @DebugLog
     @Override
@@ -118,10 +121,38 @@ public class MainActivity extends Activity {
     }
 
     private void enableAutoComplete() {
-        etDayPreviousReading.setAdapter(new PreviousReadingsAdapter(this, CurrentReadingType.PGE_DAY_TO));
-        etNightPreviousReading.setAdapter(new PreviousReadingsAdapter(this, CurrentReadingType.PGE_NIGHT_TO));
-        etPreviousReading.setAdapter(new PreviousReadingsAdapter(this, CurrentReadingType.PGE_TO));
-        historyChanged = true;
+        etDayPreviousReading.setAdapter(getPgeDayReadingAdapter());
+        etNightPreviousReading.setAdapter(getPgeNightReadingAdapter());
+        etPreviousReading.setAdapter(getPgeReadingAdapter());
+        getPgnigReadingsAdapter();
+    }
+
+    private PreviousReadingsAdapter getPgnigReadingsAdapter() {
+        if (pgnigReadingsAdapter == null) {
+            pgnigReadingsAdapter = new PreviousReadingsAdapter(this, CurrentReadingType.PGNIG_TO);
+        }
+        return pgnigReadingsAdapter;
+    }
+
+    private PreviousReadingsAdapter getPgeReadingAdapter() {
+        if (pgeReadingAdapter == null) {
+            pgeReadingAdapter = new PreviousReadingsAdapter(this, CurrentReadingType.PGE_TO);
+        }
+        return pgeReadingAdapter;
+    }
+
+    private PreviousReadingsAdapter getPgeNightReadingAdapter() {
+        if (nightReadingAdapter == null) {
+            nightReadingAdapter = new PreviousReadingsAdapter(this, CurrentReadingType.PGE_NIGHT_TO);
+        }
+        return nightReadingAdapter;
+    }
+
+    private PreviousReadingsAdapter getPgeDayReadingAdapter() {
+        if (dayReadingAdapter == null) {
+            dayReadingAdapter = new PreviousReadingsAdapter(this, CurrentReadingType.PGE_DAY_TO);
+        }
+        return dayReadingAdapter;
     }
 
     @Override
@@ -177,17 +208,12 @@ public class MainActivity extends Activity {
         }
     }
 
+    @DebugLog
     private void updateAutoComplete() {
-        if (historyChanged) {
-            updateAdapterData(etDayPreviousReading);
-            updateAdapterData(etNightPreviousReading);
-            updateAdapterData(etPreviousReading);
-            historyChanged = false;
-        }
-    }
-
-    private void updateAdapterData(final AutoCompleteTextView view) {
-        ((PreviousReadingsAdapter) view.getAdapter()).updateAll();
+        dayReadingAdapter.updateAll();
+        nightReadingAdapter.updateAll();
+        pgeReadingAdapter.updateAll();
+        pgnigReadingsAdapter.updateAll();
     }
 
     @DebugLog
@@ -228,17 +254,27 @@ public class MainActivity extends Activity {
         } else {
             changeBillType(BillType.PGE);
         }
-        chooseReadings(isPgeTariffG12());
+        final boolean pgeTariffG12 = isPgeTariffG12();
+        chooseReadings(pgeTariffG12);
         setReadingsHint();
         showPgeTariffLabel();
-        //TODO set autocomplete type
-        //TODO update autocomplete
-        forceRequestFocusOnLayoutChange();
+        changeAutoCompletePreviousReading();
+        forceRequestFocusOnLayoutChange(pgeTariffG12);
     }
 
-    private void forceRequestFocusOnLayoutChange() {
+    private void changeAutoCompletePreviousReading() {
+        PreviousReadingsAdapter adapter;
+        if (getBillType() == BillType.PGE) {
+            adapter = getPgeReadingAdapter();
+        } else {
+            adapter = getPgnigReadingsAdapter();
+        }
+        etPreviousReading.setAdapter(adapter);
+    }
+
+    private void forceRequestFocusOnLayoutChange(final boolean pgeTariffG12) {
         // BUG fix for auto focusing 'dateTo error' edit text on hiding G11 reading
-        if (isPgeTariffG12()) { // if readings layout changes
+        if (pgeTariffG12) { // if readings layout changes
             if (getBillType() == BillType.PGE)
                 etDayPreviousReading.requestFocus();
             else
@@ -319,7 +355,20 @@ public class MainActivity extends Activity {
         Intent billResult = newBillIntent();
         fillParameters(billResult);
         startActivity(billResult);
-        historyChanged = true;
+        markHistoryChanged();
+    }
+
+    private void markHistoryChanged() {
+        if (getBillType() == BillType.PGE && isPgeTariffG12()) {
+            markHistoryChangedFor(etDayPreviousReading);
+            markHistoryChangedFor(etNightPreviousReading);
+        } else {
+            markHistoryChangedFor(etPreviousReading);
+        }
+    }
+
+    private void markHistoryChangedFor(final AutoCompleteTextView et) {
+        ((PreviousReadingsAdapter)et.getAdapter()).notifyInputDataChanged();
     }
 
     private boolean validateForm() {

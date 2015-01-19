@@ -6,7 +6,6 @@ import android.widget.Filter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import hugo.weaving.DebugLog;
@@ -24,6 +23,7 @@ public class PreviousReadingsAdapter extends ArrayAdapter<String> {
     private final Object mLock = new Object();
     private String[] prevReadings;
     private final CurrentReadingType readingType;
+    private boolean needUpdate = true;
 
     @DebugLog
     public PreviousReadingsAdapter(Context context, final CurrentReadingType readingType) {
@@ -50,15 +50,18 @@ public class PreviousReadingsAdapter extends ArrayAdapter<String> {
 
     @DebugLog
     public void updateAll() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                List<Integer> readings = Database.queryCurrentReadings(readingType);
-                synchronized (mLock) {
-                    prevReadings = ToString.toArray(readings);
+        if (needUpdate) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    List<Integer> readings = Database.queryCurrentReadings(readingType);
+                    synchronized (mLock) {
+                        prevReadings = ToString.toArray(readings);
+                    }
                 }
-            }
-        }).start();
+            }).start();
+            needUpdate = false;
+        }
     }
 
     @Override
@@ -111,5 +114,9 @@ public class PreviousReadingsAdapter extends ArrayAdapter<String> {
                 notifyDataSetInvalidated();
             }
         }
+    }
+
+    public void notifyInputDataChanged() {
+        needUpdate = true;
     }
 }
