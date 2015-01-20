@@ -331,6 +331,53 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         assertEquals("345", findReadingToView().getText().toString());
     }
 
+    public void testFocusChangeForG11Readings() throws Throwable {
+        requestFocus(findReadingFromView());
+        sendKeys("1");
+        sendKeys(KeyEvent.KEYCODE_ENTER);
+
+        assertFalse(findReadingFromView().hasFocus());
+        assertTrue(findReadingToView().hasFocus());
+    }
+
+    public void testFocusChangeForG12Readings() throws Throwable {
+        changeToG12Tariff();
+        restartActivity();
+
+        requestFocus(findReadingDayFromView());
+        sendKeys("1");
+        sendKeys(KeyEvent.KEYCODE_ENTER);
+
+        assertTrue(findReadingDayToView().hasFocus());
+        sendKeys("2");
+        sendKeys(KeyEvent.KEYCODE_ENTER);
+
+        assertFalse(findReadingDayToView().hasFocus());
+        assertTrue(findReadingNightFromView().hasFocus());
+        sendKeys("3");
+        sendKeys(KeyEvent.KEYCODE_ENTER);
+
+        assertTrue(findReadingNightToView().hasFocus());
+    }
+
+    public void testFocusChangeOnBillTypeSwitch() throws Throwable {
+        changeToG12Tariff();
+        restartActivity();
+
+        requestFocus(findReadingDayFromView());
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                findSwitchBillTypeButtonView().performClick();
+                assertTrue(findReadingFromView().hasFocus());
+
+                findSwitchBillTypeButtonView().performClick();
+                assertFalse(findReadingFromView().hasFocus());
+                assertTrue(findReadingDayFromView().hasFocus());
+            }
+        });
+    }
+
     public void testBillTypeSwitchChooseNextScreen() throws Throwable {
         final int readingLess = 234;
         final int readingMore = 345;
