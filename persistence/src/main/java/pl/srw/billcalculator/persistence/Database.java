@@ -56,4 +56,11 @@ public class Database {
         return readings;
     }
 
+    public static List<Bill> getHistory() {
+        final LazyList<PgeBill> pgeBills = getSession().getPgeBillDao().queryBuilder()
+                .orderDesc(PgeBillDao.Properties.DateFrom).listLazy();
+//TODO finish
+        return null;
+    }
+
 }

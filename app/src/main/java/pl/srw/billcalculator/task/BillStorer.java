@@ -13,17 +13,23 @@ public abstract class BillStorer implements Runnable {
     @DebugLog
     @Override
     public void run() {
-        final Object prices = getPrices();
-        Database.getSession().insert(prices);
-        setPrices(prices);
+        Database.getSession().runInTx(new Runnable() {
+            @Override
+            public void run() {
 
-        validate();
-        Database.getSession().insert(getEntry());
+                final Object prices = getPrices();
+                Database.getSession().insert(prices);
+                assignPricesToBill(prices);
+
+                validate();
+                Database.getSession().insert(getEntry());
+            }
+        });
     }
 
     protected abstract void validate();
 
-    protected abstract <T> void setPrices(T prices);
+    protected abstract <T> void assignPricesToBill(T prices);
 
     public void putDates(final String dateFrom, final String dateTo) {
         getEntry().setDateFrom(Dates.parse(dateFrom));

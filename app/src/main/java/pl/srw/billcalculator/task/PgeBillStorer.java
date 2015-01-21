@@ -47,7 +47,7 @@ public class PgeBillStorer extends BillStorer {
     }
 
     @Override
-    protected <T> void setPrices(final T prices) {
+    protected <T> void assignPricesToBill(final T prices) {
         entry.setPgePrices((PgePrices) prices);
     }
 }
