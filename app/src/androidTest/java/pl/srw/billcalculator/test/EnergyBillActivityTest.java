@@ -37,7 +37,7 @@ public class EnergyBillActivityTest extends ActivityInstrumentationTestCase2<Ene
         super.setUp();
         context = getInstrumentation().getTargetContext();
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
-
+        setDummyIntent();
         setDefaultPrices();
     }
 
@@ -265,6 +265,15 @@ public class EnergyBillActivityTest extends ActivityInstrumentationTestCase2<Ene
         setPreference(edit, R.string.preferences_pge_oplata_stala_za_przesyl, R.string.price_oplata_stala_za_przesyl);
         setPreference(edit, R.string.preferences_pge_oplata_abonamentowa, R.string.price_oplata_abonamentowa);
         edit.commit();
+    }
+
+    private void setDummyIntent() {
+        Intent intent = new Intent();
+        intent.putExtra(MainActivity.READING_FROM, 1);
+        intent.putExtra(MainActivity.READING_TO, 2);
+        intent.putExtra(MainActivity.DATE_FROM, "01/01/2014");
+        intent.putExtra(MainActivity.DATE_TO, "21/12/2015");
+        setActivityIntent(intent);
     }
 
     private void setPreference(SharedPreferences.Editor edit, int prefKeyId, int defaultPriceId) {

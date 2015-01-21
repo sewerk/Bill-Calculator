@@ -18,6 +18,7 @@ import pl.srw.billcalculator.data.PgePrices;
 import pl.srw.billcalculator.db.PgeBill;
 import pl.srw.billcalculator.db.dao.PgeBillDao;
 import pl.srw.billcalculator.persistence.Database;
+import pl.srw.billcalculator.task.BillStorer;
 import pl.srw.billcalculator.task.PgeBillStorer;
 import pl.srw.billcalculator.task.PgeG12BillStorer;
 import pl.srw.billcalculator.util.Dates;
@@ -235,18 +236,15 @@ public class EnergyBillActivity extends Activity {
     }
 
     private void saveBill() {
-        Runnable task;
+        BillStorer task;
         if (isTaryfaDwustrefowa()) {
-            PgeG12BillStorer storer = new PgeG12BillStorer();
-            storer.putReadings(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo);
-            storer.putDates(dateFrom, dateTo);
-            task = storer;
+            task = new PgeG12BillStorer(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo);
         } else {
-            PgeBillStorer storer = new PgeBillStorer();
-            storer.putReadings(readingFrom, readingTo);
-            storer.putDates(dateFrom, dateTo);
-            task = storer;
+            task = new PgeBillStorer(readingFrom, readingTo);
         }
+        task.putDates(dateFrom, dateTo);
+        task.putAmount(naleznoscBrutto.doubleValue());
+
         new Thread(task).start();
     }
 

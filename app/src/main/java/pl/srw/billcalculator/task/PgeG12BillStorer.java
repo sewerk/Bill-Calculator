@@ -12,58 +12,53 @@ import pl.srw.billcalculator.util.Dates;
 /**
  * Created by Kamil Seweryn.
  */
-public class PgeG12BillStorer implements Runnable {
+public class PgeG12BillStorer extends BillStorer {
 
     private PgeG12Bill entry;
 
-    public PgeG12BillStorer() {
+    public PgeG12BillStorer(final int readingDayFrom, final int readingDayTo,
+                            final int readingNightFrom, final int readingNightTo) {
         entry = new PgeG12Bill();
-    }
-
-    @DebugLog
-    @Override
-    public void run() {
-        putPrices();
-        validate();
-
-        final PgeG12BillDao dao = Database.getPgeG12BillDao();
-        dao.insert(entry);
-    }
-
-    private void validate() {
-        if (entry.getReadingDayTo() <= 0
-                || entry.getReadingNightFrom() <= 0
-                || entry.getDateFrom() == null
-                //|| entry.getPgeG12Prices().getCenaZaEnergieCzynnaDzien().isEmpty() TODO:
-                )
-            throw new IncompleteDateException(PgeG12BillDao.TABLENAME);
-    }
-
-    public void putReadings(final int readingDayFrom, final int readingDayTo, final int readingNightFrom, final int readingNightTo) {
         entry.setReadingDayFrom(readingDayFrom);
         entry.setReadingDayTo(readingDayTo);
         entry.setReadingNightFrom(readingNightFrom);
         entry.setReadingNightTo(readingNightTo);
     }
 
-    public void putDates(final String dateFrom, final String dateTo) {
-        entry.setDateFrom(Dates.parse(dateFrom));
-        entry.setDateTo(Dates.parse(dateTo));
+    @Override
+    public PgeG12Bill getEntry() {
+        return entry;
     }
 
-    private void putPrices() {
-        final PgePrices prices = PgePrices.INSTANCE;
-        PgeG12Prices dbStoringPrices = new PgeG12Prices();
-        dbStoringPrices.setCenaOplataSieciowaDzien(prices.getCenaOplataSieciowaDzien().toString());
-        dbStoringPrices.setCenaOplataSieciowaNoc(prices.getCenaOplataSieciowaNoc().toString());
-        dbStoringPrices.setCenaZaEnergieCzynnaDzien(prices.getCenaZaEnergieCzynnaDzien().toString());
-        dbStoringPrices.setCenaZaEnergieCzynnaNoc(prices.getCenaZaEnergieCzynnaNoc().toString());
+    @Override
+    public PgeG12Prices getPrices() {
+        final PgePrices pgePrices = PgePrices.INSTANCE;
 
-        dbStoringPrices.setCenaSkladnikJakosciowy(prices.getCenaSkladnikJakosciowy().toString());
-        dbStoringPrices.setCenaOplataAbonamentowa(prices.getCenaOplataAbonamentowa().toString());
-        dbStoringPrices.setCenaOplataPrzejsciowa(prices.getCenaOplataPrzejsciowa().toString());
-        dbStoringPrices.setCenaOplStalaZaPrzesyl(prices.getCenaOplStalaZaPrzesyl().toString());
+        PgeG12Prices prices = new PgeG12Prices();
+        prices.setCenaOplataSieciowaDzien(pgePrices.getCenaOplataSieciowaDzien().toString());
+        prices.setCenaOplataSieciowaNoc(pgePrices.getCenaOplataSieciowaNoc().toString());
+        prices.setCenaZaEnergieCzynnaDzien(pgePrices.getCenaZaEnergieCzynnaDzien().toString());
+        prices.setCenaZaEnergieCzynnaNoc(pgePrices.getCenaZaEnergieCzynnaNoc().toString());
 
-        entry.setPgeG12Prices(dbStoringPrices);
+        prices.setCenaSkladnikJakosciowy(pgePrices.getCenaSkladnikJakosciowy().toString());
+        prices.setCenaOplataAbonamentowa(pgePrices.getCenaOplataAbonamentowa().toString());
+        prices.setCenaOplataPrzejsciowa(pgePrices.getCenaOplataPrzejsciowa().toString());
+        prices.setCenaOplStalaZaPrzesyl(pgePrices.getCenaOplStalaZaPrzesyl().toString());
+
+        return prices;
+    }
+
+    @Override
+    protected void validate() {
+        if (entry.getReadingDayTo() == 0
+                || entry.getDateFrom() == null
+                || entry.getAmountToPay() <= 0.0
+                || entry.getPgeG12Prices() == null)
+            throw new IncompleteDateException(PgeG12BillDao.TABLENAME);
+    }
+
+    @Override
+    protected <T> void setPrices(final T prices) {
+        entry.setPgeG12Prices((PgeG12Prices) prices);
     }
 }

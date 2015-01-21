@@ -37,5 +37,8 @@
     <string name="emailme"> ...napisz co myślisz</string>
     <string name="clause">Nazwy własne, logotypy oraz znaki towarowe są własnością firm dystrybucyjnych. Przedstawione wyliczenia są jedynie przybliżoną wartością stanu faktyczenego i nie mają podstawy by stanowić roszczenia finansowego.</string>
     <string name="email_client_missing">Nie wykryto klientów poczty e-mail</string>
-
+    <!-- history -->
+    <string name="history_label">Historia</string>
+    <string name="readings">Wskazanie: %1$s</string>
+    <string name="readingsG12">Wskazania: dzienna(%1$s)\n nocna(%2$s)</string>
 </resources>

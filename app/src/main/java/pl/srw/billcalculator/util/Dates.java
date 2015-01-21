@@ -28,6 +28,11 @@ public class Dates {
         return new SimpleDateFormat(DATE_PATTERN).format(c.getTime());
     }
 
+    public static String format(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_PATTERN);
+        return dateFormat.format(date);
+    }
+
     public static int countMonth(String from, String to) {
         Date fromDate = parse(from);
         Date toDate = parse(to);

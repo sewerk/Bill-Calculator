@@ -7,11 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.greenrobot.dao.query.LazyList;
+import de.greenrobot.dao.query.QueryBuilder;
+import pl.srw.billcalculator.db.Bill;
+import pl.srw.billcalculator.db.PgeBill;
 import pl.srw.billcalculator.db.dao.DaoMaster;
 import pl.srw.billcalculator.db.dao.DaoSession;
 import pl.srw.billcalculator.db.dao.PgeBillDao;
-import pl.srw.billcalculator.db.dao.PgeG12BillDao;
-import pl.srw.billcalculator.db.dao.PgnigBillDao;
 
 /**
  * Created by Kamil Seweryn.
@@ -19,17 +21,16 @@ import pl.srw.billcalculator.db.dao.PgnigBillDao;
 public class Database {
 
     public static final String QUERY_ROW_LIMIT = "100";
-    private static PgeBillDao pgeBillDao;
     private static SQLiteDatabase database;
-    private static PgeG12BillDao pgeG12BillDao;
-    private static PgnigBillDao pgnigBillDao;
+    private static DaoSession daoSession;
 
     public static void initialize(Context context) {
-        final DaoSession daoSession = new DaoMaster(getDatabase(context)).newSession();
+        daoSession = new DaoMaster(getDatabase(context)).newSession();
+    }
 
-        pgeBillDao = daoSession.getPgeBillDao();
-        pgeG12BillDao = daoSession.getPgeG12BillDao();
-        pgnigBillDao = daoSession.getPgnigBillDao();
+    public static void enableDatabaseLogging() {
+        QueryBuilder.LOG_SQL = true;
+        QueryBuilder.LOG_VALUES = true;
     }
 
     private static synchronized SQLiteDatabase getDatabase(Context context) {
@@ -39,16 +40,8 @@ public class Database {
         return database;
     }
 
-    public static PgeBillDao getPgeBillDao() {
-        return pgeBillDao;
-    }
-
-    public static PgeG12BillDao getPgeG12BillDao() {
-        return pgeG12BillDao;
-    }
-
-    public static PgnigBillDao getPgnigBillDao() {
-        return pgnigBillDao;
+    public static DaoSession getSession() {
+        return daoSession;
     }
 
     public static List<Integer> queryCurrentReadings(CurrentReadingType readingType) {

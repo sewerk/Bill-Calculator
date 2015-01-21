@@ -14,6 +14,9 @@ public class BillCalculator extends Application {
         super.onCreate();
         
         Database.initialize(this);
+        if (BuildConfig.DEBUG) {
+            Database.enableDatabaseLogging();
+        }
     }
     
 }
