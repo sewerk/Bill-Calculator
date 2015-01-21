@@ -36,10 +36,7 @@
                 android:maxLength="9"
                 android:gravity="end"
                 android:hint="@string/reading_hint_kWh"
-                android:inputType="number">
-
-                <requestFocus />
-            </EditText>
+                android:inputType="number" />
 
         </LinearLayout>
 
@@ -124,10 +121,7 @@
                 android:gravity="end"
                 android:hint="@string/reading_hint_kWh"
                 android:nextFocusDown="@+id/editText_reading_day_to"
-                android:inputType="number">
-
-                <requestFocus />
-            </EditText>
+                android:inputType="number" />
 
             <EditText
                 android:id="@+id/editText_reading_night_from"

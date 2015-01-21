@@ -200,6 +200,17 @@ public class MainActivity extends Activity {
         chooseReadings();
         setReadingsHint();
         showPgeTariffLabel();
+        forceRequestFocusOnLayoutChange();
+    }
+
+    private void forceRequestFocusOnLayoutChange() {
+        // BUG fix for auto focusing 'dateTo error' edit text on hiding G11 reading
+        if (isPgeTariffG12()) { // if readings layout changes
+            if (getBillType() == BillType.PGE)
+                etDayPreviousReading.requestFocus();
+            else
+                etPreviousReading.requestFocus();
+        }
     }
 
     private void setReadingsHint() {
@@ -227,9 +238,9 @@ public class MainActivity extends Activity {
         return (BillType) bBillType.getTag(IMAGE_TYPE_KEY);
     }
 
-    private void changeBillType(BillType type) {
-        bBillType.setBackgroundResource(type.drawableId);
-        bBillType.setTag(IMAGE_TYPE_KEY, type);
+    private void changeBillType(BillType newType) {
+        bBillType.setBackgroundResource(newType.drawableId);
+        bBillType.setTag(IMAGE_TYPE_KEY, newType);
         YoYo.with(Techniques.BounceIn)
                 .duration(400)
                 .playOn(bBillType);
