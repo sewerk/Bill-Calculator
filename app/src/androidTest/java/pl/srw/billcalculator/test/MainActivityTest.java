@@ -334,7 +334,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     public void testFocusChangeForG11Readings() throws Throwable {
         requestFocus(findReadingFromView());
         sendKeys("1");
-        sendKeys(KeyEvent.KEYCODE_ENTER);
+        runImeActionOn(findReadingFromView());
 
         assertFalse(findReadingFromView().hasFocus());
         assertTrue(findReadingToView().hasFocus());
@@ -346,16 +346,18 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
         requestFocus(findReadingDayFromView());
         sendKeys("1");
-        sendKeys(KeyEvent.KEYCODE_ENTER);
+        runImeActionOn(findReadingDayFromView());
 
         assertTrue(findReadingDayToView().hasFocus());
         sendKeys("2");
-        sendKeys(KeyEvent.KEYCODE_ENTER);
+        //sendKeys(KeyEvent.KEYCODE_ENTER);
+        runImeActionOn(findReadingDayToView());
 
+        getInstrumentation().waitForIdleSync();
         assertFalse(findReadingDayToView().hasFocus());
         assertTrue(findReadingNightFromView().hasFocus());
         sendKeys("3");
-        sendKeys(KeyEvent.KEYCODE_ENTER);
+        runImeActionOn(findReadingNightFromView());
 
         assertTrue(findReadingNightToView().hasFocus());
     }
@@ -526,6 +528,15 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
             }
         });
         getInstrumentation().waitForIdleSync();
+    }
+
+    private void runImeActionOn(final EditText view) throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                view.onEditorAction(5);
+            }
+        });
     }
 
     private void restartActivity() {
