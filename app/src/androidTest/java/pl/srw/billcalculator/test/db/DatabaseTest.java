@@ -2,12 +2,16 @@ package pl.srw.billcalculator.test.db;
 
 import java.util.List;
 
+import de.greenrobot.dao.query.LazyList;
+import de.greenrobot.dao.query.QueryBuilder;
 import de.greenrobot.dao.test.AbstractDaoSessionTest;
 import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.db.PgeBill;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgeG12Prices;
 import pl.srw.billcalculator.db.PgePrices;
+import pl.srw.billcalculator.db.PgnigBill;
+import pl.srw.billcalculator.db.PgnigPrices;
 import pl.srw.billcalculator.db.dao.DaoMaster;
 import pl.srw.billcalculator.db.dao.DaoSession;
 
@@ -18,6 +22,13 @@ public class DatabaseTest extends AbstractDaoSessionTest<BillCalculator, DaoMast
 
     public DatabaseTest() {
         super(DaoMaster.class);
+    }
+
+    @Override
+    protected void setUp() {
+        super.setUp();
+        QueryBuilder.LOG_SQL = true;
+        QueryBuilder.LOG_VALUES = true;
     }
 
     public void testBillSavedWithPrices() {
@@ -48,5 +59,20 @@ public class DatabaseTest extends AbstractDaoSessionTest<BillCalculator, DaoMast
         assertEquals(1, billsFromDb.size());
         assertNotNull(billsFromDb.get(0));
         assertNotNull(billsFromDb.get(0).getPgeG12Prices());
+    }
+
+    public void testBillLazyListRetrievedWithPrices() {
+        final PgnigPrices prices = new PgnigPrices();
+        daoSession.insert(prices);
+
+        final PgnigBill bill = new PgnigBill();
+        bill.setPgnigPrices(prices);
+        daoSession.insert(bill);
+
+        final LazyList<PgnigBill> billsFromDb = daoSession.getPgnigBillDao().queryBuilder().listLazy();
+        assertEquals(1, billsFromDb.size());
+        assertNotNull(billsFromDb.get(0));
+        assertNotNull(billsFromDb.get(0).getPgnigPrices());
+        assertTrue(billsFromDb.isClosed());
     }
 }
