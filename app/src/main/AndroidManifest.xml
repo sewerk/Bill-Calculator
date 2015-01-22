@@ -23,11 +23,11 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".EnergyBillActivity"
+        <activity android:name=".PgeBillActivity"
             android:label="@string/energy_label">
         </activity>
 
-        <activity android:name=".GasBillActivity"
+        <activity android:name=".PgnigBillActivity"
             android:label="@string/gas_label" />
 
         <activity android:name=".SettingsActivity"

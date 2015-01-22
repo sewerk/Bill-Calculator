@@ -22,7 +22,7 @@ import pl.srw.billcalculator.util.Display;
 /**
  * Created by Kamil Seweryn
  */
-public class EnergyBillActivity extends Activity {
+public class PgeBillActivity extends Activity {
 
     public static final int PRICE_SCALE = 4;
     private static final BigDecimal EXCISE = new BigDecimal("0.02");
@@ -42,7 +42,7 @@ public class EnergyBillActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.energy_bill);
+        setContentView(R.layout.pge_bill);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         readExtra(getIntent());

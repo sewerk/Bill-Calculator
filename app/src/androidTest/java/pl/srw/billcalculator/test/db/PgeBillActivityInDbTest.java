@@ -6,8 +6,7 @@ import android.test.RenamingDelegatingContext;
 
 import java.util.List;
 
-import pl.srw.billcalculator.BillCalculator;
-import pl.srw.billcalculator.EnergyBillActivity;
+import pl.srw.billcalculator.PgeBillActivity;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgeG12Prices;
@@ -17,12 +16,12 @@ import pl.srw.billcalculator.util.Dates;
 /**
  * Created by Kamil Seweryn.
  */
-public class PgeBillActivityInDbTest extends ActivityInstrumentationTestCase2<EnergyBillActivity> {
+public class PgeBillActivityInDbTest extends ActivityInstrumentationTestCase2<PgeBillActivity> {
 
-    private EnergyBillActivity sut;
+    private PgeBillActivity sut;
 
     public PgeBillActivityInDbTest() {
-        super(EnergyBillActivity.class);
+        super(PgeBillActivity.class);
     }
 
     @Override

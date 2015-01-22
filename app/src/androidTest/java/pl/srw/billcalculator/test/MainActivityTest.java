@@ -21,9 +21,9 @@ import android.widget.TextView;
 
 import java.util.Date;
 
+import pl.srw.billcalculator.PgeBillActivity;
+import pl.srw.billcalculator.PgnigBillActivity;
 import pl.srw.billcalculator.type.BillType;
-import pl.srw.billcalculator.EnergyBillActivity;
-import pl.srw.billcalculator.GasBillActivity;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.component.SettingsFragment;
@@ -384,8 +384,8 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         final int readingLess = 234;
         final int readingMore = 345;
 
-        Instrumentation.ActivityMonitor pgeBillMonitor = getInstrumentation().addMonitor(EnergyBillActivity.class.getName(), null, false);
-        Instrumentation.ActivityMonitor pgnigBillMonitor = getInstrumentation().addMonitor(GasBillActivity.class.getName(), null, false);
+        Instrumentation.ActivityMonitor pgeBillMonitor = getInstrumentation().addMonitor(PgeBillActivity.class.getName(), null, false);
+        Instrumentation.ActivityMonitor pgnigBillMonitor = getInstrumentation().addMonitor(PgnigBillActivity.class.getName(), null, false);
 
         // input values PGNIG and calculate
         runTestOnUiThread(new Runnable() {
@@ -404,7 +404,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         billActivity.finish();
         assertEquals(readingLess, billActivity.getIntent().getIntExtra(MainActivity.READING_FROM, -1));
         assertEquals(readingMore, billActivity.getIntent().getIntExtra(MainActivity.READING_TO, -1));
-        assertEquals(GasBillActivity.class, billActivity.getClass());
+        assertEquals(PgnigBillActivity.class, billActivity.getClass());
         getInstrumentation().removeMonitor(pgnigBillMonitor);
 
         //change bill type PGE and calculate
@@ -420,7 +420,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         //validate PGE bill show up
         billActivity = getInstrumentation().waitForMonitorWithTimeout(pgeBillMonitor, 5000L);
         billActivity.finish();
-        assertEquals(EnergyBillActivity.class, billActivity.getClass());
+        assertEquals(PgeBillActivity.class, billActivity.getClass());
         getInstrumentation().removeMonitor(pgeBillMonitor);
     }
 
@@ -448,7 +448,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
         //validate PGNIG bill show up
         Instrumentation.ActivityMonitor pgeBillMonitor =
-                getInstrumentation().addMonitor(EnergyBillActivity.class.getName(), null, false);
+                getInstrumentation().addMonitor(PgeBillActivity.class.getName(), null, false);
         Activity billActivity = getInstrumentation().waitForMonitorWithTimeout(pgeBillMonitor, 5000L);
         billActivity.finish();
         

@@ -19,7 +19,7 @@ import pl.srw.billcalculator.util.Display;
 /**
  * Created by Kamil Seweryn
  */
-public class GasBillActivity extends Activity {
+public class PgnigBillActivity extends Activity {
 
     public static final int PRICE_SCALE = 5;
     public static final BigDecimal VAT = new BigDecimal("0.23");
@@ -41,7 +41,7 @@ public class GasBillActivity extends Activity {
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.gas_bill);
+		setContentView(R.layout.pgnig_bill);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();

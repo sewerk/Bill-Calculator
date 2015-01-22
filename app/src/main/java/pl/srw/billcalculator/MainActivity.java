@@ -449,9 +449,9 @@ public class MainActivity extends Activity {
 
     private Intent newBillIntent() {
         if (getBillType() == BillType.PGE) {
-            return new Intent(this, EnergyBillActivity.class);
+            return new Intent(this, PgeBillActivity.class);
         } else {
-            return new Intent(this, GasBillActivity.class);
+            return new Intent(this, PgnigBillActivity.class);
         }
     }
 

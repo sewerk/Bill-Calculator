@@ -5,7 +5,7 @@
     android:scrollbars="none"
     android:padding="2dp"
     android:background="@android:color/white"
-    tools:context=".GasBillActivity">
+    tools:context=".PgnigBillActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/pgnig"
                 android:layout_centerHorizontal="true"
-                android:contentDescription="Gas bill logo"/>
+                android:contentDescription="Provider bill logo"/>
 
             <TextView
                 android:id="@+id/tv_charge_place"
@@ -57,13 +57,13 @@
                 android:layout_marginTop="24dp"/>
 
             <include
-                layout="@layout/gas_reading_table" />
+                layout="@layout/pgnig_reading_table" />
 
             <include
-                layout="@layout/gas_components_table" />
+                layout="@layout/pgnig_components_table" />
 
             <include
-                layout="@layout/gas_sum_table" />
+                layout="@layout/pgnig_sum_table" />
 
             <TextView
                 android:id="@+id/tv_invoice_value"

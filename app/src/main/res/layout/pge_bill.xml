@@ -6,7 +6,7 @@
     android:scrollbars="none"
     android:padding="2dp"
     android:background="@android:color/white"
-    tools:context=".EnergyBillActivity">
+    tools:context=".PgeBillActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/pge"
                 android:layout_alignParentLeft="true"
-                android:contentDescription="Energy bill logo"/>
+                android:contentDescription="Provider bill logo"/>
 
             <TextView
                 android:id="@+id/tv_register_number"
@@ -61,7 +61,7 @@
                 android:text="Moc umowna: 4,0 kW" />
 
             <include
-                layout="@layout/energy_components_table" />
+                layout="@layout/pge_components_table" />
 
             <TextView
                 android:id="@+id/tv_excise"
@@ -73,7 +73,7 @@
                 android:text="@string/akcyza" />
 
             <include
-                layout="@layout/energy_sum_table" />
+                layout="@layout/pge_sum_table" />
 
             <TextView
                 android:id="@+id/tv_to_pay"

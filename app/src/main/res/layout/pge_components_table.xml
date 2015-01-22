@@ -11,47 +11,47 @@
 
         <include
             android:id="@+id/t_header"
-            layout="@layout/energy_components_table_header" />
+            layout="@layout/pge_components_table_header" />
 
         <include
             android:id="@+id/row_za_energie_czynna"
-            layout="@layout/energy_components_table_row" />
+            layout="@layout/pge_components_table_row" />
 
         <include
             android:id="@+id/row_skladnik_jakosciowy"
-            layout="@layout/energy_components_table_row" />
+            layout="@layout/pge_components_table_row" />
 
         <include
             android:id="@+id/row_oplata_sieciowa"
-            layout="@layout/energy_components_table_row" />
+            layout="@layout/pge_components_table_row" />
 
         <include
             android:id="@+id/row_za_energie_czynna2"
-            layout="@layout/energy_components_table_row" />
+            layout="@layout/pge_components_table_row" />
 
         <include
             android:id="@+id/row_skladnik_jakosciowy2"
-            layout="@layout/energy_components_table_row" />
+            layout="@layout/pge_components_table_row" />
 
         <include
             android:id="@+id/row_oplata_sieciowa2"
-            layout="@layout/energy_components_table_row" />
+            layout="@layout/pge_components_table_row" />
 
         <include
             android:id="@+id/row_oplata_przejsciowa"
-            layout="@layout/energy_components_table_row" />
+            layout="@layout/pge_components_table_row" />
 
         <include
             android:id="@+id/row_oplata_stala_za_przesyl"
-            layout="@layout/energy_components_table_row" />
+            layout="@layout/pge_components_table_row" />
 
         <include
             android:id="@+id/row_oplata_abonamentowa"
-            layout="@layout/energy_components_table_row" />
+            layout="@layout/pge_components_table_row" />
 
         <include
             android:id="@+id/row_sum"
-            layout="@layout/energy_components_table_sum" />
+            layout="@layout/pge_components_table_sum" />
     </TableLayout>
 
 </merge>

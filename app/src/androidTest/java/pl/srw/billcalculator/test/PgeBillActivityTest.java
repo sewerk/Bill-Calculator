@@ -10,26 +10,26 @@ import android.widget.TextView;
 
 import java.math.BigDecimal;
 
-import pl.srw.billcalculator.EnergyBillActivity;
+import pl.srw.billcalculator.PgeBillActivity;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
 
 /**
  * Created by Kamil Seweryn.
  */
-public class EnergyBillActivityTest extends ActivityInstrumentationTestCase2<EnergyBillActivity> {
+public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBillActivity> {
 
     public static final String DATE_FROM = "01/12/2014";
     public static final String DATE_TO = "31/12/2014";
     public static final int FROM = 12;
     public static final int TO = 25;
 
-    private EnergyBillActivity sut;
+    private PgeBillActivity sut;
     private SharedPreferences preferences;
     private Context context;
 
-    public EnergyBillActivityTest() {
-        super(EnergyBillActivity.class);
+    public PgeBillActivityTest() {
+        super(PgeBillActivity.class);
     }
 
     @Override

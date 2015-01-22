@@ -1,14 +1,9 @@
 package pl.srw.billcalculator.test.db;
 
-import android.content.Context;
-import android.content.Intent;
-
 import java.util.List;
 
 import de.greenrobot.dao.test.AbstractDaoSessionTest;
 import pl.srw.billcalculator.BillCalculator;
-import pl.srw.billcalculator.EnergyBillActivity;
-import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.db.PgeBill;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgeG12Prices;
