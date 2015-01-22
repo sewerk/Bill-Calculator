@@ -8,7 +8,8 @@ import android.view.MenuItem;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import pl.srw.billcalculator.data.HistoryAdapter;
+import pl.srw.billcalculator.data.LazyListAdapter;
+import pl.srw.billcalculator.persistence.Database;
 
 /**
  * Created by Kamil Seweryn.
@@ -26,7 +27,7 @@ public class HistoryActivity extends Activity {
 
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(this));
-        list.setAdapter(new HistoryAdapter(this));
+        list.setAdapter(new LazyListAdapter(this, Database.getHistory()));
     }
 
     @Override

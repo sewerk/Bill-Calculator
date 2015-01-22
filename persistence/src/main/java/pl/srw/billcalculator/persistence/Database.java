@@ -14,6 +14,8 @@ import pl.srw.billcalculator.db.PgeBill;
 import pl.srw.billcalculator.db.dao.DaoMaster;
 import pl.srw.billcalculator.db.dao.DaoSession;
 import pl.srw.billcalculator.db.dao.PgeBillDao;
+import pl.srw.billcalculator.db.dao.PgeG12BillDao;
+import pl.srw.billcalculator.db.dao.PgnigBillDao;
 
 /**
  * Created by Kamil Seweryn.
@@ -56,11 +58,12 @@ public class Database {
         return readings;
     }
 
-    public static List<Bill> getHistory() {
-        final LazyList<PgeBill> pgeBills = getSession().getPgeBillDao().queryBuilder()
+    public static LazyList<Bill> getHistory() {
+        LazyList bills = getSession().getPgeBillDao().queryBuilder()
                 .orderDesc(PgeBillDao.Properties.DateFrom).listLazy();
-//TODO finish
-        return null;
+//        bills.addAll(getSession().getPgeG12BillDao().queryBuilder().orderDesc(PgeG12BillDao.Properties.DateFrom).listLazy());
+//        bills.addAll(getSession().getPgnigBillDao().queryBuilder().orderDesc(PgnigBillDao.Properties.DateFrom).listLazy());
+        return bills;
     }
 
 }
