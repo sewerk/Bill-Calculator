@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools" >
 
     <TableLayout
-        android:id="@+id/table_podsumowanie"
+        android:id="@+id/t_summary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/table_rozliczenie"
+        android:layout_below="@id/t_charge_details"
         android:layout_alignParentRight="true"
         android:layout_marginTop="24dp"
         android:background="@drawable/border">
@@ -56,7 +56,7 @@
                 android:text="Sprzedaż VAT 23%" />
 
             <TextView
-                android:id="@+id/textView_wartosc_netto"
+                android:id="@+id/tv_net_charge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
@@ -64,7 +64,7 @@
                 tools:text="114,11" />
 
             <TextView
-                android:id="@+id/textView_kwota_vat"
+                android:id="@+id/tv_vat_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
@@ -72,7 +72,7 @@
                 tools:text="26,25" />
 
             <TextView
-                android:id="@+id/textView_wartosc_brutto"
+                android:id="@+id/tv_gross_charge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"

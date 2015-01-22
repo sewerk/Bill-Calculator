@@ -17,7 +17,7 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/textView_faktura_nr"
+                android:id="@+id/tv_invoice_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -31,7 +31,7 @@
                 android:contentDescription="Gas bill logo"/>
 
             <TextView
-                android:id="@+id/textView_roz_punktu_poboru"
+                android:id="@+id/tv_charge_place"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/image_logo"
@@ -40,18 +40,18 @@
                 android:paddingTop="24dp"/>
 
             <TextView
-                android:id="@+id/textView_nr_punktu_poboru"
+                android:id="@+id/tv_charge_place_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/textView_roz_punktu_poboru"
+                android:layout_alignBottom="@id/tv_charge_place"
                 android:layout_alignParentRight="true"
                 android:text="Numer punktu poboru: 0000000001" />
 
             <TextView
-                android:id="@+id/textView_taryfa"
+                android:id="@+id/tv_tariff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textView_roz_punktu_poboru"
+                android:layout_below="@id/tv_charge_place"
                 android:layout_alignParentLeft="true"
                 android:text="Grupa taryfowa PGNiG: W-1.1"
                 android:layout_marginTop="24dp"/>
@@ -66,10 +66,10 @@
                 layout="@layout/gas_sum_table" />
 
             <TextView
-                android:id="@+id/textView_wartosc_faktury"
+                android:id="@+id/tv_invoice_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/table_podsumowanie"
+                android:layout_below="@+id/t_summary"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="8dp"
                 android:text="@string/wartosc_faktury"

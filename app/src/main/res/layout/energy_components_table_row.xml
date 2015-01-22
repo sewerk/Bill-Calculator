@@ -7,14 +7,14 @@
     android:visibility="gone">
 
     <TextView
-        android:id="@+id/textView_strefa"
+        android:id="@+id/tv_zone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingRight="20dp"
         android:text="@string/strefa_calodobowa" />
 
     <TextView
-        android:id="@+id/textView_opis"
+        android:id="@+id/tv_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingRight="20dp"
@@ -27,14 +27,14 @@
         android:text="" />
 
     <TextView
-        android:id="@+id/textView_Jm"
+        android:id="@+id/tv_Jm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingRight="20dp"
         android:text="@string/kWh" />
 
     <TextView
-        android:id="@+id/textView_wskazanie_biezace"
+        android:id="@+id/tv_current_reading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="end"
@@ -42,7 +42,7 @@
         tools:text="16945" />
 
     <TextView
-        android:id="@+id/textView_wskazanie_przeprzednie"
+        android:id="@+id/tv_previous_reading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="end"
@@ -50,7 +50,7 @@
         tools:text="16798" />
 
     <TextView
-        android:id="@+id/textView_ilosc_mc"
+        android:id="@+id/tv_month_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="end"
@@ -58,7 +58,7 @@
         tools:text="0,00" />
 
     <TextView
-        android:id="@+id/textView_ilosc"
+        android:id="@+id/tv_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="end"
@@ -66,7 +66,7 @@
         tools:text="147" />
 
     <TextView
-        android:id="@+id/textView_cena"
+        android:id="@+id/tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="end"
@@ -74,7 +74,7 @@
         tools:text="0,25339" />
 
     <TextView
-        android:id="@+id/textView_naleznosc"
+        android:id="@+id/tv_charge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="end"

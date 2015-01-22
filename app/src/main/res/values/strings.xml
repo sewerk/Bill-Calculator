@@ -44,8 +44,8 @@
     <string name="kWh" translatable="false">kWh</string>
     <string name="m_c" translatable="false">m-c</string>
     <string name="akcyza" translatable="false">Od %1$s kWh energii elektrycznej [ KOD CN 2716 00 00] naliczono akcyzę w kwocie %2$s zł.</string>
-    <string name="do_zaplaty" translatable="false">DO ZAPŁATY : %s zł</string>
-    <string name="za_okres" translatable="false">Za okres od %1$s do %2$s</string>
+    <string name="to_pay" translatable="false">DO ZAPŁATY : %s zł</string>
+    <string name="for_period" translatable="false">Za okres od %1$s do %2$s</string>
 
 <!-- Preferences -->
     <string name="settings_label">Settings</string>

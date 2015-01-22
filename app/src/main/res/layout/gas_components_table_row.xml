@@ -6,28 +6,28 @@
     android:padding="2dp">
 
     <TextView
-        android:id="@+id/textView_oplata"
+        android:id="@+id/tv_charge_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingRight="20dp"
         android:text="@string/abonamentowa" />
 
     <TextView
-        android:id="@+id/textView_okres_od"
+        android:id="@+id/tv_date_from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingRight="20dp"
         android:text="01.01.2014" />
 
     <TextView
-        android:id="@+id/textView_okres_do"
+        android:id="@+id/tv_date_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingRight="20dp"
         android:text="31.12.2014" />
 
     <TextView
-        android:id="@+id/textView_ilosc"
+        android:id="@+id/tv_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingRight="50dp"
@@ -35,14 +35,14 @@
         android:text="1,000" />
 
     <TextView
-        android:id="@+id/textView_Jm"
+        android:id="@+id/tv_Jm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingRight="20dp"
         android:text="mc" />
 
     <TextView
-        android:id="@+id/textView_cena_netto"
+        android:id="@+id/tv_net_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="end"
@@ -50,7 +50,7 @@
         tools:text="11,0400" />
 
     <TextView
-        android:id="@+id/textView_wartosc_akcyzy"
+        android:id="@+id/tv_excise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="end"
@@ -72,7 +72,7 @@
         android:text="23" />
 
     <TextView
-        android:id="@+id/textView_wartosc_netto"
+        android:id="@+id/tv_net_charge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="end"

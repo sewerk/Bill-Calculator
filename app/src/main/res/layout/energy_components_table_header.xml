@@ -15,7 +15,7 @@
             android:text="Licznik rozliczeniowy en. czynnej nr: 00000001" />
 
         <TextView
-            android:id="@+id/textView_taryfa"
+            android:id="@+id/tv_tariff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

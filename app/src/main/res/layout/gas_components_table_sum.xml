@@ -83,7 +83,7 @@
             android:text="23" />
 
         <TextView
-            android:id="@+id/textView_kwota_vat"
+            android:id="@+id/tv_vat_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -91,7 +91,7 @@
             tools:text="26,25" />
 
         <TextView
-            android:id="@+id/textView_wartosc_netto"
+            android:id="@+id/tv_net_charge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -100,7 +100,7 @@
             tools:text="114,11" />
 
         <TextView
-            android:id="@+id/textView_wartosc_brutto"
+            android:id="@+id/tv_gross_charge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"

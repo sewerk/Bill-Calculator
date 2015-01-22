@@ -2,10 +2,10 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <TableLayout
-        android:id="@+id/table_podsumowanie"
+        android:id="@+id/t_summary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView_akcyza"
+        android:layout_below="@id/tv_excise"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp" >
 
@@ -55,7 +55,7 @@
                 android:text="Należność ogółem" />
 
             <TextView
-                android:id="@+id/textView_naleznosc_netto"
+                android:id="@+id/tv_net_charge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
@@ -70,7 +70,7 @@
                 android:text="23" />
 
             <TextView
-                android:id="@+id/textView_kwota_vat"
+                android:id="@+id/tv_vat_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
@@ -78,7 +78,7 @@
                 android:text="14,05" />
 
             <TextView
-                android:id="@+id/textView_naleznosc_brutto"
+                android:id="@+id/tv_gross_charge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"

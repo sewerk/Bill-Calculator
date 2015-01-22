@@ -2,16 +2,16 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <TableLayout
-        android:id="@+id/table_rozliczenie"
+        android:id="@+id/t_charge_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/table_odczyt"
+        android:layout_below="@+id/t_readings"
         android:layout_marginTop="24dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/border" >
 
         <include
-            android:id="@+id/table_header"
+            android:id="@+id/t_header"
             layout="@layout/gas_components_table_header" />
 
 

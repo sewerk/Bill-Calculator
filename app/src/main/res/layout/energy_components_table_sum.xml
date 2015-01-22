@@ -15,7 +15,7 @@
         android:text="OGÓŁEM" />
 
     <TextView
-        android:id="@+id/textView_naleznosc_ogolem"
+        android:id="@+id/tv_total_net_charge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="9"

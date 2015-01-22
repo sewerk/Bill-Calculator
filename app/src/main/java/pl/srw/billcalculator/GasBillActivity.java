@@ -34,9 +34,9 @@ public class GasBillActivity extends Activity {
     private BigDecimal dystrybucyjnaStala;
     private BigDecimal dystrybucyjnaZmienna;
 
-    private BigDecimal sumWartoscNetto = BigDecimal.ZERO;
-    private BigDecimal wartoscBrutto;
-    private BigDecimal kwotaVat;
+    private BigDecimal netChargeSum = BigDecimal.ZERO;
+    private BigDecimal grossCharge;
+    private BigDecimal vatAmount;
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +52,10 @@ public class GasBillActivity extends Activity {
 
         setPrices();
 
-        setOdczytyTable();
-        setRozliczenieTable();
-        setPodsumowanieTable();
-        setWartoscFaktury();
+        setReadingsTable();
+        setChargeDetailsTable();
+        setSummaryTable();
+        setChargeTV();
 	}
 
     @Override
@@ -91,86 +91,86 @@ public class GasBillActivity extends Activity {
         wspKonwersji = new BigDecimal(wspKonwersjiString);
     }
 
-    private void setOdczytyTable() {
-        TableLayout odczyty = (TableLayout) findViewById(R.id.table_odczyt);
+    private void setReadingsTable() {
+        TableLayout readingsTable = (TableLayout) findViewById(R.id.t_readings);
 
-        setTV(odczyty, R.id.textView_odczyt_poprzedni_na_dzien, dateFrom);
-        setTV(odczyty, R.id.textView_odczyt_poprzedni, getString(R.string.odczyt_na_dzien, readingFrom));
-        setTV(odczyty, R.id.textView_odczyt_biezacy_na_dzien, dateTo);
-        setTV(odczyty, R.id.textView_odczyt_biezacy, getString(R.string.odczyt_na_dzien, readingTo));
-        int zuzycie = getZuzycie();
-        setTV(odczyty, R.id.textView_zuzycie, getString(R.string.zuzycie, zuzycie));
+        setTV(readingsTable, R.id.tv_prev_reading_date, dateFrom);
+        setTV(readingsTable, R.id.tv_previous_reading, getString(R.string.odczyt_na_dzien, readingFrom));
+        setTV(readingsTable, R.id.tv_curr_reading_date, dateTo);
+        setTV(readingsTable, R.id.tv_current_reading, getString(R.string.odczyt_na_dzien, readingTo));
+        int consumption = getConsumption();
+        setTV(readingsTable, R.id.tv_consumption, getString(R.string.zuzycie, consumption));
 
-        setTV(odczyty, R.id.textView_zuzycie_razem, getString(R.string.zuzycie_razem, zuzycie));
-        setTV(odczyty, R.id.textView_wsp_konwersji, getString(R.string.wsp_konwersji, wspKonwersji));
-        int zuzycieKWh = getZuzycieKWh(zuzycie);
-        setTV(odczyty, R.id.textView_zuzycie_razem_kWh, getString(R.string.zuzycie_razem_kWh, zuzycieKWh));
+        setTV(readingsTable, R.id.tv_total_consumption, getString(R.string.zuzycie_razem, consumption));
+        setTV(readingsTable, R.id.tv_conversion_factor, getString(R.string.wsp_konwersji, wspKonwersji));
+        int consumptionKWh = getConsumptionKWh(consumption);
+        setTV(readingsTable, R.id.tv_total_consumption_kWh, getString(R.string.zuzycie_razem_kWh, consumptionKWh));
     }
 
-    private int getZuzycieKWh(int zuzycie) {
-        return new BigDecimal(zuzycie).multiply(wspKonwersji).setScale(0, RoundingMode.HALF_UP).intValue();
+    private int getConsumptionKWh(int consumption) {
+        return new BigDecimal(consumption).multiply(wspKonwersji).setScale(0, RoundingMode.HALF_UP).intValue();
     }
 
-    private int getZuzycie() {
+    private int getConsumption() {
         return readingTo - readingFrom;
     }
 
-    private void setRozliczenieTable() {
-        TableLayout rozliczenie = (TableLayout) findViewById(R.id.table_rozliczenie);
-        int zuzycie = getZuzycieKWh(getZuzycie());
-        int iloscMc = Dates.countMonth(dateFrom, dateTo);
+    private void setChargeDetailsTable() {
+        TableLayout chargeTable = (TableLayout) findViewById(R.id.t_charge_details);
+        int consumption = getConsumptionKWh(getConsumption());
+        int months = Dates.countMonth(dateFrom, dateTo);
 
-        setRow(rozliczenie, R.id.row_abonamentowa, R.string.abonamentowa, iloscMc, R.string.mc, oplataAbonamentowa, "");
-        setRow(rozliczenie, R.id.row_paliwo_gazowe, R.string.paliwo_gazowe, zuzycie, R.string.kWh, paliwoGazowe, "ZW");
-        setRow(rozliczenie, R.id.row_dystrybucyjna_stala, R.string.dystrybucyjna_stala, iloscMc, R.string.mc, dystrybucyjnaStala, "");
-        setRow(rozliczenie, R.id.row_dystrybucyjna_zmienna, R.string.dystrybucyjna_zmienna, zuzycie, R.string.kWh, dystrybucyjnaZmienna, "");
+        setRow(chargeTable, R.id.row_abonamentowa, R.string.abonamentowa, months, R.string.mc, oplataAbonamentowa, "");
+        setRow(chargeTable, R.id.row_paliwo_gazowe, R.string.paliwo_gazowe, consumption, R.string.kWh, paliwoGazowe, "ZW");
+        setRow(chargeTable, R.id.row_dystrybucyjna_stala, R.string.dystrybucyjna_stala, months, R.string.mc, dystrybucyjnaStala, "");
+        setRow(chargeTable, R.id.row_dystrybucyjna_zmienna, R.string.dystrybucyjna_zmienna, consumption, R.string.kWh, dystrybucyjnaZmienna, "");
 
-        setPodsumowanieRozliczenia(rozliczenie);
+        setChargeSummary(chargeTable);
     }
 
-    private void setRow(TableLayout rozliczenie, int rowId, int oplataTextId, int ilosc, int jmId, BigDecimal cenaNetto, String wartoscAkcyzy) {
-        View row = rozliczenie.findViewById(rowId);
-        setTV(row, R.id.textView_oplata, getString(oplataTextId));
-        setTV(row, R.id.textView_okres_od, dateFrom);
-        setTV(row, R.id.textView_okres_do, dateTo);
-        setTV(row, R.id.textView_Jm, getString(jmId));
+    private void setRow(TableLayout chargeTable, int rowId, int descId, int count, int jmId, BigDecimal netPrice, String exciseAmount) {
+        View row = chargeTable.findViewById(rowId);
+        setTV(row, R.id.tv_charge_desc, getString(descId));
+        setTV(row, R.id.tv_date_from, dateFrom);
+        setTV(row, R.id.tv_date_to, dateTo);
+        setTV(row, R.id.tv_Jm, getString(jmId));
         if (jmId == R.string.kWh) {
-            setTV(row, R.id.textView_ilosc, "" + ilosc);
+            setTV(row, R.id.tv_count, "" + count);
         } else {
-            setTV(row, R.id.textView_ilosc, Display.withScale(new BigDecimal(ilosc), 3));
+            setTV(row, R.id.tv_count, Display.withScale(new BigDecimal(count), 3));
         }
-        setTV(row, R.id.textView_cena_netto, Display.withScale(cenaNetto, PRICE_SCALE));
-        setTV(row, R.id.textView_wartosc_akcyzy, wartoscAkcyzy);
-        setTV(row, R.id.textView_wartosc_netto, getWartosc(ilosc, cenaNetto));
+        setTV(row, R.id.tv_net_price, Display.withScale(netPrice, PRICE_SCALE));
+        setTV(row, R.id.tv_excise, exciseAmount);
+        setTV(row, R.id.tv_net_charge, getCharge(count, netPrice));
 
     }
 
-    private String getWartosc(int ilosc, BigDecimal cenaNetto) {
-        BigDecimal wartosc = cenaNetto.multiply(new BigDecimal(ilosc));
-        sumWartoscNetto = sumWartoscNetto.add(wartosc);
-        return Display.toPay(wartosc);
+    private String getCharge(int count, BigDecimal price) {
+        BigDecimal charge = price.multiply(new BigDecimal(count));
+        netChargeSum = netChargeSum.add(charge);
+        return Display.toPay(charge);
     }
 
-    private void setPodsumowanieRozliczenia(View rozliczenie) {
-        View podsumowanie = rozliczenie.findViewById(R.id.row_sum);
+    private void setChargeSummary(View chargeTable) {
+        View summaryRow = chargeTable.findViewById(R.id.row_sum);
 
-        setTV(podsumowanie, R.id.textView_wartosc_netto, Display.toPay(sumWartoscNetto));
-        kwotaVat = sumWartoscNetto.multiply(VAT);
-        setTV(podsumowanie, R.id.textView_kwota_vat, Display.toPay(kwotaVat));
-        wartoscBrutto = sumWartoscNetto.add(kwotaVat);
-        setTV(podsumowanie, R.id.textView_wartosc_brutto, Display.toPay(wartoscBrutto));
+        setTV(summaryRow, R.id.tv_net_charge, Display.toPay(netChargeSum));
+        vatAmount = netChargeSum.multiply(VAT);
+        setTV(summaryRow, R.id.tv_vat_amount, Display.toPay(vatAmount));
+        grossCharge = netChargeSum.add(vatAmount);
+        setTV(summaryRow, R.id.tv_gross_charge, Display.toPay(grossCharge));
     }
 
-    private void setPodsumowanieTable() {
-        TableLayout podsumowanie = (TableLayout) findViewById(R.id.table_podsumowanie);
+    private void setSummaryTable() {
+        TableLayout summaryTable = (TableLayout) findViewById(R.id.t_summary);
 
-        setTV(podsumowanie, R.id.textView_wartosc_netto, Display.toPay(sumWartoscNetto));
-        setTV(podsumowanie, R.id.textView_kwota_vat, Display.toPay(kwotaVat));
-        setTV(podsumowanie, R.id.textView_wartosc_brutto, Display.toPay(wartoscBrutto));
+        setTV(summaryTable, R.id.tv_net_charge, Display.toPay(netChargeSum));
+        setTV(summaryTable, R.id.tv_vat_amount, Display.toPay(vatAmount));
+        setTV(summaryTable, R.id.tv_gross_charge, Display.toPay(grossCharge));
     }
 
-    private void setWartoscFaktury() {
-        setTV(R.id.textView_wartosc_faktury, getString(R.string.wartosc_faktury, Display.toPay(wartoscBrutto)));
+    private void setChargeTV() {
+        setTV(R.id.tv_invoice_value, getString(R.string.wartosc_faktury, Display.toPay(grossCharge)));
     }
 
     private void setTV(View parent, int tvId, String text) {

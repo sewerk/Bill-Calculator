@@ -27,36 +27,36 @@
                 android:contentDescription="Energy bill logo"/>
 
             <TextView
-                android:id="@+id/textView_nr_ewidencyjny"
+                android:id="@+id/tv_register_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/image_logo"
                 android:text="NUMER EWIDENCYJNY: 000000001" />
 
             <TextView
-                android:id="@+id/textView_tytul"
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textView_nr_ewidencyjny"
+                android:layout_below="@id/tv_register_number"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:layout_marginTop="24dp"
                 android:text="FAKTURA VAT NR XXXXXXXX\nZA ENERGIĘ ELEKTRYCZNĄ I USŁUGI DYSTRYBUCJI" />
 
             <TextView
-                android:id="@+id/textView_za_okres"
+                android:id="@+id/tv_for_period"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textView_tytul"
+                android:layout_below="@id/tv_title"
                 android:layout_centerHorizontal="true"
-                android:text="@string/za_okres" />
+                android:text="@string/for_period" />
 
             <TextView
-                android:id="@+id/textView_moc_umowna"
+                android:id="@+id/tv_power"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/table_rozliczenie"
-                android:layout_below="@id/textView_za_okres"
+                android:layout_alignRight="@+id/t_charge_details"
+                android:layout_below="@id/tv_for_period"
                 android:layout_marginTop="48dp"
                 android:text="Moc umowna: 4,0 kW" />
 
@@ -64,10 +64,10 @@
                 layout="@layout/energy_components_table" />
 
             <TextView
-                android:id="@+id/textView_akcyza"
+                android:id="@+id/tv_excise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/table_rozliczenie"
+                android:layout_below="@id/t_charge_details"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
                 android:text="@string/akcyza" />
@@ -76,13 +76,13 @@
                 layout="@layout/energy_sum_table" />
 
             <TextView
-                android:id="@+id/textView_do_zaplaty"
+                android:id="@+id/tv_to_pay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/table_podsumowanie"
-                android:layout_below="@+id/table_podsumowanie"
+                android:layout_alignLeft="@+id/t_summary"
+                android:layout_below="@+id/t_summary"
                 android:layout_marginTop="8dp"
-                android:text="@string/do_zaplaty"
+                android:text="@string/to_pay"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
         </RelativeLayout>

@@ -48,7 +48,7 @@ public class EnergyBillActivityTest extends ActivityInstrumentationTestCase2<Ene
 
         sut = getActivity();
         String expected = sut.getString(R.string.pge_tariff_G11_on_bill);
-        assEqText(expected, R.id.textView_taryfa);
+        assEqText(expected, R.id.tv_tariff);
     }
 
     public void testTaryfaLabelG12DependOnIntentExtra() {
@@ -58,7 +58,7 @@ public class EnergyBillActivityTest extends ActivityInstrumentationTestCase2<Ene
 
         sut = getActivity();
         String expected = sut.getString(R.string.pge_tariff_G12_on_bill);
-        assEqText(expected, R.id.textView_taryfa);
+        assEqText(expected, R.id.tv_tariff);
     }
 
     public void testZaOkresLabelDependsOnIntentExtra() {
@@ -71,8 +71,8 @@ public class EnergyBillActivityTest extends ActivityInstrumentationTestCase2<Ene
         setActivityIntent(intent);
 
         sut = getActivity();
-        String expected = sut.getString(R.string.za_okres, dateFrom, dateTo);
-        assEqText(expected, R.id.textView_za_okres);
+        String expected = sut.getString(R.string.for_period, dateFrom, dateTo);
+        assEqText(expected, R.id.tv_for_period);
     }
 
     public void testWskazaniaG11DependsOnIntentExtra() {
@@ -90,7 +90,7 @@ public class EnergyBillActivityTest extends ActivityInstrumentationTestCase2<Ene
         checkReadingsValuesInRow(from, to, diff, R.id.row_oplata_sieciowa);
 
         String expected = sut.getString(R.string.akcyza, diff, (diff * 0.02));
-        assEqText(expected, R.id.textView_akcyza);
+        assEqText(expected, R.id.tv_excise);
     }
 
     public void testWskazaniaG12DependsOnIntentExtra() {
@@ -116,7 +116,7 @@ public class EnergyBillActivityTest extends ActivityInstrumentationTestCase2<Ene
         checkReadingsValuesInRow(nightFrom, nightTo, nightDiff, R.id.row_oplata_sieciowa2);
 
         String expected = sut.getString(R.string.akcyza, diff, (diff * 0.02));
-        assEqText(expected, R.id.textView_akcyza);
+        assEqText(expected, R.id.tv_excise);
     }
 
     public void testCalculationForG11Readings() {
@@ -141,17 +141,17 @@ public class EnergyBillActivityTest extends ActivityInstrumentationTestCase2<Ene
 
         BigDecimal sumNetto = countSum(ilosc);
         String expected = sumNetto.toString();
-        assEqText(expected, R.id.textView_naleznosc_ogolem);
-        assEqText(expected, R.id.textView_naleznosc_netto);
+        assEqText(expected, R.id.tv_total_net_charge);
+        assEqText(expected, R.id.tv_net_charge);
 
         BigDecimal vatCost = sumNetto.multiply(new BigDecimal("0.23")).setScale(2, BigDecimal.ROUND_HALF_UP);
-        assEqText(vatCost.toString(), R.id.textView_kwota_vat);
+        assEqText(vatCost.toString(), R.id.tv_vat_amount);
 
         BigDecimal sumAll = sumNetto.add(vatCost);
-        assEqText(sumAll.toString(), R.id.textView_naleznosc_brutto);
+        assEqText(sumAll.toString(), R.id.tv_gross_charge);
 
-        String doZaplatyExpected = sut.getString(R.string.do_zaplaty, sumAll);
-        assEqText(doZaplatyExpected, R.id.textView_do_zaplaty);
+        String doZaplatyExpected = sut.getString(R.string.to_pay, sumAll);
+        assEqText(doZaplatyExpected, R.id.tv_to_pay);
     }
 
     public void testCalculationForG12Readings() {
@@ -171,33 +171,33 @@ public class EnergyBillActivityTest extends ActivityInstrumentationTestCase2<Ene
         editor.commit();
 
         sut = getActivity();
-        assEqTextInRow("10.10", R.id.textView_naleznosc, R.id.row_za_energie_czynna);
-        assEqTextInRow("202.00", R.id.textView_naleznosc, R.id.row_za_energie_czynna2);
-        assEqTextInRow("30.30", R.id.textView_naleznosc, R.id.row_skladnik_jakosciowy);
-        assEqTextInRow("303.00", R.id.textView_naleznosc, R.id.row_skladnik_jakosciowy2);
-        assEqTextInRow("40.40", R.id.textView_naleznosc, R.id.row_oplata_sieciowa);
-        assEqTextInRow("505.00", R.id.textView_naleznosc, R.id.row_oplata_sieciowa2);
-        assEqTextInRow("6.06", R.id.textView_naleznosc, R.id.row_oplata_przejsciowa);
-        assEqTextInRow("7.07", R.id.textView_naleznosc, R.id.row_oplata_stala_za_przesyl);
-        assEqTextInRow("8.08", R.id.textView_naleznosc, R.id.row_oplata_abonamentowa);
+        assEqTextInRow("10.10", R.id.tv_charge, R.id.row_za_energie_czynna);
+        assEqTextInRow("202.00", R.id.tv_charge, R.id.row_za_energie_czynna2);
+        assEqTextInRow("30.30", R.id.tv_charge, R.id.row_skladnik_jakosciowy);
+        assEqTextInRow("303.00", R.id.tv_charge, R.id.row_skladnik_jakosciowy2);
+        assEqTextInRow("40.40", R.id.tv_charge, R.id.row_oplata_sieciowa);
+        assEqTextInRow("505.00", R.id.tv_charge, R.id.row_oplata_sieciowa2);
+        assEqTextInRow("6.06", R.id.tv_charge, R.id.row_oplata_przejsciowa);
+        assEqTextInRow("7.07", R.id.tv_charge, R.id.row_oplata_stala_za_przesyl);
+        assEqTextInRow("8.08", R.id.tv_charge, R.id.row_oplata_abonamentowa);
 
-        assEqText("1112.01", R.id.textView_naleznosc_ogolem);
-        assEqText("1112.01", R.id.textView_naleznosc_netto);
-        assEqText("255.76", R.id.textView_kwota_vat);
-        assEqText("1367.77", R.id.textView_naleznosc_brutto);
+        assEqText("1112.01", R.id.tv_total_net_charge);
+        assEqText("1112.01", R.id.tv_net_charge);
+        assEqText("255.76", R.id.tv_vat_amount);
+        assEqText("1367.77", R.id.tv_gross_charge);
     }
 
     // ================================================================ private methods
     private void checkReadingsValuesInRow(int expectedPoprzednie, int expectedBiezace, int expectedIlosc, int rowId) {
-        assEqTextInRow("" + expectedBiezace, R.id.textView_wskazanie_biezace, rowId);
-        assEqTextInRow("" + expectedPoprzednie, R.id.textView_wskazanie_przeprzednie, rowId);
-        assEqTextInRow("" + expectedIlosc, R.id.textView_ilosc, rowId);
+        assEqTextInRow("" + expectedBiezace, R.id.tv_current_reading, rowId);
+        assEqTextInRow("" + expectedPoprzednie, R.id.tv_previous_reading, rowId);
+        assEqTextInRow("" + expectedIlosc, R.id.tv_count, rowId);
     }
 
     private void checkNaleznoscInRow(int pricePreferenceId, int ilosc, int rowId) {
         BigDecimal cena = getCena(pricePreferenceId);
         String expected = countKoszt(cena, ilosc).toString();
-        assEqTextInRow(expected, R.id.textView_naleznosc, rowId);
+        assEqTextInRow(expected, R.id.tv_charge, rowId);
     }
 
     private BigDecimal getCena(int preference_id) {
