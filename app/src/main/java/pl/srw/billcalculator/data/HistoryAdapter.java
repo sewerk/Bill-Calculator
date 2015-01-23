@@ -2,6 +2,7 @@ package pl.srw.billcalculator.data;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,21 +14,24 @@ import butterknife.InjectView;
 import de.greenrobot.dao.query.LazyList;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.Bill;
+import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.db.PgeBill;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgnigBill;
+import pl.srw.billcalculator.persistence.Database;
+import pl.srw.billcalculator.persistence.type.BillType;
 import pl.srw.billcalculator.util.Dates;
 
 /**
  * Created by Kamil Seweryn.
  */
-public class LazyListAdapter<T extends Bill> extends RecyclerView.Adapter<LazyListAdapter.ViewHolder> {
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
 
     private Context context;
     protected boolean dataValid;
-    protected LazyList<T> lazyList;
+    protected LazyList<History> lazyList;
 
-    public LazyListAdapter(Context context, LazyList<T> lazyList) {
+    public HistoryAdapter(Context context, LazyList<History> lazyList) {
         this.lazyList = lazyList;
         this.dataValid = lazyList != null;
         this.context = context;
@@ -46,11 +50,9 @@ public class LazyListAdapter<T extends Bill> extends RecyclerView.Adapter<LazyLi
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        // - get element from your dataset at this position
-        T entity = null;
-        if (dataValid && lazyList != null) {
-            entity = lazyList.get(position);
-        }
+        // get element from your dataset at this position
+        History historyItem = lazyList.get(position);
+        Bill entity = retrieveBill(historyItem);//TODO remember bill for open operation
         // - replace the contents of the view with that element
         holder.llBillType.setBackgroundResource(getBillTypeDrawable(entity));
         holder.tvForPeriod.setText(getDatePeriod(entity));
@@ -58,7 +60,23 @@ public class LazyListAdapter<T extends Bill> extends RecyclerView.Adapter<LazyLi
         holder.tvAmount.setText(entity.getAmountToPay().toString() + " zł");
     }
 
-    private int getBillTypeDrawable(final T entity) {
+    private Bill retrieveBill(final History historyItem) {
+        final Long billId = historyItem.getBillId();
+        if (isItemOfType(historyItem, BillType.PGE)) {
+            return Database.getSession().getPgeBillDao().load(billId);
+        } else if (isItemOfType(historyItem, BillType.PGE_G12)) {
+            return Database.getSession().getPgeG12BillDao().load(billId);
+        } else if (isItemOfType(historyItem, BillType.PGNIG)) {
+            return Database.getSession().getPgnigBillDao().load(billId);
+        }
+        return null;
+    }
+
+    private boolean isItemOfType(final History historyItem, final BillType billType) {
+        return historyItem.getBillType().equals(billType.toString());
+    }
+
+    private int getBillTypeDrawable(final Bill entity) {
         if (entity instanceof PgnigBill) {
             return R.drawable.pgnig_on_pge;
         } else {
@@ -66,11 +84,11 @@ public class LazyListAdapter<T extends Bill> extends RecyclerView.Adapter<LazyLi
         }
     }
 
-    private String getDatePeriod(final T entity) {
+    private String getDatePeriod(final Bill entity) {
         return Dates.format(entity.getDateFrom()) + " - " + Dates.format(entity.getDateTo());
     }
 
-    private Object getReadings(final T entity) {
+    private Object getReadings(final Bill entity) {
         if (entity instanceof PgeBill) {
             PgeBill bill = (PgeBill) entity;
             return bill.getReadingTo() - bill.getReadingFrom();

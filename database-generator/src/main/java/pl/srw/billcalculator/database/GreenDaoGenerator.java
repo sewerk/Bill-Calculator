@@ -27,8 +27,19 @@ public class GreenDaoGenerator {
         Entity pgnigPrices = addPgnigPrices(schema);
         addPgnigBill(schema, pgnigPrices);
 
+        addHistory(schema);
+
         File output = new File(args.length == 1 ? args[0] : OUTPUT_DIR);
         new DaoGenerator().generateAll(schema, output.getAbsolutePath());
+    }
+
+    private static void addHistory(final Schema schema) {
+        Entity history = schema.addEntity("History");
+
+        history.addIdProperty().autoincrement();
+        history.addDateProperty("dateFrom");
+        history.addStringProperty("billType");
+        history.addLongProperty("billId");
     }
 
     private static void addPgeBill(Schema schema, final Entity pgePrices) {

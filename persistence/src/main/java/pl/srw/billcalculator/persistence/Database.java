@@ -10,12 +10,11 @@ import java.util.List;
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.dao.query.QueryBuilder;
 import pl.srw.billcalculator.db.Bill;
-import pl.srw.billcalculator.db.PgeBill;
+import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.db.dao.DaoMaster;
 import pl.srw.billcalculator.db.dao.DaoSession;
+import pl.srw.billcalculator.db.dao.HistoryDao;
 import pl.srw.billcalculator.db.dao.PgeBillDao;
-import pl.srw.billcalculator.db.dao.PgeG12BillDao;
-import pl.srw.billcalculator.db.dao.PgnigBillDao;
 
 /**
  * Created by Kamil Seweryn.
@@ -37,8 +36,17 @@ public class Database {
 
     private static synchronized SQLiteDatabase getDatabase(Context context) {
         if (database == null)
-            database = new DaoMaster.DevOpenHelper(context, "pl.srw.billcalculator.db", null)
-                .getWritableDatabase();
+            database = new DaoMaster.DevOpenHelper(context, "pl.srw.billcalculator.db", null) {
+
+                @Override
+                public void onCreate(final SQLiteDatabase db) {
+                    super.onCreate(db);
+                    for (String sql : Triggers.BILL_INSERT_TRIGGERS)
+                        db.execSQL(sql);
+//                    for (String sql : Triggers.BILL_DELETE_TRIGGERS)
+//                        db.execSQL(sql);//TODO
+                }
+            }.getWritableDatabase();
         return database;
     }
 
@@ -48,7 +56,6 @@ public class Database {
 
     public static List<Integer> queryCurrentReadings(CurrentReadingType readingType) {
         String[] columns = {readingType.getColumnName()};
-//        String where = "" + columns[0] + " is not null";
         Cursor cursor = database.query(true, readingType.getTableName(), columns, null, null, null, null, columns[0], QUERY_ROW_LIMIT);
 
         List<Integer> readings = new ArrayList<>(cursor.getCount());
@@ -58,12 +65,10 @@ public class Database {
         return readings;
     }
 
-    public static LazyList<Bill> getHistory() {
-        LazyList bills = getSession().getPgeBillDao().queryBuilder()
-                .orderDesc(PgeBillDao.Properties.DateFrom).listLazy();
-//        bills.addAll(getSession().getPgeG12BillDao().queryBuilder().orderDesc(PgeG12BillDao.Properties.DateFrom).listLazy());
-//        bills.addAll(getSession().getPgnigBillDao().queryBuilder().orderDesc(PgnigBillDao.Properties.DateFrom).listLazy());
-        return bills;
+    public static LazyList<History> getHistory() {
+        LazyList<History> history = getSession().getHistoryDao().queryBuilder()
+                .orderDesc(HistoryDao.Properties.DateFrom).listLazy();
+        return history;
     }
 
 }
