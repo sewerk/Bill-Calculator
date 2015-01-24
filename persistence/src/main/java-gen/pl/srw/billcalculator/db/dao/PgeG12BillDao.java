@@ -11,7 +11,7 @@ import de.greenrobot.dao.Property;
 import de.greenrobot.dao.internal.SqlUtils;
 import de.greenrobot.dao.internal.DaoConfig;
 
-import pl.srw.billcalculator.db.PgeG12Prices;
+import pl.srw.billcalculator.db.PgePrices;
 
 import pl.srw.billcalculator.db.PgeG12Bill;
 
@@ -196,9 +196,9 @@ public class PgeG12BillDao extends AbstractDao<PgeG12Bill, Long> {
             StringBuilder builder = new StringBuilder("SELECT ");
             SqlUtils.appendColumns(builder, "T", getAllColumns());
             builder.append(',');
-            SqlUtils.appendColumns(builder, "T0", daoSession.getPgeG12PricesDao().getAllColumns());
+            SqlUtils.appendColumns(builder, "T0", daoSession.getPgePricesDao().getAllColumns());
             builder.append(" FROM PGE_G12_BILL T");
-            builder.append(" LEFT JOIN PGE_G12_PRICES T0 ON T.'PRICES_ID'=T0.'_id'");
+            builder.append(" LEFT JOIN PGE_PRICES T0 ON T.'PRICES_ID'=T0.'_id'");
             builder.append(' ');
             selectDeep = builder.toString();
         }
@@ -209,8 +209,8 @@ public class PgeG12BillDao extends AbstractDao<PgeG12Bill, Long> {
         PgeG12Bill entity = loadCurrent(cursor, 0, lock);
         int offset = getAllColumns().length;
 
-        PgeG12Prices pgeG12Prices = loadCurrentOther(daoSession.getPgeG12PricesDao(), cursor, offset);
-        entity.setPgeG12Prices(pgeG12Prices);
+        PgePrices pgePrices = loadCurrentOther(daoSession.getPgePricesDao(), cursor, offset);
+        entity.setPgePrices(pgePrices);
 
         return entity;    
     }

@@ -1,5 +1,7 @@
 package pl.srw.billcalculator.task;
 
+import android.preference.PreferenceManager;
+
 import pl.srw.billcalculator.db.PgeBill;
 import pl.srw.billcalculator.db.PgePrices;
 import pl.srw.billcalculator.db.dao.PgeBillDao;
@@ -25,16 +27,9 @@ public class PgeBillStorer extends BillStorer {
 
     @Override
     public PgePrices getPrices() {
-        pl.srw.billcalculator.data.PgePrices pgePrices = pl.srw.billcalculator.data.PgePrices.INSTANCE;
-
-        PgePrices dbPrices = new PgePrices();
-        dbPrices.setCenaOplataAbonamentowa(pgePrices.getCenaOplataAbonamentowa().toString());
-        dbPrices.setCenaOplataPrzejsciowa(pgePrices.getCenaOplataPrzejsciowa().toString());
-        dbPrices.setCenaOplataSieciowa(pgePrices.getCenaOplataSieciowa().toString());
-        dbPrices.setCenaOplStalaZaPrzesyl(pgePrices.getCenaOplStalaZaPrzesyl().toString());
-        dbPrices.setCenaSkladnikJakosciowy(pgePrices.getCenaSkladnikJakosciowy().toString());
-        dbPrices.setCenaZaEnergieCzynna(pgePrices.getCenaZaEnergieCzynna().toString());
-        return dbPrices;
+        final pl.srw.billcalculator.pojo.PgePrices pgePrices = 
+                new pl.srw.billcalculator.pojo.PgePrices(PreferenceManager.getDefaultSharedPreferences(context));
+        return pgePrices.convertToDb();
     }
 
     @Override

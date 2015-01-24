@@ -1,13 +1,12 @@
 package pl.srw.billcalculator.task;
 
+import android.preference.PreferenceManager;
+
 import hugo.weaving.DebugLog;
-import pl.srw.billcalculator.data.PgePrices;
 import pl.srw.billcalculator.db.PgeG12Bill;
-import pl.srw.billcalculator.db.PgeG12Prices;
+import pl.srw.billcalculator.db.PgePrices;
 import pl.srw.billcalculator.db.dao.PgeG12BillDao;
-import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.persistence.exception.IncompleteDateException;
-import pl.srw.billcalculator.util.Dates;
 
 /**
  * Created by Kamil Seweryn.
@@ -31,21 +30,10 @@ public class PgeG12BillStorer extends BillStorer {
     }
 
     @Override
-    public PgeG12Prices getPrices() {
-        final PgePrices pgePrices = PgePrices.INSTANCE;
-
-        PgeG12Prices prices = new PgeG12Prices();
-        prices.setCenaOplataSieciowaDzien(pgePrices.getCenaOplataSieciowaDzien().toString());
-        prices.setCenaOplataSieciowaNoc(pgePrices.getCenaOplataSieciowaNoc().toString());
-        prices.setCenaZaEnergieCzynnaDzien(pgePrices.getCenaZaEnergieCzynnaDzien().toString());
-        prices.setCenaZaEnergieCzynnaNoc(pgePrices.getCenaZaEnergieCzynnaNoc().toString());
-
-        prices.setCenaSkladnikJakosciowy(pgePrices.getCenaSkladnikJakosciowy().toString());
-        prices.setCenaOplataAbonamentowa(pgePrices.getCenaOplataAbonamentowa().toString());
-        prices.setCenaOplataPrzejsciowa(pgePrices.getCenaOplataPrzejsciowa().toString());
-        prices.setCenaOplStalaZaPrzesyl(pgePrices.getCenaOplStalaZaPrzesyl().toString());
-
-        return prices;
+    public PgePrices getPrices() {
+        final pl.srw.billcalculator.pojo.PgePrices pgePrices =
+                new pl.srw.billcalculator.pojo.PgePrices(PreferenceManager.getDefaultSharedPreferences(context));
+        return pgePrices.convertToDb();
     }
 
     @Override
@@ -53,12 +41,12 @@ public class PgeG12BillStorer extends BillStorer {
         if (entry.getReadingDayTo() == 0
                 || entry.getDateFrom() == null
                 || entry.getAmountToPay() <= 0.0
-                || entry.getPgeG12Prices() == null)
+                || entry.getPgePrices() == null)
             throw new IncompleteDateException(PgeG12BillDao.TABLENAME);
     }
 
     @Override
     protected <T> void assignPricesToBill(final T prices) {
-        entry.setPgeG12Prices((PgeG12Prices) prices);
+        entry.setPgePrices((PgePrices) prices);
     }
 }

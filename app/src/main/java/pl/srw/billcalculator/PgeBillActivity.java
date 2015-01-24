@@ -3,6 +3,7 @@ package pl.srw.billcalculator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
@@ -12,7 +13,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import hugo.weaving.DebugLog;
-import pl.srw.billcalculator.data.PgePrices;
+import pl.srw.billcalculator.pojo.IPgePrices;
+import pl.srw.billcalculator.pojo.PgePrices;
 import pl.srw.billcalculator.task.BillStorer;
 import pl.srw.billcalculator.task.PgeBillStorer;
 import pl.srw.billcalculator.task.PgeG12BillStorer;
@@ -27,6 +29,7 @@ public class PgeBillActivity extends Activity {
     public static final int PRICE_SCALE = 4;
     private static final BigDecimal EXCISE = new BigDecimal("0.02");
     private static final BigDecimal VAT = new BigDecimal("0.23");
+    public static final String PRICES = "PGE_PRICES";
     private BigDecimal netChargeSum = BigDecimal.ZERO;
     private BigDecimal grossCharge;
 
@@ -38,6 +41,7 @@ public class PgeBillActivity extends Activity {
     private int readingDayTo;
     private int readingNightFrom;
     private int readingNightTo;
+    private IPgePrices prices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +49,9 @@ public class PgeBillActivity extends Activity {
         setContentView(R.layout.pge_bill);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        readExtra(getIntent());
-        setPrices();
+        final Intent intent = getIntent();
+        readExtra(intent);
+        setPrices(intent);
 
         setForPeriodTV();
         setChargeDetailsTable();
@@ -84,9 +89,11 @@ public class PgeBillActivity extends Activity {
         readingNightTo = intent.getIntExtra(MainActivity.READING_NIGHT_TO, -1);
     }
 
-    private void setPrices() {
-        PgePrices.INSTANCE.read(this);
-
+    private void setPrices(Intent intent) {
+        if (intent.hasExtra(PRICES))
+            prices = (IPgePrices) intent.getSerializableExtra(PRICES);
+        else 
+            prices = new PgePrices(PreferenceManager.getDefaultSharedPreferences(this));
     }
 
     private void setForPeriodTV() {
@@ -104,11 +111,10 @@ public class PgeBillActivity extends Activity {
             setG11Rows(chargeDetailsTable, countConsumption());
         }
 
-        PgePrices prices = PgePrices.INSTANCE;
         final int months = Dates.countMonth(dateFrom, dateTo);
-        setRow(chargeDetailsTable, R.id.row_oplata_przejsciowa, R.string.strefa_pusta, R.string.oplata_przejsciowa, months, R.string.m_c, prices.getCenaOplataPrzejsciowa());
-        setRow(chargeDetailsTable, R.id.row_oplata_stala_za_przesyl, R.string.strefa_pusta, R.string.oplata_stala_za_przesyl, months, R.string.m_c, prices.getCenaOplStalaZaPrzesyl());
-        setRow(chargeDetailsTable, R.id.row_oplata_abonamentowa, R.string.strefa_pusta, R.string.oplata_abonamentowa, months, R.string.m_c, prices.getCenaOplataAbonamentowa());
+        setRow(chargeDetailsTable, R.id.row_oplata_przejsciowa, R.string.strefa_pusta, R.string.oplata_przejsciowa, months, R.string.m_c, prices.getOplataPrzejsciowa());
+        setRow(chargeDetailsTable, R.id.row_oplata_stala_za_przesyl, R.string.strefa_pusta, R.string.oplata_stala_za_przesyl, months, R.string.m_c, prices.getOplataStalaZaPrzesyl());
+        setRow(chargeDetailsTable, R.id.row_oplata_abonamentowa, R.string.strefa_pusta, R.string.oplata_abonamentowa, months, R.string.m_c, prices.getOplataAbonamentowa());
 
         setChargeSummary(chargeDetailsTable);
     }
@@ -118,26 +124,22 @@ public class PgeBillActivity extends Activity {
     }
 
     private void setG11Rows(TableLayout chargeDetailsTable, int consumption) {
-        PgePrices prices = PgePrices.INSTANCE;
-
-        setRow(chargeDetailsTable, R.id.row_za_energie_czynna, R.string.strefa_calodobowa, R.string.za_energie_czynna, consumption, R.string.kWh, prices.getCenaZaEnergieCzynna());
-        setRow(chargeDetailsTable, R.id.row_skladnik_jakosciowy, R.string.strefa_calodobowa, R.string.skladnik_jakosciowy, consumption, R.string.kWh, prices.getCenaSkladnikJakosciowy());
-        setRow(chargeDetailsTable, R.id.row_oplata_sieciowa, R.string.strefa_calodobowa, R.string.oplata_sieciowa, consumption, R.string.kWh, prices.getCenaOplataSieciowa());
+        setRow(chargeDetailsTable, R.id.row_za_energie_czynna, R.string.strefa_calodobowa, R.string.za_energie_czynna, consumption, R.string.kWh, prices.getZaEnergieCzynna());
+        setRow(chargeDetailsTable, R.id.row_skladnik_jakosciowy, R.string.strefa_calodobowa, R.string.skladnik_jakosciowy, consumption, R.string.kWh, prices.getSkladnikJakosciowy());
+        setRow(chargeDetailsTable, R.id.row_oplata_sieciowa, R.string.strefa_calodobowa, R.string.oplata_sieciowa, consumption, R.string.kWh, prices.getOplataSieciowa());
     }
 
     private void setG12Rows(TableLayout chargeDetailsTable, int dayConsumption, int nightConsumption) {
-        PgePrices prices = PgePrices.INSTANCE;
+        setRow(chargeDetailsTable, R.id.row_za_energie_czynna, R.string.strefa_dzienna, R.string.za_energie_czynna, dayConsumption, R.string.kWh, prices.getZaEnergieCzynnaDzien());
+        setRow(chargeDetailsTable, R.id.row_skladnik_jakosciowy, R.string.strefa_dzienna, R.string.skladnik_jakosciowy, dayConsumption, R.string.kWh, prices.getSkladnikJakosciowy());
+        setRow(chargeDetailsTable, R.id.row_oplata_sieciowa, R.string.strefa_dzienna, R.string.oplata_sieciowa, dayConsumption, R.string.kWh, prices.getOplataSieciowaDzien());
 
-        setRow(chargeDetailsTable, R.id.row_za_energie_czynna, R.string.strefa_dzienna, R.string.za_energie_czynna, dayConsumption, R.string.kWh, prices.getCenaZaEnergieCzynnaDzien());
-        setRow(chargeDetailsTable, R.id.row_skladnik_jakosciowy, R.string.strefa_dzienna, R.string.skladnik_jakosciowy, dayConsumption, R.string.kWh, prices.getCenaSkladnikJakosciowy());
-        setRow(chargeDetailsTable, R.id.row_oplata_sieciowa, R.string.strefa_dzienna, R.string.oplata_sieciowa, dayConsumption, R.string.kWh, prices.getCenaOplataSieciowaDzien());
-
-        setRow(chargeDetailsTable, R.id.row_za_energie_czynna2, R.string.strefa_nocna, R.string.za_energie_czynna, nightConsumption, R.string.kWh, prices.getCenaZaEnergieCzynnaNoc());
-        setRow(chargeDetailsTable, R.id.row_skladnik_jakosciowy2, R.string.strefa_nocna, R.string.skladnik_jakosciowy, nightConsumption, R.string.kWh, prices.getCenaSkladnikJakosciowy());
-        setRow(chargeDetailsTable, R.id.row_oplata_sieciowa2, R.string.strefa_nocna, R.string.oplata_sieciowa, nightConsumption, R.string.kWh, prices.getCenaOplataSieciowaNoc());
+        setRow(chargeDetailsTable, R.id.row_za_energie_czynna2, R.string.strefa_nocna, R.string.za_energie_czynna, nightConsumption, R.string.kWh, prices.getZaEnergieCzynnaNoc());
+        setRow(chargeDetailsTable, R.id.row_skladnik_jakosciowy2, R.string.strefa_nocna, R.string.skladnik_jakosciowy, nightConsumption, R.string.kWh, prices.getSkladnikJakosciowy());
+        setRow(chargeDetailsTable, R.id.row_oplata_sieciowa2, R.string.strefa_nocna, R.string.oplata_sieciowa, nightConsumption, R.string.kWh, prices.getOplataSieciowaNoc());
     }
 
-    private void setRow(View componentsTable, int rowId, int zoneId, int descriptionId, int count, int jmId, BigDecimal price) {
+    private void setRow(View componentsTable, int rowId, int zoneId, int descriptionId, int count, int jmId, String priceSt) {
         View row = componentsTable.findViewById(rowId);
         row.setVisibility(View.VISIBLE);
 
@@ -150,6 +152,7 @@ public class PgeBillActivity extends Activity {
         } else {
             setTVInRow(row, R.id.tv_month_count, Display.withScale(new BigDecimal(count), 2));
         }
+        BigDecimal price = new BigDecimal(priceSt);
         setTVInRow(row, R.id.tv_charge, getNetCharge(price, count));
         setTVInRow(row, R.id.tv_price, Display.withScale(price, PRICE_SCALE));
     }
@@ -237,6 +240,7 @@ public class PgeBillActivity extends Activity {
         } else {
             task = new PgeBillStorer(readingFrom, readingTo);
         }
+        task.setContext(this);
         task.putDates(dateFrom, dateTo);
         task.putAmount(grossCharge.doubleValue());
 

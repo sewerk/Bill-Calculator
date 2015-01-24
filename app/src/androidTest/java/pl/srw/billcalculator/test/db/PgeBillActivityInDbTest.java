@@ -9,7 +9,7 @@ import java.util.List;
 import pl.srw.billcalculator.PgeBillActivity;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.db.PgeG12Bill;
-import pl.srw.billcalculator.db.PgeG12Prices;
+import pl.srw.billcalculator.db.PgePrices;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.util.Dates;
 
@@ -50,8 +50,8 @@ public class PgeBillActivityInDbTest extends ActivityInstrumentationTestCase2<Pg
         assertEquals(4, bill.getReadingNightTo().intValue());
         assertEquals("21/12/2015", Dates.format(bill.getDateTo()));
         assertNotNull(bill.getAmountToPay());
-        final PgeG12Prices prices = bill.getPgeG12Prices();
+        final PgePrices prices = bill.getPgePrices();
         assertTrue(prices.getId() > 0);
-        assertFalse(prices.getCenaZaEnergieCzynnaDzien().isEmpty());
+        assertFalse(prices.getZaEnergieCzynnaDzien().isEmpty());
     }
 }

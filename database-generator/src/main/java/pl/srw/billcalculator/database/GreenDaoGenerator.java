@@ -21,8 +21,7 @@ public class GreenDaoGenerator {
         Entity pgePrices = addPgePrices(schema);
         addPgeBill(schema, pgePrices);
 
-        Entity pgeG12Prices = addPgeG12Prices(schema);
-        addPgeG12Bill(schema, pgeG12Prices);
+        addPgeG12Bill(schema, pgePrices);
 
         Entity pgnigPrices = addPgnigPrices(schema);
         addPgnigBill(schema, pgnigPrices);
@@ -59,23 +58,7 @@ public class GreenDaoGenerator {
         pgeBill.addToOne(pgePrices, pricesId);
     }
 
-    private static Entity addPgeG12Prices(final Schema schema) {
-        Entity pgePrices = schema.addEntity("PgeG12Prices");
-
-        pgePrices.addIdProperty().autoincrement();
-        pgePrices.addStringProperty("cenaZaEnergieCzynnaDzien");
-        pgePrices.addStringProperty("cenaZaEnergieCzynnaNoc");
-        pgePrices.addStringProperty("cenaSkladnikJakosciowy");
-        pgePrices.addStringProperty("cenaOplataSieciowaDzien");
-        pgePrices.addStringProperty("cenaOplataSieciowaNoc");
-        pgePrices.addStringProperty("cenaOplataPrzejsciowa");
-        pgePrices.addStringProperty("cenaOplStalaZaPrzesyl");
-        pgePrices.addStringProperty("cenaOplataAbonamentowa");
-
-        return pgePrices;
-    }
-
-    private static void addPgeG12Bill(final Schema schema, final Entity pgeG12Prices) {
+    private static void addPgeG12Bill(final Schema schema, final Entity pgePrices) {
         Entity pgeBill = schema.addEntity("PgeG12Bill");
         pgeBill.implementsInterface("Bill");
 
@@ -91,19 +74,25 @@ public class GreenDaoGenerator {
         pgeBill.addDoubleProperty("amountToPay");
 
         Property pricesId = pgeBill.addLongProperty("pricesId").getProperty();
-        pgeBill.addToOne(pgeG12Prices, pricesId);
+        pgeBill.addToOne(pgePrices, pricesId);
     }
 
     private static Entity addPgePrices(final Schema schema) {
         Entity pgePrices = schema.addEntity("PgePrices");
+        pgePrices.implementsInterface("pl.srw.billcalculator.pojo.IPgePrices");
 
         pgePrices.addIdProperty().autoincrement();
-        pgePrices.addStringProperty("cenaZaEnergieCzynna");
-        pgePrices.addStringProperty("cenaSkladnikJakosciowy");
-        pgePrices.addStringProperty("cenaOplataSieciowa");
-        pgePrices.addStringProperty("cenaOplataPrzejsciowa");
-        pgePrices.addStringProperty("cenaOplStalaZaPrzesyl");
-        pgePrices.addStringProperty("cenaOplataAbonamentowa");
+        pgePrices.addStringProperty("zaEnergieCzynna");
+        pgePrices.addStringProperty("skladnikJakosciowy");
+        pgePrices.addStringProperty("oplataSieciowa");
+        pgePrices.addStringProperty("oplataPrzejsciowa");
+        pgePrices.addStringProperty("oplataStalaZaPrzesyl");
+        pgePrices.addStringProperty("oplataAbonamentowa");
+
+        pgePrices.addStringProperty("zaEnergieCzynnaDzien");
+        pgePrices.addStringProperty("zaEnergieCzynnaNoc");
+        pgePrices.addStringProperty("oplataSieciowaDzien");
+        pgePrices.addStringProperty("oplataSieciowaNoc");
 
         return pgePrices;
     }
@@ -127,13 +116,14 @@ public class GreenDaoGenerator {
 
     private static Entity addPgnigPrices(final Schema schema) {
         Entity pgnigPrices = schema.addEntity("PgnigPrices");
+        pgnigPrices.implementsInterface("pl.srw.billcalculator.pojo.IPgnigPrices");
 
         pgnigPrices.addIdProperty().autoincrement();
         pgnigPrices.addStringProperty("oplataAbonamentowa");
         pgnigPrices.addStringProperty("paliwoGazowe");
         pgnigPrices.addStringProperty("dystrybucyjnaStala");
         pgnigPrices.addStringProperty("dystrybucyjnaZmienna");
-        pgnigPrices.addStringProperty("wspKonwersji");
+        pgnigPrices.addStringProperty("wspolczynnikKonwersji");
 
         return pgnigPrices;
     }

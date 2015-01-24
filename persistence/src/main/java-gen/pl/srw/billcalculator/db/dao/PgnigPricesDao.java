@@ -28,7 +28,7 @@ public class PgnigPricesDao extends AbstractDao<PgnigPrices, Long> {
         public final static Property PaliwoGazowe = new Property(2, String.class, "paliwoGazowe", false, "PALIWO_GAZOWE");
         public final static Property DystrybucyjnaStala = new Property(3, String.class, "dystrybucyjnaStala", false, "DYSTRYBUCYJNA_STALA");
         public final static Property DystrybucyjnaZmienna = new Property(4, String.class, "dystrybucyjnaZmienna", false, "DYSTRYBUCYJNA_ZMIENNA");
-        public final static Property WspKonwersji = new Property(5, String.class, "wspKonwersji", false, "WSP_KONWERSJI");
+        public final static Property WspolczynnikKonwersji = new Property(5, String.class, "wspolczynnikKonwersji", false, "WSPOLCZYNNIK_KONWERSJI");
     };
 
 
@@ -49,7 +49,7 @@ public class PgnigPricesDao extends AbstractDao<PgnigPrices, Long> {
                 "'PALIWO_GAZOWE' TEXT," + // 2: paliwoGazowe
                 "'DYSTRYBUCYJNA_STALA' TEXT," + // 3: dystrybucyjnaStala
                 "'DYSTRYBUCYJNA_ZMIENNA' TEXT," + // 4: dystrybucyjnaZmienna
-                "'WSP_KONWERSJI' TEXT);"); // 5: wspKonwersji
+                "'WSPOLCZYNNIK_KONWERSJI' TEXT);"); // 5: wspolczynnikKonwersji
     }
 
     /** Drops the underlying database table. */
@@ -88,9 +88,9 @@ public class PgnigPricesDao extends AbstractDao<PgnigPrices, Long> {
             stmt.bindString(5, dystrybucyjnaZmienna);
         }
  
-        String wspKonwersji = entity.getWspKonwersji();
-        if (wspKonwersji != null) {
-            stmt.bindString(6, wspKonwersji);
+        String wspolczynnikKonwersji = entity.getWspolczynnikKonwersji();
+        if (wspolczynnikKonwersji != null) {
+            stmt.bindString(6, wspolczynnikKonwersji);
         }
     }
 
@@ -109,7 +109,7 @@ public class PgnigPricesDao extends AbstractDao<PgnigPrices, Long> {
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // paliwoGazowe
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // dystrybucyjnaStala
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // dystrybucyjnaZmienna
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // wspKonwersji
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // wspolczynnikKonwersji
         );
         return entity;
     }
@@ -122,7 +122,7 @@ public class PgnigPricesDao extends AbstractDao<PgnigPrices, Long> {
         entity.setPaliwoGazowe(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setDystrybucyjnaStala(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setDystrybucyjnaZmienna(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setWspKonwersji(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setWspolczynnikKonwersji(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
      }
     
     /** @inheritdoc */

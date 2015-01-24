@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import pl.srw.billcalculator.PgeBillActivity;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.pojo.PgePrices;
 
 /**
  * Created by Kamil Seweryn.
@@ -25,8 +26,8 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
     public static final int TO = 25;
 
     private PgeBillActivity sut;
-    private SharedPreferences preferences;
     private Context context;
+    private PgePrices pgePrices;
 
     public PgeBillActivityTest() {
         super(PgeBillActivity.class);
@@ -36,7 +37,8 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
     protected void setUp() throws Exception {
         super.setUp();
         context = getInstrumentation().getTargetContext();
-        preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        pgePrices = new PgePrices(preferences);
         setDummyIntent();
         setDefaultPrices();
     }
@@ -126,9 +128,9 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         setActivityIntent(intent);
 
         sut = getActivity();
-        checkNaleznoscInRow(R.string.preferences_pge_za_energie_czynna, ilosc, R.id.row_za_energie_czynna);
-        checkNaleznoscInRow(R.string.preferences_pge_skladnik_jakosciowy, ilosc, R.id.row_skladnik_jakosciowy);
-        checkNaleznoscInRow(R.string.preferences_pge_oplata_sieciowa, ilosc, R.id.row_oplata_sieciowa);
+        checkNaleznoscInRow(pgePrices.getZaEnergieCzynna(), ilosc, R.id.row_za_energie_czynna);
+        checkNaleznoscInRow(pgePrices.getSkladnikJakosciowy(), ilosc, R.id.row_skladnik_jakosciowy);
+        checkNaleznoscInRow(pgePrices.getOplataSieciowa(), ilosc, R.id.row_oplata_sieciowa);
     }
 
     public void testSumCostForG11Readings() {
@@ -159,16 +161,24 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         putReadings(intent, 0, 10, 0, 100);
         setActivityIntent(intent);
 
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(context.getString(R.string.preferences_pge_za_energie_czynna_G12dzien), "1.01");
-        editor.putString(context.getString(R.string.preferences_pge_za_energie_czynna_G12noc), "2.02");
-        editor.putString(context.getString(R.string.preferences_pge_skladnik_jakosciowy), "3.03");
-        editor.putString(context.getString(R.string.preferences_pge_oplata_sieciowa_G12dzien), "4.04");
-        editor.putString(context.getString(R.string.preferences_pge_oplata_sieciowa_G12noc), "5.05");
-        editor.putString(context.getString(R.string.preferences_pge_oplata_przejsciowa), "6.06");
-        editor.putString(context.getString(R.string.preferences_pge_oplata_stala_za_przesyl), "7.07");
-        editor.putString(context.getString(R.string.preferences_pge_oplata_abonamentowa), "8.08");
-        editor.commit();
+//        SharedPreferences.Editor editor = preferences.edit();
+//        editor.putString(context.getString(R.string.preferences_pge_za_energie_czynna_G12dzien), "1.01");
+//        editor.putString(context.getString(R.string.preferences_pge_za_energie_czynna_G12noc), "2.02");
+//        editor.putString(context.getString(R.string.preferences_pge_skladnik_jakosciowy), "3.03");
+//        editor.putString(context.getString(R.string.preferences_pge_oplata_sieciowa_G12dzien), "4.04");
+//        editor.putString(context.getString(R.string.preferences_pge_oplata_sieciowa_G12noc), "5.05");
+//        editor.putString(context.getString(R.string.preferences_pge_oplata_przejsciowa), "6.06");
+//        editor.putString(context.getString(R.string.preferences_pge_oplata_stala_za_przesyl), "7.07");
+//        editor.putString(context.getString(R.string.preferences_pge_oplata_abonamentowa), "8.08");
+//        editor.commit();TODO: preapre test migration of preferences
+        pgePrices.setZaEnergieCzynnaDzien("1.01");
+        pgePrices.setZaEnergieCzynnaNoc("2.02");
+        pgePrices.setSkladnikJakosciowy("3.03");
+        pgePrices.setOplataSieciowaDzien("4.04");
+        pgePrices.setOplataSieciowaNoc("5.05");
+        pgePrices.setOplataPrzejsciowa("6.06");
+        pgePrices.setOplataStalaZaPrzesyl("7.07");
+        pgePrices.setOplataAbonamentowa("8.08");
 
         sut = getActivity();
         assEqTextInRow("10.10", R.id.tv_charge, R.id.row_za_energie_czynna);
@@ -194,14 +204,10 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         assEqTextInRow("" + expectedIlosc, R.id.tv_count, rowId);
     }
 
-    private void checkNaleznoscInRow(int pricePreferenceId, int ilosc, int rowId) {
-        BigDecimal cena = getCena(pricePreferenceId);
+    private void checkNaleznoscInRow(String price, int ilosc, int rowId) {
+        BigDecimal cena = new BigDecimal(price);
         String expected = countKoszt(cena, ilosc).toString();
         assEqTextInRow(expected, R.id.tv_charge, rowId);
-    }
-
-    private BigDecimal getCena(int preference_id) {
-        return new BigDecimal(preferences.getString(sut.getString(preference_id), "0"));
     }
 
     private BigDecimal countKoszt(BigDecimal cena, int ilosc) {
@@ -210,12 +216,12 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
 
     private BigDecimal countSum(int ilosc) {
         BigDecimal sum = BigDecimal.ZERO.setScale(2, BigDecimal.ROUND_HALF_UP);
-        return sum.add(countKoszt(getCena(R.string.preferences_pge_za_energie_czynna), ilosc))
-                .add(countKoszt(getCena(R.string.preferences_pge_skladnik_jakosciowy), ilosc))
-                .add(countKoszt(getCena(R.string.preferences_pge_oplata_sieciowa), ilosc))
-                .add(getCena(R.string.preferences_pge_oplata_przejsciowa))
-                .add(getCena(R.string.preferences_pge_oplata_stala_za_przesyl))
-                .add(getCena(R.string.preferences_pge_oplata_abonamentowa));
+        return sum.add(countKoszt(new BigDecimal(pgePrices.getZaEnergieCzynna()), ilosc))
+                .add(countKoszt(new BigDecimal(pgePrices.getSkladnikJakosciowy()), ilosc))
+                .add(countKoszt(new BigDecimal(pgePrices.getOplataSieciowa()), ilosc))
+                .add(new BigDecimal(pgePrices.getOplataPrzejsciowa()))
+                .add(new BigDecimal(pgePrices.getOplataStalaZaPrzesyl()))
+                .add(new BigDecimal(pgePrices.getOplataAbonamentowa()));
     }
 
     private void assEqText(String expected, int tvId) {
@@ -253,18 +259,16 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
     }
 
     private void setDefaultPrices() {
-        SharedPreferences.Editor edit = preferences.edit();
-        setPreference(edit, R.string.preferences_pge_za_energie_czynna, R.string.price_za_energie_czynna);
-        setPreference(edit, R.string.preferences_pge_za_energie_czynna_G12dzien, R.string.price_za_energie_czynna_G12dzien);
-        setPreference(edit, R.string.preferences_pge_za_energie_czynna_G12noc, R.string.price_za_energie_czynna_G12noc);
-        setPreference(edit, R.string.preferences_pge_skladnik_jakosciowy, R.string.price_skladnik_jakosciowy);
-        setPreference(edit, R.string.preferences_pge_oplata_sieciowa, R.string.price_oplata_sieciowa);
-        setPreference(edit, R.string.preferences_pge_oplata_sieciowa_G12dzien, R.string.price_oplata_sieciowa_G12dzien);
-        setPreference(edit, R.string.preferences_pge_oplata_sieciowa_G12noc, R.string.price_oplata_sieciowa_G12noc);
-        setPreference(edit, R.string.preferences_pge_oplata_przejsciowa, R.string.price_oplata_przejsciowa);
-        setPreference(edit, R.string.preferences_pge_oplata_stala_za_przesyl, R.string.price_oplata_stala_za_przesyl);
-        setPreference(edit, R.string.preferences_pge_oplata_abonamentowa, R.string.price_oplata_abonamentowa);
-        edit.commit();
+        pgePrices.removeOplataAbonamentowa();
+        pgePrices.removeOplataPrzejsciowa();
+        pgePrices.removeOplataSieciowa();
+        pgePrices.removeOplataSieciowaDzien();
+        pgePrices.removeOplataSieciowaNoc();
+        pgePrices.removeOplataStalaZaPrzesyl();
+        pgePrices.removeSkladnikJakosciowy();
+        pgePrices.removeZaEnergieCzynna();
+        pgePrices.removeZaEnergieCzynnaDzien();
+        pgePrices.removeZaEnergieCzynnaNoc();
     }
 
     private void setDummyIntent() {
@@ -276,7 +280,4 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         setActivityIntent(intent);
     }
 
-    private void setPreference(SharedPreferences.Editor edit, int prefKeyId, int defaultPriceId) {
-        edit.putString(context.getString(prefKeyId), context.getString(defaultPriceId));
-    }
 }

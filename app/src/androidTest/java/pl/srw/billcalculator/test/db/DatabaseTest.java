@@ -8,7 +8,6 @@ import de.greenrobot.dao.test.AbstractDaoSessionTest;
 import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.db.PgeBill;
 import pl.srw.billcalculator.db.PgeG12Bill;
-import pl.srw.billcalculator.db.PgeG12Prices;
 import pl.srw.billcalculator.db.PgePrices;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.PgnigPrices;
@@ -31,48 +30,62 @@ public class DatabaseTest extends AbstractDaoSessionTest<BillCalculator, DaoMast
         QueryBuilder.LOG_VALUES = true;
     }
 
-    public void testBillSavedWithPrices() {
+    public void testLoadById() {
+        // save
         final PgePrices prices = new PgePrices();
         daoSession.insert(prices);
-
         final PgeBill bill = new PgeBill();
         bill.setPgePrices(prices);
         daoSession.insert(bill);
 
+        // load
         assertTrue(bill.getId() > 0);
         final PgeBill billFromDb = daoSession.getPgeBillDao().load(bill.getId());
+        
+        // test
         assertNotNull(billFromDb.getPgePrices());
         assertTrue(billFromDb.getPricesId() > 0);
         assertTrue(billFromDb.getPgePrices().getId() > 0);
         assertSame(prices, billFromDb.getPgePrices());
     }
 
-    public void testBillListRetrievedWithPrices() {
-        final PgeG12Prices prices = new PgeG12Prices();
+    public void testLoadAll() {
+        // save
+        final PgePrices prices = new PgePrices();
         daoSession.insert(prices);
-
         final PgeG12Bill bill = new PgeG12Bill();
-        bill.setPgeG12Prices(prices);
+        bill.setPgePrices(prices);
         daoSession.insert(bill);
 
+        // load
         final List<PgeG12Bill> billsFromDb = daoSession.getPgeG12BillDao().loadAll();
+        
+        // test
         assertEquals(1, billsFromDb.size());
         assertNotNull(billsFromDb.get(0));
-        assertNotNull(billsFromDb.get(0).getPgeG12Prices());
+        assertNotNull(billsFromDb.get(0).getPgePrices());
     }
 
-    public void testBillLazyListRetrievedWithPrices() {
+    public void testLazyList() {
+        // save
         final PgnigPrices prices = new PgnigPrices();
         daoSession.insert(prices);
-
         final PgnigBill bill = new PgnigBill();
         bill.setPgnigPrices(prices);
         daoSession.insert(bill);
 
+        // load
         final LazyList<PgnigBill> billsFromDb = daoSession.getPgnigBillDao().queryBuilder().listLazy();
+        
+        // test
         assertEquals(1, billsFromDb.size());
         assertNotNull(billsFromDb.get(0));
         assertNotNull(billsFromDb.get(0).getPgnigPrices());
         assertTrue(billsFromDb.isClosed());
+    }
+    
+    public void testSaveBillTrigger() {
+        //TODO
+        assertTrue(true);
     }
 }

@@ -1,5 +1,8 @@
 package pl.srw.billcalculator.task;
 
+import android.app.Activity;
+import android.content.Context;
+
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.persistence.Database;
@@ -9,6 +12,8 @@ import pl.srw.billcalculator.util.Dates;
  * Created by Kamil Seweryn.
  */
 public abstract class BillStorer implements Runnable {
+
+    protected Context context;
 
     @DebugLog
     @Override
@@ -45,4 +50,7 @@ public abstract class BillStorer implements Runnable {
     protected abstract Object getPrices();
 
 
+    public void setContext(Activity activity) {
+        context = activity;
+    }
 }

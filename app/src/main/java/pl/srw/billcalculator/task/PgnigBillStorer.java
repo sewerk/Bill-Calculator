@@ -1,5 +1,7 @@
 package pl.srw.billcalculator.task;
 
+import android.preference.PreferenceManager;
+
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.PgnigPrices;
@@ -39,9 +41,9 @@ public class PgnigBillStorer extends BillStorer {
     }
 
     @Override
-    protected Object getPrices() {
-        PgnigPrices dbPrices = new PgnigPrices();
-        //TODO
-        return dbPrices;
+    protected PgnigPrices getPrices() {
+        final pl.srw.billcalculator.pojo.PgnigPrices prices =
+                new pl.srw.billcalculator.pojo.PgnigPrices(PreferenceManager.getDefaultSharedPreferences(context));
+        return prices.convertToDb();
     }
 }

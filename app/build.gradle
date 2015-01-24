@@ -44,6 +44,7 @@ dependencies {
     compile project(':persistence')
     compile 'com.android.support:recyclerview-v7:21.0.+'
     compile 'com.jakewharton:butterknife:5.1.2'
+    provided 'pl.mg6.hrisey:hrisey:0.3.1'
 
     // AndroidViewAnimations dependencies
     compile 'com.nineoldandroids:library:2.4.0'

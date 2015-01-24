@@ -4,14 +4,14 @@ package pl.srw.billcalculator.db;
 /**
  * Entity mapped to table PGNIG_PRICES.
  */
-public class PgnigPrices {
+public class PgnigPrices implements pl.srw.billcalculator.pojo.IPgnigPrices {
 
     private Long id;
     private String oplataAbonamentowa;
     private String paliwoGazowe;
     private String dystrybucyjnaStala;
     private String dystrybucyjnaZmienna;
-    private String wspKonwersji;
+    private String wspolczynnikKonwersji;
 
     public PgnigPrices() {
     }
@@ -20,13 +20,13 @@ public class PgnigPrices {
         this.id = id;
     }
 
-    public PgnigPrices(Long id, String oplataAbonamentowa, String paliwoGazowe, String dystrybucyjnaStala, String dystrybucyjnaZmienna, String wspKonwersji) {
+    public PgnigPrices(Long id, String oplataAbonamentowa, String paliwoGazowe, String dystrybucyjnaStala, String dystrybucyjnaZmienna, String wspolczynnikKonwersji) {
         this.id = id;
         this.oplataAbonamentowa = oplataAbonamentowa;
         this.paliwoGazowe = paliwoGazowe;
         this.dystrybucyjnaStala = dystrybucyjnaStala;
         this.dystrybucyjnaZmienna = dystrybucyjnaZmienna;
-        this.wspKonwersji = wspKonwersji;
+        this.wspolczynnikKonwersji = wspolczynnikKonwersji;
     }
 
     public Long getId() {
@@ -69,12 +69,12 @@ public class PgnigPrices {
         this.dystrybucyjnaZmienna = dystrybucyjnaZmienna;
     }
 
-    public String getWspKonwersji() {
-        return wspKonwersji;
+    public String getWspolczynnikKonwersji() {
+        return wspolczynnikKonwersji;
     }
 
-    public void setWspKonwersji(String wspKonwersji) {
-        this.wspKonwersji = wspKonwersji;
+    public void setWspolczynnikKonwersji(String wspolczynnikKonwersji) {
+        this.wspolczynnikKonwersji = wspolczynnikKonwersji;
     }
 
 }

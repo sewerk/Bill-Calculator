@@ -4,15 +4,19 @@ package pl.srw.billcalculator.db;
 /**
  * Entity mapped to table PGE_PRICES.
  */
-public class PgePrices {
+public class PgePrices implements pl.srw.billcalculator.pojo.IPgePrices {
 
     private Long id;
-    private String cenaZaEnergieCzynna;
-    private String cenaSkladnikJakosciowy;
-    private String cenaOplataSieciowa;
-    private String cenaOplataPrzejsciowa;
-    private String cenaOplStalaZaPrzesyl;
-    private String cenaOplataAbonamentowa;
+    private String zaEnergieCzynna;
+    private String skladnikJakosciowy;
+    private String oplataSieciowa;
+    private String oplataPrzejsciowa;
+    private String oplataStalaZaPrzesyl;
+    private String oplataAbonamentowa;
+    private String zaEnergieCzynnaDzien;
+    private String zaEnergieCzynnaNoc;
+    private String oplataSieciowaDzien;
+    private String oplataSieciowaNoc;
 
     public PgePrices() {
     }
@@ -21,14 +25,18 @@ public class PgePrices {
         this.id = id;
     }
 
-    public PgePrices(Long id, String cenaZaEnergieCzynna, String cenaSkladnikJakosciowy, String cenaOplataSieciowa, String cenaOplataPrzejsciowa, String cenaOplStalaZaPrzesyl, String cenaOplataAbonamentowa) {
+    public PgePrices(Long id, String zaEnergieCzynna, String skladnikJakosciowy, String oplataSieciowa, String oplataPrzejsciowa, String oplataStalaZaPrzesyl, String oplataAbonamentowa, String zaEnergieCzynnaDzien, String zaEnergieCzynnaNoc, String oplataSieciowaDzien, String oplataSieciowaNoc) {
         this.id = id;
-        this.cenaZaEnergieCzynna = cenaZaEnergieCzynna;
-        this.cenaSkladnikJakosciowy = cenaSkladnikJakosciowy;
-        this.cenaOplataSieciowa = cenaOplataSieciowa;
-        this.cenaOplataPrzejsciowa = cenaOplataPrzejsciowa;
-        this.cenaOplStalaZaPrzesyl = cenaOplStalaZaPrzesyl;
-        this.cenaOplataAbonamentowa = cenaOplataAbonamentowa;
+        this.zaEnergieCzynna = zaEnergieCzynna;
+        this.skladnikJakosciowy = skladnikJakosciowy;
+        this.oplataSieciowa = oplataSieciowa;
+        this.oplataPrzejsciowa = oplataPrzejsciowa;
+        this.oplataStalaZaPrzesyl = oplataStalaZaPrzesyl;
+        this.oplataAbonamentowa = oplataAbonamentowa;
+        this.zaEnergieCzynnaDzien = zaEnergieCzynnaDzien;
+        this.zaEnergieCzynnaNoc = zaEnergieCzynnaNoc;
+        this.oplataSieciowaDzien = oplataSieciowaDzien;
+        this.oplataSieciowaNoc = oplataSieciowaNoc;
     }
 
     public Long getId() {
@@ -39,52 +47,84 @@ public class PgePrices {
         this.id = id;
     }
 
-    public String getCenaZaEnergieCzynna() {
-        return cenaZaEnergieCzynna;
+    public String getZaEnergieCzynna() {
+        return zaEnergieCzynna;
     }
 
-    public void setCenaZaEnergieCzynna(String cenaZaEnergieCzynna) {
-        this.cenaZaEnergieCzynna = cenaZaEnergieCzynna;
+    public void setZaEnergieCzynna(String zaEnergieCzynna) {
+        this.zaEnergieCzynna = zaEnergieCzynna;
     }
 
-    public String getCenaSkladnikJakosciowy() {
-        return cenaSkladnikJakosciowy;
+    public String getSkladnikJakosciowy() {
+        return skladnikJakosciowy;
     }
 
-    public void setCenaSkladnikJakosciowy(String cenaSkladnikJakosciowy) {
-        this.cenaSkladnikJakosciowy = cenaSkladnikJakosciowy;
+    public void setSkladnikJakosciowy(String skladnikJakosciowy) {
+        this.skladnikJakosciowy = skladnikJakosciowy;
     }
 
-    public String getCenaOplataSieciowa() {
-        return cenaOplataSieciowa;
+    public String getOplataSieciowa() {
+        return oplataSieciowa;
     }
 
-    public void setCenaOplataSieciowa(String cenaOplataSieciowa) {
-        this.cenaOplataSieciowa = cenaOplataSieciowa;
+    public void setOplataSieciowa(String oplataSieciowa) {
+        this.oplataSieciowa = oplataSieciowa;
     }
 
-    public String getCenaOplataPrzejsciowa() {
-        return cenaOplataPrzejsciowa;
+    public String getOplataPrzejsciowa() {
+        return oplataPrzejsciowa;
     }
 
-    public void setCenaOplataPrzejsciowa(String cenaOplataPrzejsciowa) {
-        this.cenaOplataPrzejsciowa = cenaOplataPrzejsciowa;
+    public void setOplataPrzejsciowa(String oplataPrzejsciowa) {
+        this.oplataPrzejsciowa = oplataPrzejsciowa;
     }
 
-    public String getCenaOplStalaZaPrzesyl() {
-        return cenaOplStalaZaPrzesyl;
+    public String getOplataStalaZaPrzesyl() {
+        return oplataStalaZaPrzesyl;
     }
 
-    public void setCenaOplStalaZaPrzesyl(String cenaOplStalaZaPrzesyl) {
-        this.cenaOplStalaZaPrzesyl = cenaOplStalaZaPrzesyl;
+    public void setOplataStalaZaPrzesyl(String oplataStalaZaPrzesyl) {
+        this.oplataStalaZaPrzesyl = oplataStalaZaPrzesyl;
     }
 
-    public String getCenaOplataAbonamentowa() {
-        return cenaOplataAbonamentowa;
+    public String getOplataAbonamentowa() {
+        return oplataAbonamentowa;
     }
 
-    public void setCenaOplataAbonamentowa(String cenaOplataAbonamentowa) {
-        this.cenaOplataAbonamentowa = cenaOplataAbonamentowa;
+    public void setOplataAbonamentowa(String oplataAbonamentowa) {
+        this.oplataAbonamentowa = oplataAbonamentowa;
+    }
+
+    public String getZaEnergieCzynnaDzien() {
+        return zaEnergieCzynnaDzien;
+    }
+
+    public void setZaEnergieCzynnaDzien(String zaEnergieCzynnaDzien) {
+        this.zaEnergieCzynnaDzien = zaEnergieCzynnaDzien;
+    }
+
+    public String getZaEnergieCzynnaNoc() {
+        return zaEnergieCzynnaNoc;
+    }
+
+    public void setZaEnergieCzynnaNoc(String zaEnergieCzynnaNoc) {
+        this.zaEnergieCzynnaNoc = zaEnergieCzynnaNoc;
+    }
+
+    public String getOplataSieciowaDzien() {
+        return oplataSieciowaDzien;
+    }
+
+    public void setOplataSieciowaDzien(String oplataSieciowaDzien) {
+        this.oplataSieciowaDzien = oplataSieciowaDzien;
+    }
+
+    public String getOplataSieciowaNoc() {
+        return oplataSieciowaNoc;
+    }
+
+    public void setOplataSieciowaNoc(String oplataSieciowaNoc) {
+        this.oplataSieciowaNoc = oplataSieciowaNoc;
     }
 
 }

@@ -10,9 +10,12 @@ import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import pl.srw.billcalculator.pojo.IPgnigPrices;
+import pl.srw.billcalculator.pojo.PgnigPrices;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 
@@ -23,16 +26,13 @@ public class PgnigBillActivity extends Activity {
 
     public static final int PRICE_SCALE = 5;
     public static final BigDecimal VAT = new BigDecimal("0.23");
+    public static final String PRICES = "PGNIG_PRICES";
+    
     private String dateFrom;
     private String dateTo;
     private int readingFrom;
     private int readingTo;
-
-    private BigDecimal wspKonwersji;
-    private BigDecimal oplataAbonamentowa;
-    private BigDecimal paliwoGazowe;
-    private BigDecimal dystrybucyjnaStala;
-    private BigDecimal dystrybucyjnaZmienna;
+    private IPgnigPrices prices;
 
     private BigDecimal netChargeSum = BigDecimal.ZERO;
     private BigDecimal grossCharge;
@@ -45,12 +45,8 @@ public class PgnigBillActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        dateFrom = intent.getStringExtra(MainActivity.DATE_FROM);
-        dateTo = intent.getStringExtra(MainActivity.DATE_TO);
-        readingFrom = intent.getIntExtra(MainActivity.READING_FROM, 0);
-        readingTo = intent.getIntExtra(MainActivity.READING_TO, 0);
-
-        setPrices();
+        setInput(intent);
+        setPrices(intent);
 
         setReadingsTable();
         setChargeDetailsTable();
@@ -67,28 +63,18 @@ public class PgnigBillActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setPrices() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+    private void setInput(Intent intent) {
+        dateFrom = intent.getStringExtra(MainActivity.DATE_FROM);
+        dateTo = intent.getStringExtra(MainActivity.DATE_TO);
+        readingFrom = intent.getIntExtra(MainActivity.READING_FROM, 0);
+        readingTo = intent.getIntExtra(MainActivity.READING_TO, 0);
+    }
 
-        String oplataAbonamentowaString = sharedPreferences.getString(
-                getString(R.string.preferences_pgnig_abonamentowa), getString(R.string.price_abonamentowa));
-        oplataAbonamentowa = new BigDecimal(oplataAbonamentowaString);
-
-        String oplataPaliwoGazoweString = sharedPreferences.getString(
-                getString(R.string.preferences_pgnig_paliwo_gazowe), getString(R.string.price_paliwo_gazowe));
-        paliwoGazowe = new BigDecimal(oplataPaliwoGazoweString);
-
-        String dystrybucyjnaStalaString = sharedPreferences.getString(
-                getString(R.string.preferences_pgnig_dystrybucyjna_stala), getString(R.string.price_dystrybucyjna_stala));
-        dystrybucyjnaStala = new BigDecimal(dystrybucyjnaStalaString);
-
-        String dystrybucyjnaZmiennaString = sharedPreferences.getString(
-                getString(R.string.preferences_pgnig_dystrybucyjna_zmienna), getString(R.string.price_dystrybucyjna_zmienna));
-        dystrybucyjnaZmienna = new BigDecimal(dystrybucyjnaZmiennaString);
-
-        String wspKonwersjiString = sharedPreferences.getString(
-                getString(R.string.preferences_pgnig_wsp_konwersji), getString(R.string.price_wsp_konwersji));
-        wspKonwersji = new BigDecimal(wspKonwersjiString);
+    private void setPrices(Intent intent) {
+        if (intent.hasExtra(PRICES))
+            prices = (IPgnigPrices) intent.getSerializableExtra(PRICES);
+        else
+            prices = new PgnigPrices(PreferenceManager.getDefaultSharedPreferences(this));
     }
 
     private void setReadingsTable() {
@@ -102,13 +88,13 @@ public class PgnigBillActivity extends Activity {
         setTV(readingsTable, R.id.tv_consumption, getString(R.string.zuzycie, consumption));
 
         setTV(readingsTable, R.id.tv_total_consumption, getString(R.string.zuzycie_razem, consumption));
-        setTV(readingsTable, R.id.tv_conversion_factor, getString(R.string.wsp_konwersji, wspKonwersji));
-        int consumptionKWh = getConsumptionKWh(consumption);
-        setTV(readingsTable, R.id.tv_total_consumption_kWh, getString(R.string.zuzycie_razem_kWh, consumptionKWh));
+        setTV(readingsTable, R.id.tv_conversion_factor, getString(R.string.wsp_konwersji, prices.getWspolczynnikKonwersji()));
+        setTV(readingsTable, R.id.tv_total_consumption_kWh, getString(R.string.zuzycie_razem_kWh, getConsumptionKWh(consumption)));
     }
 
     private int getConsumptionKWh(int consumption) {
-        return new BigDecimal(consumption).multiply(wspKonwersji).setScale(0, RoundingMode.HALF_UP).intValue();
+        return new BigDecimal(consumption).multiply(new BigDecimal(prices.getWspolczynnikKonwersji()))
+                .setScale(0, RoundingMode.HALF_UP).intValue();
     }
 
     private int getConsumption() {
@@ -120,10 +106,14 @@ public class PgnigBillActivity extends Activity {
         int consumption = getConsumptionKWh(getConsumption());
         int months = Dates.countMonth(dateFrom, dateTo);
 
-        setRow(chargeTable, R.id.row_abonamentowa, R.string.abonamentowa, months, R.string.mc, oplataAbonamentowa, "");
-        setRow(chargeTable, R.id.row_paliwo_gazowe, R.string.paliwo_gazowe, consumption, R.string.kWh, paliwoGazowe, "ZW");
-        setRow(chargeTable, R.id.row_dystrybucyjna_stala, R.string.dystrybucyjna_stala, months, R.string.mc, dystrybucyjnaStala, "");
-        setRow(chargeTable, R.id.row_dystrybucyjna_zmienna, R.string.dystrybucyjna_zmienna, consumption, R.string.kWh, dystrybucyjnaZmienna, "");
+        setRow(chargeTable, R.id.row_abonamentowa, R.string.abonamentowa, months, R.string.mc, 
+                new BigDecimal(prices.getOplataAbonamentowa()), "");
+        setRow(chargeTable, R.id.row_paliwo_gazowe, R.string.paliwo_gazowe, consumption, R.string.kWh, 
+                new BigDecimal(prices.getPaliwoGazowe()), "ZW");
+        setRow(chargeTable, R.id.row_dystrybucyjna_stala, R.string.dystrybucyjna_stala, months, R.string.mc, 
+                new BigDecimal(prices.getDystrybucyjnaStala()), "");
+        setRow(chargeTable, R.id.row_dystrybucyjna_zmienna, R.string.dystrybucyjna_zmienna, consumption, R.string.kWh, 
+                new BigDecimal(prices.getDystrybucyjnaZmienna()), "");
 
         setChargeSummary(chargeTable);
     }
