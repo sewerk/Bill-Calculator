@@ -10,7 +10,7 @@ import hrisey.Preferences;
 @Preferences
 public class PgnigPrices implements IPgnigPrices {
 
-    private String oplataAbonamentowa = "8.67000";
+    private String oplataAbonamentowa = "8.67000";//TODO duplicated pref key!
     private String paliwoGazowe = "0.11815";
     private String dystrybucyjnaStala = "11.04000";
     private String dystrybucyjnaZmienna = "0.02734";

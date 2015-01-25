@@ -161,16 +161,6 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         putReadings(intent, 0, 10, 0, 100);
         setActivityIntent(intent);
 
-//        SharedPreferences.Editor editor = preferences.edit();
-//        editor.putString(context.getString(R.string.preferences_pge_za_energie_czynna_G12dzien), "1.01");
-//        editor.putString(context.getString(R.string.preferences_pge_za_energie_czynna_G12noc), "2.02");
-//        editor.putString(context.getString(R.string.preferences_pge_skladnik_jakosciowy), "3.03");
-//        editor.putString(context.getString(R.string.preferences_pge_oplata_sieciowa_G12dzien), "4.04");
-//        editor.putString(context.getString(R.string.preferences_pge_oplata_sieciowa_G12noc), "5.05");
-//        editor.putString(context.getString(R.string.preferences_pge_oplata_przejsciowa), "6.06");
-//        editor.putString(context.getString(R.string.preferences_pge_oplata_stala_za_przesyl), "7.07");
-//        editor.putString(context.getString(R.string.preferences_pge_oplata_abonamentowa), "8.08");
-//        editor.commit();TODO: preapre test migration of preferences
         pgePrices.setZaEnergieCzynnaDzien("1.01");
         pgePrices.setZaEnergieCzynnaNoc("2.02");
         pgePrices.setSkladnikJakosciowy("3.03");

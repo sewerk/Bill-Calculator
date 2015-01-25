@@ -16,7 +16,7 @@ public class SettingsActivity extends Activity {
         super.onCreate(savedInstanceState);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (savedInstanceState == null) {
+        if (savedInstanceState == null) {//TODO: change layout
             getFragmentManager()
                     .beginTransaction()
                     .replace(android.R.id.content, new SettingsFragment())

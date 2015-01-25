@@ -2,6 +2,7 @@ package pl.srw.billcalculator;
 
 import android.app.Application;
 
+import pl.srw.billcalculator.data.PreferenceMigration;
 import pl.srw.billcalculator.persistence.Database;
 
 /**
@@ -17,6 +18,8 @@ public class BillCalculator extends Application {
         if (BuildConfig.DEBUG) {
             Database.enableDatabaseLogging();
         }
+
+        PreferenceMigration.migrate(getApplicationContext());
     }
     
 }
