@@ -14,8 +14,11 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
 import pl.srw.billcalculator.pojo.PgnigPrices;
+import pl.srw.billcalculator.task.BillStorer;
+import pl.srw.billcalculator.task.PgnigBillStorer;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 
@@ -53,6 +56,13 @@ public class PgnigBillActivity extends Activity {
         setSummaryTable();
         setChargeTV();
 	}
+    
+    @DebugLog
+    @Override
+    protected void onResume() {
+        super.onResume();
+        saveBill();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -177,4 +187,12 @@ public class PgnigBillActivity extends Activity {
         tv.setText(text);
     }
 
+    private void saveBill() {
+        BillStorer task = new PgnigBillStorer(readingFrom, readingTo);
+        task.setContext(this);
+        task.putDates(dateFrom, dateTo);
+        task.putAmount(grossCharge.doubleValue());
+
+        new Thread(task).start();
+    }
 }
