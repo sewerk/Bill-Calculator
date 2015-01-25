@@ -84,8 +84,20 @@ public class DatabaseTest extends AbstractDaoSessionTest<BillCalculator, DaoMast
         assertTrue(billsFromDb.isClosed());
     }
     
-    public void testSaveBillTrigger() {
-        //TODO
-        assertTrue(true);
+    public void testDelete() {
+        // save
+        final PgePrices prices = new PgePrices();
+        daoSession.insert(prices);
+        final PgeBill bill = new PgeBill();
+        bill.setPgePrices(prices);
+        daoSession.insert(bill);
+
+        // delete
+        daoSession.delete(bill);
+        daoSession.delete(prices);
+        
+        // test
+        assertTrue(daoSession.getPgeBillDao().loadAll().isEmpty());
+        assertTrue(daoSession.getPgePricesDao().loadAll().isEmpty());
     }
 }

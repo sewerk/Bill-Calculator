@@ -41,10 +41,7 @@ public class Database {
                 @Override
                 public void onCreate(final SQLiteDatabase db) {
                     super.onCreate(db);
-                    for (String sql : Triggers.BILL_INSERT_TRIGGERS)
-                        db.execSQL(sql);
-//                    for (String sql : Triggers.BILL_DELETE_TRIGGERS)
-//                        db.execSQL(sql);//TODO
+                    Triggers.create(db);
                 }
             }.getWritableDatabase();
         return database;

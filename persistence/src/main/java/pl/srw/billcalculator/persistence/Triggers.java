@@ -1,5 +1,7 @@
 package pl.srw.billcalculator.persistence;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.dao.HistoryDao;
 import pl.srw.billcalculator.db.dao.PgeBillDao;
@@ -31,4 +33,11 @@ public final class Triggers {
                 ");";
     }
 
+    public static void create(SQLiteDatabase db) {
+        for (String sql : Triggers.BILL_INSERT_TRIGGERS)
+            db.execSQL(sql);
+//                    for (String sql : Triggers.BILL_DELETE_TRIGGERS)
+//                        db.execSQL(sql);//TODO
+        
+    }
 }
