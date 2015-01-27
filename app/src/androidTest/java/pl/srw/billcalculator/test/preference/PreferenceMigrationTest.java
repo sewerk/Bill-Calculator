@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.test;
+package pl.srw.billcalculator.test.preference;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -6,17 +6,18 @@ import android.test.ApplicationTestCase;
 
 import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.pojo.PgePrices;
-import pl.srw.billcalculator.pojo.PgnigPrices;
+import pl.srw.billcalculator.preference.PreferenceMigration;
+import pl.srw.billcalculator.preference.PgePrices;
+import pl.srw.billcalculator.preference.PgnigPrices;
 
 /**
  * Created by Kamil Seweryn.
  */
-public class BillCalculatorTest extends ApplicationTestCase {
+public class PreferenceMigrationTest extends ApplicationTestCase {
 
     private SharedPreferences preferences;
 
-    public BillCalculatorTest() {
+    public PreferenceMigrationTest() {
         super(BillCalculator.class);
     }
 
@@ -25,6 +26,14 @@ public class BillCalculatorTest extends ApplicationTestCase {
         super.setUp();
         preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
         preferences.edit().clear().commit();
+    }
+
+    public void donttestMigrationVersionCurrent() {
+        assertFalse(preferences.contains(PreferenceMigration.VERSION_PREF_KEY));
+
+        createApplication();
+
+        assertEquals(PreferenceMigration.CURRENT_VERSION, preferences.getInt(PreferenceMigration.VERSION_PREF_KEY, 0));
     }
 
     public void testPgePricesPreferenceMigration() {
@@ -45,7 +54,7 @@ public class BillCalculatorTest extends ApplicationTestCase {
         createApplication();
 
         // test
-        final PgePrices pgePrices = new PgePrices(preferences);
+        final PgePrices pgePrices = new PgePrices(mContext);
         assertEquals("1.01", pgePrices.getZaEnergieCzynnaDzien());
         assertEquals("2.02", pgePrices.getZaEnergieCzynnaNoc());
         assertEquals("3.03", pgePrices.getSkladnikJakosciowy());
@@ -71,7 +80,7 @@ public class BillCalculatorTest extends ApplicationTestCase {
         createApplication();
 
         // test
-        final PgnigPrices pgnigPrices = new PgnigPrices(preferences);
+        final PgnigPrices pgnigPrices = new PgnigPrices(mContext);
         assertEquals("1.09", pgnigPrices.getDystrybucyjnaStala());
         assertEquals("1.08", pgnigPrices.getDystrybucyjnaZmienna());
         assertEquals("1.07", pgnigPrices.getOplataAbonamentowa());

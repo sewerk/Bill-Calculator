@@ -2,8 +2,6 @@ package pl.srw.billcalculator.test;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -13,7 +11,7 @@ import java.math.BigDecimal;
 import pl.srw.billcalculator.PgeBillActivity;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.pojo.PgePrices;
+import pl.srw.billcalculator.preference.PgePrices;
 
 /**
  * Created by Kamil Seweryn.
@@ -37,8 +35,7 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
     protected void setUp() throws Exception {
         super.setUp();
         context = getInstrumentation().getTargetContext();
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        pgePrices = new PgePrices(preferences);
+        pgePrices = new PgePrices(context);
         setDummyIntent();
         setDefaultPrices();
     }
@@ -249,16 +246,7 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
     }
 
     private void setDefaultPrices() {
-        pgePrices.removeOplataAbonamentowa();
-        pgePrices.removeOplataPrzejsciowa();
-        pgePrices.removeOplataSieciowa();
-        pgePrices.removeOplataSieciowaDzien();
-        pgePrices.removeOplataSieciowaNoc();
-        pgePrices.removeOplataStalaZaPrzesyl();
-        pgePrices.removeSkladnikJakosciowy();
-        pgePrices.removeZaEnergieCzynna();
-        pgePrices.removeZaEnergieCzynnaDzien();
-        pgePrices.removeZaEnergieCzynnaNoc();
+        pgePrices.clear();
     }
 
     private void setDummyIntent() {

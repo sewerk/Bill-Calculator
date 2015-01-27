@@ -1,7 +1,5 @@
 package pl.srw.billcalculator.task;
 
-import android.preference.PreferenceManager;
-
 import pl.srw.billcalculator.db.PgeBill;
 import pl.srw.billcalculator.db.PgePrices;
 import pl.srw.billcalculator.db.dao.PgeBillDao;
@@ -27,8 +25,8 @@ public class PgeBillStorer extends BillStorer {
 
     @Override
     public PgePrices getPrices() {
-        final pl.srw.billcalculator.pojo.PgePrices pgePrices = 
-                new pl.srw.billcalculator.pojo.PgePrices(PreferenceManager.getDefaultSharedPreferences(context));
+        final pl.srw.billcalculator.preference.PgePrices pgePrices =
+                new pl.srw.billcalculator.preference.PgePrices(context);
         return pgePrices.convertToDb();
     }
 

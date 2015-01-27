@@ -2,21 +2,18 @@ package pl.srw.billcalculator;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
-import pl.srw.billcalculator.pojo.PgnigPrices;
+import pl.srw.billcalculator.preference.PgnigPrices;
 import pl.srw.billcalculator.task.BillStorer;
 import pl.srw.billcalculator.task.PgnigBillStorer;
 import pl.srw.billcalculator.util.Dates;
@@ -84,7 +81,7 @@ public class PgnigBillActivity extends Activity {
         if (intent.hasExtra(PRICES))
             prices = (IPgnigPrices) intent.getSerializableExtra(PRICES);
         else
-            prices = new PgnigPrices(PreferenceManager.getDefaultSharedPreferences(this));
+            prices = new PgnigPrices(this);
     }
 
     private void setReadingsTable() {

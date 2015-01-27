@@ -3,7 +3,6 @@ package pl.srw.billcalculator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
@@ -14,7 +13,7 @@ import java.math.RoundingMode;
 
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.pojo.IPgePrices;
-import pl.srw.billcalculator.pojo.PgePrices;
+import pl.srw.billcalculator.preference.PgePrices;
 import pl.srw.billcalculator.task.BillStorer;
 import pl.srw.billcalculator.task.PgeBillStorer;
 import pl.srw.billcalculator.task.PgeG12BillStorer;
@@ -93,7 +92,7 @@ public class PgeBillActivity extends Activity {
         if (intent.hasExtra(PRICES))
             prices = (IPgePrices) intent.getSerializableExtra(PRICES);
         else 
-            prices = new PgePrices(PreferenceManager.getDefaultSharedPreferences(this));
+            prices = new PgePrices(this);
     }
 
     private void setForPeriodTV() {

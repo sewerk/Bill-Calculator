@@ -1,15 +1,12 @@
-package pl.srw.billcalculator.data;
+package pl.srw.billcalculator.preference;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.preference.PreferenceManager;
 
-import java.util.ResourceBundle;
+import junit.framework.Assert;
 
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.pojo.PgePrices;
-import pl.srw.billcalculator.pojo.PgnigPrices;
 
 /**
  * Created by Kamil Seweryn.
@@ -25,16 +22,19 @@ public class PreferenceMigration {
         
         switch (oldVersion) {
             case 1: migrate_1_2(preferences, context);
+            case CURRENT_VERSION:
+                Assert.assertEquals(CURRENT_VERSION, preferences.getInt(VERSION_PREF_KEY, 1));
         }
     }
 
     private static void migrate_1_2(SharedPreferences preferences, Context context) {
         migratePgePrices(preferences, context);
         migratePgnigPrices(preferences, context);
+        preferences.edit().putInt(VERSION_PREF_KEY, 2).commit();
     }
 
     private static void migratePgePrices(SharedPreferences preferences, Context context) {
-        final PgePrices pgePrices = new PgePrices(preferences);
+        final PgePrices pgePrices = new PgePrices(context);
 
         String key = context.getString(R.string.preferences_pge_oplata_abonamentowa);
         if (preferences.contains(key)) {
@@ -79,7 +79,7 @@ public class PreferenceMigration {
     }
 
     private static void migratePgnigPrices(SharedPreferences preferences, Context context) {
-        final PgnigPrices pgnigPrices = new PgnigPrices(preferences);
+        final PgnigPrices pgnigPrices = new PgnigPrices(context);
 
         String key = context.getString(R.string.preferences_pgnig_dystrybucyjna_stala);
         if (preferences.contains(key)) {
