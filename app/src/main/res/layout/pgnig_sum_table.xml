@@ -15,11 +15,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="2dp"
-            android:background="@drawable/border">
+            android:background="@android:color/darker_gray">
 
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:textStyle="bold"
                 android:paddingRight="100dp"
                 android:text="Suma [I]"/>
 
@@ -27,6 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
+                android:textStyle="bold"
                 android:paddingRight="30dp"
                 android:text="wartość netto [zł]" />
 
@@ -34,6 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
+                android:textStyle="bold"
                 android:paddingRight="30dp"
                 android:text="kwota VAT [zł]" />
 
@@ -41,6 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
+                android:textStyle="bold"
                 android:text="wartość brutto [zł]" />
         </TableRow>
 

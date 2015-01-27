@@ -38,6 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
+                android:textStyle="bold"
                 android:paddingRight="30dp"
                 tools:text="01/01/2014" />
 
@@ -46,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
+                android:textStyle="bold"
                 android:paddingLeft="20dp"
                 android:text="@string/odczyt_na_dzien"
                 tools:text="249 [m\u00B3]"/>
@@ -75,6 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
+                android:textStyle="bold"
                 android:paddingRight="30dp"
                 tools:text="31/12/2014" />
 
@@ -84,6 +87,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:paddingLeft="20dp"
+                android:textStyle="bold"
                 android:text="@string/odczyt_na_dzien"
                 tools:text="290 [m\u00B3]"/>
 
@@ -92,6 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
+                android:textStyle="bold"
                 tools:text="Zużycie: 50 [m\u00B3]" />
 
         </TableRow>
@@ -124,6 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
+                android:textStyle="bold"
                 android:gravity="end"
                 tools:text="Zużycie razem: 555 kWh" />
         </TableRow>

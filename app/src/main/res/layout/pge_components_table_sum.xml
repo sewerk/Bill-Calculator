@@ -12,6 +12,7 @@
         android:layout_column="8"
         android:gravity="end"
         android:paddingRight="20dp"
+        android:textStyle="bold"
         android:text="OGÓŁEM" />
 
     <TextView
@@ -21,5 +22,6 @@
         android:layout_column="9"
         android:gravity="end"
         android:paddingRight="20dp"
+        android:textStyle="bold"
         tools:text="61,09" />
 </TableRow>

@@ -4,13 +4,14 @@
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/border"
+        android:background="@android:color/darker_gray"
         android:padding="2dp" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
+            android:textStyle="bold"
             android:text="Opłaty" />
 
         <TextView
@@ -18,6 +19,7 @@
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
             android:layout_span="2"
+            android:textStyle="bold"
             android:gravity="center_horizontal"
             android:text="za okres\nod                 do" />
 
@@ -25,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
+            android:textStyle="bold"
             android:layout_gravity="bottom"
             android:text="Ilość" />
 
@@ -32,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
+            android:textStyle="bold"
             android:layout_gravity="bottom"
             android:text="j.m." />
 
@@ -40,6 +44,7 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:textStyle="bold"
             android:text="cena\nnetto [zł]" />
 
         <TextView
@@ -47,6 +52,7 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:textStyle="bold"
             android:text="wartość\nakcyzy [zł]" />
 
         <TextView
@@ -54,6 +60,7 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:textStyle="bold"
             android:text="współ-\nczynnik" />
 
         <TextView
@@ -61,12 +68,14 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:textStyle="bold"
             android:text="stawka\nVAT [%]" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
+            android:textStyle="bold"
             android:text="wartość\n netto [zł]" />
 
     </TableRow>
