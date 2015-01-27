@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.data;
+package pl.srw.billcalculator.adapter;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;

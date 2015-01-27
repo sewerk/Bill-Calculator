@@ -41,4 +41,5 @@
     <string name="history_label">Historia</string>
     <string name="readings">Wskazanie: %1$s</string>
     <string name="readingsG12">Wskazania: dzienna(%1$s)\n nocna(%2$s)</string>
+    <string name="empty_history">Brak wyliczeń rachunków</string>
 </resources>
