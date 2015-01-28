@@ -1,16 +1,17 @@
 package pl.srw.billcalculator.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.dao.query.LazyList;
+import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
@@ -26,14 +27,12 @@ import pl.srw.billcalculator.util.Dates;
  */
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
 
-    private Context context;
     protected boolean dataValid;
     protected LazyList<History> lazyList;
 
-    public HistoryAdapter(Context context, LazyList<History> lazyList) {
+    public HistoryAdapter(LazyList<History> lazyList) {
         this.lazyList = lazyList;
         this.dataValid = lazyList != null;
-        this.context = context;
     }
 
     @Override
@@ -51,12 +50,23 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         // get element from your dataset at this position
         History historyItem = lazyList.get(position);
-        Bill entity = retrieveBill(historyItem);//TODO remember bill for open operation
-        // - replace the contents of the view with that element
+        Bill entity = retrieveBill(historyItem);
+        // remember bill for open operation
+        holder.item = entity;
+        // replace the contents of the view with that element
         holder.llBillType.setBackgroundResource(getBillTypeDrawable(entity));
         holder.tvForPeriod.setText(getDatePeriod(entity));
-        holder.tvReadings.setText(context.getString(R.string.readings, getReadings(entity)));
+        holder.tvReadings.setText(holder.itemView.getContext().getString(R.string.readings, getReadings(entity)));
         holder.tvAmount.setText(entity.getAmountToPay().toString() + " zł");
+    }
+
+    @Override
+    public int getItemCount() {
+        if (dataValid && lazyList != null) {
+            return lazyList.size();
+        } else {
+            return 0;
+        }
     }
 
     private Bill retrieveBill(final History historyItem) {
@@ -102,30 +112,23 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         return null;
     }
 
-    @Override
-    public int getItemCount() {
-        if (dataValid && lazyList != null) {
-            return lazyList.size();
-        } else {
-            return 0;
-        }
-    }
-
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @InjectView(R.id.ll_bill_summary) LinearLayout llBillType;
         @InjectView(R.id.tv_for_period) TextView tvForPeriod;
         @InjectView(R.id.tv_readings) TextView tvReadings;
         @InjectView(R.id.tv_amount) TextView tvAmount;
+        private Bill item;
 
         public ViewHolder(View v) {
             super(v);
+            v.setOnClickListener(this);
             ButterKnife.inject(this, v);
         }
 
         @Override
-        public void onClick(final View v) {
-        //TODO: open bill
+        public void onClick(final View v) { //TODO open bill
+            Toast.makeText(BillCalculator.context, "Open " + item.getClass().getSimpleName() + " bill", Toast.LENGTH_SHORT).show();
         }
 
         // TODO: update autocomplete on entry delete -set historyChanged

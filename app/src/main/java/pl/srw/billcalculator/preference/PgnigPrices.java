@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 import java.math.BigDecimal;
 
 import hrisey.Preferences;
+import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
 
 /**
@@ -20,8 +21,8 @@ public class PgnigPrices implements IPgnigPrices {
 //    private String dystrybucyjnaZmienna = "0.02734";
 //    private String wspolczynnikKonwersji = "11.150";
 
-    public PgnigPrices(Context context) {
-        wrappedPgnigPrices = new WrappedPgnigPrices(PreferenceManager.getDefaultSharedPreferences(context));
+    public PgnigPrices() {
+        wrappedPgnigPrices = new WrappedPgnigPrices(PreferenceManager.getDefaultSharedPreferences(BillCalculator.context));
     }
 
     @Override

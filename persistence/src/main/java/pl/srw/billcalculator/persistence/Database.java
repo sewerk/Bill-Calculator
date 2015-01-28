@@ -9,12 +9,10 @@ import java.util.List;
 
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.dao.query.QueryBuilder;
-import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.db.dao.DaoMaster;
 import pl.srw.billcalculator.db.dao.DaoSession;
 import pl.srw.billcalculator.db.dao.HistoryDao;
-import pl.srw.billcalculator.db.dao.PgeBillDao;
 
 /**
  * Created by Kamil Seweryn.

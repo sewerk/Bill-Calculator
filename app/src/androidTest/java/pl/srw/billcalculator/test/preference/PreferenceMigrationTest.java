@@ -54,7 +54,7 @@ public class PreferenceMigrationTest extends ApplicationTestCase {
         createApplication();
 
         // test
-        final PgePrices pgePrices = new PgePrices(mContext);
+        final PgePrices pgePrices = new PgePrices();
         assertEquals("1.01", pgePrices.getZaEnergieCzynnaDzien());
         assertEquals("2.02", pgePrices.getZaEnergieCzynnaNoc());
         assertEquals("3.03", pgePrices.getSkladnikJakosciowy());
@@ -80,7 +80,7 @@ public class PreferenceMigrationTest extends ApplicationTestCase {
         createApplication();
 
         // test
-        final PgnigPrices pgnigPrices = new PgnigPrices(mContext);
+        final PgnigPrices pgnigPrices = new PgnigPrices();
         assertEquals("1.09", pgnigPrices.getDystrybucyjnaStala());
         assertEquals("1.08", pgnigPrices.getDystrybucyjnaZmienna());
         assertEquals("1.07", pgnigPrices.getOplataAbonamentowa());

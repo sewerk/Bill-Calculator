@@ -92,7 +92,7 @@ public class PgeBillActivity extends Activity {
         if (intent.hasExtra(PRICES))
             prices = (IPgePrices) intent.getSerializableExtra(PRICES);
         else 
-            prices = new PgePrices(this);
+            prices = new PgePrices();
     }
 
     private void setForPeriodTV() {
@@ -239,7 +239,6 @@ public class PgeBillActivity extends Activity {
         } else {
             task = new PgeBillStorer(readingFrom, readingTo);
         }
-        task.setContext(this);
         task.putDates(dateFrom, dateTo);
         task.putAmount(grossCharge.doubleValue());
 

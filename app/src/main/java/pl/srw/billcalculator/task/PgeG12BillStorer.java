@@ -29,7 +29,7 @@ public class PgeG12BillStorer extends BillStorer {
     @Override
     public PgePrices getPrices() {
         final pl.srw.billcalculator.preference.PgePrices pgePrices =
-                new pl.srw.billcalculator.preference.PgePrices(context);
+                new pl.srw.billcalculator.preference.PgePrices();
         return pgePrices.convertToDb();
     }
 

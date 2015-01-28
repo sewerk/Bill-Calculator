@@ -41,7 +41,7 @@ public class PgnigBillStorer extends BillStorer {
     @Override
     protected PgnigPrices getPrices() {
         final pl.srw.billcalculator.preference.PgnigPrices prices =
-                new pl.srw.billcalculator.preference.PgnigPrices(context);
+                new pl.srw.billcalculator.preference.PgnigPrices();
         return prices.convertToDb();
     }
 }

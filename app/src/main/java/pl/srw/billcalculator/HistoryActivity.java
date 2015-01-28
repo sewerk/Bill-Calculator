@@ -31,7 +31,7 @@ public class HistoryActivity extends Activity {
 
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(this));
-        list.setAdapter(new HistoryAdapter(this, Database.getHistory()));
+        list.setAdapter(new HistoryAdapter(Database.getHistory()));
 
         dataObserver = new EmptyHistoryDataObserver(list.getAdapter(), tvEmptyHistory);
         dataObserver.onChanged();

@@ -81,7 +81,7 @@ public class PgnigBillActivity extends Activity {
         if (intent.hasExtra(PRICES))
             prices = (IPgnigPrices) intent.getSerializableExtra(PRICES);
         else
-            prices = new PgnigPrices(this);
+            prices = new PgnigPrices();
     }
 
     private void setReadingsTable() {
@@ -186,7 +186,6 @@ public class PgnigBillActivity extends Activity {
 
     private void saveBill() {
         BillStorer task = new PgnigBillStorer(readingFrom, readingTo);
-        task.setContext(this);
         task.putDates(dateFrom, dateTo);
         task.putAmount(grossCharge.doubleValue());
 

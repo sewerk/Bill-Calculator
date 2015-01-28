@@ -1,8 +1,8 @@
 package pl.srw.billcalculator.preference;
 
-import android.content.Context;
 import android.preference.PreferenceManager;
 
+import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.pojo.IPgePrices;
 
 
@@ -25,8 +25,8 @@ public class PgePrices implements IPgePrices {
 
     private WrappedPgePrices wrappedPgePrices;
 
-    public PgePrices(Context context) {
-        wrappedPgePrices = new WrappedPgePrices(PreferenceManager.getDefaultSharedPreferences(context));
+    public PgePrices() {
+        wrappedPgePrices = new WrappedPgePrices(PreferenceManager.getDefaultSharedPreferences(BillCalculator.context));
     }
 
     @Override

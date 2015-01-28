@@ -1,6 +1,5 @@
 package pl.srw.billcalculator.test;
 
-import android.content.Context;
 import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.TableRow;
@@ -24,7 +23,6 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
     public static final int TO = 25;
 
     private PgeBillActivity sut;
-    private Context context;
     private PgePrices pgePrices;
 
     public PgeBillActivityTest() {
@@ -34,8 +32,7 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        context = getInstrumentation().getTargetContext();
-        pgePrices = new PgePrices(context);
+        pgePrices = new PgePrices();
         setDummyIntent();
         setDefaultPrices();
     }

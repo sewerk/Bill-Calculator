@@ -34,7 +34,7 @@ public class PreferenceMigration {
     }
 
     private static void migratePgePrices(SharedPreferences preferences, Context context) {
-        final PgePrices pgePrices = new PgePrices(context);
+        final PgePrices pgePrices = new PgePrices();
 
         String key = context.getString(R.string.preferences_pge_oplata_abonamentowa);
         if (preferences.contains(key)) {
@@ -79,7 +79,7 @@ public class PreferenceMigration {
     }
 
     private static void migratePgnigPrices(SharedPreferences preferences, Context context) {
-        final PgnigPrices pgnigPrices = new PgnigPrices(context);
+        final PgnigPrices pgnigPrices = new PgnigPrices();
 
         String key = context.getString(R.string.preferences_pgnig_dystrybucyjna_stala);
         if (preferences.contains(key)) {
