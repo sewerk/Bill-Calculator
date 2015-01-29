@@ -52,6 +52,7 @@
 
 <!-- Preferences -->
     <string name="settings_label">Settings</string>
+    <string name="action_help">Help</string>
     <string name="energy_prices">PGE prices</string>
     <string name="settings_pge_summary">Tap to see prices for electricity from PGE</string>
     <string name="gas_prices">PGNiG prices</string>

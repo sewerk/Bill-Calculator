@@ -2,6 +2,7 @@ package pl.srw.billcalculator;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 /**
@@ -23,8 +24,18 @@ public class SettingsActivity extends Activity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.settings, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
+        if (item.getItemId() == R.id.action_settings) {
+            //TODO show help dialog
+            return true;
+        } else if (item.getItemId() == android.R.id.home) {
             onBackPressed();
             return true;
         }

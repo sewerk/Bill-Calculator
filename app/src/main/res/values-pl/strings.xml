@@ -25,6 +25,7 @@
     <string name="gas_label">Rachunek za gaz</string>
 <!-- Preferences -->
     <string name="settings_label">Ustawienia</string>
+    <string name="action_help">Pomoc</string>
     <string name="energy_prices">Ceny PGE</string>
     <string name="settings_pge_summary">Kliknij aby zobaczyć ceny za prąd od PGE</string>
     <string name="gas_prices">Ceny PGNiG</string>
