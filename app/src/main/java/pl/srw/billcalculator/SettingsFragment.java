@@ -9,6 +9,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.text.Html;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
@@ -88,7 +89,12 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     private void updateSummary(final SharedPreferences sharedPreferences, final String key) {
         Preference preference = findPreference(key);
         if (preference instanceof EditTextPreference) {
-            preference.setSummary(sharedPreferences.getString(key, "0.0"));
+            String value = sharedPreferences.getString(key, "0.0");
+            if (TextUtils.isEmpty(value)) {
+                value = "0";
+            }
+            preference.setSummary(value + getMeasure(key));
+
         } else if (preference instanceof ListPreference) {
             final String value = ((ListPreference) preference).getValue();
             final int indexOfValue = ((ListPreference) preference).findIndexOfValue(value);
@@ -100,5 +106,30 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         if (key.equals(getString(R.string.preferences_pge_tariff))) {
             changePreferenceVisibilityDependingOnTaryfa();
         }
+    }
+
+    private String getMeasure(final String key) {
+        if (getMonthMeasurePrefKeys().indexOf(key) > -1) {
+            return " [zł/m-c]";
+        } else if (getString(R.string.preferences_pgnig_wsp_konwersji).equals(key)) {
+            return "";
+        }
+        return " [zł/kWh]";
+    }
+
+    private String getMonthMeasurePrefKeys() {
+        return getStringFor(R.string.preferences_pge_oplata_przejsciowa,
+                R.string.preferences_pge_oplata_stala_za_przesyl,
+                R.string.preferences_pge_oplata_abonamentowa,
+                R.string.preferences_pgnig_abonamentowa,
+                R.string.preferences_pgnig_dystrybucyjna_stala);
+    }
+
+    private String getStringFor(final int... keys) {
+        StringBuilder sb = new StringBuilder();
+        for (int i : keys) {
+            sb.append(getString(i));
+        }
+        return sb.toString();
     }
 }
