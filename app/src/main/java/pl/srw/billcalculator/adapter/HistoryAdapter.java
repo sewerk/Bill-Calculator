@@ -4,9 +4,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.math.BigDecimal;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -21,6 +23,7 @@ import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.persistence.type.BillType;
 import pl.srw.billcalculator.util.Dates;
+import pl.srw.billcalculator.util.Display;
 
 /**
  * Created by Kamil Seweryn.
@@ -54,10 +57,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         // remember bill for open operation
         holder.item = entity;
         // replace the contents of the view with that element
-        holder.llBillType.setBackgroundResource(getBillTypeDrawable(entity));
+        holder.logo.setImageResource(getBillTypeDrawable(entity));
         holder.tvForPeriod.setText(getDatePeriod(entity));
-        holder.tvReadings.setText(holder.itemView.getContext().getString(R.string.readings, getReadings(entity)));
-        holder.tvAmount.setText(entity.getAmountToPay().toString() + " zł");
+        holder.tvReadings.setText(getReadings(entity));
+        holder.tvAmount.setText(getAmount(entity) + " zł");
     }
 
     @Override
@@ -93,28 +96,32 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         }
     }
 
+    private String getAmount(final Bill entity) {
+        return Display.toPay(new BigDecimal(entity.getAmountToPay().toString()));
+    }
+
     private String getDatePeriod(final Bill entity) {
         return Dates.format(entity.getDateFrom()) + " - " + Dates.format(entity.getDateTo());
     }
 
-    private Object getReadings(final Bill entity) {
+    private String getReadings(final Bill entity) {
         if (entity instanceof PgeBill) {
             PgeBill bill = (PgeBill) entity;
-            return bill.getReadingTo() - bill.getReadingFrom();
+            return "" + bill.getReadingFrom() + " - " + bill.getReadingTo();
         } else if (entity instanceof PgeG12Bill) {
             PgeG12Bill bill = (PgeG12Bill) entity;
-            return bill.getReadingDayTo() - bill.getReadingDayFrom()
-                    + bill.getReadingNightTo() - bill.getReadingNightFrom();
+            return "day " + bill.getReadingDayFrom() + " - " + bill.getReadingDayTo() + "\n"
+                    + "night " + bill.getReadingNightFrom() + " - "  + bill.getReadingNightTo();
         } else if (entity instanceof PgnigBill) {
             PgnigBill bill = (PgnigBill) entity;
-            return bill.getReadingTo() - bill.getReadingFrom();
+            return "" + bill.getReadingFrom() + " - " + bill.getReadingTo();
         }
         return null;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @InjectView(R.id.ll_bill_summary) LinearLayout llBillType;
+        @InjectView(R.id.iv_bill_type) ImageView logo;
         @InjectView(R.id.tv_for_period) TextView tvForPeriod;
         @InjectView(R.id.tv_readings) TextView tvReadings;
         @InjectView(R.id.tv_amount) TextView tvAmount;
