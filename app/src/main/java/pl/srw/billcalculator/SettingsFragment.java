@@ -92,6 +92,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             String value = sharedPreferences.getString(key, "0.0");
             if (TextUtils.isEmpty(value)) {
                 value = "0";
+                sharedPreferences.edit().putString(key, value).commit();
             }
             preference.setSummary(value + getMeasure(key));
 
