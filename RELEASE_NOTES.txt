@@ -1,6 +1,10 @@
 v.1.3
  - storing bill calculation history
  - auto-complete previous reading
+v.1.2.5
+ - help dialogs for settings
+ - adding measures to price settings
+ - fix storing empty preference value
 v.1.2.4
  - hotfix: dateTo error editText gain focus on bill type change
 v.1.2.3

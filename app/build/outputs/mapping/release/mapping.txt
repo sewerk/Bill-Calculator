@@ -819,14 +819,17 @@ com.nineoldandroids.view.animation.AnimatorProxy -> com.nineoldandroids.view.ani
 pl.srw.billcalculator.AboutActivity -> pl.srw.billcalculator.AboutActivity:
     android.widget.TextView tvVersion -> a
     void onCreate(android.os.Bundle) -> onCreate
-    void setLicenseLink() -> b
-    java.lang.String getApkVersion() -> c
+    void setLicenseLink() -> c
+    java.lang.String getApkVersion() -> d
     void sendEmail() -> a
-    boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    void closeAboutDialog() -> b
 pl.srw.billcalculator.AboutActivity$$ViewInjector -> pl.srw.billcalculator.AboutActivity$$ViewInjector:
     void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.AboutActivity,java.lang.Object) -> inject
     void reset(pl.srw.billcalculator.AboutActivity) -> reset
 pl.srw.billcalculator.AboutActivity$$ViewInjector$1 -> pl.srw.billcalculator.AboutActivity$$ViewInjector$1:
+    pl.srw.billcalculator.AboutActivity val$target -> a
+    void onClick(android.view.View) -> onClick
+pl.srw.billcalculator.AboutActivity$$ViewInjector$2 -> pl.srw.billcalculator.AboutActivity$$ViewInjector$2:
     pl.srw.billcalculator.AboutActivity val$target -> a
     void onClick(android.view.View) -> onClick
 pl.srw.billcalculator.BillType -> pl.srw.billcalculator.BillType:
@@ -988,7 +991,7 @@ pl.srw.billcalculator.MainActivity -> pl.srw.billcalculator.MainActivity:
     void putStringExtra(android.content.Intent,java.lang.String,android.widget.TextView) -> a
     void putIntExtra(android.content.Intent,java.lang.String,android.widget.TextView) -> b
     boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
-    boolean onMenuItemSelected(int,android.view.MenuItem) -> onMenuItemSelected
+    boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
     void finish() -> finish
     void startAbout() -> y
     void startSettings() -> d
@@ -1017,19 +1020,69 @@ pl.srw.billcalculator.MainActivity$1 -> pl.srw.billcalculator.MainActivity$1:
 pl.srw.billcalculator.SettingsActivity -> pl.srw.billcalculator.SettingsActivity:
     void onCreate(android.os.Bundle) -> onCreate
     boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-pl.srw.billcalculator.SettingsFragment -> pl.srw.billcalculator.SettingsFragment:
+pl.srw.billcalculator.preference.PgeSettingsFragment -> pl.srw.billcalculator.preference.PgeSettingsFragment:
     void onCreate(android.os.Bundle) -> onCreate
-    void changePreferenceVisibilityDependingOnTaryfa() -> a
-    void setWspKonwersjiDescription() -> b
-    void setSummary() -> c
+    int getPreferencesResource() -> a
+    int getHelpLayoutResource() -> b
+    int getTitleResource() -> c
+    void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String) -> onSharedPreferenceChanged
+    void changeTaryfa(android.content.SharedPreferences,java.lang.String) -> a
+    void changePreferenceVisibilityDependingOnTaryfa() -> e
+    java.lang.String getMonthMeasurePrefKeys() -> d
+pl.srw.billcalculator.preference.PgnigSettingsFragment -> pl.srw.billcalculator.preference.PgnigSettingsFragment:
+    void onCreate(android.os.Bundle) -> onCreate
+    int getPreferencesResource() -> a
+    int getHelpLayoutResource() -> b
+    int getTitleResource() -> c
+    void setWspKonwersjiDescription() -> e
+    java.lang.String getMeasure(java.lang.String) -> a
+    java.lang.String getMonthMeasurePrefKeys() -> d
+pl.srw.billcalculator.preference.PgnigSettingsFragment$1 -> pl.srw.billcalculator.preference.PgnigSettingsFragment$1:
+    pl.srw.billcalculator.preference.PgnigSettingsFragment this$0 -> a
+    boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+pl.srw.billcalculator.preference.ProviderSettingsActivity -> pl.srw.billcalculator.preference.ProviderSettingsActivity:
+    android.content.Intent createIntent(android.content.Context,pl.srw.billcalculator.preference.ProviderSettingsActivity$Provider) -> a
+    void onCreate(android.os.Bundle) -> onCreate
+    pl.srw.billcalculator.preference.ProviderSettingsFragment getProviderSettingsFragment() -> a
+    java.lang.String getProviderFromIntent() -> b
+    boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    void showHelp() -> c
+    int getHelpResource() -> d
+    android.app.Fragment getCurrentFragment() -> e
+pl.srw.billcalculator.preference.ProviderSettingsActivity$Provider -> pl.srw.billcalculator.preference.ProviderSettingsActivity$Provider:
+    pl.srw.billcalculator.preference.ProviderSettingsActivity$Provider PGE -> a
+    pl.srw.billcalculator.preference.ProviderSettingsActivity$Provider PGNIG -> b
+    pl.srw.billcalculator.preference.ProviderSettingsActivity$Provider[] $VALUES -> c
+    pl.srw.billcalculator.preference.ProviderSettingsActivity$Provider[] values() -> values
+    pl.srw.billcalculator.preference.ProviderSettingsActivity$Provider valueOf(java.lang.String) -> valueOf
+pl.srw.billcalculator.preference.ProviderSettingsFragment -> pl.srw.billcalculator.preference.ProviderSettingsFragment:
+    void onCreate(android.os.Bundle) -> onCreate
+    int getPreferencesResource() -> a
+    void setSummary() -> e
+    int getHelpLayoutResource() -> b
+    int getTitleResource() -> c
     void onResume() -> onResume
     void onPause() -> onPause
     void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String) -> onSharedPreferenceChanged
-    void updateSummary(android.content.SharedPreferences,java.lang.String) -> a
-    void changeTaryfa(android.content.SharedPreferences,java.lang.String) -> b
-pl.srw.billcalculator.SettingsFragment$1 -> pl.srw.billcalculator.SettingsFragment$1:
-    pl.srw.billcalculator.SettingsFragment this$0 -> a
-    boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    void replaceEmptyValue(android.content.SharedPreferences,java.lang.String) -> a
+    void updateSummary(android.content.SharedPreferences,java.lang.String) -> b
+    java.lang.String getMeasure(java.lang.String) -> a
+    java.lang.String getMonthMeasurePrefKeys() -> d
+    java.lang.String getStringFor(int[]) -> a
+pl.srw.billcalculator.preference.ProviderSettingsHelpActivity -> pl.srw.billcalculator.preference.ProviderSettingsHelpActivity:
+    android.content.Intent createIntent(android.content.Context,int) -> a
+    void onCreate(android.os.Bundle) -> onCreate
+    void closeDialog() -> a
+pl.srw.billcalculator.preference.ProviderSettingsHelpActivity$$ViewInjector -> pl.srw.billcalculator.preference.ProviderSettingsHelpActivity$$ViewInjector:
+    void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.preference.ProviderSettingsHelpActivity,java.lang.Object) -> inject
+    void reset(pl.srw.billcalculator.preference.ProviderSettingsHelpActivity) -> reset
+pl.srw.billcalculator.preference.ProviderSettingsHelpActivity$$ViewInjector$1 -> pl.srw.billcalculator.preference.ProviderSettingsHelpActivity$$ViewInjector$1:
+    pl.srw.billcalculator.preference.ProviderSettingsHelpActivity val$target -> a
+    void onClick(android.view.View) -> onClick
+pl.srw.billcalculator.preference.SettingsFragment -> pl.srw.billcalculator.preference.SettingsFragment:
+    void onCreate(android.os.Bundle) -> onCreate
+    boolean onPreferenceTreeClick(android.preference.PreferenceScreen,android.preference.Preference) -> onPreferenceTreeClick
 pl.srw.billcalculator.util.Dates -> pl.srw.billcalculator.util.Dates:
     java.util.Date parse(java.lang.String) -> a
     java.lang.String format(int,int,int) -> a

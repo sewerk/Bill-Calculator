@@ -21,5 +21,5 @@
     <string name="price_paliwo_gazowe" translatable="false">0.11815</string>
     <string name="price_dystrybucyjna_stala" translatable="false">11.04000</string>
     <string name="price_dystrybucyjna_zmienna" translatable="false">0.02734</string>
-    <string name="price_wsp_konwersji" translatable="false">11.150</string>
+    <string name="price_wsp_konwersji" translatable="false">11.172</string>
 </resources>

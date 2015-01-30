@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <ScrollView 
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/small_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="1. Wybierz taryfę:"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- plan taryfowy PGE ustala stawki za energię w zależności od pory dnia,\n- plan taryfowy można odczytać z ostatniej faktury,\n- jeśli nie wiesz jaką taryfe posiadasz prawdopodobnie jest to taryfa jednostrefowa G11,\n- jeśli posiadasz dwa odczyty na liczniku wybierz taryfę dwustrefową G12."
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="\n2. Wybór odpowiedniej taryfy daje możliwość modyfikowania zależnych cen. Ceny nieaktywne nie należą do wybranej taryfy.\n\n3. Ceny można odczytać z ostatniej faktury:"
+                />
+
+            <ImageView
+                android:src="@drawable/pge_example"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="\n4. Wszystkie ceny są cenami netto.\n\n5. Kliknij pozycję na liście aby pokazać szczegółowy opis."
+                />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/b_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OK"/>
+</LinearLayout>

@@ -52,9 +52,10 @@
 
 <!-- Preferences -->
     <string name="settings_label">Settings</string>
-    <string name="energy_prices">PGE prices</string>
+    <string name="action_help">Help</string>
+    <string name="pge_prices">PGE prices</string>
     <string name="settings_pge_summary">Tap to see prices for electricity from PGE</string>
-    <string name="gas_prices">PGNiG prices</string>
+    <string name="pgnig_prices">PGNiG prices</string>
     <string name="settings_pgnig_summary">Tap to see prices for gas from PGNiG</string>
     <string name="check_prices_info_title">Check your prices before calculation</string>
     <string name="check_price_info_message">Calculated bill cost depends on prices, which differs according to individual tariff, as well as location, amount and time of usage. Enter the prices you get on your utility bill.</string>
@@ -70,7 +71,6 @@
     <string name="wsp_konwersji_desc" translatable="false">Współczynnik konwersji wynosi średnie miesięczne ciepło spalania gazu w ostatnim okresie rozliczeniowym,
         podzielony przez wartość 3,6. Ciepło spalania to wartość kaloryczna 1m\u00B3 gazu. Aktualną wartość można znaleźć na stronie <![CDATA[<a href="http://www.psgaz.pl/dlaklienta/18869/21361">PSG sp. z o.o.</a>]]></string>
     <string name="oplata_przejsciowa_desc" translatable="false">Składnik opłaty przejściowej jest zależny od rocznego zużycia kWh:\n - do 500 kWH/rok wynosi 0.18 zł netto\n - od 500 do 1200 kWh/rok wynosi 0.77 zł netto\n - od 1200 kWh/rok wynosi 2.44 zł netto</string>
-    <string name="pge_tariff_desc" translatable="false">Plan taryfowy PGE ustala stawki za zużywanie energii w zależności od pory dnia. Jeśli posiadasz dwa odczyty na liczniku powinieneś wybrać taryfę dwustrefową.</string>
 
 <!-- gas_bill -->
     <string name="gas_label">Gas bill</string>
@@ -82,6 +82,7 @@
     <string name="zuzycie_razem_kWh" translatable="false">Zużycie razem: %1$s [kWh]</string>
 
     <string name="abonamentowa" translatable="false">Abonamentowa</string>
+    <string name="settings_oplata_abonamentowa" translatable="false">Opłata abonamentowa</string>
     <string name="paliwo_gazowe" translatable="false">Paliwo gazowe</string>
     <string name="dystrybucyjna_stala" translatable="false">Dystrybucyjna stała</string>
     <string name="dystrybucyjna_zmienna" translatable="false">Dystrybucyjna zmienna</string>

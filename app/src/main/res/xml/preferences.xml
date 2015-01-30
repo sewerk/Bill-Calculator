@@ -1,132 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <PreferenceScreen
-        android:key="energy"
-        android:title="@string/energy_prices"
-        android:summary="@string/settings_pge_summary">
+        android:key="@string/preferences_pge_prices"
+        android:title="@string/pge_prices"
+        android:summary="@string/settings_pge_summary" />
 
-        <ListPreference
-            android:key="@string/preferences_pge_tariff"
-            android:title="@string/pge_tariff_in_preferences"
-            android:entryValues="@array/preferences_pge_tariff_values"
-            android:entries="@array/pge_tariff_picks"
-            android:summary="@string/pge_tariff_G11_in_preferences"
-            android:defaultValue="G11" />
-
-        <EditTextPreference
-            android:key="@string/preferences_pge_oplata_przejsciowa"
-            android:defaultValue="@string/price_oplata_przejsciowa"
-            android:inputType="numberDecimal"
-            android:dialogMessage="@string/oplata_przejsciowa_desc"
-            android:title="@string/oplata_przejsciowa" />
-
-        <EditTextPreference
-            android:key="@string/preferences_pge_oplata_stala_za_przesyl"
-            android:defaultValue="@string/price_oplata_stala_za_przesyl"
-            android:inputType="numberDecimal"
-            android:title="@string/oplata_stala_za_przesyl" />
-
-        <EditTextPreference
-            android:key="@string/preferences_pge_oplata_abonamentowa"
-            android:defaultValue="@string/price_oplata_abonamentowa"
-            android:inputType="numberDecimal"
-            android:title="@string/oplata_abonamentowa" />
-
-        <EditTextPreference
-            android:key="@string/preferences_pge_skladnik_jakosciowy"
-            android:defaultValue="@string/price_skladnik_jakosciowy"
-            android:inputType="numberDecimal"
-            android:title="@string/skladnik_jakosciowy" />
-
-        <!-- G11 ============================================================ -->
-        <PreferenceCategory
-            android:key="@string/preferences_pge_category_G11"
-            android:title="@string/pge_tariff_G11_in_preferences">
-
-            <EditTextPreference
-                android:key="@string/preferences_pge_za_energie_czynna"
-                android:defaultValue="@string/price_za_energie_czynna"
-                android:inputType="numberDecimal"
-                android:title="@string/za_energie_czynna" />
-
-            <EditTextPreference
-                android:key="@string/preferences_pge_oplata_sieciowa"
-                android:defaultValue="@string/price_oplata_sieciowa"
-                android:inputType="numberDecimal"
-                android:title="@string/oplata_sieciowa" />
-
-        </PreferenceCategory>
-        <!-- G12 ============================================================ -->
-        <PreferenceCategory
-            android:key="@string/preferences_pge_category_G12"
-            android:title="@string/pge_tariff_G12_in_preferences">
-
-            <EditTextPreference
-                android:key="@string/preferences_pge_za_energie_czynna_G12dzien"
-                android:defaultValue="@string/price_za_energie_czynna_G12dzien"
-                android:inputType="numberDecimal"
-                android:title="@string/za_energie_czynna_G12dzien" />
-
-            <EditTextPreference
-                android:key="@string/preferences_pge_za_energie_czynna_G12noc"
-                android:defaultValue="@string/price_za_energie_czynna_G12noc"
-                android:inputType="numberDecimal"
-                android:title="@string/za_energie_czynna_G12noc" />
-
-            <EditTextPreference
-                android:key="@string/preferences_pge_oplata_sieciowa_G12dzien"
-                android:defaultValue="@string/price_oplata_sieciowa_G12dzien"
-                android:inputType="numberDecimal"
-                android:title="@string/oplata_sieciowa_G12dzien" />
-
-            <EditTextPreference
-                android:key="@string/preferences_pge_oplata_sieciowa_G12noc"
-                android:defaultValue="@string/price_oplata_sieciowa_G12noc"
-                android:inputType="numberDecimal"
-                android:title="@string/oplata_sieciowa_G12noc" />
-
-        </PreferenceCategory>
-    </PreferenceScreen>
-
-    <!-- PGNIG ============================================================ -->
     <PreferenceScreen
-        android:key="gas"
-        android:title="@string/gas_prices"
-        android:summary="@string/settings_pgnig_summary">
-
-        <EditTextPreference
-            android:key="@string/preferences_pgnig_abonamentowa"
-            android:defaultValue="@string/price_abonamentowa"
-            android:inputType="numberDecimal"
-            android:title="@string/abonamentowa" />
-
-        <EditTextPreference
-            android:key="@string/preferences_pgnig_paliwo_gazowe"
-            android:defaultValue="@string/price_paliwo_gazowe"
-            android:inputType="numberDecimal"
-            android:title="@string/paliwo_gazowe" />
-
-        <EditTextPreference
-            android:key="@string/preferences_pgnig_dystrybucyjna_stala"
-            android:defaultValue="@string/price_dystrybucyjna_stala"
-            android:inputType="numberDecimal"
-            android:title="@string/dystrybucyjna_stala" />
-
-        <EditTextPreference
-            android:key="@string/preferences_pgnig_dystrybucyjna_zmienna"
-            android:defaultValue="@string/price_dystrybucyjna_zmienna"
-            android:inputType="numberDecimal"
-            android:title="@string/dystrybucyjna_zmienna" />
-
-        <EditTextPreference
-            android:key="@string/preferences_pgnig_wsp_konwersji"
-            android:defaultValue="@string/price_wsp_konwersji"
-            android:inputType="numberDecimal"
-            android:title="@string/wspolczynnik_konwersji" />
-
-    </PreferenceScreen>
+        android:key="@string/preferences_pgnig_prices"
+        android:title="@string/pgnig_prices"
+        android:summary="@string/settings_pgnig_summary" />
 
 </PreferenceScreen>

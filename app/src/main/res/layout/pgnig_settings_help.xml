@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/small_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="1. Kliknij pozycję na liście aby pokazać szczegółowy opis.\n\n 2. Współczynnik konwersji zmienia się co miesiąc (nieznacznie). W opisie pozycji znajduje się link to aktualnej wartości.\n\n3. Ceny oraz współczynnik konwersji można odczytać z ostatniej faktury:"
+                />
+
+            <ImageView
+                android:src="@drawable/pgnig_example"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="\n4. Wszystkie ceny są cenami netto."
+                />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/b_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OK"/>
+
+</LinearLayout>
