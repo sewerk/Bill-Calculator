@@ -393,9 +393,17 @@ pl.srw.billcalculator.R$menu
 pl.srw.billcalculator.R$string
 pl.srw.billcalculator.R$style
 pl.srw.billcalculator.R$xml
-pl.srw.billcalculator.SettingsFragment:
+pl.srw.billcalculator.preference.PgeSettingsFragment:
     public static final java.lang.String TARIFF_G11
     public static final java.lang.String TARIFF_G12
+pl.srw.billcalculator.preference.ProviderSettingsActivity:
+    private static final java.lang.String FRAGMENT_TAG
+    public static final java.lang.String EXTRA_PRIVIDER_NAME
+pl.srw.billcalculator.preference.ProviderSettingsFragment:
+    public static final java.lang.String EMPTY_VALUE_REPLACEMENT
+pl.srw.billcalculator.preference.ProviderSettingsHelpActivity:
+    public static final java.lang.String EXTRA_LAYOUT_RESOURCE
+    public static final int DEFAULT_LAYOUT_RESOURCE
 pl.srw.billcalculator.util.Dates:
     public static final java.lang.String DATE_PATTERN
     11:11:public Dates()

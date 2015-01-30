@@ -258,6 +258,7 @@ pl.srw.billcalculator.AboutActivity$$ViewInjector: AboutActivity$$ViewInjector()
 pl.srw.billcalculator.AboutActivity$$ViewInjector: void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.AboutActivity,java.lang.Object)
 pl.srw.billcalculator.AboutActivity$$ViewInjector: void reset(pl.srw.billcalculator.AboutActivity)
 pl.srw.billcalculator.AboutActivity$$ViewInjector$1
+pl.srw.billcalculator.AboutActivity$$ViewInjector$2
 pl.srw.billcalculator.BillType
 pl.srw.billcalculator.BillType: pl.srw.billcalculator.BillType[] values()
 pl.srw.billcalculator.BillType: pl.srw.billcalculator.BillType valueOf(java.lang.String)
@@ -315,12 +316,16 @@ pl.srw.billcalculator.R$drawable: int border
 pl.srw.billcalculator.R$drawable: int emailme
 pl.srw.billcalculator.R$drawable: int ic_launcher
 pl.srw.billcalculator.R$drawable: int pge
+pl.srw.billcalculator.R$drawable: int pge_example
 pl.srw.billcalculator.R$drawable: int pge_on_pgnig
 pl.srw.billcalculator.R$drawable: int pgnig
+pl.srw.billcalculator.R$drawable: int pgnig_example
 pl.srw.billcalculator.R$drawable: int pgnig_on_pge
 pl.srw.billcalculator.R$id
 pl.srw.billcalculator.R$id: int action_about
+pl.srw.billcalculator.R$id: int action_help
 pl.srw.billcalculator.R$id: int action_settings
+pl.srw.billcalculator.R$id: int b_close
 pl.srw.billcalculator.R$id: int button_bill_type_switch
 pl.srw.billcalculator.R$id: int button_calculate
 pl.srw.billcalculator.R$id: int button_date_from
@@ -425,12 +430,16 @@ pl.srw.billcalculator.R$layout: int gas_components_table_sum
 pl.srw.billcalculator.R$layout: int gas_reading_table
 pl.srw.billcalculator.R$layout: int gas_sum_table
 pl.srw.billcalculator.R$layout: int main_form
+pl.srw.billcalculator.R$layout: int pge_settings_help
+pl.srw.billcalculator.R$layout: int pgnig_settings_help
 pl.srw.billcalculator.R$layout: int tariff_label
 pl.srw.billcalculator.R$menu
 pl.srw.billcalculator.R$menu: int main
+pl.srw.billcalculator.R$menu: int settings
 pl.srw.billcalculator.R$string
 pl.srw.billcalculator.R$string: int abonamentowa
 pl.srw.billcalculator.R$string: int about_label
+pl.srw.billcalculator.R$string: int action_help
 pl.srw.billcalculator.R$string: int action_info
 pl.srw.billcalculator.R$string: int action_settings
 pl.srw.billcalculator.R$string: int akcyza
@@ -453,9 +462,7 @@ pl.srw.billcalculator.R$string: int dystrybucyjna_zmienna
 pl.srw.billcalculator.R$string: int email_client_missing
 pl.srw.billcalculator.R$string: int emailme
 pl.srw.billcalculator.R$string: int energy_label
-pl.srw.billcalculator.R$string: int energy_prices
 pl.srw.billcalculator.R$string: int gas_label
-pl.srw.billcalculator.R$string: int gas_prices
 pl.srw.billcalculator.R$string: int kWh
 pl.srw.billcalculator.R$string: int m3
 pl.srw.billcalculator.R$string: int m_c
@@ -469,12 +476,13 @@ pl.srw.billcalculator.R$string: int oplata_sieciowa_G12dzien
 pl.srw.billcalculator.R$string: int oplata_sieciowa_G12noc
 pl.srw.billcalculator.R$string: int oplata_stala_za_przesyl
 pl.srw.billcalculator.R$string: int paliwo_gazowe
+pl.srw.billcalculator.R$string: int pge_prices
 pl.srw.billcalculator.R$string: int pge_tariff_G11_in_preferences
 pl.srw.billcalculator.R$string: int pge_tariff_G11_on_bill
 pl.srw.billcalculator.R$string: int pge_tariff_G12_in_preferences
 pl.srw.billcalculator.R$string: int pge_tariff_G12_on_bill
-pl.srw.billcalculator.R$string: int pge_tariff_desc
 pl.srw.billcalculator.R$string: int pge_tariff_in_preferences
+pl.srw.billcalculator.R$string: int pgnig_prices
 pl.srw.billcalculator.R$string: int preferences_pge_category_G11
 pl.srw.billcalculator.R$string: int preferences_pge_category_G12
 pl.srw.billcalculator.R$string: int preferences_pge_oplata_abonamentowa
@@ -483,6 +491,7 @@ pl.srw.billcalculator.R$string: int preferences_pge_oplata_sieciowa
 pl.srw.billcalculator.R$string: int preferences_pge_oplata_sieciowa_G12dzien
 pl.srw.billcalculator.R$string: int preferences_pge_oplata_sieciowa_G12noc
 pl.srw.billcalculator.R$string: int preferences_pge_oplata_stala_za_przesyl
+pl.srw.billcalculator.R$string: int preferences_pge_prices
 pl.srw.billcalculator.R$string: int preferences_pge_skladnik_jakosciowy
 pl.srw.billcalculator.R$string: int preferences_pge_tariff
 pl.srw.billcalculator.R$string: int preferences_pge_za_energie_czynna
@@ -492,6 +501,7 @@ pl.srw.billcalculator.R$string: int preferences_pgnig_abonamentowa
 pl.srw.billcalculator.R$string: int preferences_pgnig_dystrybucyjna_stala
 pl.srw.billcalculator.R$string: int preferences_pgnig_dystrybucyjna_zmienna
 pl.srw.billcalculator.R$string: int preferences_pgnig_paliwo_gazowe
+pl.srw.billcalculator.R$string: int preferences_pgnig_prices
 pl.srw.billcalculator.R$string: int preferences_pgnig_wsp_konwersji
 pl.srw.billcalculator.R$string: int previous
 pl.srw.billcalculator.R$string: int previous_reading
@@ -518,6 +528,7 @@ pl.srw.billcalculator.R$string: int reading_night_time
 pl.srw.billcalculator.R$string: int reading_order_error
 pl.srw.billcalculator.R$string: int readings
 pl.srw.billcalculator.R$string: int settings_label
+pl.srw.billcalculator.R$string: int settings_oplata_abonamentowa
 pl.srw.billcalculator.R$string: int settings_pge_summary
 pl.srw.billcalculator.R$string: int settings_pgnig_summary
 pl.srw.billcalculator.R$string: int skladnik_jakosciowy
@@ -541,11 +552,29 @@ pl.srw.billcalculator.R$string: int zuzycie_razem_kWh
 pl.srw.billcalculator.R$style
 pl.srw.billcalculator.R$style: int AppBaseTheme
 pl.srw.billcalculator.R$style: int AppTheme
+pl.srw.billcalculator.R$style: int DialogTheme
 pl.srw.billcalculator.R$xml
+pl.srw.billcalculator.R$xml: int pge_preferences
+pl.srw.billcalculator.R$xml: int pgnig_preferences
 pl.srw.billcalculator.R$xml: int preferences
 pl.srw.billcalculator.SettingsActivity
 pl.srw.billcalculator.SettingsActivity: SettingsActivity()
-pl.srw.billcalculator.SettingsFragment
-pl.srw.billcalculator.SettingsFragment$1
+pl.srw.billcalculator.preference.PgeSettingsFragment
+pl.srw.billcalculator.preference.PgnigSettingsFragment
+pl.srw.billcalculator.preference.PgnigSettingsFragment$1
+pl.srw.billcalculator.preference.ProviderSettingsActivity
+pl.srw.billcalculator.preference.ProviderSettingsActivity: ProviderSettingsActivity()
+pl.srw.billcalculator.preference.ProviderSettingsActivity$Provider
+pl.srw.billcalculator.preference.ProviderSettingsActivity$Provider: pl.srw.billcalculator.preference.ProviderSettingsActivity$Provider[] values()
+pl.srw.billcalculator.preference.ProviderSettingsActivity$Provider: pl.srw.billcalculator.preference.ProviderSettingsActivity$Provider valueOf(java.lang.String)
+pl.srw.billcalculator.preference.ProviderSettingsFragment
+pl.srw.billcalculator.preference.ProviderSettingsHelpActivity
+pl.srw.billcalculator.preference.ProviderSettingsHelpActivity: ProviderSettingsHelpActivity()
+pl.srw.billcalculator.preference.ProviderSettingsHelpActivity$$ViewInjector
+pl.srw.billcalculator.preference.ProviderSettingsHelpActivity$$ViewInjector: ProviderSettingsHelpActivity$$ViewInjector()
+pl.srw.billcalculator.preference.ProviderSettingsHelpActivity$$ViewInjector: void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.preference.ProviderSettingsHelpActivity,java.lang.Object)
+pl.srw.billcalculator.preference.ProviderSettingsHelpActivity$$ViewInjector: void reset(pl.srw.billcalculator.preference.ProviderSettingsHelpActivity)
+pl.srw.billcalculator.preference.ProviderSettingsHelpActivity$$ViewInjector$1
+pl.srw.billcalculator.preference.SettingsFragment
 pl.srw.billcalculator.util.Dates
 pl.srw.billcalculator.util.Display
