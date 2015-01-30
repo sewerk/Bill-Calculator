@@ -71,7 +71,6 @@
     <string name="wsp_konwersji_desc" translatable="false">Współczynnik konwersji wynosi średnie miesięczne ciepło spalania gazu w ostatnim okresie rozliczeniowym,
         podzielony przez wartość 3,6. Ciepło spalania to wartość kaloryczna 1m\u00B3 gazu. Aktualną wartość można znaleźć na stronie <![CDATA[<a href="http://www.psgaz.pl/dlaklienta/18869/21361">PSG sp. z o.o.</a>]]></string>
     <string name="oplata_przejsciowa_desc" translatable="false">Składnik opłaty przejściowej jest zależny od rocznego zużycia kWh:\n - do 500 kWH/rok wynosi 0.18 zł netto\n - od 500 do 1200 kWh/rok wynosi 0.77 zł netto\n - od 1200 kWh/rok wynosi 2.44 zł netto</string>
-    <string name="pge_tariff_desc" translatable="false">Plan taryfowy PGE ustala stawki za zużywanie energii w zależności od pory dnia. Jeśli posiadasz dwa odczyty na liczniku powinieneś wybrać taryfę dwustrefową.</string>
 
 <!-- gas_bill -->
     <string name="gas_label">Gas bill</string>

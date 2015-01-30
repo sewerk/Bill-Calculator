@@ -6,9 +6,8 @@
     <string name="preferences_pge_category_G12" translatable="false">category_G12</string>
     <string name="preferences_pge_tariff" translatable="false">pge_tariff</string>
     <array name="preferences_pge_tariff_values">
-    <!-- TODO: check later if this can be changed -->
-        <item>G11</item>
-        <item>G12</item>
+        <item>@string/pge_tariff_G11_in_preferences</item>
+        <item>@string/pge_tariff_G12_in_preferences</item>
     </array>
 
     <string name="preferences_pge_za_energie_czynna" translatable="false">cena_za_energie_czynna</string>

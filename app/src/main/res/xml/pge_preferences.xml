@@ -7,7 +7,7 @@
         android:entryValues="@array/preferences_pge_tariff_values"
         android:entries="@array/pge_tariff_picks"
         android:summary="@string/pge_tariff_G11_in_preferences"
-        android:defaultValue="G11" />
+        android:defaultValue="@string/pge_tariff_G11_in_preferences" />
 
     <EditTextPreference
         android:key="@string/preferences_pge_oplata_przejsciowa"

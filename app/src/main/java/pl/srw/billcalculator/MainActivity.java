@@ -250,8 +250,9 @@ public class MainActivity extends Activity {
     
     @OnClick(R.id.textView_tariff_change)
     public void moveToChangeTariff() {
-        //TODO: move to change tariff option
-        startSettings();
+        final Intent intent = ProviderSettingsActivity
+                .createIntent(this, ProviderSettingsActivity.Provider.PGE);
+        startActivity(intent);
     }
 
     @OnClick({R.id.button_date_from, R.id.button_date_to})
