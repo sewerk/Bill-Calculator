@@ -3,10 +3,16 @@
     android:title="@string/gas_prices">
 
     <EditTextPreference
+        android:key="@string/preferences_pgnig_wsp_konwersji"
+        android:defaultValue="@string/price_wsp_konwersji"
+        android:inputType="numberDecimal"
+        android:title="@string/wspolczynnik_konwersji" />
+
+    <EditTextPreference
         android:key="@string/preferences_pgnig_abonamentowa"
         android:defaultValue="@string/price_abonamentowa"
         android:inputType="numberDecimal"
-        android:title="@string/abonamentowa" />
+        android:title="@string/settings_oplata_abonamentowa" />
 
     <EditTextPreference
         android:key="@string/preferences_pgnig_paliwo_gazowe"
@@ -25,11 +31,5 @@
         android:defaultValue="@string/price_dystrybucyjna_zmienna"
         android:inputType="numberDecimal"
         android:title="@string/dystrybucyjna_zmienna" />
-
-    <EditTextPreference
-        android:key="@string/preferences_pgnig_wsp_konwersji"
-        android:defaultValue="@string/price_wsp_konwersji"
-        android:inputType="numberDecimal"
-        android:title="@string/wspolczynnik_konwersji" />
 
 </PreferenceScreen>

@@ -83,6 +83,7 @@
     <string name="zuzycie_razem_kWh" translatable="false">Zużycie razem: %1$s [kWh]</string>
 
     <string name="abonamentowa" translatable="false">Abonamentowa</string>
+    <string name="settings_oplata_abonamentowa" translatable="false">Opłata abonamentowa</string>
     <string name="paliwo_gazowe" translatable="false">Paliwo gazowe</string>
     <string name="dystrybucyjna_stala" translatable="false">Dystrybucyjna stała</string>
     <string name="dystrybucyjna_zmienna" translatable="false">Dystrybucyjna zmienna</string>

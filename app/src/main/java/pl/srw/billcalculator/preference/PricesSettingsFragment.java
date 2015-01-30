@@ -10,6 +10,7 @@ import android.text.TextUtils;
 
 import java.util.Map;
 
+import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
 
 /**
@@ -19,6 +20,7 @@ public abstract class PricesSettingsFragment extends PreferenceFragment implemen
 
     public static final String EMPTY_VALUE_REPLACEMENT = "0.0";
 
+    @DebugLog
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,23 +38,27 @@ public abstract class PricesSettingsFragment extends PreferenceFragment implemen
         }
     }
 
+    protected abstract int getHelpLayoutResource();
+
     @Override
     public void onResume() {
         super.onResume();
+        getActivity().getActionBar().setTitle(getPreferenceScreen().getTitle());
+        ((PreferenceSubScreenNotifier) getActivity()).setHelpResource(getHelpLayoutResource());
         getPreferenceScreen().getSharedPreferences()
                 .registerOnSharedPreferenceChangeListener(this);
-    }
-
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        replaceEmptyValue(sharedPreferences, key);
-        updateSummary(sharedPreferences, key);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        replaceEmptyValue(sharedPreferences, key);
+        updateSummary(sharedPreferences, key);
     }
 
     private void replaceEmptyValue(final SharedPreferences sharedPreferences, final String key) {
@@ -87,5 +93,9 @@ public abstract class PricesSettingsFragment extends PreferenceFragment implemen
             sb.append(getString(i));
         }
         return sb.toString();
+    }
+
+    public interface PreferenceSubScreenNotifier {
+        void setHelpResource(int layout);
     }
 }

@@ -27,6 +27,11 @@ public class PgnigSettingsFragment extends PricesSettingsFragment {
         return R.xml.pgnig_preferences;
     }
 
+    @Override
+    protected int getHelpLayoutResource() {
+        return R.layout.pgnig_settings_help;
+    }
+
     private void setWspKonwersjiDescription() {
         EditTextPreference wspKonwersjiPreference = (EditTextPreference) findPreference(getString(R.string.preferences_pgnig_wsp_konwersji));
         wspKonwersjiPreference.setDialogMessage(Html.fromHtml(getString(R.string.wsp_konwersji_desc)));

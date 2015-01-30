@@ -3,7 +3,6 @@ package pl.srw.billcalculator.preference;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;
-import android.preference.PreferenceFragment;
 
 import pl.srw.billcalculator.R;
 
@@ -25,6 +24,11 @@ public class PgeSettingsFragment extends PricesSettingsFragment {
     @Override
     protected int getPreferencesResource() {
         return R.xml.pge_preferences;
+    }
+
+    @Override
+    protected int getHelpLayoutResource() {
+        return R.layout.pge_settings_help;
     }
 
     @Override

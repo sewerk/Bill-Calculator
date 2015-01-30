@@ -6,6 +6,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.SettingsActivity;
 
 /**
  * Created by Kamil Seweryn
@@ -27,18 +28,19 @@ public class SettingsFragment extends PreferenceFragment {
             // Display the fragment as the main content.
             getFragmentManager()
                     .beginTransaction()
-                    .replace(android.R.id.content, new PgeSettingsFragment())
+                    .replace(android.R.id.content, new PgeSettingsFragment(), SettingsActivity.FRAGMENT_TAG)
                     .addToBackStack(null)
                     .commit();
             return true;
+
         } else if (pref.getKey().equals(getString(R.string.preferences_pgnig_prices))) {
             getFragmentManager()
                     .beginTransaction()
-                    .replace(android.R.id.content, new PgnigSettingsFragment())
+                    .replace(android.R.id.content, new PgnigSettingsFragment(), SettingsActivity.FRAGMENT_TAG)
                     .addToBackStack(null)
                     .commit();
+            return true;
         }
         return false;
     }
-
 }
