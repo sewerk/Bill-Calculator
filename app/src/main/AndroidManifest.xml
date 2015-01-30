@@ -29,9 +29,15 @@
 
         <activity android:name=".SettingsActivity"
             android:label="@string/settings_label" />
+        
+        <activity android:name=".preference.ProviderSettingsActivity" />
 
+        <activity android:name=".preference.ProviderSettingsHelpActivity"
+            android:theme="@style/DialogTheme"
+            android:label="@string/action_help" />
+        
         <activity android:name=".AboutActivity"
-            android:theme="@style/AboutTheme"
+            android:theme="@style/DialogTheme"
             android:label="@string/about_label" />
 
     </application>

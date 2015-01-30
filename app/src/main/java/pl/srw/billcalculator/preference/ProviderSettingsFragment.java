@@ -16,7 +16,8 @@ import pl.srw.billcalculator.R;
 /**
  * Created by Kamil Seweryn.
  */
-public abstract class PricesSettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+public abstract class ProviderSettingsFragment extends PreferenceFragment
+        implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     public static final String EMPTY_VALUE_REPLACEMENT = "0.0";
 
@@ -38,13 +39,13 @@ public abstract class PricesSettingsFragment extends PreferenceFragment implemen
         }
     }
 
-    protected abstract int getHelpLayoutResource();
+    public abstract int getHelpLayoutResource();
+    
+    public abstract int getTitleResource();
 
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().getActionBar().setTitle(getPreferenceScreen().getTitle());
-        ((PreferenceSubScreenNotifier) getActivity()).setHelpResource(getHelpLayoutResource());
         getPreferenceScreen().getSharedPreferences()
                 .registerOnSharedPreferenceChangeListener(this);
     }
@@ -93,9 +94,5 @@ public abstract class PricesSettingsFragment extends PreferenceFragment implemen
             sb.append(getString(i));
         }
         return sb.toString();
-    }
-
-    public interface PreferenceSubScreenNotifier {
-        void setHelpResource(int layout);
     }
 }

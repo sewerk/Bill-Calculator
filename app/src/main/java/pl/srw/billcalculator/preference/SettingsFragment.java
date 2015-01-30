@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.preference;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
@@ -25,20 +26,15 @@ public class SettingsFragment extends PreferenceFragment {
     public boolean onPreferenceTreeClick(PreferenceScreen prefScreen, Preference pref) {
         super.onPreferenceTreeClick(prefScreen, pref);
         if (pref.getKey().equals(getString(R.string.preferences_pge_prices))) {
-            // Display the fragment as the main content.
-            getFragmentManager()
-                    .beginTransaction()
-                    .replace(android.R.id.content, new PgeSettingsFragment(), SettingsActivity.FRAGMENT_TAG)
-                    .addToBackStack(null)
-                    .commit();
+            final Intent intent = ProviderSettingsActivity
+                    .createIntent(getActivity(), ProviderSettingsActivity.Provider.PGE);
+            startActivity(intent);
             return true;
 
         } else if (pref.getKey().equals(getString(R.string.preferences_pgnig_prices))) {
-            getFragmentManager()
-                    .beginTransaction()
-                    .replace(android.R.id.content, new PgnigSettingsFragment(), SettingsActivity.FRAGMENT_TAG)
-                    .addToBackStack(null)
-                    .commit();
+            final Intent intent = ProviderSettingsActivity
+                    .createIntent(getActivity(), ProviderSettingsActivity.Provider.PGNIG);
+            startActivity(intent);
             return true;
         }
         return false;

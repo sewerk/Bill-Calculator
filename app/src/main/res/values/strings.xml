@@ -53,9 +53,9 @@
 <!-- Preferences -->
     <string name="settings_label">Settings</string>
     <string name="action_help">Help</string>
-    <string name="energy_prices">PGE prices</string>
+    <string name="pge_prices">PGE prices</string>
     <string name="settings_pge_summary">Tap to see prices for electricity from PGE</string>
-    <string name="gas_prices">PGNiG prices</string>
+    <string name="pgnig_prices">PGNiG prices</string>
     <string name="settings_pgnig_summary">Tap to see prices for gas from PGNiG</string>
     <string name="check_prices_info_title">Check your prices before calculation</string>
     <string name="check_price_info_message">Calculated bill cost depends on prices, which differs according to individual tariff, as well as location, amount and time of usage. Enter the prices you get on your utility bill.</string>

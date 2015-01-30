@@ -13,7 +13,7 @@ import pl.srw.billcalculator.R;
 /**
  * Created by Kamil Seweryn.
  */
-public class PgnigSettingsFragment extends PricesSettingsFragment {
+public class PgnigSettingsFragment extends ProviderSettingsFragment {
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -28,10 +28,15 @@ public class PgnigSettingsFragment extends PricesSettingsFragment {
     }
 
     @Override
-    protected int getHelpLayoutResource() {
+    public int getHelpLayoutResource() {
         return R.layout.pgnig_settings_help;
     }
 
+    @Override
+    public int getTitleResource() {
+        return R.string.pgnig_prices;
+    }
+    
     private void setWspKonwersjiDescription() {
         EditTextPreference wspKonwersjiPreference = (EditTextPreference) findPreference(getString(R.string.preferences_pgnig_wsp_konwersji));
         wspKonwersjiPreference.setDialogMessage(Html.fromHtml(getString(R.string.wsp_konwersji_desc)));
@@ -59,6 +64,4 @@ public class PgnigSettingsFragment extends PricesSettingsFragment {
         return getStringFor(R.string.preferences_pgnig_abonamentowa,
                 R.string.preferences_pgnig_dystrybucyjna_stala);
     }
-
-
 }

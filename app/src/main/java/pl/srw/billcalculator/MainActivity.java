@@ -31,6 +31,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.preference.PgeSettingsFragment;
+import pl.srw.billcalculator.preference.ProviderSettingsActivity;
 import pl.srw.billcalculator.util.Dates;
 
 /**
@@ -407,7 +408,7 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_settings) {
             startSettings();
             return true;
@@ -415,7 +416,7 @@ public class MainActivity extends Activity {
             startAbout();
             return true;
         }
-        return super.onMenuItemSelected(featureId, item);
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

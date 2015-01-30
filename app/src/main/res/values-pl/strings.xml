@@ -26,9 +26,9 @@
 <!-- Preferences -->
     <string name="settings_label">Ustawienia</string>
     <string name="action_help">Pomoc</string>
-    <string name="energy_prices">Ceny PGE</string>
+    <string name="pge_prices">Ceny PGE</string>
     <string name="settings_pge_summary">Kliknij aby zobaczyć ceny za prąd od PGE</string>
-    <string name="gas_prices">Ceny PGNiG</string>
+    <string name="pgnig_prices">Ceny PGNiG</string>
     <string name="settings_pgnig_summary">Kliknij aby zobaczyć ceny za gaz od PGNiG</string>
     <string name="check_prices_info_title">Sprawdź ceny przed wyliczeniem</string>
     <string name="check_price_info_message">Wartość twojej faktury uzależniona jest od cen, które oferuje dostawca mediów. Na wysokość cen wpływa: rodzaj taryfy oraz lokalizacja, pora dnia i wielkość zużycia. Dostosuj ceny do własnego planu taryfowego.</string>
