@@ -30,6 +30,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import hugo.weaving.DebugLog;
+import pl.srw.billcalculator.preference.PgeSettingsFragment;
 import pl.srw.billcalculator.util.Dates;
 
 /**
@@ -148,7 +149,7 @@ public class MainActivity extends Activity {
 
     private boolean isPgeTariffG12() {
         return PreferenceManager.getDefaultSharedPreferences(this)
-                .getString(getString(R.string.preferences_pge_tariff), "").equals(SettingsFragment.TARIFF_G12);
+                .getString(getString(R.string.preferences_pge_tariff), "").equals(PgeSettingsFragment.TARIFF_G12);
     }
 
     private void setTariffLabel() {

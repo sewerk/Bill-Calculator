@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- ENERGY -->
+    <string name="preferences_pge_prices" translatable="false">ceny_pge</string>
     <string name="preferences_pge_category_G11" translatable="false">category_G11</string>
     <string name="preferences_pge_category_G12" translatable="false">category_G12</string>
     <string name="preferences_pge_tariff" translatable="false">pge_tariff</string>
@@ -23,6 +24,8 @@
     <string name="preferences_pge_oplata_abonamentowa" translatable="false">cena_oplata_abonamentowa</string>
 
     <!-- GAS -->
+    <string name="preferences_pgnig_prices" translatable="false">ceny_pgnig</string>
+
     <string name="preferences_pgnig_abonamentowa" translatable="false">abonamentowa</string>
     <string name="preferences_pgnig_paliwo_gazowe" translatable="false">paliwo_gazowe</string>
     <string name="preferences_pgnig_dystrybucyjna_stala" translatable="false">dystrybucyjna_stala</string>
