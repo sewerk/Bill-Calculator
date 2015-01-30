@@ -42,7 +42,8 @@ public class GasBillActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gas_bill);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getActionBar() != null)
+            getActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         dateFrom = intent.getStringExtra(MainActivity.DATE_FROM);

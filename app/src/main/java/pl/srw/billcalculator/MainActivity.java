@@ -30,6 +30,8 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import hugo.weaving.DebugLog;
+import pl.srw.billcalculator.preference.PgeSettingsFragment;
+import pl.srw.billcalculator.preference.ProviderSettingsActivity;
 import pl.srw.billcalculator.util.Dates;
 
 /**
@@ -148,7 +150,7 @@ public class MainActivity extends Activity {
 
     private boolean isPgeTariffG12() {
         return PreferenceManager.getDefaultSharedPreferences(this)
-                .getString(getString(R.string.preferences_pge_tariff), "").equals(SettingsFragment.TARIFF_G12);
+                .getString(getString(R.string.preferences_pge_tariff), "").equals(PgeSettingsFragment.TARIFF_G12);
     }
 
     private void setTariffLabel() {
@@ -248,8 +250,9 @@ public class MainActivity extends Activity {
     
     @OnClick(R.id.textView_tariff_change)
     public void moveToChangeTariff() {
-        //TODO: move to change tariff option
-        startSettings();
+        final Intent intent = ProviderSettingsActivity
+                .createIntent(this, ProviderSettingsActivity.Provider.PGE);
+        startActivity(intent);
     }
 
     @OnClick({R.id.button_date_from, R.id.button_date_to})
@@ -406,7 +409,7 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_settings) {
             startSettings();
             return true;
@@ -414,7 +417,7 @@ public class MainActivity extends Activity {
             startAbout();
             return true;
         }
-        return super.onMenuItemSelected(featureId, item);
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

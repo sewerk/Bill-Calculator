@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +21,7 @@ import butterknife.OnClick;
  */
 public class AboutActivity extends Activity {
 
-    public static final String RECEIVER_EMAIL = "sewerk@gmail.com";
+    public static final String RECEIVER_EMAIL = "kalkulator.rachunkow@gmail.com";
 
     @InjectView(R.id.textView_ver) TextView tvVersion;
 
@@ -28,7 +29,6 @@ public class AboutActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
         ButterKnife.inject(this);
 
         setLicenseLink();
@@ -60,12 +60,8 @@ public class AboutActivity extends Activity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    @OnClick(R.id.b_close)
+    public void closeAboutDialog() {
+        onBackPressed();
     }
 }

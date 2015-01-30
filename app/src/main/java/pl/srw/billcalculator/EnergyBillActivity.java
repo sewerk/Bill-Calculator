@@ -51,7 +51,8 @@ public class EnergyBillActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.energy_bill);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getActionBar() != null)
+            getActionBar().setDisplayHomeAsUpEnabled(true);
 
         readExtra(getIntent());
         setPrices();
