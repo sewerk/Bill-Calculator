@@ -25,7 +25,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="- plan taryfowy PGE ustala stawki za energię w zależności od pory dnia,\n- plan taryfowy można odczytać z ostatniej faktury,\n- jeśli nie wiesz jaką taryfe posiadasz prawdopodobnie jest to taryfa jednostrefowa G11,\n- jeśli posiadasz dwa odczyty na liczniku wybierz taryfę dwustrefową G12."
+                android:text="- plan taryfowy PGE ustala stawki za energię w zależności od pory dnia,\n- plan taryfowy można odczytać z ostatniej faktury,\n- jeśli nie wiesz jaką taryfę posiadasz prawdopodobnie jest to taryfa jednostrefowa G11,\n- jeśli posiadasz dwa odczyty na liczniku wybierz taryfę dwustrefową G12."
                 />
 
             <TextView
