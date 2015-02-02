@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/double_padding"
             android:gravity="center"
             android:drawableLeft="@drawable/billcalc"
             android:contentDescription="Application logo and description"
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/double_padding"
             android:layout_below="@id/textView_about"
             android:drawableRight="@drawable/emailme"
             android:text="@string/emailme"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_emalme"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/double_padding"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/clause" />
@@ -54,11 +54,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/small_padding"
             android:layout_below="@id/textView_klauzula"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/version_text"/>
 
+        <Button
+            android:id="@+id/b_close"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_ver"
+            android:layout_marginTop="@dimen/small_padding"
+            android:text="OK" />
     </RelativeLayout>
 </ScrollView>

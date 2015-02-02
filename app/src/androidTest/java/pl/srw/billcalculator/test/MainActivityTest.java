@@ -26,7 +26,7 @@ import pl.srw.billcalculator.PgnigBillActivity;
 import pl.srw.billcalculator.type.BillType;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.component.SettingsFragment;
+import pl.srw.billcalculator.preference.PgeSettingsFragment;
 
 /**
  * Created by Kamil Seweryn.
@@ -562,14 +562,14 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     private void changeToG11Tariff() {
         final Context context = getInstrumentation().getTargetContext();
         PreferenceManager.getDefaultSharedPreferences(context)
-                .edit().putString(context.getString(R.string.preferences_pge_tariff), SettingsFragment.TARIFF_G11)
+                .edit().putString(context.getString(R.string.preferences_pge_tariff), PgeSettingsFragment.TARIFF_G11)
                 .commit();
     }
 
     private void changeToG12Tariff() {
         final Context context = getInstrumentation().getTargetContext();
         PreferenceManager.getDefaultSharedPreferences(context)
-                .edit().putString(context.getString(R.string.preferences_pge_tariff), SettingsFragment.TARIFF_G12)
+                .edit().putString(context.getString(R.string.preferences_pge_tariff), PgeSettingsFragment.TARIFF_G12)
                 .commit();
     }
 

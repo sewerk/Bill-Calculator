@@ -6,7 +6,7 @@
         res/values-vXX/styles.xml, while customizations related to
         backward-compatibility can go here.
         -->
-    <!--<style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+        <!--<style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
         <!--&lt;!&ndash; customize the color palette &ndash;&gt;-->
         <!--<item name="colorPrimary">@color/primary</item>-->
         <!--<item name="colorPrimaryDark">@color/primaryDark</item>-->
@@ -18,5 +18,7 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+
+    <style name="DialogTheme" parent="android:Theme.Holo.Light.Dialog" />
 
 </resources>
