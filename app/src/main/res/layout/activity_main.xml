@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:menu="main">
 
     <LinearLayout
         android:layout_width="match_parent"
