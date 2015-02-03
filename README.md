@@ -5,7 +5,10 @@ Bill-Calculator
 
 Android application to calculates bill value for PGE and PGNiG providers.
 
-[Download](https://play.google.com/store/apps/details?id=pl.srw.billcalculator)
+<a href="https://play.google.com/store/apps/details?id=pl.srw.billcalculator">
+  <img alt="Get it on Google Play"
+       src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
+</a>
 
 With help of
 ---------
