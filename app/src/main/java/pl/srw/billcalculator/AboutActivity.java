@@ -7,8 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,8 +20,11 @@ import butterknife.OnClick;
 public class AboutActivity extends Activity {
 
     public static final String RECEIVER_EMAIL = "kalkulator.rachunkow@gmail.com";
+    public static final String BETA_HTTP = "https://plus.google.com/communities/113263640175495853700";
 
-    @InjectView(R.id.textView_ver) TextView tvVersion;
+    @InjectView(R.id.tv_ver) TextView tvVersion;
+    @InjectView(R.id.tv_link_emailme) TextView tvLinkEmail;
+    @InjectView(R.id.tv_link_g_plus) TextView tvLinkGPlus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,24 @@ public class AboutActivity extends Activity {
         setContentView(R.layout.about);
         ButterKnife.inject(this);
 
+        setLinks();
+    }
+
+    private void setLinks() {
+        setEmailMeLink();
+        setGPlusLink();
         setLicenseLink();
+    }
+
+    private void setEmailMeLink() {
+        String underline1 = "<a href=\"\">" + tvLinkEmail.getText() + "</a>";
+        tvLinkEmail.setText(Html.fromHtml(underline1));
+    }
+
+    private void setGPlusLink() {
+        String underline = "<a href=\"" + BETA_HTTP + "\">" + tvLinkGPlus.getText() + "</a>";
+        tvLinkGPlus.setText(Html.fromHtml(underline));
+        tvLinkGPlus.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private void setLicenseLink() {
@@ -48,7 +66,7 @@ public class AboutActivity extends Activity {
         return "";
     }
 
-    @OnClick(R.id.textView_emalme)
+    @OnClick(R.id.tv_link_emailme)
     public void sendEmail() {
         Intent i = new Intent(Intent.ACTION_SENDTO);
         i.setData(Uri.parse("mailto:" + RECEIVER_EMAIL));

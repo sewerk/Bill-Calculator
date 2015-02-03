@@ -93,8 +93,10 @@
 <!-- about -->
     <string name="about_label">About</string>
     <string name="version_text">Version %1$s<![CDATA[<br/>under <a href="http://opensource.org/licenses/MIT">MIT license</a>]]></string>
-    <string name="description">Application calculates the approximate cost of utility bill</string>
-    <string name="emailme"> ...write what you think</string>
+    <string name="description">Calculate the cost of utility bill</string>
+    <string name="contact_header">In case of problems/ideas:</string>
+    <string name="emailme">write what you think</string>
+    <string name="link_gplus">or join early version testing</string>
     <string name="clause">The names, logos and trade marks are owned by distribution companies. Given calculations are just approximate value of the bill and cannot be used as ground for financial claiming.</string>
     <string name="email_client_missing">I could not find any e-mail client installed</string>
 
