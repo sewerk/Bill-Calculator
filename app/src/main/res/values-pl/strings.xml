@@ -34,8 +34,10 @@
 <!-- about -->
     <string name="about_label">O programie</string>
     <string name="version_text">Wersja %1$s<![CDATA[<br/>na <a href="http://opensource.org/licenses/MIT">licencji MIT</a>]]></string>
-    <string name="description">Aplikacja służy do obliczania przybliżonej wysokości rachunku za media</string>
-    <string name="emailme"> ...napisz co myślisz</string>
+    <string name="description">Obliczaj wysokość rachunku za media</string>
+    <string name="contact_header">W razie problemów/pomysłów:</string>
+    <string name="emailme">napisz co myślisz</string>
+    <string name="link_gplus">lub dołącz do testowania</string>
     <string name="clause">Nazwy własne, logotypy oraz znaki towarowe są własnością firm dystrybucyjnych. Przedstawione wyliczenia są jedynie przybliżoną wartością stanu faktyczenego i nie mają podstawy by stanowić roszczenia finansowego.</string>
     <string name="email_client_missing">Nie wykryto klientów poczty e-mail</string>
     <!-- history -->
