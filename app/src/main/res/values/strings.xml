@@ -68,11 +68,25 @@
         <item>Taryfa jednostrefowa (G11)</item>
         <item>Taryfa dwustrefowa (G12)</item>
     </string-array>
-    <string name="wsp_konwersji_desc" translatable="false">Współczynnik konwersji wynosi średnie miesięczne ciepło spalania gazu w ostatnim okresie rozliczeniowym,
-        podzielony przez wartość 3,6. Ciepło spalania to wartość kaloryczna 1m\u00B3 gazu. Aktualną wartość można znaleźć na stronie <![CDATA[<a href="http://www.psgaz.pl/dlaklienta/18869/21361">PSG sp. z o.o.</a>]]></string>
+    <string name="wsp_konwersji_desc" translatable="false">Współczynnik konwersji to mnożnik, dzięki któremu można zamienić jednostki objętości [m\u00B3] na jednostki energii [kWh]. Więcej na <![CDATA[<a href="http://od.pgnig.pl/dladomu/nowamiara/przeliczanie">http://od.pgnig.pl/dladomu/nowamiara/przeliczanie</a>]]></string>
+    <string name="abonamentowa_desc" translatable="false">Stała cena za abonament, naliczana co miesiąc, niezależnie od zużycia.</string>
+    <string name="paliwo_gazowe_desc" translatable="false">Cena netto jednej kilowatogodziny paliwa gazowego.</string>
+    <string name="dystrybucyjna_stala_desc" translatable="false">Cena za dostarczanie gazu (wcześniej opłata sieciowa stała), naliczana co miesiąc, niezależnie od zużycia.</string>
+    <string name="dystrybucyjna_zmienna_desc" translatable="false">Cena za dostarczanie gazu (wcześniej opłata sieciowa zmienna), naliczana proporcjonalnie do zużycia.</string>
+    
     <string name="oplata_przejsciowa_desc" translatable="false">Składnik opłaty przejściowej jest zależny od rocznego zużycia kWh:\n - do 500 kWH/rok wynosi 0.18 zł netto\n - od 500 do 1200 kWh/rok wynosi 0.77 zł netto\n - od 1200 kWh/rok wynosi 2.44 zł netto</string>
+    <string name="oplata_stala_za_przesyl_desc" translatable="false">inaczej:\n - składnik stały stawki sieciowej,\n - opłata przesyłowa stała.\nCena naliczana co miesiąc, niezależnie od zużycia.</string>
+    <string name="oplata_abonamentowa_desc" translatable="false">Stała cena za abonament, naliczana co miesiąc, niezależnie od zużycia.</string>
+    <string name="skladnik_jakosciowy_desc" translatable="false">inaczej:\n - składnik jakościowy opłaty systemowej,\n - opłata dystrybucyjna jakościowa.\nCena zapewnienia odpowiedniej jakości dostaw energii.</string>
+    <string name="za_energie_czynna_desc" translatable="false">Cena netto jednej kilowatogodziny energii.</string>
+    <string name="oplata_sieciowa_desc" translatable="false">inaczej:\n - składnik zmienny stawki sieciowej,\n - opłata przesyłowa zmienna,\n - opłata dystrybucyjna zmienna.\nCena dostarczania prądu.</string>
 
-<!-- gas_bill -->
+    <string name="za_energie_czynna_G12dzien_desc" translatable="false">Cena netto jednej kilowatogodziny energii, w strefie dziennej.</string>
+    <string name="oplata_sieciowa_G12dzien_desc" translatable="false">inaczej:\n - składnik zmienny stawki sieciowej,\n - opłata przesyłowa zmienna,\n - opłata dystrybucyjna zmienna.\nCena dostarczania prądu, w strefie dziennej.</string>
+    <string name="za_energie_czynna_G12noc_desc" translatable="false">Cena netto jednej kilowatogodziny energii, w strefie nocnej.</string>
+    <string name="oplata_sieciowa_G12noc_desc" translatable="false">inaczej:\n - składnik zmienny stawki sieciowej,\n - opłata przesyłowa zmienna,\n - opłata dystrybucyjna zmienna.\nCena dostarczania prądu, w strefie nocnej.</string>
+
+    <!-- gas_bill -->
     <string name="gas_label">Gas bill</string>
     <string name="wartosc_faktury" translatable="false">Wartość faktury brutto: %1$s zł</string>
     <string name="odczyt_na_dzien" translatable="false">%1$s [m\u00B3]</string>
