@@ -1,249 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:gravity="right">
+    android:scrollbars="none"
+    android:layout_gravity="right">
 
-
-    <!-- READINGS G11 ============================-->
     <LinearLayout
-        android:id="@+id/linearLayout_readings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="right">
 
+
+        <!-- READINGS G11 ============================-->
         <LinearLayout
+            android:id="@+id/linearLayout_readings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="right">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView_from"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/small_padding"
+                    android:text="@string/previous_reading"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <pl.srw.billcalculator.component.InstantAutoComplete
+                    android:id="@+id/editText_reading_from"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="5"
+                    android:maxLength="9"
+                    android:gravity="end"
+                    android:hint="@string/reading_hint_kWh"
+                    android:inputType="number"
+                    android:imeOptions="actionNext" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_padding">
+
+                <TextView
+                    android:id="@+id/textView_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/small_padding"
+                    android:text="@string/current_reading"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/editText_reading_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="5"
+                    android:maxLength="9"
+                    android:gravity="end"
+                    android:hint="@string/reading_hint_kWh"
+                    android:inputType="number"
+                    android:imeOptions="actionDone"/>
+
+            </LinearLayout>
+        </LinearLayout>
+        <!-- READINGS G12 ============================-->
+
+        <TableLayout
+            android:id="@+id/tableLayout_G12_readings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textView_from"
+            <TableRow
+                android:id="@+id/tableRow_readings_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reading"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reading_day_time"
+                    android:layout_gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reading_night_time"
+                    android:layout_gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow_readings_G12dzienna"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/small_padding"
-                android:text="@string/previous_reading"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:paddingTop="@dimen/small_padding">
 
-            <pl.srw.billcalculator.component.InstantAutoComplete
-                android:id="@+id/editText_reading_from"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/previous"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <pl.srw.billcalculator.component.InstantAutoComplete
+                    android:id="@+id/editText_reading_day_from"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="5"
+                    android:maxLength="9"
+                    android:gravity="end"
+                    android:hint="@string/reading_hint_kWh"
+                    android:nextFocusForward="@+id/editText_reading_day_to"
+                    android:inputType="number"
+                    android:imeOptions="actionNext" />
+
+                <pl.srw.billcalculator.component.InstantAutoComplete
+                    android:id="@+id/editText_reading_night_from"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="5"
+                    android:maxLength="9"
+                    android:gravity="end"
+                    android:hint="@string/reading_hint_kWh"
+                    android:nextFocusForward="@+id/editText_reading_night_to"
+                    android:inputType="number"
+                    android:imeOptions="actionNext"/>
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow_readings_G12nocna"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="5"
-                android:maxLength="9"
-                android:gravity="end"
-                android:hint="@string/reading_hint_kWh"
-                android:inputType="number"
-                android:imeOptions="actionNext" />
+                android:paddingTop="@dimen/small_padding">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/current"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/editText_reading_day_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="5"
+                    android:maxLength="9"
+                    android:gravity="end"
+                    android:hint="@string/reading_hint_kWh"
+                    android:nextFocusDown="@+id/editText_reading_night_from"
+                    android:inputType="number"/>
+
+                <EditText
+                    android:id="@+id/editText_reading_night_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="5"
+                    android:maxLength="9"
+                    android:gravity="end"
+                    android:hint="@string/reading_hint_kWh"
+                    android:inputType="number"
+                    android:imeOptions="actionDone"/>
+
+            </TableRow>
+        </TableLayout>
+
+        <!-- DATA ============================-->
 
         <LinearLayout
+            android:id="@+id/linearLayout_date_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_padding">
 
             <TextView
-                android:id="@+id/textView_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/small_padding"
-                android:text="@string/current_reading"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <EditText
-                android:id="@+id/editText_reading_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="5"
-                android:maxLength="9"
-                android:gravity="end"
-                android:hint="@string/reading_hint_kWh"
-                android:inputType="number"
-                android:imeOptions="actionDone"/>
-
-        </LinearLayout>
-    </LinearLayout>
-    <!-- READINGS G12 ============================-->
-
-    <TableLayout
-        android:id="@+id/tableLayout_G12_readings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TableRow
-            android:id="@+id/tableRow_readings_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reading"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reading_day_time"
-                android:layout_gravity="center"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reading_night_time"
-                android:layout_gravity="center"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow_readings_G12dzienna"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/small_padding">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/previous"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <pl.srw.billcalculator.component.InstantAutoComplete
-                android:id="@+id/editText_reading_day_from"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="5"
-                android:maxLength="9"
-                android:gravity="end"
-                android:hint="@string/reading_hint_kWh"
-                android:nextFocusForward="@+id/editText_reading_day_to"
-                android:inputType="number"
-                android:imeOptions="actionNext" />
-
-            <pl.srw.billcalculator.component.InstantAutoComplete
-                android:id="@+id/editText_reading_night_from"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="5"
-                android:maxLength="9"
-                android:gravity="end"
-                android:hint="@string/reading_hint_kWh"
-                android:nextFocusForward="@+id/editText_reading_night_to"
-                android:inputType="number"
-                android:imeOptions="actionNext"/>
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow_readings_G12nocna"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/small_padding">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/current"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <EditText
-                android:id="@+id/editText_reading_day_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="5"
-                android:maxLength="9"
-                android:gravity="end"
-                android:hint="@string/reading_hint_kWh"
-                android:nextFocusDown="@+id/editText_reading_night_from"
-                android:inputType="number"/>
-
-            <EditText
-                android:id="@+id/editText_reading_night_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="5"
-                android:maxLength="9"
-                android:gravity="end"
-                android:hint="@string/reading_hint_kWh"
-                android:inputType="number"
-                android:imeOptions="actionDone"/>
-
-        </TableRow>
-    </TableLayout>
-
-    <!-- DATA ============================-->
-
-    <LinearLayout
-        android:id="@+id/linearLayout_date_from"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_padding">
-
-        <TextView
-            android:id="@+id/textView_date_from"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/date_from"/>
-        <Button
-            android:id="@+id/button_date_from"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:freezesText="true"
-            tools:text="11/12/2014"/>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_padding">
-
-        <LinearLayout
-            android:id="@+id/linearLayout_date_to"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/textView_date_to"
+                android:id="@+id/textView_date_from"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/date_to"/>
+                android:text="@string/date_from"/>
             <Button
-                android:id="@+id/button_date_to"
+                android:id="@+id/button_date_from"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:freezesText="true"
-                tools:text="31/12/2014"/>
-
+                tools:text="11/12/2014"/>
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/editText_date_to_error"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/linearLayout_date_to"
-            android:layout_alignRight="@id/linearLayout_date_to"
-            android:clickable="false"
-            android:editable="false"
-            android:ems="1"
-            android:background="@android:color/transparent"
-            android:textColor="@android:color/transparent"/>
+            android:layout_marginTop="@dimen/small_padding">
 
-    </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/linearLayout_date_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView_date_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/date_to"/>
+                <Button
+                    android:id="@+id/button_date_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:freezesText="true"
+                    tools:text="31/12/2014"/>
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/editText_date_to_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/linearLayout_date_to"
+                android:layout_alignRight="@id/linearLayout_date_to"
+                android:clickable="false"
+                android:editable="false"
+                android:ems="1"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/transparent"/>
+
+        </RelativeLayout>
 
 
-    <!-- OBLICZ =========================== -->
-    <Button
-        android:id="@+id/button_calculate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/double_padding"
-        android:text="@string/calculate" />
-</LinearLayout>
+        <!-- OBLICZ =========================== -->
+        <Button
+            android:id="@+id/button_calculate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/double_padding"
+            android:text="@string/calculate" />
+    </LinearLayout>
 
+</HorizontalScrollView>

@@ -309,7 +309,7 @@ public class MainActivity extends Activity {
     }
 
     private void changeBillType(BillType newType) {
-        bBillType.setBackgroundResource(newType.drawableId);
+        bBillType.setImageResource(newType.drawableId);
         bBillType.setTag(IMAGE_TYPE_KEY, newType);
         YoYo.with(Techniques.BounceIn)
                 .duration(400)

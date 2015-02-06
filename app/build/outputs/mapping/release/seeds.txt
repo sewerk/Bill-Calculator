@@ -252,6 +252,8 @@ com.nineoldandroids.view.animation.AnimatorProxy
 hugo.weaving.DebugLog
 pl.srw.billcalculator.AboutActivity
 pl.srw.billcalculator.AboutActivity: android.widget.TextView tvVersion
+pl.srw.billcalculator.AboutActivity: android.widget.TextView tvLinkEmail
+pl.srw.billcalculator.AboutActivity: android.widget.TextView tvLinkGPlus
 pl.srw.billcalculator.AboutActivity: AboutActivity()
 pl.srw.billcalculator.AboutActivity$$ViewInjector
 pl.srw.billcalculator.AboutActivity$$ViewInjector: AboutActivity$$ViewInjector()
@@ -309,11 +311,9 @@ pl.srw.billcalculator.R$dimen: int activity_vertical_margin
 pl.srw.billcalculator.R$dimen: int double_padding
 pl.srw.billcalculator.R$dimen: int small_padding
 pl.srw.billcalculator.R$drawable
-pl.srw.billcalculator.R$drawable: int bill_type_pge
-pl.srw.billcalculator.R$drawable: int bill_type_pgnig
-pl.srw.billcalculator.R$drawable: int billcalc
 pl.srw.billcalculator.R$drawable: int border
-pl.srw.billcalculator.R$drawable: int emailme
+pl.srw.billcalculator.R$drawable: int ic_gmail
+pl.srw.billcalculator.R$drawable: int ic_gplus
 pl.srw.billcalculator.R$drawable: int ic_launcher
 pl.srw.billcalculator.R$drawable: int pge
 pl.srw.billcalculator.R$drawable: int pge_example
@@ -321,6 +321,7 @@ pl.srw.billcalculator.R$drawable: int pge_on_pgnig
 pl.srw.billcalculator.R$drawable: int pgnig
 pl.srw.billcalculator.R$drawable: int pgnig_example
 pl.srw.billcalculator.R$drawable: int pgnig_on_pge
+pl.srw.billcalculator.R$drawable: int undeline
 pl.srw.billcalculator.R$id
 pl.srw.billcalculator.R$id: int action_about
 pl.srw.billcalculator.R$id: int action_help
@@ -365,19 +366,16 @@ pl.srw.billcalculator.R$id: int table_odczyt
 pl.srw.billcalculator.R$id: int table_podsumowanie
 pl.srw.billcalculator.R$id: int table_rozliczenie
 pl.srw.billcalculator.R$id: int textView_Jm
-pl.srw.billcalculator.R$id: int textView_about
 pl.srw.billcalculator.R$id: int textView_akcyza
 pl.srw.billcalculator.R$id: int textView_cena
 pl.srw.billcalculator.R$id: int textView_cena_netto
 pl.srw.billcalculator.R$id: int textView_date_from
 pl.srw.billcalculator.R$id: int textView_date_to
 pl.srw.billcalculator.R$id: int textView_do_zaplaty
-pl.srw.billcalculator.R$id: int textView_emalme
 pl.srw.billcalculator.R$id: int textView_faktura_nr
 pl.srw.billcalculator.R$id: int textView_from
 pl.srw.billcalculator.R$id: int textView_ilosc
 pl.srw.billcalculator.R$id: int textView_ilosc_mc
-pl.srw.billcalculator.R$id: int textView_klauzula
 pl.srw.billcalculator.R$id: int textView_kwota_vat
 pl.srw.billcalculator.R$id: int textView_moc_umowna
 pl.srw.billcalculator.R$id: int textView_naleznosc
@@ -401,7 +399,6 @@ pl.srw.billcalculator.R$id: int textView_tariff_change
 pl.srw.billcalculator.R$id: int textView_taryfa
 pl.srw.billcalculator.R$id: int textView_to
 pl.srw.billcalculator.R$id: int textView_tytul
-pl.srw.billcalculator.R$id: int textView_ver
 pl.srw.billcalculator.R$id: int textView_wartosc_akcyzy
 pl.srw.billcalculator.R$id: int textView_wartosc_brutto
 pl.srw.billcalculator.R$id: int textView_wartosc_faktury
@@ -413,6 +410,13 @@ pl.srw.billcalculator.R$id: int textView_za_okres
 pl.srw.billcalculator.R$id: int textView_zuzycie
 pl.srw.billcalculator.R$id: int textView_zuzycie_razem
 pl.srw.billcalculator.R$id: int textView_zuzycie_razem_kWh
+pl.srw.billcalculator.R$id: int tv_about
+pl.srw.billcalculator.R$id: int tv_app_name
+pl.srw.billcalculator.R$id: int tv_klauzula
+pl.srw.billcalculator.R$id: int tv_link_emailme
+pl.srw.billcalculator.R$id: int tv_link_g_plus
+pl.srw.billcalculator.R$id: int tv_links
+pl.srw.billcalculator.R$id: int tv_ver
 pl.srw.billcalculator.R$layout
 pl.srw.billcalculator.R$layout: int about
 pl.srw.billcalculator.R$layout: int activity_main
@@ -438,6 +442,7 @@ pl.srw.billcalculator.R$menu: int main
 pl.srw.billcalculator.R$menu: int settings
 pl.srw.billcalculator.R$string
 pl.srw.billcalculator.R$string: int abonamentowa
+pl.srw.billcalculator.R$string: int abonamentowa_desc
 pl.srw.billcalculator.R$string: int about_label
 pl.srw.billcalculator.R$string: int action_help
 pl.srw.billcalculator.R$string: int action_info
@@ -450,6 +455,7 @@ pl.srw.billcalculator.R$string: int check_prices_info_cancel
 pl.srw.billcalculator.R$string: int check_prices_info_ok
 pl.srw.billcalculator.R$string: int check_prices_info_title
 pl.srw.billcalculator.R$string: int clause
+pl.srw.billcalculator.R$string: int contact_header
 pl.srw.billcalculator.R$string: int current
 pl.srw.billcalculator.R$string: int current_reading
 pl.srw.billcalculator.R$string: int date_error
@@ -458,24 +464,33 @@ pl.srw.billcalculator.R$string: int date_to
 pl.srw.billcalculator.R$string: int description
 pl.srw.billcalculator.R$string: int do_zaplaty
 pl.srw.billcalculator.R$string: int dystrybucyjna_stala
+pl.srw.billcalculator.R$string: int dystrybucyjna_stala_desc
 pl.srw.billcalculator.R$string: int dystrybucyjna_zmienna
+pl.srw.billcalculator.R$string: int dystrybucyjna_zmienna_desc
 pl.srw.billcalculator.R$string: int email_client_missing
 pl.srw.billcalculator.R$string: int emailme
 pl.srw.billcalculator.R$string: int energy_label
 pl.srw.billcalculator.R$string: int gas_label
 pl.srw.billcalculator.R$string: int kWh
+pl.srw.billcalculator.R$string: int link_gplus
 pl.srw.billcalculator.R$string: int m3
 pl.srw.billcalculator.R$string: int m_c
 pl.srw.billcalculator.R$string: int mc
 pl.srw.billcalculator.R$string: int odczyt_na_dzien
 pl.srw.billcalculator.R$string: int oplata_abonamentowa
+pl.srw.billcalculator.R$string: int oplata_abonamentowa_desc
 pl.srw.billcalculator.R$string: int oplata_przejsciowa
 pl.srw.billcalculator.R$string: int oplata_przejsciowa_desc
 pl.srw.billcalculator.R$string: int oplata_sieciowa
 pl.srw.billcalculator.R$string: int oplata_sieciowa_G12dzien
+pl.srw.billcalculator.R$string: int oplata_sieciowa_G12dzien_desc
 pl.srw.billcalculator.R$string: int oplata_sieciowa_G12noc
+pl.srw.billcalculator.R$string: int oplata_sieciowa_G12noc_desc
+pl.srw.billcalculator.R$string: int oplata_sieciowa_desc
 pl.srw.billcalculator.R$string: int oplata_stala_za_przesyl
+pl.srw.billcalculator.R$string: int oplata_stala_za_przesyl_desc
 pl.srw.billcalculator.R$string: int paliwo_gazowe
+pl.srw.billcalculator.R$string: int paliwo_gazowe_desc
 pl.srw.billcalculator.R$string: int pge_prices
 pl.srw.billcalculator.R$string: int pge_tariff_G11_in_preferences
 pl.srw.billcalculator.R$string: int pge_tariff_G11_on_bill
@@ -532,6 +547,7 @@ pl.srw.billcalculator.R$string: int settings_oplata_abonamentowa
 pl.srw.billcalculator.R$string: int settings_pge_summary
 pl.srw.billcalculator.R$string: int settings_pgnig_summary
 pl.srw.billcalculator.R$string: int skladnik_jakosciowy
+pl.srw.billcalculator.R$string: int skladnik_jakosciowy_desc
 pl.srw.billcalculator.R$string: int strefa_calodobowa
 pl.srw.billcalculator.R$string: int strefa_dzienna
 pl.srw.billcalculator.R$string: int strefa_nocna
@@ -544,7 +560,10 @@ pl.srw.billcalculator.R$string: int wsp_konwersji_desc
 pl.srw.billcalculator.R$string: int wspolczynnik_konwersji
 pl.srw.billcalculator.R$string: int za_energie_czynna
 pl.srw.billcalculator.R$string: int za_energie_czynna_G12dzien
+pl.srw.billcalculator.R$string: int za_energie_czynna_G12dzien_desc
 pl.srw.billcalculator.R$string: int za_energie_czynna_G12noc
+pl.srw.billcalculator.R$string: int za_energie_czynna_G12noc_desc
+pl.srw.billcalculator.R$string: int za_energie_czynna_desc
 pl.srw.billcalculator.R$string: int za_okres
 pl.srw.billcalculator.R$string: int zuzycie
 pl.srw.billcalculator.R$string: int zuzycie_razem
