@@ -363,6 +363,7 @@ com.nineoldandroids.view.animation.AnimatorProxy:
 hugo.weaving.DebugLog
 pl.srw.billcalculator.AboutActivity:
     public static final java.lang.String RECEIVER_EMAIL
+    public static final java.lang.String BETA_HTTP
 pl.srw.billcalculator.BuildConfig
 pl.srw.billcalculator.EnergyBillActivity:
     public static final int PRICE_SCALE

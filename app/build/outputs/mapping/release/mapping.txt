@@ -818,9 +818,14 @@ com.nineoldandroids.view.animation.AnimatorProxy -> com.nineoldandroids.view.ani
     void applyTransformation(float,android.view.animation.Transformation) -> applyTransformation
 pl.srw.billcalculator.AboutActivity -> pl.srw.billcalculator.AboutActivity:
     android.widget.TextView tvVersion -> a
+    android.widget.TextView tvLinkEmail -> b
+    android.widget.TextView tvLinkGPlus -> c
     void onCreate(android.os.Bundle) -> onCreate
-    void setLicenseLink() -> c
-    java.lang.String getApkVersion() -> d
+    void setLinks() -> c
+    void setEmailMeLink() -> d
+    void setGPlusLink() -> e
+    void setLicenseLink() -> f
+    java.lang.String getApkVersion() -> g
     void sendEmail() -> a
     void closeAboutDialog() -> b
 pl.srw.billcalculator.AboutActivity$$ViewInjector -> pl.srw.billcalculator.AboutActivity$$ViewInjector:
