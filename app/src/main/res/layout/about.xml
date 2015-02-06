@@ -16,33 +16,79 @@
 
 
         <TextView
-            android:id="@+id/textView_about"
+            android:id="@+id/tv_about"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_padding"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/double_padding"
             android:gravity="center"
-            android:drawableLeft="@drawable/billcalc"
-            android:contentDescription="Application logo and description"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/description"/>
-
+        
         <TextView
-            android:id="@+id/textView_emalme"
+            android:id="@+id/tv_app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_about"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_marginBottom="@dimen/double_padding"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/double_padding"
-            android:layout_below="@id/textView_about"
-            android:drawableRight="@drawable/emailme"
-            android:text="@string/emailme"
-            android:gravity="center" />
+            android:gravity="center"
+            android:drawableLeft="@drawable/ic_launcher"
+            android:contentDescription="Application logo"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/app_name"/>
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_app_name"
+            android:src="@drawable/undeline"/>
+        
         <TextView
-            android:id="@+id/textView_klauzula"
+            android:id="@+id/tv_links"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_emalme"
+            android:layout_below="@id/tv_app_name"
+            android:layout_marginTop="@dimen/double_padding"
+            android:layout_alignLeft="@+id/tv_link_g_plus"
+            android:gravity="center"
+            android:text="@string/contact_header" />
+        
+        <TextView
+            android:id="@+id/tv_link_emailme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_links"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_alignLeft="@+id/tv_link_g_plus"
+            android:gravity="center"
+            android:drawableLeft="@drawable/ic_gmail"
+            android:text="@string/emailme" />
+        
+        <TextView
+            android:id="@+id/tv_link_g_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_link_emailme"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_marginBottom="@dimen/double_padding"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:drawableLeft="@drawable/ic_gplus"
+            android:text="@string/link_gplus"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_link_g_plus"
+            android:src="@drawable/undeline"/>
+        
+        <TextView
+            android:id="@+id/tv_klauzula"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_link_g_plus"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/double_padding"
             android:gravity="center"
@@ -50,12 +96,12 @@
             android:text="@string/clause" />
 
         <TextView
-            android:id="@+id/textView_ver"
+            android:id="@+id/tv_ver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/small_padding"
-            android:layout_below="@id/textView_klauzula"
+            android:layout_below="@id/tv_klauzula"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/version_text"/>
@@ -64,7 +110,7 @@
             android:id="@+id/b_close"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textView_ver"
+            android:layout_below="@id/tv_ver"
             android:layout_marginTop="@dimen/small_padding"
             android:text="OK" />
     </RelativeLayout>

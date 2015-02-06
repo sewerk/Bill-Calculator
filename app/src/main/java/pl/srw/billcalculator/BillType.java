@@ -4,8 +4,8 @@ package pl.srw.billcalculator;
  * Created by Kamil Seweryn.
  */
 public enum BillType {
-    PGE(R.drawable.bill_type_pge),
-    PGNIG(R.drawable.bill_type_pgnig);
+    PGE(R.drawable.pge_on_pgnig),
+    PGNIG(R.drawable.pgnig_on_pge);
 
     public int drawableId;
 

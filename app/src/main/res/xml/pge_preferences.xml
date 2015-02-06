@@ -20,18 +20,21 @@
         android:key="@string/preferences_pge_oplata_stala_za_przesyl"
         android:defaultValue="@string/price_oplata_stala_za_przesyl"
         android:inputType="numberDecimal"
+        android:dialogMessage="@string/oplata_stala_za_przesyl_desc"
         android:title="@string/oplata_stala_za_przesyl" />
 
     <EditTextPreference
         android:key="@string/preferences_pge_oplata_abonamentowa"
         android:defaultValue="@string/price_oplata_abonamentowa"
         android:inputType="numberDecimal"
+        android:dialogMessage="@string/oplata_abonamentowa_desc"
         android:title="@string/oplata_abonamentowa" />
 
     <EditTextPreference
         android:key="@string/preferences_pge_skladnik_jakosciowy"
         android:defaultValue="@string/price_skladnik_jakosciowy"
         android:inputType="numberDecimal"
+        android:dialogMessage="@string/skladnik_jakosciowy_desc"
         android:title="@string/skladnik_jakosciowy" />
 
     <!-- G11 ============================================================ -->
@@ -43,12 +46,14 @@
             android:key="@string/preferences_pge_za_energie_czynna"
             android:defaultValue="@string/price_za_energie_czynna"
             android:inputType="numberDecimal"
+            android:dialogMessage="@string/za_energie_czynna_desc"
             android:title="@string/za_energie_czynna" />
 
         <EditTextPreference
             android:key="@string/preferences_pge_oplata_sieciowa"
             android:defaultValue="@string/price_oplata_sieciowa"
             android:inputType="numberDecimal"
+            android:dialogMessage="@string/oplata_sieciowa_desc"
             android:title="@string/oplata_sieciowa" />
 
     </PreferenceCategory>
@@ -61,24 +66,28 @@
             android:key="@string/preferences_pge_za_energie_czynna_G12dzien"
             android:defaultValue="@string/price_za_energie_czynna_G12dzien"
             android:inputType="numberDecimal"
+            android:dialogMessage="@string/za_energie_czynna_G12dzien_desc"
             android:title="@string/za_energie_czynna_G12dzien" />
 
         <EditTextPreference
             android:key="@string/preferences_pge_za_energie_czynna_G12noc"
             android:defaultValue="@string/price_za_energie_czynna_G12noc"
             android:inputType="numberDecimal"
+            android:dialogMessage="@string/za_energie_czynna_G12noc_desc"
             android:title="@string/za_energie_czynna_G12noc" />
 
         <EditTextPreference
             android:key="@string/preferences_pge_oplata_sieciowa_G12dzien"
             android:defaultValue="@string/price_oplata_sieciowa_G12dzien"
             android:inputType="numberDecimal"
+            android:dialogMessage="@string/oplata_sieciowa_G12dzien_desc"
             android:title="@string/oplata_sieciowa_G12dzien" />
 
         <EditTextPreference
             android:key="@string/preferences_pge_oplata_sieciowa_G12noc"
             android:defaultValue="@string/price_oplata_sieciowa_G12noc"
             android:inputType="numberDecimal"
+            android:dialogMessage="@string/oplata_sieciowa_G12noc_desc"
             android:title="@string/oplata_sieciowa_G12noc" />
 
     </PreferenceCategory>

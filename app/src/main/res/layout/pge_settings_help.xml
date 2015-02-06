@@ -19,20 +19,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="1. Wybierz taryfę:"
+                android:text="1. Kliknij na pozycję by edytować i zobaczyć opis.\n\n2. Wybierz taryfę:"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="- plan taryfowy PGE ustala stawki za energię w zależności od pory dnia,\n- plan taryfowy można odczytać z ostatniej faktury,\n- jeśli nie wiesz jaką taryfe posiadasz prawdopodobnie jest to taryfa jednostrefowa G11,\n- jeśli posiadasz dwa odczyty na liczniku wybierz taryfę dwustrefową G12."
+                android:text="- plan taryfowy PGE ustala stawki za energię w zależności od pory dnia,\n- plan taryfowy można odczytać z ostatniej faktury,\n- jeśli nie wiesz jaką taryfę posiadasz prawdopodobnie jest to taryfa jednostrefowa G11,\n- jeśli posiadasz dwa odczyty na liczniku wybierz taryfę dwustrefową G12,\n- wybór taryfy umożliwia edycję zależnych cen."
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="\n2. Wybór odpowiedniej taryfy daje możliwość modyfikowania zależnych cen. Ceny nieaktywne nie należą do wybranej taryfy.\n\n3. Ceny można odczytać z ostatniej faktury:"
+                android:text="\n3. Poszczególne ceny można odczytać z ostatniej faktury:"
                 />
 
             <ImageView
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="\n4. Wszystkie ceny są cenami netto.\n\n5. Kliknij pozycję na liście aby pokazać szczegółowy opis."
+                android:text="\n4. Wszystkie ceny są cenami netto."
                 />
         </LinearLayout>
     </ScrollView>
