@@ -1,7 +1,5 @@
-Bill-Calculator
+![Logo](app/src/main/res/drawable-xhdpi/ic_launcher.png) Bill-Calculator
 ===============
-
-![Logo](app/src/main/res/drawable-mdpi/billcalc.png)
 
 Android application to calculates bill value for PGE and PGNiG providers.
 
