@@ -19,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="1. Kliknij pozycję na liście aby pokazać szczegółowy opis.\n\n 2. Współczynnik konwersji zmienia się co miesiąc (nieznacznie). W opisie pozycji znajduje się link to aktualnej wartości.\n\n3. Ceny oraz współczynnik konwersji można odczytać z ostatniej faktury:"
+                android:text="1. Kliknij na pozycję by edytować i zobaczyć opis.\n\n 2. Poszczególne ceny oraz współczynnik konwersji można odczytać z ostatniej faktury:"
                 />
 
             <ImageView
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="\n4. Wszystkie ceny są cenami netto."
+                android:text="\n3. Wszystkie ceny są cenami netto."
                 />
         </LinearLayout>
     </ScrollView>

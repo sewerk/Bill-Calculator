@@ -21,7 +21,9 @@
             android:id="@+id/button_bill_type_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bill_type_pge"
+            android:src="@drawable/pge_on_pgnig"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
             android:contentDescription="Bill type switch"/>
 
         <include layout="@layout/tariff_label" />
