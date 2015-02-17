@@ -112,8 +112,8 @@
     <string name="email_client_missing">I could not find any e-mail client installed</string>
 <!-- history -->
     <string name="history_label">History</string>
-    <string name="readings">Reading: %1$s</string>
-    <string name="readingsG12">Readings: day(%1$s)\n night(%2$s)</string>
+    <string name="readings">Readings:</string>
+    <string name="readingsG12">day(%1$s)\nnight(%2$s)</string>
     <string name="empty_history">No bill calculated yet</string>
 
 </resources>

@@ -90,9 +90,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     private int getBillTypeDrawable(final Bill entity) {
         if (entity instanceof PgnigBill) {
-            return R.drawable.pgnig_on_pge;
+            return R.drawable.pgnig;
         } else {
-            return R.drawable.pge_on_pgnig;
+            return R.drawable.pge;
         }
     }
 

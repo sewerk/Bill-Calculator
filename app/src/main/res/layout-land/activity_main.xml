@@ -24,7 +24,7 @@
                 android:id="@+id/button_bill_type_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_padding"
+                android:layout_marginTop="@dimen/padding"
                 android:src="@drawable/pge_on_pgnig"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
