@@ -24,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/pge"
                 android:layout_alignParentLeft="true"
+                android:layout_margin="@dimen/double_padding"
                 android:contentDescription="Provider bill logo"/>
 
             <TextView

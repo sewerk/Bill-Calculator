@@ -28,6 +28,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/pgnig"
                 android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/double_padding"
                 android:contentDescription="Provider bill logo"/>
 
             <TextView
