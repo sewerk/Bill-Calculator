@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.persistence;
+package pl.srw.billcalculator.persistence.type;
 
 import pl.srw.billcalculator.db.dao.PgeBillDao;
 import pl.srw.billcalculator.db.dao.PgeG12BillDao;

@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/undeline"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/history_period"
             tools:text="01/01/2014 - 31/12/2015"/>
 
 
@@ -30,7 +31,7 @@
         <ImageView
             android:id="@+id/iv_bill_type"
             android:layout_width="64dp"
-            android:layout_height="48dp"
+            android:layout_height="64dp"
             android:layout_marginRight="@dimen/padding"
             android:src="@drawable/pge"/>
 
@@ -43,14 +44,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/readings"/>
+                android:text="@string/history_readings_label"/>
 
             <TextView
                 android:id="@+id/tv_readings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="@string/readingsG12"
+                android:text="@string/history_readingsG12"
                 tools:text="day(345 - 456)\nnight(567 - 789)" />
 
         </LinearLayout>
@@ -62,6 +63,7 @@
             android:layout_height="match_parent"
             android:gravity="right|center_vertical"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/history_amount"
             tools:text="3443.45 zł"/>
 
     </LinearLayout>

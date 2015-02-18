@@ -42,7 +42,7 @@
     <string name="email_client_missing">Nie wykryto klientów poczty e-mail</string>
     <!-- history -->
     <string name="history_label">Historia</string>
-    <string name="readings">Wskazania:</string>
-    <string name="readingsG12">dzienna(%1$s)\nnocna(%2$s)</string>
+    <string name="history_readings_label">Wskazania:</string>
+    <string name="history_readingsG12">dzienna(%1$s - %2$s)\nnocna(%3$s - %4$s)</string>
     <string name="empty_history">Brak wyliczeń rachunków</string>
 </resources>

@@ -10,7 +10,7 @@ import java.util.List;
 
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.persistence.CurrentReadingType;
+import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.util.ToString;
 

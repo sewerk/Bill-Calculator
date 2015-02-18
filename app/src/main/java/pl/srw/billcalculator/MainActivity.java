@@ -33,7 +33,7 @@ import butterknife.OnClick;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.component.CheckPricesDialogFragment;
 import pl.srw.billcalculator.adapter.PreviousReadingsAdapter;
-import pl.srw.billcalculator.persistence.CurrentReadingType;
+import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 import pl.srw.billcalculator.type.BillType;
 import pl.srw.billcalculator.preference.PgeSettingsFragment;
 import pl.srw.billcalculator.preference.ProviderSettingsActivity;

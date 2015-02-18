@@ -17,10 +17,10 @@ public class BillCalculator extends Application {
         super.onCreate();
         context = getApplicationContext();
         
-        Database.initialize(this);
         if (BuildConfig.DEBUG) {
             Database.enableDatabaseLogging();
         }
+        Database.initialize(this);
 
         //PreferenceMigration.migrate(getApplicationContext());
     }
