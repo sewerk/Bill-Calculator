@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.test.util;
+package pl.srw.billcalculator.test;
 
 import junit.framework.TestCase;
 
