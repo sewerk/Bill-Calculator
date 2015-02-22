@@ -27,11 +27,6 @@ public class Dates {
         return date.format(FORMATTER);
     }
 
-    public static String format(Date date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_PATTERN);
-        return dateFormat.format(date);
-    }
-
     public static int countMonth(String from, String to) {
         final Period period = Period.between(parse(from), parse(to));
         return period.getYears() * 12
