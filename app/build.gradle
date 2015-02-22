@@ -42,6 +42,7 @@ android {
 
 dependencies {
     compile project(':persistence')
+    compile fileTree(include: '*.jar', dir: 'libs')
     compile 'com.android.support:recyclerview-v7:21.0.+'
     compile 'com.android.support:appcompat-v7:21.0.+'
     compile 'com.jakewharton:butterknife:5.1.2'

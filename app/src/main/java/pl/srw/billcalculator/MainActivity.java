@@ -24,7 +24,9 @@ import android.widget.TextView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
-import java.util.Calendar;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.Month;
+
 import java.util.Date;
 
 import butterknife.ButterKnife;
@@ -102,15 +104,8 @@ public class MainActivity extends Activity {
     }
 
     private void initDates() {
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-
-        bFromDate.setText(Dates.format(year, month, 1));
-        c.set(Calendar.DAY_OF_MONTH, 1);
-        c.add(Calendar.MONTH, 1);
-        c.add(Calendar.DAY_OF_MONTH, -1);
-        bToDate.setText(Dates.format(year, month, c.get(Calendar.DAY_OF_MONTH)));
+        bFromDate.setText(Dates.format(Dates.firstDayOfThisMonth()));
+        bToDate.setText(Dates.format(Dates.lastDayOfThisMonth()));
     }
 
     private void initBillType() {
@@ -325,27 +320,22 @@ public class MainActivity extends Activity {
 
     @OnClick({R.id.button_date_from, R.id.button_date_to})
     public void showDatePicker(final Button datePickerButton) {
-        final Calendar c = Calendar.getInstance();
-        c.setTime(readDateFrom(datePickerButton));
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
+        final LocalDate date = Dates.parse(datePickerButton.getText().toString());
+        final int year = date.getYear();
+        final int monthValue = date.getMonthValue() - 1;
+        final int dayOfMonth = date.getDayOfMonth();
 
-        new DatePickerDialog(MainActivity.this, onDatePickedListener(datePickerButton), year, month, day).show();
+        new DatePickerDialog(MainActivity.this, onDatePickedListener(datePickerButton), year, monthValue, dayOfMonth).show();
     }
 
     private DatePickerDialog.OnDateSetListener onDatePickedListener(final Button button) {
         return new DatePickerDialog.OnDateSetListener(){
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                button.setText(Dates.format(year, month, day));
+                button.setText(Dates.format(year, Month.of(month + 1), day));
                 etToDateError.setError(null);
             }
         };
-    }
-
-    private Date readDateFrom(final Button button) {
-        return Dates.parse(button.getText().toString());
     }
 
     @DebugLog
@@ -426,9 +416,9 @@ public class MainActivity extends Activity {
     private boolean validateDates() {
         String fromDate = bFromDate.getText().toString();
         String toDate = bToDate.getText().toString();
-        Date from = Dates.parse(fromDate);
-        Date to = Dates.parse(toDate);
-        if (!from.before(to)) {
+        LocalDate from = Dates.parse(fromDate);
+        LocalDate to = Dates.parse(toDate);
+        if (!from.isBefore(to)) {
             shake(bToDate);
             etToDateError.requestFocus();
             etToDateError.setError(getString(R.string.date_error));

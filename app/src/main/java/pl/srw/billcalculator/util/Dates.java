@@ -1,31 +1,30 @@
 package pl.srw.billcalculator.util;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.Month;
+import org.threeten.bp.Period;
+import org.threeten.bp.format.DateTimeFormatter;
+import org.threeten.bp.temporal.TemporalAdjusters;
 
 /**
  * Created by Kamil Seweryn.
  */
 public class Dates {
 
-    public static final String DATE_PATTERN = "dd/MM/yyyy";
+    private static final String DATE_PATTERN = "dd/MM/yyyy";
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
 
-    public static Date parse(String date) {
-        SimpleDateFormat dateParser = new SimpleDateFormat(DATE_PATTERN);
-        try {
-            return dateParser.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return new Date();
-        }
+    public static LocalDate parse(String text) {
+        return LocalDate.parse(text, DateTimeFormatter.ofPattern(DATE_PATTERN));
     }
 
-    public static String format(int year, int month, int day) {
-        Calendar c = Calendar.getInstance();
-        c.set(year, month, day);
-        return new SimpleDateFormat(DATE_PATTERN).format(c.getTime());
+    public static String format(int year, Month month, int day) {
+        final LocalDate date = LocalDate.of(year, month, day);
+        return date.format(FORMATTER);
+    }
+
+    public static String format(LocalDate date) {
+        return date.format(FORMATTER);
     }
 
     public static String format(Date date) {
@@ -34,14 +33,17 @@ public class Dates {
     }
 
     public static int countMonth(String from, String to) {
-        Date fromDate = parse(from);
-        Date toDate = parse(to);
-        Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(toDate.getTime() - fromDate.getTime());
-        int years = cal.get(Calendar.YEAR) - 1970;
-        int days = cal.get(Calendar.DAY_OF_MONTH);
-        int months = cal.get(Calendar.MONTH) + ((days > 14) ? 1 : 0);
+        final Period period = Period.between(parse(from), parse(to));
+        return period.getYears() * 12
+                + period.getMonths()
+                + ((period.getDays() > 14) ? 1 : 0);
+    }
 
-        return years * 12 + months;
+    public static LocalDate firstDayOfThisMonth() {
+        return LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
+    }
+
+    public static LocalDate lastDayOfThisMonth() {
+        return LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());
     }
 }
