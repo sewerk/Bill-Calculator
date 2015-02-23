@@ -34,7 +34,7 @@ public class HistroryItemViewHolder extends RecyclerView.ViewHolder implements V
     }
 
     public void bindEntry(final History item) {
-        final HistoryItemValueProvider historyItemValueProvider = HistoryItemValueProvider.getInstance(item);
+        final HistoryItemValueProvider historyItemValueProvider = HistoryItemValueProvider.of(item);
 
         imgLogo.setImageResource(historyItemValueProvider.getLogoId());
         tvForPeriod.setText(historyItemValueProvider.getDatePeriod());

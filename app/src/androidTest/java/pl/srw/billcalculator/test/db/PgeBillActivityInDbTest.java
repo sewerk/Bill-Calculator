@@ -48,7 +48,7 @@ public class PgeBillActivityInDbTest extends ActivityInstrumentationTestCase2<Pg
         final PgeG12Bill bill = bills.get(0);
         assertEquals(1, bill.getReadingDayFrom().intValue());
         assertEquals(4, bill.getReadingNightTo().intValue());
-        assertEquals("21/12/2015", Dates.format(bill.getDateTo()));
+        assertEquals("21/12/2015", Dates.format(Dates.toLocalDate(bill.getDateTo())));
         assertNotNull(bill.getAmountToPay());
         final PgePrices prices = bill.getPgePrices();
         assertTrue(prices.getId() > 0);

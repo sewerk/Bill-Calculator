@@ -32,8 +32,8 @@ public abstract class BillStorer implements Runnable {
     protected abstract <T> void assignPricesToBill(T prices);
 
     public void putDates(final String dateFrom, final String dateTo) {
-        getEntry().setDateFrom(Dates.parse(dateFrom));
-        getEntry().setDateTo(Dates.parse(dateTo));
+        getEntry().setDateFrom(Dates.toDate(Dates.parse(dateFrom)));
+        getEntry().setDateTo(Dates.toDate(Dates.parse(dateTo)));
     }
 
     public void putAmount(final Double amount) {

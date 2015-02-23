@@ -19,7 +19,7 @@ public abstract class HistoryItemValueProvider {
 
     protected HistoryItemValueProvider() { }
 
-    public static HistoryItemValueProvider getInstance(final History item) {
+    public static HistoryItemValueProvider of(final History item) {
         switch (BillType.valueOf(item.getBillType())) {
             case PGE:
                 return new PgeBillHistoryItemValueProvider(item);
@@ -40,7 +40,8 @@ public abstract class HistoryItemValueProvider {
 
     public String getDatePeriod() {
         return BillCalculator.context.getString(R.string.history_period,
-                Dates.format(getBill().getDateFrom()), Dates.format(getBill().getDateTo()));
+                Dates.format(Dates.toLocalDate(getBill().getDateFrom())), 
+                Dates.format(Dates.toLocalDate(getBill().getDateTo())));
     }
 
     public String getAmount() {

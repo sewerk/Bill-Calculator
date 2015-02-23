@@ -6,6 +6,8 @@ import org.threeten.bp.Period;
 import org.threeten.bp.format.DateTimeFormatter;
 import org.threeten.bp.temporal.TemporalAdjusters;
 
+import java.util.Date;
+
 /**
  * Created by Kamil Seweryn.
  */
@@ -13,6 +15,7 @@ public class Dates {
 
     private static final String DATE_PATTERN = "dd/MM/yyyy";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
+    private static final long DAY = 24 * 60 * 60 * 1000;
 
     public static LocalDate parse(String text) {
         return LocalDate.parse(text, DateTimeFormatter.ofPattern(DATE_PATTERN));
@@ -25,6 +28,14 @@ public class Dates {
 
     public static String format(LocalDate date) {
         return date.format(FORMATTER);
+    }
+    
+    public static LocalDate toLocalDate(Date oldDate) {
+        return LocalDate.ofEpochDay(oldDate.getTime() / DAY);
+    }
+    
+    public static Date toDate(LocalDate localDate) {
+        return new Date(localDate.toEpochDay() * DAY);
     }
 
     public static int countMonth(String from, String to) {
