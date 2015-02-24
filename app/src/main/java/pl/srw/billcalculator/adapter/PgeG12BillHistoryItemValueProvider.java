@@ -8,6 +8,7 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.db.PgeG12Bill;
+import pl.srw.billcalculator.intent.IntentFactory;
 import pl.srw.billcalculator.persistence.type.BillType;
 
 /**
@@ -40,6 +41,6 @@ public class PgeG12BillHistoryItemValueProvider extends HistoryItemValueProvider
 
     @Override
     public Intent getIntent() {
-        return PgeBillActivity.newIntent(bill);
+        return IntentFactory.of(BillCalculator.context, PgeBillActivity.class).from(bill);
     }
 }

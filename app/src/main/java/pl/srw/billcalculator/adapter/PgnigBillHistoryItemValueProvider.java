@@ -7,6 +7,7 @@ import pl.srw.billcalculator.PgnigBillActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.db.PgnigBill;
+import pl.srw.billcalculator.intent.IntentFactory;
 import pl.srw.billcalculator.persistence.type.BillType;
 
 /**
@@ -37,6 +38,6 @@ public class PgnigBillHistoryItemValueProvider extends HistoryItemValueProvider 
 
     @Override
     public Intent getIntent() {
-        return PgnigBillActivity.newIntent(bill);
+        return IntentFactory.of(BillCalculator.context, PgnigBillActivity.class).from(bill);
     }
 }

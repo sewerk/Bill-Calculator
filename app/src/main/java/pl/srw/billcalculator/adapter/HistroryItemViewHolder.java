@@ -20,7 +20,7 @@ public class HistroryItemViewHolder extends RecyclerView.ViewHolder implements V
     @InjectView(R.id.tv_for_period) TextView tvForPeriod;
     @InjectView(R.id.tv_readings) TextView tvReadings;
     @InjectView(R.id.tv_amount) TextView tvAmount;
-    private Intent intent;
+    private HistoryItemValueProvider intentProvider;
 
     public HistroryItemViewHolder(View v) {
         super(v);
@@ -30,7 +30,7 @@ public class HistroryItemViewHolder extends RecyclerView.ViewHolder implements V
 
     @Override
     public void onClick(final View v) {
-        v.getContext().startActivity(intent);
+        v.getContext().startActivity(intentProvider.getIntent());
     }
 
     public void bindEntry(final History item) {
@@ -41,7 +41,7 @@ public class HistroryItemViewHolder extends RecyclerView.ViewHolder implements V
         tvReadings.setText(historyItemValueProvider.getReadings());
         tvAmount.setText(historyItemValueProvider.getAmount());
 
-        intent = historyItemValueProvider.getIntent();
+        intentProvider = historyItemValueProvider;
     }
 
     // TODO: update autocomplete on entry delete -set historyChanged
