@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.util;
 
+import org.threeten.bp.DateTimeUtils;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.Month;
 import org.threeten.bp.Period;
@@ -15,7 +16,6 @@ public class Dates {
 
     private static final String DATE_PATTERN = "dd/MM/yyyy";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
-    private static final long DAY = 24 * 60 * 60 * 1000;
 
     public static LocalDate parse(String text) {
         return LocalDate.parse(text, DateTimeFormatter.ofPattern(DATE_PATTERN));
@@ -30,12 +30,12 @@ public class Dates {
         return date.format(FORMATTER);
     }
     
-    public static LocalDate toLocalDate(Date oldDate) {
-        return LocalDate.ofEpochDay(oldDate.getTime() / DAY);
+    public static LocalDate toLocalDate(Date utilDate) {
+        return DateTimeUtils.toLocalDate(new java.sql.Date(utilDate.getTime()));
     }
     
     public static Date toDate(LocalDate localDate) {
-        return new Date(localDate.toEpochDay() * DAY);
+        return new Date(DateTimeUtils.toSqlDate(localDate).getTime());
     }
 
     public static int countMonth(String from, String to) {

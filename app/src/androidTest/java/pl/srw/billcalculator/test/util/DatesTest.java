@@ -78,25 +78,36 @@ public class DatesTest extends TestCase {
         c.set(2015, Calendar.JANUARY, 23);
         assertEquals(LocalDate.of(2015, Month.JANUARY, 23), Dates.toLocalDate(c.getTime()));
 
-        final Date oldDate = new Date();
+        final Date utilDate = new Date();
         final Calendar cal = Calendar.getInstance();
-        cal.setTime(oldDate);
+        cal.setTime(utilDate);
         assertEquals(LocalDate.of(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH)),
-                Dates.toLocalDate(oldDate));
+                Dates.toLocalDate(utilDate));
     }
 
-    public void testToOldDate() {
+    public void testConversionCycle() {
+        final String dateFromUser = "23/02/2015";
+
+        final Date storedDate = Dates.toDate(Dates.parse(dateFromUser));
+        final LocalDate retrieveFromDatabase = Dates.toLocalDate(storedDate);
+
+        final String dateBackToUser = Dates.format(retrieveFromDatabase);
+
+        assertEquals(dateFromUser, dateBackToUser);
+    }
+
+    public void testToUtilDate() {
         assertEqualsDates(new Date(0), Dates.toDate(LocalDate.of(1970, Month.JANUARY, 1)));
 
         final Calendar c = Calendar.getInstance();
         c.set(2015, Calendar.JANUARY, 23);
         assertEqualsDates(c.getTime(), Dates.toDate(LocalDate.of(2015, Month.JANUARY, 23)));
 
-        final Date oldDate = new Date();
+        final Date utilDate = new Date();
         final Calendar cal = Calendar.getInstance();
-        cal.setTime(oldDate);
+        cal.setTime(utilDate);
         final LocalDate localDate = LocalDate.of(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH));
-        assertEqualsDates(oldDate, Dates.toDate(localDate));
+        assertEqualsDates(utilDate, Dates.toDate(localDate));
     }
 
     private void assertEqualsDates(Date date, Date date1) {
