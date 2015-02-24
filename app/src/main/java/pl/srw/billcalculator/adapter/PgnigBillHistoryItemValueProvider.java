@@ -17,7 +17,7 @@ public class PgnigBillHistoryItemValueProvider extends HistoryItemValueProvider 
     private final PgnigBill bill;
 
     protected PgnigBillHistoryItemValueProvider(final History item) {
-        bill = (PgnigBill) BillType.PGNIG.dao.load(item.getBillId());
+        bill = (PgnigBill) BillType.PGNIG.getDao().load(item.getBillId());
     }
 
     @Override

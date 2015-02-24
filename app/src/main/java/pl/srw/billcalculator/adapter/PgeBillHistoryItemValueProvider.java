@@ -18,7 +18,7 @@ public class PgeBillHistoryItemValueProvider extends HistoryItemValueProvider {
     private final PgeBill bill;
 
     protected PgeBillHistoryItemValueProvider(final History item) {
-        bill = (PgeBill) BillType.PGE.dao.load(item.getBillId());
+        bill = (PgeBill) BillType.PGE.getDao().load(item.getBillId());
     }
 
     @Override
