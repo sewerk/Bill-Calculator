@@ -2,11 +2,17 @@ package pl.srw.billcalculator.intent;
 
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import pl.srw.billcalculator.PgeBillActivity;
+import pl.srw.billcalculator.PgnigBillActivity;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.PgeBill;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgnigBill;
+import pl.srw.billcalculator.type.BillType;
 import pl.srw.billcalculator.util.Dates;
 
 /**
@@ -25,10 +31,15 @@ public final class IntentFactory {
 
     private IntentFactory() {}
 
-    public static IntentCreator of(final Context context, final Class<?> aClass) {
-        return new IntentCreator(context, aClass);
+    public static IntentCreator of(final Context context, final BillType billType) {
+        switch (billType) {
+            case PGE:
+                return new IntentCreator(context, PgeBillActivity.class);
+            case PGNIG:
+                return new IntentCreator(context, PgnigBillActivity.class);
+        }
+        throw new RuntimeException("Type " + billType + " is not handled.");
     }
-
 
     public static class IntentCreator {
 
@@ -38,10 +49,22 @@ public final class IntentFactory {
             intent = new Intent(context, aClass);
         }
 
+        public Intent from(final EditText etReadingFrom, final EditText etReadingTo, final Button bDateFrom, final Button bDateTo) {
+            return from(getIntText(etReadingFrom), getIntText(etReadingTo), getStringText(bDateFrom), getStringText(bDateTo));
+        }
+
         public Intent from(int readingFrom, int readingTo, String dateFrom, String dateTo) {
             putReadingsExtra(readingFrom, readingTo);
             putDatesExtra(dateFrom, dateTo);
             return intent;
+        }
+
+        public Intent from(final EditText etReadingDayFrom, final EditText etReadingDayTo,
+                           final EditText etReadingNightFrom, final EditText etReadingNightTo,
+                           final Button bDateFrom, final Button bDateTo) {
+            return from(getIntText(etReadingDayFrom), getIntText(etReadingDayTo),
+                    getIntText(etReadingNightFrom), getIntText(etReadingNightTo),
+                    getStringText(bDateFrom), getStringText(bDateTo));
         }
 
         public Intent from(int readingDayFrom, int readingDayTo, int readingNightFrom, int readingNightTo, String dateFrom, String dateTo) {
@@ -89,6 +112,14 @@ public final class IntentFactory {
         private void putDatesExtra(final String dateFrom, final String dateTo) {
             intent.putExtra(DATE_FROM, dateFrom);
             intent.putExtra(DATE_TO, dateTo);
+        }
+
+        private int getIntText(final TextView textView) {
+            return Integer.parseInt(getStringText(textView));
+        }
+
+        private String getStringText(final TextView textView) {
+            return textView.getText().toString();
         }
     }
 }

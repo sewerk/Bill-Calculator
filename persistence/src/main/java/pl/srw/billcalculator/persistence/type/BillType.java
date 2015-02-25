@@ -25,7 +25,7 @@ public enum BillType {
             case PGNIG:
                 return Database.getSession().getPgnigBillDao();
         }
-        throw new RuntimeException("type " + this + " not handlerd");
+        throw new RuntimeException("Type " + this + " not handled.");
     }
 
     private void assertNotNull(final DaoSession session) {

@@ -3,7 +3,6 @@ package pl.srw.billcalculator.adapter;
 import android.content.Intent;
 
 import pl.srw.billcalculator.BillCalculator;
-import pl.srw.billcalculator.PgeBillActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
@@ -29,7 +28,7 @@ public class PgeBillHistoryItemValueProvider extends HistoryItemValueProvider {
 
     @Override
     public int getLogoId() {
-        return pl.srw.billcalculator.type.BillType.PGE.drawableId;
+        return pl.srw.billcalculator.type.BillType.PGE.logoDrawableId;
     }
 
     @Override
@@ -39,6 +38,6 @@ public class PgeBillHistoryItemValueProvider extends HistoryItemValueProvider {
 
     @Override
     public Intent getIntent() {
-        return IntentFactory.of(BillCalculator.context, PgeBillActivity.class).from(bill);
+        return IntentFactory.of(BillCalculator.context, pl.srw.billcalculator.type.BillType.PGE).from(bill);
     }
 }

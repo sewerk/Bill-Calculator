@@ -27,14 +27,13 @@ import com.daimajia.androidanimations.library.YoYo;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.Month;
 
-import java.util.Date;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.component.CheckPricesDialogFragment;
 import pl.srw.billcalculator.adapter.PreviousReadingsAdapter;
+import pl.srw.billcalculator.intent.IntentFactory;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 import pl.srw.billcalculator.type.BillType;
 import pl.srw.billcalculator.preference.PgeSettingsFragment;
@@ -344,10 +343,18 @@ public class MainActivity extends Activity {
         if (!validateForm())
             return;
 
-        Intent billResult = newBillIntent();
-        fillParameters(billResult);
-        startActivity(billResult);
+        startActivity(getBillActivityIntent());
         markHistoryChanged();
+    }
+
+    private Intent getBillActivityIntent() {
+        IntentFactory.IntentCreator intentCreator = IntentFactory.of(this, getBillType());
+        if (isSingleReadingsVisible())
+            return intentCreator.from(etPreviousReading, etCurrentReading, bFromDate, bToDate);
+        else
+            return intentCreator.from(etDayPreviousReading, etDayCurrentReading,
+                    etNightPreviousReading, etNightCurrentReading,
+                    bFromDate, bToDate);
     }
 
     private void markHistoryChanged() {
@@ -437,40 +444,6 @@ public class MainActivity extends Activity {
             // only will trigger it if no physical keyboard is open
             imm.showSoftInput(mTextView, 0);
         }
-    }
-
-    private Intent newBillIntent() {
-        if (getBillType() == BillType.PGE) {
-            return new Intent(this, PgeBillActivity.class);
-        } else {
-            return new Intent(this, PgnigBillActivity.class);
-        }
-    }
-
-    private void fillParameters(Intent billResult) {
-        if (isSingleReadingsVisible()) {
-            putIntExtra(billResult, READING_FROM, etPreviousReading);
-            putIntExtra(billResult, READING_TO, etCurrentReading);
-        } else {
-            putIntExtra(billResult, READING_DAY_FROM, etDayPreviousReading);
-            putIntExtra(billResult, READING_DAY_TO, etDayCurrentReading);
-
-            putIntExtra(billResult, READING_NIGHT_FROM, etNightPreviousReading);
-            putIntExtra(billResult, READING_NIGHT_TO, etNightCurrentReading);
-        }
-
-        putStringExtra(billResult, DATE_FROM, bFromDate);
-        putStringExtra(billResult, DATE_TO, bToDate);
-    }
-
-    private void putStringExtra(Intent intent, String key, TextView valueView) {
-        String fromDate = valueView.getText().toString();
-        intent.putExtra(key, fromDate);
-    }
-
-    private void putIntExtra(Intent intent, String key, TextView valueView) {
-        String prev = valueView.getText().toString();
-        intent.putExtra(key, Integer.parseInt(prev));
     }
 
     @Override

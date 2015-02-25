@@ -3,7 +3,6 @@ package pl.srw.billcalculator.adapter;
 import android.content.Intent;
 
 import pl.srw.billcalculator.BillCalculator;
-import pl.srw.billcalculator.PgnigBillActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.db.PgnigBill;
@@ -28,7 +27,7 @@ public class PgnigBillHistoryItemValueProvider extends HistoryItemValueProvider 
 
     @Override
     public int getLogoId() {
-        return pl.srw.billcalculator.type.BillType.PGNIG.drawableId;
+        return pl.srw.billcalculator.type.BillType.PGNIG.logoDrawableId;
     }
 
     @Override
@@ -38,6 +37,6 @@ public class PgnigBillHistoryItemValueProvider extends HistoryItemValueProvider 
 
     @Override
     public Intent getIntent() {
-        return IntentFactory.of(BillCalculator.context, PgnigBillActivity.class).from(bill);
+        return IntentFactory.of(BillCalculator.context, pl.srw.billcalculator.type.BillType.PGNIG).from(bill);
     }
 }
