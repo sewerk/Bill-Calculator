@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.StringRes;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
@@ -414,7 +415,7 @@ public class MainActivity extends Activity {
         return true;
     }
 
-    private void showError(EditText et, int error_id) {
+    private void showError(EditText et, @StringRes int error_id) {
         et.setError(getString(error_id));
         et.requestFocus();
         showKeyboard(et);

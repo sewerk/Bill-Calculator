@@ -3,10 +3,11 @@ package pl.srw.billcalculator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.StringRes;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
-import android.widget.TextView;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -19,6 +20,7 @@ import pl.srw.billcalculator.task.PgeBillStorer;
 import pl.srw.billcalculator.task.PgeG12BillStorer;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
+import pl.srw.billcalculator.util.Views;
 
 /**
  * Created by Kamil Seweryn
@@ -97,17 +99,17 @@ public class PgeBillActivity extends Activity {
     }
 
     private void setForPeriodTV() {
-        setTV(R.id.tv_for_period, getString(R.string.for_period, dateFrom, dateTo));
+        Views.setTV(this, R.id.tv_for_period, getString(R.string.for_period, dateFrom, dateTo));
     }
 
     private void setChargeDetailsTable() {
         TableLayout chargeDetailsTable = (TableLayout) findViewById(R.id.t_charge_details);
 
         if(isTwoUnitTariff()) {
-            setTV(R.id.tv_tariff, getString(R.string.pge_tariff_G12_on_bill));
+            Views.setTV(this, R.id.tv_tariff, getString(R.string.pge_tariff_G12_on_bill));
             setG12Rows(chargeDetailsTable, countDayConsumption(), countNightConsumption());
         } else {
-            setTV(R.id.tv_tariff, getString(R.string.pge_tariff_G11_on_bill));
+            Views.setTV(this, R.id.tv_tariff, getString(R.string.pge_tariff_G11_on_bill));
             setG11Rows(chargeDetailsTable, countConsumption());
         }
 
@@ -139,34 +141,34 @@ public class PgeBillActivity extends Activity {
         setRow(chargeDetailsTable, R.id.row_oplata_sieciowa2, R.string.strefa_nocna, R.string.oplata_sieciowa, nightConsumption, R.string.kWh, prices.getOplataSieciowaNoc());
     }
 
-    private void setRow(View componentsTable, int rowId, int zoneId, int descriptionId, int count, int jmId, String priceSt) {
+    private void setRow(View componentsTable, @IdRes int rowId, @StringRes int zoneId, @StringRes int descriptionId, int count, @StringRes int jmId, String priceSt) {
         View row = componentsTable.findViewById(rowId);
         row.setVisibility(View.VISIBLE);
 
-        setTVInRow(row, R.id.tv_zone, zoneId);
-        setTVInRow(row, R.id.tv_description, descriptionId);
-        setTVInRow(row, R.id.tv_Jm, jmId);
+        Views.setTVInRow(row, R.id.tv_zone, zoneId);
+        Views.setTVInRow(row, R.id.tv_description, descriptionId);
+        Views.setTVInRow(row, R.id.tv_Jm, jmId);
         if (jmId == R.string.kWh) {
             setReadingsInRow(row, zoneId);
-            setTVInRow(row, R.id.tv_count, Integer.toString(count));
+            Views.setTVInRow(row, R.id.tv_count, Integer.toString(count));
         } else {
-            setTVInRow(row, R.id.tv_month_count, Display.withScale(new BigDecimal(count), 2));
+            Views.setTVInRow(row, R.id.tv_month_count, Display.withScale(new BigDecimal(count), 2));
         }
         BigDecimal price = new BigDecimal(priceSt);
-        setTVInRow(row, R.id.tv_charge, getNetCharge(price, count));
-        setTVInRow(row, R.id.tv_price, Display.withScale(price, PRICE_SCALE));
+        Views.setTVInRow(row, R.id.tv_charge, getNetCharge(price, count));
+        Views.setTVInRow(row, R.id.tv_price, Display.withScale(price, PRICE_SCALE));
     }
 
-    private void setReadingsInRow(View row, int zoneId) {
+    private void setReadingsInRow(View row, @StringRes int zoneId) {
         if (zoneId == R.string.strefa_dzienna) {
-            setTVInRow(row, R.id.tv_current_reading, Integer.toString(readingDayTo));
-            setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingDayFrom));
+            Views.setTVInRow(row, R.id.tv_current_reading, Integer.toString(readingDayTo));
+            Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingDayFrom));
         } else if (zoneId == R.string.strefa_nocna) {
-            setTVInRow(row, R.id.tv_current_reading, Integer.toString(readingNightTo));
-            setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingNightFrom));
+            Views.setTVInRow(row, R.id.tv_current_reading, Integer.toString(readingNightTo));
+            Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingNightFrom));
         } else {
-            setTVInRow(row, R.id.tv_current_reading, Integer.toString(readingTo));
-            setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingFrom));
+            Views.setTVInRow(row, R.id.tv_current_reading, Integer.toString(readingTo));
+            Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingFrom));
         }
     }
 
@@ -188,28 +190,9 @@ public class PgeBillActivity extends Activity {
         return readingNightTo - readingNightFrom;
     }
 
-    private void setTVInRow(View row, int tvId, int stringId) {
-        TextView tv = (TextView) row.findViewById(tvId);
-        setTV(tv, getString(stringId));
-    }
-
-    private void setTVInRow(View row, int tvId, String string) {
-        TextView tv = (TextView) row.findViewById(tvId);
-        setTV(tv, string);
-    }
-
-    private void setTV(TextView tv, String string) {
-        tv.setText(string);
-    }
-
-    private void setTV(int tvId, String string) {
-        TextView tv = (TextView) findViewById(tvId);
-        tv.setText(string);
-    }
-
     private void setChargeSummary(View table) {
         View summary = table.findViewById(R.id.row_sum);
-        setTVInRow(summary, R.id.tv_total_net_charge, Display.toPay(netChargeSum));
+        Views.setTVInRow(summary, R.id.tv_total_net_charge, Display.toPay(netChargeSum));
     }
 
     private void setExcise() {
@@ -217,20 +200,20 @@ public class PgeBillActivity extends Activity {
                 ? countDayConsumption() + countNightConsumption()
                 : countConsumption();
         BigDecimal excise = EXCISE.multiply(new BigDecimal(consumption));
-        setTV(R.id.tv_excise, getString(R.string.akcyza, consumption, Display.toPay(excise)));
+        Views.setTV(this, R.id.tv_excise, getString(R.string.akcyza, consumption, Display.toPay(excise)));
     }
 
     private void setSummaryTable() {
         TableLayout summaryTable = (TableLayout) findViewById(R.id.t_summary);
-        setTVInRow(summaryTable, R.id.tv_net_charge, Display.toPay(netChargeSum));
+        Views.setTVInRow(summaryTable, R.id.tv_net_charge, Display.toPay(netChargeSum));
         BigDecimal vatAmount = netChargeSum.multiply(VAT).setScale(2, RoundingMode.HALF_UP);
-        setTVInRow(summaryTable, R.id.tv_vat_amount, Display.toPay(vatAmount));
+        Views.setTVInRow(summaryTable, R.id.tv_vat_amount, Display.toPay(vatAmount));
         grossCharge = netChargeSum.add(vatAmount);
-        setTVInRow(summaryTable, R.id.tv_gross_charge, Display.toPay(grossCharge));
+        Views.setTVInRow(summaryTable, R.id.tv_gross_charge, Display.toPay(grossCharge));
     }
 
     private void setToPayTV() {
-        setTV(R.id.tv_to_pay, getString(R.string.to_pay, Display.toPay(grossCharge)));
+        Views.setTV(this, R.id.tv_to_pay, getString(R.string.to_pay, Display.toPay(grossCharge)));
     }
 
     private void saveBill() {

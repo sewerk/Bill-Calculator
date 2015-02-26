@@ -3,6 +3,10 @@ package pl.srw.billcalculator.preference;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.support.annotation.StringDef;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 import pl.srw.billcalculator.R;
 
@@ -13,6 +17,10 @@ public class PgeSettingsFragment extends ProviderSettingsFragment {
 
     public static final String TARIFF_G11 = "G11";
     public static final String TARIFF_G12 = "G12";
+
+    @StringDef({TARIFF_G11, TARIFF_G12})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface TariffOption {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,13 +58,17 @@ public class PgeSettingsFragment extends ProviderSettingsFragment {
 
     private void changePreferenceVisibilityDependingOnTaryfa() {
         ListPreference taryfaPreference = (ListPreference) findPreference(getString(R.string.preferences_pge_tariff));
-        if (taryfaPreference.getValue().equals(TARIFF_G12)) {
+        if (isPickedValue(taryfaPreference, TARIFF_G12)) {
             findPreference(getString(R.string.preferences_pge_category_G11)).setEnabled(false);
             findPreference(getString(R.string.preferences_pge_category_G12)).setEnabled(true);
         } else {
             findPreference(getString(R.string.preferences_pge_category_G11)).setEnabled(true);
             findPreference(getString(R.string.preferences_pge_category_G12)).setEnabled(false);
         }
+    }
+
+    private boolean isPickedValue(final ListPreference preference, @TariffOption final String tariff) {
+        return preference.getValue().equals(tariff);
     }
 
     @Override

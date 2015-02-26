@@ -3,10 +3,11 @@ package pl.srw.billcalculator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.StringRes;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
-import android.widget.TextView;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -18,6 +19,7 @@ import pl.srw.billcalculator.task.BillStorer;
 import pl.srw.billcalculator.task.PgnigBillStorer;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
+import pl.srw.billcalculator.util.Views;
 
 /**
  * Created by Kamil Seweryn
@@ -88,16 +90,16 @@ public class PgnigBillActivity extends Activity {
     private void setReadingsTable() {
         TableLayout readingsTable = (TableLayout) findViewById(R.id.t_readings);
 
-        setTV(readingsTable, R.id.tv_prev_reading_date, dateFrom);
-        setTV(readingsTable, R.id.tv_previous_reading, getString(R.string.odczyt_na_dzien, readingFrom));
-        setTV(readingsTable, R.id.tv_curr_reading_date, dateTo);
-        setTV(readingsTable, R.id.tv_current_reading, getString(R.string.odczyt_na_dzien, readingTo));
+        Views.setTV(readingsTable, R.id.tv_prev_reading_date, dateFrom);
+        Views.setTV(readingsTable, R.id.tv_previous_reading, getString(R.string.odczyt_na_dzien, readingFrom));
+        Views.setTV(readingsTable, R.id.tv_curr_reading_date, dateTo);
+        Views.setTV(readingsTable, R.id.tv_current_reading, getString(R.string.odczyt_na_dzien, readingTo));
         int consumption = getConsumption();
-        setTV(readingsTable, R.id.tv_consumption, getString(R.string.zuzycie, consumption));
+        Views.setTV(readingsTable, R.id.tv_consumption, getString(R.string.zuzycie, consumption));
 
-        setTV(readingsTable, R.id.tv_total_consumption, getString(R.string.zuzycie_razem, consumption));
-        setTV(readingsTable, R.id.tv_conversion_factor, getString(R.string.wsp_konwersji, prices.getWspolczynnikKonwersji()));
-        setTV(readingsTable, R.id.tv_total_consumption_kWh, getString(R.string.zuzycie_razem_kWh, getConsumptionKWh(consumption)));
+        Views.setTV(readingsTable, R.id.tv_total_consumption, getString(R.string.zuzycie_razem, consumption));
+        Views.setTV(readingsTable, R.id.tv_conversion_factor, getString(R.string.wsp_konwersji, prices.getWspolczynnikKonwersji()));
+        Views.setTV(readingsTable, R.id.tv_total_consumption_kWh, getString(R.string.zuzycie_razem_kWh, getConsumptionKWh(consumption)));
     }
 
     private int getConsumptionKWh(int consumption) {
@@ -126,20 +128,20 @@ public class PgnigBillActivity extends Activity {
         setChargeSummary(chargeTable);
     }
 
-    private void setRow(TableLayout chargeTable, int rowId, int descId, int count, int jmId, BigDecimal netPrice, String exciseAmount) {
+    private void setRow(TableLayout chargeTable, @IdRes int rowId, @StringRes int descId, int count, @StringRes int jmId, BigDecimal netPrice, String exciseAmount) {
         View row = chargeTable.findViewById(rowId);
-        setTV(row, R.id.tv_charge_desc, getString(descId));
-        setTV(row, R.id.tv_date_from, dateFrom);
-        setTV(row, R.id.tv_date_to, dateTo);
-        setTV(row, R.id.tv_Jm, getString(jmId));
+        Views.setTV(row, R.id.tv_charge_desc, getString(descId));
+        Views.setTV(row, R.id.tv_date_from, dateFrom);
+        Views.setTV(row, R.id.tv_date_to, dateTo);
+        Views.setTV(row, R.id.tv_Jm, getString(jmId));
         if (jmId == R.string.kWh) {
-            setTV(row, R.id.tv_count, "" + count);
+            Views.setTV(row, R.id.tv_count, "" + count);
         } else {
-            setTV(row, R.id.tv_count, Display.withScale(new BigDecimal(count), 3));
+            Views.setTV(row, R.id.tv_count, Display.withScale(new BigDecimal(count), 3));
         }
-        setTV(row, R.id.tv_net_price, Display.withScale(netPrice, PRICE_SCALE));
-        setTV(row, R.id.tv_excise, exciseAmount);
-        setTV(row, R.id.tv_net_charge, getCharge(count, netPrice));
+        Views.setTV(row, R.id.tv_net_price, Display.withScale(netPrice, PRICE_SCALE));
+        Views.setTV(row, R.id.tv_excise, exciseAmount);
+        Views.setTV(row, R.id.tv_net_charge, getCharge(count, netPrice));
 
     }
 
@@ -152,37 +154,23 @@ public class PgnigBillActivity extends Activity {
     private void setChargeSummary(View chargeTable) {
         View summaryRow = chargeTable.findViewById(R.id.row_sum);
 
-        setTV(summaryRow, R.id.tv_net_charge, Display.toPay(netChargeSum));
+        Views.setTV(summaryRow, R.id.tv_net_charge, Display.toPay(netChargeSum));
         vatAmount = netChargeSum.multiply(VAT);
-        setTV(summaryRow, R.id.tv_vat_amount, Display.toPay(vatAmount));
+        Views.setTV(summaryRow, R.id.tv_vat_amount, Display.toPay(vatAmount));
         grossCharge = netChargeSum.add(vatAmount);
-        setTV(summaryRow, R.id.tv_gross_charge, Display.toPay(grossCharge));
+        Views.setTV(summaryRow, R.id.tv_gross_charge, Display.toPay(grossCharge));
     }
 
     private void setSummaryTable() {
         TableLayout summaryTable = (TableLayout) findViewById(R.id.t_summary);
 
-        setTV(summaryTable, R.id.tv_net_charge, Display.toPay(netChargeSum));
-        setTV(summaryTable, R.id.tv_vat_amount, Display.toPay(vatAmount));
-        setTV(summaryTable, R.id.tv_gross_charge, Display.toPay(grossCharge));
+        Views.setTV(summaryTable, R.id.tv_net_charge, Display.toPay(netChargeSum));
+        Views.setTV(summaryTable, R.id.tv_vat_amount, Display.toPay(vatAmount));
+        Views.setTV(summaryTable, R.id.tv_gross_charge, Display.toPay(grossCharge));
     }
 
     private void setChargeTV() {
-        setTV(R.id.tv_invoice_value, getString(R.string.wartosc_faktury, Display.toPay(grossCharge)));
-    }
-
-    private void setTV(View parent, int tvId, String text) {
-        TextView tv = (TextView) parent.findViewById(tvId);
-        setTV(tv, text);
-    }
-
-    private void setTV(int tvId, String text) {
-        TextView tv = (TextView) findViewById(tvId);
-        setTV(tv, text);
-    }
-
-    private void setTV(TextView tv, String text) {
-        tv.setText(text);
+        Views.setTV(this, R.id.tv_invoice_value, getString(R.string.wartosc_faktury, Display.toPay(grossCharge)));
     }
 
     private void saveBill() {

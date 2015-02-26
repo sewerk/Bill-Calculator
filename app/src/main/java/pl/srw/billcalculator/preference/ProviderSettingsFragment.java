@@ -6,6 +6,7 @@ import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.support.annotation.StringRes;
 import android.text.TextUtils;
 
 import java.util.Map;
@@ -88,7 +89,7 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
 
     protected abstract String getMonthMeasurePrefKeys();
 
-    protected String getStringFor(final int... keys) {
+    protected String getStringFor(@StringRes final int... keys) {
         StringBuilder sb = new StringBuilder();
         for (int i : keys) {
             sb.append(getString(i));
