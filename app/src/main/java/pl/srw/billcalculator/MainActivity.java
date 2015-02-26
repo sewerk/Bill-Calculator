@@ -34,7 +34,7 @@ import butterknife.OnClick;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.component.CheckPricesDialogFragment;
 import pl.srw.billcalculator.adapter.PreviousReadingsAdapter;
-import pl.srw.billcalculator.intent.IntentFactory;
+import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 import pl.srw.billcalculator.type.BillType;
 import pl.srw.billcalculator.preference.PgeSettingsFragment;
@@ -50,14 +50,6 @@ public class MainActivity extends Activity {
     public static final int IMAGE_TYPE_KEY = 1109171014;
     public static final String IMAGE_TYPE_STRING = "" + IMAGE_TYPE_KEY;
 
-    public static final String READING_FROM = "READING_FROM";
-    public static final String READING_TO = "READING_TO";
-    public static final String READING_DAY_FROM = "READING_DAY_FROM";
-    public static final String READING_DAY_TO = "READING_DAY_TO";
-    public static final String READING_NIGHT_FROM = "READING_NIGHT_FROM";
-    public static final String READING_NIGHT_TO = "READING_NIGHT_TO";
-    public static final String DATE_FROM = "DATE_FROM";
-    public static final String DATE_TO = "DATE_TO";
     public static final String SHARED_PREFERENCES_FILE = "PreferencesFile";
     public static final String PREFERENCE_KEY_FIRST_LAUNCH = "first_launch";
 
@@ -349,7 +341,7 @@ public class MainActivity extends Activity {
     }
 
     private Intent getBillActivityIntent() {
-        IntentFactory.IntentCreator intentCreator = IntentFactory.of(this, getBillType());
+        BillActivityIntentFactory.IntentCreator intentCreator = BillActivityIntentFactory.of(this, getBillType());
         if (isSingleReadingsVisible())
             return intentCreator.from(etPreviousReading, etCurrentReading, bFromDate, bToDate);
         else

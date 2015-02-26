@@ -10,6 +10,7 @@ import pl.srw.billcalculator.PgeBillActivity;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgePrices;
+import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.util.Dates;
 
@@ -30,12 +31,12 @@ public class PgeBillActivityInDbTest extends ActivityInstrumentationTestCase2<Pg
         Database.initialize(newContext);
         Database.getSession().deleteAll(PgeG12Bill.class);
         Intent intent = new Intent();
-        intent.putExtra(MainActivity.READING_DAY_FROM, 1);
-        intent.putExtra(MainActivity.READING_DAY_TO, 2);
-        intent.putExtra(MainActivity.READING_NIGHT_FROM, 3);
-        intent.putExtra(MainActivity.READING_NIGHT_TO, 4);
-        intent.putExtra(MainActivity.DATE_FROM, "01/01/2014");
-        intent.putExtra(MainActivity.DATE_TO, "21/12/2015");
+        intent.putExtra(BillActivityIntentFactory.READING_DAY_FROM, 1);
+        intent.putExtra(BillActivityIntentFactory.READING_DAY_TO, 2);
+        intent.putExtra(BillActivityIntentFactory.READING_NIGHT_FROM, 3);
+        intent.putExtra(BillActivityIntentFactory.READING_NIGHT_TO, 4);
+        intent.putExtra(BillActivityIntentFactory.DATE_FROM, "01/01/2014");
+        intent.putExtra(BillActivityIntentFactory.DATE_TO, "21/12/2015");
         setActivityIntent(intent);
         sut = getActivity();
     }

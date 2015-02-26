@@ -18,7 +18,7 @@ import pl.srw.billcalculator.util.Dates;
 /**
  * Created by Kamil Seweryn.
  */
-public final class IntentFactory {
+public final class BillActivityIntentFactory {
 
     public static final String READING_FROM = "READING_FROM";
     public static final String READING_TO = "READING_TO";
@@ -29,7 +29,7 @@ public final class IntentFactory {
     public static final String DATE_FROM = "DATE_FROM";
     public static final String DATE_TO = "DATE_TO";
 
-    private IntentFactory() {}
+    private BillActivityIntentFactory() {}
 
     public static IntentCreator of(final Context context, final BillType billType) {
         switch (billType) {

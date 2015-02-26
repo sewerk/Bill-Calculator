@@ -23,6 +23,7 @@ import java.util.Date;
 
 import pl.srw.billcalculator.PgeBillActivity;
 import pl.srw.billcalculator.PgnigBillActivity;
+import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.type.BillType;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
@@ -402,8 +403,8 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         //validate PGNIG bill show up
         Activity billActivity = getInstrumentation().waitForMonitorWithTimeout(pgnigBillMonitor, 5000L);
         billActivity.finish();
-        assertEquals(readingLess, billActivity.getIntent().getIntExtra(MainActivity.READING_FROM, -1));
-        assertEquals(readingMore, billActivity.getIntent().getIntExtra(MainActivity.READING_TO, -1));
+        assertEquals(readingLess, billActivity.getIntent().getIntExtra(BillActivityIntentFactory.READING_FROM, -1));
+        assertEquals(readingMore, billActivity.getIntent().getIntExtra(BillActivityIntentFactory.READING_TO, -1));
         assertEquals(PgnigBillActivity.class, billActivity.getClass());
         getInstrumentation().removeMonitor(pgnigBillMonitor);
 
@@ -452,10 +453,10 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         Activity billActivity = getInstrumentation().waitForMonitorWithTimeout(pgeBillMonitor, 5000L);
         billActivity.finish();
         
-        assertEquals(dayFrom, billActivity.getIntent().getIntExtra(MainActivity.READING_DAY_FROM, -1));
-        assertEquals(nightFrom, billActivity.getIntent().getIntExtra(MainActivity.READING_NIGHT_FROM, -1));
-        assertEquals(dayTo, billActivity.getIntent().getIntExtra(MainActivity.READING_DAY_TO, -1));
-        assertEquals(nightTo, billActivity.getIntent().getIntExtra(MainActivity.READING_NIGHT_TO, -1));
+        assertEquals(dayFrom, billActivity.getIntent().getIntExtra(BillActivityIntentFactory.READING_DAY_FROM, -1));
+        assertEquals(nightFrom, billActivity.getIntent().getIntExtra(BillActivityIntentFactory.READING_NIGHT_FROM, -1));
+        assertEquals(dayTo, billActivity.getIntent().getIntExtra(BillActivityIntentFactory.READING_DAY_TO, -1));
+        assertEquals(nightTo, billActivity.getIntent().getIntExtra(BillActivityIntentFactory.READING_NIGHT_TO, -1));
         getInstrumentation().removeMonitor(pgeBillMonitor);
     }
 

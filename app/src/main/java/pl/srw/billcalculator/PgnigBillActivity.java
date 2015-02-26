@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import hugo.weaving.DebugLog;
+import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
 import pl.srw.billcalculator.preference.PgnigPrices;
 import pl.srw.billcalculator.task.BillStorer;
@@ -28,7 +29,7 @@ public class PgnigBillActivity extends Activity {
 
     public static final int PRICE_SCALE = 5;
     public static final BigDecimal VAT = new BigDecimal("0.23");
-    public static final String PRICES = "PGNIG_PRICES";
+    public static final String PRICES = "PGNIG_PRICES";// TODO move to IntentFactory
     
     private String dateFrom;
     private String dateTo;
@@ -74,10 +75,10 @@ public class PgnigBillActivity extends Activity {
     }
 
     private void setInput(Intent intent) {
-        dateFrom = intent.getStringExtra(MainActivity.DATE_FROM);
-        dateTo = intent.getStringExtra(MainActivity.DATE_TO);
-        readingFrom = intent.getIntExtra(MainActivity.READING_FROM, 0);
-        readingTo = intent.getIntExtra(MainActivity.READING_TO, 0);
+        dateFrom = intent.getStringExtra(BillActivityIntentFactory.DATE_FROM);
+        dateTo = intent.getStringExtra(BillActivityIntentFactory.DATE_TO);
+        readingFrom = intent.getIntExtra(BillActivityIntentFactory.READING_FROM, 0);
+        readingTo = intent.getIntExtra(BillActivityIntentFactory.READING_TO, 0);
     }
 
     private void setPrices(Intent intent) {

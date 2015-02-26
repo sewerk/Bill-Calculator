@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import hugo.weaving.DebugLog;
+import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.pojo.IPgePrices;
 import pl.srw.billcalculator.preference.PgePrices;
 import pl.srw.billcalculator.task.BillStorer;
@@ -30,7 +31,7 @@ public class PgeBillActivity extends Activity {
     public static final int PRICE_SCALE = 4;
     private static final BigDecimal EXCISE = new BigDecimal("0.02");
     private static final BigDecimal VAT = new BigDecimal("0.23");
-    public static final String PRICES = "PGE_PRICES";
+    public static final String PRICES = "PGE_PRICES";//TODO move to IntentFactory
     private BigDecimal netChargeSum = BigDecimal.ZERO;
     private BigDecimal grossCharge;
 
@@ -79,16 +80,16 @@ public class PgeBillActivity extends Activity {
     }
 
     private void readExtra(Intent intent) {
-        dateFrom = intent.getStringExtra(MainActivity.DATE_FROM);
-        dateTo = intent.getStringExtra(MainActivity.DATE_TO);
+        dateFrom = intent.getStringExtra(BillActivityIntentFactory.DATE_FROM);
+        dateTo = intent.getStringExtra(BillActivityIntentFactory.DATE_TO);
 
-        readingFrom = intent.getIntExtra(MainActivity.READING_FROM, -1);
-        readingTo = intent.getIntExtra(MainActivity.READING_TO, -1);
+        readingFrom = intent.getIntExtra(BillActivityIntentFactory.READING_FROM, -1);
+        readingTo = intent.getIntExtra(BillActivityIntentFactory.READING_TO, -1);
 
-        readingDayFrom = intent.getIntExtra(MainActivity.READING_DAY_FROM, -1);
-        readingDayTo = intent.getIntExtra(MainActivity.READING_DAY_TO, -1);
-        readingNightFrom = intent.getIntExtra(MainActivity.READING_NIGHT_FROM, -1);
-        readingNightTo = intent.getIntExtra(MainActivity.READING_NIGHT_TO, -1);
+        readingDayFrom = intent.getIntExtra(BillActivityIntentFactory.READING_DAY_FROM, -1);
+        readingDayTo = intent.getIntExtra(BillActivityIntentFactory.READING_DAY_TO, -1);
+        readingNightFrom = intent.getIntExtra(BillActivityIntentFactory.READING_NIGHT_FROM, -1);
+        readingNightTo = intent.getIntExtra(BillActivityIntentFactory.READING_NIGHT_TO, -1);
     }
 
     private void setPrices(Intent intent) {
