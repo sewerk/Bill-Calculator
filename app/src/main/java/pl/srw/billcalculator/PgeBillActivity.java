@@ -31,7 +31,6 @@ public class PgeBillActivity extends Activity {
     public static final int PRICE_SCALE = 4;
     private static final BigDecimal EXCISE = new BigDecimal("0.02");
     private static final BigDecimal VAT = new BigDecimal("0.23");
-    public static final String PRICES = "PGE_PRICES";//TODO move to IntentFactory
     private BigDecimal netChargeSum = BigDecimal.ZERO;
     private BigDecimal grossCharge;
 
@@ -93,8 +92,8 @@ public class PgeBillActivity extends Activity {
     }
 
     private void setPrices(Intent intent) {
-        if (intent.hasExtra(PRICES))
-            prices = (IPgePrices) intent.getSerializableExtra(PRICES);
+        if (intent.hasExtra(BillActivityIntentFactory.PRICES))
+            prices = (IPgePrices) intent.getSerializableExtra(BillActivityIntentFactory.PRICES);
         else 
             prices = new PgePrices();
     }

@@ -4,7 +4,7 @@ package pl.srw.billcalculator.db;
 /**
  * Entity mapped to table PGE_PRICES.
  */
-public class PgePrices implements pl.srw.billcalculator.pojo.IPgePrices {
+public class PgePrices implements pl.srw.billcalculator.pojo.IPgePrices, java.io.Serializable {
 
     private Long id;
     private String zaEnergieCzynna;

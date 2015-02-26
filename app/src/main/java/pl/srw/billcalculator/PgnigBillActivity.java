@@ -29,8 +29,7 @@ public class PgnigBillActivity extends Activity {
 
     public static final int PRICE_SCALE = 5;
     public static final BigDecimal VAT = new BigDecimal("0.23");
-    public static final String PRICES = "PGNIG_PRICES";// TODO move to IntentFactory
-    
+
     private String dateFrom;
     private String dateTo;
     private int readingFrom;
@@ -82,8 +81,8 @@ public class PgnigBillActivity extends Activity {
     }
 
     private void setPrices(Intent intent) {
-        if (intent.hasExtra(PRICES))
-            prices = (IPgnigPrices) intent.getSerializableExtra(PRICES);
+        if (intent.hasExtra(BillActivityIntentFactory.PRICES))
+            prices = (IPgnigPrices) intent.getSerializableExtra(BillActivityIntentFactory.PRICES);
         else
             prices = new PgnigPrices();
     }

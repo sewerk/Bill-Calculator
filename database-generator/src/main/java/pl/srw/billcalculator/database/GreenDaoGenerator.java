@@ -80,6 +80,7 @@ public class GreenDaoGenerator {
     private static Entity addPgePrices(final Schema schema) {
         Entity pgePrices = schema.addEntity("PgePrices");
         pgePrices.implementsInterface("pl.srw.billcalculator.pojo.IPgePrices");
+        pgePrices.implementsSerializable();
 
         pgePrices.addIdProperty().autoincrement();
         pgePrices.addStringProperty("zaEnergieCzynna");
@@ -117,6 +118,7 @@ public class GreenDaoGenerator {
     private static Entity addPgnigPrices(final Schema schema) {
         Entity pgnigPrices = schema.addEntity("PgnigPrices");
         pgnigPrices.implementsInterface("pl.srw.billcalculator.pojo.IPgnigPrices");
+        pgnigPrices.implementsSerializable();
 
         pgnigPrices.addIdProperty().autoincrement();
         pgnigPrices.addStringProperty("oplataAbonamentowa");

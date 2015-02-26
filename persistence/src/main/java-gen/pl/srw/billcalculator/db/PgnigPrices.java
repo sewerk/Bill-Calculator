@@ -4,7 +4,7 @@ package pl.srw.billcalculator.db;
 /**
  * Entity mapped to table PGNIG_PRICES.
  */
-public class PgnigPrices implements pl.srw.billcalculator.pojo.IPgnigPrices {
+public class PgnigPrices implements pl.srw.billcalculator.pojo.IPgnigPrices, java.io.Serializable {
 
     private Long id;
     private String oplataAbonamentowa;

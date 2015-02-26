@@ -28,6 +28,8 @@ public final class BillActivityIntentFactory {
     public static final String READING_NIGHT_TO = "READING_NIGHT_TO";
     public static final String DATE_FROM = "DATE_FROM";
     public static final String DATE_TO = "DATE_TO";
+    public static final String PRICES = "PRICES";
+
 
     private BillActivityIntentFactory() {}
 
@@ -49,8 +51,10 @@ public final class BillActivityIntentFactory {
             intent = new Intent(context, aClass);
         }
 
-        public Intent from(final EditText etReadingFrom, final EditText etReadingTo, final Button bDateFrom, final Button bDateTo) {
-            return from(getIntText(etReadingFrom), getIntText(etReadingTo), getStringText(bDateFrom), getStringText(bDateTo));
+        public Intent from(final EditText etReadingFrom, final EditText etReadingTo,
+                           final Button bDateFrom, final Button bDateTo) {
+            return from(getIntText(etReadingFrom), getIntText(etReadingTo),
+                    getStringText(bDateFrom), getStringText(bDateTo));
         }
 
         public Intent from(int readingFrom, int readingTo, String dateFrom, String dateTo) {
@@ -76,18 +80,21 @@ public final class BillActivityIntentFactory {
         public Intent from(final PgeBill bill) {
             putDatesExtra(bill);
             putReadingsExtra(bill.getReadingFrom(), bill.getReadingTo());
+            intent.putExtra(PRICES, bill.getPgePrices());
             return intent;
         }
 
         public Intent from(final PgeG12Bill bill) {
             putDatesExtra(bill);
             putReadingsG12Extra(bill.getReadingDayFrom(), bill.getReadingDayTo(), bill.getReadingNightFrom(), bill.getReadingNightTo());
+            intent.putExtra(PRICES, bill.getPgePrices());
             return intent;
         }
 
         public Intent from(final PgnigBill bill) {
             putDatesExtra(bill);
             putReadingsExtra(bill.getReadingFrom(), bill.getReadingTo());
+            intent.putExtra(PRICES, bill.getPgnigPrices());
             return intent;
         }
 
