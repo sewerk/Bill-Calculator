@@ -15,5 +15,5 @@ With help of
 - [GreenDao](http://greendao-orm.com/)
 - [Hrisay](https://github.com/mg6maciej/hrisey)
 - [Hugo](https://github.com/jakewharton/hugo)
-- [ThreeTen] (https://github.com/ThreeTen/threetenbp)
 - [Robotium] (https://code.google.com/p/robotium)
+- [ThreeTen] (https://github.com/ThreeTen/threetenbp)

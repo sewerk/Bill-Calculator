@@ -47,8 +47,8 @@ import pl.srw.billcalculator.util.Dates;
 public class MainActivity extends Activity {
 
     public static final String TAG = "MainActivity";
-    public static final int IMAGE_TYPE_KEY = 1109171014;
-    public static final String IMAGE_TYPE_STRING = "" + IMAGE_TYPE_KEY;
+    public static final int TAG_IMAGE_TYPE = 1109171014;
+    public static final String BUNDLE_IMAGE_TYPE = "" + TAG_IMAGE_TYPE;
 
     public static final String SHARED_PREFERENCES_FILE = "PreferencesFile";
     public static final String PREFERENCE_KEY_FIRST_LAUNCH = "first_launch";
@@ -146,7 +146,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable(IMAGE_TYPE_STRING, getBillType());
+        outState.putSerializable(BUNDLE_IMAGE_TYPE, getBillType());
     }
 
     @Override
@@ -159,7 +159,7 @@ public class MainActivity extends Activity {
     }
 
     private BillType restoreBillTypeFrom(final Bundle state) {
-        return (BillType) state.getSerializable(IMAGE_TYPE_STRING);
+        return (BillType) state.getSerializable(BUNDLE_IMAGE_TYPE);
     }
 
     @Override
@@ -292,12 +292,12 @@ public class MainActivity extends Activity {
     }
 
     private BillType getBillType() {
-        return (BillType) bBillType.getTag(IMAGE_TYPE_KEY);
+        return (BillType) bBillType.getTag(TAG_IMAGE_TYPE);
     }
 
     private void changeBillType(BillType newType) {
         bBillType.setImageResource(newType.drawableId);
-        bBillType.setTag(IMAGE_TYPE_KEY, newType);
+        bBillType.setTag(TAG_IMAGE_TYPE, newType);
         YoYo.with(Techniques.BounceIn)
                 .duration(400)
                 .playOn(bBillType);

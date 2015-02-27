@@ -77,7 +77,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     }
 
     public void testBillTypeSwitchIsInitialized() {
-        Object initialSwitchBtnTagValue = findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY);
+        Object initialSwitchBtnTagValue = findSwitchBillTypeButtonView().getTag(MainActivity.TAG_IMAGE_TYPE);
         assertNotNull(initialSwitchBtnTagValue);
     }
 
@@ -98,13 +98,13 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     @UiThreadTest
     public void testBillTypeSwitchOnClick() {
         ImageButton switchBtn = findSwitchBillTypeButtonView();
-        Object initialSwitchBtnTagValue = switchBtn.getTag(MainActivity.IMAGE_TYPE_KEY);
+        Object initialSwitchBtnTagValue = switchBtn.getTag(MainActivity.TAG_IMAGE_TYPE);
 
         switchBtn.performClick();
-        assertNotSame(initialSwitchBtnTagValue, switchBtn.getTag(MainActivity.IMAGE_TYPE_KEY));
+        assertNotSame(initialSwitchBtnTagValue, switchBtn.getTag(MainActivity.TAG_IMAGE_TYPE));
 
         switchBtn.performClick();
-        assertSame(initialSwitchBtnTagValue, switchBtn.getTag(MainActivity.IMAGE_TYPE_KEY));
+        assertSame(initialSwitchBtnTagValue, switchBtn.getTag(MainActivity.TAG_IMAGE_TYPE));
     }
 
     public void testRestoreState() throws Throwable {
@@ -119,7 +119,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
             @Override
             public void run() {
                 //change state
-                findSwitchBillTypeButtonView().setTag(MainActivity.IMAGE_TYPE_KEY, billTypeValue);
+                findSwitchBillTypeButtonView().setTag(MainActivity.TAG_IMAGE_TYPE, billTypeValue);
                 findReadingFromView().setText(readingFromValue);
                 findReadingToView().setText(readingToValue);
                 findDateFromView().setText(dateFromValue);
@@ -138,7 +138,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
             }
         });
 
-        assertEquals(billTypeValue, findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY));
+        assertEquals(billTypeValue, findSwitchBillTypeButtonView().getTag(MainActivity.TAG_IMAGE_TYPE));
         assertEquals(readingFromValue, findReadingFromView().getText().toString());
         assertEquals(readingToValue, findReadingToView().getText().toString());
         assertEquals(dateFromValue, findDateFromView().getText());
@@ -168,7 +168,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
             }
         });
 
-        assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY));
+        assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.TAG_IMAGE_TYPE));
         assertEquals(View.VISIBLE, findReadingsG11View().getVisibility());
         assertEquals(View.GONE, findReadingsG12View().getVisibility());
     }
@@ -179,7 +179,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
             @Override
             public void run() {
                 findSwitchBillTypeButtonView().performClick();
-                assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY));
+                assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.TAG_IMAGE_TYPE));
                 assertEquals(sut.getString(R.string.reading_hint_m3), findReadingFromView().getHint());
                 assertEquals(sut.getString(R.string.reading_hint_m3), findReadingToView().getHint());
 
@@ -195,12 +195,12 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
             public void run() {
                 getInstrumentation().callActivityOnRestoreInstanceState(sut, bundle);
 
-                assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY));
+                assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.TAG_IMAGE_TYPE));
                 assertEquals(sut.getString(R.string.reading_hint_m3), findReadingFromView().getHint());
                 assertEquals(sut.getString(R.string.reading_hint_m3), findReadingToView().getHint());
 
                 findSwitchBillTypeButtonView().performClick();
-                assertEquals(BillType.PGE, findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY));
+                assertEquals(BillType.PGE, findSwitchBillTypeButtonView().getTag(MainActivity.TAG_IMAGE_TYPE));
                 assertEquals(sut.getString(R.string.reading_hint_kWh), findReadingFromView().getHint());
                 assertEquals(sut.getString(R.string.reading_hint_kWh), findReadingToView().getHint());
             }
@@ -213,7 +213,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
             @Override
             public void run() {
                 findSwitchBillTypeButtonView().performClick();
-                assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY));
+                assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.TAG_IMAGE_TYPE));
                 assertEquals(View.INVISIBLE, findTariffView().getVisibility());
 
                 //save state
@@ -230,7 +230,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
                 assertEquals(View.INVISIBLE, findTariffView().getVisibility());
 
                 findSwitchBillTypeButtonView().performClick();
-                assertEquals(BillType.PGE, findSwitchBillTypeButtonView().getTag(MainActivity.IMAGE_TYPE_KEY));
+                assertEquals(BillType.PGE, findSwitchBillTypeButtonView().getTag(MainActivity.TAG_IMAGE_TYPE));
                 assertEquals(View.VISIBLE, findTariffView().getVisibility());
             }
         });
@@ -392,7 +392,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         runTestOnUiThread(new Runnable() {
             @Override
             public void run() {
-                findSwitchBillTypeButtonView().setTag(MainActivity.IMAGE_TYPE_KEY, BillType.PGNIG);
+                findSwitchBillTypeButtonView().setTag(MainActivity.TAG_IMAGE_TYPE, BillType.PGNIG);
                 findReadingFromView().setText("" + readingLess);
                 findReadingToView().setText(""+readingMore);
 
@@ -412,7 +412,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         runTestOnUiThread(new Runnable() {
             @Override
             public void run() {
-                findSwitchBillTypeButtonView().setTag(MainActivity.IMAGE_TYPE_KEY, BillType.PGE);
+                findSwitchBillTypeButtonView().setTag(MainActivity.TAG_IMAGE_TYPE, BillType.PGE);
 
                 findCalculateView().performClick();
             }

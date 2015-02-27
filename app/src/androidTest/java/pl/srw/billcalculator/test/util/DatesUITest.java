@@ -18,21 +18,23 @@ import pl.srw.billcalculator.util.Dates;
 public class DatesUITest extends ActivityInstrumentationTestCase2<MainActivity> {
     
     private Solo solo;
-    
+
     public DatesUITest() {
         super(MainActivity.class);
     }
 
     @Override
-    protected void setUp() throws Exception {
+    public void setUp() throws Exception {
+        super.setUp();
         solo = new Solo(getInstrumentation(), getActivity());
     }
 
     @Override
     public void tearDown() throws Exception {
         solo.finishOpenedActivities();
+        super.tearDown();
     }
-    
+
     public void testDatePickerInitializedWithButtonText() {
         final String dateToText = solo.getButton(1).getText().toString();
         final LocalDate localDate = Dates.parse(dateToText);
