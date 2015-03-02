@@ -3,10 +3,7 @@ package pl.srw.billcalculator.test;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Instrumentation;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.UiThreadTest;
 import android.util.Log;
@@ -19,15 +16,12 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import java.util.Date;
-
 import pl.srw.billcalculator.PgeBillActivity;
 import pl.srw.billcalculator.PgnigBillActivity;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.type.BillType;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.preference.PgeSettingsFragment;
 
 /**
  * Created by Kamil Seweryn.
@@ -43,18 +37,18 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        changeToG11Tariff();
-        markAfterFirstLaunch();
+        PreferenceUtil.changeToG11Tariff(getInstrumentation().getTargetContext());
+        PreferenceUtil.markAfterFirstLaunch(getInstrumentation().getTargetContext());
         sut = getActivity();
     }
 
     public void testCheckPricesDialogShowUpOnce() throws InterruptedException {
         //clear preferences to simulate first access
-        clearPreferences();
+        PreferenceUtil.clearFirstLaunch(sut);
         //first access
         restartActivity();
 
-        assertTrue(getFirstLaunchPreferenceValue().isEmpty());
+        assertTrue(PreferenceUtil.getFirstLaunchValue(sut).isEmpty());
 
         getInstrumentation().waitForIdleSync();
         Thread.sleep(1000L);//need to make sure the fragment dialog show up
@@ -70,7 +64,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         //check dialog do not show up on next launch
         restartActivity();
 
-        assertFalse(getFirstLaunchPreferenceValue().isEmpty());
+        assertFalse(PreferenceUtil.getFirstLaunchValue(sut).isEmpty());
 
         getInstrumentation().waitForIdleSync();
         assertNull(sut.getFragmentManager().findFragmentByTag(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH));
@@ -83,7 +77,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
     @UiThreadTest
     public void testG12InfluenceOnlyPGEReadingsView() throws Throwable {
-        changeToG12Tariff();
+        PreferenceUtil.changeToG12Tariff(sut);
         //switch to PGNiG
         findSwitchBillTypeButtonView().performClick();
         assertEquals(View.VISIBLE, findReadingsG11View().getVisibility());
@@ -146,7 +140,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     }
 
     public void testScreenOrientationChangeDoesNotChangeReadingsLayout() throws Throwable {
-        changeToG12Tariff();
+        PreferenceUtil.changeToG12Tariff(sut);
 
         final Bundle bundle = new Bundle();
         runTestOnUiThread(new Runnable() {
@@ -240,7 +234,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     public void testG12InfluenceTariffLabel() {
         assertEquals(sut.getString(R.string.pge_tariff_G11_on_bill), findTariffLabelView().getText().toString());
 
-        changeToG12Tariff();
+        PreferenceUtil.changeToG12Tariff(sut);
         restartActivity();
 
         assertEquals(sut.getString(R.string.pge_tariff_G12_on_bill), findTariffLabelView().getText().toString());
@@ -270,7 +264,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
     public void testG12ReadingsValidationOnCalculate() throws Throwable {
         //change to G12 tariff
-        changeToG12Tariff();
+        PreferenceUtil.changeToG12Tariff(sut);
         restartActivity();
 
         // validate empty day from
@@ -342,7 +336,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     }
 
     public void testFocusChangeForG12Readings() throws Throwable {
-        changeToG12Tariff();
+        PreferenceUtil.changeToG12Tariff(sut);
         restartActivity();
 
         requestFocus(findReadingDayFromView());
@@ -364,7 +358,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     }
 
     public void testFocusChangeOnBillTypeSwitch() throws Throwable {
-        changeToG12Tariff();
+        PreferenceUtil.changeToG12Tariff(sut);
         restartActivity();
 
         requestFocus(findReadingDayFromView());
@@ -431,7 +425,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         final int nightFrom = 11;
         final int nightTo = 13;
         //change to G12 tariff
-        changeToG12Tariff();
+        PreferenceUtil.changeToG12Tariff(sut);
         restartActivity();
 
         // input mandatory values
@@ -555,35 +549,4 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         });
     }
 
-    private void clearPreferences() {
-        SharedPreferences.Editor editor = sut.getSharedPreferences(MainActivity.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE).edit();
-        editor.clear().commit();
-    }
-
-    private void changeToG11Tariff() {
-        final Context context = getInstrumentation().getTargetContext();
-        PreferenceManager.getDefaultSharedPreferences(context)
-                .edit().putString(context.getString(R.string.preferences_pge_tariff), PgeSettingsFragment.TARIFF_G11)
-                .commit();
-    }
-
-    private void changeToG12Tariff() {
-        final Context context = getInstrumentation().getTargetContext();
-        PreferenceManager.getDefaultSharedPreferences(context)
-                .edit().putString(context.getString(R.string.preferences_pge_tariff), PgeSettingsFragment.TARIFF_G12)
-                .commit();
-    }
-
-    private void markAfterFirstLaunch() {
-        getInstrumentation().getTargetContext().
-                getSharedPreferences(MainActivity.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE)
-                .edit().putString(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH, new Date().toString())
-                .commit();
-    }
-
-    private String getFirstLaunchPreferenceValue() {
-        return sut.
-                getSharedPreferences(MainActivity.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE)
-                .getString(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH, "");
-    }
 }

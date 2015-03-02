@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.test;
 
+import android.support.annotation.StringRes;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
@@ -18,6 +19,7 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
 import pl.srw.billcalculator.MainActivity;
+import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.type.BillType;
 
 /**
@@ -38,6 +40,7 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
     public void setUp() throws Exception {
         super.setUp();
         injectInstrumentation(InstrumentationRegistry.getInstrumentation());
+        PreferenceUtil.markAfterFirstLaunch(getInstrumentation().getTargetContext());
         solo = new Solo(getInstrumentation(), getActivity());
     }
 
@@ -50,13 +53,49 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
 
     @Test
     public void shouldCalculateBillWithVatAndPrices() {
-        // TODO: set prices
-        // wsp. konw. 11.094
-        // paliwo 0.11815
-        // abon. 6.97
-        // dyst. st. 22.62
-        // dyst. zm. 0.03823
+        setPrices();
+        inputValues();
 
+        // calculate
+        solo.clickOnButton(2);
+
+ 	    // verify na dzień 2014.10.10
+        assertTrue(solo.searchText("10/10/2014"));
+	    // verify na dzień 2014.12.15
+        assertTrue(solo.searchText("15/12/2014"));
+	    // verify odczyty
+        assertTrue(solo.searchText(Pattern.quote("6696 [m³]")));
+        assertTrue(solo.searchText(Pattern.quote("7101 [m³]")));
+	    // verify zużycie 405 m3
+        assertTrue(solo.searchText(Pattern.quote("Zużycie: 405 [m³]")));
+        assertTrue(solo.searchText(Pattern.quote("Zużycie razem: 405 [m³]")));
+	    // verify współ.konw
+        assertTrue(solo.searchText("Wsp. konwersji: 11.094"));
+        // verify ilość 4493 kWh
+        assertTrue(solo.searchText(Pattern.quote("Zużycie razem: 4493 [kWh]")));
+        // verify ilość 2 m-c
+        assertTrue(solo.searchText("2.000"));
+
+        // verify cenny netto
+        assertTrue(solo.searchText("0.11815"));
+        assertTrue(solo.searchText("6.97000"));
+        assertTrue(solo.searchText("22.62000"));
+        assertTrue(solo.searchText("0.03823"));
+        // verify warotść netto 530.85 13,94 45,24 171,77
+        assertTrue(solo.searchText("530.85"));
+        assertTrue(solo.searchText("13.94"));
+        assertTrue(solo.searchText("45.24"));
+        assertTrue(solo.searchText("171.77"));
+
+	    // VAT 122,10 3,21 10,41 39,51
+	    // wartość brutto 652,95 17,15 55,65 211,28
+	    // verify Razem 761,80 175,23 937,03
+        assertTrue(solo.searchText("761.80"));
+        assertTrue(solo.searchText("175.23"));
+        assertTrue(solo.searchText(Pattern.quote("Wartość faktury brutto: 937.03 zł")));
+    }
+
+    private void inputValues() {
         // change bill type
         solo.clickOnImageButton(0);
         assertThat((BillType) solo.getImageButton(0).getTag(MainActivity.TAG_IMAGE_TYPE),
@@ -74,26 +113,35 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
         solo.clickOnButton(1);
         solo.setDatePicker(0, 2014, 11, 15);
         solo.clickOnView(solo.getView(android.R.id.button1));
+    }
 
-        // calculate
-        solo.clickOnButton(2);
+    private void setPrices() {
+        solo.pressMenuItem(0);
+        solo.clickOnText(getString(R.string.pgnig_prices));
 
- 	    // verify na dzień 2014.10.10
-        assertTrue(solo.searchText("10/10/2014"));
-	    // verify na dzień 2014.12.15
-        assertTrue(solo.searchText("15/12/2014"));
-	    // verify odczyty
-        assertTrue(solo.searchText(Pattern.quote("6696 [m\\u00B3]")));
-        assertTrue(solo.searchText("7101"));
-	    // verify zużycie 405 m3
-        assertTrue(solo.searchText(""));
-	    // verify współ.konw
-        // verify ilość 4493 kWh
-        // verify ilość 2 m-c
-        // verify cenny netto
-        // verify warotść netto 530.85 13,94 45,24 171,77
-	    // verify VAT 122,10 3,21 10,41 39,51
-	    // verify wartość brutto 652,95 17,15 55,65 211,28
-	    // verify Razem 761,80 175,23 937,03
+        // wsp. konw. 11.094
+        setPrice(R.string.wspolczynnik_konwersji, "11.094");
+        // paliwo 0.11815
+        setPrice(R.string.paliwo_gazowe, "0.11815");
+        // abon. 6.97
+        setPrice(R.string.settings_oplata_abonamentowa, "6.97");
+        // dyst. st. 22.62
+        setPrice(R.string.dystrybucyjna_stala, "22.62");
+        // dyst. zm. 0.03823
+        setPrice(R.string.dystrybucyjna_zmienna, "0.03823");
+
+        solo.goBack();
+        solo.goBack();
+    }
+
+    private void setPrice(final int labelId, final String text) {
+        solo.clickOnText(getString(labelId));
+        solo.clearEditText(0);
+        solo.enterText(0, text);
+        solo.clickOnView(solo.getView(android.R.id.button1));
+    }
+
+    private String getString(@StringRes final int strRes) {
+        return getActivity().getString(strRes);
     }
 }

@@ -97,6 +97,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:textStyle="bold"
+                android:text="@string/zuzycie"
                 tools:text="Zużycie: 50 [m\u00B3]" />
 
         </TableRow>
@@ -114,6 +115,7 @@
                 android:layout_column="1"
                 android:layout_span="2"
                 android:gravity="center"
+                android:text="@string/zuzycie_razem"
                 tools:text="Zużycie razem 50 [m\u00B3]" />
 
             <TextView
@@ -122,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_span="2"
                 android:layout_gravity="center"
+                android:text="@string/wsp_konwersji"
                 tools:text="Wsp. konwersji: 11.204"/>
 
             <TextView
@@ -131,6 +134,7 @@
                 android:paddingLeft="10dp"
                 android:textStyle="bold"
                 android:gravity="end"
+                android:text="@string/zuzycie_razem_kWh"
                 tools:text="Zużycie razem: 555 kWh" />
         </TableRow>
     </TableLayout>
