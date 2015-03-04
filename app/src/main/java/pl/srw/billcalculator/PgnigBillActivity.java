@@ -1,11 +1,9 @@
 package pl.srw.billcalculator;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
 
@@ -21,7 +19,7 @@ import pl.srw.billcalculator.util.Views;
 /**
  * Created by Kamil Seweryn
  */
-public class PgnigBillActivity extends Activity {
+public class PgnigBillActivity extends BackableActivity {
 
     public static final int PRICE_SCALE = 5;
 
@@ -37,8 +35,6 @@ public class PgnigBillActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pgnig_bill);
-        if (getActionBar() != null)
-            getActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         setInput(intent);
@@ -51,15 +47,6 @@ public class PgnigBillActivity extends Activity {
         setChargeTV();
 	}
     
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void setInput(Intent intent) {
         dateFrom = intent.getStringExtra(IntentCreator.DATE_FROM);
         dateTo = intent.getStringExtra(IntentCreator.DATE_TO);

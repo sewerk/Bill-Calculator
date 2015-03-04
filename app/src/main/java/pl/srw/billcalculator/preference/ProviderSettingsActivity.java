@@ -1,6 +1,5 @@
 package pl.srw.billcalculator.preference;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -8,12 +7,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
 
 /**
  * Created by Kamil Seweryn.
  */
-public class ProviderSettingsActivity extends Activity {
+public class ProviderSettingsActivity extends BackableActivity {
 
     private static final String FRAGMENT_TAG = "SettingsFragment";
     public static final String EXTRA_PRIVIDER_NAME = "PRIVIDER_NAME";
@@ -31,8 +31,6 @@ public class ProviderSettingsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getActionBar() != null)
-            getActionBar().setDisplayHomeAsUpEnabled(true);
 
         final ProviderSettingsFragment preferenceFragment;
         if (savedInstanceState == null) {
@@ -75,9 +73,6 @@ public class ProviderSettingsActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_help) {
             showHelp();
-            return true;
-        } else if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);

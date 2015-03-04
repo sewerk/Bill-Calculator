@@ -1,11 +1,9 @@
 package pl.srw.billcalculator;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
 
@@ -26,7 +24,7 @@ import pl.srw.billcalculator.util.Views;
 /**
  * Created by Kamil Seweryn
  */
-public class PgeBillActivity extends Activity {
+public class PgeBillActivity extends BackableActivity {
 
     public static final int PRICE_SCALE = 4;
     private static final BigDecimal EXCISE = new BigDecimal("0.02");
@@ -48,8 +46,6 @@ public class PgeBillActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pge_bill);
-        if (getActionBar() != null)
-            getActionBar().setDisplayHomeAsUpEnabled(true);
 
         final Intent intent = getIntent();
         readExtra(intent);
@@ -67,15 +63,6 @@ public class PgeBillActivity extends Activity {
     protected void onResume() {
         super.onResume();
         saveBill();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void readExtra(Intent intent) {

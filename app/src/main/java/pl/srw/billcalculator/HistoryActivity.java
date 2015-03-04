@@ -1,10 +1,8 @@
 package pl.srw.billcalculator;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import butterknife.ButterKnife;
@@ -16,7 +14,7 @@ import pl.srw.billcalculator.persistence.Database;
 /**
  * Created by Kamil Seweryn.
  */
-public class HistoryActivity extends Activity {
+public class HistoryActivity extends BackableActivity {
 
     @InjectView(R.id.rv_history_list) RecyclerView list;
     @InjectView(R.id.tv_emptyHistory) TextView tvEmptyHistory;
@@ -26,7 +24,6 @@ public class HistoryActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
         ButterKnife.inject(this);
 
         list.setHasFixedSize(true);
@@ -47,14 +44,5 @@ public class HistoryActivity extends Activity {
     protected void onStop() {
         super.onStop();
         list.getAdapter().unregisterAdapterDataObserver(dataObserver);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
