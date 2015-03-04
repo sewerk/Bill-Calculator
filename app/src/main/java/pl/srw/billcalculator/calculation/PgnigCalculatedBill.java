@@ -5,43 +5,35 @@ import java.math.RoundingMode;
 
 import lombok.Getter;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
-import pl.srw.billcalculator.util.Dates;
 
 /**
  * Created by Kamil Seweryn.
  */
 @Getter
-public class PgnigCalculatedBill {
+public class PgnigCalculatedBill extends CalculatedBill {
 
-    public static final BigDecimal VAT = new BigDecimal("0.23");
+    private final int consumptionM3;
+    private final int consumptionKWh;
 
-    private BigDecimal netChargeSum = BigDecimal.ZERO;
-    private BigDecimal grossChargeSum = BigDecimal.ZERO;
-    private BigDecimal vatChargeSum = BigDecimal.ZERO;
+    private final BigDecimal oplataAbonamentowaNetCharge;
+    private final BigDecimal paliwoGazoweNetCharge;
+    private final BigDecimal dystrybucyjnaStalaNetCharge;
+    private final BigDecimal dystrybucyjnaZmiennaNetCharge;
 
-    private int consumptionM3;
-    private int consumptionKWh;
-    private int monthCount;
-
-    private BigDecimal oplataAbonamentowaNetCharge;
-    private BigDecimal paliwoGazoweNetCharge;
-    private BigDecimal dystrybucyjnaStalaNetCharge;
-    private BigDecimal dystrybucyjnaZmiennaNetCharge;
-
-    private BigDecimal oplataAbonamentowaVatCharge;
-    private BigDecimal paliwoGazoweVatCharge;
-    private BigDecimal dystrybucyjnaStalaVatCharge;
-    private BigDecimal dystrybucyjnaZmiennaVatCharge;
+    private final BigDecimal oplataAbonamentowaVatCharge;
+    private final BigDecimal paliwoGazoweVatCharge;
+    private final BigDecimal dystrybucyjnaStalaVatCharge;
+    private final BigDecimal dystrybucyjnaZmiennaVatCharge;
 
     public PgnigCalculatedBill(final int readingFrom, final int readingTo, final String dateFrom, final String dateTo, final IPgnigPrices prices) {
+        super(dateFrom, dateTo);
         consumptionM3 = readingTo - readingFrom;
         consumptionKWh = new BigDecimal(consumptionM3).multiply(new BigDecimal(prices.getWspolczynnikKonwersji()))
                 .setScale(0, RoundingMode.HALF_UP).intValue();
-        monthCount = Dates.countMonth(dateFrom, dateTo);
 
-        oplataAbonamentowaNetCharge = multiplyAndAddToSum(prices.getOplataAbonamentowa(), monthCount);
+        oplataAbonamentowaNetCharge = multiplyAndAddToSum(prices.getOplataAbonamentowa(), getMonthCount());
         paliwoGazoweNetCharge = multiplyAndAddToSum(prices.getPaliwoGazowe(), consumptionKWh);
-        dystrybucyjnaStalaNetCharge = multiplyAndAddToSum(prices.getDystrybucyjnaStala(), monthCount);
+        dystrybucyjnaStalaNetCharge = multiplyAndAddToSum(prices.getDystrybucyjnaStala(), getMonthCount());
         dystrybucyjnaZmiennaNetCharge = multiplyAndAddToSum(prices.getDystrybucyjnaZmienna(), consumptionKWh);
 
         oplataAbonamentowaVatCharge = multiplyVatAndAddToSum(oplataAbonamentowaNetCharge);
@@ -49,18 +41,5 @@ public class PgnigCalculatedBill {
         dystrybucyjnaStalaVatCharge = multiplyVatAndAddToSum(dystrybucyjnaStalaNetCharge);
         dystrybucyjnaZmiennaVatCharge = multiplyVatAndAddToSum(dystrybucyjnaZmiennaNetCharge);
 
-        grossChargeSum = grossChargeSum.add(netChargeSum).add(vatChargeSum);
-    }
-
-    private BigDecimal multiplyAndAddToSum(final String oplataAbonamentowa, final int count) {
-        BigDecimal netCharge = new BigDecimal(oplataAbonamentowa).multiply(new BigDecimal(count));
-        netChargeSum = netChargeSum.add(netCharge.setScale(2, RoundingMode.HALF_UP));
-        return netCharge;
-    }
-
-    private BigDecimal multiplyVatAndAddToSum(final BigDecimal netCharge) {
-        BigDecimal vatCharge = netCharge.multiply(VAT);
-        vatChargeSum = vatChargeSum.add(vatCharge.setScale(2, RoundingMode.HALF_UP));
-        return vatCharge;
     }
 }
