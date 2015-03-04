@@ -8,9 +8,8 @@ import android.widget.TextView;
 import java.math.BigDecimal;
 
 import pl.srw.billcalculator.PgeBillActivity;
-import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.intent.BillActivityIntentFactory;
+import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.preference.PgePrices;
 
 /**
@@ -225,22 +224,22 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
     }
 
     private void putReadings(Intent intent, int from, int to) {
-        intent.putExtra(BillActivityIntentFactory.READING_FROM, from);
-        intent.putExtra(BillActivityIntentFactory.READING_TO, to);
+        intent.putExtra(IntentCreator.READING_FROM, from);
+        intent.putExtra(IntentCreator.READING_TO, to);
         putDates(intent, DATE_FROM, DATE_TO);
     }
 
     private void putReadings(Intent intent, int dayFrom, int dayTo, int nightFrom, int nightTo) {
-        intent.putExtra(BillActivityIntentFactory.READING_DAY_FROM, dayFrom);
-        intent.putExtra(BillActivityIntentFactory.READING_DAY_TO, dayTo);
-        intent.putExtra(BillActivityIntentFactory.READING_NIGHT_FROM, nightFrom);
-        intent.putExtra(BillActivityIntentFactory.READING_NIGHT_TO, nightTo);
+        intent.putExtra(IntentCreator.READING_DAY_FROM, dayFrom);
+        intent.putExtra(IntentCreator.READING_DAY_TO, dayTo);
+        intent.putExtra(IntentCreator.READING_NIGHT_FROM, nightFrom);
+        intent.putExtra(IntentCreator.READING_NIGHT_TO, nightTo);
         putDates(intent, DATE_FROM, DATE_TO);
     }
 
     private void putDates(Intent intent, String dateFrom, String dateTo) {
-        intent.putExtra(BillActivityIntentFactory.DATE_FROM, dateFrom);
-        intent.putExtra(BillActivityIntentFactory.DATE_TO, dateTo);
+        intent.putExtra(IntentCreator.DATE_FROM, dateFrom);
+        intent.putExtra(IntentCreator.DATE_TO, dateTo);
     }
 
     private void setDefaultPrices() {
@@ -249,10 +248,10 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
 
     private void setDummyIntent() {
         Intent intent = new Intent();
-        intent.putExtra(BillActivityIntentFactory.READING_FROM, 1);
-        intent.putExtra(BillActivityIntentFactory.READING_TO, 2);
-        intent.putExtra(BillActivityIntentFactory.DATE_FROM, "01/01/2014");
-        intent.putExtra(BillActivityIntentFactory.DATE_TO, "21/12/2015");
+        intent.putExtra(IntentCreator.READING_FROM, 1);
+        intent.putExtra(IntentCreator.READING_TO, 2);
+        intent.putExtra(IntentCreator.DATE_FROM, "01/01/2014");
+        intent.putExtra(IntentCreator.DATE_TO, "21/12/2015");
         setActivityIntent(intent);
     }
 

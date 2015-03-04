@@ -11,13 +11,10 @@ import android.widget.TableLayout;
 
 import java.math.BigDecimal;
 
-import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.calculation.PgnigCalculatedBill;
-import pl.srw.billcalculator.intent.BillActivityIntentFactory;
+import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
 import pl.srw.billcalculator.preference.PgnigPrices;
-import pl.srw.billcalculator.task.BillStorer;
-import pl.srw.billcalculator.task.PgnigBillStorer;
 import pl.srw.billcalculator.util.Display;
 import pl.srw.billcalculator.util.Views;
 
@@ -54,13 +51,6 @@ public class PgnigBillActivity extends Activity {
         setChargeTV();
 	}
     
-    @DebugLog
-    @Override
-    protected void onResume() {
-        super.onResume();
-        saveBill();
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -71,15 +61,15 @@ public class PgnigBillActivity extends Activity {
     }
 
     private void setInput(Intent intent) {
-        dateFrom = intent.getStringExtra(BillActivityIntentFactory.DATE_FROM);
-        dateTo = intent.getStringExtra(BillActivityIntentFactory.DATE_TO);
-        readingFrom = intent.getIntExtra(BillActivityIntentFactory.READING_FROM, 0);
-        readingTo = intent.getIntExtra(BillActivityIntentFactory.READING_TO, 0);
+        dateFrom = intent.getStringExtra(IntentCreator.DATE_FROM);
+        dateTo = intent.getStringExtra(IntentCreator.DATE_TO);
+        readingFrom = intent.getIntExtra(IntentCreator.READING_FROM, 0);
+        readingTo = intent.getIntExtra(IntentCreator.READING_TO, 0);
     }
 
     private void setPrices(Intent intent) {
-        if (intent.hasExtra(BillActivityIntentFactory.PRICES))
-            prices = (IPgnigPrices) intent.getSerializableExtra(BillActivityIntentFactory.PRICES);
+        if (intent.hasExtra(IntentCreator.PRICES))
+            prices = (IPgnigPrices) intent.getSerializableExtra(IntentCreator.PRICES);
         else
             prices = new PgnigPrices();
     }
@@ -149,13 +139,5 @@ public class PgnigBillActivity extends Activity {
 
     private void setChargeTV() {
         Views.setTV(this, R.id.tv_invoice_value, getString(R.string.wartosc_faktury, Display.toPay(bill.getGrossChargeSum())));
-    }
-
-    private void saveBill() {
-        BillStorer task = new PgnigBillStorer(readingFrom, readingTo);
-        task.putDates(dateFrom, dateTo);
-        task.putAmount(bill.getGrossChargeSum().doubleValue());
-
-        new Thread(task).start();
     }
 }

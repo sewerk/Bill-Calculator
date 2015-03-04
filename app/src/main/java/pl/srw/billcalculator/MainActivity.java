@@ -35,6 +35,8 @@ import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.component.CheckPricesDialogFragment;
 import pl.srw.billcalculator.adapter.PreviousReadingsAdapter;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
+import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
+import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 import pl.srw.billcalculator.type.BillType;
 import pl.srw.billcalculator.preference.PgeSettingsFragment;
@@ -337,11 +339,21 @@ public class MainActivity extends Activity {
             return;
 
         startActivity(getBillActivityIntent());
+        startService(getBillStorerIntent());
         markHistoryChanged();
     }
 
     private Intent getBillActivityIntent() {
-        BillActivityIntentFactory.IntentCreator intentCreator = BillActivityIntentFactory.of(this, getBillType());
+        IntentCreator intentCreator = BillActivityIntentFactory.of(this, getBillType());
+        return provideExtra(intentCreator);
+    }
+
+    private Intent getBillStorerIntent() {
+        IntentCreator intentCreator = BillStoringServiceIntentFactory.of(this, getBillType());
+        return provideExtra(intentCreator);
+    }
+
+    private Intent provideExtra(final IntentCreator intentCreator) {
         if (isSingleReadingsVisible())
             return intentCreator.from(etPreviousReading, etCurrentReading, bFromDate, bToDate);
         else

@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import hugo.weaving.DebugLog;
-import pl.srw.billcalculator.intent.BillActivityIntentFactory;
+import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgePrices;
 import pl.srw.billcalculator.preference.PgePrices;
 import pl.srw.billcalculator.task.BillStorer;
@@ -79,21 +79,21 @@ public class PgeBillActivity extends Activity {
     }
 
     private void readExtra(Intent intent) {
-        dateFrom = intent.getStringExtra(BillActivityIntentFactory.DATE_FROM);
-        dateTo = intent.getStringExtra(BillActivityIntentFactory.DATE_TO);
+        dateFrom = intent.getStringExtra(IntentCreator.DATE_FROM);
+        dateTo = intent.getStringExtra(IntentCreator.DATE_TO);
 
-        readingFrom = intent.getIntExtra(BillActivityIntentFactory.READING_FROM, -1);
-        readingTo = intent.getIntExtra(BillActivityIntentFactory.READING_TO, -1);
+        readingFrom = intent.getIntExtra(IntentCreator.READING_FROM, -1);
+        readingTo = intent.getIntExtra(IntentCreator.READING_TO, -1);
 
-        readingDayFrom = intent.getIntExtra(BillActivityIntentFactory.READING_DAY_FROM, -1);
-        readingDayTo = intent.getIntExtra(BillActivityIntentFactory.READING_DAY_TO, -1);
-        readingNightFrom = intent.getIntExtra(BillActivityIntentFactory.READING_NIGHT_FROM, -1);
-        readingNightTo = intent.getIntExtra(BillActivityIntentFactory.READING_NIGHT_TO, -1);
+        readingDayFrom = intent.getIntExtra(IntentCreator.READING_DAY_FROM, -1);
+        readingDayTo = intent.getIntExtra(IntentCreator.READING_DAY_TO, -1);
+        readingNightFrom = intent.getIntExtra(IntentCreator.READING_NIGHT_FROM, -1);
+        readingNightTo = intent.getIntExtra(IntentCreator.READING_NIGHT_TO, -1);
     }
 
     private void setPrices(Intent intent) {
-        if (intent.hasExtra(BillActivityIntentFactory.PRICES))
-            prices = (IPgePrices) intent.getSerializableExtra(BillActivityIntentFactory.PRICES);
+        if (intent.hasExtra(IntentCreator.PRICES))
+            prices = (IPgePrices) intent.getSerializableExtra(IntentCreator.PRICES);
         else 
             prices = new PgePrices();
     }
