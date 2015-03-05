@@ -11,15 +11,15 @@ import pl.srw.billcalculator.persistence.exception.DbNotInitializedYetException;
  */
 public enum BillType {
 
-    PGE,
+    PGE_G11,
     PGE_G12,
     PGNIG;
 
     public AbstractDao<? extends Bill, Long> getDao() {
         assertNotNull(Database.getSession());
         switch (this) {
-            case PGE:
-                return Database.getSession().getPgeBillDao();
+            case PGE_G11:
+                return Database.getSession().getPgeG11BillDao();
             case PGE_G12:
                 return Database.getSession().getPgeG12BillDao();
             case PGNIG:

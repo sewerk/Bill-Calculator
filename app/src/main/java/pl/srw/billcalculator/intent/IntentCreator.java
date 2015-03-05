@@ -7,7 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import pl.srw.billcalculator.db.Bill;
-import pl.srw.billcalculator.db.PgeBill;
+import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.util.Dates;
@@ -58,7 +58,7 @@ public final class IntentCreator {
         return intent;
     }
 
-    public Intent from(final PgeBill bill) {
+    public Intent from(final PgeG11Bill bill) {
         putDatesExtra(bill);
         putReadingsExtra(bill.getReadingFrom(), bill.getReadingTo());
         intent.putExtra(PRICES, bill.getPgePrices());

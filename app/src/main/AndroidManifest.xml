@@ -38,7 +38,9 @@
         
         <activity android:name=".HistoryActivity" android:label="@string/history_label" />
 
-        <service android:name=".worker.PgnigBillStoringService" />
+        <service android:name=".service.PgnigBillStoringService" />
+
+        <service android:name=".service.PgeBillStoringService" />
 
     </application>
 

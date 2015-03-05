@@ -21,7 +21,7 @@ public enum BillType {
         switch (persistenceType) {
             case PGNIG:
                 return PGNIG;
-            case PGE:
+            case PGE_G11:
             case PGE_G12:
                 return PGE;
         }

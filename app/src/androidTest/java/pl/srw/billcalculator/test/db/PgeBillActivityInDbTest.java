@@ -1,27 +1,28 @@
 package pl.srw.billcalculator.test.db;
 
-import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.RenamingDelegatingContext;
+import android.widget.EditText;
 
 import java.util.List;
 
-import pl.srw.billcalculator.PgeBillActivity;
+import pl.srw.billcalculator.MainActivity;
+import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgePrices;
-import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.persistence.Database;
-import pl.srw.billcalculator.util.Dates;
+import pl.srw.billcalculator.test.PreferenceUtil;
+import pl.srw.billcalculator.type.BillType;
 
 /**
  * Created by Kamil Seweryn.
  */
-public class PgeBillActivityInDbTest extends ActivityInstrumentationTestCase2<PgeBillActivity> {
+public class PgeBillActivityInDbTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
-    private PgeBillActivity sut;
+    private MainActivity sut;
 
     public PgeBillActivityInDbTest() {
-        super(PgeBillActivity.class);
+        super(MainActivity.class);
     }
 
     @Override
@@ -29,26 +30,36 @@ public class PgeBillActivityInDbTest extends ActivityInstrumentationTestCase2<Pg
         RenamingDelegatingContext newContext = new RenamingDelegatingContext(getInstrumentation().getContext(), "test_");
         Database.initialize(newContext);
         Database.getSession().deleteAll(PgeG12Bill.class);
-        Intent intent = new Intent();
-        intent.putExtra(IntentCreator.READING_DAY_FROM, 1);
-        intent.putExtra(IntentCreator.READING_DAY_TO, 2);
-        intent.putExtra(IntentCreator.READING_NIGHT_FROM, 3);
-        intent.putExtra(IntentCreator.READING_NIGHT_TO, 4);
-        intent.putExtra(IntentCreator.DATE_FROM, "01/01/2014");
-        intent.putExtra(IntentCreator.DATE_TO, "21/12/2015");
-        setActivityIntent(intent);
+
+        PreferenceUtil.changeToG12Tariff(getInstrumentation().getTargetContext());
         sut = getActivity();
     }
 
-    public void testPgeBillStoredInHistory() {
+    public void testPgeG12BillStoredInHistory() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                sut.findViewById(R.id.button_bill_type_switch).setTag(MainActivity.TAG_IMAGE_TYPE, BillType.PGE);
+                ((EditText)sut.findViewById(R.id.editText_reading_day_from)).setText("123");
+                ((EditText)sut.findViewById(R.id.editText_reading_day_to)).setText("321");
+                ((EditText)sut.findViewById(R.id.editText_reading_night_from)).setText("234");
+                ((EditText)sut.findViewById(R.id.editText_reading_night_to)).setText("432");
+
+                sut.findViewById(R.id.button_calculate).performClick();
+            }
+        });
         getInstrumentation().waitForIdleSync();
 
         final List<PgeG12Bill> bills = Database.getSession().getPgeG12BillDao().loadAll();
         assertEquals(1, bills.size());
         final PgeG12Bill bill = bills.get(0);
-        assertEquals(1, bill.getReadingDayFrom().intValue());
-        assertEquals(4, bill.getReadingNightTo().intValue());
-        assertEquals("21/12/2015", Dates.format(Dates.toLocalDate(bill.getDateTo())));
+        assertEquals(123, bill.getReadingDayFrom().intValue());
+        assertEquals(321, bill.getReadingDayTo().intValue());
+        assertEquals(234, bill.getReadingNightFrom().intValue());
+        assertEquals(432, bill.getReadingNightTo().intValue());
+
+        assertNotNull(bill.getDateFrom());
+        assertNotNull(bill.getDateTo());
         assertNotNull(bill.getAmountToPay());
         final PgePrices prices = bill.getPgePrices();
         assertTrue(prices.getId() > 0);

@@ -8,7 +8,7 @@ import de.greenrobot.dao.test.AbstractDaoSessionTest;
 import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
-import pl.srw.billcalculator.db.PgeBill;
+import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.dao.DaoMaster;
@@ -38,7 +38,7 @@ public class TriggersTest extends AbstractDaoSessionTest<BillCalculator, DaoMast
     }
 
     public void testSaveTriggerForPgeG12Bill() {
-        testSaveTriggerFor(new PgeBill(), BillType.PGE);
+        testSaveTriggerFor(new PgeG11Bill(), BillType.PGE_G11);
     }
 
     public void testSaveTriggerForPgnigBill() {
@@ -46,7 +46,7 @@ public class TriggersTest extends AbstractDaoSessionTest<BillCalculator, DaoMast
     }
 
     public void testDeleteTriggerForPgeBill() {
-        testDeleteTriggerFor(new PgeBill());
+        testDeleteTriggerFor(new PgeG11Bill());
     }
 
     public void testDeleteTriggerForPgeG12Bill() {

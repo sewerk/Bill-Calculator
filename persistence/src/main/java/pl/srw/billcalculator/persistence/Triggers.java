@@ -2,9 +2,8 @@ package pl.srw.billcalculator.persistence;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.dao.HistoryDao;
-import pl.srw.billcalculator.db.dao.PgeBillDao;
+import pl.srw.billcalculator.db.dao.PgeG11BillDao;
 import pl.srw.billcalculator.db.dao.PgeG12BillDao;
 import pl.srw.billcalculator.db.dao.PgnigBillDao;
 import pl.srw.billcalculator.persistence.type.BillType;
@@ -15,12 +14,12 @@ import pl.srw.billcalculator.persistence.type.BillType;
 public final class Triggers {
 
     public static final String[] BILL_INSERT_TRIGGERS = {
-            insertTrigger("bill_pge_insert_trigger", PgeBillDao.TABLENAME, BillType.PGE.toString()),
+            insertTrigger("bill_pgeG11_insert_trigger", PgeG11BillDao.TABLENAME, BillType.PGE_G11.toString()),
             insertTrigger("bill_pgeG12_insert_trigger", PgeG12BillDao.TABLENAME, BillType.PGE_G12.toString()),
             insertTrigger("bill_pgnig_insert_trigger", PgnigBillDao.TABLENAME, BillType.PGNIG.toString())
     };
     private static String[] BILL_DELETE_TRIGGERS = {
-            deleteTrigger("bill_pge_delete_trigger", PgeBillDao.TABLENAME),
+            deleteTrigger("bill_pgeG11_delete_trigger", PgeG11BillDao.TABLENAME),
             deleteTrigger("bill_pgeG12_delete_trigger", PgeG12BillDao.TABLENAME),
             deleteTrigger("bill_pgnig_delete_trigger", PgnigBillDao.TABLENAME)
     };
@@ -35,7 +34,7 @@ public final class Triggers {
                 "(" +
                 HistoryDao.Properties.DateFrom.columnName + "," + HistoryDao.Properties.BillType.columnName + "," + HistoryDao.Properties.BillId.columnName +
                 ") VALUES(" +
-                "new." + PgeBillDao.Properties.DateFrom.columnName + ", '" + billType + "', new." + PgeBillDao.Properties.Id.columnName +
+                "new." + PgeG11BillDao.Properties.DateFrom.columnName + ", '" + billType + "', new." + PgeG11BillDao.Properties.Id.columnName +
                 ");";
     }
 
@@ -46,7 +45,7 @@ public final class Triggers {
 
     private static String getInnerDelete() {
         return "DELETE FROM " + HistoryDao.TABLENAME + 
-                " WHERE " + HistoryDao.Properties.BillId.columnName + " = old." + PgeBillDao.Properties.Id.columnName + ";";
+                " WHERE " + HistoryDao.Properties.BillId.columnName + " = old." + PgeG11BillDao.Properties.Id.columnName + ";";
     }
 
     public static void create(SQLiteDatabase db) {

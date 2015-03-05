@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.test.worker;
+package pl.srw.billcalculator.test.service;
 
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
@@ -12,13 +12,12 @@ import org.junit.runner.RunWith;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
-import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.PgnigPrices;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.util.Dates;
-import pl.srw.billcalculator.worker.PgnigBillStoringService;
+import pl.srw.billcalculator.service.PgnigBillStoringService;
 
 /**
  * Created by Kamil Seweryn.

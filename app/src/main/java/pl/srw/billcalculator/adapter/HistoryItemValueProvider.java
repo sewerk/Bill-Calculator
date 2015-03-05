@@ -21,8 +21,8 @@ public abstract class HistoryItemValueProvider {
 
     public static HistoryItemValueProvider of(final History item) {
         switch (BillType.valueOf(item.getBillType())) {
-            case PGE:
-                return new PgeBillHistoryItemValueProvider(item);
+            case PGE_G11:
+                return new PgeG11BillHistoryItemValueProvider(item);
             case PGE_G12:
                 return new PgeG12BillHistoryItemValueProvider(item);
             case PGNIG:

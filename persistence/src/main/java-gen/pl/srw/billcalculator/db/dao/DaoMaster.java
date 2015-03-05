@@ -9,7 +9,7 @@ import de.greenrobot.dao.AbstractDaoMaster;
 import de.greenrobot.dao.identityscope.IdentityScopeType;
 
 import pl.srw.billcalculator.db.dao.PgePricesDao;
-import pl.srw.billcalculator.db.dao.PgeBillDao;
+import pl.srw.billcalculator.db.dao.PgeG11BillDao;
 import pl.srw.billcalculator.db.dao.PgeG12BillDao;
 import pl.srw.billcalculator.db.dao.PgnigPricesDao;
 import pl.srw.billcalculator.db.dao.PgnigBillDao;
@@ -25,7 +25,7 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(SQLiteDatabase db, boolean ifNotExists) {
         PgePricesDao.createTable(db, ifNotExists);
-        PgeBillDao.createTable(db, ifNotExists);
+        PgeG11BillDao.createTable(db, ifNotExists);
         PgeG12BillDao.createTable(db, ifNotExists);
         PgnigPricesDao.createTable(db, ifNotExists);
         PgnigBillDao.createTable(db, ifNotExists);
@@ -35,7 +35,7 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(SQLiteDatabase db, boolean ifExists) {
         PgePricesDao.dropTable(db, ifExists);
-        PgeBillDao.dropTable(db, ifExists);
+        PgeG11BillDao.dropTable(db, ifExists);
         PgeG12BillDao.dropTable(db, ifExists);
         PgnigPricesDao.dropTable(db, ifExists);
         PgnigBillDao.dropTable(db, ifExists);
@@ -72,7 +72,7 @@ public class DaoMaster extends AbstractDaoMaster {
     public DaoMaster(SQLiteDatabase db) {
         super(db, SCHEMA_VERSION);
         registerDaoClass(PgePricesDao.class);
-        registerDaoClass(PgeBillDao.class);
+        registerDaoClass(PgeG11BillDao.class);
         registerDaoClass(PgeG12BillDao.class);
         registerDaoClass(PgnigPricesDao.class);
         registerDaoClass(PgnigBillDao.class);

@@ -6,19 +6,19 @@ import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
-import pl.srw.billcalculator.db.PgeBill;
+import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.persistence.type.BillType;
 
 /**
 * Created by Kamil Seweryn.
 */
-public class PgeBillHistoryItemValueProvider extends HistoryItemValueProvider {
+public class PgeG11BillHistoryItemValueProvider extends HistoryItemValueProvider {
 
-    private final PgeBill bill;
+    private final PgeG11Bill bill;
 
-    protected PgeBillHistoryItemValueProvider(final History item) {
-        bill = (PgeBill) BillType.PGE.getDao().load(item.getBillId());
+    protected PgeG11BillHistoryItemValueProvider(final History item) {
+        bill = (PgeG11Bill) BillType.PGE_G11.getDao().load(item.getBillId());
     }
 
     @Override

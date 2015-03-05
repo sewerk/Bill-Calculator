@@ -19,7 +19,7 @@ public class GreenDaoGenerator {
         schema.setDefaultJavaPackageDao("pl.srw.billcalculator.db.dao");
 
         Entity pgePrices = addPgePrices(schema);
-        addPgeBill(schema, pgePrices);
+        addPgeG11Bill(schema, pgePrices);
 
         addPgeG12Bill(schema, pgePrices);
 
@@ -41,8 +41,8 @@ public class GreenDaoGenerator {
         history.addLongProperty("billId");
     }
 
-    private static void addPgeBill(Schema schema, final Entity pgePrices) {
-        Entity pgeBill = schema.addEntity("PgeBill");
+    private static void addPgeG11Bill(Schema schema, final Entity pgePrices) {
+        Entity pgeBill = schema.addEntity("PgeG11Bill");
         pgeBill.implementsInterface("Bill");
 
         pgeBill.addIdProperty().autoincrement();

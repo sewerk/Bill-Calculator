@@ -10,14 +10,14 @@ import de.greenrobot.dao.identityscope.IdentityScopeType;
 import de.greenrobot.dao.internal.DaoConfig;
 
 import pl.srw.billcalculator.db.PgePrices;
-import pl.srw.billcalculator.db.PgeBill;
+import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgnigPrices;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.History;
 
 import pl.srw.billcalculator.db.dao.PgePricesDao;
-import pl.srw.billcalculator.db.dao.PgeBillDao;
+import pl.srw.billcalculator.db.dao.PgeG11BillDao;
 import pl.srw.billcalculator.db.dao.PgeG12BillDao;
 import pl.srw.billcalculator.db.dao.PgnigPricesDao;
 import pl.srw.billcalculator.db.dao.PgnigBillDao;
@@ -33,14 +33,14 @@ import pl.srw.billcalculator.db.dao.HistoryDao;
 public class DaoSession extends AbstractDaoSession {
 
     private final DaoConfig pgePricesDaoConfig;
-    private final DaoConfig pgeBillDaoConfig;
+    private final DaoConfig pgeG11BillDaoConfig;
     private final DaoConfig pgeG12BillDaoConfig;
     private final DaoConfig pgnigPricesDaoConfig;
     private final DaoConfig pgnigBillDaoConfig;
     private final DaoConfig historyDaoConfig;
 
     private final PgePricesDao pgePricesDao;
-    private final PgeBillDao pgeBillDao;
+    private final PgeG11BillDao pgeG11BillDao;
     private final PgeG12BillDao pgeG12BillDao;
     private final PgnigPricesDao pgnigPricesDao;
     private final PgnigBillDao pgnigBillDao;
@@ -53,8 +53,8 @@ public class DaoSession extends AbstractDaoSession {
         pgePricesDaoConfig = daoConfigMap.get(PgePricesDao.class).clone();
         pgePricesDaoConfig.initIdentityScope(type);
 
-        pgeBillDaoConfig = daoConfigMap.get(PgeBillDao.class).clone();
-        pgeBillDaoConfig.initIdentityScope(type);
+        pgeG11BillDaoConfig = daoConfigMap.get(PgeG11BillDao.class).clone();
+        pgeG11BillDaoConfig.initIdentityScope(type);
 
         pgeG12BillDaoConfig = daoConfigMap.get(PgeG12BillDao.class).clone();
         pgeG12BillDaoConfig.initIdentityScope(type);
@@ -69,14 +69,14 @@ public class DaoSession extends AbstractDaoSession {
         historyDaoConfig.initIdentityScope(type);
 
         pgePricesDao = new PgePricesDao(pgePricesDaoConfig, this);
-        pgeBillDao = new PgeBillDao(pgeBillDaoConfig, this);
+        pgeG11BillDao = new PgeG11BillDao(pgeG11BillDaoConfig, this);
         pgeG12BillDao = new PgeG12BillDao(pgeG12BillDaoConfig, this);
         pgnigPricesDao = new PgnigPricesDao(pgnigPricesDaoConfig, this);
         pgnigBillDao = new PgnigBillDao(pgnigBillDaoConfig, this);
         historyDao = new HistoryDao(historyDaoConfig, this);
 
         registerDao(PgePrices.class, pgePricesDao);
-        registerDao(PgeBill.class, pgeBillDao);
+        registerDao(PgeG11Bill.class, pgeG11BillDao);
         registerDao(PgeG12Bill.class, pgeG12BillDao);
         registerDao(PgnigPrices.class, pgnigPricesDao);
         registerDao(PgnigBill.class, pgnigBillDao);
@@ -85,7 +85,7 @@ public class DaoSession extends AbstractDaoSession {
     
     public void clear() {
         pgePricesDaoConfig.getIdentityScope().clear();
-        pgeBillDaoConfig.getIdentityScope().clear();
+        pgeG11BillDaoConfig.getIdentityScope().clear();
         pgeG12BillDaoConfig.getIdentityScope().clear();
         pgnigPricesDaoConfig.getIdentityScope().clear();
         pgnigBillDaoConfig.getIdentityScope().clear();
@@ -96,8 +96,8 @@ public class DaoSession extends AbstractDaoSession {
         return pgePricesDao;
     }
 
-    public PgeBillDao getPgeBillDao() {
-        return pgeBillDao;
+    public PgeG11BillDao getPgeG11BillDao() {
+        return pgeG11BillDao;
     }
 
     public PgeG12BillDao getPgeG12BillDao() {

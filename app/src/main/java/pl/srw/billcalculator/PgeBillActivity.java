@@ -9,16 +9,12 @@ import android.widget.TableLayout;
 
 import java.math.BigDecimal;
 
-import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.calculation.PgeCalculatedBill;
 import pl.srw.billcalculator.calculation.PgeG11CalculatedBill;
 import pl.srw.billcalculator.calculation.PgeG12CalculatedBill;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgePrices;
 import pl.srw.billcalculator.preference.PgePrices;
-import pl.srw.billcalculator.task.BillStorer;
-import pl.srw.billcalculator.task.PgeBillStorer;
-import pl.srw.billcalculator.task.PgeG12BillStorer;
 import pl.srw.billcalculator.util.Display;
 import pl.srw.billcalculator.util.Views;
 
@@ -59,13 +55,6 @@ public class PgeBillActivity extends BackableActivity {
         setExcise();
         setSummaryTable();
         setToPayTV();
-    }
-
-    @DebugLog
-    @Override
-    protected void onResume() {
-        super.onResume();
-        saveBill();
     }
 
     private void readExtra(Intent intent) {
@@ -206,19 +195,5 @@ public class PgeBillActivity extends BackableActivity {
     private void setToPayTV() {
         Views.setTV(this, R.id.tv_to_pay, getString(R.string.to_pay, Display.toPay(bill.getGrossChargeSum())));
     }
-
-    private void saveBill() {
-        BillStorer task;
-        if (isTwoUnitTariff()) {
-            task = new PgeG12BillStorer(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo);
-        } else {
-            task = new PgeBillStorer(readingFrom, readingTo);
-        }
-        task.putDates(dateFrom, dateTo);
-        task.putAmount(bill.getGrossChargeSum().doubleValue());
-
-        new Thread(task).start();
-    }
-
 
 }

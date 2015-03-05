@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.worker;
+package pl.srw.billcalculator.service;
 
 import android.app.IntentService;
 import android.content.Intent;
