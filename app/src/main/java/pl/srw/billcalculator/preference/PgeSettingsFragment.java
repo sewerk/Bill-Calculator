@@ -24,9 +24,8 @@ public class PgeSettingsFragment extends ProviderSettingsFragment {
     public @interface TariffOption {}
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public void init() {
+        super.init();
         changePreferenceVisibilityDependingOnTaryfa();
     }
 
@@ -81,9 +80,9 @@ public class PgeSettingsFragment extends ProviderSettingsFragment {
 
     @Override
     public void restoreSettings() {
-        new PgePrices().clear();
+        new PgePrices().setDefault();
         PreferenceManager.getDefaultSharedPreferences(getActivity())
                 .edit().putString(getActivity().getString(R.string.preferences_pge_tariff), PgeSettingsFragment.TARIFF_G11)
-                .commit();
+                .apply();
     }
 }

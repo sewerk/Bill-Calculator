@@ -15,11 +15,11 @@ import pl.srw.billcalculator.pojo.IPgnigPrices;
 public class PgnigPrices implements IPgnigPrices {
     private final WrappedPgnigPrices wrappedPgnigPrices;
 
-//    private String oplataAbonamentowa = "8.67000";
-//    private String paliwoGazowe = "0.11815";
-//    private String dystrybucyjnaStala = "11.04000";
-//    private String dystrybucyjnaZmienna = "0.02734";
-//    private String wspolczynnikKonwersji = "11.150";
+//    private String oplataAbonamentowa;
+//    private String paliwoGazowe;
+//    private String dystrybucyjnaStala;
+//    private String dystrybucyjnaZmienna;
+//    private String wspolczynnikKonwersji;
 
     public PgnigPrices() {
         wrappedPgnigPrices = new WrappedPgnigPrices(PreferenceManager.getDefaultSharedPreferences(BillCalculator.context));
@@ -88,12 +88,21 @@ public class PgnigPrices implements IPgnigPrices {
         wrappedPgnigPrices.removeWsp_konwersji();
     }
 
+    public void setDefault() {
+        clear();
+        wrappedPgnigPrices.setAbonamentowa(wrappedPgnigPrices.getAbonamentowa());
+        wrappedPgnigPrices.setDystrybucyjna_stala(wrappedPgnigPrices.getDystrybucyjna_stala());
+        wrappedPgnigPrices.setDystrybucyjna_zmienna(wrappedPgnigPrices.getDystrybucyjna_zmienna());
+        wrappedPgnigPrices.setPaliwo_gazowe(wrappedPgnigPrices.getPaliwo_gazowe());
+        wrappedPgnigPrices.setWsp_konwersji(wrappedPgnigPrices.getWsp_konwersji());
+    }
+    
     @Preferences
     private class WrappedPgnigPrices {
-        private String abonamentowa = "8.67000";
-        private String paliwo_gazowe = "0.11815";
-        private String dystrybucyjna_stala = "11.04000";
-        private String dystrybucyjna_zmienna = "0.02734";
-        private String wsp_konwersji = "11.150";
+        private String abonamentowa = "8.67";
+        private String paliwo_gazowe = "0.11616";
+        private String dystrybucyjna_stala = "11.39";
+        private String dystrybucyjna_zmienna = "0.02821";
+        private String wsp_konwersji = "11.171";
     }
 }

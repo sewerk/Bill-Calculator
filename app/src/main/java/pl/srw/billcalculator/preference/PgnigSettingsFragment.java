@@ -16,9 +16,8 @@ import pl.srw.billcalculator.R;
 public class PgnigSettingsFragment extends ProviderSettingsFragment {
 
     @Override
-    public void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public void init() {
+        super.init();
         setWspKonwersjiDescription();
     }
 
@@ -67,6 +66,6 @@ public class PgnigSettingsFragment extends ProviderSettingsFragment {
 
     @Override
     public void restoreSettings() {
-        new PgnigPrices().clear();
+        new PgnigPrices().setDefault();
     }
 }

@@ -11,17 +11,17 @@ import pl.srw.billcalculator.pojo.IPgePrices;
  */
 public class PgePrices implements IPgePrices {
 
-//    private String zaEnergieCzynna = "0.2539";
-//    private String skladnikJakosciowy = "0.0108";
-//    private String oplataSieciowa = "0.2192";
-//    private String oplataPrzejsciowa = "0.77";
-//    private String oplataStalaZaPrzesyl = "1.78";
-//    private String oplataAbonamentowa = "5.31";
+//    private String zaEnergieCzynna;
+//    private String skladnikJakosciowy;
+//    private String oplataSieciowa;
+//    private String oplataPrzejsciowa;
+//    private String oplataStalaZaPrzesyl;
+//    private String oplataAbonamentowa;
 //
-//    private String zaEnergieCzynnaDzien = "0.2846";
-//    private String zaEnergieCzynnaNoc = "0.1906";
-//    private String oplataSieciowaDzien = "0.245";
-//    private String oplataSieciowaNoc = "0.0853";
+//    private String zaEnergieCzynnaDzien;
+//    private String zaEnergieCzynnaNoc;
+//    private String oplataSieciowaDzien;
+//    private String oplataSieciowaNoc;
 
     private WrappedPgePrices wrappedPgePrices;
 
@@ -148,17 +148,31 @@ public class PgePrices implements IPgePrices {
         wrappedPgePrices.removeCena_oplata_abonamentowa();
     }
 
+    public void setDefault() {
+        clear();
+        wrappedPgePrices.setCena_za_energie_czynna(wrappedPgePrices.getCena_za_energie_czynna());
+        wrappedPgePrices.setCena_za_energie_czynna_G12dzien(wrappedPgePrices.getCena_za_energie_czynna_G12dzien());
+        wrappedPgePrices.setCena_za_energie_czynna_G12noc(wrappedPgePrices.getCena_za_energie_czynna_G12noc());
+        wrappedPgePrices.setCena_oplata_sieciowa(wrappedPgePrices.getCena_oplata_sieciowa());
+        wrappedPgePrices.setCena_oplata_sieciowa_G12dzien(wrappedPgePrices.getCena_oplata_sieciowa_G12dzien());
+        wrappedPgePrices.setCena_oplata_sieciowa_G12noc(wrappedPgePrices.getCena_oplata_sieciowa_G12noc());
+        wrappedPgePrices.setCena_skladnik_jakosciowy(wrappedPgePrices.getCena_skladnik_jakosciowy());
+        wrappedPgePrices.setCena_oplata_przejsciowa(wrappedPgePrices.getCena_oplata_przejsciowa());
+        wrappedPgePrices.setCena_oplata_stala_za_przesyl(wrappedPgePrices.getCena_oplata_stala_za_przesyl());
+        wrappedPgePrices.setCena_oplata_abonamentowa(wrappedPgePrices.getCena_oplata_abonamentowa());
+    }
+
     @hrisey.Preferences
     private class WrappedPgePrices {
-        private String cena_za_energie_czynna = "0.2539";
-        private String cena_za_energie_czynna_G12dzien = "0.2846";
-        private String cena_za_energie_czynna_G12noc = "0.1906";
-        private String cena_oplata_sieciowa = "0.2192";
-        private String cena_oplata_sieciowa_G12dzien = "0.245";
-        private String cena_oplata_sieciowa_G12noc = "0.0853";
-        private String cena_skladnik_jakosciowy = "0.0108";
-        private String cena_oplata_przejsciowa = "0.77";
-        private String cena_oplata_stala_za_przesyl = "1.78";
-        private String cena_oplata_abonamentowa = "5.31";
+        private String cena_za_energie_czynna = "0.2553";
+        private String cena_za_energie_czynna_G12dzien = "0.2861";
+        private String cena_za_energie_czynna_G12noc = "0.1917";
+        private String cena_oplata_sieciowa = "0.2170";
+        private String cena_oplata_sieciowa_G12dzien = "0.2417";
+        private String cena_oplata_sieciowa_G12noc = "0.0836";
+        private String cena_skladnik_jakosciowy = "0.0115";
+        private String cena_oplata_przejsciowa = "1.04";
+        private String cena_oplata_stala_za_przesyl = "1.95";
+        private String cena_oplata_abonamentowa = "5.20";
     }
 }

@@ -26,22 +26,18 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        init();
+    }
+
+    protected void init() {
         addPreferencesFromResource(getPreferencesResource());
         setSummary();
     }
 
     protected abstract int getPreferencesResource();
 
-    private void setSummary() {
-        SharedPreferences sharedPreferences = getPreferenceScreen().getSharedPreferences();
-        Map<String, ?> preferences = sharedPreferences.getAll();
-        for (String key : preferences.keySet()) {
-            updateSummary(sharedPreferences, key);
-        }
-    }
-
     public abstract int getHelpLayoutResource();
-    
+
     public abstract int getTitleResource();
 
     @Override
@@ -65,7 +61,15 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
 
     private void replaceEmptyValue(final SharedPreferences sharedPreferences, final String key) {
         if (TextUtils.isEmpty(sharedPreferences.getString(key, EMPTY_VALUE_REPLACEMENT)))
-            sharedPreferences.edit().putString(key, EMPTY_VALUE_REPLACEMENT).commit();
+            sharedPreferences.edit().putString(key, EMPTY_VALUE_REPLACEMENT).apply();
+    }
+
+    private void setSummary() {
+        SharedPreferences sharedPreferences = getPreferenceScreen().getSharedPreferences();
+        Map<String, ?> preferences = sharedPreferences.getAll();
+        for (String key : preferences.keySet()) {
+            updateSummary(sharedPreferences, key);
+        }
     }
 
     private void updateSummary(final SharedPreferences sharedPreferences, final String key) {
@@ -99,7 +103,8 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
 
     public void restoreDefault() {
         restoreSettings();
-        setSummary();
+        setPreferenceScreen(null);
+        init();
     }
 
     protected abstract void restoreSettings();
