@@ -18,12 +18,12 @@ public class PreferenceUtil {
     public static void markAfterFirstLaunch(final Context context) {
         context.getSharedPreferences(MainActivity.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE)
                 .edit().putString(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH, new Date().toString())
-                .commit();
+                .apply();
     }
 
     public static void clearFirstLaunch(final Context context) {
         SharedPreferences.Editor editor = context.getSharedPreferences(MainActivity.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE).edit();
-        editor.clear().commit();
+        editor.remove(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH).apply();
     }
 
     public static String getFirstLaunchValue(final Context context) {
@@ -34,12 +34,12 @@ public class PreferenceUtil {
     public static void changeToG11Tariff(final Context context) {
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit().putString(context.getString(R.string.preferences_pge_tariff), PgeSettingsFragment.TARIFF_G11)
-                .commit();
+                .apply();
     }
 
     public static void changeToG12Tariff(final Context context) {
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit().putString(context.getString(R.string.preferences_pge_tariff), PgeSettingsFragment.TARIFF_G12)
-                .commit();
+                .apply();
     }
 }

@@ -66,6 +66,6 @@ public class CheckPricesDialogFragment extends DialogFragment {
     @DebugLog
     private void markDialogProcessed() {
         getActivity().getSharedPreferences(MainActivity.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE)
-                .edit().putString(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH, new Date().toString()).commit();
+                .edit().putString(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH, new Date().toString()).apply();
     }
 }

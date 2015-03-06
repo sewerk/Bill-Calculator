@@ -25,7 +25,7 @@ public class PreferenceMigrationTest extends ApplicationTestCase {
     protected void setUp() throws Exception {
         super.setUp();
         preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
-        preferences.edit().clear().commit();
+        preferences.edit().clear().apply();
     }
 
     public void donttestMigrationVersionCurrent() {
@@ -49,7 +49,7 @@ public class PreferenceMigrationTest extends ApplicationTestCase {
         editor.putString(mContext.getString(R.string.preferences_pge_oplata_abonamentowa), "8.08");
         editor.putString(mContext.getString(R.string.preferences_pge_za_energie_czynna), "9.09");
         editor.putString(mContext.getString(R.string.preferences_pge_oplata_sieciowa), "9.01");
-        editor.commit();
+        editor.apply();
 
         createApplication();
 
@@ -75,7 +75,7 @@ public class PreferenceMigrationTest extends ApplicationTestCase {
         editor.putString(mContext.getString(R.string.preferences_pgnig_abonamentowa), "1.07");
         editor.putString(mContext.getString(R.string.preferences_pgnig_paliwo_gazowe), "1.06");
         editor.putString(mContext.getString(R.string.preferences_pgnig_wsp_konwersji), "1.05");
-        editor.commit();
+        editor.apply();
         
         createApplication();
 

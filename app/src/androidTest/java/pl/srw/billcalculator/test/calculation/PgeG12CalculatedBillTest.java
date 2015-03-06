@@ -17,7 +17,7 @@ import static org.junit.Assert.assertThat;
  * Created by Kamil Seweryn.
  */
 @RunWith(AndroidJUnit4.class)
-public class PG12CalculatedBillTest {
+public class PgeG12CalculatedBillTest {
 
     @Test
     public void expectProperCalculations() {
