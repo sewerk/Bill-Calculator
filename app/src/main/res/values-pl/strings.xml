@@ -45,4 +45,5 @@
     <string name="history_readings_label">Wskazania:</string>
     <string name="history_readingsG12">dzienna(%1$s - %2$s)\nnocna(%3$s - %4$s)</string>
     <string name="empty_history">Brak wyliczeń rachunków</string>
+    <string name="action_restore">Przywróć domyślne</string>
 </resources>

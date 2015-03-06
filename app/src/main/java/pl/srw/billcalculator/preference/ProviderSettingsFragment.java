@@ -20,7 +20,7 @@ import pl.srw.billcalculator.R;
 public abstract class ProviderSettingsFragment extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-    public static final String EMPTY_VALUE_REPLACEMENT = "0.0";
+    public static final String EMPTY_VALUE_REPLACEMENT = "0.00";
 
     @DebugLog
     @Override
@@ -96,4 +96,11 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
         }
         return sb.toString();
     }
+
+    public void restoreDefault() {
+        restoreSettings();
+        setSummary();
+    }
+
+    protected abstract void restoreSettings();
 }

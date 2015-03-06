@@ -80,6 +80,14 @@ public class PgnigPrices implements IPgnigPrices {
         return dbPrices;
     }
 
+    public void clear() {
+        wrappedPgnigPrices.removeAbonamentowa();
+        wrappedPgnigPrices.removeDystrybucyjna_stala();
+        wrappedPgnigPrices.removeDystrybucyjna_zmienna();
+        wrappedPgnigPrices.removePaliwo_gazowe();
+        wrappedPgnigPrices.removeWsp_konwersji();
+    }
+
     @Preferences
     private class WrappedPgnigPrices {
         private String abonamentowa = "8.67000";

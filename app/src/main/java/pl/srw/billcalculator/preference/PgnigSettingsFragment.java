@@ -64,4 +64,9 @@ public class PgnigSettingsFragment extends ProviderSettingsFragment {
         return getStringFor(R.string.preferences_pgnig_abonamentowa,
                 R.string.preferences_pgnig_dystrybucyjna_stala);
     }
+
+    @Override
+    public void restoreSettings() {
+        new PgnigPrices().clear();
+    }
 }

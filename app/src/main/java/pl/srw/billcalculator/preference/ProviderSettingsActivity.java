@@ -1,6 +1,5 @@
 package pl.srw.billcalculator.preference;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,7 +40,7 @@ public class ProviderSettingsActivity extends BackableActivity {
                     .commit();
 
         } else {
-            preferenceFragment = (ProviderSettingsFragment) getCurrentFragment();
+            preferenceFragment = getCurrentFragment();
         }
 
         if (getActionBar() != null && preferenceFragment != null)
@@ -74,6 +73,9 @@ public class ProviderSettingsActivity extends BackableActivity {
         if (item.getItemId() == R.id.action_help) {
             showHelp();
             return true;
+        } else if (item.getItemId() == R.id.action_default) {
+            getCurrentFragment().restoreDefault();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -84,10 +86,10 @@ public class ProviderSettingsActivity extends BackableActivity {
     }
 
     private int getHelpResource() {
-        return ((ProviderSettingsFragment) getCurrentFragment()).getHelpLayoutResource();
+        return getCurrentFragment().getHelpLayoutResource();
     }
 
-    private Fragment getCurrentFragment() {
-        return getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+    private ProviderSettingsFragment getCurrentFragment() {
+        return (ProviderSettingsFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
     }
 }

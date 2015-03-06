@@ -3,6 +3,7 @@ package pl.srw.billcalculator.preference;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.preference.PreferenceManager;
 import android.support.annotation.StringDef;
 
 import java.lang.annotation.Retention;
@@ -76,5 +77,13 @@ public class PgeSettingsFragment extends ProviderSettingsFragment {
         return getStringFor(R.string.preferences_pge_oplata_przejsciowa,
                 R.string.preferences_pge_oplata_stala_za_przesyl,
                 R.string.preferences_pge_oplata_abonamentowa);
+    }
+
+    @Override
+    public void restoreSettings() {
+        new PgePrices().clear();
+        PreferenceManager.getDefaultSharedPreferences(getActivity())
+                .edit().putString(getActivity().getString(R.string.preferences_pge_tariff), PgeSettingsFragment.TARIFF_G11)
+                .commit();
     }
 }
