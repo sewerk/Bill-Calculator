@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textView_roz_punktu_poboru"
                 android:layout_alignParentLeft="true"
-                android:text="Grupa taryfowa PGNiG: W-1.1"
+                android:text="Grupa taryfowa PGNiG: W-x.x"
                 android:layout_marginTop="24dp"/>
 
             <include

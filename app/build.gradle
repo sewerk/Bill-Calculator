@@ -8,8 +8,8 @@ android {
     buildToolsVersion "21.1.1"
 
     defaultConfig {
-        versionCode 12
-        versionName "1.2.6"
+        versionCode 13
+        versionName "1.2.7"
         minSdkVersion 14
         targetSdkVersion 21
 
@@ -41,8 +41,10 @@ android {
 }
 
 dependencies {
+    compile fileTree(include: '*.jar', dir: 'libs')
     compile 'com.jakewharton:butterknife:5.1.2'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.easing:library:1.0.0@aar'
     compile 'com.daimajia.androidanimations:library:1.1.2@aar'
+    compile 'org.threeten:threetenbp:1.2'
 }

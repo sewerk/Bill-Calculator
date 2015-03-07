@@ -74,7 +74,7 @@
     <string name="dystrybucyjna_stala_desc" translatable="false">Cena za dostarczanie gazu (wcześniej opłata sieciowa stała), naliczana co miesiąc, niezależnie od zużycia.</string>
     <string name="dystrybucyjna_zmienna_desc" translatable="false">Cena za dostarczanie gazu (wcześniej opłata sieciowa zmienna), naliczana proporcjonalnie do zużycia.</string>
     
-    <string name="oplata_przejsciowa_desc" translatable="false">Składnik opłaty przejściowej jest zależny od rocznego zużycia kWh:\n - do 500 kWH/rok wynosi 0.18 zł netto\n - od 500 do 1200 kWh/rok wynosi 0.77 zł netto\n - od 1200 kWh/rok wynosi 2.44 zł netto</string>
+    <string name="oplata_przejsciowa_desc" translatable="false">Składnik opłaty przejściowej jest zależny od rocznego zużycia kWh:\n - do 500 kWH/rok wynosi 0.25 zł netto\n - od 500 do 1200 kWh/rok wynosi 1.04 zł netto\n - od 1200 kWh/rok wynosi 3.29 zł netto</string>
     <string name="oplata_stala_za_przesyl_desc" translatable="false">Inne nazwy:\n - składnik stały stawki sieciowej,\n - opłata przesyłowa stała.\nCena naliczana co miesiąc, niezależnie od zużycia.</string>
     <string name="oplata_abonamentowa_desc" translatable="false">Stała cena za abonament, naliczana co miesiąc, niezależnie od zużycia.</string>
     <string name="skladnik_jakosciowy_desc" translatable="false">Inne nazwy:\n - składnik jakościowy opłaty systemowej,\n - opłata dystrybucyjna jakościowa.\nCena zapewnienia odpowiedniej jakości dostaw energii.</string>
