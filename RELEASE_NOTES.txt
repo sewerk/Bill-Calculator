@@ -2,8 +2,9 @@ v.1.3
  - storing bill calculation history
  - auto-complete previous reading
  - revert default prices action
-v.1.2.7
  - VAT counting fix for Pgnig
+v.1.2.7
+ - update default prices
 v.1.2.6
  - price settings description provided
  - about re-design, G+ link added
