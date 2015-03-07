@@ -38,6 +38,8 @@ import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
+import pl.srw.billcalculator.preference.PgePrices;
+import pl.srw.billcalculator.preference.PgnigPrices;
 import pl.srw.billcalculator.type.BillType;
 import pl.srw.billcalculator.preference.PgeSettingsFragment;
 import pl.srw.billcalculator.preference.ProviderSettingsActivity;
@@ -211,6 +213,8 @@ public class MainActivity extends Activity {
     protected void onResume() {
         super.onResume();
         if (isFirstLaunch()) {
+            new PgePrices().setDefault();
+            new PgnigPrices().setDefault();
             showCheckPricesDialog();
         }
     }

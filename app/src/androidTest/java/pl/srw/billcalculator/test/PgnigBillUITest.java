@@ -1,11 +1,13 @@
 package pl.srw.billcalculator.test;
 
+import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
 
+import com.robotium.solo.Condition;
 import com.robotium.solo.Solo;
 
 import org.junit.After;
@@ -66,7 +68,7 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
     }
 
     private void setPricesInSettings() {
-        solo.pressMenuItem(0);
+        solo.clickOnActionBarItem(R.id.action_settings);
         solo.clickOnText(getString(R.string.pgnig_prices));
 
         setPrice(R.string.wspolczynnik_konwersji, "11.094");
@@ -81,8 +83,14 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
 
     private void inputValues() {
         // change bill type
-        solo.clickOnImageButton(0);
-        assertThat((BillType) solo.getImageButton(0).getTag(MainActivity.TAG_IMAGE_TYPE),
+        solo.clickOnView(solo.getView(R.id.button_bill_type_switch));
+        solo.waitForCondition(new Condition() {
+            @Override
+            public boolean isSatisfied() {
+                return isVisible(R.drawable.pgnig_on_pge);
+            }
+        }, 1000);
+        assertThat((BillType) solo.getView(R.id.button_bill_type_switch).getTag(MainActivity.TAG_IMAGE_TYPE),
                 is(BillType.PGNIG));
 
         // type readings
@@ -144,7 +152,7 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
     }
 
     private void changePricesInSettings() {
-        solo.pressMenuItem(0);
+        solo.clickOnActionBarItem(R.id.action_settings);
         solo.clickOnText(getString(R.string.pgnig_prices));
 
         setPrice(R.string.wspolczynnik_konwersji, "11.172");
@@ -155,11 +163,11 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
     }
 
     private void verifyBillStoredInHistory() {
-        solo.pressMenuItem(1);
+        solo.clickOnActionBarItem(R.id.action_history);
 
         // verify bill visible on list
         assertTrue(solo.searchText("10/10/2014 - 15/12/2014"));
-        assertTrue(solo.getCurrentActivity().getResources().getDrawable(R.drawable.pgnig).isVisible());
+        assertTrue(isVisible(R.drawable.pgnig));
         assertTrue(solo.searchText("6696 - 7101"));
         assertTrue(solo.searchText(Pattern.quote("937.03 zł")));
 
@@ -175,6 +183,10 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
         assertFalse(solo.searchText("Wsp. konwersji: 11.172"));
         assertTrue(solo.searchText("6.97000"));
         assertFalse(solo.searchText("8.67"));
+    }
+
+    protected boolean isVisible(@DrawableRes int drawable) {
+        return solo.getCurrentActivity().getResources().getDrawable(drawable).isVisible();
     }
 
     private String getString(@StringRes final int strRes) {

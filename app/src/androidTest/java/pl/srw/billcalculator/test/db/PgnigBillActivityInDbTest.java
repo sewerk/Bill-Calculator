@@ -11,6 +11,7 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.PgnigPrices;
 import pl.srw.billcalculator.persistence.Database;
+import pl.srw.billcalculator.test.PreferenceUtil;
 import pl.srw.billcalculator.type.BillType;
 
 /**
@@ -30,6 +31,7 @@ public class PgnigBillActivityInDbTest extends ActivityInstrumentationTestCase2<
         Database.initialize(newContext);
         Database.getSession().deleteAll(PgnigBill.class);
 
+        PreferenceUtil.changeToG11Tariff(getInstrumentation().getTargetContext());
         sut = getActivity();
     }
 
