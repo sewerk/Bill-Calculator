@@ -249,7 +249,317 @@ com.nineoldandroids.view.ViewPropertyAnimatorPreHC$AnimatorEventListener
 com.nineoldandroids.view.ViewPropertyAnimatorPreHC$NameValuesHolder
 com.nineoldandroids.view.ViewPropertyAnimatorPreHC$PropertyBundle
 com.nineoldandroids.view.animation.AnimatorProxy
+com.robotium.solo.ActivityUtils
+com.robotium.solo.ActivityUtils$1
+com.robotium.solo.Asserter
+com.robotium.solo.By
+com.robotium.solo.By$ClassName
+com.robotium.solo.By$CssSelector
+com.robotium.solo.By$Id
+com.robotium.solo.By$Name
+com.robotium.solo.By$TagName
+com.robotium.solo.By$Text
+com.robotium.solo.By$Xpath
+com.robotium.solo.Checker
+com.robotium.solo.Clicker
+com.robotium.solo.Condition
+com.robotium.solo.DialogUtils
+com.robotium.solo.GLRenderWrapper
+com.robotium.solo.Getter
+com.robotium.solo.Presser
+com.robotium.solo.Presser$1
+com.robotium.solo.Reflect
+com.robotium.solo.Reflect$FieldRf
+com.robotium.solo.RobotiumTextView
+com.robotium.solo.RobotiumUtils
+com.robotium.solo.RobotiumWebClient
+com.robotium.solo.RobotiumWebClient$1
+com.robotium.solo.Rotator
+com.robotium.solo.ScreenshotTaker
+com.robotium.solo.ScreenshotTaker$ScreenShotSaver
+com.robotium.solo.ScreenshotTaker$ScreenshotRunnable
+com.robotium.solo.ScreenshotTaker$ScreenshotSequenceThread
+com.robotium.solo.Scroller
+com.robotium.solo.Scroller$1
+com.robotium.solo.Scroller$2
+com.robotium.solo.Scroller$3
+com.robotium.solo.Scroller$4
+com.robotium.solo.Scroller$Side
+com.robotium.solo.Scroller$Side: com.robotium.solo.Scroller$Side[] values()
+com.robotium.solo.Scroller$Side: com.robotium.solo.Scroller$Side valueOf(java.lang.String)
+com.robotium.solo.Searcher
+com.robotium.solo.Searcher$1
+com.robotium.solo.Sender
+com.robotium.solo.Setter
+com.robotium.solo.Setter$1
+com.robotium.solo.Setter$2
+com.robotium.solo.Setter$3
+com.robotium.solo.Setter$4
+com.robotium.solo.Setter$5
+com.robotium.solo.Sleeper
+com.robotium.solo.Solo
+com.robotium.solo.Solo$1
+com.robotium.solo.Solo$2
+com.robotium.solo.Solo$3
+com.robotium.solo.Solo$4
+com.robotium.solo.Solo$Config
+com.robotium.solo.Solo$Config$ScreenshotFileType
+com.robotium.solo.Solo$Config$ScreenshotFileType: com.robotium.solo.Solo$Config$ScreenshotFileType[] values()
+com.robotium.solo.Solo$Config$ScreenshotFileType: com.robotium.solo.Solo$Config$ScreenshotFileType valueOf(java.lang.String)
+com.robotium.solo.Swiper
+com.robotium.solo.SystemUtils
+com.robotium.solo.Tapper
+com.robotium.solo.TextEnterer
+com.robotium.solo.TextEnterer$1
+com.robotium.solo.TextEnterer$2
+com.robotium.solo.Timeout
+com.robotium.solo.ViewFetcher
+com.robotium.solo.ViewLocationComparator
+com.robotium.solo.Waiter
+com.robotium.solo.WebElement
+com.robotium.solo.WebElementCreator
+com.robotium.solo.WebUtils
+com.robotium.solo.WebUtils$1
+com.robotium.solo.WebUtils$2
+com.robotium.solo.Zoomer
 hugo.weaving.DebugLog
+org.threeten.bp.Clock
+org.threeten.bp.Clock$FixedClock
+org.threeten.bp.Clock$OffsetClock
+org.threeten.bp.Clock$SystemClock
+org.threeten.bp.Clock$TickClock
+org.threeten.bp.DateTimeException
+org.threeten.bp.DateTimeUtils
+org.threeten.bp.DayOfWeek
+org.threeten.bp.DayOfWeek: org.threeten.bp.DayOfWeek[] values()
+org.threeten.bp.DayOfWeek: org.threeten.bp.DayOfWeek valueOf(java.lang.String)
+org.threeten.bp.DayOfWeek$1
+org.threeten.bp.Duration
+org.threeten.bp.Duration$1
+org.threeten.bp.Instant
+org.threeten.bp.Instant$1
+org.threeten.bp.Instant$2
+org.threeten.bp.LocalDate
+org.threeten.bp.LocalDate$1
+org.threeten.bp.LocalDate$2
+org.threeten.bp.LocalDateTime
+org.threeten.bp.LocalDateTime$1
+org.threeten.bp.LocalDateTime$2
+org.threeten.bp.LocalTime
+org.threeten.bp.LocalTime$1
+org.threeten.bp.LocalTime$2
+org.threeten.bp.Month
+org.threeten.bp.Month: org.threeten.bp.Month[] values()
+org.threeten.bp.Month: org.threeten.bp.Month valueOf(java.lang.String)
+org.threeten.bp.Month$1
+org.threeten.bp.Month$2
+org.threeten.bp.MonthDay
+org.threeten.bp.MonthDay$1
+org.threeten.bp.MonthDay$2
+org.threeten.bp.OffsetDateTime
+org.threeten.bp.OffsetDateTime$1
+org.threeten.bp.OffsetDateTime$2
+org.threeten.bp.OffsetDateTime$3
+org.threeten.bp.OffsetTime
+org.threeten.bp.OffsetTime$1
+org.threeten.bp.OffsetTime$2
+org.threeten.bp.Period
+org.threeten.bp.Ser
+org.threeten.bp.Year
+org.threeten.bp.Year$1
+org.threeten.bp.Year$2
+org.threeten.bp.YearMonth
+org.threeten.bp.YearMonth$1
+org.threeten.bp.YearMonth$2
+org.threeten.bp.ZoneId
+org.threeten.bp.ZoneId$1
+org.threeten.bp.ZoneId$2
+org.threeten.bp.ZoneOffset
+org.threeten.bp.ZoneOffset$1
+org.threeten.bp.ZoneRegion
+org.threeten.bp.ZonedDateTime
+org.threeten.bp.ZonedDateTime$1
+org.threeten.bp.ZonedDateTime$2
+org.threeten.bp.chrono.AbstractChronology
+org.threeten.bp.chrono.ChronoDateImpl
+org.threeten.bp.chrono.ChronoDateImpl$1
+org.threeten.bp.chrono.ChronoLocalDate
+org.threeten.bp.chrono.ChronoLocalDate$1
+org.threeten.bp.chrono.ChronoLocalDateTime
+org.threeten.bp.chrono.ChronoLocalDateTime$1
+org.threeten.bp.chrono.ChronoLocalDateTimeImpl
+org.threeten.bp.chrono.ChronoLocalDateTimeImpl$1
+org.threeten.bp.chrono.ChronoPeriod
+org.threeten.bp.chrono.ChronoPeriodImpl
+org.threeten.bp.chrono.ChronoZonedDateTime
+org.threeten.bp.chrono.ChronoZonedDateTime$1
+org.threeten.bp.chrono.ChronoZonedDateTime$2
+org.threeten.bp.chrono.ChronoZonedDateTimeImpl
+org.threeten.bp.chrono.ChronoZonedDateTimeImpl$1
+org.threeten.bp.chrono.Chronology
+org.threeten.bp.chrono.Chronology$1
+org.threeten.bp.chrono.Chronology$2
+org.threeten.bp.chrono.Era
+org.threeten.bp.chrono.HijrahChronology
+org.threeten.bp.chrono.HijrahDate
+org.threeten.bp.chrono.HijrahDate$1
+org.threeten.bp.chrono.HijrahEra
+org.threeten.bp.chrono.HijrahEra: org.threeten.bp.chrono.HijrahEra[] values()
+org.threeten.bp.chrono.HijrahEra: org.threeten.bp.chrono.HijrahEra valueOf(java.lang.String)
+org.threeten.bp.chrono.IsoChronology
+org.threeten.bp.chrono.IsoEra
+org.threeten.bp.chrono.IsoEra: org.threeten.bp.chrono.IsoEra[] values()
+org.threeten.bp.chrono.IsoEra: org.threeten.bp.chrono.IsoEra valueOf(java.lang.String)
+org.threeten.bp.chrono.JapaneseChronology
+org.threeten.bp.chrono.JapaneseChronology$1
+org.threeten.bp.chrono.JapaneseDate
+org.threeten.bp.chrono.JapaneseDate$1
+org.threeten.bp.chrono.JapaneseEra
+org.threeten.bp.chrono.MinguoChronology
+org.threeten.bp.chrono.MinguoChronology$1
+org.threeten.bp.chrono.MinguoDate
+org.threeten.bp.chrono.MinguoDate$1
+org.threeten.bp.chrono.MinguoEra
+org.threeten.bp.chrono.MinguoEra: org.threeten.bp.chrono.MinguoEra[] values()
+org.threeten.bp.chrono.MinguoEra: org.threeten.bp.chrono.MinguoEra valueOf(java.lang.String)
+org.threeten.bp.chrono.Ser
+org.threeten.bp.chrono.ThaiBuddhistChronology
+org.threeten.bp.chrono.ThaiBuddhistChronology$1
+org.threeten.bp.chrono.ThaiBuddhistDate
+org.threeten.bp.chrono.ThaiBuddhistDate$1
+org.threeten.bp.chrono.ThaiBuddhistEra
+org.threeten.bp.chrono.ThaiBuddhistEra: org.threeten.bp.chrono.ThaiBuddhistEra[] values()
+org.threeten.bp.chrono.ThaiBuddhistEra: org.threeten.bp.chrono.ThaiBuddhistEra valueOf(java.lang.String)
+org.threeten.bp.format.DateTimeBuilder
+org.threeten.bp.format.DateTimeFormatStyleProvider
+org.threeten.bp.format.DateTimeFormatter
+org.threeten.bp.format.DateTimeFormatter$1
+org.threeten.bp.format.DateTimeFormatter$2
+org.threeten.bp.format.DateTimeFormatter$ClassicFormat
+org.threeten.bp.format.DateTimeFormatterBuilder
+org.threeten.bp.format.DateTimeFormatterBuilder$1
+org.threeten.bp.format.DateTimeFormatterBuilder$2
+org.threeten.bp.format.DateTimeFormatterBuilder$3
+org.threeten.bp.format.DateTimeFormatterBuilder$4
+org.threeten.bp.format.DateTimeFormatterBuilder$CharLiteralPrinterParser
+org.threeten.bp.format.DateTimeFormatterBuilder$ChronoPrinterParser
+org.threeten.bp.format.DateTimeFormatterBuilder$CompositePrinterParser
+org.threeten.bp.format.DateTimeFormatterBuilder$DateTimePrinterParser
+org.threeten.bp.format.DateTimeFormatterBuilder$DefaultingParser
+org.threeten.bp.format.DateTimeFormatterBuilder$FractionPrinterParser
+org.threeten.bp.format.DateTimeFormatterBuilder$InstantPrinterParser
+org.threeten.bp.format.DateTimeFormatterBuilder$LocalizedOffsetPrinterParser
+org.threeten.bp.format.DateTimeFormatterBuilder$LocalizedPrinterParser
+org.threeten.bp.format.DateTimeFormatterBuilder$NumberPrinterParser
+org.threeten.bp.format.DateTimeFormatterBuilder$OffsetIdPrinterParser
+org.threeten.bp.format.DateTimeFormatterBuilder$PadPrinterParserDecorator
+org.threeten.bp.format.DateTimeFormatterBuilder$ReducedPrinterParser
+org.threeten.bp.format.DateTimeFormatterBuilder$SettingsParser
+org.threeten.bp.format.DateTimeFormatterBuilder$SettingsParser: org.threeten.bp.format.DateTimeFormatterBuilder$SettingsParser[] values()
+org.threeten.bp.format.DateTimeFormatterBuilder$SettingsParser: org.threeten.bp.format.DateTimeFormatterBuilder$SettingsParser valueOf(java.lang.String)
+org.threeten.bp.format.DateTimeFormatterBuilder$StringLiteralPrinterParser
+org.threeten.bp.format.DateTimeFormatterBuilder$TextPrinterParser
+org.threeten.bp.format.DateTimeFormatterBuilder$WeekFieldsPrinterParser
+org.threeten.bp.format.DateTimeFormatterBuilder$ZoneIdPrinterParser
+org.threeten.bp.format.DateTimeFormatterBuilder$ZoneIdPrinterParser$SubstringTree
+org.threeten.bp.format.DateTimeFormatterBuilder$ZoneTextPrinterParser
+org.threeten.bp.format.DateTimeFormatterBuilder$ZoneTextPrinterParser$1
+org.threeten.bp.format.DateTimeParseContext
+org.threeten.bp.format.DateTimeParseContext$1
+org.threeten.bp.format.DateTimeParseContext$Parsed
+org.threeten.bp.format.DateTimeParseException
+org.threeten.bp.format.DateTimePrintContext
+org.threeten.bp.format.DateTimePrintContext$1
+org.threeten.bp.format.DateTimeTextProvider
+org.threeten.bp.format.DecimalStyle
+org.threeten.bp.format.FormatStyle
+org.threeten.bp.format.FormatStyle: org.threeten.bp.format.FormatStyle[] values()
+org.threeten.bp.format.FormatStyle: org.threeten.bp.format.FormatStyle valueOf(java.lang.String)
+org.threeten.bp.format.ResolverStyle
+org.threeten.bp.format.ResolverStyle: org.threeten.bp.format.ResolverStyle[] values()
+org.threeten.bp.format.ResolverStyle: org.threeten.bp.format.ResolverStyle valueOf(java.lang.String)
+org.threeten.bp.format.SignStyle
+org.threeten.bp.format.SignStyle: org.threeten.bp.format.SignStyle[] values()
+org.threeten.bp.format.SignStyle: org.threeten.bp.format.SignStyle valueOf(java.lang.String)
+org.threeten.bp.format.SimpleDateTimeFormatStyleProvider
+org.threeten.bp.format.SimpleDateTimeTextProvider
+org.threeten.bp.format.SimpleDateTimeTextProvider$1
+org.threeten.bp.format.SimpleDateTimeTextProvider$LocaleStore
+org.threeten.bp.format.TextStyle
+org.threeten.bp.format.TextStyle: org.threeten.bp.format.TextStyle[] values()
+org.threeten.bp.format.TextStyle: org.threeten.bp.format.TextStyle valueOf(java.lang.String)
+org.threeten.bp.jdk8.DefaultInterfaceEra
+org.threeten.bp.jdk8.DefaultInterfaceTemporal
+org.threeten.bp.jdk8.DefaultInterfaceTemporalAccessor
+org.threeten.bp.jdk8.Jdk8Methods
+org.threeten.bp.temporal.ChronoField
+org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField[] values()
+org.threeten.bp.temporal.ChronoField: org.threeten.bp.temporal.ChronoField valueOf(java.lang.String)
+org.threeten.bp.temporal.ChronoUnit
+org.threeten.bp.temporal.ChronoUnit: org.threeten.bp.temporal.ChronoUnit[] values()
+org.threeten.bp.temporal.ChronoUnit: org.threeten.bp.temporal.ChronoUnit valueOf(java.lang.String)
+org.threeten.bp.temporal.IsoFields
+org.threeten.bp.temporal.IsoFields$1
+org.threeten.bp.temporal.IsoFields$Field
+org.threeten.bp.temporal.IsoFields$Field: org.threeten.bp.temporal.IsoFields$Field[] values()
+org.threeten.bp.temporal.IsoFields$Field: org.threeten.bp.temporal.IsoFields$Field valueOf(java.lang.String)
+org.threeten.bp.temporal.IsoFields$Field$1
+org.threeten.bp.temporal.IsoFields$Field$2
+org.threeten.bp.temporal.IsoFields$Field$3
+org.threeten.bp.temporal.IsoFields$Field$4
+org.threeten.bp.temporal.IsoFields$Unit
+org.threeten.bp.temporal.IsoFields$Unit: org.threeten.bp.temporal.IsoFields$Unit[] values()
+org.threeten.bp.temporal.IsoFields$Unit: org.threeten.bp.temporal.IsoFields$Unit valueOf(java.lang.String)
+org.threeten.bp.temporal.JulianFields
+org.threeten.bp.temporal.JulianFields$Field
+org.threeten.bp.temporal.JulianFields$Field: org.threeten.bp.temporal.JulianFields$Field[] values()
+org.threeten.bp.temporal.JulianFields$Field: org.threeten.bp.temporal.JulianFields$Field valueOf(java.lang.String)
+org.threeten.bp.temporal.Temporal
+org.threeten.bp.temporal.TemporalAccessor
+org.threeten.bp.temporal.TemporalAdjuster
+org.threeten.bp.temporal.TemporalAdjusters
+org.threeten.bp.temporal.TemporalAdjusters$1
+org.threeten.bp.temporal.TemporalAdjusters$DayOfWeekInMonth
+org.threeten.bp.temporal.TemporalAdjusters$Impl
+org.threeten.bp.temporal.TemporalAdjusters$RelativeDayOfWeek
+org.threeten.bp.temporal.TemporalAmount
+org.threeten.bp.temporal.TemporalField
+org.threeten.bp.temporal.TemporalQueries
+org.threeten.bp.temporal.TemporalQueries$1
+org.threeten.bp.temporal.TemporalQueries$2
+org.threeten.bp.temporal.TemporalQueries$3
+org.threeten.bp.temporal.TemporalQueries$4
+org.threeten.bp.temporal.TemporalQueries$5
+org.threeten.bp.temporal.TemporalQueries$6
+org.threeten.bp.temporal.TemporalQueries$7
+org.threeten.bp.temporal.TemporalQuery
+org.threeten.bp.temporal.TemporalUnit
+org.threeten.bp.temporal.UnsupportedTemporalTypeException
+org.threeten.bp.temporal.ValueRange
+org.threeten.bp.temporal.WeekFields
+org.threeten.bp.temporal.WeekFields$ComputedDayOfField
+org.threeten.bp.zone.Ser
+org.threeten.bp.zone.StandardZoneRules
+org.threeten.bp.zone.TzdbZoneRulesCompiler
+org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule
+org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBMonthDayTime
+org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBRule
+org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBZone
+org.threeten.bp.zone.TzdbZoneRulesProvider
+org.threeten.bp.zone.TzdbZoneRulesProvider$Version
+org.threeten.bp.zone.ZoneOffsetTransition
+org.threeten.bp.zone.ZoneOffsetTransitionRule
+org.threeten.bp.zone.ZoneOffsetTransitionRule$1
+org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition
+org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition: org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition[] values()
+org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition: org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition valueOf(java.lang.String)
+org.threeten.bp.zone.ZoneRules
+org.threeten.bp.zone.ZoneRules$Fixed
+org.threeten.bp.zone.ZoneRulesBuilder
+org.threeten.bp.zone.ZoneRulesBuilder$TZRule
+org.threeten.bp.zone.ZoneRulesBuilder$TZWindow
+org.threeten.bp.zone.ZoneRulesException
+org.threeten.bp.zone.ZoneRulesProvider
 pl.srw.billcalculator.AboutActivity
 pl.srw.billcalculator.AboutActivity: android.widget.TextView tvVersion
 pl.srw.billcalculator.AboutActivity: android.widget.TextView tvLinkEmail
@@ -524,11 +834,17 @@ pl.srw.billcalculator.R$string: int price_abonamentowa
 pl.srw.billcalculator.R$string: int price_dystrybucyjna_stala
 pl.srw.billcalculator.R$string: int price_dystrybucyjna_zmienna
 pl.srw.billcalculator.R$string: int price_oplata_abonamentowa
+pl.srw.billcalculator.R$string: int price_oplata_abonamentowa_2mc
+pl.srw.billcalculator.R$string: int price_oplata_abonamentowa_6mc
+pl.srw.billcalculator.R$string: int price_oplata_abonamentowa_ukl_przedplatowy
 pl.srw.billcalculator.R$string: int price_oplata_przejsciowa
+pl.srw.billcalculator.R$string: int price_oplata_przejsciowa_gt1200
+pl.srw.billcalculator.R$string: int price_oplata_przejsciowa_lt500
 pl.srw.billcalculator.R$string: int price_oplata_sieciowa
 pl.srw.billcalculator.R$string: int price_oplata_sieciowa_G12dzien
 pl.srw.billcalculator.R$string: int price_oplata_sieciowa_G12noc
 pl.srw.billcalculator.R$string: int price_oplata_stala_za_przesyl
+pl.srw.billcalculator.R$string: int price_oplata_stala_za_przesyl_3fazowy
 pl.srw.billcalculator.R$string: int price_paliwo_gazowe
 pl.srw.billcalculator.R$string: int price_skladnik_jakosciowy
 pl.srw.billcalculator.R$string: int price_wsp_konwersji
