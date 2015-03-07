@@ -816,6 +816,1595 @@ com.nineoldandroids.view.animation.AnimatorProxy -> com.nineoldandroids.view.ani
     void computeRect(android.graphics.RectF,android.view.View) -> a
     void transformMatrix(android.graphics.Matrix,android.view.View) -> a
     void applyTransformation(float,android.view.animation.Transformation) -> applyTransformation
+org.threeten.bp.Clock -> org.threeten.bp.Clock:
+    org.threeten.bp.Clock systemDefaultZone() -> a
+    org.threeten.bp.ZoneId getZone() -> b
+    long millis() -> c
+    org.threeten.bp.Instant instant() -> d
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+org.threeten.bp.Clock$SystemClock -> org.threeten.bp.Clock$SystemClock:
+    org.threeten.bp.ZoneId zone -> a
+    org.threeten.bp.ZoneId getZone() -> b
+    long millis() -> c
+    org.threeten.bp.Instant instant() -> d
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+org.threeten.bp.DateTimeException -> org.threeten.bp.DateTimeException:
+org.threeten.bp.DayOfWeek -> org.threeten.bp.DayOfWeek:
+    org.threeten.bp.DayOfWeek MONDAY -> a
+    org.threeten.bp.DayOfWeek TUESDAY -> b
+    org.threeten.bp.DayOfWeek WEDNESDAY -> c
+    org.threeten.bp.DayOfWeek THURSDAY -> d
+    org.threeten.bp.DayOfWeek FRIDAY -> e
+    org.threeten.bp.DayOfWeek SATURDAY -> f
+    org.threeten.bp.DayOfWeek SUNDAY -> g
+    org.threeten.bp.temporal.TemporalQuery FROM -> h
+    org.threeten.bp.DayOfWeek[] ENUMS -> i
+    org.threeten.bp.DayOfWeek[] $VALUES -> j
+    org.threeten.bp.DayOfWeek[] values() -> values
+    org.threeten.bp.DayOfWeek valueOf(java.lang.String) -> valueOf
+    org.threeten.bp.DayOfWeek of(int) -> a
+    org.threeten.bp.DayOfWeek from(org.threeten.bp.temporal.TemporalAccessor) -> a
+    int getValue() -> a
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
+    int get(org.threeten.bp.temporal.TemporalField) -> c
+    long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    org.threeten.bp.DayOfWeek plus(long) -> a
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+org.threeten.bp.DayOfWeek$1 -> org.threeten.bp.DayOfWeek$1:
+    org.threeten.bp.DayOfWeek queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.Duration -> org.threeten.bp.Duration:
+    org.threeten.bp.Duration ZERO -> a
+    java.math.BigInteger BI_NANOS_PER_SECOND -> b
+    java.util.regex.Pattern PATTERN -> c
+    long seconds -> d
+    int nanos -> e
+    org.threeten.bp.Duration ofSeconds(long) -> a
+    org.threeten.bp.Duration ofSeconds(long,long) -> a
+    org.threeten.bp.Duration ofNanos(long) -> b
+    org.threeten.bp.Duration create(long,int) -> a
+    long getSeconds() -> a
+    org.threeten.bp.temporal.Temporal addTo(org.threeten.bp.temporal.Temporal) -> a
+    int compareTo(org.threeten.bp.Duration) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    int compareTo(java.lang.Object) -> compareTo
+org.threeten.bp.Instant -> org.threeten.bp.Instant:
+    org.threeten.bp.Instant EPOCH -> a
+    org.threeten.bp.Instant MIN -> b
+    org.threeten.bp.Instant MAX -> c
+    org.threeten.bp.temporal.TemporalQuery FROM -> d
+    long seconds -> e
+    int nanos -> f
+    org.threeten.bp.Instant ofEpochSecond(long) -> a
+    org.threeten.bp.Instant ofEpochSecond(long,long) -> a
+    org.threeten.bp.Instant ofEpochMilli(long) -> b
+    org.threeten.bp.Instant from(org.threeten.bp.temporal.TemporalAccessor) -> a
+    org.threeten.bp.Instant create(long,int) -> a
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
+    int get(org.threeten.bp.temporal.TemporalField) -> c
+    long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    long getEpochSecond() -> a
+    int getNano() -> b
+    org.threeten.bp.Instant with(org.threeten.bp.temporal.TemporalAdjuster) -> a
+    org.threeten.bp.Instant with(org.threeten.bp.temporal.TemporalField,long) -> a
+    org.threeten.bp.Instant plus(long,org.threeten.bp.temporal.TemporalUnit) -> a
+    org.threeten.bp.Instant plusSeconds(long) -> c
+    org.threeten.bp.Instant plusMillis(long) -> d
+    org.threeten.bp.Instant plusNanos(long) -> e
+    org.threeten.bp.Instant plus(long,long) -> b
+    org.threeten.bp.Instant minus(long,org.threeten.bp.temporal.TemporalUnit) -> b
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+    long toEpochMilli() -> c
+    int compareTo(org.threeten.bp.Instant) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    org.threeten.bp.temporal.Temporal minus(long,org.threeten.bp.temporal.TemporalUnit) -> c
+    org.threeten.bp.temporal.Temporal plus(long,org.threeten.bp.temporal.TemporalUnit) -> d
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalField,long) -> b
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalAdjuster) -> b
+    int compareTo(java.lang.Object) -> compareTo
+org.threeten.bp.Instant$1 -> org.threeten.bp.Instant$1:
+    org.threeten.bp.Instant queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.Instant$2 -> org.threeten.bp.Instant$2:
+    int[] $SwitchMap$org$threeten$bp$temporal$ChronoField -> a
+    int[] $SwitchMap$org$threeten$bp$temporal$ChronoUnit -> b
+org.threeten.bp.LocalDate -> org.threeten.bp.LocalDate:
+    org.threeten.bp.LocalDate MIN -> a
+    org.threeten.bp.LocalDate MAX -> b
+    org.threeten.bp.temporal.TemporalQuery FROM -> c
+    int year -> d
+    short month -> e
+    short day -> f
+    org.threeten.bp.LocalDate now() -> a
+    org.threeten.bp.LocalDate now(org.threeten.bp.Clock) -> a
+    org.threeten.bp.LocalDate of(int,org.threeten.bp.Month,int) -> a
+    org.threeten.bp.LocalDate of(int,int,int) -> a
+    org.threeten.bp.LocalDate ofYearDay(int,int) -> a
+    org.threeten.bp.LocalDate ofEpochDay(long) -> a
+    org.threeten.bp.LocalDate from(org.threeten.bp.temporal.TemporalAccessor) -> a
+    org.threeten.bp.LocalDate parse(java.lang.CharSequence,org.threeten.bp.format.DateTimeFormatter) -> a
+    org.threeten.bp.LocalDate create(int,org.threeten.bp.Month,int) -> b
+    org.threeten.bp.LocalDate resolvePreviousValid(int,int,int) -> b
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
+    int get(org.threeten.bp.temporal.TemporalField) -> c
+    long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    int get0(org.threeten.bp.temporal.TemporalField) -> e
+    long getProlepticMonth() -> o
+    org.threeten.bp.chrono.IsoChronology getChronology() -> b
+    org.threeten.bp.chrono.Era getEra() -> c
+    int getYear() -> d
+    int getMonthValue() -> e
+    org.threeten.bp.Month getMonth() -> f
+    int getDayOfMonth() -> g
+    int getDayOfYear() -> h
+    org.threeten.bp.DayOfWeek getDayOfWeek() -> i
+    boolean isLeapYear() -> j
+    int lengthOfMonth() -> k
+    int lengthOfYear() -> l
+    org.threeten.bp.LocalDate with(org.threeten.bp.temporal.TemporalAdjuster) -> a
+    org.threeten.bp.LocalDate with(org.threeten.bp.temporal.TemporalField,long) -> a
+    org.threeten.bp.LocalDate withYear(int) -> a
+    org.threeten.bp.LocalDate withMonth(int) -> b
+    org.threeten.bp.LocalDate withDayOfMonth(int) -> c
+    org.threeten.bp.LocalDate withDayOfYear(int) -> d
+    org.threeten.bp.LocalDate plus(org.threeten.bp.temporal.TemporalAmount) -> a
+    org.threeten.bp.LocalDate plus(long,org.threeten.bp.temporal.TemporalUnit) -> a
+    org.threeten.bp.LocalDate plusYears(long) -> b
+    org.threeten.bp.LocalDate plusMonths(long) -> c
+    org.threeten.bp.LocalDate plusWeeks(long) -> d
+    org.threeten.bp.LocalDate plusDays(long) -> e
+    org.threeten.bp.LocalDate minus(long,org.threeten.bp.temporal.TemporalUnit) -> b
+    org.threeten.bp.LocalDate minusYears(long) -> f
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+    org.threeten.bp.Period until(org.threeten.bp.chrono.ChronoLocalDate) -> a
+    org.threeten.bp.LocalDateTime atTime(org.threeten.bp.LocalTime) -> a
+    long toEpochDay() -> m
+    int compareTo(org.threeten.bp.chrono.ChronoLocalDate) -> b
+    int compareTo0(org.threeten.bp.LocalDate) -> a
+    boolean isBefore(org.threeten.bp.chrono.ChronoLocalDate) -> c
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    java.lang.String format(org.threeten.bp.format.DateTimeFormatter) -> a
+    org.threeten.bp.chrono.ChronoLocalDateTime atTime(org.threeten.bp.LocalTime) -> b
+    org.threeten.bp.chrono.ChronoLocalDate minus(long,org.threeten.bp.temporal.TemporalUnit) -> e
+    org.threeten.bp.chrono.ChronoLocalDate plus(long,org.threeten.bp.temporal.TemporalUnit) -> f
+    org.threeten.bp.chrono.ChronoLocalDate plus(org.threeten.bp.temporal.TemporalAmount) -> b
+    org.threeten.bp.chrono.ChronoLocalDate with(org.threeten.bp.temporal.TemporalField,long) -> c
+    org.threeten.bp.chrono.ChronoLocalDate with(org.threeten.bp.temporal.TemporalAdjuster) -> c
+    org.threeten.bp.chrono.Chronology getChronology() -> n
+    org.threeten.bp.temporal.Temporal minus(long,org.threeten.bp.temporal.TemporalUnit) -> c
+    org.threeten.bp.temporal.Temporal plus(long,org.threeten.bp.temporal.TemporalUnit) -> d
+    org.threeten.bp.temporal.Temporal plus(org.threeten.bp.temporal.TemporalAmount) -> c
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalField,long) -> b
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalAdjuster) -> b
+    int compareTo(java.lang.Object) -> compareTo
+org.threeten.bp.LocalDate$1 -> org.threeten.bp.LocalDate$1:
+    org.threeten.bp.LocalDate queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.LocalDate$2 -> org.threeten.bp.LocalDate$2:
+    int[] $SwitchMap$org$threeten$bp$temporal$ChronoField -> a
+    int[] $SwitchMap$org$threeten$bp$temporal$ChronoUnit -> b
+org.threeten.bp.LocalDateTime -> org.threeten.bp.LocalDateTime:
+    org.threeten.bp.LocalDateTime MIN -> a
+    org.threeten.bp.LocalDateTime MAX -> b
+    org.threeten.bp.temporal.TemporalQuery FROM -> c
+    org.threeten.bp.LocalDate date -> d
+    org.threeten.bp.LocalTime time -> e
+    org.threeten.bp.LocalDateTime of(int,int,int,int,int,int,int) -> a
+    org.threeten.bp.LocalDateTime of(org.threeten.bp.LocalDate,org.threeten.bp.LocalTime) -> a
+    org.threeten.bp.LocalDateTime ofEpochSecond(long,int,org.threeten.bp.ZoneOffset) -> a
+    org.threeten.bp.LocalDateTime from(org.threeten.bp.temporal.TemporalAccessor) -> a
+    org.threeten.bp.LocalDateTime with(org.threeten.bp.LocalDate,org.threeten.bp.LocalTime) -> b
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
+    int get(org.threeten.bp.temporal.TemporalField) -> c
+    long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    int getYear() -> a
+    int getSecond() -> b
+    int getNano() -> c
+    org.threeten.bp.LocalDateTime with(org.threeten.bp.temporal.TemporalAdjuster) -> a
+    org.threeten.bp.LocalDateTime with(org.threeten.bp.temporal.TemporalField,long) -> a
+    org.threeten.bp.LocalDateTime plus(org.threeten.bp.temporal.TemporalAmount) -> a
+    org.threeten.bp.LocalDateTime plus(long,org.threeten.bp.temporal.TemporalUnit) -> a
+    org.threeten.bp.LocalDateTime plusDays(long) -> a
+    org.threeten.bp.LocalDateTime plusHours(long) -> b
+    org.threeten.bp.LocalDateTime plusMinutes(long) -> c
+    org.threeten.bp.LocalDateTime plusSeconds(long) -> d
+    org.threeten.bp.LocalDateTime plusNanos(long) -> e
+    org.threeten.bp.LocalDateTime minus(long,org.threeten.bp.temporal.TemporalUnit) -> b
+    org.threeten.bp.LocalDateTime plusWithOverflow(org.threeten.bp.LocalDate,long,long,long,long,int) -> a
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+    org.threeten.bp.ZonedDateTime atZone(org.threeten.bp.ZoneId) -> a
+    org.threeten.bp.LocalDate toLocalDate() -> d
+    org.threeten.bp.LocalTime toLocalTime() -> e
+    int compareTo(org.threeten.bp.chrono.ChronoLocalDateTime) -> a
+    int compareTo0(org.threeten.bp.LocalDateTime) -> a
+    boolean isAfter(org.threeten.bp.chrono.ChronoLocalDateTime) -> b
+    boolean isBefore(org.threeten.bp.chrono.ChronoLocalDateTime) -> c
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    org.threeten.bp.chrono.ChronoZonedDateTime atZone(org.threeten.bp.ZoneId) -> b
+    org.threeten.bp.chrono.ChronoLocalDateTime minus(long,org.threeten.bp.temporal.TemporalUnit) -> e
+    org.threeten.bp.chrono.ChronoLocalDateTime plus(long,org.threeten.bp.temporal.TemporalUnit) -> f
+    org.threeten.bp.chrono.ChronoLocalDateTime plus(org.threeten.bp.temporal.TemporalAmount) -> b
+    org.threeten.bp.chrono.ChronoLocalDateTime with(org.threeten.bp.temporal.TemporalField,long) -> c
+    org.threeten.bp.chrono.ChronoLocalDateTime with(org.threeten.bp.temporal.TemporalAdjuster) -> c
+    org.threeten.bp.chrono.ChronoLocalDate toLocalDate() -> f
+    org.threeten.bp.temporal.Temporal minus(long,org.threeten.bp.temporal.TemporalUnit) -> c
+    org.threeten.bp.temporal.Temporal plus(long,org.threeten.bp.temporal.TemporalUnit) -> d
+    org.threeten.bp.temporal.Temporal plus(org.threeten.bp.temporal.TemporalAmount) -> c
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalField,long) -> b
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalAdjuster) -> b
+    int compareTo(java.lang.Object) -> compareTo
+org.threeten.bp.LocalDateTime$1 -> org.threeten.bp.LocalDateTime$1:
+    org.threeten.bp.LocalDateTime queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.LocalDateTime$2 -> org.threeten.bp.LocalDateTime$2:
+    int[] $SwitchMap$org$threeten$bp$temporal$ChronoUnit -> a
+org.threeten.bp.LocalTime -> org.threeten.bp.LocalTime:
+    org.threeten.bp.LocalTime MIN -> a
+    org.threeten.bp.LocalTime MAX -> b
+    org.threeten.bp.LocalTime MIDNIGHT -> c
+    org.threeten.bp.LocalTime NOON -> d
+    org.threeten.bp.temporal.TemporalQuery FROM -> e
+    org.threeten.bp.LocalTime[] HOURS -> f
+    byte hour -> g
+    byte minute -> h
+    byte second -> i
+    int nano -> j
+    org.threeten.bp.LocalTime of(int,int) -> a
+    org.threeten.bp.LocalTime of(int,int,int) -> a
+    org.threeten.bp.LocalTime of(int,int,int,int) -> a
+    org.threeten.bp.LocalTime ofSecondOfDay(long) -> a
+    org.threeten.bp.LocalTime ofSecondOfDay(long,int) -> a
+    org.threeten.bp.LocalTime ofNanoOfDay(long) -> b
+    org.threeten.bp.LocalTime from(org.threeten.bp.temporal.TemporalAccessor) -> a
+    org.threeten.bp.LocalTime create(int,int,int,int) -> b
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
+    int get(org.threeten.bp.temporal.TemporalField) -> c
+    long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    int get0(org.threeten.bp.temporal.TemporalField) -> e
+    int getHour() -> a
+    int getSecond() -> b
+    int getNano() -> c
+    org.threeten.bp.LocalTime with(org.threeten.bp.temporal.TemporalAdjuster) -> a
+    org.threeten.bp.LocalTime with(org.threeten.bp.temporal.TemporalField,long) -> a
+    org.threeten.bp.LocalTime withHour(int) -> a
+    org.threeten.bp.LocalTime withMinute(int) -> b
+    org.threeten.bp.LocalTime withSecond(int) -> c
+    org.threeten.bp.LocalTime withNano(int) -> d
+    org.threeten.bp.LocalTime plus(long,org.threeten.bp.temporal.TemporalUnit) -> a
+    org.threeten.bp.LocalTime plusHours(long) -> c
+    org.threeten.bp.LocalTime plusMinutes(long) -> d
+    org.threeten.bp.LocalTime plusSeconds(long) -> e
+    org.threeten.bp.LocalTime plusNanos(long) -> f
+    org.threeten.bp.LocalTime minus(long,org.threeten.bp.temporal.TemporalUnit) -> b
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+    int toSecondOfDay() -> d
+    long toNanoOfDay() -> e
+    int compareTo(org.threeten.bp.LocalTime) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    org.threeten.bp.temporal.Temporal minus(long,org.threeten.bp.temporal.TemporalUnit) -> c
+    org.threeten.bp.temporal.Temporal plus(long,org.threeten.bp.temporal.TemporalUnit) -> d
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalField,long) -> b
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalAdjuster) -> b
+    int compareTo(java.lang.Object) -> compareTo
+org.threeten.bp.LocalTime$1 -> org.threeten.bp.LocalTime$1:
+    org.threeten.bp.LocalTime queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.LocalTime$2 -> org.threeten.bp.LocalTime$2:
+    int[] $SwitchMap$org$threeten$bp$temporal$ChronoField -> a
+    int[] $SwitchMap$org$threeten$bp$temporal$ChronoUnit -> b
+org.threeten.bp.Month -> org.threeten.bp.Month:
+    org.threeten.bp.Month JANUARY -> a
+    org.threeten.bp.Month FEBRUARY -> b
+    org.threeten.bp.Month MARCH -> c
+    org.threeten.bp.Month APRIL -> d
+    org.threeten.bp.Month MAY -> e
+    org.threeten.bp.Month JUNE -> f
+    org.threeten.bp.Month JULY -> g
+    org.threeten.bp.Month AUGUST -> h
+    org.threeten.bp.Month SEPTEMBER -> i
+    org.threeten.bp.Month OCTOBER -> j
+    org.threeten.bp.Month NOVEMBER -> k
+    org.threeten.bp.Month DECEMBER -> l
+    org.threeten.bp.temporal.TemporalQuery FROM -> m
+    org.threeten.bp.Month[] ENUMS -> n
+    org.threeten.bp.Month[] $VALUES -> o
+    org.threeten.bp.Month[] values() -> values
+    org.threeten.bp.Month valueOf(java.lang.String) -> valueOf
+    org.threeten.bp.Month of(int) -> a
+    org.threeten.bp.Month from(org.threeten.bp.temporal.TemporalAccessor) -> a
+    int getValue() -> a
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
+    int get(org.threeten.bp.temporal.TemporalField) -> c
+    long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    org.threeten.bp.Month plus(long) -> a
+    int length(boolean) -> a
+    int firstDayOfYear(boolean) -> b
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+org.threeten.bp.Month$1 -> org.threeten.bp.Month$1:
+    org.threeten.bp.Month queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.Month$2 -> org.threeten.bp.Month$2:
+    int[] $SwitchMap$org$threeten$bp$Month -> a
+org.threeten.bp.Period -> org.threeten.bp.Period:
+    org.threeten.bp.Period ZERO -> a
+    java.util.regex.Pattern PATTERN -> b
+    int years -> c
+    int months -> d
+    int days -> e
+    org.threeten.bp.Period ofDays(int) -> a
+    org.threeten.bp.Period of(int,int,int) -> a
+    org.threeten.bp.Period between(org.threeten.bp.LocalDate,org.threeten.bp.LocalDate) -> a
+    org.threeten.bp.Period create(int,int,int) -> b
+    java.util.List getUnits() -> a
+    long get(org.threeten.bp.temporal.TemporalUnit) -> a
+    boolean isZero() -> b
+    int getYears() -> c
+    int getMonths() -> d
+    int getDays() -> e
+    long toTotalMonths() -> f
+    org.threeten.bp.temporal.Temporal addTo(org.threeten.bp.temporal.Temporal) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+org.threeten.bp.Year -> org.threeten.bp.Year:
+    org.threeten.bp.temporal.TemporalQuery FROM -> a
+    org.threeten.bp.format.DateTimeFormatter PARSER -> b
+    int year -> c
+    org.threeten.bp.Year of(int) -> a
+    org.threeten.bp.Year from(org.threeten.bp.temporal.TemporalAccessor) -> a
+    boolean isLeap(long) -> a
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
+    int get(org.threeten.bp.temporal.TemporalField) -> c
+    long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    org.threeten.bp.Year with(org.threeten.bp.temporal.TemporalAdjuster) -> a
+    org.threeten.bp.Year with(org.threeten.bp.temporal.TemporalField,long) -> a
+    org.threeten.bp.Year plus(long,org.threeten.bp.temporal.TemporalUnit) -> a
+    org.threeten.bp.Year plusYears(long) -> b
+    org.threeten.bp.Year minus(long,org.threeten.bp.temporal.TemporalUnit) -> b
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+    int compareTo(org.threeten.bp.Year) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    org.threeten.bp.temporal.Temporal minus(long,org.threeten.bp.temporal.TemporalUnit) -> c
+    org.threeten.bp.temporal.Temporal plus(long,org.threeten.bp.temporal.TemporalUnit) -> d
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalField,long) -> b
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalAdjuster) -> b
+    int compareTo(java.lang.Object) -> compareTo
+org.threeten.bp.Year$1 -> org.threeten.bp.Year$1:
+    org.threeten.bp.Year queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.Year$2 -> org.threeten.bp.Year$2:
+    int[] $SwitchMap$org$threeten$bp$temporal$ChronoField -> a
+    int[] $SwitchMap$org$threeten$bp$temporal$ChronoUnit -> b
+org.threeten.bp.ZoneId -> org.threeten.bp.ZoneId:
+    org.threeten.bp.temporal.TemporalQuery FROM -> a
+    java.util.Map SHORT_IDS -> b
+    org.threeten.bp.ZoneId systemDefault() -> a
+    java.util.Set getAvailableZoneIds() -> b
+    org.threeten.bp.ZoneId of(java.lang.String,java.util.Map) -> a
+    org.threeten.bp.ZoneId of(java.lang.String) -> a
+    org.threeten.bp.ZoneId ofOffset(java.lang.String,org.threeten.bp.ZoneOffset) -> a
+    org.threeten.bp.ZoneId from(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.String getId() -> c
+    org.threeten.bp.zone.ZoneRules getRules() -> d
+    org.threeten.bp.ZoneId normalized() -> e
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+org.threeten.bp.ZoneId$1 -> org.threeten.bp.ZoneId$1:
+    org.threeten.bp.ZoneId queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.ZoneOffset -> org.threeten.bp.ZoneOffset:
+    org.threeten.bp.temporal.TemporalQuery FROM -> c
+    java.util.concurrent.ConcurrentMap SECONDS_CACHE -> g
+    java.util.concurrent.ConcurrentMap ID_CACHE -> h
+    org.threeten.bp.ZoneOffset UTC -> d
+    org.threeten.bp.ZoneOffset MIN -> e
+    org.threeten.bp.ZoneOffset MAX -> f
+    int totalSeconds -> i
+    java.lang.String id -> j
+    org.threeten.bp.ZoneOffset of(java.lang.String) -> b
+    int parseNumber(java.lang.CharSequence,int,boolean) -> a
+    org.threeten.bp.ZoneOffset ofHoursMinutesSeconds(int,int,int) -> a
+    org.threeten.bp.ZoneOffset from(org.threeten.bp.temporal.TemporalAccessor) -> b
+    void validate(int,int,int) -> b
+    int totalSeconds(int,int,int) -> c
+    org.threeten.bp.ZoneOffset ofTotalSeconds(int) -> a
+    java.lang.String buildId(int) -> b
+    int getTotalSeconds() -> f
+    java.lang.String getId() -> c
+    org.threeten.bp.zone.ZoneRules getRules() -> d
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
+    int get(org.threeten.bp.temporal.TemporalField) -> c
+    long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+    int compareTo(org.threeten.bp.ZoneOffset) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    int compareTo(java.lang.Object) -> compareTo
+org.threeten.bp.ZoneOffset$1 -> org.threeten.bp.ZoneOffset$1:
+    org.threeten.bp.ZoneOffset queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.ZoneRegion -> org.threeten.bp.ZoneRegion:
+    java.util.regex.Pattern PATTERN -> c
+    java.lang.String id -> d
+    org.threeten.bp.zone.ZoneRules rules -> e
+    org.threeten.bp.ZoneRegion ofId(java.lang.String,boolean) -> a
+    java.lang.String getId() -> c
+    org.threeten.bp.zone.ZoneRules getRules() -> d
+org.threeten.bp.ZonedDateTime -> org.threeten.bp.ZonedDateTime:
+    org.threeten.bp.temporal.TemporalQuery FROM -> a
+    org.threeten.bp.LocalDateTime dateTime -> b
+    org.threeten.bp.ZoneOffset offset -> c
+    org.threeten.bp.ZoneId zone -> d
+    org.threeten.bp.ZonedDateTime of(org.threeten.bp.LocalDateTime,org.threeten.bp.ZoneId) -> a
+    org.threeten.bp.ZonedDateTime ofLocal(org.threeten.bp.LocalDateTime,org.threeten.bp.ZoneId,org.threeten.bp.ZoneOffset) -> a
+    org.threeten.bp.ZonedDateTime ofInstant(org.threeten.bp.Instant,org.threeten.bp.ZoneId) -> a
+    org.threeten.bp.ZonedDateTime ofInstant(org.threeten.bp.LocalDateTime,org.threeten.bp.ZoneOffset,org.threeten.bp.ZoneId) -> a
+    org.threeten.bp.ZonedDateTime create(long,int,org.threeten.bp.ZoneId) -> a
+    org.threeten.bp.ZonedDateTime from(org.threeten.bp.temporal.TemporalAccessor) -> a
+    org.threeten.bp.ZonedDateTime resolveLocal(org.threeten.bp.LocalDateTime) -> a
+    org.threeten.bp.ZonedDateTime resolveInstant(org.threeten.bp.LocalDateTime) -> b
+    org.threeten.bp.ZonedDateTime resolveOffset(org.threeten.bp.ZoneOffset) -> a
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
+    int get(org.threeten.bp.temporal.TemporalField) -> c
+    long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    org.threeten.bp.ZoneOffset getOffset() -> a
+    org.threeten.bp.ZoneId getZone() -> b
+    int getNano() -> c
+    org.threeten.bp.ZonedDateTime with(org.threeten.bp.temporal.TemporalAdjuster) -> a
+    org.threeten.bp.ZonedDateTime with(org.threeten.bp.temporal.TemporalField,long) -> a
+    org.threeten.bp.ZonedDateTime plus(org.threeten.bp.temporal.TemporalAmount) -> a
+    org.threeten.bp.ZonedDateTime plus(long,org.threeten.bp.temporal.TemporalUnit) -> a
+    org.threeten.bp.ZonedDateTime minus(long,org.threeten.bp.temporal.TemporalUnit) -> b
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+    org.threeten.bp.LocalDateTime toLocalDateTime() -> d
+    org.threeten.bp.LocalDate toLocalDate() -> e
+    org.threeten.bp.LocalTime toLocalTime() -> f
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    org.threeten.bp.chrono.ChronoZonedDateTime minus(long,org.threeten.bp.temporal.TemporalUnit) -> e
+    org.threeten.bp.chrono.ChronoZonedDateTime plus(long,org.threeten.bp.temporal.TemporalUnit) -> f
+    org.threeten.bp.chrono.ChronoZonedDateTime plus(org.threeten.bp.temporal.TemporalAmount) -> b
+    org.threeten.bp.chrono.ChronoZonedDateTime with(org.threeten.bp.temporal.TemporalField,long) -> c
+    org.threeten.bp.chrono.ChronoZonedDateTime with(org.threeten.bp.temporal.TemporalAdjuster) -> c
+    org.threeten.bp.chrono.ChronoLocalDateTime toLocalDateTime() -> g
+    org.threeten.bp.chrono.ChronoLocalDate toLocalDate() -> h
+    org.threeten.bp.temporal.Temporal minus(long,org.threeten.bp.temporal.TemporalUnit) -> c
+    org.threeten.bp.temporal.Temporal plus(long,org.threeten.bp.temporal.TemporalUnit) -> d
+    org.threeten.bp.temporal.Temporal plus(org.threeten.bp.temporal.TemporalAmount) -> c
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalField,long) -> b
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalAdjuster) -> b
+org.threeten.bp.ZonedDateTime$1 -> org.threeten.bp.ZonedDateTime$1:
+    org.threeten.bp.ZonedDateTime queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.ZonedDateTime$2 -> org.threeten.bp.ZonedDateTime$2:
+    int[] $SwitchMap$org$threeten$bp$temporal$ChronoField -> a
+org.threeten.bp.chrono.ChronoLocalDate -> org.threeten.bp.chrono.ChronoLocalDate:
+    java.util.Comparator DATE_COMPARATOR -> a
+    org.threeten.bp.chrono.Chronology getChronology() -> n
+    org.threeten.bp.chrono.Era getEra() -> c
+    boolean isLeapYear() -> j
+    int lengthOfYear() -> l
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.chrono.ChronoLocalDate with(org.threeten.bp.temporal.TemporalAdjuster) -> c
+    org.threeten.bp.chrono.ChronoLocalDate with(org.threeten.bp.temporal.TemporalField,long) -> c
+    org.threeten.bp.chrono.ChronoLocalDate plus(org.threeten.bp.temporal.TemporalAmount) -> b
+    org.threeten.bp.chrono.ChronoLocalDate plus(long,org.threeten.bp.temporal.TemporalUnit) -> f
+    org.threeten.bp.chrono.ChronoLocalDate minus(long,org.threeten.bp.temporal.TemporalUnit) -> e
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+    java.lang.String format(org.threeten.bp.format.DateTimeFormatter) -> a
+    org.threeten.bp.chrono.ChronoLocalDateTime atTime(org.threeten.bp.LocalTime) -> b
+    long toEpochDay() -> m
+    int compareTo(org.threeten.bp.chrono.ChronoLocalDate) -> b
+    boolean isBefore(org.threeten.bp.chrono.ChronoLocalDate) -> c
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    org.threeten.bp.temporal.Temporal minus(long,org.threeten.bp.temporal.TemporalUnit) -> c
+    org.threeten.bp.temporal.Temporal plus(org.threeten.bp.temporal.TemporalAmount) -> c
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalAdjuster) -> b
+    org.threeten.bp.temporal.Temporal plus(long,org.threeten.bp.temporal.TemporalUnit) -> d
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalField,long) -> b
+    int compareTo(java.lang.Object) -> compareTo
+org.threeten.bp.chrono.ChronoLocalDate$1 -> org.threeten.bp.chrono.ChronoLocalDate$1:
+    int compare(org.threeten.bp.chrono.ChronoLocalDate,org.threeten.bp.chrono.ChronoLocalDate) -> a
+    int compare(java.lang.Object,java.lang.Object) -> compare
+org.threeten.bp.chrono.ChronoLocalDateTime -> org.threeten.bp.chrono.ChronoLocalDateTime:
+    java.util.Comparator DATE_TIME_COMPARATOR -> a
+    org.threeten.bp.chrono.Chronology getChronology() -> g
+    org.threeten.bp.chrono.ChronoLocalDate toLocalDate() -> f
+    org.threeten.bp.LocalTime toLocalTime() -> e
+    org.threeten.bp.chrono.ChronoLocalDateTime with(org.threeten.bp.temporal.TemporalAdjuster) -> c
+    org.threeten.bp.chrono.ChronoLocalDateTime with(org.threeten.bp.temporal.TemporalField,long) -> c
+    org.threeten.bp.chrono.ChronoLocalDateTime plus(org.threeten.bp.temporal.TemporalAmount) -> b
+    org.threeten.bp.chrono.ChronoLocalDateTime plus(long,org.threeten.bp.temporal.TemporalUnit) -> f
+    org.threeten.bp.chrono.ChronoLocalDateTime minus(long,org.threeten.bp.temporal.TemporalUnit) -> e
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+    org.threeten.bp.chrono.ChronoZonedDateTime atZone(org.threeten.bp.ZoneId) -> b
+    org.threeten.bp.Instant toInstant(org.threeten.bp.ZoneOffset) -> a
+    long toEpochSecond(org.threeten.bp.ZoneOffset) -> b
+    int compareTo(org.threeten.bp.chrono.ChronoLocalDateTime) -> a
+    boolean isAfter(org.threeten.bp.chrono.ChronoLocalDateTime) -> b
+    boolean isBefore(org.threeten.bp.chrono.ChronoLocalDateTime) -> c
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    org.threeten.bp.temporal.Temporal minus(long,org.threeten.bp.temporal.TemporalUnit) -> c
+    org.threeten.bp.temporal.Temporal plus(org.threeten.bp.temporal.TemporalAmount) -> c
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalAdjuster) -> b
+    org.threeten.bp.temporal.Temporal plus(long,org.threeten.bp.temporal.TemporalUnit) -> d
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalField,long) -> b
+    int compareTo(java.lang.Object) -> compareTo
+org.threeten.bp.chrono.ChronoLocalDateTime$1 -> org.threeten.bp.chrono.ChronoLocalDateTime$1:
+    int compare(org.threeten.bp.chrono.ChronoLocalDateTime,org.threeten.bp.chrono.ChronoLocalDateTime) -> a
+    int compare(java.lang.Object,java.lang.Object) -> compare
+org.threeten.bp.chrono.ChronoLocalDateTimeImpl -> org.threeten.bp.chrono.ChronoLocalDateTimeImpl:
+    org.threeten.bp.chrono.ChronoLocalDate date -> a
+    org.threeten.bp.LocalTime time -> b
+    org.threeten.bp.chrono.ChronoLocalDateTimeImpl of(org.threeten.bp.chrono.ChronoLocalDate,org.threeten.bp.LocalTime) -> a
+    org.threeten.bp.chrono.ChronoLocalDateTimeImpl with(org.threeten.bp.temporal.Temporal,org.threeten.bp.LocalTime) -> a
+    org.threeten.bp.chrono.ChronoLocalDate toLocalDate() -> f
+    org.threeten.bp.LocalTime toLocalTime() -> e
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
+    int get(org.threeten.bp.temporal.TemporalField) -> c
+    long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    org.threeten.bp.chrono.ChronoLocalDateTimeImpl with(org.threeten.bp.temporal.TemporalAdjuster) -> a
+    org.threeten.bp.chrono.ChronoLocalDateTimeImpl with(org.threeten.bp.temporal.TemporalField,long) -> a
+    org.threeten.bp.chrono.ChronoLocalDateTimeImpl plus(long,org.threeten.bp.temporal.TemporalUnit) -> a
+    org.threeten.bp.chrono.ChronoLocalDateTimeImpl plusDays(long) -> b
+    org.threeten.bp.chrono.ChronoLocalDateTimeImpl plusHours(long) -> c
+    org.threeten.bp.chrono.ChronoLocalDateTimeImpl plusMinutes(long) -> d
+    org.threeten.bp.chrono.ChronoLocalDateTimeImpl plusSeconds(long) -> a
+    org.threeten.bp.chrono.ChronoLocalDateTimeImpl plusNanos(long) -> e
+    org.threeten.bp.chrono.ChronoLocalDateTimeImpl plusWithOverflow(org.threeten.bp.chrono.ChronoLocalDate,long,long,long,long) -> a
+    org.threeten.bp.chrono.ChronoZonedDateTime atZone(org.threeten.bp.ZoneId) -> b
+    org.threeten.bp.chrono.ChronoLocalDateTime plus(long,org.threeten.bp.temporal.TemporalUnit) -> f
+    org.threeten.bp.chrono.ChronoLocalDateTime with(org.threeten.bp.temporal.TemporalField,long) -> c
+    org.threeten.bp.chrono.ChronoLocalDateTime with(org.threeten.bp.temporal.TemporalAdjuster) -> c
+    org.threeten.bp.temporal.Temporal plus(long,org.threeten.bp.temporal.TemporalUnit) -> d
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalField,long) -> b
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalAdjuster) -> b
+org.threeten.bp.chrono.ChronoLocalDateTimeImpl$1 -> org.threeten.bp.chrono.ChronoLocalDateTimeImpl$1:
+    int[] $SwitchMap$org$threeten$bp$temporal$ChronoUnit -> a
+org.threeten.bp.chrono.ChronoPeriod -> org.threeten.bp.chrono.ChronoPeriod:
+    long get(org.threeten.bp.temporal.TemporalUnit) -> a
+    java.util.List getUnits() -> a
+    boolean isZero() -> b
+org.threeten.bp.chrono.ChronoZonedDateTime -> org.threeten.bp.chrono.ChronoZonedDateTime:
+    java.util.Comparator INSTANT_COMPARATOR -> a
+    org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
+    int get(org.threeten.bp.temporal.TemporalField) -> c
+    long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    org.threeten.bp.chrono.ChronoLocalDate toLocalDate() -> h
+    org.threeten.bp.LocalTime toLocalTime() -> f
+    org.threeten.bp.chrono.ChronoLocalDateTime toLocalDateTime() -> g
+    org.threeten.bp.ZoneOffset getOffset() -> a
+    org.threeten.bp.ZoneId getZone() -> b
+    org.threeten.bp.chrono.ChronoZonedDateTime with(org.threeten.bp.temporal.TemporalAdjuster) -> c
+    org.threeten.bp.chrono.ChronoZonedDateTime with(org.threeten.bp.temporal.TemporalField,long) -> c
+    org.threeten.bp.chrono.ChronoZonedDateTime plus(org.threeten.bp.temporal.TemporalAmount) -> b
+    org.threeten.bp.chrono.ChronoZonedDateTime plus(long,org.threeten.bp.temporal.TemporalUnit) -> f
+    org.threeten.bp.chrono.ChronoZonedDateTime minus(long,org.threeten.bp.temporal.TemporalUnit) -> e
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+    long toEpochSecond() -> i
+    int compareTo(org.threeten.bp.chrono.ChronoZonedDateTime) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    org.threeten.bp.temporal.Temporal minus(long,org.threeten.bp.temporal.TemporalUnit) -> c
+    org.threeten.bp.temporal.Temporal plus(org.threeten.bp.temporal.TemporalAmount) -> c
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalAdjuster) -> b
+    org.threeten.bp.temporal.Temporal plus(long,org.threeten.bp.temporal.TemporalUnit) -> d
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalField,long) -> b
+    int compareTo(java.lang.Object) -> compareTo
+org.threeten.bp.chrono.ChronoZonedDateTime$1 -> org.threeten.bp.chrono.ChronoZonedDateTime$1:
+    int compare(org.threeten.bp.chrono.ChronoZonedDateTime,org.threeten.bp.chrono.ChronoZonedDateTime) -> a
+    int compare(java.lang.Object,java.lang.Object) -> compare
+org.threeten.bp.chrono.ChronoZonedDateTime$2 -> org.threeten.bp.chrono.ChronoZonedDateTime$2:
+    int[] $SwitchMap$org$threeten$bp$temporal$ChronoField -> a
+org.threeten.bp.chrono.ChronoZonedDateTimeImpl -> org.threeten.bp.chrono.ChronoZonedDateTimeImpl:
+    org.threeten.bp.chrono.ChronoLocalDateTimeImpl dateTime -> a
+    org.threeten.bp.ZoneOffset offset -> b
+    org.threeten.bp.ZoneId zone -> c
+    org.threeten.bp.chrono.ChronoZonedDateTime ofBest(org.threeten.bp.chrono.ChronoLocalDateTimeImpl,org.threeten.bp.ZoneId,org.threeten.bp.ZoneOffset) -> a
+    org.threeten.bp.chrono.ChronoZonedDateTimeImpl ofInstant(org.threeten.bp.chrono.Chronology,org.threeten.bp.Instant,org.threeten.bp.ZoneId) -> a
+    org.threeten.bp.chrono.ChronoZonedDateTimeImpl create(org.threeten.bp.Instant,org.threeten.bp.ZoneId) -> a
+    org.threeten.bp.ZoneOffset getOffset() -> a
+    org.threeten.bp.chrono.ChronoLocalDateTime toLocalDateTime() -> g
+    org.threeten.bp.ZoneId getZone() -> b
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.chrono.ChronoZonedDateTime with(org.threeten.bp.temporal.TemporalField,long) -> c
+    org.threeten.bp.chrono.ChronoZonedDateTime plus(long,org.threeten.bp.temporal.TemporalUnit) -> f
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    org.threeten.bp.temporal.Temporal plus(long,org.threeten.bp.temporal.TemporalUnit) -> d
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalField,long) -> b
+org.threeten.bp.chrono.ChronoZonedDateTimeImpl$1 -> org.threeten.bp.chrono.ChronoZonedDateTimeImpl$1:
+    int[] $SwitchMap$org$threeten$bp$temporal$ChronoField -> a
+org.threeten.bp.chrono.Chronology -> org.threeten.bp.chrono.Chronology:
+    org.threeten.bp.temporal.TemporalQuery FROM -> a
+    java.util.concurrent.ConcurrentHashMap CHRONOS_BY_ID -> b
+    java.util.concurrent.ConcurrentHashMap CHRONOS_BY_TYPE -> c
+    java.lang.reflect.Method LOCALE_METHOD -> d
+    org.threeten.bp.chrono.Chronology from(org.threeten.bp.temporal.TemporalAccessor) -> a
+    org.threeten.bp.chrono.ChronoLocalDate ensureChronoLocalDate(org.threeten.bp.temporal.Temporal) -> a
+    org.threeten.bp.chrono.ChronoLocalDateTimeImpl ensureChronoLocalDateTime(org.threeten.bp.temporal.Temporal) -> b
+    org.threeten.bp.chrono.ChronoZonedDateTimeImpl ensureChronoZonedDateTime(org.threeten.bp.temporal.Temporal) -> c
+    java.lang.String getId() -> a
+    org.threeten.bp.chrono.ChronoLocalDate date(int,int,int) -> a
+    org.threeten.bp.chrono.ChronoLocalDate date(org.threeten.bp.temporal.TemporalAccessor) -> b
+    org.threeten.bp.chrono.ChronoLocalDateTime localDateTime(org.threeten.bp.temporal.TemporalAccessor) -> c
+    org.threeten.bp.chrono.ChronoZonedDateTime zonedDateTime(org.threeten.bp.Instant,org.threeten.bp.ZoneId) -> a
+    boolean isLeapYear(long) -> a
+    org.threeten.bp.chrono.Era eraOf(int) -> a
+    void updateResolveMap(java.util.Map,org.threeten.bp.temporal.ChronoField,long) -> a
+    int compareTo(org.threeten.bp.chrono.Chronology) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    int compareTo(java.lang.Object) -> compareTo
+org.threeten.bp.chrono.Chronology$1 -> org.threeten.bp.chrono.Chronology$1:
+    org.threeten.bp.chrono.Chronology queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.chrono.Era -> org.threeten.bp.chrono.Era:
+org.threeten.bp.chrono.IsoChronology -> org.threeten.bp.chrono.IsoChronology:
+    org.threeten.bp.chrono.IsoChronology INSTANCE -> b
+    java.lang.String getId() -> a
+    org.threeten.bp.LocalDate date(int,int,int) -> b
+    org.threeten.bp.LocalDate date(org.threeten.bp.temporal.TemporalAccessor) -> d
+    org.threeten.bp.LocalDateTime localDateTime(org.threeten.bp.temporal.TemporalAccessor) -> e
+    org.threeten.bp.ZonedDateTime zonedDateTime(org.threeten.bp.Instant,org.threeten.bp.ZoneId) -> b
+    boolean isLeapYear(long) -> a
+    org.threeten.bp.chrono.IsoEra eraOf(int) -> b
+    org.threeten.bp.LocalDate resolveDate(java.util.Map,org.threeten.bp.format.ResolverStyle) -> a
+    org.threeten.bp.chrono.Era eraOf(int) -> a
+    org.threeten.bp.chrono.ChronoZonedDateTime zonedDateTime(org.threeten.bp.Instant,org.threeten.bp.ZoneId) -> a
+    org.threeten.bp.chrono.ChronoLocalDateTime localDateTime(org.threeten.bp.temporal.TemporalAccessor) -> c
+    org.threeten.bp.chrono.ChronoLocalDate date(org.threeten.bp.temporal.TemporalAccessor) -> b
+    org.threeten.bp.chrono.ChronoLocalDate date(int,int,int) -> a
+org.threeten.bp.chrono.IsoEra -> org.threeten.bp.chrono.IsoEra:
+    org.threeten.bp.chrono.IsoEra BCE -> a
+    org.threeten.bp.chrono.IsoEra CE -> b
+    org.threeten.bp.chrono.IsoEra[] $VALUES -> c
+    org.threeten.bp.chrono.IsoEra[] values() -> values
+    org.threeten.bp.chrono.IsoEra valueOf(java.lang.String) -> valueOf
+    org.threeten.bp.chrono.IsoEra of(int) -> a
+    int getValue() -> a
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
+    int get(org.threeten.bp.temporal.TemporalField) -> c
+    long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+org.threeten.bp.format.DateTimeBuilder -> org.threeten.bp.format.DateTimeBuilder:
+    java.util.Map fieldValues -> a
+    org.threeten.bp.chrono.Chronology chrono -> b
+    org.threeten.bp.ZoneId zone -> c
+    org.threeten.bp.chrono.ChronoLocalDate date -> d
+    org.threeten.bp.LocalTime time -> e
+    boolean leapSecond -> f
+    org.threeten.bp.Period excessDays -> g
+    java.lang.Long getFieldValue0(org.threeten.bp.temporal.TemporalField) -> e
+    org.threeten.bp.format.DateTimeBuilder addFieldValue(org.threeten.bp.temporal.TemporalField,long) -> a
+    org.threeten.bp.format.DateTimeBuilder putFieldValue0(org.threeten.bp.temporal.TemporalField,long) -> b
+    void addObject(org.threeten.bp.chrono.ChronoLocalDate) -> a
+    void addObject(org.threeten.bp.LocalTime) -> a
+    org.threeten.bp.format.DateTimeBuilder resolve(org.threeten.bp.format.ResolverStyle,java.util.Set) -> a
+    boolean resolveFields(org.threeten.bp.format.ResolverStyle) -> a
+    void resolveMakeChanges(org.threeten.bp.temporal.TemporalField,org.threeten.bp.chrono.ChronoLocalDate) -> a
+    void resolveMakeChanges(org.threeten.bp.temporal.TemporalField,org.threeten.bp.LocalTime) -> a
+    void mergeDate(org.threeten.bp.format.ResolverStyle) -> b
+    void checkDate(org.threeten.bp.LocalDate) -> a
+    void mergeTime(org.threeten.bp.format.ResolverStyle) -> c
+    void resolveTimeInferZeroes(org.threeten.bp.format.ResolverStyle) -> d
+    void mergeInstantFields() -> a
+    void mergeInstantFields0(org.threeten.bp.ZoneId) -> a
+    void crossCheck() -> b
+    void crossCheck(org.threeten.bp.temporal.TemporalAccessor) -> a
+    void resolveFractional() -> c
+    void resolveInstant() -> d
+    java.lang.Object build(org.threeten.bp.temporal.TemporalQuery) -> b
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.format.DateTimeFormatter -> org.threeten.bp.format.DateTimeFormatter:
+    org.threeten.bp.format.DateTimeFormatter ISO_LOCAL_DATE -> a
+    org.threeten.bp.format.DateTimeFormatter ISO_OFFSET_DATE -> b
+    org.threeten.bp.format.DateTimeFormatter ISO_DATE -> c
+    org.threeten.bp.format.DateTimeFormatter ISO_LOCAL_TIME -> d
+    org.threeten.bp.format.DateTimeFormatter ISO_OFFSET_TIME -> e
+    org.threeten.bp.format.DateTimeFormatter ISO_TIME -> f
+    org.threeten.bp.format.DateTimeFormatter ISO_LOCAL_DATE_TIME -> g
+    org.threeten.bp.format.DateTimeFormatter ISO_OFFSET_DATE_TIME -> h
+    org.threeten.bp.format.DateTimeFormatter ISO_ZONED_DATE_TIME -> i
+    org.threeten.bp.format.DateTimeFormatter ISO_DATE_TIME -> j
+    org.threeten.bp.format.DateTimeFormatter ISO_ORDINAL_DATE -> k
+    org.threeten.bp.format.DateTimeFormatter ISO_WEEK_DATE -> l
+    org.threeten.bp.format.DateTimeFormatter ISO_INSTANT -> m
+    org.threeten.bp.format.DateTimeFormatter BASIC_ISO_DATE -> n
+    org.threeten.bp.format.DateTimeFormatter RFC_1123_DATE_TIME -> o
+    org.threeten.bp.temporal.TemporalQuery PARSED_EXCESS_DAYS -> p
+    org.threeten.bp.temporal.TemporalQuery PARSED_LEAP_SECOND -> q
+    org.threeten.bp.format.DateTimeFormatterBuilder$CompositePrinterParser printerParser -> r
+    java.util.Locale locale -> s
+    org.threeten.bp.format.DecimalStyle decimalStyle -> t
+    org.threeten.bp.format.ResolverStyle resolverStyle -> u
+    java.util.Set resolverFields -> v
+    org.threeten.bp.chrono.Chronology chrono -> w
+    org.threeten.bp.ZoneId zone -> x
+    org.threeten.bp.format.DateTimeFormatter ofPattern(java.lang.String) -> a
+    java.util.Locale getLocale() -> a
+    org.threeten.bp.format.DecimalStyle getDecimalStyle() -> b
+    org.threeten.bp.chrono.Chronology getChronology() -> c
+    org.threeten.bp.format.DateTimeFormatter withChronology(org.threeten.bp.chrono.Chronology) -> a
+    org.threeten.bp.ZoneId getZone() -> d
+    org.threeten.bp.format.DateTimeFormatter withResolverStyle(org.threeten.bp.format.ResolverStyle) -> a
+    java.lang.String format(org.threeten.bp.temporal.TemporalAccessor) -> a
+    void formatTo(org.threeten.bp.temporal.TemporalAccessor,java.lang.Appendable) -> a
+    java.lang.Object parse(java.lang.CharSequence,org.threeten.bp.temporal.TemporalQuery) -> a
+    org.threeten.bp.format.DateTimeParseException createError(java.lang.CharSequence,java.lang.RuntimeException) -> a
+    org.threeten.bp.format.DateTimeBuilder parseToBuilder(java.lang.CharSequence,java.text.ParsePosition) -> a
+    org.threeten.bp.format.DateTimeParseContext$Parsed parseUnresolved0(java.lang.CharSequence,java.text.ParsePosition) -> b
+    org.threeten.bp.format.DateTimeFormatterBuilder$CompositePrinterParser toPrinterParser(boolean) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.format.DateTimeFormatter$1 -> org.threeten.bp.format.DateTimeFormatter$1:
+    org.threeten.bp.Period queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.format.DateTimeFormatter$2 -> org.threeten.bp.format.DateTimeFormatter$2:
+    java.lang.Boolean queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.format.DateTimeFormatterBuilder -> org.threeten.bp.format.DateTimeFormatterBuilder:
+    org.threeten.bp.temporal.TemporalQuery QUERY_REGION_ONLY -> b
+    org.threeten.bp.format.DateTimeFormatterBuilder active -> c
+    org.threeten.bp.format.DateTimeFormatterBuilder parent -> d
+    java.util.List printerParsers -> e
+    boolean optional -> f
+    int padNextWidth -> g
+    char padNextChar -> h
+    int valueParserIndex -> i
+    java.util.Map FIELD_MAP -> j
+    java.util.Comparator LENGTH_SORT -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder parseCaseSensitive() -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder parseCaseInsensitive() -> b
+    org.threeten.bp.format.DateTimeFormatterBuilder parseLenient() -> c
+    org.threeten.bp.format.DateTimeFormatterBuilder appendValue(org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder appendValue(org.threeten.bp.temporal.TemporalField,int) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder appendValue(org.threeten.bp.temporal.TemporalField,int,int,org.threeten.bp.format.SignStyle) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder appendValueReduced(org.threeten.bp.temporal.TemporalField,int,int,org.threeten.bp.chrono.ChronoLocalDate) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder appendValue(org.threeten.bp.format.DateTimeFormatterBuilder$NumberPrinterParser) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder appendFraction(org.threeten.bp.temporal.TemporalField,int,int,boolean) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder appendText(org.threeten.bp.temporal.TemporalField,org.threeten.bp.format.TextStyle) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder appendText(org.threeten.bp.temporal.TemporalField,java.util.Map) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder appendInstant() -> d
+    org.threeten.bp.format.DateTimeFormatterBuilder appendOffsetId() -> e
+    org.threeten.bp.format.DateTimeFormatterBuilder appendOffset(java.lang.String,java.lang.String) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder appendLocalizedOffset(org.threeten.bp.format.TextStyle) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder appendZoneId() -> f
+    org.threeten.bp.format.DateTimeFormatterBuilder appendZoneRegionId() -> g
+    org.threeten.bp.format.DateTimeFormatterBuilder appendZoneText(org.threeten.bp.format.TextStyle) -> b
+    org.threeten.bp.format.DateTimeFormatterBuilder appendLiteral(char) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder appendLiteral(java.lang.String) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder append(org.threeten.bp.format.DateTimeFormatter) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder appendPattern(java.lang.String) -> b
+    void parsePattern(java.lang.String) -> c
+    void parseField(char,int,org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder padNext(int) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder padNext(int,char) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder optionalStart() -> h
+    org.threeten.bp.format.DateTimeFormatterBuilder optionalEnd() -> i
+    int appendInternal(org.threeten.bp.format.DateTimeFormatterBuilder$DateTimePrinterParser) -> a
+    org.threeten.bp.format.DateTimeFormatter toFormatter() -> j
+    org.threeten.bp.format.DateTimeFormatter toFormatter(java.util.Locale) -> a
+    org.threeten.bp.format.DateTimeFormatter toFormatter(org.threeten.bp.format.ResolverStyle) -> a
+org.threeten.bp.format.DateTimeFormatterBuilder$1 -> org.threeten.bp.format.DateTimeFormatterBuilder$1:
+    org.threeten.bp.ZoneId queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.format.DateTimeFormatterBuilder$2 -> org.threeten.bp.format.DateTimeFormatterBuilder$2:
+    org.threeten.bp.format.SimpleDateTimeTextProvider$LocaleStore val$store -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder this$0 -> b
+    java.lang.String getText(org.threeten.bp.temporal.TemporalField,long,org.threeten.bp.format.TextStyle,java.util.Locale) -> a
+    java.util.Iterator getTextIterator(org.threeten.bp.temporal.TemporalField,org.threeten.bp.format.TextStyle,java.util.Locale) -> a
+org.threeten.bp.format.DateTimeFormatterBuilder$3 -> org.threeten.bp.format.DateTimeFormatterBuilder$3:
+    int compare(java.lang.String,java.lang.String) -> a
+    int compare(java.lang.Object,java.lang.Object) -> compare
+org.threeten.bp.format.DateTimeFormatterBuilder$4 -> org.threeten.bp.format.DateTimeFormatterBuilder$4:
+    int[] $SwitchMap$org$threeten$bp$format$SignStyle -> a
+org.threeten.bp.format.DateTimeFormatterBuilder$CharLiteralPrinterParser -> org.threeten.bp.format.DateTimeFormatterBuilder$CharLiteralPrinterParser:
+    char literal -> a
+    boolean print(org.threeten.bp.format.DateTimePrintContext,java.lang.StringBuilder) -> a
+    int parse(org.threeten.bp.format.DateTimeParseContext,java.lang.CharSequence,int) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.format.DateTimeFormatterBuilder$CompositePrinterParser -> org.threeten.bp.format.DateTimeFormatterBuilder$CompositePrinterParser:
+    org.threeten.bp.format.DateTimeFormatterBuilder$DateTimePrinterParser[] printerParsers -> a
+    boolean optional -> b
+    org.threeten.bp.format.DateTimeFormatterBuilder$CompositePrinterParser withOptional(boolean) -> a
+    boolean print(org.threeten.bp.format.DateTimePrintContext,java.lang.StringBuilder) -> a
+    int parse(org.threeten.bp.format.DateTimeParseContext,java.lang.CharSequence,int) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.format.DateTimeFormatterBuilder$DateTimePrinterParser -> org.threeten.bp.format.DateTimeFormatterBuilder$DateTimePrinterParser:
+    boolean print(org.threeten.bp.format.DateTimePrintContext,java.lang.StringBuilder) -> a
+    int parse(org.threeten.bp.format.DateTimeParseContext,java.lang.CharSequence,int) -> a
+org.threeten.bp.format.DateTimeFormatterBuilder$FractionPrinterParser -> org.threeten.bp.format.DateTimeFormatterBuilder$FractionPrinterParser:
+    org.threeten.bp.temporal.TemporalField field -> a
+    int minWidth -> b
+    int maxWidth -> c
+    boolean decimalPoint -> d
+    boolean print(org.threeten.bp.format.DateTimePrintContext,java.lang.StringBuilder) -> a
+    int parse(org.threeten.bp.format.DateTimeParseContext,java.lang.CharSequence,int) -> a
+    java.math.BigDecimal convertToFraction(long) -> a
+    long convertFromFraction(java.math.BigDecimal) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.format.DateTimeFormatterBuilder$InstantPrinterParser -> org.threeten.bp.format.DateTimeFormatterBuilder$InstantPrinterParser:
+    int fractionalDigits -> a
+    boolean print(org.threeten.bp.format.DateTimePrintContext,java.lang.StringBuilder) -> a
+    int parse(org.threeten.bp.format.DateTimeParseContext,java.lang.CharSequence,int) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.format.DateTimeFormatterBuilder$LocalizedOffsetPrinterParser -> org.threeten.bp.format.DateTimeFormatterBuilder$LocalizedOffsetPrinterParser:
+    org.threeten.bp.format.TextStyle style -> a
+    boolean print(org.threeten.bp.format.DateTimePrintContext,java.lang.StringBuilder) -> a
+    int parse(org.threeten.bp.format.DateTimeParseContext,java.lang.CharSequence,int) -> a
+org.threeten.bp.format.DateTimeFormatterBuilder$NumberPrinterParser -> org.threeten.bp.format.DateTimeFormatterBuilder$NumberPrinterParser:
+    int[] EXCEED_POINTS -> a
+    org.threeten.bp.temporal.TemporalField field -> b
+    int minWidth -> c
+    int maxWidth -> d
+    org.threeten.bp.format.SignStyle signStyle -> e
+    int subsequentWidth -> f
+    org.threeten.bp.format.DateTimeFormatterBuilder$NumberPrinterParser withFixedWidth() -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder$NumberPrinterParser withSubsequentWidth(int) -> a
+    boolean print(org.threeten.bp.format.DateTimePrintContext,java.lang.StringBuilder) -> a
+    long getValue(org.threeten.bp.format.DateTimePrintContext,long) -> a
+    boolean isFixedWidth(org.threeten.bp.format.DateTimeParseContext) -> a
+    int parse(org.threeten.bp.format.DateTimeParseContext,java.lang.CharSequence,int) -> a
+    int setValue(org.threeten.bp.format.DateTimeParseContext,long,int,int) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.format.DateTimeFormatterBuilder$OffsetIdPrinterParser -> org.threeten.bp.format.DateTimeFormatterBuilder$OffsetIdPrinterParser:
+    java.lang.String[] PATTERNS -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder$OffsetIdPrinterParser INSTANCE_ID -> b
+    java.lang.String noOffsetText -> c
+    int type -> d
+    int checkPattern(java.lang.String) -> a
+    boolean print(org.threeten.bp.format.DateTimePrintContext,java.lang.StringBuilder) -> a
+    int parse(org.threeten.bp.format.DateTimeParseContext,java.lang.CharSequence,int) -> a
+    boolean parseNumber(int[],int,java.lang.CharSequence,boolean) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.format.DateTimeFormatterBuilder$PadPrinterParserDecorator -> org.threeten.bp.format.DateTimeFormatterBuilder$PadPrinterParserDecorator:
+    org.threeten.bp.format.DateTimeFormatterBuilder$DateTimePrinterParser printerParser -> a
+    int padWidth -> b
+    char padChar -> c
+    boolean print(org.threeten.bp.format.DateTimePrintContext,java.lang.StringBuilder) -> a
+    int parse(org.threeten.bp.format.DateTimeParseContext,java.lang.CharSequence,int) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.format.DateTimeFormatterBuilder$ReducedPrinterParser -> org.threeten.bp.format.DateTimeFormatterBuilder$ReducedPrinterParser:
+    org.threeten.bp.LocalDate BASE_DATE -> g
+    int baseValue -> h
+    org.threeten.bp.chrono.ChronoLocalDate baseDate -> i
+    long getValue(org.threeten.bp.format.DateTimePrintContext,long) -> a
+    int setValue(org.threeten.bp.format.DateTimeParseContext,long,int,int) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder$NumberPrinterParser withFixedWidth() -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder$ReducedPrinterParser withSubsequentWidth(int) -> b
+    boolean isFixedWidth(org.threeten.bp.format.DateTimeParseContext) -> a
+    java.lang.String toString() -> toString
+    org.threeten.bp.format.DateTimeFormatterBuilder$NumberPrinterParser withSubsequentWidth(int) -> a
+org.threeten.bp.format.DateTimeFormatterBuilder$SettingsParser -> org.threeten.bp.format.DateTimeFormatterBuilder$SettingsParser:
+    org.threeten.bp.format.DateTimeFormatterBuilder$SettingsParser SENSITIVE -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder$SettingsParser INSENSITIVE -> b
+    org.threeten.bp.format.DateTimeFormatterBuilder$SettingsParser STRICT -> c
+    org.threeten.bp.format.DateTimeFormatterBuilder$SettingsParser LENIENT -> d
+    org.threeten.bp.format.DateTimeFormatterBuilder$SettingsParser[] $VALUES -> e
+    org.threeten.bp.format.DateTimeFormatterBuilder$SettingsParser[] values() -> values
+    org.threeten.bp.format.DateTimeFormatterBuilder$SettingsParser valueOf(java.lang.String) -> valueOf
+    boolean print(org.threeten.bp.format.DateTimePrintContext,java.lang.StringBuilder) -> a
+    int parse(org.threeten.bp.format.DateTimeParseContext,java.lang.CharSequence,int) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.format.DateTimeFormatterBuilder$StringLiteralPrinterParser -> org.threeten.bp.format.DateTimeFormatterBuilder$StringLiteralPrinterParser:
+    java.lang.String literal -> a
+    boolean print(org.threeten.bp.format.DateTimePrintContext,java.lang.StringBuilder) -> a
+    int parse(org.threeten.bp.format.DateTimeParseContext,java.lang.CharSequence,int) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.format.DateTimeFormatterBuilder$TextPrinterParser -> org.threeten.bp.format.DateTimeFormatterBuilder$TextPrinterParser:
+    org.threeten.bp.temporal.TemporalField field -> a
+    org.threeten.bp.format.TextStyle textStyle -> b
+    org.threeten.bp.format.DateTimeTextProvider provider -> c
+    org.threeten.bp.format.DateTimeFormatterBuilder$NumberPrinterParser numberPrinterParser -> d
+    boolean print(org.threeten.bp.format.DateTimePrintContext,java.lang.StringBuilder) -> a
+    int parse(org.threeten.bp.format.DateTimeParseContext,java.lang.CharSequence,int) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder$NumberPrinterParser numberPrinterParser() -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.format.DateTimeFormatterBuilder$WeekFieldsPrinterParser -> org.threeten.bp.format.DateTimeFormatterBuilder$WeekFieldsPrinterParser:
+    char letter -> a
+    int count -> b
+    boolean print(org.threeten.bp.format.DateTimePrintContext,java.lang.StringBuilder) -> a
+    int parse(org.threeten.bp.format.DateTimeParseContext,java.lang.CharSequence,int) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder$DateTimePrinterParser evaluate(org.threeten.bp.temporal.WeekFields) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.format.DateTimeFormatterBuilder$ZoneIdPrinterParser -> org.threeten.bp.format.DateTimeFormatterBuilder$ZoneIdPrinterParser:
+    org.threeten.bp.temporal.TemporalQuery query -> a
+    java.lang.String description -> b
+    java.util.Map$Entry cachedSubstringTree -> c
+    boolean print(org.threeten.bp.format.DateTimePrintContext,java.lang.StringBuilder) -> a
+    int parse(org.threeten.bp.format.DateTimeParseContext,java.lang.CharSequence,int) -> a
+    org.threeten.bp.ZoneId convertToZone(java.util.Set,java.lang.String,boolean) -> a
+    int parsePrefixedOffset(org.threeten.bp.format.DateTimeParseContext,java.lang.CharSequence,int,int) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder$ZoneIdPrinterParser$SubstringTree prepareParser(java.util.Set) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.format.DateTimeFormatterBuilder$ZoneIdPrinterParser$SubstringTree -> org.threeten.bp.format.DateTimeFormatterBuilder$ZoneIdPrinterParser$SubstringTree:
+    int length -> a
+    java.util.Map substringMap -> b
+    java.util.Map substringMapCI -> c
+    org.threeten.bp.format.DateTimeFormatterBuilder$ZoneIdPrinterParser$SubstringTree get(java.lang.CharSequence,boolean) -> a
+    void add(java.lang.String) -> a
+    org.threeten.bp.format.DateTimeFormatterBuilder$ZoneIdPrinterParser$SubstringTree access$100(org.threeten.bp.format.DateTimeFormatterBuilder$ZoneIdPrinterParser$SubstringTree,java.lang.CharSequence,boolean) -> a
+    void access$300(org.threeten.bp.format.DateTimeFormatterBuilder$ZoneIdPrinterParser$SubstringTree,java.lang.String) -> a
+org.threeten.bp.format.DateTimeFormatterBuilder$ZoneTextPrinterParser -> org.threeten.bp.format.DateTimeFormatterBuilder$ZoneTextPrinterParser:
+    java.util.Comparator LENGTH_COMPARATOR -> a
+    org.threeten.bp.format.TextStyle textStyle -> b
+    boolean print(org.threeten.bp.format.DateTimePrintContext,java.lang.StringBuilder) -> a
+    int parse(org.threeten.bp.format.DateTimeParseContext,java.lang.CharSequence,int) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.format.DateTimeFormatterBuilder$ZoneTextPrinterParser$1 -> org.threeten.bp.format.DateTimeFormatterBuilder$ZoneTextPrinterParser$1:
+    int compare(java.lang.String,java.lang.String) -> a
+    int compare(java.lang.Object,java.lang.Object) -> compare
+org.threeten.bp.format.DateTimeParseContext -> org.threeten.bp.format.DateTimeParseContext:
+    java.util.Locale locale -> a
+    org.threeten.bp.format.DecimalStyle symbols -> b
+    org.threeten.bp.chrono.Chronology overrideChronology -> c
+    org.threeten.bp.ZoneId overrideZone -> d
+    boolean caseSensitive -> e
+    boolean strict -> f
+    java.util.ArrayList parsed -> g
+    org.threeten.bp.format.DateTimeParseContext copy() -> a
+    java.util.Locale getLocale() -> b
+    org.threeten.bp.format.DecimalStyle getSymbols() -> c
+    org.threeten.bp.chrono.Chronology getEffectiveChronology() -> d
+    boolean isCaseSensitive() -> e
+    void setCaseSensitive(boolean) -> a
+    boolean subSequenceEquals(java.lang.CharSequence,int,java.lang.CharSequence,int,int) -> a
+    boolean charEquals(char,char) -> a
+    boolean charEqualsIgnoreCase(char,char) -> b
+    boolean isStrict() -> f
+    void setStrict(boolean) -> b
+    void startOptional() -> g
+    void endOptional(boolean) -> c
+    org.threeten.bp.format.DateTimeParseContext$Parsed currentParsed() -> j
+    java.lang.Long getParsed(org.threeten.bp.temporal.TemporalField) -> a
+    int setParsedField(org.threeten.bp.temporal.TemporalField,long,int,int) -> a
+    void addChronologyChangedParser(org.threeten.bp.format.DateTimeFormatterBuilder$ReducedPrinterParser,long,int,int) -> a
+    void setParsed(org.threeten.bp.ZoneId) -> a
+    void setParsedLeapSecond() -> h
+    org.threeten.bp.format.DateTimeParseContext$Parsed toParsed() -> i
+    java.lang.String toString() -> toString
+    org.threeten.bp.ZoneId access$100(org.threeten.bp.format.DateTimeParseContext) -> a
+org.threeten.bp.format.DateTimeParseContext$1 -> org.threeten.bp.format.DateTimeParseContext$1:
+org.threeten.bp.format.DateTimeParseContext$Parsed -> org.threeten.bp.format.DateTimeParseContext$Parsed:
+    org.threeten.bp.chrono.Chronology chrono -> a
+    org.threeten.bp.ZoneId zone -> b
+    java.util.Map fieldValues -> c
+    boolean leapSecond -> d
+    org.threeten.bp.Period excessDays -> e
+    java.util.List callbacks -> f
+    org.threeten.bp.format.DateTimeParseContext this$0 -> g
+    org.threeten.bp.format.DateTimeParseContext$Parsed copy() -> a
+    java.lang.String toString() -> toString
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    int get(org.threeten.bp.temporal.TemporalField) -> c
+    long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+    org.threeten.bp.format.DateTimeBuilder toBuilder() -> b
+org.threeten.bp.format.DateTimeParseException -> org.threeten.bp.format.DateTimeParseException:
+    java.lang.String parsedString -> a
+    int errorIndex -> b
+org.threeten.bp.format.DateTimePrintContext -> org.threeten.bp.format.DateTimePrintContext:
+    org.threeten.bp.temporal.TemporalAccessor temporal -> a
+    java.util.Locale locale -> b
+    org.threeten.bp.format.DecimalStyle symbols -> c
+    int optional -> d
+    org.threeten.bp.temporal.TemporalAccessor adjust(org.threeten.bp.temporal.TemporalAccessor,org.threeten.bp.format.DateTimeFormatter) -> a
+    org.threeten.bp.temporal.TemporalAccessor getTemporal() -> a
+    java.util.Locale getLocale() -> b
+    org.threeten.bp.format.DecimalStyle getSymbols() -> c
+    void startOptional() -> d
+    void endOptional() -> e
+    java.lang.Object getValue(org.threeten.bp.temporal.TemporalQuery) -> a
+    java.lang.Long getValue(org.threeten.bp.temporal.TemporalField) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.format.DateTimePrintContext$1 -> org.threeten.bp.format.DateTimePrintContext$1:
+    org.threeten.bp.chrono.ChronoLocalDate val$effectiveDate -> a
+    org.threeten.bp.temporal.TemporalAccessor val$temporal -> b
+    org.threeten.bp.chrono.Chronology val$effectiveChrono -> c
+    org.threeten.bp.ZoneId val$effectiveZone -> d
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
+    long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+org.threeten.bp.format.DateTimeTextProvider -> org.threeten.bp.format.DateTimeTextProvider:
+    org.threeten.bp.format.DateTimeTextProvider getInstance() -> a
+    java.lang.String getText(org.threeten.bp.temporal.TemporalField,long,org.threeten.bp.format.TextStyle,java.util.Locale) -> a
+    java.util.Iterator getTextIterator(org.threeten.bp.temporal.TemporalField,org.threeten.bp.format.TextStyle,java.util.Locale) -> a
+org.threeten.bp.format.DecimalStyle -> org.threeten.bp.format.DecimalStyle:
+    org.threeten.bp.format.DecimalStyle STANDARD -> a
+    java.util.concurrent.ConcurrentMap CACHE -> b
+    char zeroDigit -> c
+    char positiveSign -> d
+    char negativeSign -> e
+    char decimalSeparator -> f
+    char getZeroDigit() -> a
+    char getPositiveSign() -> b
+    char getNegativeSign() -> c
+    char getDecimalSeparator() -> d
+    int convertToDigit(char) -> a
+    java.lang.String convertNumberToI18N(java.lang.String) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+org.threeten.bp.format.ResolverStyle -> org.threeten.bp.format.ResolverStyle:
+    org.threeten.bp.format.ResolverStyle STRICT -> a
+    org.threeten.bp.format.ResolverStyle SMART -> b
+    org.threeten.bp.format.ResolverStyle LENIENT -> c
+    org.threeten.bp.format.ResolverStyle[] $VALUES -> d
+    org.threeten.bp.format.ResolverStyle[] values() -> values
+    org.threeten.bp.format.ResolverStyle valueOf(java.lang.String) -> valueOf
+org.threeten.bp.format.SignStyle -> org.threeten.bp.format.SignStyle:
+    org.threeten.bp.format.SignStyle NORMAL -> a
+    org.threeten.bp.format.SignStyle ALWAYS -> b
+    org.threeten.bp.format.SignStyle NEVER -> c
+    org.threeten.bp.format.SignStyle NOT_NEGATIVE -> d
+    org.threeten.bp.format.SignStyle EXCEEDS_PAD -> e
+    org.threeten.bp.format.SignStyle[] $VALUES -> f
+    org.threeten.bp.format.SignStyle[] values() -> values
+    org.threeten.bp.format.SignStyle valueOf(java.lang.String) -> valueOf
+    boolean parse(boolean,boolean,boolean) -> a
+org.threeten.bp.format.SimpleDateTimeTextProvider -> org.threeten.bp.format.SimpleDateTimeTextProvider:
+    java.util.concurrent.ConcurrentMap CACHE -> a
+    java.util.Comparator COMPARATOR -> b
+    java.lang.String getText(org.threeten.bp.temporal.TemporalField,long,org.threeten.bp.format.TextStyle,java.util.Locale) -> a
+    java.util.Iterator getTextIterator(org.threeten.bp.temporal.TemporalField,org.threeten.bp.format.TextStyle,java.util.Locale) -> a
+    java.lang.Object findStore(org.threeten.bp.temporal.TemporalField,java.util.Locale) -> a
+    java.lang.Object createStore(org.threeten.bp.temporal.TemporalField,java.util.Locale) -> b
+    java.util.Map$Entry createEntry(java.lang.Object,java.lang.Object) -> b
+    org.threeten.bp.format.SimpleDateTimeTextProvider$LocaleStore createLocaleStore(java.util.Map) -> a
+    java.util.Map$Entry access$000(java.lang.Object,java.lang.Object) -> a
+    java.util.Comparator access$100() -> b
+org.threeten.bp.format.SimpleDateTimeTextProvider$1 -> org.threeten.bp.format.SimpleDateTimeTextProvider$1:
+    int compare(java.util.Map$Entry,java.util.Map$Entry) -> a
+    int compare(java.lang.Object,java.lang.Object) -> compare
+org.threeten.bp.format.SimpleDateTimeTextProvider$LocaleStore -> org.threeten.bp.format.SimpleDateTimeTextProvider$LocaleStore:
+    java.util.Map valueTextMap -> a
+    java.util.Map parsable -> b
+    java.lang.String getText(long,org.threeten.bp.format.TextStyle) -> a
+    java.util.Iterator getTextIterator(org.threeten.bp.format.TextStyle) -> a
+org.threeten.bp.format.TextStyle -> org.threeten.bp.format.TextStyle:
+    org.threeten.bp.format.TextStyle FULL -> a
+    org.threeten.bp.format.TextStyle FULL_STANDALONE -> b
+    org.threeten.bp.format.TextStyle SHORT -> c
+    org.threeten.bp.format.TextStyle SHORT_STANDALONE -> d
+    org.threeten.bp.format.TextStyle NARROW -> e
+    org.threeten.bp.format.TextStyle NARROW_STANDALONE -> f
+    org.threeten.bp.format.TextStyle[] $VALUES -> g
+    org.threeten.bp.format.TextStyle[] values() -> values
+    org.threeten.bp.format.TextStyle valueOf(java.lang.String) -> valueOf
+    org.threeten.bp.format.TextStyle asNormal() -> a
+org.threeten.bp.jdk8.DefaultInterfaceTemporal -> org.threeten.bp.jdk8.DefaultInterfaceTemporal:
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalAdjuster) -> b
+    org.threeten.bp.temporal.Temporal plus(org.threeten.bp.temporal.TemporalAmount) -> c
+    org.threeten.bp.temporal.Temporal minus(long,org.threeten.bp.temporal.TemporalUnit) -> c
+org.threeten.bp.jdk8.DefaultInterfaceTemporalAccessor -> org.threeten.bp.jdk8.DefaultInterfaceTemporalAccessor:
+    org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
+    int get(org.threeten.bp.temporal.TemporalField) -> c
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+org.threeten.bp.jdk8.Jdk8Methods -> org.threeten.bp.jdk8.Jdk8Methods:
+    java.lang.Object requireNonNull(java.lang.Object,java.lang.String) -> a
+    boolean equals(java.lang.Object,java.lang.Object) -> a
+    int compareInts(int,int) -> a
+    int compareLongs(long,long) -> a
+    long safeAdd(long,long) -> b
+    int safeSubtract(int,int) -> b
+    long safeSubtract(long,long) -> c
+    long safeMultiply(long,int) -> a
+    long safeMultiply(long,long) -> d
+    int safeToInt(long) -> a
+    long floorDiv(long,long) -> e
+    long floorMod(long,long) -> f
+    int floorMod(long,int) -> b
+    int floorMod(int,int) -> c
+org.threeten.bp.temporal.ChronoField -> org.threeten.bp.temporal.ChronoField:
+    org.threeten.bp.temporal.ChronoField NANO_OF_SECOND -> a
+    org.threeten.bp.temporal.ChronoField NANO_OF_DAY -> b
+    org.threeten.bp.temporal.ChronoField MICRO_OF_SECOND -> c
+    org.threeten.bp.temporal.ChronoField MICRO_OF_DAY -> d
+    org.threeten.bp.temporal.ChronoField MILLI_OF_SECOND -> e
+    org.threeten.bp.temporal.ChronoField MILLI_OF_DAY -> f
+    org.threeten.bp.temporal.ChronoField SECOND_OF_MINUTE -> g
+    org.threeten.bp.temporal.ChronoField SECOND_OF_DAY -> h
+    org.threeten.bp.temporal.ChronoField MINUTE_OF_HOUR -> i
+    org.threeten.bp.temporal.ChronoField MINUTE_OF_DAY -> j
+    org.threeten.bp.temporal.ChronoField HOUR_OF_AMPM -> k
+    org.threeten.bp.temporal.ChronoField CLOCK_HOUR_OF_AMPM -> l
+    org.threeten.bp.temporal.ChronoField HOUR_OF_DAY -> m
+    org.threeten.bp.temporal.ChronoField CLOCK_HOUR_OF_DAY -> n
+    org.threeten.bp.temporal.ChronoField AMPM_OF_DAY -> o
+    org.threeten.bp.temporal.ChronoField DAY_OF_WEEK -> p
+    org.threeten.bp.temporal.ChronoField ALIGNED_DAY_OF_WEEK_IN_MONTH -> q
+    org.threeten.bp.temporal.ChronoField ALIGNED_DAY_OF_WEEK_IN_YEAR -> r
+    org.threeten.bp.temporal.ChronoField DAY_OF_MONTH -> s
+    org.threeten.bp.temporal.ChronoField DAY_OF_YEAR -> t
+    org.threeten.bp.temporal.ChronoField EPOCH_DAY -> u
+    org.threeten.bp.temporal.ChronoField ALIGNED_WEEK_OF_MONTH -> v
+    org.threeten.bp.temporal.ChronoField ALIGNED_WEEK_OF_YEAR -> w
+    org.threeten.bp.temporal.ChronoField MONTH_OF_YEAR -> x
+    org.threeten.bp.temporal.ChronoField PROLEPTIC_MONTH -> y
+    org.threeten.bp.temporal.ChronoField YEAR_OF_ERA -> z
+    org.threeten.bp.temporal.ChronoField YEAR -> A
+    org.threeten.bp.temporal.ChronoField ERA -> B
+    org.threeten.bp.temporal.ChronoField INSTANT_SECONDS -> C
+    org.threeten.bp.temporal.ChronoField OFFSET_SECONDS -> D
+    java.lang.String name -> E
+    org.threeten.bp.temporal.TemporalUnit baseUnit -> F
+    org.threeten.bp.temporal.TemporalUnit rangeUnit -> G
+    org.threeten.bp.temporal.ValueRange range -> H
+    org.threeten.bp.temporal.ChronoField[] $VALUES -> I
+    org.threeten.bp.temporal.ChronoField[] values() -> values
+    org.threeten.bp.temporal.ChronoField valueOf(java.lang.String) -> valueOf
+    org.threeten.bp.temporal.ValueRange range() -> a
+    boolean isDateBased() -> b
+    boolean isTimeBased() -> c
+    long checkValidValue(long) -> a
+    int checkValidIntValue(long) -> b
+    boolean isSupportedBy(org.threeten.bp.temporal.TemporalAccessor) -> a
+    org.threeten.bp.temporal.ValueRange rangeRefinedBy(org.threeten.bp.temporal.TemporalAccessor) -> b
+    long getFrom(org.threeten.bp.temporal.TemporalAccessor) -> c
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal,long) -> a
+    org.threeten.bp.temporal.TemporalAccessor resolve(java.util.Map,org.threeten.bp.temporal.TemporalAccessor,org.threeten.bp.format.ResolverStyle) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.temporal.ChronoUnit -> org.threeten.bp.temporal.ChronoUnit:
+    org.threeten.bp.temporal.ChronoUnit NANOS -> a
+    org.threeten.bp.temporal.ChronoUnit MICROS -> b
+    org.threeten.bp.temporal.ChronoUnit MILLIS -> c
+    org.threeten.bp.temporal.ChronoUnit SECONDS -> d
+    org.threeten.bp.temporal.ChronoUnit MINUTES -> e
+    org.threeten.bp.temporal.ChronoUnit HOURS -> f
+    org.threeten.bp.temporal.ChronoUnit HALF_DAYS -> g
+    org.threeten.bp.temporal.ChronoUnit DAYS -> h
+    org.threeten.bp.temporal.ChronoUnit WEEKS -> i
+    org.threeten.bp.temporal.ChronoUnit MONTHS -> j
+    org.threeten.bp.temporal.ChronoUnit YEARS -> k
+    org.threeten.bp.temporal.ChronoUnit DECADES -> l
+    org.threeten.bp.temporal.ChronoUnit CENTURIES -> m
+    org.threeten.bp.temporal.ChronoUnit MILLENNIA -> n
+    org.threeten.bp.temporal.ChronoUnit ERAS -> o
+    org.threeten.bp.temporal.ChronoUnit FOREVER -> p
+    java.lang.String name -> q
+    org.threeten.bp.Duration duration -> r
+    org.threeten.bp.temporal.ChronoUnit[] $VALUES -> s
+    org.threeten.bp.temporal.ChronoUnit[] values() -> values
+    org.threeten.bp.temporal.ChronoUnit valueOf(java.lang.String) -> valueOf
+    boolean isDateBased() -> a
+    org.threeten.bp.temporal.Temporal addTo(org.threeten.bp.temporal.Temporal,long) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.temporal.IsoFields -> org.threeten.bp.temporal.IsoFields:
+    org.threeten.bp.temporal.TemporalField DAY_OF_QUARTER -> a
+    org.threeten.bp.temporal.TemporalField QUARTER_OF_YEAR -> b
+    org.threeten.bp.temporal.TemporalField WEEK_OF_WEEK_BASED_YEAR -> c
+    org.threeten.bp.temporal.TemporalField WEEK_BASED_YEAR -> d
+    org.threeten.bp.temporal.TemporalUnit WEEK_BASED_YEARS -> e
+    org.threeten.bp.temporal.TemporalUnit QUARTER_YEARS -> f
+org.threeten.bp.temporal.IsoFields$1 -> org.threeten.bp.temporal.IsoFields$1:
+    int[] $SwitchMap$org$threeten$bp$temporal$IsoFields$Unit -> a
+org.threeten.bp.temporal.IsoFields$Field -> org.threeten.bp.temporal.IsoFields$Field:
+    org.threeten.bp.temporal.IsoFields$Field DAY_OF_QUARTER -> a
+    org.threeten.bp.temporal.IsoFields$Field QUARTER_OF_YEAR -> b
+    org.threeten.bp.temporal.IsoFields$Field WEEK_OF_WEEK_BASED_YEAR -> c
+    org.threeten.bp.temporal.IsoFields$Field WEEK_BASED_YEAR -> d
+    int[] QUARTER_DAYS -> e
+    org.threeten.bp.temporal.IsoFields$Field[] $VALUES -> f
+    org.threeten.bp.temporal.IsoFields$Field[] values() -> values
+    org.threeten.bp.temporal.IsoFields$Field valueOf(java.lang.String) -> valueOf
+    org.threeten.bp.temporal.TemporalAccessor resolve(java.util.Map,org.threeten.bp.temporal.TemporalAccessor,org.threeten.bp.format.ResolverStyle) -> a
+    boolean isDateBased() -> b
+    boolean isTimeBased() -> c
+    boolean isIso(org.threeten.bp.temporal.TemporalAccessor) -> e
+    org.threeten.bp.temporal.ValueRange getWeekRange(org.threeten.bp.LocalDate) -> d
+    int getWeekRange(int) -> b
+    int getWeek(org.threeten.bp.LocalDate) -> e
+    int getWeekBasedYear(org.threeten.bp.LocalDate) -> f
+    boolean access$100(org.threeten.bp.temporal.TemporalAccessor) -> d
+    int[] access$200() -> d
+    org.threeten.bp.temporal.ValueRange access$300(org.threeten.bp.LocalDate) -> a
+    int access$400(org.threeten.bp.LocalDate) -> b
+    int access$500(org.threeten.bp.LocalDate) -> c
+    int access$600(int) -> a
+org.threeten.bp.temporal.IsoFields$Field$1 -> org.threeten.bp.temporal.IsoFields$Field$1:
+    java.lang.String toString() -> toString
+    org.threeten.bp.temporal.ValueRange range() -> a
+    boolean isSupportedBy(org.threeten.bp.temporal.TemporalAccessor) -> a
+    org.threeten.bp.temporal.ValueRange rangeRefinedBy(org.threeten.bp.temporal.TemporalAccessor) -> b
+    long getFrom(org.threeten.bp.temporal.TemporalAccessor) -> c
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal,long) -> a
+    org.threeten.bp.temporal.TemporalAccessor resolve(java.util.Map,org.threeten.bp.temporal.TemporalAccessor,org.threeten.bp.format.ResolverStyle) -> a
+org.threeten.bp.temporal.IsoFields$Field$2 -> org.threeten.bp.temporal.IsoFields$Field$2:
+    java.lang.String toString() -> toString
+    org.threeten.bp.temporal.ValueRange range() -> a
+    boolean isSupportedBy(org.threeten.bp.temporal.TemporalAccessor) -> a
+    org.threeten.bp.temporal.ValueRange rangeRefinedBy(org.threeten.bp.temporal.TemporalAccessor) -> b
+    long getFrom(org.threeten.bp.temporal.TemporalAccessor) -> c
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal,long) -> a
+org.threeten.bp.temporal.IsoFields$Field$3 -> org.threeten.bp.temporal.IsoFields$Field$3:
+    java.lang.String toString() -> toString
+    org.threeten.bp.temporal.ValueRange range() -> a
+    boolean isSupportedBy(org.threeten.bp.temporal.TemporalAccessor) -> a
+    org.threeten.bp.temporal.ValueRange rangeRefinedBy(org.threeten.bp.temporal.TemporalAccessor) -> b
+    long getFrom(org.threeten.bp.temporal.TemporalAccessor) -> c
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal,long) -> a
+    org.threeten.bp.temporal.TemporalAccessor resolve(java.util.Map,org.threeten.bp.temporal.TemporalAccessor,org.threeten.bp.format.ResolverStyle) -> a
+org.threeten.bp.temporal.IsoFields$Field$4 -> org.threeten.bp.temporal.IsoFields$Field$4:
+    java.lang.String toString() -> toString
+    org.threeten.bp.temporal.ValueRange range() -> a
+    boolean isSupportedBy(org.threeten.bp.temporal.TemporalAccessor) -> a
+    org.threeten.bp.temporal.ValueRange rangeRefinedBy(org.threeten.bp.temporal.TemporalAccessor) -> b
+    long getFrom(org.threeten.bp.temporal.TemporalAccessor) -> c
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal,long) -> a
+org.threeten.bp.temporal.IsoFields$Unit -> org.threeten.bp.temporal.IsoFields$Unit:
+    org.threeten.bp.temporal.IsoFields$Unit WEEK_BASED_YEARS -> a
+    org.threeten.bp.temporal.IsoFields$Unit QUARTER_YEARS -> b
+    java.lang.String name -> c
+    org.threeten.bp.Duration duration -> d
+    org.threeten.bp.temporal.IsoFields$Unit[] $VALUES -> e
+    org.threeten.bp.temporal.IsoFields$Unit[] values() -> values
+    org.threeten.bp.temporal.IsoFields$Unit valueOf(java.lang.String) -> valueOf
+    boolean isDateBased() -> a
+    org.threeten.bp.temporal.Temporal addTo(org.threeten.bp.temporal.Temporal,long) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.temporal.Temporal -> org.threeten.bp.temporal.Temporal:
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalAdjuster) -> b
+    org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalField,long) -> b
+    org.threeten.bp.temporal.Temporal plus(long,org.threeten.bp.temporal.TemporalUnit) -> d
+    org.threeten.bp.temporal.Temporal minus(long,org.threeten.bp.temporal.TemporalUnit) -> c
+org.threeten.bp.temporal.TemporalAccessor -> org.threeten.bp.temporal.TemporalAccessor:
+    boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
+    int get(org.threeten.bp.temporal.TemporalField) -> c
+    long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+org.threeten.bp.temporal.TemporalAdjuster -> org.threeten.bp.temporal.TemporalAdjuster:
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+org.threeten.bp.temporal.TemporalAdjusters -> org.threeten.bp.temporal.TemporalAdjusters:
+    org.threeten.bp.temporal.TemporalAdjuster firstDayOfMonth() -> a
+    org.threeten.bp.temporal.TemporalAdjuster lastDayOfMonth() -> b
+    org.threeten.bp.temporal.TemporalAdjuster nextOrSame(org.threeten.bp.DayOfWeek) -> a
+    org.threeten.bp.temporal.TemporalAdjuster previousOrSame(org.threeten.bp.DayOfWeek) -> b
+org.threeten.bp.temporal.TemporalAdjusters$1 -> org.threeten.bp.temporal.TemporalAdjusters$1:
+org.threeten.bp.temporal.TemporalAdjusters$Impl -> org.threeten.bp.temporal.TemporalAdjusters$Impl:
+    org.threeten.bp.temporal.TemporalAdjusters$Impl FIRST_DAY_OF_MONTH -> a
+    org.threeten.bp.temporal.TemporalAdjusters$Impl LAST_DAY_OF_MONTH -> b
+    org.threeten.bp.temporal.TemporalAdjusters$Impl FIRST_DAY_OF_NEXT_MONTH -> c
+    org.threeten.bp.temporal.TemporalAdjusters$Impl FIRST_DAY_OF_YEAR -> d
+    org.threeten.bp.temporal.TemporalAdjusters$Impl LAST_DAY_OF_YEAR -> e
+    org.threeten.bp.temporal.TemporalAdjusters$Impl FIRST_DAY_OF_NEXT_YEAR -> f
+    int ordinal -> g
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+    org.threeten.bp.temporal.TemporalAdjusters$Impl access$000() -> a
+    org.threeten.bp.temporal.TemporalAdjusters$Impl access$100() -> b
+org.threeten.bp.temporal.TemporalAdjusters$RelativeDayOfWeek -> org.threeten.bp.temporal.TemporalAdjusters$RelativeDayOfWeek:
+    int relative -> a
+    int dowValue -> b
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+org.threeten.bp.temporal.TemporalAmount -> org.threeten.bp.temporal.TemporalAmount:
+    org.threeten.bp.temporal.Temporal addTo(org.threeten.bp.temporal.Temporal) -> a
+org.threeten.bp.temporal.TemporalField -> org.threeten.bp.temporal.TemporalField:
+    org.threeten.bp.temporal.ValueRange range() -> a
+    boolean isDateBased() -> b
+    boolean isTimeBased() -> c
+    boolean isSupportedBy(org.threeten.bp.temporal.TemporalAccessor) -> a
+    org.threeten.bp.temporal.ValueRange rangeRefinedBy(org.threeten.bp.temporal.TemporalAccessor) -> b
+    long getFrom(org.threeten.bp.temporal.TemporalAccessor) -> c
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal,long) -> a
+    org.threeten.bp.temporal.TemporalAccessor resolve(java.util.Map,org.threeten.bp.temporal.TemporalAccessor,org.threeten.bp.format.ResolverStyle) -> a
+org.threeten.bp.temporal.TemporalQueries -> org.threeten.bp.temporal.TemporalQueries:
+    org.threeten.bp.temporal.TemporalQuery ZONE_ID -> a
+    org.threeten.bp.temporal.TemporalQuery CHRONO -> b
+    org.threeten.bp.temporal.TemporalQuery PRECISION -> c
+    org.threeten.bp.temporal.TemporalQuery ZONE -> d
+    org.threeten.bp.temporal.TemporalQuery OFFSET -> e
+    org.threeten.bp.temporal.TemporalQuery LOCAL_DATE -> f
+    org.threeten.bp.temporal.TemporalQuery LOCAL_TIME -> g
+    org.threeten.bp.temporal.TemporalQuery zoneId() -> a
+    org.threeten.bp.temporal.TemporalQuery chronology() -> b
+    org.threeten.bp.temporal.TemporalQuery precision() -> c
+    org.threeten.bp.temporal.TemporalQuery zone() -> d
+    org.threeten.bp.temporal.TemporalQuery offset() -> e
+    org.threeten.bp.temporal.TemporalQuery localDate() -> f
+    org.threeten.bp.temporal.TemporalQuery localTime() -> g
+org.threeten.bp.temporal.TemporalQueries$1 -> org.threeten.bp.temporal.TemporalQueries$1:
+    org.threeten.bp.ZoneId queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.temporal.TemporalQueries$2 -> org.threeten.bp.temporal.TemporalQueries$2:
+    org.threeten.bp.chrono.Chronology queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.temporal.TemporalQueries$3 -> org.threeten.bp.temporal.TemporalQueries$3:
+    org.threeten.bp.temporal.TemporalUnit queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.temporal.TemporalQueries$4 -> org.threeten.bp.temporal.TemporalQueries$4:
+    org.threeten.bp.ZoneId queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.temporal.TemporalQueries$5 -> org.threeten.bp.temporal.TemporalQueries$5:
+    org.threeten.bp.ZoneOffset queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.temporal.TemporalQueries$6 -> org.threeten.bp.temporal.TemporalQueries$6:
+    org.threeten.bp.LocalDate queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.temporal.TemporalQueries$7 -> org.threeten.bp.temporal.TemporalQueries$7:
+    org.threeten.bp.LocalTime queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.temporal.TemporalQuery -> org.threeten.bp.temporal.TemporalQuery:
+    java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.temporal.TemporalUnit -> org.threeten.bp.temporal.TemporalUnit:
+    boolean isDateBased() -> a
+    org.threeten.bp.temporal.Temporal addTo(org.threeten.bp.temporal.Temporal,long) -> a
+org.threeten.bp.temporal.UnsupportedTemporalTypeException -> org.threeten.bp.temporal.UnsupportedTemporalTypeException:
+org.threeten.bp.temporal.ValueRange -> org.threeten.bp.temporal.ValueRange:
+    long minSmallest -> a
+    long minLargest -> b
+    long maxSmallest -> c
+    long maxLargest -> d
+    org.threeten.bp.temporal.ValueRange of(long,long) -> a
+    org.threeten.bp.temporal.ValueRange of(long,long,long) -> a
+    org.threeten.bp.temporal.ValueRange of(long,long,long,long) -> a
+    boolean isFixed() -> a
+    long getMinimum() -> b
+    long getMaximum() -> c
+    boolean isIntValue() -> d
+    boolean isValidValue(long) -> a
+    boolean isValidIntValue(long) -> b
+    long checkValidValue(long,org.threeten.bp.temporal.TemporalField) -> a
+    int checkValidIntValue(long,org.threeten.bp.temporal.TemporalField) -> b
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+org.threeten.bp.temporal.WeekFields -> org.threeten.bp.temporal.WeekFields:
+    java.util.concurrent.ConcurrentMap CACHE -> c
+    org.threeten.bp.temporal.WeekFields ISO -> a
+    org.threeten.bp.temporal.WeekFields SUNDAY_START -> b
+    org.threeten.bp.DayOfWeek firstDayOfWeek -> d
+    int minimalDays -> e
+    org.threeten.bp.temporal.TemporalField dayOfWeek -> f
+    org.threeten.bp.temporal.TemporalField weekOfMonth -> g
+    org.threeten.bp.temporal.TemporalField weekOfYear -> h
+    org.threeten.bp.temporal.TemporalField weekOfWeekBasedYear -> i
+    org.threeten.bp.temporal.TemporalField weekBasedYear -> j
+    org.threeten.bp.temporal.WeekFields of(java.util.Locale) -> a
+    org.threeten.bp.temporal.WeekFields of(org.threeten.bp.DayOfWeek,int) -> a
+    org.threeten.bp.DayOfWeek getFirstDayOfWeek() -> a
+    int getMinimalDaysInFirstWeek() -> b
+    org.threeten.bp.temporal.TemporalField dayOfWeek() -> c
+    org.threeten.bp.temporal.TemporalField weekOfMonth() -> d
+    org.threeten.bp.temporal.TemporalField weekOfWeekBasedYear() -> e
+    org.threeten.bp.temporal.TemporalField weekBasedYear() -> f
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    org.threeten.bp.temporal.TemporalField access$000(org.threeten.bp.temporal.WeekFields) -> a
+org.threeten.bp.temporal.WeekFields$ComputedDayOfField -> org.threeten.bp.temporal.WeekFields$ComputedDayOfField:
+    java.lang.String name -> a
+    org.threeten.bp.temporal.WeekFields weekDef -> b
+    org.threeten.bp.temporal.TemporalUnit baseUnit -> c
+    org.threeten.bp.temporal.TemporalUnit rangeUnit -> d
+    org.threeten.bp.temporal.ValueRange range -> e
+    org.threeten.bp.temporal.ValueRange DAY_OF_WEEK_RANGE -> f
+    org.threeten.bp.temporal.ValueRange WEEK_OF_MONTH_RANGE -> g
+    org.threeten.bp.temporal.ValueRange WEEK_OF_YEAR_RANGE -> h
+    org.threeten.bp.temporal.ValueRange WEEK_OF_WEEK_BASED_YEAR_RANGE -> i
+    org.threeten.bp.temporal.ValueRange WEEK_BASED_YEAR_RANGE -> j
+    org.threeten.bp.temporal.WeekFields$ComputedDayOfField ofDayOfWeekField(org.threeten.bp.temporal.WeekFields) -> a
+    org.threeten.bp.temporal.WeekFields$ComputedDayOfField ofWeekOfMonthField(org.threeten.bp.temporal.WeekFields) -> b
+    org.threeten.bp.temporal.WeekFields$ComputedDayOfField ofWeekOfYearField(org.threeten.bp.temporal.WeekFields) -> c
+    org.threeten.bp.temporal.WeekFields$ComputedDayOfField ofWeekOfWeekBasedYearField(org.threeten.bp.temporal.WeekFields) -> d
+    org.threeten.bp.temporal.WeekFields$ComputedDayOfField ofWeekBasedYearField(org.threeten.bp.temporal.WeekFields) -> e
+    long getFrom(org.threeten.bp.temporal.TemporalAccessor) -> c
+    int localizedDayOfWeek(org.threeten.bp.temporal.TemporalAccessor,int) -> a
+    long localizedWeekOfMonth(org.threeten.bp.temporal.TemporalAccessor,int) -> b
+    long localizedWeekOfYear(org.threeten.bp.temporal.TemporalAccessor,int) -> c
+    int localizedWOWBY(org.threeten.bp.temporal.TemporalAccessor) -> d
+    int localizedWBY(org.threeten.bp.temporal.TemporalAccessor) -> e
+    int startOfWeekOffset(int,int) -> a
+    int computeWeek(int,int) -> b
+    org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal,long) -> a
+    org.threeten.bp.temporal.TemporalAccessor resolve(java.util.Map,org.threeten.bp.temporal.TemporalAccessor,org.threeten.bp.format.ResolverStyle) -> a
+    org.threeten.bp.temporal.ValueRange range() -> a
+    boolean isDateBased() -> b
+    boolean isTimeBased() -> c
+    boolean isSupportedBy(org.threeten.bp.temporal.TemporalAccessor) -> a
+    org.threeten.bp.temporal.ValueRange rangeRefinedBy(org.threeten.bp.temporal.TemporalAccessor) -> b
+    org.threeten.bp.temporal.ValueRange rangeWOWBY(org.threeten.bp.temporal.TemporalAccessor) -> f
+    java.lang.String toString() -> toString
+org.threeten.bp.zone.Ser -> org.threeten.bp.zone.Ser:
+    byte type -> a
+    java.lang.Object object -> b
+    void writeExternal(java.io.ObjectOutput) -> writeExternal
+    void writeInternal(byte,java.lang.Object,java.io.DataOutput) -> a
+    void readExternal(java.io.ObjectInput) -> readExternal
+    java.lang.Object read(java.io.DataInput) -> a
+    java.lang.Object readInternal(byte,java.io.DataInput) -> a
+    void writeOffset(org.threeten.bp.ZoneOffset,java.io.DataOutput) -> a
+    org.threeten.bp.ZoneOffset readOffset(java.io.DataInput) -> b
+    void writeEpochSec(long,java.io.DataOutput) -> a
+    long readEpochSec(java.io.DataInput) -> c
+org.threeten.bp.zone.StandardZoneRules -> org.threeten.bp.zone.StandardZoneRules:
+    long[] standardTransitions -> a
+    org.threeten.bp.ZoneOffset[] standardOffsets -> b
+    long[] savingsInstantTransitions -> c
+    org.threeten.bp.LocalDateTime[] savingsLocalTransitions -> d
+    org.threeten.bp.ZoneOffset[] wallOffsets -> e
+    org.threeten.bp.zone.ZoneOffsetTransitionRule[] lastRules -> f
+    java.util.concurrent.ConcurrentMap lastRulesCache -> g
+    void writeExternal(java.io.DataOutput) -> a
+    org.threeten.bp.zone.StandardZoneRules readExternal(java.io.DataInput) -> a
+    boolean isFixedOffset() -> a
+    org.threeten.bp.ZoneOffset getOffset(org.threeten.bp.Instant) -> a
+    java.util.List getValidOffsets(org.threeten.bp.LocalDateTime) -> a
+    org.threeten.bp.zone.ZoneOffsetTransition getTransition(org.threeten.bp.LocalDateTime) -> b
+    java.lang.Object getOffsetInfo(org.threeten.bp.LocalDateTime) -> c
+    java.lang.Object findOffsetInfo(org.threeten.bp.LocalDateTime,org.threeten.bp.zone.ZoneOffsetTransition) -> a
+    boolean isValidOffset(org.threeten.bp.LocalDateTime,org.threeten.bp.ZoneOffset) -> a
+    org.threeten.bp.zone.ZoneOffsetTransition[] findTransitionArray(int) -> a
+    org.threeten.bp.ZoneOffset getStandardOffset(org.threeten.bp.Instant) -> b
+    boolean isDaylightSavings(org.threeten.bp.Instant) -> c
+    int findYear(long,org.threeten.bp.ZoneOffset) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+org.threeten.bp.zone.TzdbZoneRulesCompiler -> org.threeten.bp.zone.TzdbZoneRulesCompiler:
+    org.threeten.bp.format.DateTimeFormatter TIME_PARSER -> a
+org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule -> org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule:
+org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBMonthDayTime -> org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBMonthDayTime:
+org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBRule -> org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBRule:
+org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBZone -> org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBZone:
+org.threeten.bp.zone.TzdbZoneRulesProvider -> org.threeten.bp.zone.TzdbZoneRulesProvider:
+    java.util.Set regionIds -> a
+    java.util.concurrent.ConcurrentNavigableMap versions -> b
+    java.util.Set loadedUrls -> c
+    java.util.Set provideZoneIds() -> a
+    org.threeten.bp.zone.ZoneRules provideRules(java.lang.String,boolean) -> a
+    boolean load(java.lang.ClassLoader) -> a
+    java.lang.Iterable load(java.net.URL) -> a
+    java.lang.String toString() -> toString
+org.threeten.bp.zone.TzdbZoneRulesProvider$Version -> org.threeten.bp.zone.TzdbZoneRulesProvider$Version:
+    java.lang.String versionId -> a
+    java.lang.String[] regionArray -> b
+    short[] ruleIndices -> c
+    java.util.concurrent.atomic.AtomicReferenceArray ruleData -> d
+    org.threeten.bp.zone.ZoneRules getRules(java.lang.String) -> a
+    org.threeten.bp.zone.ZoneRules createRule(short) -> a
+    java.lang.String toString() -> toString
+    java.lang.String access$000(org.threeten.bp.zone.TzdbZoneRulesProvider$Version) -> a
+org.threeten.bp.zone.ZoneOffsetTransition -> org.threeten.bp.zone.ZoneOffsetTransition:
+    org.threeten.bp.LocalDateTime transition -> a
+    org.threeten.bp.ZoneOffset offsetBefore -> b
+    org.threeten.bp.ZoneOffset offsetAfter -> c
+    void writeExternal(java.io.DataOutput) -> a
+    org.threeten.bp.zone.ZoneOffsetTransition readExternal(java.io.DataInput) -> a
+    org.threeten.bp.Instant getInstant() -> a
+    long toEpochSecond() -> b
+    org.threeten.bp.LocalDateTime getDateTimeBefore() -> c
+    org.threeten.bp.LocalDateTime getDateTimeAfter() -> d
+    org.threeten.bp.ZoneOffset getOffsetBefore() -> e
+    org.threeten.bp.ZoneOffset getOffsetAfter() -> f
+    org.threeten.bp.Duration getDuration() -> g
+    int getDurationSeconds() -> j
+    boolean isGap() -> h
+    java.util.List getValidOffsets() -> i
+    int compareTo(org.threeten.bp.zone.ZoneOffsetTransition) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    int compareTo(java.lang.Object) -> compareTo
+org.threeten.bp.zone.ZoneOffsetTransitionRule -> org.threeten.bp.zone.ZoneOffsetTransitionRule:
+    org.threeten.bp.Month month -> a
+    byte dom -> b
+    org.threeten.bp.DayOfWeek dow -> c
+    org.threeten.bp.LocalTime time -> d
+    boolean timeEndOfDay -> e
+    org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition timeDefinition -> f
+    org.threeten.bp.ZoneOffset standardOffset -> g
+    org.threeten.bp.ZoneOffset offsetBefore -> h
+    org.threeten.bp.ZoneOffset offsetAfter -> i
+    org.threeten.bp.zone.ZoneOffsetTransitionRule of(org.threeten.bp.Month,int,org.threeten.bp.DayOfWeek,org.threeten.bp.LocalTime,boolean,org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition,org.threeten.bp.ZoneOffset,org.threeten.bp.ZoneOffset,org.threeten.bp.ZoneOffset) -> a
+    void writeExternal(java.io.DataOutput) -> a
+    org.threeten.bp.zone.ZoneOffsetTransitionRule readExternal(java.io.DataInput) -> a
+    org.threeten.bp.zone.ZoneOffsetTransition createTransition(int) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+org.threeten.bp.zone.ZoneOffsetTransitionRule$1 -> org.threeten.bp.zone.ZoneOffsetTransitionRule$1:
+    int[] $SwitchMap$org$threeten$bp$zone$ZoneOffsetTransitionRule$TimeDefinition -> a
+org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition -> org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition:
+    org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition UTC -> a
+    org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition WALL -> b
+    org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition STANDARD -> c
+    org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition[] $VALUES -> d
+    org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition[] values() -> values
+    org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition valueOf(java.lang.String) -> valueOf
+    org.threeten.bp.LocalDateTime createDateTime(org.threeten.bp.LocalDateTime,org.threeten.bp.ZoneOffset,org.threeten.bp.ZoneOffset) -> a
+org.threeten.bp.zone.ZoneRules -> org.threeten.bp.zone.ZoneRules:
+    org.threeten.bp.zone.ZoneRules of(org.threeten.bp.ZoneOffset) -> a
+    boolean isFixedOffset() -> a
+    org.threeten.bp.ZoneOffset getOffset(org.threeten.bp.Instant) -> a
+    java.util.List getValidOffsets(org.threeten.bp.LocalDateTime) -> a
+    org.threeten.bp.zone.ZoneOffsetTransition getTransition(org.threeten.bp.LocalDateTime) -> b
+    boolean isDaylightSavings(org.threeten.bp.Instant) -> c
+    boolean isValidOffset(org.threeten.bp.LocalDateTime,org.threeten.bp.ZoneOffset) -> a
+org.threeten.bp.zone.ZoneRules$Fixed -> org.threeten.bp.zone.ZoneRules$Fixed:
+    org.threeten.bp.ZoneOffset offset -> a
+    boolean isFixedOffset() -> a
+    org.threeten.bp.ZoneOffset getOffset(org.threeten.bp.Instant) -> a
+    java.util.List getValidOffsets(org.threeten.bp.LocalDateTime) -> a
+    org.threeten.bp.zone.ZoneOffsetTransition getTransition(org.threeten.bp.LocalDateTime) -> b
+    boolean isValidOffset(org.threeten.bp.LocalDateTime,org.threeten.bp.ZoneOffset) -> a
+    boolean isDaylightSavings(org.threeten.bp.Instant) -> c
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+org.threeten.bp.zone.ZoneRulesBuilder -> org.threeten.bp.zone.ZoneRulesBuilder:
+    java.util.List windowList -> a
+org.threeten.bp.zone.ZoneRulesBuilder$TZRule -> org.threeten.bp.zone.ZoneRulesBuilder$TZRule:
+    int year -> a
+    org.threeten.bp.Month month -> b
+    int dayOfMonthIndicator -> c
+    org.threeten.bp.DayOfWeek dayOfWeek -> d
+    org.threeten.bp.LocalTime time -> e
+    boolean timeEndOfDay -> f
+    int compareTo(org.threeten.bp.zone.ZoneRulesBuilder$TZRule) -> a
+    org.threeten.bp.LocalDate toLocalDate() -> a
+    int compareTo(java.lang.Object) -> compareTo
+org.threeten.bp.zone.ZoneRulesBuilder$TZWindow -> org.threeten.bp.zone.ZoneRulesBuilder$TZWindow:
+org.threeten.bp.zone.ZoneRulesException -> org.threeten.bp.zone.ZoneRulesException:
+org.threeten.bp.zone.ZoneRulesProvider -> org.threeten.bp.zone.ZoneRulesProvider:
+    java.util.concurrent.CopyOnWriteArrayList PROVIDERS -> a
+    java.util.concurrent.ConcurrentMap ZONES -> b
+    java.util.Set getAvailableZoneIds() -> b
+    org.threeten.bp.zone.ZoneRules getRules(java.lang.String,boolean) -> b
+    org.threeten.bp.zone.ZoneRulesProvider getProvider(java.lang.String) -> a
+    void registerProvider0(org.threeten.bp.zone.ZoneRulesProvider) -> a
+    java.util.Set provideZoneIds() -> a
+    org.threeten.bp.zone.ZoneRules provideRules(java.lang.String,boolean) -> a
 pl.srw.billcalculator.AboutActivity -> pl.srw.billcalculator.AboutActivity:
     android.widget.TextView tvVersion -> a
     android.widget.TextView tvLinkEmail -> b
@@ -978,7 +2567,6 @@ pl.srw.billcalculator.MainActivity -> pl.srw.billcalculator.MainActivity:
     void moveToChangeTariff() -> b
     void showDatePicker(android.widget.Button) -> a
     android.app.DatePickerDialog$OnDateSetListener onDatePickedListener(android.widget.Button) -> b
-    java.util.Date readDateFrom(android.widget.Button) -> c
     void calculate() -> c
     boolean validateForm() -> r
     boolean valideteReadings() -> s
@@ -1089,9 +2677,13 @@ pl.srw.billcalculator.preference.SettingsFragment -> pl.srw.billcalculator.prefe
     void onCreate(android.os.Bundle) -> onCreate
     boolean onPreferenceTreeClick(android.preference.PreferenceScreen,android.preference.Preference) -> onPreferenceTreeClick
 pl.srw.billcalculator.util.Dates -> pl.srw.billcalculator.util.Dates:
-    java.util.Date parse(java.lang.String) -> a
-    java.lang.String format(int,int,int) -> a
+    org.threeten.bp.format.DateTimeFormatter FORMATTER -> a
+    org.threeten.bp.LocalDate parse(java.lang.String) -> a
+    java.lang.String format(int,org.threeten.bp.Month,int) -> a
+    java.lang.String format(org.threeten.bp.LocalDate) -> a
     int countMonth(java.lang.String,java.lang.String) -> a
+    org.threeten.bp.LocalDate firstDayOfThisMonth() -> a
+    org.threeten.bp.LocalDate lastDayOfThisMonth() -> b
 pl.srw.billcalculator.util.Display -> pl.srw.billcalculator.util.Display:
     java.lang.String withScale(java.math.BigDecimal,int) -> a
     java.lang.String toPay(java.math.BigDecimal) -> a
