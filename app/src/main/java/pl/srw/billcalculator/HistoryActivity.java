@@ -78,6 +78,7 @@ public class HistoryActivity extends BackableActivity {
                     ((HistoryAdapter) list.getAdapter()).deleteSelected();
                     setResult(MainActivity.HISTORY_RESPONSE_MARK_CHANGED);
                     actionMode.finish();
+                    dataObserver.onChanged();
                     return true;
             }
             return false;
