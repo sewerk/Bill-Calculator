@@ -3,6 +3,7 @@ package pl.srw.billcalculator.service;
 import android.app.IntentService;
 import android.content.Intent;
 
+import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.calculation.PgeG11CalculatedBill;
 import pl.srw.billcalculator.calculation.PgeG12CalculatedBill;
 import pl.srw.billcalculator.db.PgeG11Bill;
@@ -21,6 +22,7 @@ public class PgeBillStoringService extends IntentService {
         super("PgeBiiStoringService");
     }
 
+    @DebugLog
     @Override
     protected void onHandleIntent(final Intent intent) {
 

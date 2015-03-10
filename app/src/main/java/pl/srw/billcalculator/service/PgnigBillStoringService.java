@@ -3,6 +3,7 @@ package pl.srw.billcalculator.service;
 import android.app.IntentService;
 import android.content.Intent;
 
+import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.intent.IntentCreator;
@@ -19,6 +20,7 @@ public class PgnigBillStoringService extends IntentService {
         super("BillStoringService");
     }
 
+    @DebugLog
     @Override
     protected void onHandleIntent(final Intent intent) {
 
