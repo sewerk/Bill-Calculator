@@ -56,6 +56,8 @@ public class MainActivity extends Activity {
 
     public static final String SHARED_PREFERENCES_FILE = "PreferencesFile";
     public static final String PREFERENCE_KEY_FIRST_LAUNCH = "first_launch";
+    public static final int HISTORY_REQUEST_CODE = 101;
+    public static final int HISTORY_RESPONSE_MARK_CHANGED = 1011;
 
     @InjectView(R.id.button_bill_type_switch) ImageButton bBillType;
     @InjectView(R.id.linearLayout_tariff) LinearLayout llTariff;
@@ -471,7 +473,7 @@ public class MainActivity extends Activity {
             start(AboutActivity.class);
             return true;
         } else if (item.getItemId() == R.id.action_history) {
-            start(HistoryActivity.class);
+            startHistory();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -486,10 +488,23 @@ public class MainActivity extends Activity {
     public void startSettings() {
         start(SettingsActivity.class);
     }
-    
+
     private void start(Class<? extends Activity> activityClass) {
         Intent intent = new Intent(this, activityClass);
         startActivity(intent);
     }
 
+    private void startHistory() {
+        Intent intent = new Intent(this, HistoryActivity.class);
+        startActivityForResult(intent, HISTORY_REQUEST_CODE);
+    }
+
+    @DebugLog
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        if (requestCode == HISTORY_REQUEST_CODE && resultCode == HISTORY_RESPONSE_MARK_CHANGED) {
+            markHistoryChanged();
+        } else
+            super.onActivityResult(requestCode, resultCode, data);
+    }
 }

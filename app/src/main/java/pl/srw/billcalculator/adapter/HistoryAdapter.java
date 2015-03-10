@@ -6,43 +6,74 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import de.greenrobot.dao.query.LazyList;
+import hugo.weaving.DebugLog;
+import pl.srw.billcalculator.HistoryActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
+import pl.srw.billcalculator.persistence.Database;
+import pl.srw.billcalculator.util.MultiSelect;
 
 /**
  * Created by Kamil Seweryn.
  */
-public class HistoryAdapter extends RecyclerView.Adapter<HistroryItemViewHolder> {
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryItemViewHolder> {
 
-    protected boolean dataValid;
-    protected LazyList<History> lazyList;
+    private HistoryActivity activity;
+    private LazyList<History> lazyList;
+    private MultiSelect<Integer, Bill> selection = new MultiSelect<>();
 
-    public HistoryAdapter(LazyList<History> lazyList) {
-        this.lazyList = lazyList;
-        this.dataValid = lazyList != null;
+    public HistoryAdapter(HistoryActivity activity) {
+        this.activity = activity;
+        loadListFromDB();
+    }
+
+    private void loadListFromDB() {
+        this.lazyList = Database.getHistory();
     }
 
     @Override
-    public HistroryItemViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.history_item, parent, false);
+    public HistoryItemViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.history_item, parent, false);
 
-        return new HistroryItemViewHolder(v);
+        return new HistoryItemViewHolder(this, selection, itemView);
     }
 
     @Override
-    public void onBindViewHolder(final HistroryItemViewHolder holder, final int position) {
+    public void onBindViewHolder(final HistoryItemViewHolder holder, final int position) {
         History historyItem = lazyList.get(position);
-        holder.bindEntry(historyItem);
+        holder.bindEntry(historyItem, position);
     }
 
     @Override
     public int getItemCount() {
-        if (dataValid && lazyList != null) {
+        if (lazyList != null) {
             return lazyList.size();
         } else {
             return 0;
         }
     }
 
+    public HistoryActivity getActivity() {
+        return activity;
+    }
+
+    @DebugLog
+    public void deleteSelected() {
+        for (Bill bill : selection.getItems())
+            Database.getSession().delete(bill);
+        loadListFromDB();
+
+        for (Integer position : selection.getPositionsReverseOrder())
+            notifyItemRemoved(position);
+
+        selection.deselectAll();
+    }
+
+    public void exitSelectMode() {
+        if (selection.isAnySelected()) {
+            selection.deselectAll();
+            notifyDataSetChanged();
+        }
+    }
 }

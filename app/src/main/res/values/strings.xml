@@ -113,6 +113,7 @@
     <string name="email_client_missing">I could not find any e-mail client installed</string>
 <!-- history -->
     <string name="history_label">History</string>
+    <string name="action_delete">Delete</string>
     <string name="history_period" translatable="false">%1$s - %2$s</string>
     <string name="history_readings_label">Readings:</string>
     <string name="histiry_readings" translatable="false">%1$s - %2$s</string>
