@@ -52,7 +52,7 @@ public class Database {
 
     public static List<Integer> queryCurrentReadings(CurrentReadingType readingType) {
         String[] columns = {readingType.getColumnName()};
-        Cursor cursor = database.query(true, readingType.getTableName(), columns, null, null, null, null, columns[0], QUERY_ROW_LIMIT);
+        Cursor cursor = database.query(true, readingType.getTableName(), columns, null, null, null, null, columns[0] + " DESC", QUERY_ROW_LIMIT);
 
         List<Integer> readings = new ArrayList<>(cursor.getCount());
         while (cursor.moveToNext()) {

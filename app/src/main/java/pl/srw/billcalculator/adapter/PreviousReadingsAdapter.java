@@ -86,7 +86,7 @@ public class PreviousReadingsAdapter extends ArrayAdapter<String> {
                 results.values = all;
                 results.count = 0;
             } else if (prefix == null || prefix.length() == 0) {//show only last result
-                results.values = Arrays.copyOfRange(all, length-1, length);
+                results.values = getLastReading(all);
                 results.count = 1;
             } else {
                 String[] values = Arrays.copyOf(all, length);
@@ -103,6 +103,10 @@ public class PreviousReadingsAdapter extends ArrayAdapter<String> {
             }
 
             return results;
+        }
+
+        private String[] getLastReading(final String[] all) {
+            return Arrays.copyOfRange(all, 0, 1);
         }
 
         @Override
