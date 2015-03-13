@@ -12,7 +12,6 @@ import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.PgnigPrices;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.test.PreferenceUtil;
-import pl.srw.billcalculator.type.BillType;
 
 /**
  * Created by Kamil Seweryn.
@@ -39,9 +38,15 @@ public class PgnigBillActivityInDbTest extends ActivityInstrumentationTestCase2<
         runTestOnUiThread(new Runnable() {
             @Override
             public void run() {
-                sut.findViewById(R.id.button_bill_type_switch).setTag(MainActivity.TAG_IMAGE_TYPE, BillType.PGNIG);
-                ((EditText)sut.findViewById(R.id.editText_reading_from)).setText("123");
-                ((EditText)sut.findViewById(R.id.editText_reading_to)).setText("321");
+                sut.findViewById(R.id.iv_bill_type_switch).performClick();
+            }
+        });
+        getInstrumentation().waitForIdleSync();
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ((EditText) sut.findViewById(R.id.et_reading_from)).setText("123");
+                ((EditText) sut.findViewById(R.id.et_reading_to)).setText("321");
 
                 sut.findViewById(R.id.button_calculate).performClick();
             }

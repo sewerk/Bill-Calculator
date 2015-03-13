@@ -39,7 +39,6 @@ public class PgeBillActivityInDbTest extends ActivityInstrumentationTestCase2<Ma
         runTestOnUiThread(new Runnable() {
             @Override
             public void run() {
-                sut.findViewById(R.id.button_bill_type_switch).setTag(MainActivity.TAG_IMAGE_TYPE, BillType.PGE);
                 ((EditText)sut.findViewById(R.id.editText_reading_day_from)).setText("123");
                 ((EditText)sut.findViewById(R.id.editText_reading_day_to)).setText("321");
                 ((EditText)sut.findViewById(R.id.editText_reading_night_from)).setText("234");

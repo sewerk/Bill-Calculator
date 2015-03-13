@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import hugo.weaving.DebugLog;
+
 /**
  * Created by Kamil Seweryn.
  */
@@ -17,10 +19,12 @@ public class MultiSelect<P, I> {
         selectedItems = new HashMap<>();
     }
 
+    @DebugLog
     public void select(final P p, final I o) {
         selectedItems.put(p, o);
     }
 
+    @DebugLog
     public void deselect(final P p) {
         selectedItems.remove(p);
     }

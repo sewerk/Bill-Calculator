@@ -17,12 +17,12 @@ import org.junit.runner.RunWith;
 
 import java.util.regex.Pattern;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
-
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.type.BillType;
+import pl.srw.billcalculator.preference.GeneralPreferences;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by Kamil Seweryn.
@@ -42,7 +42,7 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
     public void setUp() throws Exception {
         super.setUp();
         injectInstrumentation(InstrumentationRegistry.getInstrumentation());
-        PreferenceUtil.markAfterFirstLaunch(getInstrumentation().getTargetContext());
+        GeneralPreferences.markFirstLaunch();
         solo = new Solo(getInstrumentation(), getActivity());
     }
 
@@ -83,15 +83,14 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
 
     private void inputValues() {
         // change bill type
-        solo.clickOnView(solo.getView(R.id.button_bill_type_switch));
+        solo.clickOnView(solo.getView(R.id.iv_bill_type_switch));
         solo.waitForCondition(new Condition() {
             @Override
             public boolean isSatisfied() {
                 return isVisible(R.drawable.pgnig_on_pge);
             }
         }, 1000);
-        assertThat((BillType) solo.getView(R.id.button_bill_type_switch).getTag(MainActivity.TAG_IMAGE_TYPE),
-                is(BillType.PGNIG));
+        assertThat(isVisible(R.drawable.pgnig_on_pge),is(true));
 
         // type readings
         solo.enterText(0, "6696");
@@ -185,7 +184,7 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
         assertFalse(solo.searchText("8.67"));
     }
 
-    protected boolean isVisible(@DrawableRes int drawable) {
+    private boolean isVisible(@DrawableRes int drawable) {
         return solo.getCurrentActivity().getResources().getDrawable(drawable).isVisible();
     }
 

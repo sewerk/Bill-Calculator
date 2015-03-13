@@ -32,7 +32,7 @@ public class DummyHistoryGenerator {
         Database.getSession().insert(pgePrices);
 
         List<PgeG11Bill> pgeBills = new ArrayList<>(70);
-        for (int i = 0; i < 170; i++) {
+        for (int i = 0; i < 200; i++) {
             final Date fromDate = Dates.toDate(LocalDate.ofYearDay(2014, i + 1));
             final Date toDate = Dates.toDate(LocalDate.ofYearDay(2014, i + 30));
             pgeBills.add(new PgeG11Bill(null, i, i+10, fromDate, toDate, i*11.11, pgePrices.getId()));

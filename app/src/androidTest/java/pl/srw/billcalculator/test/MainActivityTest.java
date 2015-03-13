@@ -2,8 +2,8 @@ package pl.srw.billcalculator.test;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.app.Fragment;
 import android.app.Instrumentation;
-import android.os.Bundle;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.UiThreadTest;
 import android.util.Log;
@@ -11,17 +11,17 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.PgeBillActivity;
 import pl.srw.billcalculator.PgnigBillActivity;
-import pl.srw.billcalculator.intent.IntentCreator;
-import pl.srw.billcalculator.type.BillType;
-import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.intent.IntentCreator;
+import pl.srw.billcalculator.preference.GeneralPreferences;
 
 /**
  * Created by Kamil Seweryn.
@@ -38,7 +38,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     protected void setUp() throws Exception {
         super.setUp();
         PreferenceUtil.changeToG11Tariff(getInstrumentation().getTargetContext());
-        PreferenceUtil.markAfterFirstLaunch(getInstrumentation().getTargetContext());
+        GeneralPreferences.markFirstLaunch();
         sut = getActivity();
     }
 
@@ -54,11 +54,11 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         Thread.sleep(1000L);//need to make sure the fragment dialog show up
         //check dialog show up
         final DialogFragment checkPricesDialog =
-                (DialogFragment) sut.getFragmentManager().findFragmentByTag(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH);
+                (DialogFragment) sut.getFragmentManager().findFragmentByTag(MainActivity.TAG_CHECK_PRICES_DIALOG);
         assertTrue(checkPricesDialog.getDialog().isShowing());
 
         //close dialog to not show up any more
-        Log.d("testCheckPricesDialogShowUpOnce", "===== back button send");
+        Log.d("MainActivityTest", "testCheckPricesDialogShowUpOnce: back button send");
         sendKeys(KeyEvent.KEYCODE_BACK);
 
         //check dialog do not show up on next launch
@@ -67,176 +67,28 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         assertFalse(PreferenceUtil.getFirstLaunchValue(sut).isEmpty());
 
         getInstrumentation().waitForIdleSync();
-        assertNull(sut.getFragmentManager().findFragmentByTag(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH));
+        assertNull(sut.getFragmentManager().findFragmentByTag(MainActivity.TAG_CHECK_PRICES_DIALOG));
     }
 
-    public void testBillTypeSwitchIsInitialized() {
-        Object initialSwitchBtnTagValue = findSwitchBillTypeButtonView().getTag(MainActivity.TAG_IMAGE_TYPE);
-        assertNotNull(initialSwitchBtnTagValue);
-    }
-
-    @UiThreadTest
     public void testG12InfluenceOnlyPGEReadingsView() throws Throwable {
         PreferenceUtil.changeToG12Tariff(sut);
         //switch to PGNiG
-        findSwitchBillTypeButtonView().performClick();
+        switchBillType();
         assertEquals(View.VISIBLE, findReadingsG11View().getVisibility());
-        assertEquals(View.GONE, findReadingsG12View().getVisibility());
+        assertNull(findReadingsG12View());
 
         //switch to PGE
-        findSwitchBillTypeButtonView().performClick();
+        switchBillType();
         assertEquals(View.GONE, findReadingsG11View().getVisibility());
         assertEquals(View.VISIBLE, findReadingsG12View().getVisibility());
     }
     
-    @UiThreadTest
-    public void testBillTypeSwitchOnClick() {
-        ImageButton switchBtn = findSwitchBillTypeButtonView();
-        Object initialSwitchBtnTagValue = switchBtn.getTag(MainActivity.TAG_IMAGE_TYPE);
-
-        switchBtn.performClick();
-        assertNotSame(initialSwitchBtnTagValue, switchBtn.getTag(MainActivity.TAG_IMAGE_TYPE));
-
-        switchBtn.performClick();
-        assertSame(initialSwitchBtnTagValue, switchBtn.getTag(MainActivity.TAG_IMAGE_TYPE));
-    }
-
-    public void testRestoreState() throws Throwable {
-        final BillType billTypeValue = BillType.PGNIG;
-        final String readingFromValue = "234";
-        final String readingToValue = "345";
-        final String dateFromValue = "01/01/2014";
-        final String dateToValue = "31/12/2014";
-
-        final Bundle bundle = new Bundle();
-        runTestOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                //change state
-                findSwitchBillTypeButtonView().setTag(MainActivity.TAG_IMAGE_TYPE, billTypeValue);
-                findReadingFromView().setText(readingFromValue);
-                findReadingToView().setText(readingToValue);
-                findDateFromView().setText(dateFromValue);
-                findDateToView().setText(dateToValue);
-                //save state
-                getInstrumentation().callActivityOnSaveInstanceState(sut, bundle);
-            }
-        });
-
-        restartActivity();
-        //restore state
-        runTestOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                getInstrumentation().callActivityOnRestoreInstanceState(sut, bundle);
-            }
-        });
-
-        assertEquals(billTypeValue, findSwitchBillTypeButtonView().getTag(MainActivity.TAG_IMAGE_TYPE));
-        assertEquals(readingFromValue, findReadingFromView().getText().toString());
-        assertEquals(readingToValue, findReadingToView().getText().toString());
-        assertEquals(dateFromValue, findDateFromView().getText());
-        assertEquals(dateToValue, findDateToView().getText());
-    }
-
-    public void testScreenOrientationChangeDoesNotChangeReadingsLayout() throws Throwable {
-        PreferenceUtil.changeToG12Tariff(sut);
-
-        final Bundle bundle = new Bundle();
-        runTestOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                //change state
-                findSwitchBillTypeButtonView().performClick();
-                //save state
-                getInstrumentation().callActivityOnSaveInstanceState(sut, bundle);
-            }
-        });
-
-        restartActivity();
-        //restore state
-        runTestOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                getInstrumentation().callActivityOnRestoreInstanceState(sut, bundle);
-            }
-        });
-
-        assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.TAG_IMAGE_TYPE));
-        assertEquals(View.VISIBLE, findReadingsG11View().getVisibility());
-        assertEquals(View.GONE, findReadingsG12View().getVisibility());
-    }
-
-    public void testReadingHintsShowAccordingToBillType() throws Throwable {
-        final Bundle bundle = new Bundle();
-        runTestOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                findSwitchBillTypeButtonView().performClick();
-                assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.TAG_IMAGE_TYPE));
-                assertEquals(sut.getString(R.string.reading_hint_m3), findReadingFromView().getHint());
-                assertEquals(sut.getString(R.string.reading_hint_m3), findReadingToView().getHint());
-
-                //save state
-                getInstrumentation().callActivityOnSaveInstanceState(sut, bundle);
-            }
-        });
-
-        restartActivity();
-        // restore state
-        runTestOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                getInstrumentation().callActivityOnRestoreInstanceState(sut, bundle);
-
-                assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.TAG_IMAGE_TYPE));
-                assertEquals(sut.getString(R.string.reading_hint_m3), findReadingFromView().getHint());
-                assertEquals(sut.getString(R.string.reading_hint_m3), findReadingToView().getHint());
-
-                findSwitchBillTypeButtonView().performClick();
-                assertEquals(BillType.PGE, findSwitchBillTypeButtonView().getTag(MainActivity.TAG_IMAGE_TYPE));
-                assertEquals(sut.getString(R.string.reading_hint_kWh), findReadingFromView().getHint());
-                assertEquals(sut.getString(R.string.reading_hint_kWh), findReadingToView().getHint());
-            }
-        });
-    }
-
-    public void testTariffLabelShowUpForPGE() throws Throwable {
-        final Bundle bundle = new Bundle();
-        runTestOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                findSwitchBillTypeButtonView().performClick();
-                assertEquals(BillType.PGNIG, findSwitchBillTypeButtonView().getTag(MainActivity.TAG_IMAGE_TYPE));
-                assertEquals(View.INVISIBLE, findTariffView().getVisibility());
-
-                //save state
-                getInstrumentation().callActivityOnSaveInstanceState(sut, bundle);
-            }
-        });
-
-        restartActivity();
-        runTestOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                // restore state
-                getInstrumentation().callActivityOnRestoreInstanceState(sut, bundle);
-                assertEquals(View.INVISIBLE, findTariffView().getVisibility());
-
-                findSwitchBillTypeButtonView().performClick();
-                assertEquals(BillType.PGE, findSwitchBillTypeButtonView().getTag(MainActivity.TAG_IMAGE_TYPE));
-                assertEquals(View.VISIBLE, findTariffView().getVisibility());
-            }
-        });
-
-    }
-
     public void testG12InfluenceTariffLabel() {
         assertEquals(sut.getString(R.string.pge_tariff_G11_on_bill), findTariffLabelView().getText().toString());
 
         PreferenceUtil.changeToG12Tariff(sut);
         restartActivity();
-
+        getInstrumentation().waitForIdleSync();
         assertEquals(sut.getString(R.string.pge_tariff_G12_on_bill), findTariffLabelView().getText().toString());
     }
 
@@ -362,17 +214,12 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         restartActivity();
 
         requestFocus(findReadingDayFromView());
-        runTestOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                findSwitchBillTypeButtonView().performClick();
-                assertTrue(findReadingFromView().hasFocus());
+        switchBillType();
+        assertTrue(findReadingFromView().hasFocus());
 
-                findSwitchBillTypeButtonView().performClick();
-                assertFalse(findReadingFromView().hasFocus());
-                assertTrue(findReadingDayFromView().hasFocus());
-            }
-        });
+        switchBillType();
+        assertFalse(findReadingFromView().hasFocus());
+        assertTrue(findReadingDayFromView().hasFocus());
     }
 
     public void testBillTypeSwitchChooseNextScreen() throws Throwable {
@@ -383,12 +230,12 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         Instrumentation.ActivityMonitor pgnigBillMonitor = getInstrumentation().addMonitor(PgnigBillActivity.class.getName(), null, false);
 
         // input values PGNIG and calculate
+        switchBillType();
         runTestOnUiThread(new Runnable() {
             @Override
             public void run() {
-                findSwitchBillTypeButtonView().setTag(MainActivity.TAG_IMAGE_TYPE, BillType.PGNIG);
                 findReadingFromView().setText("" + readingLess);
-                findReadingToView().setText(""+readingMore);
+                findReadingToView().setText("" + readingMore);
 
                 findCalculateView().performClick();
             }
@@ -403,10 +250,12 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         getInstrumentation().removeMonitor(pgnigBillMonitor);
 
         //change bill type PGE and calculate
+        switchBillType();
         runTestOnUiThread(new Runnable() {
             @Override
             public void run() {
-                findSwitchBillTypeButtonView().setTag(MainActivity.TAG_IMAGE_TYPE, BillType.PGE);
+                findReadingFromView().setText("" + readingLess);
+                findReadingToView().setText("" + readingMore);
 
                 findCalculateView().performClick();
             }
@@ -432,10 +281,10 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         runTestOnUiThread(new Runnable() {
             @Override
             public void run() {
-                findReadingDayFromView().setText(""+dayFrom);
-                findReadingDayToView().setText(""+dayTo);
-                findReadingNightFromView().setText(""+nightFrom);
-                findReadingNightToView().setText(""+nightTo);
+                findReadingDayFromView().setText("" + dayFrom);
+                findReadingDayToView().setText("" + dayTo);
+                findReadingNightFromView().setText("" + nightFrom);
+                findReadingNightToView().setText("" + nightTo);
 
                 findCalculateView().performClick();
             }
@@ -455,6 +304,10 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     }
 
     // ================================================================ private methods
+    private Fragment findInputSectionFragment() {
+        return sut.getFragmentManager().findFragmentById(R.id.fl_input_section);
+    }
+
     private Button findDateToView() {
         return (Button) sut.findViewById(R.id.button_date_to);
     }
@@ -472,11 +325,11 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     }
 
     private EditText findReadingFromView() {
-        return (EditText) sut.findViewById(R.id.editText_reading_from);
+        return (EditText) sut.findViewById(R.id.et_reading_from);
     }
 
     private EditText findReadingToView() {
-        return (EditText) sut.findViewById(R.id.editText_reading_to);
+        return (EditText) sut.findViewById(R.id.et_reading_to);
     }
 
     private EditText findReadingDayFromView() {
@@ -511,11 +364,14 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         return (TextView) sut.findViewById(R.id.textView_tariff);
     }
     
-    private ImageButton findSwitchBillTypeButtonView() {
-        return (ImageButton) sut.findViewById(R.id.button_bill_type_switch);
+    private ImageView findSwitchBillTypeView() {
+        return (ImageView) sut.findViewById(R.id.iv_bill_type_switch);
     }
 
     private void requestFocus(final View view) throws Throwable {
+        if (view == null) {
+            throw new NullPointerException();
+        }
         runTestOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -549,4 +405,14 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         });
     }
 
+    private void switchBillType() throws Throwable {
+        getInstrumentation().waitForIdleSync();
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                findSwitchBillTypeView().performClick();
+            }
+        });
+        getInstrumentation().waitForIdleSync();
+    }
 }
