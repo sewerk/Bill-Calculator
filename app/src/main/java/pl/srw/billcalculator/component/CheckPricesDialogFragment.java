@@ -3,21 +3,23 @@ package pl.srw.billcalculator.component;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
-import java.util.Date;
-
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.SettingsActivity;
+import pl.srw.billcalculator.preference.GeneralPreferences;
 
 /**
  * Created by Kamil Seweryn
  */
 public class CheckPricesDialogFragment extends DialogFragment {
+
+    @DebugLog
+    public CheckPricesDialogFragment() {}
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -35,7 +37,7 @@ public class CheckPricesDialogFragment extends DialogFragment {
         return new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                ((MainActivity)getActivity()).startSettings();
+                ((MainActivity)getActivity()).start(SettingsActivity.class);
                 markDialogProcessed();
             }
         };
@@ -65,7 +67,6 @@ public class CheckPricesDialogFragment extends DialogFragment {
 
     @DebugLog
     private void markDialogProcessed() {
-        getActivity().getSharedPreferences(MainActivity.SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE)
-                .edit().putString(MainActivity.PREFERENCE_KEY_FIRST_LAUNCH, new Date().toString()).apply();
+        GeneralPreferences.markFirstLaunch();
     }
 }

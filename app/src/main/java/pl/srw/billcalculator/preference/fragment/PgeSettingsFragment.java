@@ -1,7 +1,6 @@
-package pl.srw.billcalculator.preference;
+package pl.srw.billcalculator.preference.fragment;
 
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceManager;
 import android.support.annotation.StringDef;
@@ -10,6 +9,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.preference.PgePrices;
 
 /**
  * Created by Kamil Seweryn.

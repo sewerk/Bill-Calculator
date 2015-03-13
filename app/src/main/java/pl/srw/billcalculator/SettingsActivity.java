@@ -2,7 +2,7 @@ package pl.srw.billcalculator;
 
 import android.os.Bundle;
 
-import pl.srw.billcalculator.preference.SettingsFragment;
+import pl.srw.billcalculator.preference.fragment.SettingsFragment;
 
 
 /**

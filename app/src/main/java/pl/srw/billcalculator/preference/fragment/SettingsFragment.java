@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.preference;
+package pl.srw.billcalculator.preference.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.SettingsActivity;
+import pl.srw.billcalculator.preference.activity.ProviderSettingsActivity;
 
 /**
  * Created by Kamil Seweryn

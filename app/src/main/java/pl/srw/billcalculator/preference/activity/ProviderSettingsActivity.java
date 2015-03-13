@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.preference;
+package pl.srw.billcalculator.preference.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.view.MenuItem;
 
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.preference.fragment.PgeSettingsFragment;
+import pl.srw.billcalculator.preference.fragment.PgnigSettingsFragment;
+import pl.srw.billcalculator.preference.fragment.ProviderSettingsFragment;
 
 /**
  * Created by Kamil Seweryn.
@@ -15,7 +18,7 @@ import pl.srw.billcalculator.R;
 public class ProviderSettingsActivity extends BackableActivity {
 
     private static final String FRAGMENT_TAG = "SettingsFragment";
-    public static final String EXTRA_PRIVIDER_NAME = "PRIVIDER_NAME";
+    public static final String EXTRA_PROVIDER_NAME = "PROVIDER_NAME";
 
     public enum Provider {
         PGE, PGNIG;
@@ -23,7 +26,7 @@ public class ProviderSettingsActivity extends BackableActivity {
 
     public static Intent createIntent(final Context context, final Provider type) {
         Intent i = new Intent(context, ProviderSettingsActivity.class);
-        i.putExtra(EXTRA_PRIVIDER_NAME, type.toString());
+        i.putExtra(EXTRA_PROVIDER_NAME, type.toString());
         return i;    
     }
     
@@ -58,7 +61,7 @@ public class ProviderSettingsActivity extends BackableActivity {
     }
 
     private String getProviderFromIntent() {
-        return getIntent().getStringExtra(EXTRA_PRIVIDER_NAME);
+        return getIntent().getStringExtra(EXTRA_PROVIDER_NAME);
     }
 
     @Override

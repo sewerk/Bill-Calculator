@@ -10,18 +10,21 @@ import android.widget.TextView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import de.greenrobot.event.EventBus;
 import pl.srw.billcalculator.adapter.EmptyHistoryDataObserver;
 import pl.srw.billcalculator.adapter.HistoryAdapter;
+import pl.srw.billcalculator.event.HistoryChangedEvent;
 
 /**
  * Created by Kamil Seweryn.
  */
 public class HistoryActivity extends BackableActivity {
 
-    @InjectView(R.id.rv_history_list) RecyclerView list;
-    @InjectView(R.id.tv_emptyHistory) TextView tvEmptyHistory;
     private EmptyHistoryDataObserver dataObserver;
     private ActionMode actionMode;
+
+    @InjectView(R.id.rv_history_list) RecyclerView list;
+    @InjectView(R.id.tv_emptyHistory) TextView tvEmptyHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +79,8 @@ public class HistoryActivity extends BackableActivity {
             switch (menuItem.getItemId()) {
                 case R.id.action_delete:
                     ((HistoryAdapter) list.getAdapter()).deleteSelected();
-                    setResult(MainActivity.HISTORY_RESPONSE_MARK_CHANGED);
                     actionMode.finish();
+                    EventBus.getDefault().post(new HistoryChangedEvent());
                     dataObserver.onChanged();
                     return true;
             }

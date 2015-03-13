@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.preference;
+package pl.srw.billcalculator.preference.fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

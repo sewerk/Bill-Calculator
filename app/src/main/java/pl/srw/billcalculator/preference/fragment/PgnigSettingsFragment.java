@@ -1,7 +1,6 @@
-package pl.srw.billcalculator.preference;
+package pl.srw.billcalculator.preference.fragment;
 
 import android.app.Dialog;
-import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.text.Html;
@@ -9,6 +8,7 @@ import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.preference.PgnigPrices;
 
 /**
  * Created by Kamil Seweryn.

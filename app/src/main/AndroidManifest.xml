@@ -28,9 +28,9 @@
 
         <activity android:name=".SettingsActivity" android:label="@string/settings_label" />
         
-        <activity android:name=".preference.ProviderSettingsActivity" />
+        <activity android:name=".preference.activity.ProviderSettingsActivity" />
 
-        <activity android:name=".preference.ProviderSettingsHelpActivity" android:label="@string/action_help"
+        <activity android:name=".preference.activity.ProviderSettingsHelpActivity" android:label="@string/action_help"
                   android:theme="@style/DialogTheme" />
         
         <activity android:name=".AboutActivity" android:label="@string/about_label"

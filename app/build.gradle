@@ -55,6 +55,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:5.1.2'
     provided 'pl.mg6.hrisey:hrisey:0.3.1'
     compile 'org.threeten:threetenbp:1.2'
+    compile 'de.greenrobot:eventbus:2.4.0'
     // AndroidViewAnimations dependencies
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.easing:library:1.0.0@aar'
