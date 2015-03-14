@@ -33,31 +33,45 @@ public class TriggersTest extends AbstractDaoSessionTest<BillCalculator, DaoMast
         Triggers.create(db);
     }
 
-    public void testSaveTriggerForPgeBill() {
-        testSaveTriggerFor(new PgeG12Bill(), BillType.PGE_G12);
+    public void testTriggerInsertHistoryEntryOnInsertPgeBill() {
+        testTriggerInsertHistoryEntryOnInsert(new PgeG12Bill(), BillType.PGE_G12);
     }
 
-    public void testSaveTriggerForPgeG12Bill() {
-        testSaveTriggerFor(new PgeG11Bill(), BillType.PGE_G11);
+    public void testTriggerInsertHistoryEntryOnInsertPgeG12Bill() {
+        testTriggerInsertHistoryEntryOnInsert(new PgeG11Bill(), BillType.PGE_G11);
     }
 
-    public void testSaveTriggerForPgnigBill() {
-        testSaveTriggerFor(new PgnigBill(), BillType.PGNIG);
+    public void testTriggerInsertHistoryEntryOnInsertPgnigBill() {
+        testTriggerInsertHistoryEntryOnInsert(new PgnigBill(), BillType.PGNIG);
     }
 
-    public void testDeleteTriggerForPgeBill() {
-        testDeleteTriggerFor(new PgeG11Bill());
+    public void testTriggerDeleteHistoryEntryOnDeletePgeBill() {
+        testTriggerDeleteHistoryEntryOnDelete(new PgeG11Bill());
     }
 
-    public void testDeleteTriggerForPgeG12Bill() {
-        testDeleteTriggerFor(new PgeG12Bill());
+    public void testTriggerDeleteHistoryEntryOnDeletePgeG12Bill() {
+        testTriggerDeleteHistoryEntryOnDelete(new PgeG12Bill());
     }
 
-    public void testDeleteTriggerForPgnigBill() {
-        testDeleteTriggerFor(new PgnigBill());
+    public void testTriggerDeleteHistoryEntryOnDeletePgnigBill() {
+        testTriggerDeleteHistoryEntryOnDelete(new PgnigBill());
     }
 
-    private void testDeleteTriggerFor(Bill bill) {
+    public void testTriggerDeleteSingleHistoryEntryOnDeletePgeG12Bill() {
+        final PgeG11Bill bill = new PgeG11Bill(1L);
+        // when: 3 bills inserted
+        daoSession.insert(bill);
+        daoSession.insert(new PgeG12Bill(1L));
+        daoSession.insert(new PgnigBill(1L));
+
+        // given: 1 bill is deleted
+        daoSession.delete(bill);
+
+        // then: 2 history entries present
+        assertEquals(2, daoSession.getHistoryDao().loadAll().size());
+    }
+
+    private void testTriggerDeleteHistoryEntryOnDelete(Bill bill) {
         // save
         daoSession.insert(bill);
 
@@ -68,7 +82,7 @@ public class TriggersTest extends AbstractDaoSessionTest<BillCalculator, DaoMast
         assertTrue(daoSession.getHistoryDao().loadAll().isEmpty());
     }
 
-    private void testSaveTriggerFor(Bill bill, BillType billType) {
+    private void testTriggerInsertHistoryEntryOnInsert(Bill bill, BillType billType) {
         Date date = new Date();
         // save
         bill.setDateFrom(date);
