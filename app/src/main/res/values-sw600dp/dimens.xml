@@ -6,7 +6,8 @@
     -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">24dp</dimen>
-    <dimen name="small_padding">16dp</dimen>
+    <dimen name="small_padding">8dp</dimen>
+    <dimen name="padding">16dp</dimen>
     <dimen name="double_padding">32dp</dimen>
 
 </resources>

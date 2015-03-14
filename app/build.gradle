@@ -5,7 +5,7 @@ apply plugin: 'hugo'
 android {
 
     compileSdkVersion 21
-    buildToolsVersion "21.1.1"
+    buildToolsVersion "21.1.2"
 
     defaultConfig {
         versionCode 13
@@ -14,7 +14,7 @@ android {
         targetSdkVersion 21
 
         testApplicationId "pl.srw.billcalculator.test"
-        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         testHandleProfiling true
         testFunctionalTest true
     }
@@ -38,13 +38,28 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
 }
 
 dependencies {
-    compile fileTree(include: '*.jar', dir: 'libs')
+    compile project(':persistence')
+    compile fileTree(dir: 'libs', include: '*.jar')
+
+    compile 'com.android.support:recyclerview-v7:21.0.+'
+    compile 'com.android.support:appcompat-v7:21.0.+'
+    compile 'com.android.support:support-annotations:21.0.3'
+
     compile 'com.jakewharton:butterknife:5.1.2'
+    provided 'pl.mg6.hrisey:hrisey:0.3.1'
+    compile 'org.threeten:threetenbp:1.2'
+    compile 'de.greenrobot:eventbus:2.4.0'
+    // AndroidViewAnimations dependencies
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.easing:library:1.0.0@aar'
     compile 'com.daimajia.androidanimations:library:1.1.2@aar'
-    compile 'org.threeten:threetenbp:1.2'
+
+    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
 }

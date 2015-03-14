@@ -65,3 +65,18 @@
 -dontwarn java.util.spi.LocaleServiceProvider
 -dontwarn sun.util.calendar.*
 -keep class org.threeten.bp.zone.*
+
+# GreenDao
+-keepclassmembers class * extends de.greenrobot.dao.AbstractDao {
+    public static java.lang.String TABLENAME;
+}
+-keep class **$Properties
+
+# EventBus
+-keepclassmembers class ** {
+    public void onEvent*(**);
+}
+# Only required if you use AsyncExecutor
+-keepclassmembers class * extends de.greenrobot.event.util.ThrowableFailureEvent {
+    <init>(java.lang.Throwable);
+}

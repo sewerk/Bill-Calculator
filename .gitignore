@@ -6,3 +6,5 @@ Bill-Calculator.iml
 app/app.iml
 BillCalculator.iml
 app/signing.gradle
+persistence/persistence.iml
+database-generator/database-generator.iml

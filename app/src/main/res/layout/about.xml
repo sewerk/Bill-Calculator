@@ -19,7 +19,7 @@
             android:id="@+id/tv_about"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_padding"
+            android:layout_marginTop="@dimen/padding"
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="@string/description"/>
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_about"
-            android:layout_marginTop="@dimen/small_padding"
+            android:layout_marginTop="@dimen/padding"
             android:layout_marginBottom="@dimen/double_padding"
             android:layout_centerHorizontal="true"
             android:gravity="center"
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_links"
-            android:layout_marginTop="@dimen/small_padding"
+            android:layout_marginTop="@dimen/padding"
             android:layout_alignLeft="@+id/tv_link_g_plus"
             android:gravity="center"
             android:drawableLeft="@drawable/ic_gmail"
@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_link_emailme"
-            android:layout_marginTop="@dimen/small_padding"
+            android:layout_marginTop="@dimen/padding"
             android:layout_marginBottom="@dimen/double_padding"
             android:layout_centerHorizontal="true"
             android:gravity="center"
@@ -100,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/small_padding"
+            android:layout_marginTop="@dimen/padding"
             android:layout_below="@id/tv_klauzula"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -111,7 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_ver"
-            android:layout_marginTop="@dimen/small_padding"
+            android:layout_marginTop="@dimen/padding"
             android:text="OK" />
     </RelativeLayout>
 </ScrollView>
