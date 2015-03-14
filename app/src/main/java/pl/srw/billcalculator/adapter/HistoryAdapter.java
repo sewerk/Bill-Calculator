@@ -42,7 +42,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryItemViewHolder> 
     @Override
     public void onBindViewHolder(final HistoryItemViewHolder holder, final int position) {
         History historyItem = lazyList.get(position);
-        holder.bindEntry(historyItem, position);
+        holder.bindEntry(historyItem);
     }
 
     @Override

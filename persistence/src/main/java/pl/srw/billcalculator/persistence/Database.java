@@ -63,7 +63,7 @@ public class Database {
 
     public static LazyList<History> getHistory() {
         LazyList<History> history = getSession().getHistoryDao().queryBuilder()
-                .orderDesc(HistoryDao.Properties.DateFrom).listLazy();
+                .orderDesc(HistoryDao.Properties.DateFrom, HistoryDao.Properties.Id).listLazy();
         return history;
     }
 

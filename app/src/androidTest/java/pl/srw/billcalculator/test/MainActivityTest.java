@@ -168,16 +168,6 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         assertEquals(sut.getString(R.string.date_error), findDateToErrorView().getError());
     }
 
-    public void testInputValues() throws Throwable {
-        requestFocus(findReadingFromView());
-        sendKeys("2 3 4");
-        requestFocus(findReadingToView());
-        sendKeys("3 4 5");
-
-        assertEquals("234", findReadingFromView().getText().toString());
-        assertEquals("345", findReadingToView().getText().toString());
-    }
-
     public void testFocusChangeForG11Readings() throws Throwable {
         requestFocus(findReadingFromView());
         sendKeys("1");

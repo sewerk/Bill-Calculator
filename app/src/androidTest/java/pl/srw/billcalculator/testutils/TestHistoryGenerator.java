@@ -1,8 +1,9 @@
-package pl.srw.billcalculator.test.generator;
+package pl.srw.billcalculator.testutils;
 
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.threeten.bp.LocalDate;
@@ -20,24 +21,27 @@ import pl.srw.billcalculator.util.Dates;
 /**
  * Created by Kamil Seweryn.
  */
-@RunWith(AndroidJUnit4.class)
-@LargeTest
-public class DummyHistoryGenerator {
+public final class TestHistoryGenerator {
 
-    @Test
-    public void generate200Bills() throws InterruptedException {
-        final PgeG11BillDao pgeG11BillDao = Database.getSession().getPgeG11BillDao();
+    private PgeG11BillDao dao;
+    private PgePrices pgePrices;
 
-        final PgePrices pgePrices = new pl.srw.billcalculator.preference.PgePrices().convertToDb();
+    public TestHistoryGenerator() {
+        dao = Database.getSession().getPgeG11BillDao();
+        pgePrices = new pl.srw.billcalculator.preference.PgePrices().convertToDb();
+
+    }
+
+    public void generatePgeG11Bills(final int count) throws InterruptedException {
+
         Database.getSession().insert(pgePrices);
-
-        List<PgeG11Bill> pgeBills = new ArrayList<>(70);
-        for (int i = 0; i < 200; i++) {
-            final Date fromDate = Dates.toDate(LocalDate.ofYearDay(2014, i + 1));
+        List<PgeG11Bill> pgeBills = new ArrayList<>(count);
+        for (int i = 1; i <= count; i++) {
+            final Date fromDate = Dates.toDate(LocalDate.ofYearDay(2014, i));
             final Date toDate = Dates.toDate(LocalDate.ofYearDay(2014, i + 30));
             pgeBills.add(new PgeG11Bill(null, i, i+10, fromDate, toDate, i*11.11, pgePrices.getId()));
         }
 
-        pgeG11BillDao.insertInTx(pgeBills);
+        dao.insertInTx(pgeBills);
     }
 }

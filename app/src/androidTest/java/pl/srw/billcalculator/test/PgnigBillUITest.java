@@ -1,7 +1,5 @@
 package pl.srw.billcalculator.test;
 
-import android.support.annotation.DrawableRes;
-import android.support.annotation.StringRes;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
@@ -20,6 +18,7 @@ import java.util.regex.Pattern;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.preference.GeneralPreferences;
+import pl.srw.billcalculator.testutils.SoloHelper;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -69,7 +68,7 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
 
     private void setPricesInSettings() {
         solo.clickOnActionBarItem(R.id.action_settings);
-        solo.clickOnText(getString(R.string.pgnig_prices));
+        solo.clickOnText(SoloHelper.getString(solo, R.string.pgnig_prices));
 
         setPrice(R.string.wspolczynnik_konwersji, "11.094");
         setPrice(R.string.paliwo_gazowe, "0.11815");
@@ -87,10 +86,10 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
         solo.waitForCondition(new Condition() {
             @Override
             public boolean isSatisfied() {
-                return isVisible(R.drawable.pgnig_on_pge);
+                return SoloHelper.isVisible(PgnigBillUITest.this.solo, R.drawable.pgnig_on_pge);
             }
         }, 1000);
-        assertThat(isVisible(R.drawable.pgnig_on_pge),is(true));
+        assertThat(SoloHelper.isVisible(solo, R.drawable.pgnig_on_pge),is(true));
 
         // type readings
         solo.enterText(0, "6696");
@@ -144,7 +143,7 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
     }
 
     private void setPrice(final int labelId, final String text) {
-        solo.clickOnText(getString(labelId));
+        solo.clickOnText(SoloHelper.getString(solo, labelId));
         solo.clearEditText(0);
         solo.enterText(0, text);
         solo.clickOnView(solo.getView(android.R.id.button1));
@@ -152,7 +151,7 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
 
     private void changePricesInSettings() {
         solo.clickOnActionBarItem(R.id.action_settings);
-        solo.clickOnText(getString(R.string.pgnig_prices));
+        solo.clickOnText(SoloHelper.getString(solo, R.string.pgnig_prices));
 
         setPrice(R.string.wspolczynnik_konwersji, "11.172");
         setPrice(R.string.settings_oplata_abonamentowa, "8.67");
@@ -166,7 +165,7 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
 
         // verify bill visible on list
         assertTrue(solo.searchText("10/10/2014 - 15/12/2014"));
-        assertTrue(isVisible(R.drawable.pgnig));
+        assertTrue(SoloHelper.isVisible(solo, R.drawable.pgnig));
         assertTrue(solo.searchText("6696 - 7101"));
         assertTrue(solo.searchText(Pattern.quote("937.03 zł")));
 
@@ -184,11 +183,4 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
         assertFalse(solo.searchText("8.67"));
     }
 
-    private boolean isVisible(@DrawableRes int drawable) {
-        return solo.getCurrentActivity().getResources().getDrawable(drawable).isVisible();
-    }
-
-    private String getString(@StringRes final int strRes) {
-        return getActivity().getString(strRes);
-    }
 }

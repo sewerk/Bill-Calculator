@@ -1,14 +1,10 @@
 package pl.srw.billcalculator.test;
 
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IdRes;
-import android.support.annotation.StringRes;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.widget.Button;
-import android.widget.EditText;
 
 import com.robotium.solo.Condition;
 import com.robotium.solo.Solo;
@@ -21,6 +17,7 @@ import org.junit.runner.RunWith;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.preference.GeneralPreferences;
+import pl.srw.billcalculator.testutils.SoloHelper;
 
 /**
  * Created by Kamil Seweryn.
@@ -82,17 +79,17 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
 
         solo.waitForCondition(pgeFormHidden(), TIMEOUT);
         assertTrue(isPgnigForm());
-        assertEquals(getString(R.string.reading_hint_m3), findET(R.id.et_reading_from).getHint());
-        assertEquals(getString(R.string.reading_hint_m3), findET(R.id.et_reading_to).getHint());
+        assertEquals(SoloHelper.getString(solo, R.string.reading_hint_m3), SoloHelper.findET(solo,R.id.et_reading_from).getHint());
+        assertEquals(SoloHelper.getString(solo, R.string.reading_hint_m3), SoloHelper.findET(solo,R.id.et_reading_to).getHint());
 
         solo.setActivityOrientation(Solo.LANDSCAPE);
-        assertEquals(getString(R.string.reading_hint_m3), findET(R.id.et_reading_from).getHint());
-        assertEquals(getString(R.string.reading_hint_m3), findET(R.id.et_reading_to).getHint());
+        assertEquals(SoloHelper.getString(solo, R.string.reading_hint_m3), SoloHelper.findET(solo,R.id.et_reading_from).getHint());
+        assertEquals(SoloHelper.getString(solo, R.string.reading_hint_m3), SoloHelper.findET(solo,R.id.et_reading_to).getHint());
 
         solo.clickOnView(solo.getView(R.id.iv_bill_type_switch));
         solo.waitForCondition(pgnigFormHidden(), TIMEOUT);
-        assertEquals(getString(R.string.reading_hint_kWh), findET(R.id.et_reading_from).getHint());
-        assertEquals(getString(R.string.reading_hint_kWh), findET(R.id.et_reading_to).getHint());
+        assertEquals(SoloHelper.getString(solo, R.string.reading_hint_kWh), SoloHelper.findET(solo,R.id.et_reading_from).getHint());
+        assertEquals(SoloHelper.getString(solo, R.string.reading_hint_kWh), SoloHelper.findET(solo,R.id.et_reading_to).getHint());
 
     }
 
@@ -127,13 +124,13 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
     public void shouldShowTariffLabelForPgeOnly() {
         solo.clickOnView(solo.getView(R.id.iv_bill_type_switch));
         assertTrue(isPgnigForm());
-        assertFalse(solo.searchText(getString(R.string.pge_tariff_G11_on_bill)));
+        assertFalse(solo.searchText(SoloHelper.getString(solo, R.string.pge_tariff_G11_on_bill)));
 
         solo.clickOnView(solo.getView(R.id.iv_bill_type_switch));
         solo.waitForCondition(pgnigFormHidden(), TIMEOUT);
         assertTrue(isPgeForm());
         assertNotNull(solo.getView(R.id.linearLayout_tariff));
-        assertTrue(solo.searchText(getString(R.string.pge_tariff_G11_on_bill)));
+        assertTrue(solo.searchText(SoloHelper.getString(solo, R.string.pge_tariff_G11_on_bill)));
     }
 
     private Condition pgeFormHidden() {
@@ -155,22 +152,11 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
     }
 
     private boolean isPgnigForm() {
-        return isVisible(R.drawable.pgnig_on_pge);
+        return SoloHelper.isVisible(solo, R.drawable.pgnig_on_pge);
     }
 
     private boolean isPgeForm() {
-        return isVisible(R.drawable.pge_on_pgnig);
+        return SoloHelper.isVisible(solo, R.drawable.pge_on_pgnig);
     }
 
-    private boolean isVisible(@DrawableRes int drawable) {
-        return solo.getCurrentActivity().getResources().getDrawable(drawable).isVisible();
-    }
-
-    private String getString(@StringRes final int strRes) {
-        return getActivity().getString(strRes);
-    }
-
-    private EditText findET(@IdRes final int edId) {
-        return (EditText) solo.getView(edId);
-    }
 }

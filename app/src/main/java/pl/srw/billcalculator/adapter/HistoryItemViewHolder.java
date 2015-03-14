@@ -26,7 +26,6 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
     private HistoryItemValueProvider intentProvider;
 
     private HistoryAdapter adapter;
-    private int position;
     private MultiSelect<Integer, Bill> selection;
 
     public HistoryItemViewHolder(HistoryAdapter adapter, final MultiSelect<Integer, Bill> selection, View v) {
@@ -40,8 +39,7 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
     }
 
     @DebugLog
-    public void bindEntry(final History item, final int position) {
-        this.position = position;
+    public void bindEntry(final History item) {
         intentProvider = HistoryItemValueProvider.of(item);
 
         setLogoImage();
@@ -51,7 +49,7 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
     }
 
     private void setLogoImage() {
-        if (selection.isSelected(position))
+        if (selection.isSelected(getPosition()))
             imgLogo.setImageResource(R.drawable.selected);
         else
             imgLogo.setImageResource(intentProvider.getLogoId());
@@ -77,10 +75,10 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
     }
 
     private void toggleSelection() {
-        if (selection.isSelected(position))
-            selection.deselect(position);
+        if (selection.isSelected(getPosition()))
+            selection.deselect(getPosition());
         else
-            selection.select(position, intentProvider.getBill());
+            selection.select(getPosition(), intentProvider.getBill());
         setLogoImage();
     }
 }
