@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:padding="2dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="5"
+            android:lines="1"
+            android:textStyle="bold"
+            android:text="Licznik rozliczeniowy en. czynnej nr: 00000001" />
+
+        <TextView
+            android:id="@+id/tv_tariff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_span="3"
+            android:textStyle="bold"
+            android:text="@string/pge_tariff_G11_on_bill" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_span="3"
+            android:textStyle="bold"
+            android:text="Mnożna: 1" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:padding="2dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:text="Strefa" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:text="Opis" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:text="PKWiU" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:text="J. m." />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:text="Wskazanie\nbieżące" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:text="Wskazanie\npoprzednie" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:text="Ilość\nm-c" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:text="Ilość" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:text="Cena\nnetto (zł)" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:text="Należność\nnetto (zł)" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Stawka\nVAT(%)" />
+    </TableRow>
+
+</merge>

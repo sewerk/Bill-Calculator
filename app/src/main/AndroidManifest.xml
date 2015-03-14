@@ -6,39 +6,41 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
 
+    <!-- TODO permissions -->
+
     <application
+        android:name=".BillCalculator"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name="pl.srw.billcalculator.MainActivity"
-            android:label="@string/app_name" >
+
+        <activity android:name=".MainActivity" android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         
-        <activity android:name=".EnergyBillActivity"
-            android:label="@string/energy_label">
-        </activity>
+        <activity android:name=".PgeBillActivity" android:label="@string/energy_label" />
 
-        <activity android:name=".GasBillActivity"
-            android:label="@string/gas_label" />
+        <activity android:name=".PgnigBillActivity" android:label="@string/gas_label" />
 
-        <activity android:name=".SettingsActivity"
-            android:label="@string/settings_label" />
+        <activity android:name=".SettingsActivity" android:label="@string/settings_label" />
         
-        <activity android:name=".preference.ProviderSettingsActivity" />
+        <activity android:name=".preference.activity.ProviderSettingsActivity" />
 
-        <activity android:name=".preference.ProviderSettingsHelpActivity"
-            android:theme="@style/DialogTheme"
-            android:label="@string/action_help" />
+        <activity android:name=".preference.activity.ProviderSettingsHelpActivity" android:label="@string/action_help"
+                  android:theme="@style/DialogTheme" />
         
-        <activity android:name=".AboutActivity"
-            android:theme="@style/DialogTheme"
-            android:label="@string/about_label" />
+        <activity android:name=".AboutActivity" android:label="@string/about_label"
+                  android:theme="@style/DialogTheme" />
+        
+        <activity android:name=".HistoryActivity" android:label="@string/history_label" />
+
+        <service android:name=".service.PgnigBillStoringService" />
+
+        <service android:name=".service.PgeBillStoringService" />
 
     </application>
 

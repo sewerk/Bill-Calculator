@@ -1,0 +1,83 @@
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:padding="2dp"
+    android:background="@android:color/white"
+    tools:context=".PgnigBillActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tv_invoice_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Faktura VAT nr XXXXXXXX\nTyp faktury: ROZLICZENIOWY"/>
+            <ImageView
+                android:id="@+id/image_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pgnig"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/double_padding"
+                android:contentDescription="Provider bill logo"/>
+
+            <TextView
+                android:id="@+id/tv_charge_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_logo"
+                android:layout_alignParentLeft="true"
+                android:text="Rozliczenie punktu poboru:"
+                android:paddingTop="24dp"/>
+
+            <TextView
+                android:id="@+id/tv_charge_place_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/tv_charge_place"
+                android:layout_alignParentRight="true"
+                android:text="Numer punktu poboru: 0000000001" />
+
+            <TextView
+                android:id="@+id/tv_tariff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_charge_place"
+                android:layout_alignParentLeft="true"
+                android:text="Grupa taryfowa PGNiG: W-x.x"
+                android:layout_marginTop="24dp"/>
+
+            <include
+                layout="@layout/pgnig_reading_table" />
+
+            <include
+                layout="@layout/pgnig_components_table" />
+
+            <include
+                layout="@layout/pgnig_sum_table" />
+
+            <TextView
+                android:id="@+id/tv_invoice_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/t_summary"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="8dp"
+                android:textStyle="bold"
+                android:text="@string/wartosc_faktury"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+</HorizontalScrollView>

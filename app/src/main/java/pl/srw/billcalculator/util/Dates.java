@@ -1,10 +1,13 @@
 package pl.srw.billcalculator.util;
 
+import org.threeten.bp.DateTimeUtils;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.Month;
 import org.threeten.bp.Period;
 import org.threeten.bp.format.DateTimeFormatter;
 import org.threeten.bp.temporal.TemporalAdjusters;
+
+import java.util.Date;
 
 /**
  * Created by Kamil Seweryn.
@@ -25,6 +28,14 @@ public class Dates {
 
     public static String format(LocalDate date) {
         return date.format(FORMATTER);
+    }
+    
+    public static LocalDate toLocalDate(Date utilDate) {
+        return DateTimeUtils.toLocalDate(new java.sql.Date(utilDate.getTime()));
+    }
+    
+    public static Date toDate(LocalDate localDate) {
+        return new Date(DateTimeUtils.toSqlDate(localDate).getTime());
     }
 
     public static int countMonth(String from, String to) {
