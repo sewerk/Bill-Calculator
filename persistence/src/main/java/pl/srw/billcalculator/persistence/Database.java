@@ -42,6 +42,11 @@ public class Database {
                     super.onCreate(db);
                     Triggers.create(db);
                 }
+
+                @Override
+                public void onUpgrade(final SQLiteDatabase db, final int oldVersion, final int newVersion) {
+                    DBMigration.migrate(db, oldVersion, newVersion);
+                }
             }.getWritableDatabase();
         return database;
     }
@@ -62,9 +67,8 @@ public class Database {
     }
 
     public static LazyList<History> getHistory() {
-        LazyList<History> history = getSession().getHistoryDao().queryBuilder()
+        return getSession().getHistoryDao().queryBuilder()
                 .orderDesc(HistoryDao.Properties.DateFrom, HistoryDao.Properties.Id).listLazy();
-        return history;
     }
 
 }
