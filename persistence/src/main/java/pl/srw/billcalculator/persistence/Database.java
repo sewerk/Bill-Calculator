@@ -13,6 +13,7 @@ import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.db.dao.DaoMaster;
 import pl.srw.billcalculator.db.dao.DaoSession;
 import pl.srw.billcalculator.db.dao.HistoryDao;
+import pl.srw.billcalculator.persistence.type.BillType;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 
 /**
@@ -71,4 +72,20 @@ public class Database {
                 .orderDesc(HistoryDao.Properties.DateFrom, HistoryDao.Properties.Id).listLazy();
     }
 
+    public static void deleteBillWithPrices(final BillType type, final Long billId, final Long pricesId) {
+        switch (type) {
+            case PGE_G11:
+                getSession().getPgePricesDao().deleteByKey(pricesId);
+                getSession().getPgeG11BillDao().deleteByKey(billId);
+                return;
+            case PGE_G12:
+                getSession().getPgePricesDao().deleteByKey(pricesId);
+                getSession().getPgeG12BillDao().deleteByKey(billId);
+                return;
+            case PGNIG:
+                getSession().getPgnigPricesDao().deleteByKey(pricesId);
+                getSession().getPgnigBillDao().deleteByKey(billId);
+                return;
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.test;
+package pl.srw.billcalculator.testutils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

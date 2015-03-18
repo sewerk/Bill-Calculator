@@ -13,6 +13,7 @@ import pl.srw.billcalculator.adapter.provider.HistoryItemValueProvider;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.util.MultiSelect;
+import pl.srw.billcalculator.util.SelectedBill;
 
 /**
 * Created by Kamil Seweryn.
@@ -23,12 +24,12 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
     @InjectView(R.id.tv_for_period) TextView tvForPeriod;
     @InjectView(R.id.tv_readings) TextView tvReadings;
     @InjectView(R.id.tv_amount) TextView tvAmount;
-    private HistoryItemValueProvider intentProvider;
+    private HistoryItemValueProvider itemValuesProvider;
 
     private HistoryAdapter adapter;
-    private MultiSelect<Integer, Bill> selection;
+    private MultiSelect<Integer, SelectedBill> selection;
 
-    public HistoryItemViewHolder(HistoryAdapter adapter, final MultiSelect<Integer, Bill> selection, View v) {
+    public HistoryItemViewHolder(HistoryAdapter adapter, final MultiSelect<Integer, SelectedBill> selection, View v) {
         super(v);
         this.adapter = adapter;
         this.selection = selection;
@@ -40,19 +41,19 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
 
     @DebugLog
     public void bindEntry(final History item) {
-        intentProvider = HistoryItemValueProvider.of(item);
+        itemValuesProvider = HistoryItemValueProvider.of(item);
 
         setLogoImage();
-        tvForPeriod.setText(intentProvider.getDatePeriod());
-        tvReadings.setText(intentProvider.getReadings());
-        tvAmount.setText(intentProvider.getAmount());
+        tvForPeriod.setText(itemValuesProvider.getDatePeriod());
+        tvReadings.setText(itemValuesProvider.getReadings());
+        tvAmount.setText(itemValuesProvider.getAmount());
     }
 
     private void setLogoImage() {
-        if (selection.isSelected(getPosition()))
+        if (selection.isSelected(getLayoutPosition()))
             imgLogo.setImageResource(R.drawable.selected);
         else
-            imgLogo.setImageResource(intentProvider.getLogoId());
+            imgLogo.setImageResource(itemValuesProvider.getLogoId());
     }
 
     @Override
@@ -60,7 +61,7 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
         if (adapter.getActivity().isInDeleteMode())
             toggleSelection();
         else
-            v.getContext().startActivity(intentProvider.getIntent());
+            v.getContext().startActivity(itemValuesProvider.getIntent());
     }
 
     @Override
@@ -75,10 +76,11 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
     }
 
     private void toggleSelection() {
-        if (selection.isSelected(getPosition()))
-            selection.deselect(getPosition());
-        else
-            selection.select(getPosition(), intentProvider.getBill());
+        if (selection.isSelected(getLayoutPosition()))
+            selection.deselect(getLayoutPosition());
+        else {
+            selection.select(getLayoutPosition(), new SelectedBill(itemValuesProvider.getBill()));
+        }
         setLogoImage();
     }
 }

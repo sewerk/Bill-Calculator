@@ -17,6 +17,6 @@ public class DBMigration {
     }
 
     private static void migrate_1_2(final SQLiteDatabase db) {
-        //TODO
+        //TODO: fill when needed
     }
 }

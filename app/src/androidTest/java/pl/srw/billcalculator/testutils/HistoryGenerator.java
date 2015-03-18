@@ -21,12 +21,12 @@ import pl.srw.billcalculator.util.Dates;
 /**
  * Created by Kamil Seweryn.
  */
-public final class TestHistoryGenerator {
+public final class HistoryGenerator {
 
     private PgeG11BillDao dao;
     private PgePrices pgePrices;
 
-    public TestHistoryGenerator() {
+    public HistoryGenerator() {
         dao = Database.getSession().getPgeG11BillDao();
         pgePrices = new pl.srw.billcalculator.preference.PgePrices().convertToDb();
 
