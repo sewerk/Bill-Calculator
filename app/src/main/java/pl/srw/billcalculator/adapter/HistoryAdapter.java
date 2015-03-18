@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.adapter;
 
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import pl.srw.billcalculator.util.SelectedBill;
  */
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryItemViewHolder> {
 
+    public static final String STATE_SELECTION = "SELECTION";
     private HistoryActivity activity;
     private LazyList<History> lazyList;
     private MultiSelect<Integer, SelectedBill> selection = new MultiSelect<>();
@@ -75,5 +77,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryItemViewHolder> 
             selection.deselectAll();
             notifyDataSetChanged();
         }
+    }
+
+    public void onRestoreInstanceState(final Bundle savedInstanceState) {
+        selection = savedInstanceState.getParcelable(STATE_SELECTION);
+    }
+
+    public void onSaveInstanceState(final Bundle outState) {
+        outState.putParcelable(STATE_SELECTION, selection);
     }
 }

@@ -20,6 +20,7 @@ import pl.srw.billcalculator.event.HistoryChangedEvent;
  */
 public class HistoryActivity extends BackableActivity {
 
+    public static final String STATE_ACTION_MODE_ENABLED = "STATE_ACTION_MODE_ENABLED";
     private EmptyHistoryDataObserver dataObserver;
     private ActionMode actionMode;
 
@@ -44,6 +45,22 @@ public class HistoryActivity extends BackableActivity {
     protected void onStart() {
         super.onStart();
         list.getAdapter().registerAdapterDataObserver(dataObserver);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(final Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState.getBoolean(STATE_ACTION_MODE_ENABLED, false)) {
+            enableDeleteMode();
+            getAdapter().onRestoreInstanceState(savedInstanceState);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(final Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(STATE_ACTION_MODE_ENABLED, isInDeleteMode());
+        getAdapter().onSaveInstanceState(outState);
     }
 
     @Override
@@ -78,7 +95,7 @@ public class HistoryActivity extends BackableActivity {
         public boolean onActionItemClicked(final ActionMode actionMode, final MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.action_delete:
-                    ((HistoryAdapter) list.getAdapter()).deleteSelected();
+                    getAdapter().deleteSelected();
                     actionMode.finish();
                     EventBus.getDefault().post(new HistoryChangedEvent());
                     dataObserver.onChanged();
@@ -89,8 +106,12 @@ public class HistoryActivity extends BackableActivity {
 
         @Override
         public void onDestroyActionMode(final ActionMode actionMode) {
-            ((HistoryAdapter) list.getAdapter()).exitSelectMode();
+            getAdapter().exitSelectMode();
             HistoryActivity.this.actionMode = null;
         }
     };
+
+    private HistoryAdapter getAdapter() {
+        return (HistoryAdapter) list.getAdapter();
+    }
 }
