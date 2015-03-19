@@ -59,12 +59,12 @@ public class TriggersTest extends AbstractDaoSessionTest<BillCalculator, DaoMast
 
     public void testTriggerDeleteSingleHistoryEntryOnDeletePgeG12Bill() {
         final PgeG11Bill bill = new PgeG11Bill(1L);
-        // when: 3 bills inserted
+        // given: 3 bills inserted
         daoSession.insert(bill);
         daoSession.insert(new PgeG12Bill(1L));
         daoSession.insert(new PgnigBill(1L));
 
-        // given: 1 bill is deleted
+        // when: 1 bill is deleted
         daoSession.delete(bill);
 
         // then: 2 history entries present

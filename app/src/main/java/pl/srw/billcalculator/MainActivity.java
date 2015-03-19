@@ -81,6 +81,7 @@ public class MainActivity extends Activity {
                 .replace(R.id.fl_logo_section, logoFragment)
                 .replace(R.id.fl_input_section, inputFragment)
                 .commit();
+        // getFragmentManager().executePendingTransactions();
     }
 
     public void start(Class<? extends Activity> activityClass) {

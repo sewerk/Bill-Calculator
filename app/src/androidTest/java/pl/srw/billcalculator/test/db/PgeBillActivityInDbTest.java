@@ -11,8 +11,7 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgePrices;
 import pl.srw.billcalculator.persistence.Database;
-import pl.srw.billcalculator.test.PreferenceUtil;
-import pl.srw.billcalculator.type.BillType;
+import pl.srw.billcalculator.testutils.PreferenceUtil;
 
 /**
  * Created by Kamil Seweryn.

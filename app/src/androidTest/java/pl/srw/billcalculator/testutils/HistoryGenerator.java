@@ -1,11 +1,5 @@
 package pl.srw.billcalculator.testutils;
 
-import android.support.test.runner.AndroidJUnit4;
-import android.test.suitebuilder.annotation.LargeTest;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.threeten.bp.LocalDate;
 
 import java.util.ArrayList;
@@ -14,6 +8,7 @@ import java.util.List;
 
 import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.db.PgePrices;
+import pl.srw.billcalculator.db.dao.DaoSession;
 import pl.srw.billcalculator.db.dao.PgeG11BillDao;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.util.Dates;
@@ -23,16 +18,11 @@ import pl.srw.billcalculator.util.Dates;
  */
 public final class HistoryGenerator {
 
-    private PgeG11BillDao dao;
-    private PgePrices pgePrices;
+    private HistoryGenerator() { }
 
-    public HistoryGenerator() {
-        dao = Database.getSession().getPgeG11BillDao();
-        pgePrices = new pl.srw.billcalculator.preference.PgePrices().convertToDb();
-
-    }
-
-    public void generatePgeG11Bills(final int count) throws InterruptedException {
+    public static void generatePgeG11Bills(final int count) throws InterruptedException {
+        final PgeG11BillDao dao = Database.getSession().getPgeG11BillDao();
+        final PgePrices pgePrices = new pl.srw.billcalculator.preference.PgePrices().convertToDb();
 
         Database.getSession().insert(pgePrices);
         List<PgeG11Bill> pgeBills = new ArrayList<>(count);
@@ -43,5 +33,14 @@ public final class HistoryGenerator {
         }
 
         dao.insertInTx(pgeBills);
+    }
+
+    public static void clear() {
+        final DaoSession session = Database.getSession();
+        session.getPgnigBillDao().deleteAll();
+        session.getPgeG11BillDao().deleteAll();
+        session.getPgeG12BillDao().deleteAll();
+        session.getPgnigPricesDao().deleteAll();
+        session.getPgePricesDao().deleteAll();
     }
 }

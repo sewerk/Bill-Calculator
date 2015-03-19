@@ -22,6 +22,7 @@ import pl.srw.billcalculator.PgnigBillActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.preference.GeneralPreferences;
+import pl.srw.billcalculator.testutils.PreferenceUtil;
 
 /**
  * Created by Kamil Seweryn.

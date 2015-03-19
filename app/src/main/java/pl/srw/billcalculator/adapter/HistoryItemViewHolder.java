@@ -50,10 +50,12 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
     }
 
     private void setLogoImage() {
-        if (selection.isSelected(getLayoutPosition()))
-            imgLogo.setImageResource(R.drawable.selected);
-        else
-            imgLogo.setImageResource(itemValuesProvider.getLogoId());
+        final int drawable;
+        if (selection.isSelected(getLayoutPosition())) drawable = R.drawable.selected;
+        else drawable = itemValuesProvider.getLogoId();
+
+        imgLogo.setImageResource(drawable);
+        imgLogo.setTag(drawable);
     }
 
     @Override

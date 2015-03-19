@@ -5,7 +5,6 @@ import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
 
-import com.robotium.solo.Condition;
 import com.robotium.solo.Solo;
 
 import org.junit.After;
@@ -82,14 +81,8 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
 
     private void inputValues() {
         // change bill type
-        solo.clickOnView(solo.getView(R.id.iv_bill_type_switch));
-        solo.waitForCondition(new Condition() {
-            @Override
-            public boolean isSatisfied() {
-                return SoloHelper.isVisible(PgnigBillUITest.this.solo, R.drawable.pgnig_on_pge);
-            }
-        }, 1000);
-        assertThat(SoloHelper.isVisible(solo, R.drawable.pgnig_on_pge),is(true));
+        SoloHelper.switchBill(solo);
+        assertThat(SoloHelper.isPgnigForm(solo),is(true));
 
         // type readings
         solo.enterText(0, "6696");
@@ -165,7 +158,7 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
 
         // verify bill visible on list
         assertTrue(solo.searchText("10/10/2014 - 15/12/2014"));
-        assertTrue(SoloHelper.isVisible(solo, R.drawable.pgnig));
+        assertThat(SoloHelper.getDrawableFromRow(solo, 0), is(R.drawable.pgnig));
         assertTrue(solo.searchText("6696 - 7101"));
         assertTrue(solo.searchText(Pattern.quote("937.03 zł")));
 

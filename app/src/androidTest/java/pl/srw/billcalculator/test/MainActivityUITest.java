@@ -6,7 +6,6 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.widget.Button;
 
-import com.robotium.solo.Condition;
 import com.robotium.solo.Solo;
 
 import org.junit.After;
@@ -17,6 +16,7 @@ import org.junit.runner.RunWith;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.preference.GeneralPreferences;
+import pl.srw.billcalculator.testutils.PreferenceUtil;
 import pl.srw.billcalculator.testutils.SoloHelper;
 
 /**
@@ -25,8 +25,6 @@ import pl.srw.billcalculator.testutils.SoloHelper;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainActivity> {
-
-    public static final int TIMEOUT = 1000;
 
     public MainActivityUITest() {
         super(MainActivity.class);
@@ -52,33 +50,31 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
 
     @Test
     public void shouldSwitchFormOnSwitchButtonClick() {
-        assertTrue(isPgeForm());
+        assertTrue(SoloHelper.isPgeForm(solo));
 
-        solo.clickOnView(solo.getView(R.id.iv_bill_type_switch));
-        solo.waitForCondition(pgeFormHidden(), TIMEOUT);
-        assertTrue(isPgnigForm());
+        SoloHelper.switchBill(solo);
+        assertTrue(SoloHelper.isPgnigForm(solo));
 
-        solo.clickOnView(solo.getView(R.id.iv_bill_type_switch));
-        solo.waitForCondition(pgnigFormHidden(), TIMEOUT);
-        assertTrue(isPgeForm());
+        SoloHelper.switchBill(solo);
+        assertTrue(SoloHelper.isPgeForm(solo));
     }
 
     @Test
     public void shouldNotChangeFormOnScreenOrientationChange() {
         solo.setActivityOrientation(Solo.PORTRAIT);
-        solo.clickOnView(solo.getView(R.id.iv_bill_type_switch));
+        SoloHelper.switchBill(solo);
 
         solo.setActivityOrientation(Solo.LANDSCAPE);
-        assertTrue(isPgnigForm());
+        assertTrue(SoloHelper.isPgnigForm(solo));
     }
 
     @Test
     public void shouldShowReadingHintsAccordingToBillType() {
+        PreferenceUtil.changeToG11Tariff(solo.getCurrentActivity());
         solo.setActivityOrientation(Solo.PORTRAIT);
-        solo.clickOnView(solo.getView(R.id.iv_bill_type_switch));
+        SoloHelper.switchBill(solo);
 
-        solo.waitForCondition(pgeFormHidden(), TIMEOUT);
-        assertTrue(isPgnigForm());
+        assertTrue(SoloHelper.isPgnigForm(solo));
         assertEquals(SoloHelper.getString(solo, R.string.reading_hint_m3), SoloHelper.findET(solo,R.id.et_reading_from).getHint());
         assertEquals(SoloHelper.getString(solo, R.string.reading_hint_m3), SoloHelper.findET(solo,R.id.et_reading_to).getHint());
 
@@ -86,8 +82,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         assertEquals(SoloHelper.getString(solo, R.string.reading_hint_m3), SoloHelper.findET(solo,R.id.et_reading_from).getHint());
         assertEquals(SoloHelper.getString(solo, R.string.reading_hint_m3), SoloHelper.findET(solo,R.id.et_reading_to).getHint());
 
-        solo.clickOnView(solo.getView(R.id.iv_bill_type_switch));
-        solo.waitForCondition(pgnigFormHidden(), TIMEOUT);
+        SoloHelper.switchBill(solo);
         assertEquals(SoloHelper.getString(solo, R.string.reading_hint_kWh), SoloHelper.findET(solo,R.id.et_reading_from).getHint());
         assertEquals(SoloHelper.getString(solo, R.string.reading_hint_kWh), SoloHelper.findET(solo,R.id.et_reading_to).getHint());
 
@@ -101,7 +96,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         final String dateFromValue = "01/01/2014";
         final String dateToValue = "31/12/2014";
 
-        solo.clickOnView(solo.getView(R.id.iv_bill_type_switch));
+        SoloHelper.switchBill(solo);
         solo.enterText(0, readingFromValue);
         solo.enterText(1, readingToValue);
         runTestOnUiThread(new Runnable() {
@@ -113,7 +108,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         });
 
         solo.setActivityOrientation(Solo.LANDSCAPE);
-        assertTrue(isPgnigForm());
+        assertTrue(SoloHelper.isPgnigForm(solo));
         assertEquals(readingFromValue, solo.getEditText(0).getText().toString());
         assertEquals(readingToValue, solo.getEditText(1).getText().toString());
         assertEquals(dateFromValue, solo.getButton(0).getText());
@@ -122,41 +117,13 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
 
     @Test
     public void shouldShowTariffLabelForPgeOnly() {
-        solo.clickOnView(solo.getView(R.id.iv_bill_type_switch));
-        assertTrue(isPgnigForm());
+        SoloHelper.switchBill(solo);
+        assertTrue(SoloHelper.isPgnigForm(solo));
         assertFalse(solo.searchText(SoloHelper.getString(solo, R.string.pge_tariff_G11_on_bill)));
 
-        solo.clickOnView(solo.getView(R.id.iv_bill_type_switch));
-        solo.waitForCondition(pgnigFormHidden(), TIMEOUT);
-        assertTrue(isPgeForm());
+        SoloHelper.switchBill(solo);
+        assertTrue(SoloHelper.isPgeForm(solo));
         assertNotNull(solo.getView(R.id.linearLayout_tariff));
         assertTrue(solo.searchText(SoloHelper.getString(solo, R.string.pge_tariff_G11_on_bill)));
     }
-
-    private Condition pgeFormHidden() {
-        return new Condition() {
-            @Override
-            public boolean isSatisfied() {
-                return !isPgeForm();
-            }
-        };
-    }
-
-    private Condition pgnigFormHidden() {
-        return new Condition() {
-            @Override
-            public boolean isSatisfied() {
-                return !isPgnigForm();
-            }
-        };
-    }
-
-    private boolean isPgnigForm() {
-        return SoloHelper.isVisible(solo, R.drawable.pgnig_on_pge);
-    }
-
-    private boolean isPgeForm() {
-        return SoloHelper.isVisible(solo, R.drawable.pge_on_pgnig);
-    }
-
 }
