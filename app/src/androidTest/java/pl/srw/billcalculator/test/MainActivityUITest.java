@@ -5,6 +5,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.robotium.solo.Solo;
 
@@ -12,12 +13,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.threeten.bp.Month;
 
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.preference.GeneralPreferences;
 import pl.srw.billcalculator.testutils.PreferenceUtil;
-import pl.srw.billcalculator.testutils.SoloHelper;
+
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static pl.srw.billcalculator.testutils.SoloHelper.*;
 
 /**
  * Created by Kamil Seweryn.
@@ -44,47 +49,48 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
     @After
     @Override
     public void tearDown() throws Exception {
+        PreferenceUtil.changeToG11Tariff(solo.getCurrentActivity());
         solo.finishOpenedActivities();
         super.tearDown();
     }
 
     @Test
     public void shouldSwitchFormOnSwitchButtonClick() {
-        assertTrue(SoloHelper.isPgeForm(solo));
+        assertTrue(isPgeForm(solo));
 
-        SoloHelper.switchBill(solo);
-        assertTrue(SoloHelper.isPgnigForm(solo));
+        switchBill(solo);
+        assertTrue(isPgnigForm(solo));
 
-        SoloHelper.switchBill(solo);
-        assertTrue(SoloHelper.isPgeForm(solo));
+        switchBill(solo);
+        assertTrue(isPgeForm(solo));
     }
 
     @Test
     public void shouldNotChangeFormOnScreenOrientationChange() {
         solo.setActivityOrientation(Solo.PORTRAIT);
-        SoloHelper.switchBill(solo);
+        switchBill(solo);
 
         solo.setActivityOrientation(Solo.LANDSCAPE);
-        assertTrue(SoloHelper.isPgnigForm(solo));
+        assertTrue(isPgnigForm(solo));
     }
 
     @Test
     public void shouldShowReadingHintsAccordingToBillType() {
         PreferenceUtil.changeToG11Tariff(solo.getCurrentActivity());
         solo.setActivityOrientation(Solo.PORTRAIT);
-        SoloHelper.switchBill(solo);
+        switchBill(solo);
 
-        assertTrue(SoloHelper.isPgnigForm(solo));
-        assertEquals(SoloHelper.getString(solo, R.string.reading_hint_m3), SoloHelper.findET(solo,R.id.et_reading_from).getHint());
-        assertEquals(SoloHelper.getString(solo, R.string.reading_hint_m3), SoloHelper.findET(solo,R.id.et_reading_to).getHint());
+        assertTrue(isPgnigForm(solo));
+        assertEquals(getString(solo, R.string.reading_hint_m3), findET(solo, R.id.et_reading_from).getHint());
+        assertEquals(getString(solo, R.string.reading_hint_m3), findET(solo, R.id.et_reading_to).getHint());
 
         solo.setActivityOrientation(Solo.LANDSCAPE);
-        assertEquals(SoloHelper.getString(solo, R.string.reading_hint_m3), SoloHelper.findET(solo,R.id.et_reading_from).getHint());
-        assertEquals(SoloHelper.getString(solo, R.string.reading_hint_m3), SoloHelper.findET(solo,R.id.et_reading_to).getHint());
+        assertEquals(getString(solo, R.string.reading_hint_m3), findET(solo, R.id.et_reading_from).getHint());
+        assertEquals(getString(solo, R.string.reading_hint_m3), findET(solo, R.id.et_reading_to).getHint());
 
-        SoloHelper.switchBill(solo);
-        assertEquals(SoloHelper.getString(solo, R.string.reading_hint_kWh), SoloHelper.findET(solo,R.id.et_reading_from).getHint());
-        assertEquals(SoloHelper.getString(solo, R.string.reading_hint_kWh), SoloHelper.findET(solo,R.id.et_reading_to).getHint());
+        switchBill(solo);
+        assertEquals(getString(solo, R.string.reading_hint_kWh), findET(solo, R.id.et_reading_from).getHint());
+        assertEquals(getString(solo, R.string.reading_hint_kWh), findET(solo, R.id.et_reading_to).getHint());
 
     }
 
@@ -96,7 +102,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         final String dateFromValue = "01/01/2014";
         final String dateToValue = "31/12/2014";
 
-        SoloHelper.switchBill(solo);
+        switchBill(solo);
         solo.enterText(0, readingFromValue);
         solo.enterText(1, readingToValue);
         runTestOnUiThread(new Runnable() {
@@ -108,7 +114,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         });
 
         solo.setActivityOrientation(Solo.LANDSCAPE);
-        assertTrue(SoloHelper.isPgnigForm(solo));
+        assertTrue(isPgnigForm(solo));
         assertEquals(readingFromValue, solo.getEditText(0).getText().toString());
         assertEquals(readingToValue, solo.getEditText(1).getText().toString());
         assertEquals(dateFromValue, solo.getButton(0).getText());
@@ -117,13 +123,158 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
 
     @Test
     public void shouldShowTariffLabelForPgeOnly() {
-        SoloHelper.switchBill(solo);
-        assertTrue(SoloHelper.isPgnigForm(solo));
-        assertFalse(solo.searchText(SoloHelper.getString(solo, R.string.pge_tariff_G11_on_bill)));
+        switchBill(solo);
+        assertTrue(isPgnigForm(solo));
+        assertFalse(solo.searchText(getString(solo, R.string.pge_tariff_G11_on_bill)));
 
-        SoloHelper.switchBill(solo);
-        assertTrue(SoloHelper.isPgeForm(solo));
+        switchBill(solo);
+        assertTrue(isPgeForm(solo));
         assertNotNull(solo.getView(R.id.linearLayout_tariff));
-        assertTrue(solo.searchText(SoloHelper.getString(solo, R.string.pge_tariff_G11_on_bill)));
+        assertTrue(solo.searchText(getString(solo, R.string.pge_tariff_G11_on_bill)));
     }
+
+    @Test
+    public void shouldShowTariffLabelAccordingToPreferences() {
+        // given: G11 form
+        // then: G11 tariff shown
+        assertTrue(solo.searchText(getString(solo, R.string.pge_tariff_G11_on_bill)));
+
+        // when: switch to G12 in preferences
+        PreferenceUtil.changeToG12Tariff(solo.getCurrentActivity());
+        redrawActivity(solo);
+
+        // then: G12 tariff shown
+        assertTrue(solo.searchText(getString(solo, R.string.pge_tariff_G12_on_bill)));
+    }
+
+    @Test
+    public void shouldChangeFocusOnSoftNextKeyForG11() throws Throwable {
+        // given: focus on first edit text
+        solo.clickOnEditText(0);
+
+        // when: soft next button clicked
+        pressSoftKeyboardNextButton(solo);
+
+        // then: focus on second edit text
+        assertFalse(solo.getEditText(0).hasFocus());
+        assertTrue(solo.getEditText(1).hasFocus());
+    }
+
+    @Test
+    public void shouldChangeFocusOnSoftNextKeyForG12() throws Throwable {
+        // given: pge G12 form
+        PreferenceUtil.changeToG12Tariff(solo.getCurrentActivity());
+        redrawActivity(solo);
+        // and focus on first edit text
+        solo.clickOnEditText(0);
+
+        // given: soft next button clicked
+        // then: focus on other edit text
+        pressSoftKeyboardNextButton(solo);
+        assertTrue(solo.getEditText(2).hasFocus());
+        pressSoftKeyboardNextButton(solo);
+        assertTrue(solo.getEditText(1).hasFocus());
+        pressSoftKeyboardNextButton(solo);
+        assertTrue(solo.getEditText(3).hasFocus());
+    }
+
+    @Test
+    public void shouldShowErrorOnEmptyReadingsG11() {
+        // given: empty readings
+        // when: click calculate
+        solo.clickOnButton(getString(solo, R.string.calculate));
+
+        // then: error show on first et
+        assertThat(solo.getEditText(0).getError().toString(), is(getString(solo, R.string.reading_missing)));
+
+        // when: enter value to first et
+        solo.enterText(0, "123");
+        // and click calculate
+        solo.clickOnButton(getString(solo, R.string.calculate));
+
+        // then: error show on second et
+        assertThat(solo.getEditText(1).getError().toString(), is(getString(solo, R.string.reading_missing)));
+    }
+
+    @Test
+    public void shouldShowErrorOnEmptyReadingsG12() {
+        // given: empty readings G12
+        PreferenceUtil.changeToG12Tariff(solo.getCurrentActivity());
+        redrawActivity(solo);
+
+        // when: click calculate
+        // then: error show on et
+        solo.clickOnButton(getString(solo, R.string.calculate));
+        assertThat(solo.getEditText(0).getError().toString(), is(getString(solo, R.string.reading_missing)));
+
+        solo.enterText(0, "123");
+        solo.clickOnButton(getString(solo, R.string.calculate));
+        assertThat(solo.getEditText(2).getError().toString(), is(getString(solo, R.string.reading_missing)));
+
+        solo.enterText(2, "124");
+        solo.clickOnButton(getString(solo, R.string.calculate));
+        assertThat(solo.getEditText(1).getError().toString(), is(getString(solo, R.string.reading_missing)));
+
+        solo.enterText(1, "123");
+        solo.clickOnButton(getString(solo, R.string.calculate));
+        assertThat(solo.getEditText(3).getError().toString(), is(getString(solo, R.string.reading_missing)));
+    }
+
+    @Test
+    public void shouldShowErrorOnReadingG11WrongOrder() {
+        //TODO
+    }
+
+    @Test
+    public void shouldShowErrorOnReadingG12WrongOrder() {
+        //TODO
+    }
+
+    @Test
+    public void shouldShowErrorOnDatesWrongOrder() {
+        // given: correctly set readings
+        solo.enterText(0, "123");
+        solo.enterText(1, "234");
+        // and 'date to' set to earlier then 'date from'
+        setDateOnButton(solo, 0, 2015, Month.MARCH, 15);
+        setDateOnButton(solo, 1, 2015, Month.MARCH, 14);
+
+        // when: calculate button pressed
+        solo.clickOnButton(getString(solo, R.string.calculate));
+
+        // then: error show up
+        assertTrue(solo.searchText(getString(solo, R.string.date_error)));
+    }
+
+    @Test
+    public void shouldFocusEditTextOnBillTypeSwitch() {
+        // given: focus on first et
+        solo.clickOnEditText(0);
+
+        // when: bill type switched
+        // then: edit text focus
+        switchBill(solo);// to gas
+        assertTrue(solo.getCurrentActivity().getCurrentFocus() instanceof EditText);
+
+        switchBill(solo);// to energy
+        assertTrue(solo.getCurrentActivity().getCurrentFocus() instanceof EditText);
+
+        PreferenceUtil.changeToG12Tariff(solo.getCurrentActivity()); // change to G12
+        switchBill(solo);// to gas
+        assertTrue(solo.getCurrentActivity().getCurrentFocus() instanceof EditText);
+
+        switchBill(solo);// to energy
+        assertTrue(solo.getCurrentActivity().getCurrentFocus() instanceof EditText);
+    }
+
+    @Test
+    public void shouldShowCorrectScreenDependingOnBillType() {
+        // TODO
+    }
+
+    @Test
+    public void shouldPutInputValuesToIntentOnCalculate() {
+        // TODO
+    }
+
 }

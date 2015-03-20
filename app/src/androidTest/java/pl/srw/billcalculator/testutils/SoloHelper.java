@@ -5,9 +5,12 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.support.test.InstrumentationRegistry;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
 import com.robotium.solo.Solo;
+
+import org.threeten.bp.Month;
 
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.form.fragment.PgeLogoFragment;
@@ -53,5 +56,20 @@ public final class SoloHelper {
 
     public static int getDrawableFromRow(final Solo solo, final int index) {
         return (int) solo.getImage(index + 2).getTag();
+    }
+
+    public static void pressSoftKeyboardNextButton(final Solo solo) throws Throwable {
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                ((EditText) solo.getCurrentActivity().getCurrentFocus()).onEditorAction(EditorInfo.IME_ACTION_NEXT);
+            }
+        });
+    }
+
+    public static void setDateOnButton(final Solo solo, final int buttonIdx, final int year, final Month month, final int dayOfMonth) {
+        solo.clickOnButton(buttonIdx);
+        solo.setDatePicker(0, year, month.getValue()-1, dayOfMonth);
+        solo.clickOnView(solo.getView(android.R.id.button1));
     }
 }
