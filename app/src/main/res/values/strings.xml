@@ -20,7 +20,7 @@
     <string name="reading_hint_kWh" translatable="false">[kWh]</string>
 
 <!-- energy_bill -->
-    <string name="energy_label">Energy bill</string>
+    <string name="energy_bill">Energy bill</string>
     <string name="strefa_calodobowa" translatable="false">całodobowa</string>
     <string name="strefa_dzienna" translatable="false">dzienna</string>
     <string name="strefa_nocna" translatable="false">nocna</string>
@@ -85,7 +85,7 @@
     <string name="oplata_sieciowa_G12noc_desc" translatable="false">Inne nazwy:\n - składnik zmienny stawki sieciowej,\n - opłata przesyłowa zmienna,\n - opłata dystrybucyjna zmienna.\nCena dostarczania prądu, w strefie nocnej.</string>
 
     <!-- gas_bill -->
-    <string name="gas_label">Gas bill</string>
+    <string name="gas_bill">Gas bill</string>
     <string name="wartosc_faktury" translatable="false">Wartość faktury brutto: %1$s zł</string>
     <string name="odczyt_na_dzien" translatable="false">%1$s [m\u00B3]</string>
     <string name="zuzycie" translatable="false">Zużycie: %1$s [m\u00B3]</string>

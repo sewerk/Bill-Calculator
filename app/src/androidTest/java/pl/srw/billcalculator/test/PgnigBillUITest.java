@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 import pl.srw.billcalculator.MainActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.preference.GeneralPreferences;
+import pl.srw.billcalculator.testutils.HistoryGenerator;
 import pl.srw.billcalculator.testutils.SoloHelper;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -41,6 +42,7 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
         super.setUp();
         injectInstrumentation(InstrumentationRegistry.getInstrumentation());
         GeneralPreferences.markFirstLaunch();
+        HistoryGenerator.clear();
         solo = new Solo(getInstrumentation(), getActivity());
     }
 

@@ -22,9 +22,9 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".PgeBillActivity" android:label="@string/energy_label" />
+        <activity android:name=".PgeBillActivity" android:label="@string/energy_bill" />
 
-        <activity android:name=".PgnigBillActivity" android:label="@string/gas_label" />
+        <activity android:name=".PgnigBillActivity" android:label="@string/gas_bill" />
 
         <activity android:name=".SettingsActivity" android:label="@string/settings_label" />
         
