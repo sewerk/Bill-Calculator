@@ -373,7 +373,8 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         PreferenceUtil.clearFirstLaunch(solo.getCurrentActivity());
 
         // when: application start
-        redrawActivity(solo);
+        solo.finishOpenedActivities();
+        launchActivity(getActivity().getPackageName(), MainActivity.class, null);
 
         // then: check prices dialog show up
         solo.waitForDialogToOpen();

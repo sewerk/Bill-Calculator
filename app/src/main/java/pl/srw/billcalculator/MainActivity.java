@@ -12,8 +12,6 @@ import pl.srw.billcalculator.form.PgeForm;
 import pl.srw.billcalculator.form.fragment.InputFragment;
 import pl.srw.billcalculator.form.fragment.LogoFragment;
 import pl.srw.billcalculator.preference.GeneralPreferences;
-import pl.srw.billcalculator.preference.PgePrices;
-import pl.srw.billcalculator.preference.PgnigPrices;
 
 /**
  * Created by Kamil Seweryn.
@@ -21,7 +19,6 @@ import pl.srw.billcalculator.preference.PgnigPrices;
 public class MainActivity extends Activity {
 
     public static final String TAG_CHECK_PRICES_DIALOG = "CHECK_PRICES_DIALOG";
-    private CheckPricesDialogFragment checkPricesDialog;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -30,25 +27,9 @@ public class MainActivity extends Activity {
 
         if (savedInstanceState == null) {
             replaceFormFragments(PgeForm.getLogoSection(), PgeForm.getInputSection());
-        }
-    }
-
-    @DebugLog
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (GeneralPreferences.isFirstLaunch()) {
-            new PgePrices().setDefault();
-            new PgnigPrices().setDefault();
-            showCheckPricesDialog();
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (checkPricesDialog != null) {
-            checkPricesDialog.dismiss();
+            if (GeneralPreferences.isFirstLaunch())
+                new CheckPricesDialogFragment()
+                        .show(getFragmentManager(), TAG_CHECK_PRICES_DIALOG);
         }
     }
 
@@ -77,7 +58,7 @@ public class MainActivity extends Activity {
     public void replaceFormFragments(final LogoFragment logoFragment, final InputFragment inputFragment) {
         getFragmentManager()
                 .beginTransaction()
-//                .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+                .setCustomAnimations(R.anim.card_flip_left_in, R.anim.card_flip_left_out)
                 .replace(R.id.fl_logo_section, logoFragment)
                 .replace(R.id.fl_input_section, inputFragment)
                 .commit();
@@ -88,13 +69,4 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, activityClass);
         startActivity(intent);
     }
-
-    @DebugLog
-    private void showCheckPricesDialog() {
-        if (checkPricesDialog == null) {
-            checkPricesDialog = new CheckPricesDialogFragment();
-        }
-        checkPricesDialog.show(getFragmentManager(), TAG_CHECK_PRICES_DIALOG);
-    }
-
 }
