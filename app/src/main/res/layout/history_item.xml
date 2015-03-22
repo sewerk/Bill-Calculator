@@ -21,6 +21,11 @@
             android:text="@string/history_period"
             tools:text="01/01/2014 - 31/12/2015"/>
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_arrow_right" />
 
     </LinearLayout>
 
