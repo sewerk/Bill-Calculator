@@ -1,6 +1,5 @@
 package pl.srw.billcalculator.form.fragment;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.content.Context;
@@ -23,10 +22,8 @@ import org.threeten.bp.Month;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import de.greenrobot.event.EventBus;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.event.HistoryChangedEvent;
 import pl.srw.billcalculator.util.Dates;
 
 /**
@@ -34,17 +31,9 @@ import pl.srw.billcalculator.util.Dates;
  */
 public abstract class InputFragment extends Fragment {
 
-    protected EventBus eventBus = EventBus.getDefault();
-
     @InjectView(R.id.button_date_from) Button bFromDate;
     @InjectView(R.id.button_date_to) Button bToDate;
     @InjectView(R.id.editText_date_to_error) TextView etToDateError;
-
-    @Override
-    public void onAttach(final Activity activity) {
-        super.onAttach(activity);
-        eventBus.register(this);
-    }
 
     @Override
     public void onViewCreated(final View view, final Bundle savedInstanceState) {
@@ -59,18 +48,6 @@ public abstract class InputFragment extends Fragment {
         super.onDestroyView();
         ButterKnife.reset(this);
     }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        eventBus.unregister(this);
-    }
-
-    public void onEvent(HistoryChangedEvent event) {
-        markHistoryChanged();
-    }
-
-    protected abstract void markHistoryChanged();
 
     private void initDates() {
         bFromDate.setText(Dates.format(Dates.firstDayOfThisMonth()));
@@ -105,7 +82,6 @@ public abstract class InputFragment extends Fragment {
 
         getActivity().startActivity(getBillActivityIntent());
         getActivity().startService(getBillStorerIntent());
-        markHistoryChanged();
     }
 
     protected abstract Intent getBillActivityIntent();

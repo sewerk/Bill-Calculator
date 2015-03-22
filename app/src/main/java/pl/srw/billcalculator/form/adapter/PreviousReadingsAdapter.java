@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.adapter;
+package pl.srw.billcalculator.form.adapter;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import de.greenrobot.event.EventBus;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.persistence.type.CurrentReadingType;
+import pl.srw.billcalculator.event.HistoryChangedEvent;
 import pl.srw.billcalculator.persistence.Database;
+import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 import pl.srw.billcalculator.util.ToString;
 
 /**
@@ -23,12 +25,14 @@ public class PreviousReadingsAdapter extends ArrayAdapter<String> {
     private final Object mLock = new Object();
     private String[] prevReadings;
     private final CurrentReadingType readingType;
-    private boolean needUpdate = true;
+    private EventBus eventBus = EventBus.getDefault();
 
     @DebugLog
-    public PreviousReadingsAdapter(Context context, final CurrentReadingType readingType) {
+    PreviousReadingsAdapter(Context context, final CurrentReadingType readingType) {
         super(context, R.layout.dropdowntext, R.id.dropDown);
         this.readingType = readingType;
+        eventBus.register(this);
+        updateAll();
     }
 
     private void setResult(String[] result) {
@@ -48,20 +52,21 @@ public class PreviousReadingsAdapter extends ArrayAdapter<String> {
             return allReadings;
     }
 
+    public void onEvent(HistoryChangedEvent event) {
+        updateAll();
+    }
+
     @DebugLog
-    public void updateAll() {
-        if (needUpdate) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    List<Integer> readings = Database.queryCurrentReadings(readingType);
-                    synchronized (mLock) {
-                        prevReadings = ToString.toArray(readings);
-                    }
+    private void updateAll() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<Integer> readings = Database.queryCurrentReadings(readingType);
+                synchronized (mLock) {
+                    prevReadings = ToString.toArray(readings);
                 }
+            }
             }).start();
-            needUpdate = false;
-        }
     }
 
     @Override
@@ -118,9 +123,5 @@ public class PreviousReadingsAdapter extends ArrayAdapter<String> {
                 notifyDataSetInvalidated();
             }
         }
-    }
-
-    public void notifyInputDataChanged() {
-        needUpdate = true;
     }
 }

@@ -3,9 +3,11 @@ package pl.srw.billcalculator.service;
 import android.app.IntentService;
 import android.content.Intent;
 
+import de.greenrobot.event.EventBus;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.db.PgnigBill;
+import pl.srw.billcalculator.event.HistoryChangedEvent;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.preference.PgnigPrices;
@@ -39,5 +41,7 @@ public class PgnigBillStoringService extends IntentService {
                 Dates.toDate(Dates.parse(dateFrom)), Dates.toDate(Dates.parse(dateTo)),
                 calculatedBill.getGrossChargeSum().doubleValue(), dbPrices.getId());
         Database.getSession().insert(bill);
+
+        EventBus.getDefault().post(new HistoryChangedEvent());
     }
 }

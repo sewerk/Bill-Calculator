@@ -11,9 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 
 import butterknife.InjectView;
-import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.adapter.PreviousReadingsAdapter;
+import pl.srw.billcalculator.form.adapter.PreviousReadingsAdapterFactory;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
 import pl.srw.billcalculator.intent.IntentCreator;
@@ -36,9 +35,6 @@ public class PgeInputFragment extends InputFragment {
     @InjectView(R.id.editText_reading_night_from) AutoCompleteTextView etNightPreviousReading;
     @InjectView(R.id.editText_reading_night_to) EditText etNightCurrentReading;
 
-    private PreviousReadingsAdapter dayReadingAdapter;
-    private PreviousReadingsAdapter nightReadingAdapter;
-    private PreviousReadingsAdapter readingAdapter;
     private boolean pgeTariffG12;
 
     @Override
@@ -57,54 +53,12 @@ public class PgeInputFragment extends InputFragment {
         super.onStart();
         pgeTariffG12 = GeneralPreferences.isPgeTariffG12();
         chooseReadings();
-        updateAutoComplete();
     }
 
     private void enableAutoComplete() {
-        etDayPreviousReading.setAdapter(getDayReadingAdapter());
-        etNightPreviousReading.setAdapter(getNightReadingAdapter());
-        etPreviousReading.setAdapter(getReadingAdapter());
-    }
-
-    private PreviousReadingsAdapter getReadingAdapter() {
-        if (readingAdapter == null) {
-            readingAdapter = new PreviousReadingsAdapter(getActivity(), CurrentReadingType.PGE_TO);
-        }
-        return readingAdapter;
-    }
-
-    private PreviousReadingsAdapter getNightReadingAdapter() {
-        if (nightReadingAdapter == null) {
-            nightReadingAdapter = new PreviousReadingsAdapter(getActivity(), CurrentReadingType.PGE_NIGHT_TO);
-        }
-        return nightReadingAdapter;
-    }
-
-    private PreviousReadingsAdapter getDayReadingAdapter() {
-        if (dayReadingAdapter == null) {
-            dayReadingAdapter = new PreviousReadingsAdapter(getActivity(), CurrentReadingType.PGE_DAY_TO);
-        }
-        return dayReadingAdapter;
-    }
-
-    @DebugLog
-    private void updateAutoComplete() {
-        if (pgeTariffG12) {
-            getDayReadingAdapter().updateAll();
-            getNightReadingAdapter().updateAll();
-        } else
-            getReadingAdapter().updateAll();
-    }
-
-    @DebugLog
-    protected void markHistoryChanged() {
-        markHistoryChangedFor(etDayPreviousReading);
-        markHistoryChangedFor(etNightPreviousReading);
-        markHistoryChangedFor(etPreviousReading);
-    }
-
-    private void markHistoryChangedFor(final AutoCompleteTextView et) {
-        ((PreviousReadingsAdapter)et.getAdapter()).notifyInputDataChanged();
+        etDayPreviousReading.setAdapter(PreviousReadingsAdapterFactory.build(getActivity(), CurrentReadingType.PGE_DAY_TO));
+        etNightPreviousReading.setAdapter(PreviousReadingsAdapterFactory.build(getActivity(), CurrentReadingType.PGE_NIGHT_TO));
+        etPreviousReading.setAdapter(PreviousReadingsAdapterFactory.build(getActivity(), CurrentReadingType.PGE_TO));
     }
 
     private void chooseReadings() {

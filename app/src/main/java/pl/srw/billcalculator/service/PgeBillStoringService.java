@@ -3,11 +3,13 @@ package pl.srw.billcalculator.service;
 import android.app.IntentService;
 import android.content.Intent;
 
+import de.greenrobot.event.EventBus;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.calculation.PgeG11CalculatedBill;
 import pl.srw.billcalculator.calculation.PgeG12CalculatedBill;
 import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.db.PgeG12Bill;
+import pl.srw.billcalculator.event.HistoryChangedEvent;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.preference.PgePrices;
@@ -45,6 +47,8 @@ public class PgeBillStoringService extends IntentService {
             storeG12Bill(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, dbPrices);
         else
             storeG11Bill(readingFrom, readingTo, dateFrom, dateTo, dbPrices);
+
+        EventBus.getDefault().post(new HistoryChangedEvent());
     }
 
     private void storeG11Bill(final int readingFrom, final int readingTo,
