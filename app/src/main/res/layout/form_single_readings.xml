@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="right"
+    android:focusableInTouchMode="true"
     tools:showIn="@layout/form_pgnig">
 
     <LinearLayout
@@ -30,10 +31,7 @@
             android:gravity="end"
             android:hint="@string/reading_hint_kWh"
             android:inputType="number"
-            android:imeOptions="actionNext" >
-
-            <requestFocus />
-        </pl.srw.billcalculator.component.InstantAutoComplete>
+            android:imeOptions="actionNext" />
 
     </LinearLayout>
 

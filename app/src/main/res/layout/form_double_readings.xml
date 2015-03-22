@@ -5,6 +5,7 @@
     android:id="@+id/tableLayout_G12_readings"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:focusableInTouchMode="true"
     tools:showIn="@layout/form_pge">
 
     <TableRow
@@ -56,10 +57,7 @@
             android:hint="@string/reading_hint_kWh"
             android:nextFocusForward="@+id/editText_reading_day_to"
             android:inputType="number"
-            android:imeOptions="actionNext" >
-
-            <requestFocus />
-        </pl.srw.billcalculator.component.InstantAutoComplete>
+            android:imeOptions="actionNext" />
 
         <pl.srw.billcalculator.component.InstantAutoComplete
             android:id="@+id/editText_reading_night_from"

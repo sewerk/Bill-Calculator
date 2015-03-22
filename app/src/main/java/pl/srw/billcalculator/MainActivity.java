@@ -6,11 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.component.CheckPricesDialogFragment;
-import pl.srw.billcalculator.form.PgeForm;
-import pl.srw.billcalculator.form.fragment.InputFragment;
-import pl.srw.billcalculator.form.fragment.LogoFragment;
+import pl.srw.billcalculator.form.ProviderForm;
 import pl.srw.billcalculator.preference.GeneralPreferences;
 
 /**
@@ -26,7 +23,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
 
         if (savedInstanceState == null) {
-            replaceFormFragments(PgeForm.getLogoSection(), PgeForm.getInputSection());
+            replaceFormFragments(ProviderForm.PGE);
             if (GeneralPreferences.isFirstLaunch())
                 new CheckPricesDialogFragment()
                         .show(getFragmentManager(), TAG_CHECK_PRICES_DIALOG);
@@ -55,12 +52,12 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void replaceFormFragments(final LogoFragment logoFragment, final InputFragment inputFragment) {
+    public void replaceFormFragments(final ProviderForm form) {
         getFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.card_flip_left_in, R.anim.card_flip_left_out)
-                .replace(R.id.fl_logo_section, logoFragment)
-                .replace(R.id.fl_input_section, inputFragment)
+                .setCustomAnimations(R.anim.come_closer, 0)
+                .replace(R.id.fl_logo_section, form.getLogoFragment())
+                .replace(R.id.fl_input_section, form.getInputFragment())
                 .commit();
         // getFragmentManager().executePendingTransactions();
     }
@@ -68,5 +65,12 @@ public class MainActivity extends Activity {
     public void start(Class<? extends Activity> activityClass) {
         Intent intent = new Intent(this, activityClass);
         startActivity(intent);
+    }
+
+    public void replaceFormFragments(boolean isEnergyForm) {
+        if (isEnergyForm)
+            replaceFormFragments(ProviderForm.PGNIG);
+        else
+            replaceFormFragments(ProviderForm.PGE);
     }
 }
