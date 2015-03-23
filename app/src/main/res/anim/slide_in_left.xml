@@ -5,5 +5,5 @@
         android:valueType="floatType"
         android:valueFrom="-1280"
         android:valueTo="0"
-        android:duration="@integer/card_flip_time_full"/>
+        android:duration="@integer/animation_time_full"/>
 </set>

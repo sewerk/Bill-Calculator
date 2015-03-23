@@ -1,5 +1,7 @@
 package pl.srw.billcalculator.adapter;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,7 +12,6 @@ import butterknife.InjectView;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.adapter.provider.HistoryItemValueProvider;
-import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.util.MultiSelect;
 import pl.srw.billcalculator.util.SelectedBill;
@@ -43,18 +44,21 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
     public void bindEntry(final History item) {
         itemValuesProvider = HistoryItemValueProvider.of(item);
 
-        setLogoImage();
+        setLogoImage(false);
         tvForPeriod.setText(itemValuesProvider.getDatePeriod());
         tvReadings.setText(itemValuesProvider.getReadings());
         tvAmount.setText(itemValuesProvider.getAmount());
     }
 
-    private void setLogoImage() {
+    private void setLogoImage(final boolean animateChange) {
         final int drawable;
         if (selection.isSelected(getLayoutPosition())) drawable = R.drawable.selected;
         else drawable = itemValuesProvider.getLogoId();
 
-        imgLogo.setImageResource(drawable);
+        if (animateChange)
+            animateLogoChange(drawable);
+        else
+            imgLogo.setImageResource(drawable);
         imgLogo.setTag(drawable);
     }
 
@@ -83,6 +87,31 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
         else {
             selection.select(getLayoutPosition(), new SelectedBill(itemValuesProvider.getBill()));
         }
-        setLogoImage();
+        setLogoImage(true);
+    }
+
+    private void animateLogoChange(final int drawable) {
+        final int halfDuration = adapter.getActivity().getResources().getInteger(R.integer.animation_time_half);
+        imgLogo.animate()
+                .rotationYBy(90f)
+                .setDuration(halfDuration)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        imgLogo.setImageResource(drawable);
+                        imgLogo.animate()
+                                .rotationYBy(180f)
+                                .setDuration(0)
+                                .setListener(new AnimatorListenerAdapter() {
+                                    @Override
+                                    public void onAnimationEnd(Animator animation) {
+                                        imgLogo.animate()
+                                                .rotationYBy(90f)
+                                                .setDuration(halfDuration)
+                                                .setListener(null);
+                                    }
+                                });
+                    }
+                });
     }
 }
