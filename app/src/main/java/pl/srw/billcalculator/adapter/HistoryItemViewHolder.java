@@ -19,7 +19,8 @@ import pl.srw.billcalculator.util.SelectedBill;
 /**
 * Created by Kamil Seweryn.
 */
-public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+public class HistoryItemViewHolder extends RecyclerView.ViewHolder
+        implements SwipeDetectionTouchListener.SwipeExecutor {
 
     @InjectView(R.id.iv_bill_type) ImageView imgLogo;
     @InjectView(R.id.tv_for_period) TextView tvForPeriod;
@@ -35,8 +36,7 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
         this.adapter = adapter;
         this.selection = selection;
 
-        v.setOnClickListener(this);
-        v.setOnLongClickListener(this);
+        v.setOnTouchListener(new SwipeDetectionTouchListener(adapter.getActivity(), this));
         ButterKnife.inject(this, v);
     }
 
@@ -63,22 +63,27 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
     }
 
     @Override
-    public void onClick(final View v) {
+    public void onTap() {
         if (adapter.getActivity().isInDeleteMode())
             toggleSelection();
         else
-            v.getContext().startActivity(itemValuesProvider.getIntent());
+            itemView.getContext().startActivity(itemValuesProvider.getIntent());
     }
 
     @Override
-    public boolean onLongClick(final View v) {
+    public void onLongPress() {
         if (adapter.getActivity().isInDeleteMode()) {
-            return false;
+            onTap();
+            return;
         }
 
         adapter.getActivity().enableDeleteMode();
         toggleSelection();
-        return true;
+    }
+
+    @Override
+    public void onSwipeDetected(SwipeDetectionTouchListener.Direction direction) {
+        onLongPress();
     }
 
     private void toggleSelection() {
@@ -91,6 +96,7 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
     }
 
     private void animateLogoChange(final int drawable) {
+        imgLogo.setRotationY(0f);
         final int halfDuration = adapter.getActivity().getResources().getInteger(R.integer.animation_time_half);
         imgLogo.animate()
                 .rotationYBy(90f)
