@@ -30,7 +30,6 @@ import static pl.srw.billcalculator.testutils.SoloHelper.*;
  * Created by Kamil Seweryn.
  */
 @RunWith(AndroidJUnit4.class)
-@LargeTest
 public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainActivity> {
 
     public MainActivityUITest() {
@@ -271,27 +270,6 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
 
         // then: error show up
         assertTrue(solo.searchText(getString(solo, R.string.date_error)));
-    }
-
-    @Test
-    public void shouldFocusEditTextOnBillTypeSwitch() {
-        // given: focus on first et
-        solo.clickOnEditText(0);
-
-        // when: bill type switched
-        // then: edit text focus
-        switchBill(solo);// to gas
-        assertTrue(solo.getCurrentActivity().getCurrentFocus() instanceof EditText);
-
-        switchBill(solo);// to energy
-        assertTrue(solo.getCurrentActivity().getCurrentFocus() instanceof EditText);
-
-        PreferenceUtil.changeToG12Tariff(solo.getCurrentActivity()); // change to G12
-        switchBill(solo);// to gas
-        assertTrue(solo.getCurrentActivity().getCurrentFocus() instanceof EditText);
-
-        switchBill(solo);// to energy
-        assertTrue(solo.getCurrentActivity().getCurrentFocus() instanceof EditText);
     }
 
     @Test
