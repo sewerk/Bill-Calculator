@@ -3678,6 +3678,7 @@ pl.srw.billcalculator.R$anim: int card_flip_left_in
 pl.srw.billcalculator.R$anim: int card_flip_left_out
 pl.srw.billcalculator.R$anim: int card_flip_right_in
 pl.srw.billcalculator.R$anim: int card_flip_right_out
+pl.srw.billcalculator.R$anim: int come_closer
 pl.srw.billcalculator.R$anim: int slide_in_left
 pl.srw.billcalculator.R$anim: int slide_out_right
 pl.srw.billcalculator.R$array
@@ -4055,6 +4056,7 @@ pl.srw.billcalculator.R$drawable: int ic_action_settings
 pl.srw.billcalculator.R$drawable: int ic_action_sort_by_size
 pl.srw.billcalculator.R$drawable: int ic_action_time
 pl.srw.billcalculator.R$drawable: int ic_action_undo
+pl.srw.billcalculator.R$drawable: int ic_arrow_right
 pl.srw.billcalculator.R$drawable: int ic_gmail
 pl.srw.billcalculator.R$drawable: int ic_gplus
 pl.srw.billcalculator.R$drawable: int ic_launcher
@@ -4234,8 +4236,8 @@ pl.srw.billcalculator.R$integer
 pl.srw.billcalculator.R$integer: int abc_config_activityDefaultDur
 pl.srw.billcalculator.R$integer: int abc_config_activityShortDur
 pl.srw.billcalculator.R$integer: int abc_max_action_buttons
-pl.srw.billcalculator.R$integer: int card_flip_time_full
-pl.srw.billcalculator.R$integer: int card_flip_time_half
+pl.srw.billcalculator.R$integer: int animation_time_full
+pl.srw.billcalculator.R$integer: int animation_time_half
 pl.srw.billcalculator.R$layout
 pl.srw.billcalculator.R$layout: int abc_action_bar_title_item
 pl.srw.billcalculator.R$layout: int abc_action_bar_up_container
@@ -4337,9 +4339,9 @@ pl.srw.billcalculator.R$string: int dystrybucyjna_zmienna_desc
 pl.srw.billcalculator.R$string: int email_client_missing
 pl.srw.billcalculator.R$string: int emailme
 pl.srw.billcalculator.R$string: int empty_history
-pl.srw.billcalculator.R$string: int energy_label
+pl.srw.billcalculator.R$string: int energy_bill
 pl.srw.billcalculator.R$string: int for_period
-pl.srw.billcalculator.R$string: int gas_label
+pl.srw.billcalculator.R$string: int gas_bill
 pl.srw.billcalculator.R$string: int histiry_readings
 pl.srw.billcalculator.R$string: int history_amount
 pl.srw.billcalculator.R$string: int history_label
@@ -4968,9 +4970,15 @@ pl.srw.billcalculator.adapter.HistoryItemViewHolder$$ViewInjector
 pl.srw.billcalculator.adapter.HistoryItemViewHolder$$ViewInjector: HistoryItemViewHolder$$ViewInjector()
 pl.srw.billcalculator.adapter.HistoryItemViewHolder$$ViewInjector: void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.adapter.HistoryItemViewHolder,java.lang.Object)
 pl.srw.billcalculator.adapter.HistoryItemViewHolder$$ViewInjector: void reset(pl.srw.billcalculator.adapter.HistoryItemViewHolder)
-pl.srw.billcalculator.adapter.PreviousReadingsAdapter
-pl.srw.billcalculator.adapter.PreviousReadingsAdapter$1
-pl.srw.billcalculator.adapter.PreviousReadingsAdapter$PreviousReadingFilter
+pl.srw.billcalculator.adapter.HistoryItemViewHolder$1
+pl.srw.billcalculator.adapter.HistoryItemViewHolder$1$1
+pl.srw.billcalculator.adapter.SwipeDetectionTouchListener
+pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$1
+pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$Direction
+pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$Direction: pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$Direction[] values()
+pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$Direction: pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$Direction valueOf(java.lang.String)
+pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$GestureListener
+pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$SwipeExecutor
 pl.srw.billcalculator.adapter.provider.HistoryItemValueProvider
 pl.srw.billcalculator.adapter.provider.HistoryItemValueProvider$1
 pl.srw.billcalculator.adapter.provider.PgeG11BillHistoryItemValueProvider
@@ -5019,13 +5027,18 @@ pl.srw.billcalculator.db.dao.PgnigPricesDao
 pl.srw.billcalculator.db.dao.PgnigPricesDao: java.lang.String TABLENAME
 pl.srw.billcalculator.db.dao.PgnigPricesDao$Properties
 pl.srw.billcalculator.event.HistoryChangedEvent
-pl.srw.billcalculator.form.PgeForm
-pl.srw.billcalculator.form.PgnigForm
+pl.srw.billcalculator.form.ProviderForm
+pl.srw.billcalculator.form.ProviderForm: pl.srw.billcalculator.form.ProviderForm[] values()
+pl.srw.billcalculator.form.ProviderForm: pl.srw.billcalculator.form.ProviderForm valueOf(java.lang.String)
+pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter
+pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter: void onEvent(pl.srw.billcalculator.event.HistoryChangedEvent)
+pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter$1
+pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter$PreviousReadingFilter
+pl.srw.billcalculator.form.adapter.PreviousReadingsAdapterFactory
 pl.srw.billcalculator.form.fragment.InputFragment
 pl.srw.billcalculator.form.fragment.InputFragment: android.widget.Button bFromDate
 pl.srw.billcalculator.form.fragment.InputFragment: android.widget.Button bToDate
 pl.srw.billcalculator.form.fragment.InputFragment: android.widget.TextView etToDateError
-pl.srw.billcalculator.form.fragment.InputFragment: void onEvent(pl.srw.billcalculator.event.HistoryChangedEvent)
 pl.srw.billcalculator.form.fragment.InputFragment$$ViewInjector
 pl.srw.billcalculator.form.fragment.InputFragment$$ViewInjector: InputFragment$$ViewInjector()
 pl.srw.billcalculator.form.fragment.InputFragment$$ViewInjector: void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.form.fragment.InputFragment,java.lang.Object)
@@ -5035,6 +5048,7 @@ pl.srw.billcalculator.form.fragment.InputFragment$$ViewInjector$2
 pl.srw.billcalculator.form.fragment.InputFragment$$ViewInjector$3
 pl.srw.billcalculator.form.fragment.InputFragment$1
 pl.srw.billcalculator.form.fragment.LogoFragment
+pl.srw.billcalculator.form.fragment.LogoFragment: android.widget.ImageView ivBillType
 pl.srw.billcalculator.form.fragment.LogoFragment$$ViewInjector
 pl.srw.billcalculator.form.fragment.LogoFragment$$ViewInjector: LogoFragment$$ViewInjector()
 pl.srw.billcalculator.form.fragment.LogoFragment$$ViewInjector: void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.form.fragment.LogoFragment,java.lang.Object)
@@ -5074,8 +5088,11 @@ pl.srw.billcalculator.intent.BillActivityIntentFactory$1
 pl.srw.billcalculator.intent.BillStoringServiceIntentFactory
 pl.srw.billcalculator.intent.BillStoringServiceIntentFactory$1
 pl.srw.billcalculator.intent.IntentCreator
+pl.srw.billcalculator.persistence.DBMigration
 pl.srw.billcalculator.persistence.Database
 pl.srw.billcalculator.persistence.Database$1
+pl.srw.billcalculator.persistence.Database$2
+pl.srw.billcalculator.persistence.SqlBuilder
 pl.srw.billcalculator.persistence.Triggers
 pl.srw.billcalculator.persistence.exception.DbNotInitializedYetException
 pl.srw.billcalculator.persistence.exception.DbRelationMissingException
@@ -5123,5 +5140,12 @@ pl.srw.billcalculator.type.BillType$1
 pl.srw.billcalculator.util.Dates
 pl.srw.billcalculator.util.Display
 pl.srw.billcalculator.util.MultiSelect
+pl.srw.billcalculator.util.MultiSelect: android.os.Parcelable$Creator CREATOR
+pl.srw.billcalculator.util.MultiSelect$1
+pl.srw.billcalculator.util.MultiSelect$CreatorImpl
+pl.srw.billcalculator.util.SelectedBill
+pl.srw.billcalculator.util.SelectedBill: android.os.Parcelable$Creator CREATOR
+pl.srw.billcalculator.util.SelectedBill$1
+pl.srw.billcalculator.util.SelectedBill$CreatorImpl
 pl.srw.billcalculator.util.ToString
 pl.srw.billcalculator.util.Views

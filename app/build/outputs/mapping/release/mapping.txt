@@ -7482,31 +7482,30 @@ android.support.v7.widget.RecyclerView$ViewHolder -> android.support.v7.widget.R
     void clearOldPosition() -> a
     void saveOldPosition() -> b
     boolean shouldIgnore() -> c
-    int getPosition() -> d
-    int getLayoutPosition() -> e
-    long getItemId() -> f
-    int getItemViewType() -> g
-    boolean isScrap() -> h
-    void unScrap() -> i
-    boolean wasReturnedFromScrap() -> j
-    void clearReturnedFromScrapFlag() -> k
-    void clearTmpDetachFlag() -> l
+    int getLayoutPosition() -> d
+    long getItemId() -> e
+    int getItemViewType() -> f
+    boolean isScrap() -> g
+    void unScrap() -> h
+    boolean wasReturnedFromScrap() -> i
+    void clearReturnedFromScrapFlag() -> j
+    void clearTmpDetachFlag() -> k
     void setScrapContainer(android.support.v7.widget.RecyclerView$Recycler) -> a
-    boolean isInvalid() -> m
-    boolean needsUpdate() -> n
-    boolean isChanged() -> o
-    boolean isBound() -> p
-    boolean isRemoved() -> q
-    boolean isTmpDetached() -> r
-    boolean isAdapterPositionUnknown() -> s
+    boolean isInvalid() -> l
+    boolean needsUpdate() -> m
+    boolean isChanged() -> n
+    boolean isBound() -> o
+    boolean isRemoved() -> p
+    boolean isTmpDetached() -> q
+    boolean isAdapterPositionUnknown() -> r
     void setFlags(int,int) -> a
     void addFlags(int) -> a
-    void resetInternal() -> t
+    void resetInternal() -> s
     java.lang.String toString() -> toString
     void setIsRecyclable(boolean) -> a
-    boolean isRecyclable() -> u
-    boolean shouldBeKeptAsChild() -> v
-    boolean doesTransientStatePreventRecycling() -> w
+    boolean isRecyclable() -> t
+    boolean shouldBeKeptAsChild() -> u
+    boolean doesTransientStatePreventRecycling() -> v
     boolean access$4000(android.support.v7.widget.RecyclerView$ViewHolder) -> a
     android.support.v7.widget.RecyclerView$Recycler access$4102(android.support.v7.widget.RecyclerView$ViewHolder,android.support.v7.widget.RecyclerView$Recycler) -> a
     boolean access$5400(android.support.v7.widget.RecyclerView$ViewHolder) -> b
@@ -8903,20 +8902,17 @@ de.greenrobot.dao.AbstractDao -> de.greenrobot.dao.AbstractDao:
     long executeInsert(java.lang.Object,android.database.sqlite.SQLiteStatement) -> a
     void updateKeyAfterInsertAndAttach(java.lang.Object,long,boolean) -> a
     java.lang.Object loadCurrent(android.database.Cursor,int,boolean) -> a
-    void delete(java.lang.Object) -> c
-    void deleteByKey(java.lang.Object) -> d
+    void deleteByKey(java.lang.Object) -> c
     void deleteByKeyInsideSynchronized(java.lang.Object,android.database.sqlite.SQLiteStatement) -> b
     de.greenrobot.dao.query.QueryBuilder queryBuilder() -> e
     void attachEntity(java.lang.Object,java.lang.Object,boolean) -> a
-    void attachEntity(java.lang.Object) -> e
+    void attachEntity(java.lang.Object) -> d
     void assertSinglePk() -> f
-    java.lang.Object getKeyVerified(java.lang.Object) -> f
     android.database.sqlite.SQLiteDatabase getDatabase() -> g
     java.lang.Object readEntity(android.database.Cursor,int) -> a
     java.lang.Object readKey(android.database.Cursor,int) -> b
     void bindValues(android.database.sqlite.SQLiteStatement,java.lang.Object) -> a
     java.lang.Object updateKeyAfterInsert(java.lang.Object,long) -> a
-    java.lang.Object getKey(java.lang.Object) -> g
 de.greenrobot.dao.AbstractDaoMaster -> de.greenrobot.dao.AbstractDaoMaster:
     android.database.sqlite.SQLiteDatabase db -> a
     int schemaVersion -> b
@@ -8927,7 +8923,6 @@ de.greenrobot.dao.AbstractDaoSession -> de.greenrobot.dao.AbstractDaoSession:
     java.util.Map entityToDao -> b
     void registerDao(java.lang.Class,de.greenrobot.dao.AbstractDao) -> a
     long insert(java.lang.Object) -> a
-    void delete(java.lang.Object) -> b
     de.greenrobot.dao.AbstractDao getDao(java.lang.Class) -> a
 de.greenrobot.dao.DaoException -> de.greenrobot.dao.DaoException:
     void safeInitCause(java.lang.Throwable) -> a
@@ -9165,9 +9160,7 @@ de.greenrobot.event.EventBus -> de.greenrobot.event.EventBus:
     void register(java.lang.Object) -> a
     void register(java.lang.Object,boolean,int) -> a
     void subscribe(java.lang.Object,de.greenrobot.event.SubscriberMethod,boolean,int) -> a
-    void unubscribeByEventType(java.lang.Object,java.lang.Class) -> a
-    void unregister(java.lang.Object) -> b
-    void post(java.lang.Object) -> c
+    void post(java.lang.Object) -> b
     void postSingleEvent(java.lang.Object,de.greenrobot.event.EventBus$PostingThreadState) -> a
     boolean postSingleEventForEventType(java.lang.Object,de.greenrobot.event.EventBus$PostingThreadState,java.lang.Class) -> a
     void postToSubscription(de.greenrobot.event.Subscription,java.lang.Object,boolean) -> a
@@ -10883,11 +10876,15 @@ pl.srw.billcalculator.HistoryActivity -> pl.srw.billcalculator.HistoryActivity:
     android.view.ActionMode$Callback deleteMode -> e
     void onCreate(android.os.Bundle) -> onCreate
     void onStart() -> onStart
+    void onRestoreInstanceState(android.os.Bundle) -> onRestoreInstanceState
+    void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
     void onStop() -> onStop
     void enableDeleteMode() -> a
     boolean isInDeleteMode() -> b
-    pl.srw.billcalculator.adapter.EmptyHistoryDataObserver access$000(pl.srw.billcalculator.HistoryActivity) -> a
-    android.view.ActionMode access$102(pl.srw.billcalculator.HistoryActivity,android.view.ActionMode) -> a
+    pl.srw.billcalculator.adapter.HistoryAdapter getAdapter() -> c
+    pl.srw.billcalculator.adapter.HistoryAdapter access$000(pl.srw.billcalculator.HistoryActivity) -> a
+    pl.srw.billcalculator.adapter.EmptyHistoryDataObserver access$100(pl.srw.billcalculator.HistoryActivity) -> b
+    android.view.ActionMode access$202(pl.srw.billcalculator.HistoryActivity,android.view.ActionMode) -> a
 pl.srw.billcalculator.HistoryActivity$$ViewInjector -> pl.srw.billcalculator.HistoryActivity$$ViewInjector:
     void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.HistoryActivity,java.lang.Object) -> inject
     void reset(pl.srw.billcalculator.HistoryActivity) -> reset
@@ -10898,15 +10895,12 @@ pl.srw.billcalculator.HistoryActivity$1 -> pl.srw.billcalculator.HistoryActivity
     boolean onActionItemClicked(android.view.ActionMode,android.view.MenuItem) -> onActionItemClicked
     void onDestroyActionMode(android.view.ActionMode) -> onDestroyActionMode
 pl.srw.billcalculator.MainActivity -> pl.srw.billcalculator.MainActivity:
-    pl.srw.billcalculator.component.CheckPricesDialogFragment checkPricesDialog -> a
     void onCreate(android.os.Bundle) -> onCreate
-    void onResume() -> onResume
-    void onPause() -> onPause
     boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
     boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-    void replaceFormFragments(pl.srw.billcalculator.form.fragment.LogoFragment,pl.srw.billcalculator.form.fragment.InputFragment) -> a
+    void replaceFormFragments(pl.srw.billcalculator.form.ProviderForm) -> a
     void start(java.lang.Class) -> a
-    void showCheckPricesDialog() -> a
+    void replaceFormFragments(boolean) -> a
 pl.srw.billcalculator.PgeBillActivity -> pl.srw.billcalculator.PgeBillActivity:
     java.lang.String dateFrom -> a
     java.lang.String dateTo -> b
@@ -10968,6 +10962,8 @@ pl.srw.billcalculator.adapter.HistoryAdapter -> pl.srw.billcalculator.adapter.Hi
     pl.srw.billcalculator.HistoryActivity getActivity() -> d
     void deleteSelected() -> e
     void exitSelectMode() -> f
+    void onRestoreInstanceState(android.os.Bundle) -> a
+    void onSaveInstanceState(android.os.Bundle) -> b
     void onBindViewHolder(android.support.v7.widget.RecyclerView$ViewHolder,int) -> a
     android.support.v7.widget.RecyclerView$ViewHolder onCreateViewHolder(android.view.ViewGroup,int) -> a
 pl.srw.billcalculator.adapter.HistoryItemViewHolder -> pl.srw.billcalculator.adapter.HistoryItemViewHolder:
@@ -10975,41 +10971,51 @@ pl.srw.billcalculator.adapter.HistoryItemViewHolder -> pl.srw.billcalculator.ada
     android.widget.TextView tvForPeriod -> j
     android.widget.TextView tvReadings -> k
     android.widget.TextView tvAmount -> l
-    pl.srw.billcalculator.adapter.provider.HistoryItemValueProvider intentProvider -> m
+    pl.srw.billcalculator.adapter.provider.HistoryItemValueProvider itemValuesProvider -> m
     pl.srw.billcalculator.adapter.HistoryAdapter adapter -> n
     pl.srw.billcalculator.util.MultiSelect selection -> o
     void bindEntry(pl.srw.billcalculator.db.History) -> a
-    void setLogoImage() -> v
-    void onClick(android.view.View) -> onClick
-    boolean onLongClick(android.view.View) -> onLongClick
+    void setLogoImage(boolean) -> b
+    void onTap() -> u
+    void onLongPress() -> v
+    void onSwipeDetected(pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$Direction) -> a
     void toggleSelection() -> w
+    void animateLogoChange(int) -> b
 pl.srw.billcalculator.adapter.HistoryItemViewHolder$$ViewInjector -> pl.srw.billcalculator.adapter.HistoryItemViewHolder$$ViewInjector:
     void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.adapter.HistoryItemViewHolder,java.lang.Object) -> inject
     void reset(pl.srw.billcalculator.adapter.HistoryItemViewHolder) -> reset
-pl.srw.billcalculator.adapter.PreviousReadingsAdapter -> pl.srw.billcalculator.adapter.PreviousReadingsAdapter:
-    android.widget.Filter mFilter -> a
-    java.lang.Object mLock -> b
-    java.lang.String[] prevReadings -> c
-    pl.srw.billcalculator.persistence.type.CurrentReadingType readingType -> d
-    boolean needUpdate -> e
-    void setResult(java.lang.String[]) -> a
-    java.lang.String[] getAll() -> c
-    void updateAll() -> a
-    android.widget.Filter getFilter() -> getFilter
-    void notifyInputDataChanged() -> b
-    pl.srw.billcalculator.persistence.type.CurrentReadingType access$000(pl.srw.billcalculator.adapter.PreviousReadingsAdapter) -> a
-    java.lang.Object access$100(pl.srw.billcalculator.adapter.PreviousReadingsAdapter) -> b
-    java.lang.String[] access$202(pl.srw.billcalculator.adapter.PreviousReadingsAdapter,java.lang.String[]) -> a
-    java.lang.String[] access$400(pl.srw.billcalculator.adapter.PreviousReadingsAdapter) -> c
-    void access$500(pl.srw.billcalculator.adapter.PreviousReadingsAdapter,java.lang.String[]) -> b
-pl.srw.billcalculator.adapter.PreviousReadingsAdapter$1 -> pl.srw.billcalculator.adapter.PreviousReadingsAdapter$1:
-    pl.srw.billcalculator.adapter.PreviousReadingsAdapter this$0 -> a
-    void run() -> run
-pl.srw.billcalculator.adapter.PreviousReadingsAdapter$PreviousReadingFilter -> pl.srw.billcalculator.adapter.PreviousReadingsAdapter$PreviousReadingFilter:
-    pl.srw.billcalculator.adapter.PreviousReadingsAdapter this$0 -> a
-    android.widget.Filter$FilterResults performFiltering(java.lang.CharSequence) -> performFiltering
-    java.lang.String[] getLastReading(java.lang.String[]) -> a
-    void publishResults(java.lang.CharSequence,android.widget.Filter$FilterResults) -> publishResults
+pl.srw.billcalculator.adapter.HistoryItemViewHolder$1 -> pl.srw.billcalculator.adapter.HistoryItemViewHolder$1:
+    int val$drawable -> a
+    int val$halfDuration -> b
+    pl.srw.billcalculator.adapter.HistoryItemViewHolder this$0 -> c
+    void onAnimationEnd(android.animation.Animator) -> onAnimationEnd
+pl.srw.billcalculator.adapter.HistoryItemViewHolder$1$1 -> pl.srw.billcalculator.adapter.HistoryItemViewHolder$1$1:
+    pl.srw.billcalculator.adapter.HistoryItemViewHolder$1 this$1 -> a
+    void onAnimationEnd(android.animation.Animator) -> onAnimationEnd
+pl.srw.billcalculator.adapter.SwipeDetectionTouchListener -> pl.srw.billcalculator.adapter.SwipeDetectionTouchListener:
+    android.view.GestureDetector gestureDetector -> a
+    pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$SwipeExecutor executor -> b
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$SwipeExecutor access$100(pl.srw.billcalculator.adapter.SwipeDetectionTouchListener) -> a
+pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$1 -> pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$1:
+pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$Direction -> pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$Direction:
+    pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$Direction LEFT -> a
+    pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$Direction RIGHT -> b
+    pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$Direction BOTTOM -> c
+    pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$Direction TOP -> d
+    pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$Direction[] $VALUES -> e
+    pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$Direction[] values() -> values
+    pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$Direction valueOf(java.lang.String) -> valueOf
+pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$GestureListener -> pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$GestureListener:
+    pl.srw.billcalculator.adapter.SwipeDetectionTouchListener this$0 -> a
+    boolean onDown(android.view.MotionEvent) -> onDown
+    boolean onFling(android.view.MotionEvent,android.view.MotionEvent,float,float) -> onFling
+    boolean onSingleTapUp(android.view.MotionEvent) -> onSingleTapUp
+    void onLongPress(android.view.MotionEvent) -> onLongPress
+pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$SwipeExecutor -> pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$SwipeExecutor:
+    void onSwipeDetected(pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$Direction) -> a
+    void onTap() -> u
+    void onLongPress() -> v
 pl.srw.billcalculator.adapter.provider.HistoryItemValueProvider -> pl.srw.billcalculator.adapter.provider.HistoryItemValueProvider:
     pl.srw.billcalculator.adapter.provider.HistoryItemValueProvider of(pl.srw.billcalculator.db.History) -> a
     pl.srw.billcalculator.db.Bill getBill() -> a
@@ -11316,8 +11322,6 @@ pl.srw.billcalculator.db.dao.HistoryDao -> pl.srw.billcalculator.db.dao.HistoryD
     java.lang.Long readKey(android.database.Cursor,int) -> c
     pl.srw.billcalculator.db.History readEntity(android.database.Cursor,int) -> d
     java.lang.Long updateKeyAfterInsert(pl.srw.billcalculator.db.History,long) -> a
-    java.lang.Long getKey(pl.srw.billcalculator.db.History) -> a
-    java.lang.Object getKey(java.lang.Object) -> g
     java.lang.Object updateKeyAfterInsert(java.lang.Object,long) -> a
     void bindValues(android.database.sqlite.SQLiteStatement,java.lang.Object) -> a
     java.lang.Object readKey(android.database.Cursor,int) -> b
@@ -11337,13 +11341,11 @@ pl.srw.billcalculator.db.dao.PgeG11BillDao -> pl.srw.billcalculator.db.dao.PgeG1
     java.lang.Long readKey(android.database.Cursor,int) -> c
     pl.srw.billcalculator.db.PgeG11Bill readEntity(android.database.Cursor,int) -> d
     java.lang.Long updateKeyAfterInsert(pl.srw.billcalculator.db.PgeG11Bill,long) -> a
-    java.lang.Long getKey(pl.srw.billcalculator.db.PgeG11Bill) -> b
-    java.lang.Object getKey(java.lang.Object) -> g
     java.lang.Object updateKeyAfterInsert(java.lang.Object,long) -> a
     void bindValues(android.database.sqlite.SQLiteStatement,java.lang.Object) -> a
     java.lang.Object readKey(android.database.Cursor,int) -> b
     java.lang.Object readEntity(android.database.Cursor,int) -> a
-    void attachEntity(java.lang.Object) -> e
+    void attachEntity(java.lang.Object) -> d
 pl.srw.billcalculator.db.dao.PgeG11BillDao$Properties -> pl.srw.billcalculator.db.dao.PgeG11BillDao$Properties:
     de.greenrobot.dao.Property Id -> a
     de.greenrobot.dao.Property ReadingFrom -> b
@@ -11362,13 +11364,11 @@ pl.srw.billcalculator.db.dao.PgeG12BillDao -> pl.srw.billcalculator.db.dao.PgeG1
     java.lang.Long readKey(android.database.Cursor,int) -> c
     pl.srw.billcalculator.db.PgeG12Bill readEntity(android.database.Cursor,int) -> d
     java.lang.Long updateKeyAfterInsert(pl.srw.billcalculator.db.PgeG12Bill,long) -> a
-    java.lang.Long getKey(pl.srw.billcalculator.db.PgeG12Bill) -> b
-    java.lang.Object getKey(java.lang.Object) -> g
     java.lang.Object updateKeyAfterInsert(java.lang.Object,long) -> a
     void bindValues(android.database.sqlite.SQLiteStatement,java.lang.Object) -> a
     java.lang.Object readKey(android.database.Cursor,int) -> b
     java.lang.Object readEntity(android.database.Cursor,int) -> a
-    void attachEntity(java.lang.Object) -> e
+    void attachEntity(java.lang.Object) -> d
 pl.srw.billcalculator.db.dao.PgeG12BillDao$Properties -> pl.srw.billcalculator.db.dao.PgeG12BillDao$Properties:
     de.greenrobot.dao.Property Id -> a
     de.greenrobot.dao.Property ReadingDayFrom -> b
@@ -11387,8 +11387,6 @@ pl.srw.billcalculator.db.dao.PgePricesDao -> pl.srw.billcalculator.db.dao.PgePri
     java.lang.Long readKey(android.database.Cursor,int) -> c
     pl.srw.billcalculator.db.PgePrices readEntity(android.database.Cursor,int) -> d
     java.lang.Long updateKeyAfterInsert(pl.srw.billcalculator.db.PgePrices,long) -> a
-    java.lang.Long getKey(pl.srw.billcalculator.db.PgePrices) -> a
-    java.lang.Object getKey(java.lang.Object) -> g
     java.lang.Object updateKeyAfterInsert(java.lang.Object,long) -> a
     void bindValues(android.database.sqlite.SQLiteStatement,java.lang.Object) -> a
     java.lang.Object readKey(android.database.Cursor,int) -> b
@@ -11415,13 +11413,11 @@ pl.srw.billcalculator.db.dao.PgnigBillDao -> pl.srw.billcalculator.db.dao.PgnigB
     java.lang.Long readKey(android.database.Cursor,int) -> c
     pl.srw.billcalculator.db.PgnigBill readEntity(android.database.Cursor,int) -> d
     java.lang.Long updateKeyAfterInsert(pl.srw.billcalculator.db.PgnigBill,long) -> a
-    java.lang.Long getKey(pl.srw.billcalculator.db.PgnigBill) -> b
-    java.lang.Object getKey(java.lang.Object) -> g
     java.lang.Object updateKeyAfterInsert(java.lang.Object,long) -> a
     void bindValues(android.database.sqlite.SQLiteStatement,java.lang.Object) -> a
     java.lang.Object readKey(android.database.Cursor,int) -> b
     java.lang.Object readEntity(android.database.Cursor,int) -> a
-    void attachEntity(java.lang.Object) -> e
+    void attachEntity(java.lang.Object) -> d
 pl.srw.billcalculator.db.dao.PgnigBillDao$Properties -> pl.srw.billcalculator.db.dao.PgnigBillDao$Properties:
     de.greenrobot.dao.Property Id -> a
     de.greenrobot.dao.Property ReadingFrom -> b
@@ -11438,8 +11434,6 @@ pl.srw.billcalculator.db.dao.PgnigPricesDao -> pl.srw.billcalculator.db.dao.Pgni
     java.lang.Long readKey(android.database.Cursor,int) -> c
     pl.srw.billcalculator.db.PgnigPrices readEntity(android.database.Cursor,int) -> d
     java.lang.Long updateKeyAfterInsert(pl.srw.billcalculator.db.PgnigPrices,long) -> a
-    java.lang.Long getKey(pl.srw.billcalculator.db.PgnigPrices) -> a
-    java.lang.Object getKey(java.lang.Object) -> g
     java.lang.Object updateKeyAfterInsert(java.lang.Object,long) -> a
     void bindValues(android.database.sqlite.SQLiteStatement,java.lang.Object) -> a
     java.lang.Object readKey(android.database.Cursor,int) -> b
@@ -11452,39 +11446,61 @@ pl.srw.billcalculator.db.dao.PgnigPricesDao$Properties -> pl.srw.billcalculator.
     de.greenrobot.dao.Property DystrybucyjnaZmienna -> e
     de.greenrobot.dao.Property WspolczynnikKonwersji -> f
 pl.srw.billcalculator.event.HistoryChangedEvent -> pl.srw.billcalculator.event.HistoryChangedEvent:
-pl.srw.billcalculator.form.PgeForm -> pl.srw.billcalculator.form.PgeForm:
-    pl.srw.billcalculator.form.fragment.PgeLogoFragment pgeLogoFragment -> a
-    pl.srw.billcalculator.form.fragment.PgeInputFragment pgeInputFragment -> b
-    pl.srw.billcalculator.form.fragment.LogoFragment getLogoSection() -> a
-    pl.srw.billcalculator.form.fragment.InputFragment getInputSection() -> b
-pl.srw.billcalculator.form.PgnigForm -> pl.srw.billcalculator.form.PgnigForm:
-    pl.srw.billcalculator.form.fragment.PgnigLogoFragment pgnigLogoFragment -> a
-    pl.srw.billcalculator.form.fragment.PgnigInputFragment pgnigInputFragment -> b
-    pl.srw.billcalculator.form.fragment.LogoFragment getLogoSection() -> a
-    pl.srw.billcalculator.form.fragment.InputFragment getInputSection() -> b
+pl.srw.billcalculator.form.ProviderForm -> pl.srw.billcalculator.form.ProviderForm:
+    pl.srw.billcalculator.form.ProviderForm PGE -> a
+    pl.srw.billcalculator.form.ProviderForm PGNIG -> b
+    pl.srw.billcalculator.form.fragment.LogoFragment logoFragment -> c
+    pl.srw.billcalculator.form.fragment.InputFragment inputFragment -> d
+    pl.srw.billcalculator.form.ProviderForm[] $VALUES -> e
+    pl.srw.billcalculator.form.ProviderForm[] values() -> values
+    pl.srw.billcalculator.form.ProviderForm valueOf(java.lang.String) -> valueOf
+    pl.srw.billcalculator.form.fragment.LogoFragment getLogoFragment() -> a
+    pl.srw.billcalculator.form.fragment.InputFragment getInputFragment() -> b
+pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter -> pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter:
+    android.widget.Filter mFilter -> a
+    java.lang.Object mLock -> b
+    java.lang.String[] prevReadings -> c
+    pl.srw.billcalculator.persistence.type.CurrentReadingType readingType -> d
+    de.greenrobot.event.EventBus eventBus -> e
+    void setResult(java.lang.String[]) -> a
+    java.lang.String[] getAll() -> a
+    void onEvent(pl.srw.billcalculator.event.HistoryChangedEvent) -> onEvent
+    void updateAll() -> b
+    android.widget.Filter getFilter() -> getFilter
+    pl.srw.billcalculator.persistence.type.CurrentReadingType access$000(pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter) -> a
+    java.lang.Object access$100(pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter) -> b
+    java.lang.String[] access$202(pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter,java.lang.String[]) -> a
+    java.lang.String[] access$400(pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter) -> c
+    void access$500(pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter,java.lang.String[]) -> b
+pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter$1 -> pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter$1:
+    pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter this$0 -> a
+    void run() -> run
+pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter$PreviousReadingFilter -> pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter$PreviousReadingFilter:
+    pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter this$0 -> a
+    android.widget.Filter$FilterResults performFiltering(java.lang.CharSequence) -> performFiltering
+    java.lang.String[] getLastReading(java.lang.String[]) -> a
+    void publishResults(java.lang.CharSequence,android.widget.Filter$FilterResults) -> publishResults
+pl.srw.billcalculator.form.adapter.PreviousReadingsAdapterFactory -> pl.srw.billcalculator.form.adapter.PreviousReadingsAdapterFactory:
+    java.util.Map adapters -> a
+    pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter build(android.content.Context,pl.srw.billcalculator.persistence.type.CurrentReadingType) -> a
 pl.srw.billcalculator.form.fragment.InputFragment -> pl.srw.billcalculator.form.fragment.InputFragment:
-    de.greenrobot.event.EventBus eventBus -> a
-    android.widget.Button bFromDate -> b
-    android.widget.Button bToDate -> c
-    android.widget.TextView etToDateError -> d
-    void onAttach(android.app.Activity) -> onAttach
+    android.widget.Button bFromDate -> a
+    android.widget.Button bToDate -> b
+    android.widget.TextView etToDateError -> c
     void onViewCreated(android.view.View,android.os.Bundle) -> onViewCreated
     void onDestroyView() -> onDestroyView
-    void onDetach() -> onDetach
-    void onEvent(pl.srw.billcalculator.event.HistoryChangedEvent) -> onEvent
-    void markHistoryChanged() -> a
-    void initDates() -> f
+    void initDates() -> e
     void showDatePicker(android.widget.Button) -> a
     android.app.DatePickerDialog$OnDateSetListener onDatePickedListener(android.widget.Button) -> b
-    void calculate() -> b
-    android.content.Intent getBillActivityIntent() -> c
-    android.content.Intent getBillStorerIntent() -> d
-    boolean validateForm() -> g
-    boolean validateReadings() -> e
+    void calculate() -> a
+    android.content.Intent getBillActivityIntent() -> b
+    android.content.Intent getBillStorerIntent() -> c
+    boolean validateForm() -> f
+    boolean validateReadings() -> d
     boolean validateMissingValue(android.widget.EditText) -> a
     boolean validateValueOrder(android.widget.EditText,android.widget.EditText) -> a
     void showError(android.widget.EditText,int) -> a
-    boolean validateDates() -> h
+    boolean validateDates() -> g
     void shake(android.view.View) -> a
     void showKeyboard(android.widget.TextView) -> a
 pl.srw.billcalculator.form.fragment.InputFragment$$ViewInjector -> pl.srw.billcalculator.form.fragment.InputFragment$$ViewInjector:
@@ -11504,11 +11520,11 @@ pl.srw.billcalculator.form.fragment.InputFragment$1 -> pl.srw.billcalculator.for
     pl.srw.billcalculator.form.fragment.InputFragment this$0 -> b
     void onDateSet(android.widget.DatePicker,int,int,int) -> onDateSet
 pl.srw.billcalculator.form.fragment.LogoFragment -> pl.srw.billcalculator.form.fragment.LogoFragment:
+    android.widget.ImageView ivBillType -> a
     void onViewCreated(android.view.View,android.os.Bundle) -> onViewCreated
     void onDestroyView() -> onDestroyView
     void switchProvider() -> a
     boolean isEnergyForm() -> b
-    void replaceForm(pl.srw.billcalculator.form.fragment.LogoFragment,pl.srw.billcalculator.form.fragment.InputFragment) -> a
 pl.srw.billcalculator.form.fragment.LogoFragment$$ViewInjector -> pl.srw.billcalculator.form.fragment.LogoFragment$$ViewInjector:
     void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.form.fragment.LogoFragment,java.lang.Object) -> inject
     void reset(pl.srw.billcalculator.form.fragment.LogoFragment) -> reset
@@ -11516,41 +11532,32 @@ pl.srw.billcalculator.form.fragment.LogoFragment$$ViewInjector$1 -> pl.srw.billc
     pl.srw.billcalculator.form.fragment.LogoFragment val$target -> a
     void onClick(android.view.View) -> onClick
 pl.srw.billcalculator.form.fragment.PgeInputFragment -> pl.srw.billcalculator.form.fragment.PgeInputFragment:
-    android.widget.LinearLayout llReadingG11 -> e
-    android.widget.AutoCompleteTextView etPreviousReading -> f
-    android.widget.EditText etCurrentReading -> g
-    android.widget.TableLayout tlReadingsG12 -> h
-    android.widget.AutoCompleteTextView etDayPreviousReading -> i
-    android.widget.EditText etDayCurrentReading -> j
-    android.widget.AutoCompleteTextView etNightPreviousReading -> k
-    android.widget.EditText etNightCurrentReading -> l
-    pl.srw.billcalculator.adapter.PreviousReadingsAdapter dayReadingAdapter -> m
-    pl.srw.billcalculator.adapter.PreviousReadingsAdapter nightReadingAdapter -> n
-    pl.srw.billcalculator.adapter.PreviousReadingsAdapter readingAdapter -> o
-    boolean pgeTariffG12 -> p
+    android.widget.LinearLayout llReadingG11 -> d
+    android.widget.AutoCompleteTextView etPreviousReading -> e
+    android.widget.EditText etCurrentReading -> f
+    android.widget.TableLayout tlReadingsG12 -> g
+    android.widget.AutoCompleteTextView etDayPreviousReading -> h
+    android.widget.EditText etDayCurrentReading -> i
+    android.widget.AutoCompleteTextView etNightPreviousReading -> j
+    android.widget.EditText etNightCurrentReading -> k
+    boolean pgeTariffG12 -> l
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
     void onViewCreated(android.view.View,android.os.Bundle) -> onViewCreated
     void onStart() -> onStart
-    void enableAutoComplete() -> f
-    pl.srw.billcalculator.adapter.PreviousReadingsAdapter getReadingAdapter() -> g
-    pl.srw.billcalculator.adapter.PreviousReadingsAdapter getNightReadingAdapter() -> h
-    pl.srw.billcalculator.adapter.PreviousReadingsAdapter getDayReadingAdapter() -> i
-    void updateAutoComplete() -> j
-    void markHistoryChanged() -> a
-    void markHistoryChangedFor(android.widget.AutoCompleteTextView) -> a
-    void chooseReadings() -> k
-    android.content.Intent getBillActivityIntent() -> c
-    android.content.Intent getBillStorerIntent() -> d
+    void enableAutoComplete() -> e
+    void chooseReadings() -> f
+    android.content.Intent getBillActivityIntent() -> b
+    android.content.Intent getBillStorerIntent() -> c
     android.content.Intent provideExtra(pl.srw.billcalculator.intent.IntentCreator) -> a
-    boolean validateReadings() -> e
-    boolean validateReadingsG11() -> l
-    boolean validateReadingsG12() -> m
+    boolean validateReadings() -> d
+    boolean validateReadingsG11() -> g
+    boolean validateReadingsG12() -> h
 pl.srw.billcalculator.form.fragment.PgeInputFragment$$ViewInjector -> pl.srw.billcalculator.form.fragment.PgeInputFragment$$ViewInjector:
     void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.form.fragment.PgeInputFragment,java.lang.Object) -> inject
     void reset(pl.srw.billcalculator.form.fragment.PgeInputFragment) -> reset
 pl.srw.billcalculator.form.fragment.PgeLogoFragment -> pl.srw.billcalculator.form.fragment.PgeLogoFragment:
-    android.widget.TextView tvTariffChange -> a
-    android.widget.TextView tvTariff -> b
+    android.widget.TextView tvTariffChange -> b
+    android.widget.TextView tvTariff -> c
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
     void onViewCreated(android.view.View,android.os.Bundle) -> onViewCreated
     void onStart() -> onStart
@@ -11565,21 +11572,16 @@ pl.srw.billcalculator.form.fragment.PgeLogoFragment$$ViewInjector$1 -> pl.srw.bi
     pl.srw.billcalculator.form.fragment.PgeLogoFragment val$target -> a
     void onClick(android.view.View) -> onClick
 pl.srw.billcalculator.form.fragment.PgnigInputFragment -> pl.srw.billcalculator.form.fragment.PgnigInputFragment:
-    android.widget.AutoCompleteTextView etPreviousReading -> e
-    android.widget.EditText etCurrentReading -> f
-    pl.srw.billcalculator.adapter.PreviousReadingsAdapter pgnigReadingsAdapter -> g
+    android.widget.AutoCompleteTextView etPreviousReading -> d
+    android.widget.EditText etCurrentReading -> e
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
     void onViewCreated(android.view.View,android.os.Bundle) -> onViewCreated
-    void onStart() -> onStart
-    void enableAutoComplete() -> f
-    pl.srw.billcalculator.adapter.PreviousReadingsAdapter getPgnigReadingsAdapter() -> g
-    void updateAutoComplete() -> h
-    void markHistoryChanged() -> a
-    void setReadingsHint() -> i
-    android.content.Intent getBillActivityIntent() -> c
-    android.content.Intent getBillStorerIntent() -> d
+    void enableAutoComplete() -> e
+    void setReadingsHint() -> f
+    android.content.Intent getBillActivityIntent() -> b
+    android.content.Intent getBillStorerIntent() -> c
     android.content.Intent provideExtra(pl.srw.billcalculator.intent.IntentCreator) -> a
-    boolean validateReadings() -> e
+    boolean validateReadings() -> d
 pl.srw.billcalculator.form.fragment.PgnigInputFragment$$ViewInjector -> pl.srw.billcalculator.form.fragment.PgnigInputFragment$$ViewInjector:
     void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.form.fragment.PgnigInputFragment,java.lang.Object) -> inject
     void reset(pl.srw.billcalculator.form.fragment.PgnigInputFragment) -> reset
@@ -11609,6 +11611,9 @@ pl.srw.billcalculator.intent.IntentCreator -> pl.srw.billcalculator.intent.Inten
     void putDatesExtra(java.lang.String,java.lang.String) -> a
     int getIntText(android.widget.TextView) -> a
     java.lang.String getStringText(android.widget.TextView) -> b
+pl.srw.billcalculator.persistence.DBMigration -> pl.srw.billcalculator.persistence.DBMigration:
+    void migrate(android.database.sqlite.SQLiteDatabase,int,int) -> a
+    void migrate_1_2(android.database.sqlite.SQLiteDatabase) -> a
 pl.srw.billcalculator.persistence.Database -> pl.srw.billcalculator.persistence.Database:
     android.database.sqlite.SQLiteDatabase database -> a
     pl.srw.billcalculator.db.dao.DaoSession daoSession -> b
@@ -11617,16 +11622,32 @@ pl.srw.billcalculator.persistence.Database -> pl.srw.billcalculator.persistence.
     pl.srw.billcalculator.db.dao.DaoSession getSession() -> a
     java.util.List queryCurrentReadings(pl.srw.billcalculator.persistence.type.CurrentReadingType) -> a
     de.greenrobot.dao.query.LazyList getHistory() -> b
+    void deleteBillWithPrices(pl.srw.billcalculator.persistence.type.BillType,java.lang.Long,java.lang.Long) -> a
 pl.srw.billcalculator.persistence.Database$1 -> pl.srw.billcalculator.persistence.Database$1:
     void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
+    void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
+pl.srw.billcalculator.persistence.Database$2 -> pl.srw.billcalculator.persistence.Database$2:
+    int[] $SwitchMap$pl$srw$billcalculator$persistence$type$BillType -> a
+pl.srw.billcalculator.persistence.SqlBuilder -> pl.srw.billcalculator.persistence.SqlBuilder:
+    java.lang.StringBuilder sql -> a
+    pl.srw.billcalculator.persistence.SqlBuilder createTrigger(java.lang.String) -> a
+    pl.srw.billcalculator.persistence.SqlBuilder after(java.lang.String) -> b
+    pl.srw.billcalculator.persistence.SqlBuilder on(java.lang.String) -> c
+    java.lang.String execute(java.lang.String) -> d
+    pl.srw.billcalculator.persistence.SqlBuilder insertInto(java.lang.String) -> e
+    pl.srw.billcalculator.persistence.SqlBuilder cols(de.greenrobot.dao.Property[]) -> a
+    java.lang.String vals(java.lang.String[]) -> a
+    pl.srw.billcalculator.persistence.SqlBuilder deleteFrom(java.lang.String) -> f
+    pl.srw.billcalculator.persistence.SqlBuilder whereEq(de.greenrobot.dao.Property,java.lang.String) -> a
+    java.lang.String andEq(de.greenrobot.dao.Property,java.lang.String) -> b
+    java.lang.String getNew(de.greenrobot.dao.Property) -> a
+    java.lang.String getOld(de.greenrobot.dao.Property) -> b
 pl.srw.billcalculator.persistence.Triggers -> pl.srw.billcalculator.persistence.Triggers:
     java.lang.String[] BILL_INSERT_TRIGGERS -> a
     java.lang.String[] BILL_DELETE_TRIGGERS -> b
-    java.lang.String insertTrigger(java.lang.String,java.lang.String,java.lang.String) -> a
-    java.lang.String getInnerInsert(java.lang.String) -> a
-    java.lang.String deleteTrigger(java.lang.String,java.lang.String,java.lang.String) -> b
-    java.lang.String getInnerDelete(java.lang.String) -> b
     void create(android.database.sqlite.SQLiteDatabase) -> a
+    java.lang.String insertHistoryTrigger(java.lang.String,java.lang.String,java.lang.String) -> a
+    java.lang.String deleteHistoryTrigger(java.lang.String,java.lang.String,java.lang.String) -> b
 pl.srw.billcalculator.persistence.exception.DbNotInitializedYetException -> pl.srw.billcalculator.persistence.exception.DbNotInitializedYetException:
 pl.srw.billcalculator.persistence.exception.DbRelationMissingException -> pl.srw.billcalculator.persistence.exception.DbRelationMissingException:
 pl.srw.billcalculator.persistence.type.BillType -> pl.srw.billcalculator.persistence.type.BillType:
@@ -11864,6 +11885,7 @@ pl.srw.billcalculator.util.Display -> pl.srw.billcalculator.util.Display:
     java.lang.String withScale(java.math.BigDecimal,int) -> a
     java.lang.String toPay(java.math.BigDecimal) -> a
 pl.srw.billcalculator.util.MultiSelect -> pl.srw.billcalculator.util.MultiSelect:
+    android.os.Parcelable$Creator CREATOR -> CREATOR
     java.util.HashMap selectedItems -> a
     void select(java.lang.Object,java.lang.Object) -> a
     void deselect(java.lang.Object) -> a
@@ -11872,6 +11894,30 @@ pl.srw.billcalculator.util.MultiSelect -> pl.srw.billcalculator.util.MultiSelect
     void deselectAll() -> b
     java.util.Collection getItems() -> c
     java.util.Collection getPositionsReverseOrder() -> d
+    int describeContents() -> describeContents
+    void writeToParcel(android.os.Parcel,int) -> writeToParcel
+pl.srw.billcalculator.util.MultiSelect$1 -> pl.srw.billcalculator.util.MultiSelect$1:
+pl.srw.billcalculator.util.MultiSelect$CreatorImpl -> pl.srw.billcalculator.util.MultiSelect$CreatorImpl:
+    pl.srw.billcalculator.util.MultiSelect createFromParcel(android.os.Parcel) -> a
+    pl.srw.billcalculator.util.MultiSelect[] newArray(int) -> a
+    java.lang.Object[] newArray(int) -> newArray
+    java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+pl.srw.billcalculator.util.SelectedBill -> pl.srw.billcalculator.util.SelectedBill:
+    android.os.Parcelable$Creator CREATOR -> CREATOR
+    pl.srw.billcalculator.persistence.type.BillType type -> a
+    java.lang.Long billId -> b
+    java.lang.Long pricesId -> c
+    pl.srw.billcalculator.persistence.type.BillType getType() -> a
+    java.lang.Long getBillId() -> b
+    java.lang.Long getPricesId() -> c
+    int describeContents() -> describeContents
+    void writeToParcel(android.os.Parcel,int) -> writeToParcel
+pl.srw.billcalculator.util.SelectedBill$1 -> pl.srw.billcalculator.util.SelectedBill$1:
+pl.srw.billcalculator.util.SelectedBill$CreatorImpl -> pl.srw.billcalculator.util.SelectedBill$CreatorImpl:
+    pl.srw.billcalculator.util.SelectedBill createFromParcel(android.os.Parcel) -> a
+    pl.srw.billcalculator.util.SelectedBill[] newArray(int) -> a
+    java.lang.Object[] newArray(int) -> newArray
+    java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
 pl.srw.billcalculator.util.ToString -> pl.srw.billcalculator.util.ToString:
     java.lang.String[] toArray(java.util.Collection) -> a
 pl.srw.billcalculator.util.Views -> pl.srw.billcalculator.util.Views:
