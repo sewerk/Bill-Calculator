@@ -13,6 +13,7 @@ import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.db.dao.DaoMaster;
 import pl.srw.billcalculator.db.dao.DaoSession;
 import pl.srw.billcalculator.db.dao.HistoryDao;
+import pl.srw.billcalculator.persistence.type.BillType;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 
 /**
@@ -42,6 +43,11 @@ public class Database {
                     super.onCreate(db);
                     Triggers.create(db);
                 }
+
+                @Override
+                public void onUpgrade(final SQLiteDatabase db, final int oldVersion, final int newVersion) {
+                    DBMigration.migrate(db, oldVersion, newVersion);
+                }
             }.getWritableDatabase();
         return database;
     }
@@ -62,9 +68,24 @@ public class Database {
     }
 
     public static LazyList<History> getHistory() {
-        LazyList<History> history = getSession().getHistoryDao().queryBuilder()
+        return getSession().getHistoryDao().queryBuilder()
                 .orderDesc(HistoryDao.Properties.DateFrom, HistoryDao.Properties.Id).listLazy();
-        return history;
     }
 
+    public static void deleteBillWithPrices(final BillType type, final Long billId, final Long pricesId) {
+        switch (type) {
+            case PGE_G11:
+                getSession().getPgePricesDao().deleteByKey(pricesId);
+                getSession().getPgeG11BillDao().deleteByKey(billId);
+                return;
+            case PGE_G12:
+                getSession().getPgePricesDao().deleteByKey(pricesId);
+                getSession().getPgeG12BillDao().deleteByKey(billId);
+                return;
+            case PGNIG:
+                getSession().getPgnigPricesDao().deleteByKey(pricesId);
+                getSession().getPgnigBillDao().deleteByKey(billId);
+                return;
+        }
+    }
 }

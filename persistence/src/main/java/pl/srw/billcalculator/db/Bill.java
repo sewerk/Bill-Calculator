@@ -7,6 +7,9 @@ import java.util.Date;
  */
 public interface Bill {
 
+    Long getId();
+    Long getPricesId();
+
     Date getDateFrom();
     void setDateFrom(Date dateFrom);
     Date getDateTo();

@@ -11,7 +11,7 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.PgnigPrices;
 import pl.srw.billcalculator.persistence.Database;
-import pl.srw.billcalculator.test.PreferenceUtil;
+import pl.srw.billcalculator.testutils.PreferenceUtil;
 
 /**
  * Created by Kamil Seweryn.

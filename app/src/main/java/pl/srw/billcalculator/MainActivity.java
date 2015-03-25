@@ -6,14 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.component.CheckPricesDialogFragment;
-import pl.srw.billcalculator.form.PgeForm;
-import pl.srw.billcalculator.form.fragment.InputFragment;
-import pl.srw.billcalculator.form.fragment.LogoFragment;
+import pl.srw.billcalculator.form.ProviderForm;
 import pl.srw.billcalculator.preference.GeneralPreferences;
-import pl.srw.billcalculator.preference.PgePrices;
-import pl.srw.billcalculator.preference.PgnigPrices;
 
 /**
  * Created by Kamil Seweryn.
@@ -21,7 +16,6 @@ import pl.srw.billcalculator.preference.PgnigPrices;
 public class MainActivity extends Activity {
 
     public static final String TAG_CHECK_PRICES_DIALOG = "CHECK_PRICES_DIALOG";
-    private CheckPricesDialogFragment checkPricesDialog;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -29,26 +23,10 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
 
         if (savedInstanceState == null) {
-            replaceFormFragments(PgeForm.getLogoSection(), PgeForm.getInputSection());
-        }
-    }
-
-    @DebugLog
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (GeneralPreferences.isFirstLaunch()) {
-            new PgePrices().setDefault();
-            new PgnigPrices().setDefault();
-            showCheckPricesDialog();
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (checkPricesDialog != null) {
-            checkPricesDialog.dismiss();
+            replaceFormFragments(ProviderForm.PGE);
+            if (GeneralPreferences.isFirstLaunch())
+                new CheckPricesDialogFragment()
+                        .show(getFragmentManager(), TAG_CHECK_PRICES_DIALOG);
         }
     }
 
@@ -74,13 +52,14 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void replaceFormFragments(final LogoFragment logoFragment, final InputFragment inputFragment) {
+    public void replaceFormFragments(final ProviderForm form) {
         getFragmentManager()
                 .beginTransaction()
-//                .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
-                .replace(R.id.fl_logo_section, logoFragment)
-                .replace(R.id.fl_input_section, inputFragment)
+                .setCustomAnimations(R.anim.come_closer, 0)
+                .replace(R.id.fl_logo_section, form.getLogoFragment())
+                .replace(R.id.fl_input_section, form.getInputFragment())
                 .commit();
+        // getFragmentManager().executePendingTransactions();
     }
 
     public void start(Class<? extends Activity> activityClass) {
@@ -88,12 +67,10 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
-    @DebugLog
-    private void showCheckPricesDialog() {
-        if (checkPricesDialog == null) {
-            checkPricesDialog = new CheckPricesDialogFragment();
-        }
-        checkPricesDialog.show(getFragmentManager(), TAG_CHECK_PRICES_DIALOG);
+    public void replaceFormFragments(boolean isEnergyForm) {
+        if (isEnergyForm)
+            replaceFormFragments(ProviderForm.PGNIG);
+        else
+            replaceFormFragments(ProviderForm.PGE);
     }
-
 }

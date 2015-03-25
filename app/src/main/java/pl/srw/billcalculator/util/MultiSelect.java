@@ -6,12 +6,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import hrisey.Parcelable;
 import hugo.weaving.DebugLog;
 
 /**
  * Created by Kamil Seweryn.
  */
-public class MultiSelect<P, I> {
+@Parcelable
+public class MultiSelect<P, I> implements android.os.Parcelable {
 
     private HashMap<P, I> selectedItems;
 

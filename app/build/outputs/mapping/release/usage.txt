@@ -3530,6 +3530,7 @@ android.support.v7.widget.RecyclerView$ViewHolder:
     static final int FLAG_IGNORE
     static final int FLAG_TMP_DETACHED
     static final int FLAG_ADAPTER_POSITION_UNKNOWN
+    7134:7134:public final int getPosition()
     7186:7191:public final int getAdapterPosition()
     7206:7206:public final int getOldPosition()
     7247:7248:void stopIgnoring()
@@ -4161,6 +4162,7 @@ de.greenrobot.dao.AbstractDao:
     471:472:public varargs de.greenrobot.dao.query.Query queryRawCreate(java.lang.String,java.lang.Object[])
     480:480:public de.greenrobot.dao.query.Query queryRawCreateListArgs(java.lang.String,java.util.Collection)
     487:491:public void deleteAll()
+    495:498:public void delete(java.lang.Object)
     537:578:private void deleteInTxInternal(java.lang.Iterable,java.lang.Iterable)
     587:588:public void deleteInTx(java.lang.Iterable)
     597:598:public varargs void deleteInTx(java.lang.Object[])
@@ -4172,7 +4174,9 @@ de.greenrobot.dao.AbstractDao:
     718:739:public void updateInTx(java.lang.Iterable)
     748:749:public varargs void updateInTx(java.lang.Object[])
     758:758:public long count()
+    763:771:protected java.lang.Object getKeyVerified(java.lang.Object)
     protected abstract void readEntity(android.database.Cursor,java.lang.Object,int)
+    protected abstract java.lang.Object getKey(java.lang.Object)
     protected abstract boolean isEntityUpdateable()
 de.greenrobot.dao.AbstractDaoMaster:
     49:49:public int getSchemaVersion()
@@ -4183,6 +4187,7 @@ de.greenrobot.dao.AbstractDaoSession:
     69:70:public long insertOrReplace(java.lang.Object)
     76:78:public void refresh(java.lang.Object)
     83:85:public void update(java.lang.Object)
+    90:92:public void delete(java.lang.Object)
     97:99:public void deleteAll(java.lang.Class)
     104:105:public java.lang.Object load(java.lang.Class,java.lang.Object)
     111:112:public java.util.List loadAll(java.lang.Class)
@@ -4356,6 +4361,8 @@ de.greenrobot.event.EventBus:
     151:152:public void registerSticky(java.lang.Object)
     159:160:public void registerSticky(java.lang.Object,int)
     216:216:public synchronized boolean isRegistered(java.lang.Object)
+    221:234:private void unubscribeByEventType(java.lang.Object,java.lang.Class)
+    238:247:public synchronized void unregister(java.lang.Object)
     280:293:public void cancelEventDelivery(java.lang.Object)
     301:306:public void postSticky(java.lang.Object)
     314:316:public java.lang.Object getStickyEvent(java.lang.Class)
@@ -5344,6 +5351,8 @@ pl.srw.billcalculator.AboutActivity:
     public static final java.lang.String RECEIVER_EMAIL
     public static final java.lang.String BETA_HTTP
 pl.srw.billcalculator.BuildConfig
+pl.srw.billcalculator.HistoryActivity:
+    public static final java.lang.String STATE_ACTION_MODE_ENABLED
 pl.srw.billcalculator.MainActivity:
     public static final java.lang.String TAG_CHECK_PRICES_DIALOG
 pl.srw.billcalculator.PgeBillActivity:
@@ -5366,6 +5375,11 @@ pl.srw.billcalculator.R$string
 pl.srw.billcalculator.R$style
 pl.srw.billcalculator.R$styleable
 pl.srw.billcalculator.R$xml
+pl.srw.billcalculator.adapter.HistoryAdapter:
+    public static final java.lang.String STATE_SELECTION
+pl.srw.billcalculator.adapter.SwipeDetectionTouchListener$GestureListener:
+    private static final int SWIPE_THRESHOLD
+    private static final int SWIPE_VELOCITY_THRESHOLD
 pl.srw.billcalculator.calculation.PgeCalculatedBill:
     20:20:public java.math.BigDecimal getOplataAbonamentowaVatCharge()
     21:21:public java.math.BigDecimal getOplataPrzejsciowaVatCharge()
@@ -5387,6 +5401,8 @@ pl.srw.billcalculator.calculation.PgnigCalculatedBill:
     25:25:public java.math.BigDecimal getDystrybucyjnaStalaVatCharge()
     26:26:public java.math.BigDecimal getDystrybucyjnaZmiennaVatCharge()
 pl.srw.billcalculator.db.Bill:
+    public abstract java.lang.Long getId()
+    public abstract java.lang.Long getPricesId()
     public abstract void setDateFrom(java.util.Date)
     public abstract void setDateTo(java.util.Date)
     public abstract void setAmountToPay(java.lang.Double)
@@ -5447,12 +5463,15 @@ pl.srw.billcalculator.db.dao.DaoSession:
 pl.srw.billcalculator.db.dao.HistoryDao:
     34:35:public HistoryDao(de.greenrobot.dao.internal.DaoConfig)
     104:108:public void readEntity(android.database.Cursor,pl.srw.billcalculator.db.History,int)
+    120:123:public java.lang.Long getKey(pl.srw.billcalculator.db.History)
     130:130:protected boolean isEntityUpdateable()
+    17:17:public bridge synthetic java.lang.Object getKey(java.lang.Object)
     17:17:public bridge synthetic void readEntity(android.database.Cursor,java.lang.Object,int)
 pl.srw.billcalculator.db.dao.PgeG11BillDao:
     private java.lang.String selectDeep
     44:45:public PgeG11BillDao(de.greenrobot.dao.internal.DaoConfig)
     142:149:public void readEntity(android.database.Cursor,pl.srw.billcalculator.db.PgeG11Bill,int)
+    161:164:public java.lang.Long getKey(pl.srw.billcalculator.db.PgeG11Bill)
     171:171:protected boolean isEntityUpdateable()
     177:187:protected java.lang.String getSelectDeep()
     191:197:protected pl.srw.billcalculator.db.PgeG11Bill loadCurrentDeep(android.database.Cursor,boolean)
@@ -5460,11 +5479,13 @@ pl.srw.billcalculator.db.dao.PgeG11BillDao:
     229:247:public java.util.List loadAllDeepFromCursor(android.database.Cursor)
     252:254:protected java.util.List loadDeepAllAndCloseCursor(android.database.Cursor)
     261:262:public varargs java.util.List queryDeep(java.lang.String,java.lang.String[])
+    22:22:public bridge synthetic java.lang.Object getKey(java.lang.Object)
     22:22:public bridge synthetic void readEntity(android.database.Cursor,java.lang.Object,int)
 pl.srw.billcalculator.db.dao.PgeG12BillDao:
     private java.lang.String selectDeep
     46:47:public PgeG12BillDao(de.greenrobot.dao.internal.DaoConfig)
     158:167:public void readEntity(android.database.Cursor,pl.srw.billcalculator.db.PgeG12Bill,int)
+    179:182:public java.lang.Long getKey(pl.srw.billcalculator.db.PgeG12Bill)
     189:189:protected boolean isEntityUpdateable()
     195:205:protected java.lang.String getSelectDeep()
     209:215:protected pl.srw.billcalculator.db.PgeG12Bill loadCurrentDeep(android.database.Cursor,boolean)
@@ -5472,16 +5493,20 @@ pl.srw.billcalculator.db.dao.PgeG12BillDao:
     247:265:public java.util.List loadAllDeepFromCursor(android.database.Cursor)
     270:272:protected java.util.List loadDeepAllAndCloseCursor(android.database.Cursor)
     279:280:public varargs java.util.List queryDeep(java.lang.String,java.lang.String[])
+    22:22:public bridge synthetic java.lang.Object getKey(java.lang.Object)
     22:22:public bridge synthetic void readEntity(android.database.Cursor,java.lang.Object,int)
 pl.srw.billcalculator.db.dao.PgePricesDao:
     41:42:public PgePricesDao(de.greenrobot.dao.internal.DaoConfig)
     160:171:public void readEntity(android.database.Cursor,pl.srw.billcalculator.db.PgePrices,int)
+    183:186:public java.lang.Long getKey(pl.srw.billcalculator.db.PgePrices)
     193:193:protected boolean isEntityUpdateable()
+    17:17:public bridge synthetic java.lang.Object getKey(java.lang.Object)
     17:17:public bridge synthetic void readEntity(android.database.Cursor,java.lang.Object,int)
 pl.srw.billcalculator.db.dao.PgnigBillDao:
     private java.lang.String selectDeep
     44:45:public PgnigBillDao(de.greenrobot.dao.internal.DaoConfig)
     142:149:public void readEntity(android.database.Cursor,pl.srw.billcalculator.db.PgnigBill,int)
+    161:164:public java.lang.Long getKey(pl.srw.billcalculator.db.PgnigBill)
     171:171:protected boolean isEntityUpdateable()
     177:187:protected java.lang.String getSelectDeep()
     191:197:protected pl.srw.billcalculator.db.PgnigBill loadCurrentDeep(android.database.Cursor,boolean)
@@ -5489,16 +5514,17 @@ pl.srw.billcalculator.db.dao.PgnigBillDao:
     229:247:public java.util.List loadAllDeepFromCursor(android.database.Cursor)
     252:254:protected java.util.List loadDeepAllAndCloseCursor(android.database.Cursor)
     261:262:public varargs java.util.List queryDeep(java.lang.String,java.lang.String[])
+    22:22:public bridge synthetic java.lang.Object getKey(java.lang.Object)
     22:22:public bridge synthetic void readEntity(android.database.Cursor,java.lang.Object,int)
 pl.srw.billcalculator.db.dao.PgnigPricesDao:
     36:37:public PgnigPricesDao(de.greenrobot.dao.internal.DaoConfig)
     120:126:public void readEntity(android.database.Cursor,pl.srw.billcalculator.db.PgnigPrices,int)
+    138:141:public java.lang.Long getKey(pl.srw.billcalculator.db.PgnigPrices)
     148:148:protected boolean isEntityUpdateable()
+    17:17:public bridge synthetic java.lang.Object getKey(java.lang.Object)
     17:17:public bridge synthetic void readEntity(android.database.Cursor,java.lang.Object,int)
-pl.srw.billcalculator.form.PgeForm:
-    11:11:public PgeForm()
-pl.srw.billcalculator.form.PgnigForm:
-    11:11:public PgnigForm()
+pl.srw.billcalculator.form.adapter.PreviousReadingsAdapterFactory:
+    13:13:public PreviousReadingsAdapterFactory()
 pl.srw.billcalculator.intent.BillActivityIntentFactory:
     14:14:private BillActivityIntentFactory()
 pl.srw.billcalculator.intent.BillStoringServiceIntentFactory:
@@ -5513,12 +5539,16 @@ pl.srw.billcalculator.intent.IntentCreator:
     public static final java.lang.String DATE_FROM
     public static final java.lang.String DATE_TO
     public static final java.lang.String PRICES
+pl.srw.billcalculator.persistence.DBMigration:
+    9:9:public DBMigration()
 pl.srw.billcalculator.persistence.Database:
     public static final java.lang.String QUERY_ROW_LIMIT
-    21:21:public Database()
-    32:34:public static void enableDatabaseLogging()
+    22:88:public Database()
+    33:35:public static void enableDatabaseLogging()
 pl.srw.billcalculator.persistence.Triggers:
-    15:15:public Triggers()
+    private static final java.lang.String DELETE
+    private static final java.lang.String INSERT
+    16:16:public Triggers()
 pl.srw.billcalculator.preference.GeneralPreferences:
     public static final java.lang.String SHARED_PREFERENCES_FILE
     public static final java.lang.String PREFERENCE_KEY_FIRST_LAUNCH

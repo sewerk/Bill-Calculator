@@ -9,9 +9,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
 import butterknife.InjectView;
-import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.adapter.PreviousReadingsAdapter;
+import pl.srw.billcalculator.form.adapter.PreviousReadingsAdapterFactory;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
 import pl.srw.billcalculator.intent.IntentCreator;
@@ -26,8 +25,6 @@ public class PgnigInputFragment extends InputFragment {
     @InjectView(R.id.et_reading_from) AutoCompleteTextView etPreviousReading;
     @InjectView(R.id.et_reading_to) EditText etCurrentReading;
 
-    private PreviousReadingsAdapter pgnigReadingsAdapter;
-
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.form_pgnig_input, container, false);
@@ -40,31 +37,8 @@ public class PgnigInputFragment extends InputFragment {
         setReadingsHint();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        updateAutoComplete();
-    }
-
     private void enableAutoComplete() {
-        etPreviousReading.setAdapter(getPgnigReadingsAdapter());
-    }
-
-    private PreviousReadingsAdapter getPgnigReadingsAdapter() {
-        if (pgnigReadingsAdapter == null) {
-            pgnigReadingsAdapter = new PreviousReadingsAdapter(getActivity(), CurrentReadingType.PGNIG_TO);
-        }
-        return pgnigReadingsAdapter;
-    }
-
-    @DebugLog
-    private void updateAutoComplete() {
-        pgnigReadingsAdapter.updateAll();
-    }
-
-    @DebugLog
-    protected void markHistoryChanged() {
-        ((PreviousReadingsAdapter) etPreviousReading.getAdapter()).notifyInputDataChanged();
+        etPreviousReading.setAdapter(PreviousReadingsAdapterFactory.build(getActivity(), CurrentReadingType.PGNIG_TO));
     }
 
     private void setReadingsHint() {
