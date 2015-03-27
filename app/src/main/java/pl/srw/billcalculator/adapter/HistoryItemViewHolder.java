@@ -1,7 +1,9 @@
 package pl.srw.billcalculator.adapter;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,6 +29,7 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder
     @InjectView(R.id.tv_readings) TextView tvReadings;
     @InjectView(R.id.tv_amount) TextView tvAmount;
     private HistoryItemValueProvider itemValuesProvider;
+    private final AnimatorSet changeLogoAnimator;
 
     private HistoryAdapter adapter;
     private MultiSelect<Integer, SelectedBill> selection;
@@ -38,6 +41,13 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder
 
         v.setOnTouchListener(new SwipeDetectionTouchListener(adapter.getActivity(), this));
         ButterKnife.inject(this, v);
+
+        final Animator outAnimator = AnimatorInflater.loadAnimator(adapter.getActivity(), R.animator.card_flip_right_out);
+        final ObjectAnimator changeAnimator = ObjectAnimator.ofInt(imgLogo, "imageResource", 0, 0).setDuration(0);
+        final Animator inAnimator = AnimatorInflater.loadAnimator(adapter.getActivity(), R.animator.card_flip_left_in);
+        changeLogoAnimator = new AnimatorSet();
+        changeLogoAnimator.playSequentially(outAnimator, changeAnimator, inAnimator);
+        changeLogoAnimator.setTarget(imgLogo);
     }
 
     @DebugLog
@@ -96,28 +106,7 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder
     }
 
     private void animateLogoChange(final int drawable) {
-        imgLogo.setRotationY(0f);
-        final int halfDuration = adapter.getActivity().getResources().getInteger(R.integer.animation_time_half);
-        imgLogo.animate()
-                .rotationYBy(90f)
-                .setDuration(halfDuration)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        imgLogo.setImageResource(drawable);
-                        imgLogo.animate()
-                                .rotationYBy(180f)
-                                .setDuration(0)
-                                .setListener(new AnimatorListenerAdapter() {
-                                    @Override
-                                    public void onAnimationEnd(Animator animation) {
-                                        imgLogo.animate()
-                                                .rotationYBy(90f)
-                                                .setDuration(halfDuration)
-                                                .setListener(null);
-                                    }
-                                });
-                    }
-                });
+        ((ObjectAnimator) changeLogoAnimator.getChildAnimations().get(1)).setIntValues(drawable, drawable);
+        changeLogoAnimator.start();
     }
 }

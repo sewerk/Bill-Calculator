@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
     public void replaceFormFragments(final ProviderForm form) {
         getFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.come_closer, 0)
+                .setCustomAnimations(R.animator.come_closer, 0)
                 .replace(R.id.fl_logo_section, form.getLogoFragment())
                 .replace(R.id.fl_input_section, form.getInputFragment())
                 .commit();
