@@ -7,6 +7,8 @@ import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TableLayout;
 
+import org.threeten.bp.LocalDate;
+
 import java.math.BigDecimal;
 
 import pl.srw.billcalculator.calculation.PgeCalculatedBill;
@@ -15,6 +17,7 @@ import pl.srw.billcalculator.calculation.PgeG12CalculatedBill;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgePrices;
 import pl.srw.billcalculator.preference.PgePrices;
+import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 import pl.srw.billcalculator.util.Views;
 
@@ -50,7 +53,7 @@ public class PgeBillActivity extends BackableActivity {
                 new PgeG12CalculatedBill(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices)
                 : new PgeG11CalculatedBill(readingFrom, readingTo, dateFrom, dateTo, prices);
 
-        setForPeriodTV();
+        setDates();
         setChargeDetailsTable();
         setExcise();
         setSummaryTable();
@@ -77,7 +80,8 @@ public class PgeBillActivity extends BackableActivity {
             prices = new PgePrices();
     }
 
-    private void setForPeriodTV() {
+    private void setDates() {
+        Views.setTV(this, R.id.tv_title, getString(R.string.rachunek_rozliczeniowy, Dates.format(LocalDate.now())));
         Views.setTV(this, R.id.tv_for_period, getString(R.string.for_period, dateFrom, dateTo));
     }
 

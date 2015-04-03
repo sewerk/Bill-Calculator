@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/pge_bill">
 
     <TableRow
         android:layout_width="wrap_content"
@@ -13,7 +15,7 @@
             android:layout_span="5"
             android:lines="1"
             android:textStyle="bold"
-            android:text="Licznik rozliczeniowy en. czynnej nr: 00000001" />
+            android:text="Licznik rozliczeniowy en. czynnej nr: 00000000" />
 
         <TextView
             android:id="@+id/tv_tariff"
