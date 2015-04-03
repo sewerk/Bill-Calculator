@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/image_logo"
-                android:text="NUMER EWIDENCYJNY: 000000001" />
+                android:text="NUMER EWIDENCYJNY: 000000000" />
 
             <TextView
                 android:id="@+id/tv_title"
@@ -45,7 +45,7 @@
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:layout_marginTop="24dp"
-                android:text="FAKTURA VAT NR XXXXXXXX\nZA ENERGIĘ ELEKTRYCZNĄ I USŁUGI DYSTRYBUCJI" />
+                android:text="@string/rachunek_rozliczeniowy" />
 
             <TextView
                 android:id="@+id/tv_for_period"

@@ -21,11 +21,11 @@
             android:padding="4dp" >
 
             <TextView
-                android:id="@+id/tv_invoice_number"
+                android:id="@+id/tv_invoice_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="Faktura VAT nr XXXXXXXX\nTyp faktury: ROZLICZENIOWY"/>
+                android:text="@string/rozliczenie_dnia"/>
 
             <ImageView
                 android:id="@+id/image_logo"
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/tv_charge_place"
                 android:layout_alignRight="@id/t_charge_details"
-                android:text="Numer punktu poboru: 0000000001" />
+                android:text="Numer punktu poboru: 0000000000" />
 
             <TextView
                 android:id="@+id/tv_tariff"

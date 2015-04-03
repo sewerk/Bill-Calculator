@@ -7,12 +7,15 @@ import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TableLayout;
 
+import org.threeten.bp.LocalDate;
+
 import java.math.BigDecimal;
 
 import pl.srw.billcalculator.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
 import pl.srw.billcalculator.preference.PgnigPrices;
+import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 import pl.srw.billcalculator.util.Views;
 
@@ -41,12 +44,13 @@ public class PgnigBillActivity extends BackableActivity {
         setPrices(intent);
         this.bill = new PgnigCalculatedBill(readingFrom, readingTo, dateFrom, dateTo, prices);
 
+        setDate();
         setReadingsTable();
         setChargeDetailsTable();
         setSummaryTable();
         setChargeTV();
 	}
-    
+
     private void setInput(Intent intent) {
         dateFrom = intent.getStringExtra(IntentCreator.DATE_FROM);
         dateTo = intent.getStringExtra(IntentCreator.DATE_TO);
@@ -59,6 +63,10 @@ public class PgnigBillActivity extends BackableActivity {
             prices = (IPgnigPrices) intent.getSerializableExtra(IntentCreator.PRICES);
         else
             prices = new PgnigPrices();
+    }
+
+    private void setDate() {
+        Views.setTV(this, R.id.tv_invoice_date, getString(R.string.rozliczenie_dnia, Dates.format(LocalDate.now())));
     }
 
     private void setReadingsTable() {
