@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tableLayout_G12_readings"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:focusableInTouchMode="true"
+    tools:showIn="@layout/form_pge">
+
+    <TableRow
+        android:id="@+id/tableRow_readings_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reading"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reading_day_time"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reading_night_time"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow_readings_G12dzienna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/previous"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <pl.srw.billcalculator.form.component.InstantAutoComplete
+            android:id="@+id/editText_reading_day_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="5"
+            android:maxLength="9"
+            android:gravity="end"
+            android:hint="@string/reading_hint_kWh"
+            android:nextFocusForward="@+id/editText_reading_day_to"
+            android:inputType="number"
+            android:imeOptions="actionNext" />
+
+        <pl.srw.billcalculator.form.component.InstantAutoComplete
+            android:id="@+id/editText_reading_night_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="5"
+            android:maxLength="9"
+            android:gravity="end"
+            android:hint="@string/reading_hint_kWh"
+            android:nextFocusForward="@+id/editText_reading_night_to"
+            android:inputType="number"
+            android:imeOptions="actionNext"/>
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow_readings_G12nocna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/current"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <EditText
+            android:id="@+id/editText_reading_day_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="5"
+            android:maxLength="9"
+            android:gravity="end"
+            android:hint="@string/reading_hint_kWh"
+            android:nextFocusDown="@+id/editText_reading_night_from"
+            android:inputType="number"/>
+
+        <EditText
+            android:id="@+id/editText_reading_night_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="5"
+            android:maxLength="9"
+            android:gravity="end"
+            android:hint="@string/reading_hint_kWh"
+            android:inputType="number"
+            android:imeOptions="actionDone"/>
+
+    </TableRow>
+</TableLayout>

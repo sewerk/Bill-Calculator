@@ -10,10 +10,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import pl.srw.billcalculator.HistoryActivity;
+import pl.srw.billcalculator.history.HistoryActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.persistence.Database;
-import pl.srw.billcalculator.preference.GeneralPreferences;
+import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.testutils.HistoryGenerator;
 import pl.srw.billcalculator.testutils.SoloHelper;
 

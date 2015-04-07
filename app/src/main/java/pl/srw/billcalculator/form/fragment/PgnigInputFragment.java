@@ -27,7 +27,7 @@ public class PgnigInputFragment extends InputFragment {
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.form_pgnig_input, container, false);
+        return inflater.inflate(R.layout.form_input_single, container, false);
     }
 
     @Override

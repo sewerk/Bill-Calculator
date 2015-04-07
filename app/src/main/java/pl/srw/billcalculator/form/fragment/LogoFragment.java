@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import pl.srw.billcalculator.MainActivity;
+import pl.srw.billcalculator.form.MainActivity;
 import pl.srw.billcalculator.R;
 
 /**

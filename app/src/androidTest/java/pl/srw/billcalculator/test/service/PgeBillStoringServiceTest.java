@@ -18,7 +18,7 @@ import pl.srw.billcalculator.db.PgePrices;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.util.Dates;
-import pl.srw.billcalculator.service.PgeBillStoringService;
+import pl.srw.billcalculator.bill.service.PgeBillStoringService;
 
 /**
  * Created by Kamil Seweryn.

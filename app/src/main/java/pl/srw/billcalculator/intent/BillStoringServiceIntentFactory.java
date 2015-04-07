@@ -2,9 +2,9 @@ package pl.srw.billcalculator.intent;
 
 import android.content.Context;
 
-import pl.srw.billcalculator.service.PgeBillStoringService;
+import pl.srw.billcalculator.bill.service.PgeBillStoringService;
 import pl.srw.billcalculator.type.BillType;
-import pl.srw.billcalculator.service.PgnigBillStoringService;
+import pl.srw.billcalculator.bill.service.PgnigBillStoringService;
 
 /**
  * Created by Kamil Seweryn.

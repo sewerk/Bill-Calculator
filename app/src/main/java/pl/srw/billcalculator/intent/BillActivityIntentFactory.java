@@ -2,8 +2,8 @@ package pl.srw.billcalculator.intent;
 
 import android.content.Context;
 
-import pl.srw.billcalculator.PgeBillActivity;
-import pl.srw.billcalculator.PgnigBillActivity;
+import pl.srw.billcalculator.bill.PgeBillActivity;
+import pl.srw.billcalculator.bill.PgnigBillActivity;
 import pl.srw.billcalculator.type.BillType;
 
 /**

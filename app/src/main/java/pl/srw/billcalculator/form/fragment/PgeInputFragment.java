@@ -17,7 +17,7 @@ import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
-import pl.srw.billcalculator.preference.GeneralPreferences;
+import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.type.BillType;
 
 /**
@@ -39,7 +39,7 @@ public class PgeInputFragment extends InputFragment {
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.form_pge_input, container, false);
+        return inflater.inflate(R.layout.form_input_double, container, false);
     }
 
     @Override

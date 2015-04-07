@@ -11,8 +11,8 @@ import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.preference.GeneralPreferences;
-import pl.srw.billcalculator.preference.activity.ProviderSettingsActivity;
+import pl.srw.billcalculator.settings.GeneralPreferences;
+import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
 
 /**
 * Created by Kamil Seweryn.
@@ -24,7 +24,7 @@ public class PgeLogoFragment extends LogoFragment {
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.form_pge_logo, container, false);
+        return inflater.inflate(R.layout.form_logo_pge, container, false);
     }
 
     @Override

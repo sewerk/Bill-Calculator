@@ -14,9 +14,9 @@ import org.junit.runner.RunWith;
 
 import java.util.regex.Pattern;
 
-import pl.srw.billcalculator.MainActivity;
+import pl.srw.billcalculator.form.MainActivity;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.preference.GeneralPreferences;
+import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.testutils.HistoryGenerator;
 import pl.srw.billcalculator.testutils.SoloHelper;
 

@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.preference.GeneralPreferences;
-import pl.srw.billcalculator.preference.fragment.PgeSettingsFragment;
+import pl.srw.billcalculator.settings.GeneralPreferences;
+import pl.srw.billcalculator.settings.fragment.PgeSettingsFragment;
 
 /**
  * Created by Kamil Seweryn.

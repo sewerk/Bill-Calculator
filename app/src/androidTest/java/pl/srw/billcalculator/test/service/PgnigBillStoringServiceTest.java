@@ -17,7 +17,7 @@ import pl.srw.billcalculator.db.PgnigPrices;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.util.Dates;
-import pl.srw.billcalculator.service.PgnigBillStoringService;
+import pl.srw.billcalculator.bill.service.PgnigBillStoringService;
 
 /**
  * Created by Kamil Seweryn.

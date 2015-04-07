@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 import java.math.BigDecimal;
 
-import pl.srw.billcalculator.calculation.PgeG12CalculatedBill;
+import pl.srw.billcalculator.bill.calculation.PgeG12CalculatedBill;
 import pl.srw.billcalculator.db.PgePrices;
 
 import static org.hamcrest.CoreMatchers.is;

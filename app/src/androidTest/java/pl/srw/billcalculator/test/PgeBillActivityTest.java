@@ -7,10 +7,10 @@ import android.widget.TextView;
 
 import java.math.BigDecimal;
 
-import pl.srw.billcalculator.PgeBillActivity;
+import pl.srw.billcalculator.bill.PgeBillActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.intent.IntentCreator;
-import pl.srw.billcalculator.preference.PgePrices;
+import pl.srw.billcalculator.settings.prices.PgePrices;
 
 /**
  * Created by Kamil Seweryn.

@@ -22,7 +22,7 @@ public final class HistoryGenerator {
 
     public static void generatePgeG11Bills(final int count) throws InterruptedException {
         final PgeG11BillDao dao = Database.getSession().getPgeG11BillDao();
-        final PgePrices pgePrices = new pl.srw.billcalculator.preference.PgePrices().convertToDb();
+        final PgePrices pgePrices = new pl.srw.billcalculator.settings.prices.PgePrices().convertToDb();
 
         Database.getSession().insert(pgePrices);
         List<PgeG11Bill> pgeBills = new ArrayList<>(count);

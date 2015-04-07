@@ -6,9 +6,9 @@ import android.test.ApplicationTestCase;
 
 import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.preference.PreferenceMigration;
-import pl.srw.billcalculator.preference.PgePrices;
-import pl.srw.billcalculator.preference.PgnigPrices;
+import pl.srw.billcalculator.settings.PreferenceMigration;
+import pl.srw.billcalculator.settings.prices.PgePrices;
+import pl.srw.billcalculator.settings.prices.PgnigPrices;
 
 /**
  * Created by Kamil Seweryn.

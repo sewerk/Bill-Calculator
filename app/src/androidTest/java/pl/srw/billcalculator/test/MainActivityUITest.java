@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.LargeTest;
 import android.widget.Button;
-import android.widget.EditText;
 
 import com.robotium.solo.Solo;
 
@@ -16,10 +14,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.threeten.bp.Month;
 
-import pl.srw.billcalculator.MainActivity;
+import pl.srw.billcalculator.form.MainActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.intent.IntentCreator;
-import pl.srw.billcalculator.preference.GeneralPreferences;
+import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.testutils.PreferenceUtil;
 
 import static org.junit.Assert.assertThat;

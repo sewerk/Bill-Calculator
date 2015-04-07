@@ -5,9 +5,9 @@ import android.content.Context;
 
 import de.greenrobot.event.EventBus;
 import pl.srw.billcalculator.persistence.Database;
-import pl.srw.billcalculator.preference.GeneralPreferences;
-import pl.srw.billcalculator.preference.PgePrices;
-import pl.srw.billcalculator.preference.PgnigPrices;
+import pl.srw.billcalculator.settings.GeneralPreferences;
+import pl.srw.billcalculator.settings.prices.PgePrices;
+import pl.srw.billcalculator.settings.prices.PgnigPrices;
 
 /**
  * Created by Kamil Seweryn.
