@@ -11,7 +11,7 @@ import android.view.View;
 public class SwipeDetectionTouchListener implements View.OnTouchListener {
 
     private final GestureDetector gestureDetector;
-    private SwipeExecutor executor;
+    private final SwipeExecutor executor;
 
     public SwipeDetectionTouchListener(final Context context, final SwipeExecutor executor) {
         this.executor = executor;
@@ -74,6 +74,6 @@ public class SwipeDetectionTouchListener implements View.OnTouchListener {
     }
 
     public enum Direction {
-        LEFT, RIGHT, BOTTOM, TOP;
+        LEFT, RIGHT, BOTTOM, TOP
     }
 }

@@ -9,6 +9,7 @@ import pl.srw.billcalculator.pojo.IPgnigPrices;
 /**
  * Created by Kamil Seweryn.
  */
+@SuppressWarnings("FieldCanBeLocal")
 @Getter
 public class PgnigCalculatedBill extends CalculatedBill {
 

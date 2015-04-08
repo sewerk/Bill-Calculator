@@ -11,7 +11,7 @@
         android:id="@+id/action_history"
         android:orderInCategory="101"
         android:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_collection"
+        android:icon="@drawable/ic_action_archive"
         android:title="@string/history_label"/>
     
     <item

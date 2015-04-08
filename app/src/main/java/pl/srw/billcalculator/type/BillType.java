@@ -6,14 +6,12 @@ import pl.srw.billcalculator.R;
  * Created by Kamil Seweryn.
  */
 public enum BillType {
-    PGE(R.drawable.pge_on_pgnig, R.drawable.pge),
-    PGNIG(R.drawable.pgnig_on_pge, R.drawable.pgnig);
+    PGE(R.drawable.pge),
+    PGNIG(R.drawable.pgnig);
 
-    public int drawableId;
-    public int logoDrawableId;
+    public final int logoDrawableId;
 
-    BillType(final int drawable, final int logoDrawableId) {
-        this.drawableId = drawable;
+    BillType(final int logoDrawableId) {
         this.logoDrawableId = logoDrawableId;
     }
 

@@ -12,7 +12,7 @@ import de.greenrobot.daogenerator.Schema;
  */
 public class GreenDaoGenerator {
 
-    public static final String OUTPUT_DIR = "persistence/src/main/java-gen";
+    private static final String OUTPUT_DIR = "persistence/src/main/java-gen";
 
     public static void main(String[] args) throws Exception {
         Schema schema = new Schema(1, "pl.srw.billcalculator.db");

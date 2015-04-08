@@ -19,6 +19,7 @@ import pl.srw.billcalculator.db.dao.HistoryDao;
 /** 
  * Master of DAO (schema version 1): knows all DAOs.
 */
+@SuppressWarnings("ALL")
 public class DaoMaster extends AbstractDaoMaster {
     public static final int SCHEMA_VERSION = 1;
 

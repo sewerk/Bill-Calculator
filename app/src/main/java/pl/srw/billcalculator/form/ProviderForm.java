@@ -15,10 +15,10 @@ public enum ProviderForm {
     PGE(new PgeLogoFragment(), new PgeInputFragment()),
     PGNIG(new PgnigLogoFragment(), new PgnigInputFragment());
 
-    private LogoFragment logoFragment;
-    private InputFragment inputFragment;
+    private final LogoFragment logoFragment;
+    private final InputFragment inputFragment;
 
-    private ProviderForm(final LogoFragment logo, final InputFragment input) {
+    ProviderForm(final LogoFragment logo, final InputFragment input) {
         this.logoFragment = logo;
         this.inputFragment = input;
     }

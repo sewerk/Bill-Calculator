@@ -30,6 +30,7 @@ import pl.srw.billcalculator.db.dao.HistoryDao;
  * 
  * @see de.greenrobot.dao.AbstractDaoSession
  */
+@SuppressWarnings("ALL")
 public class DaoSession extends AbstractDaoSession {
 
     private final DaoConfig pgePricesDaoConfig;

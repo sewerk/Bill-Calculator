@@ -18,12 +18,12 @@ public final class Triggers {
     private static final String DELETE = "DELETE";
     private static final String INSERT = "INSERT";
 
-    public static final String[] BILL_INSERT_TRIGGERS = {
+    private static final String[] BILL_INSERT_TRIGGERS = {
             insertHistoryTrigger("bill_pgeG11_insert_trigger", PgeG11BillDao.TABLENAME, BillType.PGE_G11.toString()),
             insertHistoryTrigger("bill_pgeG12_insert_trigger", PgeG12BillDao.TABLENAME, BillType.PGE_G12.toString()),
             insertHistoryTrigger("bill_pgnig_insert_trigger", PgnigBillDao.TABLENAME, BillType.PGNIG.toString())
     };
-    private static String[] BILL_DELETE_TRIGGERS = {
+    private static final String[] BILL_DELETE_TRIGGERS = {
             deleteHistoryTrigger("bill_pgeG11_delete_trigger", PgeG11BillDao.TABLENAME, BillType.PGE_G11.toString()),
             deleteHistoryTrigger("bill_pgeG12_delete_trigger", PgeG12BillDao.TABLENAME, BillType.PGE_G12.toString()),
             deleteHistoryTrigger("bill_pgnig_delete_trigger", PgnigBillDao.TABLENAME, BillType.PGNIG.toString())

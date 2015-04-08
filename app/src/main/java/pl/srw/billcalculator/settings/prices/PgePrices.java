@@ -23,7 +23,7 @@ public class PgePrices implements IPgePrices {
 //    private String oplataSieciowaDzien;
 //    private String oplataSieciowaNoc;
 
-    private WrappedPgePrices wrappedPgePrices;
+    private final WrappedPgePrices wrappedPgePrices;
 
     public PgePrices() {
         wrappedPgePrices = new WrappedPgePrices(PreferenceManager.getDefaultSharedPreferences(BillCalculator.context));

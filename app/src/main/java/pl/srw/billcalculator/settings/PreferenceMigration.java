@@ -32,7 +32,7 @@ public class PreferenceMigration {
     private static void migrate_1_2(SharedPreferences preferences, Context context) {
         migratePgePrices(preferences, context);
         migratePgnigPrices(preferences, context);
-        preferences.edit().putInt(VERSION_PREF_KEY, 2).commit();
+        preferences.edit().putInt(VERSION_PREF_KEY, 2).apply();
     }
 
     private static void migratePgePrices(SharedPreferences preferences, Context context) {

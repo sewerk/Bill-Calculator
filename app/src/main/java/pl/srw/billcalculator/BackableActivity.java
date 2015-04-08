@@ -7,7 +7,7 @@ import android.view.MenuItem;
 /**
  * Created by Kamil Seweryn.
  */
-public class BackableActivity extends Activity {
+public abstract class BackableActivity extends Activity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

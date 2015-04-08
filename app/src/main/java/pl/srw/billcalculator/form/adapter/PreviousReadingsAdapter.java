@@ -25,13 +25,12 @@ public class PreviousReadingsAdapter extends ArrayAdapter<String> {
     private final Object mLock = new Object();
     private String[] prevReadings;
     private final CurrentReadingType readingType;
-    private EventBus eventBus = EventBus.getDefault();
 
     @DebugLog
     PreviousReadingsAdapter(Context context, final CurrentReadingType readingType) {
         super(context, R.layout.dropdowntext, R.id.dropDown);
         this.readingType = readingType;
-        eventBus.register(this);
+        EventBus.getDefault().register(this);
         updateAll();
     }
 

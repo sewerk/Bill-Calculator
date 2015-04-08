@@ -18,7 +18,7 @@ public final class GeneralPreferences {
     public static final String SHARED_PREFERENCES_FILE = "PreferencesFile";
     public static final String PREFERENCE_KEY_FIRST_LAUNCH = "first_launch";
 
-    private static Context context = BillCalculator.context;
+    private static final Context context = BillCalculator.context;
 
     private GeneralPreferences() {}
 

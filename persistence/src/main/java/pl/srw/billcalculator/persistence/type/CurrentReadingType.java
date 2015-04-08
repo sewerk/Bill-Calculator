@@ -18,7 +18,7 @@ public enum CurrentReadingType {
     private final String tableName;
     private final String columnName;
 
-    private CurrentReadingType(String tableName, String columnName) {
+    CurrentReadingType(String tableName, String columnName) {
         this.tableName = tableName;
         this.columnName = columnName;
     }

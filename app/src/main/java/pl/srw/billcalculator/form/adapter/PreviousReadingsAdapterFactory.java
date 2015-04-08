@@ -12,7 +12,7 @@ import pl.srw.billcalculator.persistence.type.CurrentReadingType;
  */
 public final class PreviousReadingsAdapterFactory {
 
-    private static Map<CurrentReadingType, PreviousReadingsAdapter> adapters = new HashMap<>(4);
+    private static final Map<CurrentReadingType, PreviousReadingsAdapter> adapters = new HashMap<>(4);
 
     public static PreviousReadingsAdapter build(final Context context, final CurrentReadingType readingType) {
         if (!adapters.containsKey(readingType))

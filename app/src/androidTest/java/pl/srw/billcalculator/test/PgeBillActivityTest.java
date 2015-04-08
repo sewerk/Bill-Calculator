@@ -17,10 +17,10 @@ import pl.srw.billcalculator.settings.prices.PgePrices;
  */
 public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBillActivity> {
 
-    public static final String DATE_FROM = "01/12/2014";
-    public static final String DATE_TO = "31/12/2014";
-    public static final int FROM = 12;
-    public static final int TO = 25;
+    private static final String DATE_FROM = "01/12/2014";
+    private static final String DATE_TO = "31/12/2014";
+    private static final int FROM = 12;
+    private static final int TO = 25;
 
     private PgeBillActivity sut;
     private PgePrices pgePrices;

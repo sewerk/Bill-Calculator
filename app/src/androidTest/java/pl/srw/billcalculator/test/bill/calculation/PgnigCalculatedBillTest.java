@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.test.calculation;
+package pl.srw.billcalculator.test.bill.calculation;
 
 import android.support.test.runner.AndroidJUnit4;
 

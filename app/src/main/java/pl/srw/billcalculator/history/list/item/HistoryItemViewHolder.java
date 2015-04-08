@@ -32,8 +32,8 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder
     private HistoryItemValueProvider itemValuesProvider;
     private final AnimatorSet changeLogoAnimator;
 
-    private HistoryAdapter adapter;
-    private MultiSelect<Integer, SelectedBill> selection;
+    private final HistoryAdapter adapter;
+    private final MultiSelect<Integer, SelectedBill> selection;
 
     public HistoryItemViewHolder(HistoryAdapter adapter, final MultiSelect<Integer, SelectedBill> selection, View v) {
         super(v);

@@ -21,8 +21,8 @@ import pl.srw.billcalculator.util.SelectedBill;
  */
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryItemViewHolder> {
 
-    public static final String STATE_SELECTION = "SELECTION";
-    private HistoryActivity activity;
+    private static final String STATE_SELECTION = "SELECTION";
+    private final HistoryActivity activity;
     private LazyList<History> lazyList;
     private MultiSelect<Integer, SelectedBill> selection = new MultiSelect<>();
 

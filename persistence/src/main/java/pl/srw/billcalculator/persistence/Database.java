@@ -21,7 +21,7 @@ import pl.srw.billcalculator.persistence.type.CurrentReadingType;
  */
 public class Database {
 
-    public static final String QUERY_ROW_LIMIT = "100";
+    private static final String QUERY_ROW_LIMIT = "100";
     private static SQLiteDatabase database;
     private static DaoSession daoSession;
 
@@ -64,6 +64,7 @@ public class Database {
         while (cursor.moveToNext()) {
             readings.add(cursor.getInt(0));
         }
+        cursor.close();
         return readings;
     }
 
@@ -86,6 +87,8 @@ public class Database {
                 getSession().getPgnigPricesDao().deleteByKey(pricesId);
                 getSession().getPgnigBillDao().deleteByKey(billId);
                 return;
+            default:
+                throw new RuntimeException("Unrecognized bill type " + type);
         }
     }
 }

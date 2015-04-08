@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.test.service;
+package pl.srw.billcalculator.test.bill.service;
 
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;

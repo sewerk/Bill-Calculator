@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.test.preference;
+package pl.srw.billcalculator.test.settings;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;

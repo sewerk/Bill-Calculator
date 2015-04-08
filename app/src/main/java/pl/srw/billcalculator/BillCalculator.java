@@ -21,8 +21,6 @@ public class BillCalculator extends Application {
         super.onCreate();
         context = getApplicationContext();
 
-        EventBus.builder().throwSubscriberException(BuildConfig.DEBUG).installDefaultEventBus();
-
         if (BuildConfig.DEBUG) {
             Database.enableDatabaseLogging();
         }

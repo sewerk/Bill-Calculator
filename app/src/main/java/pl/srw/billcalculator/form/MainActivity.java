@@ -18,7 +18,7 @@ import pl.srw.billcalculator.settings.GeneralPreferences;
  */
 public class MainActivity extends Activity {
 
-    public static final String TAG_CHECK_PRICES_DIALOG = "CHECK_PRICES_DIALOG";
+    private static final String TAG_CHECK_PRICES_DIALOG = "CHECK_PRICES_DIALOG";
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

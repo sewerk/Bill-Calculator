@@ -1,7 +1,6 @@
 package pl.srw.billcalculator.testutils;
 
 import android.app.Fragment;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.support.test.InstrumentationRegistry;
@@ -58,7 +57,7 @@ public final class SoloHelper {
         return (int) solo.getImage(index + 2).getTag();
     }
 
-    public static void pressSoftKeyboardNextButton(final Solo solo) throws Throwable {
+    public static void pressSoftKeyboardNextButton(final Solo solo) {
         InstrumentationRegistry.getInstrumentation().runOnMainSync(new Runnable() {
             @Override
             public void run() {

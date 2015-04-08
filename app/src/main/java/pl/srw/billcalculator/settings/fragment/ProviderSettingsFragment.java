@@ -20,7 +20,7 @@ import pl.srw.billcalculator.R;
 public abstract class ProviderSettingsFragment extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-    public static final String EMPTY_VALUE_REPLACEMENT = "0.00";
+    private static final String EMPTY_VALUE_REPLACEMENT = "0.00";
 
     @DebugLog
     @Override
@@ -85,7 +85,7 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
     }
 
     protected String getMeasure(final String key) {
-        if (getMonthMeasurePrefKeys().indexOf(key) > -1) {
+        if (getMonthMeasurePrefKeys().contains(key)) {
             return "[zł/m-c]";
         }
         return "[zł/kWh]";

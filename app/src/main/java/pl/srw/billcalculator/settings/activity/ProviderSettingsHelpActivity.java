@@ -15,7 +15,7 @@ import pl.srw.billcalculator.R;
  */
 public class ProviderSettingsHelpActivity extends Activity {
 
-    public static final String EXTRA_LAYOUT_RESOURCE = "EXTRA_LAYOUT_RESOURCE";
+    private static final String EXTRA_LAYOUT_RESOURCE = "EXTRA_LAYOUT_RESOURCE";
 
     public static Intent createIntent(final Context context, @LayoutRes final int layoutResource) {
         Intent i = new Intent(context, ProviderSettingsHelpActivity.class);

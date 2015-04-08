@@ -18,10 +18,10 @@ import pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment;
 public class ProviderSettingsActivity extends BackableActivity {
 
     private static final String FRAGMENT_TAG = "SettingsFragment";
-    public static final String EXTRA_PROVIDER_NAME = "PROVIDER_NAME";
+    private static final String EXTRA_PROVIDER_NAME = "PROVIDER_NAME";
 
     public enum Provider {
-        PGE, PGNIG;
+        PGE, PGNIG
     }
 
     public static Intent createIntent(final Context context, final Provider type) {

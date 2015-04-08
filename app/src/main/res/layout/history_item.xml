@@ -66,7 +66,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:gravity="right|center_vertical"
+            android:gravity="end|center_vertical"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/history_amount"
             tools:text="3443.45 zł"/>

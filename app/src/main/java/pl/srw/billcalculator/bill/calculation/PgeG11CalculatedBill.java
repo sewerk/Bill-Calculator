@@ -8,10 +8,11 @@ import pl.srw.billcalculator.pojo.IPgePrices;
 /**
  * Created by Kamil Seweryn.
  */
+@SuppressWarnings("FieldCanBeLocal")
 @Getter
 public class PgeG11CalculatedBill extends PgeCalculatedBill {
 
-    private int consumption;
+    private final int consumption;
 
     private final BigDecimal zaEnergieCzynnaNetCharge;
     private final BigDecimal skladnikJakosciowyNetCharge;

@@ -8,6 +8,7 @@ import pl.srw.billcalculator.pojo.IPgePrices;
 /**
  * Created by Kamil Seweryn.
  */
+@SuppressWarnings("FieldCanBeLocal")
 @Getter
 public class PgeG12CalculatedBill extends PgeCalculatedBill {
 

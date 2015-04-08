@@ -28,7 +28,7 @@ import pl.srw.billcalculator.util.Views;
  */
 public class PgeBillActivity extends BackableActivity {
 
-    public static final int PRICE_SCALE = 4;
+    private static final int PRICE_SCALE = 4;
 
     private String dateFrom;
     private String dateTo;

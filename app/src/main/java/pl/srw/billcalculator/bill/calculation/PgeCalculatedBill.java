@@ -8,6 +8,7 @@ import pl.srw.billcalculator.pojo.IPgePrices;
 /**
  * Created by Kamil Seweryn.
  */
+@SuppressWarnings("FieldCanBeLocal")
 @Getter
 public abstract class PgeCalculatedBill extends CalculatedBill {
 
@@ -21,7 +22,7 @@ public abstract class PgeCalculatedBill extends CalculatedBill {
     private final BigDecimal oplataPrzejsciowaVatCharge;
     private final BigDecimal oplataStalaZaPrzesylVatCharge;
 
-    public PgeCalculatedBill(final String dateFrom, final String dateTo, final IPgePrices prices) {
+    protected PgeCalculatedBill(final String dateFrom, final String dateTo, final IPgePrices prices) {
         super(dateFrom, dateTo);
 
         oplataAbonamentowaNetCharge = multiplyAndAddToSum(prices.getOplataAbonamentowa(), getMonthCount());

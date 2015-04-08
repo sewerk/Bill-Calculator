@@ -22,7 +22,7 @@ import pl.srw.billcalculator.history.list.HistoryAdapter;
  */
 public class HistoryActivity extends BackableActivity {
 
-    public static final String STATE_ACTION_MODE_ENABLED = "STATE_ACTION_MODE_ENABLED";
+    private static final String STATE_ACTION_MODE_ENABLED = "STATE_ACTION_MODE_ENABLED";
     private EmptyHistoryDataObserver dataObserver;
     private ActionMode actionMode;
 
@@ -80,7 +80,7 @@ public class HistoryActivity extends BackableActivity {
         return actionMode != null;
     }
 
-    private ActionMode.Callback deleteMode = new ActionMode.Callback() {
+    private final ActionMode.Callback deleteMode = new ActionMode.Callback() {
 
         @Override
         public boolean onCreateActionMode(final ActionMode actionMode, final Menu menu) {

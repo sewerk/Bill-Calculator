@@ -8,8 +8,8 @@ import android.view.View;
  */
 public class EmptyHistoryDataObserver extends RecyclerView.AdapterDataObserver {
 
-    private View view;
-    private RecyclerView.Adapter adapter;
+    private final View view;
+    private final RecyclerView.Adapter adapter;
 
     public EmptyHistoryDataObserver(RecyclerView.Adapter adapter, View emptyHistoryView) {
         this.adapter = adapter;
