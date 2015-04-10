@@ -3,7 +3,6 @@ package pl.srw.billcalculator;
 import android.app.Application;
 import android.content.Context;
 
-import de.greenrobot.event.EventBus;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.settings.prices.PgePrices;
@@ -33,5 +32,5 @@ public class BillCalculator extends Application {
             new PgnigPrices().setDefault();
         }
     }
-    
+
 }

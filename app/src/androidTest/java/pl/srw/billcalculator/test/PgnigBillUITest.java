@@ -1,21 +1,14 @@
 package pl.srw.billcalculator.test;
 
 import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.LargeTest;
 
 import com.robotium.solo.Solo;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import java.util.regex.Pattern;
 
-import pl.srw.billcalculator.form.MainActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.form.MainActivity;
 import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.testutils.HistoryGenerator;
 import pl.srw.billcalculator.testutils.SoloHelper;
@@ -26,8 +19,6 @@ import static org.junit.Assert.assertThat;
 /**
  * Created by Kamil Seweryn.
  */
-@RunWith(AndroidJUnit4.class)
-@LargeTest
 public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivity> {
 
     public PgnigBillUITest() {
@@ -36,25 +27,21 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
 
     private Solo solo;
 
-    @Before
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        injectInstrumentation(InstrumentationRegistry.getInstrumentation());
         GeneralPreferences.markFirstLaunch();
         HistoryGenerator.clear();
         solo = new Solo(getInstrumentation(), getActivity());
     }
 
-    @After
     @Override
     public void tearDown() throws Exception {
         solo.finishOpenedActivities();
         super.tearDown();
     }
 
-    @Test
-    public void shouldCalculateBillAndStoreItAccordingToPrices() {
+    public void testCalculateBillAndStoreItAccordingToPrices() {
         setPricesInSettings();
         inputValues();
         // calculate
@@ -109,7 +96,7 @@ public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivi
         assertTrue(solo.searchText(Pattern.quote("6696 [m³]")));
         assertTrue(solo.searchText(Pattern.quote("7101 [m³]")));
         // verify zużycie 405 m3
-        assertTrue(solo.searchText(Pattern.quote("Zużycie: 405 [m³]")));
+        assertTrue(solo.searchText(Pattern.quote("405 [m³]")));
         assertTrue(solo.searchText(Pattern.quote("Zużycie razem: 405 [m³]")));
         // verify współ.konw
         assertTrue(solo.searchText("Wsp. konwersji: 11.094"));

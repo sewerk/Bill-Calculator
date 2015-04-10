@@ -38,7 +38,8 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginRight="@dimen/padding"
-            android:src="@drawable/pge"/>
+            android:src="@drawable/pge"
+            android:contentDescription="Provider logo"/>
 
         <LinearLayout
             android:layout_width="wrap_content"

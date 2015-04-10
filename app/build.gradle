@@ -13,10 +13,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 22
 
-        testApplicationId "pl.srw.billcalculator.test"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        testHandleProfiling true
-        testFunctionalTest true
     }
 
     buildTypes {
@@ -42,6 +39,10 @@ android {
     packagingOptions {
         exclude 'LICENSE.txt'
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -61,7 +62,8 @@ dependencies {
     compile 'com.daimajia.androidanimations:library:1.1.2@aar'
 
     androidTestCompile fileTree(dir: 'libs', include: '*.jar')
-    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
+//    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'
     testCompile 'junit:junit:4.12'
     testCompile "org.mockito:mockito-core:1.9.5"
 }

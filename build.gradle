@@ -4,7 +4,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.1.0'
+        classpath 'com.android.tools.build:gradle:1.1.3'
         classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
     }
 }
@@ -13,4 +13,27 @@ allprojects {
     repositories {
         jcenter()
     }
+
+//    apply plugin: 'findbugs'
+//
+//    task findbugs(type: FindBugs) {
+//        ignoreFailures = true
+//        effort = "max"
+//        reportLevel = "high"
+//        //excludeFilter = new File("${project.rootDir}/config/quality/findbugs/findbugs-filter.xml")
+//        classes = files("$project.buildDir/intermediates/classes/")
+//
+//        source 'src'
+//        include '**/*.java'
+//        exclude '**/gen/**'
+//
+//        reports {
+//            xml {
+//                destination "$project.buildDir/reports/findbugs/findbugs.xml"
+//                xml.withMessages true
+//            }
+//        }
+//
+//        classpath = files()
+//    }
 }
