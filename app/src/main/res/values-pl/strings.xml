@@ -31,6 +31,9 @@
     <string name="check_price_info_message">Wartość twojej faktury uzależniona jest od cen, które oferuje dostawca mediów. Na wysokość cen wpływa: rodzaj taryfy oraz lokalizacja, pora dnia i wielkość zużycia. Dostosuj ceny do własnego planu taryfowego.</string>
     <string name="check_prices_info_ok">Sprawdź</string>
     <string name="check_prices_info_cancel">Później</string>
+    <string name="action_restore">Przywróć domyślne</string>
+    <string name="settings_tauron_summary">Kliknij aby zobaczyć ceny za prąd od Tauron</string>
+    <string name="tauron_prices">Ceny Tauron</string>
 <!-- about -->
     <string name="about_label">O programie</string>
     <string name="version_text">Wersja %1$s<![CDATA[<br/>na <a href="http://opensource.org/licenses/MIT">licencji MIT</a>]]></string>
@@ -40,11 +43,10 @@
     <string name="link_gplus">lub dołącz do testowania</string>
     <string name="clause">Nazwy własne, logotypy oraz znaki towarowe są własnością firm dystrybucyjnych. Przedstawione wyliczenia są jedynie przybliżoną wartością stanu faktyczenego i nie mają podstawy by stanowić roszczenia finansowego.</string>
     <string name="email_client_missing">Nie wykryto klientów poczty e-mail</string>
-    <!-- history -->
+<!-- history -->
     <string name="history_label">Historia</string>
     <string name="action_delete">Usuń</string>
     <string name="history_readings_label">Wskazania:</string>
     <string name="history_readingsG12">dzienna(%1$s - %2$s)\nnocna(%3$s - %4$s)</string>
     <string name="empty_history">Brak wyliczeń rachunków</string>
-    <string name="action_restore">Przywróć domyślne</string>
 </resources>

@@ -11,4 +11,9 @@
         android:title="@string/pgnig_prices"
         android:summary="@string/settings_pgnig_summary" />
 
+    <PreferenceScreen
+        android:key="preferences_tauron_prices"
+        android:title="@string/tauron_prices"
+        android:summary="@string/settings_tauron_summary" />
+
 </PreferenceScreen>

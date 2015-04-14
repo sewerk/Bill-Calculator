@@ -26,6 +26,9 @@ public class GreenDaoGenerator {
         Entity pgnigPrices = addPgnigPrices(schema);
         addPgnigBill(schema, pgnigPrices);
 
+        Entity tauronPrices = addTauronPrices(schema);
+        addTauronG11Bill(schema, tauronPrices);
+
         addHistory(schema);
 
         File output = new File(args.length == 1 ? args[0] : OUTPUT_DIR);
@@ -129,4 +132,42 @@ public class GreenDaoGenerator {
 
         return pgnigPrices;
     }
+
+    private static void addTauronG11Bill(final Schema schema, final Entity tauronPrices) {
+        Entity bill = schema.addEntity("TauronG11Bill");
+        bill.implementsInterface("Bill");
+
+        bill.addIdProperty().autoincrement();
+        bill.addIntProperty("readingFrom");
+        bill.addIntProperty("readingTo");
+
+        bill.addDateProperty("dateFrom");
+        bill.addDateProperty("dateTo");
+
+        bill.addDoubleProperty("amountToPay");
+
+        Property pricesId = bill.addLongProperty("pricesId").getProperty();
+        bill.addToOne(tauronPrices, pricesId);
+    }
+
+    private static Entity addTauronPrices(final Schema schema) {
+        Entity prices = schema.addEntity("TauronPrices");
+        prices.implementsInterface("pl.srw.billcalculator.pojo.ITauronPrices");
+        prices.implementsSerializable();
+
+        prices.addIdProperty().autoincrement();
+        prices.addStringProperty("energiaElektrycznaCzynna");
+        prices.addStringProperty("oplataDystrybucyjnaZmienna");
+        prices.addStringProperty("oplataDystrybucyjnaStala");
+        prices.addStringProperty("oplataPrzejsciowa");
+        prices.addStringProperty("oplataAbonamentowa");
+
+        prices.addStringProperty("energiaElektrycznaCzynnaDzien");
+        prices.addStringProperty("energiaElektrycznaCzynnaNoc");
+        prices.addStringProperty("oplataDystrybucyjnaZmiennaDzien");
+        prices.addStringProperty("oplataDystrybucyjnaZmiennaNoc");
+
+        return prices;
+    }
+
 }
