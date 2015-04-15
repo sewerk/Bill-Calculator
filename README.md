@@ -15,6 +15,11 @@ With help of
 - [EventBus](https://github.com/greenrobot/EventBus)
 - [GreenDao](http://greendao-orm.com/)
 - [Hrisay](https://github.com/mg6maciej/hrisey)
-- [Hugo](https://github.com/jakewharton/hugo)
-- [Robotium] (https://code.google.com/p/robotium)
+- [Nucleus](https://github.com/konmik/nucleus)
 - [ThreeTen] (https://github.com/ThreeTen/threetenbp)
+
+
+- [Hugo](https://github.com/jakewharton/hugo)
+- [Espresso](https://code.google.com/p/android-test-kit/wiki/Espresso)
+- [Mockito](http://mockito.org)
+- [Robotium] (https://code.google.com/p/robotium)

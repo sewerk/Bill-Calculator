@@ -1,9 +1,7 @@
 package pl.srw.billcalculator.settings.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.StringRes;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,38 +9,32 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import nucleus.presenter.Presenter;
 import pl.srw.billcalculator.settings.Provider;
 
 /**
  * Created by kseweryn on 14.04.15.
  */
-public class SettingsPresenter {
+public class SettingsPresenter extends Presenter<SettingsActivity> {
 
     private static final String TITLE = "TITLE";
     private static final String DESCRIPTION = "DESCRIPTION";
-    private static final String[] COLUMNS = {TITLE, DESCRIPTION};
+    public static final String[] COLUMNS = {TITLE, DESCRIPTION};
     private List<Map<String, String>> entries = new ArrayList<>();
 
-    private Context context;
-
-    public SettingsPresenter(final Context context) {
-        this.context = context;
-        addEntries(Provider.values());
-        entries = Collections.unmodifiableList(entries);
-        Toast.makeText(context, "PRESENTER created", Toast.LENGTH_SHORT).show();//TODO remove
+    @Override
+    protected void onTakeView(SettingsActivity view) {
+        super.onTakeView(view);
+        if (entries.isEmpty()) {
+            addEntries(Provider.values());
+            entries = Collections.unmodifiableList(entries);
+        }
+        getView().fillList(entries);
     }
 
-    public List<Map<String, String>> getEntries() {
-        return entries;
-    }
-
-    public String[] getFromColumns() {
-        return COLUMNS;
-    }
-
-    public void itemClicked(final int position) {
-        final Intent intent = ProviderSettingsActivity.createIntent(context, getProviderFor(position));
-        context.startActivity(intent);
+    public void providerChoosenAt(final int position) {
+        final Intent intent = ProviderSettingsActivity.createIntent(getView(), getProviderFor(position));
+        getView().startActivity(intent);
     }
 
     private Provider getProviderFor(final int position) {
@@ -63,7 +55,7 @@ public class SettingsPresenter {
     }
 
     private String getString(@StringRes final int strRes) {
-        return context.getString(strRes);
+        return getView().getString(strRes);
     }
 
 }
