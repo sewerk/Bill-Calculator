@@ -20,7 +20,6 @@ public class GreenDaoGenerator {
 
         Entity pgePrices = addPgePrices(schema);
         addPgeG11Bill(schema, pgePrices);
-
         addPgeG12Bill(schema, pgePrices);
 
         Entity pgnigPrices = addPgnigPrices(schema);
@@ -28,6 +27,7 @@ public class GreenDaoGenerator {
 
         Entity tauronPrices = addTauronPrices(schema);
         addTauronG11Bill(schema, tauronPrices);
+        addTauronG12Bill(schema, tauronPrices);
 
         addHistory(schema);
 
@@ -140,6 +140,25 @@ public class GreenDaoGenerator {
         bill.addIdProperty().autoincrement();
         bill.addIntProperty("readingFrom");
         bill.addIntProperty("readingTo");
+
+        bill.addDateProperty("dateFrom");
+        bill.addDateProperty("dateTo");
+
+        bill.addDoubleProperty("amountToPay");
+
+        Property pricesId = bill.addLongProperty("pricesId").getProperty();
+        bill.addToOne(tauronPrices, pricesId);
+    }
+
+    private static void addTauronG12Bill(final Schema schema, final Entity tauronPrices) {
+        Entity bill = schema.addEntity("TauronG12Bill");
+        bill.implementsInterface("Bill");
+
+        bill.addIdProperty().autoincrement();
+        bill.addIntProperty("readingDayFrom");
+        bill.addIntProperty("readingDayTo");
+        bill.addIntProperty("readingNightFrom");
+        bill.addIntProperty("readingNightTo");
 
         bill.addDateProperty("dateFrom");
         bill.addDateProperty("dateTo");

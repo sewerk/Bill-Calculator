@@ -14,6 +14,7 @@ import pl.srw.billcalculator.db.TauronPrices;
 /** 
  * DAO for table TAURON_PRICES.
 */
+@SuppressWarnings("ALL")
 public class TauronPricesDao extends AbstractDao<TauronPrices, Long> {
 
     public static final String TABLENAME = "TAURON_PRICES";

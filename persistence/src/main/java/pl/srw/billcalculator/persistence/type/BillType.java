@@ -13,7 +13,9 @@ public enum BillType {
 
     PGE_G11,
     PGE_G12,
-    PGNIG;
+    PGNIG,
+    TAURON_G11,
+    TAURON_G12;
 
     public AbstractDao<? extends Bill, Long> getDao() {
         assertNotNull(Database.getSession());
@@ -24,6 +26,10 @@ public enum BillType {
                 return Database.getSession().getPgeG12BillDao();
             case PGNIG:
                 return Database.getSession().getPgnigBillDao();
+            case TAURON_G11:
+                return Database.getSession().getTauronG11BillDao();
+            case TAURON_G12:
+                return Database.getSession().getTauronG12BillDao();
         }
         throw new RuntimeException("Type " + this + " not handled.");
     }
