@@ -12,6 +12,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.GeneralPreferences;
+import pl.srw.billcalculator.settings.Provider;
 import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
 
 /**
@@ -54,7 +55,7 @@ public class PgeLogoFragment extends LogoFragment {
     @OnClick(R.id.textView_tariff_change)
     public void moveToChangeTariff() {
         final Intent intent = ProviderSettingsActivity
-                .createIntent(getActivity(), ProviderSettingsActivity.Provider.PGE);
+                .createIntent(getActivity(), Provider.PGE);
         startActivity(intent);
     }
 

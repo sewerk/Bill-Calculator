@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.settings.Provider;
 import pl.srw.billcalculator.settings.fragment.PgeSettingsFragment;
 import pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment;
 import pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment;
@@ -19,10 +20,6 @@ public class ProviderSettingsActivity extends BackableActivity {
 
     private static final String FRAGMENT_TAG = "SettingsFragment";
     private static final String EXTRA_PROVIDER_NAME = "PROVIDER_NAME";
-
-    public enum Provider {
-        PGE, PGNIG
-    }
 
     public static Intent createIntent(final Context context, final Provider type) {
         Intent i = new Intent(context, ProviderSettingsActivity.class);
@@ -51,13 +48,15 @@ public class ProviderSettingsActivity extends BackableActivity {
     }
 
     private ProviderSettingsFragment getProviderSettingsFragment() {
-        ProviderSettingsFragment fragment;
         final Provider provider = Provider.valueOf(getProviderFromIntent());
-        if (provider == Provider.PGNIG)
-            fragment = new PgnigSettingsFragment();
-        else
-            fragment = new PgeSettingsFragment();
-        return fragment;
+        switch (provider) {
+            case PGNIG:
+                return new PgnigSettingsFragment();
+            case PGE:
+                return new PgeSettingsFragment();
+            //TODO case TAURON:
+        }
+        throw new RuntimeException("No settings screen for " + provider);
     }
 
     private String getProviderFromIntent() {

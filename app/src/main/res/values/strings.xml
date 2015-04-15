@@ -80,7 +80,7 @@
 
     <!--pge-->
     <string name="pge_prices">PGE prices</string>
-    <string name="settings_pge_summary">Tap to see prices for electricity from PGE</string>
+    <string name="settings_pge_summary">Tap to set prices for electricity from PGE</string>
 
     <string name="pge_tariff_in_preferences" translatable="false">TARYFA</string>
     <string name="pge_tariff_G11_in_preferences" translatable="false">G11</string>
@@ -103,7 +103,7 @@
 
     <!--pgnig-->
     <string name="pgnig_prices">PGNiG prices</string>
-    <string name="settings_pgnig_summary">Tap to see prices for gas from PGNiG</string>
+    <string name="settings_pgnig_summary">Tap to set prices for gas from PGNiG</string>
 
     <string name="wsp_konwersji_desc" translatable="false">Współczynnik konwersji to mnożnik, dzięki któremu można zamienić jednostki objętości [m\u00B3] na jednostki energii [kWh]. Więcej na <![CDATA[<a href="http://od.pgnig.pl/dladomu/nowamiara/przeliczanie">http://od.pgnig.pl/dladomu/nowamiara/przeliczanie</a>]]></string>
     <string name="abonamentowa_desc" translatable="false">Stała cena za abonament, naliczana co miesiąc, niezależnie od zużycia.</string>
@@ -113,7 +113,7 @@
 
     <!--tauron-->
     <string name="tauron_prices">Tauron prices</string>
-    <string name="settings_tauron_summary">Tap to see prices for electricity from Tauron</string>
+    <string name="settings_tauron_summary">Tap to set prices for electricity from Tauron</string>
 
     <!-- about -->
     <string name="about_label">About</string>
