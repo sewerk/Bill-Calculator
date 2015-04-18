@@ -35,7 +35,7 @@ public class PgeG12BillHistoryItemValueProvider extends HistoryItemValueProvider
 
     @Override
     public int getLogoId() {
-        return pl.srw.billcalculator.type.BillType.PGE.logoDrawableId;
+        return pl.srw.billcalculator.type.BillType.PGE.logoSmallDrawableId;
     }
 
     @Override

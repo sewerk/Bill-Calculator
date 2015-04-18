@@ -34,7 +34,7 @@ public class PgnigBillHistoryItemValueProvider extends HistoryItemValueProvider 
 
     @Override
     public int getLogoId() {
-        return pl.srw.billcalculator.type.BillType.PGNIG.logoDrawableId;
+        return pl.srw.billcalculator.type.BillType.PGNIG.logoSmallDrawableId;
     }
 
     @Override

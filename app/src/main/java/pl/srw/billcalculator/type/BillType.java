@@ -6,13 +6,13 @@ import pl.srw.billcalculator.R;
  * Created by Kamil Seweryn.
  */
 public enum BillType {
-    PGE(R.drawable.pge),
-    PGNIG(R.drawable.pgnig);
+    PGE(R.drawable.pge_small),
+    PGNIG(R.drawable.pgnig_small);
 
-    public final int logoDrawableId;
+    public final int logoSmallDrawableId;
 
     BillType(final int logoDrawableId) {
-        this.logoDrawableId = logoDrawableId;
+        this.logoSmallDrawableId = logoDrawableId;
     }
 
     public static BillType mapFrom(pl.srw.billcalculator.persistence.type.BillType persistenceType) {
