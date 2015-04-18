@@ -6,6 +6,8 @@ import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.text.TextUtils;
 
@@ -36,7 +38,9 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
 
     protected abstract int getPreferencesResource();
 
-    public abstract int getHelpLayoutResource();
+    public abstract @LayoutRes int getHelpLayoutResource();
+
+    public abstract @DrawableRes int getHelpImageExampleResource();
 
     public abstract int getTitleResource();
 
@@ -80,7 +84,7 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
         } else if (preference instanceof ListPreference) {
             final String value = ((ListPreference) preference).getValue();
             final int indexOfValue = ((ListPreference) preference).findIndexOfValue(value);
-            preference.setSummary(getResources().getStringArray(R.array.pge_tariff_picks)[indexOfValue]);
+            preference.setSummary(getResources().getStringArray(R.array.energy_tariff_picks)[indexOfValue]);
         }
     }
 
@@ -101,7 +105,7 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
         return sb.toString();
     }
 
-    public void restoreDefault() {
+    public final void restoreDefault() {
         restoreSettings();
         setPreferenceScreen(null);
         init();

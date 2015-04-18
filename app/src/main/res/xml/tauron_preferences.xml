@@ -2,36 +2,30 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <ListPreference
-        android:key="@string/preferences_pge_tariff"
-        android:title="@string/pge_tariff_in_preferences"
+        android:key="preferences_tauron_tariff"
+        android:title="@string/tauron_tariff_in_preferences"
         android:entryValues="@array/preferences_energy_tariff_values"
         android:entries="@array/energy_tariff_picks"
         android:summary="@string/energy_tariff_G11_in_preferences"
         android:defaultValue="@string/energy_tariff_G11_in_preferences" />
 
     <EditTextPreference
-        android:key="@string/preferences_pge_oplata_przejsciowa"
-        android:inputType="numberDecimal"
-        android:dialogMessage="@string/oplata_przejsciowa_desc"
-        android:title="@string/oplata_przejsciowa" />
-
-    <EditTextPreference
-        android:key="@string/preferences_pge_oplata_stala_za_przesyl"
+        android:key="oplataDystrybucyjnaStala"
         android:inputType="numberDecimal"
         android:dialogMessage="@string/oplata_stala_za_przesyl_desc"
-        android:title="@string/oplata_stala_za_przesyl" />
+        android:title="@string/tauron_oplata_dyst_stala" />
 
     <EditTextPreference
-        android:key="@string/preferences_pge_oplata_abonamentowa"
+        android:key="oplataPrzejsciowa"
+        android:inputType="numberDecimal"
+        android:dialogMessage="@string/oplata_przejsciowa_desc"
+        android:title="@string/tauron_oplata_przejsciowa" />
+
+    <EditTextPreference
+        android:key="oplataAbonamentowa"
         android:inputType="numberDecimal"
         android:dialogMessage="@string/oplata_abonamentowa_desc"
-        android:title="@string/oplata_abonamentowa" />
-
-    <EditTextPreference
-        android:key="@string/preferences_pge_skladnik_jakosciowy"
-        android:inputType="numberDecimal"
-        android:dialogMessage="@string/skladnik_jakosciowy_desc"
-        android:title="@string/skladnik_jakosciowy" />
+        android:title="@string/tauron_oplata_abonamentowa" />
 
     <!-- G11 ============================================================ -->
     <PreferenceCategory
@@ -39,16 +33,16 @@
         android:title="@string/energy_tariff_G11_in_preferences">
 
         <EditTextPreference
-            android:key="@string/preferences_pge_za_energie_czynna"
+            android:key="energiaElektrycznaCzynna"
             android:inputType="numberDecimal"
             android:dialogMessage="@string/za_energie_czynna_desc"
-            android:title="@string/za_energie_czynna" />
+            android:title="@string/tauron_energia_elektryczna" />
 
         <EditTextPreference
-            android:key="@string/preferences_pge_oplata_sieciowa"
+            android:key="oplataDystrybucyjnaZmienna"
             android:inputType="numberDecimal"
             android:dialogMessage="@string/oplata_sieciowa_desc"
-            android:title="@string/oplata_sieciowa" />
+            android:title="@string/tauron_oplata_dyst_zmienna" />
 
     </PreferenceCategory>
     <!-- G12 ============================================================ -->
@@ -57,28 +51,28 @@
         android:title="@string/energy_tariff_G12_in_preferences">
 
         <EditTextPreference
-            android:key="@string/preferences_pge_za_energie_czynna_G12dzien"
+            android:key="energiaElektrycznaCzynnaDzien"
             android:inputType="numberDecimal"
             android:dialogMessage="@string/za_energie_czynna_G12dzien_desc"
-            android:title="@string/za_energie_czynna_G12dzien" />
+            android:title="@string/tauron_energia_elektryczna_G12dzien" />
 
         <EditTextPreference
-            android:key="@string/preferences_pge_za_energie_czynna_G12noc"
+            android:key="energiaElektrycznaCzynnaNoc"
             android:inputType="numberDecimal"
             android:dialogMessage="@string/za_energie_czynna_G12noc_desc"
-            android:title="@string/za_energie_czynna_G12noc" />
+            android:title="@string/tauron_energia_elektryczna_G12noc" />
 
         <EditTextPreference
-            android:key="@string/preferences_pge_oplata_sieciowa_G12dzien"
+            android:key="oplataDystrybucyjnaZmiennaDzien"
             android:inputType="numberDecimal"
             android:dialogMessage="@string/oplata_sieciowa_G12dzien_desc"
-            android:title="@string/oplata_sieciowa_G12dzien" />
+            android:title="@string/tauron_oplata_dyst_zmienna_G12dzien" />
 
         <EditTextPreference
-            android:key="@string/preferences_pge_oplata_sieciowa_G12noc"
+            android:key="oplataDystrybucyjnaZmiennaNoc"
             android:inputType="numberDecimal"
             android:dialogMessage="@string/oplata_sieciowa_G12noc_desc"
-            android:title="@string/oplata_sieciowa_G12noc" />
+            android:title="@string/tauron_oplata_dyst_zmienna_G12noc" />
 
     </PreferenceCategory>
 

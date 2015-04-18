@@ -3,8 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
-    <ScrollView 
+
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_weight="1"
         android:layout_height="0dp">
@@ -19,13 +19,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="1. Kliknij na pozycję by edytować i zobaczyć opis.\n\n2. Wybierz taryfę:"
+                android:text="1. Kliknij na pozycję by edytować i zobaczyć opis.\n\n2. Wybierz Taryfę:"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="- plan taryfowy PGE ustala stawki za energię w zależności od pory dnia,\n- plan taryfowy można odczytać z ostatniej faktury,\n- jeśli nie wiesz jaką taryfę posiadasz prawdopodobnie jest to taryfa jednostrefowa G11,\n- jeśli posiadasz dwa odczyty na liczniku wybierz taryfę dwustrefową G12,\n- wybór taryfy umożliwia edycję zależnych cen."
+                android:text="- plan taryfowy ustala stawki za energię w zależności od pory dnia,\n- plan taryfowy można odczytać z ostatniej faktury,\n- jeśli nie wiesz jaką taryfę posiadasz prawdopodobnie jest to taryfa całodobowa G11,\n- jeśli posiadasz dwa odczyty na liczniku wybierz taryfę dwustrefową G12,\n- wybór taryfy umożliwia edycję zależnych cen."
                 />
 
             <TextView
@@ -36,7 +36,7 @@
                 />
 
             <ImageView
-                android:src="@drawable/pge_example"
+                android:id="@+id/iv_example"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />

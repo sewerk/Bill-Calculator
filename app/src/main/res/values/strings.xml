@@ -48,6 +48,18 @@
     <string name="to_pay" translatable="false">DO ZAPŁATY : %s zł</string>
     <string name="for_period" translatable="false">Za okres od %1$s do %2$s</string>
 
+    <!--tauron-->
+    <string name="tauron_energia_elektryczna" translatable="false">Energia elektryczna czynna całodobowa</string>
+    <string name="tauron_oplata_dyst_zmienna" translatable="false">Opłata dystr. zm. całodobowa</string>
+    <string name="tauron_oplata_dyst_stala" translatable="false">Opłata dystrybucyjna stała</string>
+    <string name="tauron_oplata_przejsciowa" translatable="false">Opłata przejściowa</string>
+    <string name="tauron_oplata_abonamentowa" translatable="false">Opłata abonamentowa</string>
+
+    <string name="tauron_energia_elektryczna_G12dzien" translatable="false">Energia elektryczna czynna dzienna</string>
+    <string name="tauron_energia_elektryczna_G12noc" translatable="false">Energia elektryczna czynna nocna</string>
+    <string name="tauron_oplata_dyst_zmienna_G12dzien" translatable="false">Opłata dystr. zm. dzienna</string>
+    <string name="tauron_oplata_dyst_zmienna_G12noc" translatable="false">Opłata dystr. zm. nocna</string>
+
 <!-- gas_bill -->
     <string name="gas_bill">Gas bill</string>
     <string name="rozliczenie_dnia" translatable="false">Rozliczenie z dnia %1$s</string>
@@ -78,17 +90,18 @@
     <string name="check_prices_info_ok">Check</string>
     <string name="check_prices_info_cancel">Cancel</string>
 
+    <string name="energy_tariff_G11_in_preferences" translatable="false">G11</string>
+    <string name="energy_tariff_G12_in_preferences" translatable="false">G12</string>
+    <string-array name="energy_tariff_picks" translatable="false">
+        <item>Taryfa całodobowa (G11)</item>
+        <item>Taryfa dwustrefowa (G12)</item>
+    </string-array>
+
     <!--pge-->
     <string name="pge_prices">PGE prices</string>
     <string name="settings_pge_summary">Tap to set prices for electricity from PGE</string>
 
     <string name="pge_tariff_in_preferences" translatable="false">TARYFA</string>
-    <string name="pge_tariff_G11_in_preferences" translatable="false">G11</string>
-    <string name="pge_tariff_G12_in_preferences" translatable="false">G12</string>
-    <string-array name="pge_tariff_picks" translatable="false">
-        <item>Taryfa jednostrefowa (G11)</item>
-        <item>Taryfa dwustrefowa (G12)</item>
-    </string-array>
     <string name="oplata_przejsciowa_desc" translatable="false">Składnik opłaty przejściowej jest zależny od rocznego zużycia kWh:\n - do 500 kWH/rok wynosi 0.25 zł netto\n - od 500 do 1200 kWh/rok wynosi 1.04 zł netto\n - od 1200 kWh/rok wynosi 3.29 zł netto</string>
     <string name="oplata_stala_za_przesyl_desc" translatable="false">Inne nazwy:\n - składnik stały stawki sieciowej,\n - opłata przesyłowa stała.\nCena naliczana co miesiąc, niezależnie od zużycia.</string>
     <string name="oplata_abonamentowa_desc" translatable="false">Stała cena za abonament, naliczana co miesiąc, niezależnie od zużycia.</string>
@@ -114,6 +127,7 @@
     <!--tauron-->
     <string name="tauron_prices">Tauron prices</string>
     <string name="settings_tauron_summary">Tap to set prices for electricity from Tauron</string>
+    <string name="tauron_tariff_in_preferences" translatable="false">Grupa Taryfowa</string>
 
     <!-- about -->
     <string name="about_label">About</string>

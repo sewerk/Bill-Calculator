@@ -3,6 +3,8 @@ package pl.srw.billcalculator.settings.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.LayoutRes;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,6 +14,7 @@ import pl.srw.billcalculator.settings.Provider;
 import pl.srw.billcalculator.settings.fragment.PgeSettingsFragment;
 import pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment;
 import pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment;
+import pl.srw.billcalculator.settings.fragment.TauronSettingsFragment;
 
 /**
  * Created by Kamil Seweryn.
@@ -54,7 +57,8 @@ public class ProviderSettingsActivity extends BackableActivity {
                 return new PgnigSettingsFragment();
             case PGE:
                 return new PgeSettingsFragment();
-            //TODO case TAURON:
+            case TAURON:
+                return new TauronSettingsFragment();
         }
         throw new RuntimeException("No settings screen for " + provider);
     }
@@ -83,12 +87,16 @@ public class ProviderSettingsActivity extends BackableActivity {
     }
 
     private void showHelp() {
-        final Intent intent = ProviderSettingsHelpActivity.createIntent(this, getHelpResource());
+        final Intent intent = ProviderSettingsHelpActivity.createIntent(this, getHelpResource(), getExampleImageResource());
         startActivity(intent);
     }
 
-    private int getHelpResource() {
+    private @LayoutRes int getHelpResource() {
         return getCurrentFragment().getHelpLayoutResource();
+    }
+
+    private @DrawableRes int getExampleImageResource() {
+        return getCurrentFragment().getHelpImageExampleResource();
     }
 
     private ProviderSettingsFragment getCurrentFragment() {
