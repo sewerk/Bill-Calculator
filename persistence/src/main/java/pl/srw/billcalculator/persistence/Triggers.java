@@ -40,7 +40,19 @@ public final class Triggers {
             db.execSQL(sql);
         for (String sql : Triggers.BILL_DELETE_TRIGGERS)
             db.execSQL(sql);
+    }
 
+    public static void update(SQLiteDatabase db, int oldVersion, int newVersion) {
+        switch (oldVersion) {
+            case 1: addTriggers(db, 3, 4);
+        }
+    }
+
+    private static void addTriggers(SQLiteDatabase db, int fromIdx, int toIdx) {
+        for (int i = fromIdx; i < toIdx; i++) {
+            db.execSQL(Triggers.BILL_INSERT_TRIGGERS[i]);
+            db.execSQL(Triggers.BILL_DELETE_TRIGGERS[i]);
+        }
     }
 
     private static String insertHistoryTrigger(final String triggerName, final String tableName, final String billType) {
@@ -60,5 +72,4 @@ public final class Triggers {
                         .whereEq(HistoryDao.Properties.BillId, getOld(PgeG11BillDao.Properties.Id))
                         .andEq(HistoryDao.Properties.BillType, "'" + billType + "'"));
     }
-
 }
