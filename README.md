@@ -18,7 +18,6 @@ With help of
 - [Nucleus](https://github.com/konmik/nucleus)
 - [ThreeTen] (https://github.com/ThreeTen/threetenbp)
 
-
 - [Hugo](https://github.com/jakewharton/hugo)
 - [Espresso](https://code.google.com/p/android-test-kit/wiki/Espresso)
 - [Mockito](http://mockito.org)

@@ -19,9 +19,9 @@ import static org.junit.Assert.assertThat;
 /**
  * Created by Kamil Seweryn.
  */
-public class PgnigBillUITest extends ActivityInstrumentationTestCase2<MainActivity> {
+public class PgnigUITest extends ActivityInstrumentationTestCase2<MainActivity> {
 
-    public PgnigBillUITest() {
+    public PgnigUITest() {
         super(MainActivity.class);
     }
 
