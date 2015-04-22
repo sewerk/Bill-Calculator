@@ -3,6 +3,9 @@ package pl.srw.billcalculator;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.f2prateek.dart.Dart;
+
+import butterknife.ButterKnife;
 import nucleus.presenter.Presenter;
 import nucleus.view.NucleusActivity;
 
@@ -14,6 +17,8 @@ public abstract class BackableActivity<T extends Presenter> extends NucleusActiv
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Dart.inject(this);
+
         if (getActionBar() != null)
             getActionBar().setDisplayHomeAsUpEnabled(true);
 

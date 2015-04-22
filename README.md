@@ -12,6 +12,7 @@ With help of
 ---------
 - [AndroidViewAnimations](https://github.com/daimajia/AndroidViewAnimations)
 - [Butter Knife](https://github.com/JakeWharton/butterknife)
+- [Dart](https://github.com/f2prateek/dart)
 - [EventBus](https://github.com/greenrobot/EventBus)
 - [GreenDao](http://greendao-orm.com/)
 - [Hrisay](https://github.com/mg6maciej/hrisey)

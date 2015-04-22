@@ -8,6 +8,9 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.widget.ImageView;
 
+import com.f2prateek.dart.Dart;
+import com.f2prateek.dart.InjectExtra;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -20,6 +23,8 @@ public class ProviderSettingsHelpActivity extends Activity {
 
     private static final String EXTRA_LAYOUT_RESOURCE = "EXTRA_LAYOUT_RESOURCE";
     private static final String EXTRA_IMAGE_RESOURCE = "EXTRA_IMAGE_RESOURCE";
+    @InjectExtra(EXTRA_LAYOUT_RESOURCE) int layoutResource;
+    @InjectExtra(EXTRA_IMAGE_RESOURCE) int imageResource;
     @InjectView(R.id.iv_example) ImageView ivExample;
 
     public static Intent createIntent(final Context context,
@@ -33,12 +38,10 @@ public class ProviderSettingsHelpActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final int layoutResource = getIntent().getIntExtra(EXTRA_LAYOUT_RESOURCE, -1);
+        Dart.inject(this);
         setContentView(layoutResource);
 
         ButterKnife.inject(this);
-
-        final int imageResource = getIntent().getIntExtra(EXTRA_IMAGE_RESOURCE, -1);
         ivExample.setImageResource(imageResource);
     }
 

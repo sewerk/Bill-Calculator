@@ -8,6 +8,8 @@ import android.support.annotation.LayoutRes;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.f2prateek.dart.InjectExtra;
+
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.Provider;
@@ -23,6 +25,7 @@ public class ProviderSettingsActivity extends BackableActivity {
 
     private static final String FRAGMENT_TAG = "SettingsFragment";
     private static final String EXTRA_PROVIDER_NAME = "PROVIDER_NAME";
+    @InjectExtra(EXTRA_PROVIDER_NAME) String providerName;
 
     public static Intent createIntent(final Context context, final Provider type) {
         Intent i = new Intent(context, ProviderSettingsActivity.class);
@@ -51,7 +54,7 @@ public class ProviderSettingsActivity extends BackableActivity {
     }
 
     private ProviderSettingsFragment getProviderSettingsFragment() {
-        final Provider provider = Provider.valueOf(getProviderFromIntent());
+        final Provider provider = Provider.valueOf(providerName);
         switch (provider) {
             case PGNIG:
                 return new PgnigSettingsFragment();
@@ -61,10 +64,6 @@ public class ProviderSettingsActivity extends BackableActivity {
                 return new TauronSettingsFragment();
         }
         throw new RuntimeException("No settings screen for " + provider);
-    }
-
-    private String getProviderFromIntent() {
-        return getIntent().getStringExtra(EXTRA_PROVIDER_NAME);
     }
 
     @Override

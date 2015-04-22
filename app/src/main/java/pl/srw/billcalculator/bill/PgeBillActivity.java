@@ -1,11 +1,14 @@
 package pl.srw.billcalculator.bill;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TableLayout;
+
+import com.f2prateek.dart.Dart;
+import com.f2prateek.dart.InjectExtra;
+import com.f2prateek.dart.Optional;
 
 import org.threeten.bp.LocalDate;
 
@@ -30,16 +33,16 @@ public class PgeBillActivity extends BackableActivity {
 
     private static final int PRICE_SCALE = 4;
 
-    private String dateFrom;
-    private String dateTo;
-    private int readingFrom;
-    private int readingTo;
-    private int readingDayFrom;
-    private int readingDayTo;
-    private int readingNightFrom;
-    private int readingNightTo;
+    @InjectExtra(IntentCreator.DATE_FROM) String dateFrom;
+    @InjectExtra(IntentCreator.DATE_TO) String dateTo;
+    @Optional @InjectExtra(IntentCreator.READING_FROM) int readingFrom;
+    @Optional @InjectExtra(IntentCreator.READING_TO) int readingTo;
+    @Optional @InjectExtra(IntentCreator.READING_DAY_FROM) int readingDayFrom;
+    @Optional @InjectExtra(IntentCreator.READING_DAY_TO) int readingDayTo;
+    @Optional @InjectExtra(IntentCreator.READING_NIGHT_FROM) int readingNightFrom;
+    @Optional @InjectExtra(IntentCreator.READING_NIGHT_TO) int readingNightTo;
+    @Optional @InjectExtra(IntentCreator.PRICES) IPgePrices prices;
 
-    private IPgePrices prices;
     private PgeCalculatedBill bill;
 
     @Override
@@ -47,9 +50,8 @@ public class PgeBillActivity extends BackableActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pge_bill);
 
-        final Intent intent = getIntent();
-        readExtra(intent);
-        setPrices(intent);
+        if (prices == null)
+            prices = new PgePrices();
 
         bill = isTwoUnitTariff() ?
                 new PgeG12CalculatedBill(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices)
@@ -60,26 +62,6 @@ public class PgeBillActivity extends BackableActivity {
         setExcise();
         setSummaryTable();
         setToPayTV();
-    }
-
-    private void readExtra(Intent intent) {
-        dateFrom = intent.getStringExtra(IntentCreator.DATE_FROM);
-        dateTo = intent.getStringExtra(IntentCreator.DATE_TO);
-
-        readingFrom = intent.getIntExtra(IntentCreator.READING_FROM, -1);
-        readingTo = intent.getIntExtra(IntentCreator.READING_TO, -1);
-
-        readingDayFrom = intent.getIntExtra(IntentCreator.READING_DAY_FROM, -1);
-        readingDayTo = intent.getIntExtra(IntentCreator.READING_DAY_TO, -1);
-        readingNightFrom = intent.getIntExtra(IntentCreator.READING_NIGHT_FROM, -1);
-        readingNightTo = intent.getIntExtra(IntentCreator.READING_NIGHT_TO, -1);
-    }
-
-    private void setPrices(Intent intent) {
-        if (intent.hasExtra(IntentCreator.PRICES))
-            prices = (IPgePrices) intent.getSerializableExtra(IntentCreator.PRICES);
-        else 
-            prices = new PgePrices();
     }
 
     private void setDates() {

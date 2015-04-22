@@ -1,11 +1,14 @@
 package pl.srw.billcalculator.bill;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TableLayout;
+
+import com.f2prateek.dart.Dart;
+import com.f2prateek.dart.InjectExtra;
+import com.f2prateek.dart.Optional;
 
 import org.threeten.bp.LocalDate;
 
@@ -28,12 +31,12 @@ public class PgnigBillActivity extends BackableActivity {
 
     private static final int PRICE_SCALE = 5;
 
-    private String dateFrom;
-    private String dateTo;
-    private int readingFrom;
-    private int readingTo;
+    @InjectExtra(IntentCreator.DATE_FROM) String dateFrom;
+    @InjectExtra(IntentCreator.DATE_TO) String dateTo;
+    @InjectExtra(IntentCreator.READING_FROM) int readingFrom;
+    @InjectExtra(IntentCreator.READING_TO) int readingTo;
+    @Optional @InjectExtra(IntentCreator.PRICES) IPgnigPrices prices;
 
-    private IPgnigPrices prices;
     private PgnigCalculatedBill bill;
 
     @Override
@@ -41,9 +44,8 @@ public class PgnigBillActivity extends BackableActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pgnig_bill);
 
-        Intent intent = getIntent();
-        setInput(intent);
-        setPrices(intent);
+        if (prices == null)
+            prices = new PgnigPrices();
         this.bill = new PgnigCalculatedBill(readingFrom, readingTo, dateFrom, dateTo, prices);
 
         setDate();
@@ -52,20 +54,6 @@ public class PgnigBillActivity extends BackableActivity {
         setSummaryTable();
         setChargeTV();
 	}
-
-    private void setInput(Intent intent) {
-        dateFrom = intent.getStringExtra(IntentCreator.DATE_FROM);
-        dateTo = intent.getStringExtra(IntentCreator.DATE_TO);
-        readingFrom = intent.getIntExtra(IntentCreator.READING_FROM, 0);
-        readingTo = intent.getIntExtra(IntentCreator.READING_TO, 0);
-    }
-
-    private void setPrices(Intent intent) {
-        if (intent.hasExtra(IntentCreator.PRICES))
-            prices = (IPgnigPrices) intent.getSerializableExtra(IntentCreator.PRICES);
-        else
-            prices = new PgnigPrices();
-    }
 
     private void setDate() {
         Views.setTV(this, R.id.tv_invoice_date, getString(R.string.rozliczenie_dnia, Dates.format(LocalDate.now())));
