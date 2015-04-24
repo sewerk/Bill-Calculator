@@ -1,4 +1,10 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 apply from: 'signing.gradle'
 apply plugin: 'hugo'
 
@@ -71,4 +77,8 @@ dependencies {
     }
     testCompile 'junit:junit:4.12'
     testCompile "org.mockito:mockito-core:1.9.5"
+
+    compile('com.crashlytics.sdk.android:crashlytics:2.2.3@aar') {
+        transitive = true;
+    }
 }
