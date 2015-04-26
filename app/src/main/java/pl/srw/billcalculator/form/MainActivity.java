@@ -5,6 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.AnimationUtils;
+import android.widget.ViewAnimator;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import pl.srw.billcalculator.form.view.SlidingTabLayout;
 
 import pl.srw.billcalculator.AboutActivity;
 import pl.srw.billcalculator.R;
@@ -20,13 +26,20 @@ public class MainActivity extends Activity {
 
     private static final String TAG_CHECK_PRICES_DIALOG = "CHECK_PRICES_DIALOG";
 
+    @InjectView(R.id.sliding_tabs) SlidingTabLayout slidingTabs;
+    @InjectView(R.id.form_switcher) ViewAnimator formSwither;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        ButterKnife.inject(this);
+
+        formSwither.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.abc_slide_in_top));
+        slidingTabs.setDistributeEvenly(true);
+        slidingTabs.setViewPager(new ViewAnimatorToViewPagerAdapter(formSwither, new ProviderTabsProvider()));
 
         if (savedInstanceState == null) {
-            replaceFormFragments(ProviderForm.PGE);
             if (GeneralPreferences.isFirstLaunch())
                 new CheckPricesDialogFragment()
                         .show(getFragmentManager(), TAG_CHECK_PRICES_DIALOG);

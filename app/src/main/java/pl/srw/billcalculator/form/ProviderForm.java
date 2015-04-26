@@ -11,7 +11,7 @@ import pl.srw.billcalculator.form.fragment.PgnigLogoFragment;
  * Created by Kamil Seweryn.
  */
 public enum ProviderForm {
-
+//TODO to be removed
     PGE(new PgeLogoFragment(), new PgeInputFragment()),
     PGNIG(new PgnigLogoFragment(), new PgnigInputFragment());
 

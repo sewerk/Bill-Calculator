@@ -21,12 +21,11 @@ public class BillCalculator extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Fabric.with(this, new Crashlytics());
         context = getApplicationContext();
 
-        if (BuildConfig.DEBUG) {
-            Database.enableDatabaseLogging();
-        }
+        if (BuildConfig.DEBUG) Database.enableDatabaseLogging();
+        else Fabric.with(this, new Crashlytics());
+
         Database.initialize(this);
 
         //PreferenceMigration.migrate(getApplicationContext());
