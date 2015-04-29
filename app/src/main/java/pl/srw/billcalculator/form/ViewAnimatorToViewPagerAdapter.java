@@ -1,12 +1,6 @@
 package pl.srw.billcalculator.form;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
 import android.widget.ViewAnimator;
-
-import java.util.LinkedList;
-import java.util.List;
 
 import pl.srw.billcalculator.form.view.PagerAdapter;
 import pl.srw.billcalculator.form.view.ViewPager;
@@ -42,72 +36,11 @@ public class ViewAnimatorToViewPagerAdapter implements ViewPager {
     }
 
     @Override
-    public void setCurrentItem(final int to) {
+    public void setCurrentItem(final int toIdx) {
         int from = getCurrentItem();
-        if (to == from)
+        if (toIdx == from)
             return;
-        else if (to > from)
-            animateRight(from, to);
-        else
-            animateLeft(from, to);
-        viewAnimator.setDisplayedChild(to);
-    }
-
-    private void animateLeft(final int fromIdx, final int toIdx) {//TODO: refactor
-        final int len = fromIdx - toIdx;
-        ValueAnimator animatorLeft = ValueAnimator.ofFloat(1f*len, 0f);
-        animatorLeft.setDuration(1000);//TODO change to 100
-        animatorLeft.addListener(new AnimatorListenerAdapter() {
-
-            private boolean canceled;
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                if (!canceled) // TODO: does not work
-                    mOnPageChangeListener.onPageSelected(toIdx);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-                canceled = true;
-            }
-        });
-        animatorLeft.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float offset = (float) animation.getAnimatedValue();
-                mOnPageChangeListener.onPageScrolled(toIdx, offset, 0);
-            }
-        });
-        animatorLeft.start();
-    }
-
-    private void animateRight(final int fromIdx, final int toIdx) {
-        final int len = toIdx - fromIdx;
-        ValueAnimator animatorRight = ValueAnimator.ofFloat(0f, 1f*len);
-        animatorRight.setDuration(1000);
-        animatorRight.addListener(new AnimatorListenerAdapter() {
-
-            private boolean canceled;
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                if (!canceled)
-                    mOnPageChangeListener.onPageSelected(toIdx);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-                canceled = true;
-            }
-        });
-        animatorRight.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float offset = (float) animation.getAnimatedValue();
-                mOnPageChangeListener.onPageScrolled(fromIdx, offset, 0);
-            }
-        });
-        animatorRight.start();
+        mOnPageChangeListener.onPageSelected(toIdx);
+        viewAnimator.setDisplayedChild(toIdx);
     }
 }

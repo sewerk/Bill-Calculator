@@ -3,17 +3,19 @@ package pl.srw.billcalculator.test;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.support.test.espresso.ViewInteraction;
+import android.support.test.rule.ActivityTestRule;
+import android.test.suitebuilder.annotation.MediumTest;
 import android.view.View;
 
 import org.hamcrest.Matcher;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.history.HistoryActivity;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.settings.GeneralPreferences;
-import pl.srw.billcalculator.testutils.ActivityRule;
 import pl.srw.billcalculator.testutils.HistoryGenerator;
 
 import static android.support.test.espresso.Espresso.onView;
@@ -34,9 +36,10 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by kseweryn on 08.04.15.
  */
+@MediumTest
 public class HistoryUITest {
 
-    private final ActivityRule<HistoryActivity> activity = new ActivityRule<>(HistoryActivity.class);
+    @Rule public ActivityTestRule<HistoryActivity> activity = new ActivityTestRule<>(HistoryActivity.class);
 
     @Before
     public void setUp() throws Exception {
@@ -48,7 +51,7 @@ public class HistoryUITest {
     public void shouldRemoveBillWithPricesFromDb() {
         // given: one bill in history
         HistoryGenerator.generatePgeG11Bills(1);
-        activity.get();
+        activity.getActivity();
 
         // when: deleting one bill
         onView(withText("1 - 11")).perform(longClick());
@@ -65,7 +68,7 @@ public class HistoryUITest {
     public void shouldUnselectAfterDeletion() {
         // given: list contain 5 entries
         HistoryGenerator.generatePgeG11Bills(5);
-        activity.get();
+        activity.getActivity();
 
         // when: select second entry and delete
         onView(withText("4 - 14")).perform(longClick());
@@ -85,7 +88,7 @@ public class HistoryUITest {
     public void shouldUselectAfterDone() throws InterruptedException {
         // given: list contain 3 entries
         HistoryGenerator.generatePgeG11Bills(3);
-        activity.get();
+        activity.getActivity();
 
         // when: selecting 1st and 3rd entry
         onView(withText("1 - 11")).perform(longClick());
@@ -107,7 +110,7 @@ public class HistoryUITest {
     public void shouldRestoreSelectionOnScreenRotation() throws InterruptedException {
         // given: one item is selected
         HistoryGenerator.generatePgeG11Bills(3);
-        HistoryActivity activity = this.activity.get();
+        HistoryActivity activity = this.activity.getActivity();
         onView(withText("2 - 12")).perform(longClick());
         onImageInRow(withText("2 - 12")).check(matches(withTagValue(is((Object) R.drawable.selected))));
 

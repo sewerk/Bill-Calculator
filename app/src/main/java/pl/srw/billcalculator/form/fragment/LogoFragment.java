@@ -32,7 +32,7 @@ public abstract class LogoFragment extends Fragment {
 
     @OnClick(R.id.iv_bill_type_switch)
     public void switchProvider() {
-        ((MainActivity) getActivity()).replaceFormFragments(isEnergyForm());
+//        ((MainActivity) getActivity()).replaceFormFragments(isEnergyForm());
     }
 
     protected abstract boolean isEnergyForm();

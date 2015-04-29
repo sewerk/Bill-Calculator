@@ -1,7 +1,7 @@
 package pl.srw.billcalculator.test;
 
-import android.support.test.InstrumentationRegistry;
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.suitebuilder.annotation.LargeTest;
 
 import com.robotium.solo.Solo;
 
@@ -19,6 +19,7 @@ import static org.junit.Assert.assertThat;
 /**
  * Created by Kamil Seweryn.
  */
+@LargeTest
 public class PgnigUITest extends ActivityInstrumentationTestCase2<MainActivity> {
 
     public PgnigUITest() {

@@ -6,12 +6,11 @@
     android:gravity="center">
 
     <ImageView
-        android:id="@+id/iv_bill_type_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/pge_on_pgnig"
+        android:src="@drawable/pge"
         android:scaleType="fitCenter"
-        android:contentDescription="Bill type switch"/>
+        android:contentDescription="Provider logo"/>
 
     <include layout="@layout/form_tariff"/>
 </LinearLayout>

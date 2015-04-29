@@ -1,39 +1,37 @@
 package pl.srw.billcalculator.test;
 
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.contrib.PickerActions;
-import android.support.test.espresso.matcher.PreferenceMatchers;
-import android.support.test.espresso.matcher.ViewMatchers;
-import android.test.FlakyTest;
+import android.support.test.rule.ActivityTestRule;
+import android.test.suitebuilder.annotation.LargeTest;
 import android.widget.EditText;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.threeten.bp.Month;
 
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.form.MainActivity;
-import pl.srw.billcalculator.history.HistoryActivity;
 import pl.srw.billcalculator.settings.GeneralPreferences;
-import pl.srw.billcalculator.testutils.ActivityRule;
 import pl.srw.billcalculator.testutils.HistoryGenerator;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
-import static android.support.test.espresso.action.ViewActions.*;
-import static android.support.test.espresso.matcher.ViewMatchers.hasFocus;
+import static android.support.test.espresso.action.ViewActions.clearText;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
  * Created by kseweryn on 17.04.15.
  */
+@LargeTest
 public class TauronUITest {
 
-    private final ActivityRule<MainActivity> activity = new ActivityRule<>(MainActivity.class);
+    @Rule public final ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Before
     public void setUp() throws Exception {
@@ -42,9 +40,8 @@ public class TauronUITest {
     }
 
     @Test
-    @FlakyTest(tolerance = 5)
     public void testBillCalculationWithStorage() throws Exception {
-        activity.get();
+        activityTestRule.getActivity();
         setPricesInSettings();
         inputFormValuesAndCalculate();
         verifyCalculatedValues();

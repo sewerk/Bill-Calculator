@@ -68,25 +68,8 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void replaceFormFragments(final ProviderForm form) {
-        getFragmentManager()
-                .beginTransaction()
-                .setCustomAnimations(R.animator.come_closer, 0)
-                .replace(R.id.fl_logo_section, form.getLogoFragment())
-                .replace(R.id.fl_input_section, form.getInputFragment())
-                .commit();
-        // getFragmentManager().executePendingTransactions();
-    }
-
     public void start(Class<? extends Activity> activityClass) {
         Intent intent = new Intent(this, activityClass);
         startActivity(intent);
-    }
-
-    public void replaceFormFragments(boolean isEnergyForm) {
-        if (isEnergyForm)
-            replaceFormFragments(ProviderForm.PGNIG);
-        else
-            replaceFormFragments(ProviderForm.PGE);
     }
 }
