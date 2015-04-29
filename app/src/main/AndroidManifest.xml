@@ -26,6 +26,8 @@
 
         <activity android:name=".bill.PgnigBillActivity" android:label="@string/gas_bill" />
 
+        <activity android:name=".bill.TauronBillActivity" android:label="@string/energy_bill" />
+
         <activity android:name=".settings.activity.SettingsActivity" android:label="@string/settings_label" />
 
         <activity android:name=".settings.activity.ProviderSettingsActivity" />

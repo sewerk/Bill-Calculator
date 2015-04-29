@@ -45,6 +45,7 @@ android {
     packagingOptions {
         pickFirst 'META-INF/services/javax.annotation.processing.Processor'
         exclude 'LICENSE.txt'
+        exclude 'META-INF/LICENSE.txt'
     }
 
     lintOptions {
@@ -64,6 +65,7 @@ dependencies {
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'info.android15.nucleus:nucleus:1.1.2'
     compile 'com.f2prateek.dart:dart:1.1.0'
+    compile 'org.rendersnake:rendersnake:1.8'
     // AndroidViewAnimations dependencies
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.easing:library:1.0.0@aar'

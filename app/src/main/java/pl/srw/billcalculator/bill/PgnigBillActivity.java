@@ -6,7 +6,6 @@ import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TableLayout;
 
-import com.f2prateek.dart.Dart;
 import com.f2prateek.dart.InjectExtra;
 import com.f2prateek.dart.Optional;
 
@@ -22,6 +21,7 @@ import pl.srw.billcalculator.pojo.IPgnigPrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
+import pl.srw.billcalculator.util.ToWebView;
 import pl.srw.billcalculator.util.Views;
 
 /**
@@ -53,7 +53,10 @@ public class PgnigBillActivity extends BackableActivity {
         setChargeDetailsTable();
         setSummaryTable();
         setChargeTV();
-	}
+
+        View billView = findViewById(R.id.bill_content);
+        setContentView(ToWebView.wrapByWebView(this, billView));
+    }
 
     private void setDate() {
         Views.setTV(this, R.id.tv_invoice_date, getString(R.string.rozliczenie_dnia, Dates.format(LocalDate.now())));
