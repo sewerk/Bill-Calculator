@@ -10,6 +10,7 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.persistence.type.BillType;
+import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 
@@ -22,7 +23,8 @@ public abstract class HistoryItemValueProvider {
 
     @DebugLog
     public static HistoryItemValueProvider of(final History item) {
-        switch (BillType.valueOf(item.getBillType())) {
+        final BillType billType = BillType.valueOf(item.getBillType());
+        switch (billType) {
             case PGE_G11:
                 return new PgeG11BillHistoryItemValueProvider(item);
             case PGE_G12:
@@ -30,7 +32,7 @@ public abstract class HistoryItemValueProvider {
             case PGNIG:
                 return new PgnigBillHistoryItemValueProvider(item);
         }
-        throw new RuntimeException("Bill type: " + item.getBillType() + " not handled.");
+        throw new EnumVariantNotHandledException(billType);
     }
 
 

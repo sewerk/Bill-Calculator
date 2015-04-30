@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FormView">
+        <attr name="provider" format="enum">
+            <enum name="pge" value="0"/>
+            <enum name="pgnig" value="1"/>
+            <enum name="tauron" value="2"/>
+        </attr>
+    </declare-styleable>
+</resources>

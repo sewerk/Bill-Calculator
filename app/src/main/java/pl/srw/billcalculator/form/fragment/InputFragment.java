@@ -33,7 +33,7 @@ public abstract class InputFragment extends Fragment {
 
     @InjectView(R.id.button_date_from) Button bFromDate;
     @InjectView(R.id.button_date_to) Button bToDate;
-    @InjectView(R.id.editText_date_to_error) TextView etToDateError;
+    @InjectView(R.id.editText_date_error) TextView etToDateError;
 
     @Override
     public void onViewCreated(final View view, final Bundle savedInstanceState) {

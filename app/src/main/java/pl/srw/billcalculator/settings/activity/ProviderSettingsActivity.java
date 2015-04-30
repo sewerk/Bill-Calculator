@@ -12,7 +12,8 @@ import com.f2prateek.dart.InjectExtra;
 
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.settings.Provider;
+import pl.srw.billcalculator.type.EnumVariantNotHandledException;
+import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.settings.fragment.PgeSettingsFragment;
 import pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment;
 import pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment;
@@ -63,7 +64,7 @@ public class ProviderSettingsActivity extends BackableActivity {
             case TAURON:
                 return new TauronSettingsFragment();
         }
-        throw new RuntimeException("No settings screen for " + provider);
+        throw new EnumVariantNotHandledException(provider);
     }
 
     @Override

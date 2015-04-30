@@ -10,6 +10,8 @@ import android.widget.ViewAnimator;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import nucleus.view.NucleusActivity;
+import nucleus.view.RequiresPresenter;
 import pl.srw.billcalculator.form.view.SlidingTabLayout;
 
 import pl.srw.billcalculator.AboutActivity;
@@ -27,7 +29,7 @@ public class MainActivity extends Activity {
     private static final String TAG_CHECK_PRICES_DIALOG = "CHECK_PRICES_DIALOG";
 
     @InjectView(R.id.sliding_tabs) SlidingTabLayout slidingTabs;
-    @InjectView(R.id.form_switcher) ViewAnimator formSwither;
+    @InjectView(R.id.form_switcher) ViewAnimator formSwitcher;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -35,15 +37,17 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
         ButterKnife.inject(this);
 
-        formSwither.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.abc_slide_in_top));
-        slidingTabs.setDistributeEvenly(true);
-        slidingTabs.setViewPager(new ViewAnimatorToViewPagerAdapter(formSwither, new ProviderTabsProvider()));
+        initFormSwitching();
 
-        if (savedInstanceState == null) {
-            if (GeneralPreferences.isFirstLaunch())
-                new CheckPricesDialogFragment()
-                        .show(getFragmentManager(), TAG_CHECK_PRICES_DIALOG);
-        }
+        if (savedInstanceState == null && GeneralPreferences.isFirstLaunch())
+            new CheckPricesDialogFragment()
+                    .show(getFragmentManager(), TAG_CHECK_PRICES_DIALOG);
+    }
+
+    private void initFormSwitching() {
+        formSwitcher.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.abc_slide_in_top));
+        slidingTabs.setDistributeEvenly(true);
+        slidingTabs.setViewPager(new ViewAnimatorToViewPagerAdapter(formSwitcher, new ProviderTabsProvider()));
     }
 
     @Override

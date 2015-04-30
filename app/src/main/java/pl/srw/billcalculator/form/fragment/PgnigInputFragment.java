@@ -15,7 +15,7 @@ import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
-import pl.srw.billcalculator.type.BillType;
+import pl.srw.billcalculator.type.Provider;
 
 /**
 * Created by Kamil Seweryn.
@@ -48,18 +48,18 @@ public class PgnigInputFragment extends InputFragment {
 
     @Override
     protected Intent getBillActivityIntent() {
-        IntentCreator intentCreator = BillActivityIntentFactory.of(getActivity(), BillType.PGNIG);
+        IntentCreator intentCreator = BillActivityIntentFactory.of(getActivity(), Provider.PGNIG);
         return provideExtra(intentCreator);
     }
 
     @Override
     protected Intent getBillStorerIntent() {
-        IntentCreator intentCreator = BillStoringServiceIntentFactory.of(getActivity(), BillType.PGNIG);
+        IntentCreator intentCreator = BillStoringServiceIntentFactory.of(getActivity(), Provider.PGNIG);
         return provideExtra(intentCreator);
     }
 
     private Intent provideExtra(final IntentCreator intentCreator) {
-        return intentCreator.from(etPreviousReading, etCurrentReading, bFromDate, bToDate);
+        return intentCreator.from(etPreviousReading, etCurrentReading, bFromDate, null);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package pl.srw.billcalculator.form;
 
 import pl.srw.billcalculator.form.view.PagerAdapter;
-import pl.srw.billcalculator.settings.Provider;
+import pl.srw.billcalculator.type.Provider;
 
 /**
  * Created by Kamil Seweryn.

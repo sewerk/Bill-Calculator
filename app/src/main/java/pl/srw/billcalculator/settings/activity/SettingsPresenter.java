@@ -1,6 +1,5 @@
 package pl.srw.billcalculator.settings.activity;
 
-import android.content.Intent;
 import android.support.annotation.StringRes;
 
 import java.util.ArrayList;
@@ -10,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import nucleus.presenter.Presenter;
-import pl.srw.billcalculator.settings.Provider;
+import pl.srw.billcalculator.type.Provider;
 
 /**
  * Created by kseweryn on 14.04.15.
@@ -32,18 +31,13 @@ public class SettingsPresenter extends Presenter<SettingsActivity> {
         getView().fillList(entries);
     }
 
-    public void providerChoosenAt(final int position) {
-        final Intent intent = ProviderSettingsActivity.createIntent(getView(), getProviderFor(position));
-        getView().startActivity(intent);
-    }
-
-    private Provider getProviderFor(final int position) {
+    public Provider getProviderAt(final int position) {
         return Provider.values()[position];
     }
 
     private void addEntries(Provider[] values) {
         for (Provider provider : values) {
-            addEntry(getString(provider.titleRes), getString(provider.descRes));
+            addEntry(getString(provider.titleRes), getString(provider.settingsDescRes));
         }
     }
 
@@ -57,5 +51,4 @@ public class SettingsPresenter extends Presenter<SettingsActivity> {
     private String getString(@StringRes final int strRes) {
         return getView().getString(strRes);
     }
-
 }

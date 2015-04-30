@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/date_from"/>
-        <Button
+
+        <pl.srw.billcalculator.form.view.DatePickingButton
             android:id="@+id/button_date_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,45 +27,26 @@
             tools:text="11/12/2014"/>
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/linearLayout_date_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding">
 
-        <LinearLayout
-            android:id="@+id/linearLayout_date_to"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/textView_date_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/date_to"/>
-            <Button
-                android:id="@+id/button_date_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:freezesText="true"
-                tools:text="31/12/2014"/>
-
-        </LinearLayout>
-
-        <EditText
-            android:id="@+id/editText_date_to_error"
+        <TextView
+            android:id="@+id/textView_date_to"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/linearLayout_date_to"
-            android:layout_alignRight="@id/linearLayout_date_to"
-            android:clickable="false"
-            android:editable="false"
-            android:ems="1"
-            android:background="@android:color/transparent"
-            android:textColor="@android:color/transparent"/>
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/date_to"/>
 
-    </RelativeLayout>
-
+        <pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton
+            android:id="@+id/button_date_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:freezesText="true"
+            tools:text="31/12/2014" />
+    </LinearLayout>
 
     <!-- OBLICZ =========================== -->
     <Button
