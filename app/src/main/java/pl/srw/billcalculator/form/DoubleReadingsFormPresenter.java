@@ -1,6 +1,8 @@
 package pl.srw.billcalculator.form;
 
+import de.greenrobot.event.EventBus;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.event.TariffChangedEvent;
 
 import static pl.srw.billcalculator.form.FormValueValidator.isDatesOrderCorrect;
 import static pl.srw.billcalculator.form.FormValueValidator.isValueFilled;
@@ -12,13 +14,26 @@ import static pl.srw.billcalculator.form.FormValueValidator.isValueOrderCorrect;
 public abstract class DoubleReadingsFormPresenter extends SingleReadingsFormPresenter {
     protected DoubleReadingsFormView view;
 
+    public DoubleReadingsFormPresenter() {
+        EventBus.getDefault().register(this);
+    }
+
     @Override
     protected void onTakeView(SingleReadingsFormView _view) {
         this.view = (DoubleReadingsFormView) _view;
         super.onTakeView(view);
+        changeTariffDependentViews();
+    }
+
+    public void onEvent(TariffChangedEvent event) {
+        if (event.getProvider() == getView().getProvider())
+            changeTariffDependentViews();
+    }
+
+    private void changeTariffDependentViews() {
         if (isTariffG12()) {
             view.showDoubleReadings();
-            view.setTariffLabel(R.string.pge_tariff_G12_on_bill);//TODO: onResume
+            view.setTariffLabel(R.string.pge_tariff_G12_on_bill);
         } else {
             view.showSingleReadings();
             view.setTariffLabel(R.string.pge_tariff_G11_on_bill);

@@ -2,11 +2,17 @@ package pl.srw.billcalculator.settings.fragment;
 
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.prices.PgePrices;
+import pl.srw.billcalculator.type.Provider;
 
 /**
  * Created by Kamil Seweryn.
  */
 public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
+
+    @Override
+    protected Provider getProvider() {
+        return Provider.PGE;
+    }
 
     @Override
     protected int getPreferencesResource() {

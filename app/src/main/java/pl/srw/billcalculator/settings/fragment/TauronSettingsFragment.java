@@ -2,11 +2,17 @@ package pl.srw.billcalculator.settings.fragment;
 
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
+import pl.srw.billcalculator.type.Provider;
 
 /**
  * Created by Kamil Seweryn.
  */
 public class TauronSettingsFragment extends EnergyProviderSettingsFragment {
+
+    @Override
+    protected Provider getProvider() {
+        return Provider.TAURON;
+    }
 
     @Override
     protected int getPreferencesResource() {

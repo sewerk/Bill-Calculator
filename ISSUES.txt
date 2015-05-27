@@ -1,5 +1,4 @@
 -focus on date error:
     open keyboard on prev reading > switch tab
 -error message missing on toDate
--change form on resume activity
 -restore selected tab on rotate screen
