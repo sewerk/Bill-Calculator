@@ -28,7 +28,7 @@ public class PgnigSettingsFragment extends ProviderSettingsFragment {
 
     @Override
     public int getHelpLayoutResource() {
-        return R.layout.gas_settings_help;
+        return R.layout.settings_help_gas;
     }
 
     @Override

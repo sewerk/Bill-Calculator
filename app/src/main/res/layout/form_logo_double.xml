@@ -6,11 +6,15 @@
     android:gravity="center">
 
     <ImageView
+        android:id="@+id/iv_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/pge"
         android:scaleType="fitCenter"
-        android:contentDescription="Provider logo"/>
+        android:contentDescription="Provider logo" />
 
-    <include layout="@layout/form_tariff"/>
+    <include layout="@layout/form_tariff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding" />
 </LinearLayout>

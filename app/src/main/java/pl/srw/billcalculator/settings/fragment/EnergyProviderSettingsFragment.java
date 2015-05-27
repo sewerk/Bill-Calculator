@@ -24,7 +24,7 @@ public abstract class EnergyProviderSettingsFragment extends ProviderSettingsFra
 
     @Override
     public int getHelpLayoutResource() {
-        return R.layout.energy_settings_help;
+        return R.layout.settings_help_energy;
     }
 
     protected abstract String getTariffKey();

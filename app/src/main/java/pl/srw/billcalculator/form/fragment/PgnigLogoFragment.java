@@ -14,7 +14,7 @@ public class PgnigLogoFragment extends LogoFragment {
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.form_logo_pgnig, container, false);
+        return inflater.inflate(R.layout.form_logo_single, container, false);
     }
 
     @Override

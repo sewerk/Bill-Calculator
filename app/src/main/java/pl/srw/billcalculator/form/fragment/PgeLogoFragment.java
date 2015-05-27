@@ -25,7 +25,7 @@ public class PgeLogoFragment extends LogoFragment {
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.form_logo_pge, container, false);
+        return inflater.inflate(R.layout.form_logo_double, container, false);
     }
 
     @Override

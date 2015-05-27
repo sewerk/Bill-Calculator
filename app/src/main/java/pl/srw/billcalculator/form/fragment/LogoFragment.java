@@ -16,7 +16,6 @@ import pl.srw.billcalculator.R;
  */
 public abstract class LogoFragment extends Fragment {
 
-    @InjectView(R.id.iv_bill_type_switch) ImageView ivBillType;
 
     @Override
     public void onViewCreated(final View view, final Bundle savedInstanceState) {
@@ -30,7 +29,6 @@ public abstract class LogoFragment extends Fragment {
         ButterKnife.reset(this);
     }
 
-    @OnClick(R.id.iv_bill_type_switch)
     public void switchProvider() {
 //        ((MainActivity) getActivity()).replaceFormFragments(isEnergyForm());
     }

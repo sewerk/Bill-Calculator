@@ -9,17 +9,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/fl_logo_section"
+    <include layout="@layout/form_logo_single"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/double_padding"
         android:layout_alignParentLeft="true" />
 
-    <FrameLayout
-        android:id="@+id/fl_input_section"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignParentRight="true" />
+    <include layout="@layout/form_input_single"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>

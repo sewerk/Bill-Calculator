@@ -25,11 +25,11 @@ import pl.srw.billcalculator.type.Provider;
 */
 public class PgeInputFragment extends InputFragment {
 
-    @InjectView(R.id.linearLayout_readings) LinearLayout llReadingG11;
+    @InjectView(R.id.ll_readings_single) LinearLayout llReadingG11;
     @InjectView(R.id.et_reading_from) AutoCompleteTextView etPreviousReading;
     @InjectView(R.id.et_reading_to) EditText etCurrentReading;
 
-    @InjectView(R.id.tableLayout_G12_readings) TableLayout tlReadingsG12;
+    @InjectView(R.id.tl_readings_double) TableLayout tlReadingsG12;
     @InjectView(R.id.editText_reading_day_from) AutoCompleteTextView etDayPreviousReading;
     @InjectView(R.id.editText_reading_day_to) EditText etDayCurrentReading;
     @InjectView(R.id.editText_reading_night_from) AutoCompleteTextView etNightPreviousReading;
@@ -84,12 +84,7 @@ public class PgeInputFragment extends InputFragment {
     }
 
     private Intent provideExtra(final IntentCreator intentCreator) {
-        if (pgeTariffG12)
-            return intentCreator.from(etDayPreviousReading, etDayCurrentReading,
-                    etNightPreviousReading, etNightCurrentReading,
-                    bFromDate, bToDate);
-        else
-            return intentCreator.from(etPreviousReading, etCurrentReading, bFromDate, null);
+       return null;//TODO remove
     }
 
     @Override

@@ -1,7 +1,6 @@
 package pl.srw.billcalculator.test;
 
 import android.content.Intent;
-import android.support.test.InstrumentationRegistry;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.Button;
 
@@ -115,7 +114,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
 
         switchBill(solo);
         assertTrue(isPgeForm(solo));
-        assertNotNull(solo.getView(R.id.linearLayout_tariff));
+        assertNotNull(solo.getView(R.id.ll_tariff));
         assertTrue(solo.searchText(getString(solo, R.string.pge_tariff_G11_on_bill)));
     }
 
