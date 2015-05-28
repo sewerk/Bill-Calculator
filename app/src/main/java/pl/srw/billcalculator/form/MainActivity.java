@@ -3,15 +3,14 @@ package pl.srw.billcalculator.form;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.animation.AnimationUtils;
-import android.widget.ViewAnimator;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import nucleus.view.NucleusActivity;
-import nucleus.view.RequiresPresenter;
+import pl.srw.billcalculator.form.adapter.FormPagerAdapter;
 import pl.srw.billcalculator.form.view.SlidingTabLayout;
 
 import pl.srw.billcalculator.AboutActivity;
@@ -24,12 +23,12 @@ import pl.srw.billcalculator.settings.GeneralPreferences;
 /**
  * Created by Kamil Seweryn.
  */
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
     private static final String TAG_CHECK_PRICES_DIALOG = "CHECK_PRICES_DIALOG";
 
     @InjectView(R.id.sliding_tabs) SlidingTabLayout slidingTabs;
-    @InjectView(R.id.form_switcher) ViewAnimator formSwitcher;
+    @InjectView(R.id.form_pager) ViewPager formPager;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -45,9 +44,9 @@ public class MainActivity extends Activity {
     }
 
     private void initFormSwitching() {
-        formSwitcher.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.abc_slide_in_top));
+        formPager.setAdapter(new FormPagerAdapter(getSupportFragmentManager()));
         slidingTabs.setDistributeEvenly(true);
-        slidingTabs.setViewPager(new ViewAnimatorToViewPagerAdapter(formSwitcher, new ProviderTabsProvider()));
+        slidingTabs.setViewPager(formPager);
     }
 
     @Override

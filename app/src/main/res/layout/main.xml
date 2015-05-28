@@ -12,25 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <pl.srw.billcalculator.form.view.FormSwitcher
-        android:id="@+id/form_switcher"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/form_pager"
+        android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_weight="1" />
 
-        <pl.srw.billcalculator.form.pge.PgeFormView
-            android:id="@+id/pge_form"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <pl.srw.billcalculator.form.pgnig.PgnigFormView
-            android:id="@+id/pgnig_form"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <pl.srw.billcalculator.form.tauron.TauronFormView
-            android:id="@+id/tauron_form"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </pl.srw.billcalculator.form.view.FormSwitcher>
 </LinearLayout>
