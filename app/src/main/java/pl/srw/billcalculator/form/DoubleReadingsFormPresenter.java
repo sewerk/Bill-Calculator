@@ -14,15 +14,18 @@ import static pl.srw.billcalculator.form.FormValueValidator.isValueOrderCorrect;
 public abstract class DoubleReadingsFormPresenter extends SingleReadingsFormPresenter {
     protected DoubleReadingsFormView view;
 
-    public DoubleReadingsFormPresenter() {
-        EventBus.getDefault().register(this);
-    }
-
     @Override
     protected void onTakeView(SingleReadingsFormView _view) {
         this.view = (DoubleReadingsFormView) _view;
         super.onTakeView(view);
         changeTariffDependentViews();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDropView() {
+        super.onDropView();
+        EventBus.getDefault().unregister(this);
     }
 
     public void onEvent(TariffChangedEvent event) {
