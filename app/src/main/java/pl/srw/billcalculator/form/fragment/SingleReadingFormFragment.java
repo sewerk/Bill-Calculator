@@ -25,6 +25,7 @@ import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.form.FormValueValidator;
 import pl.srw.billcalculator.form.view.DatePickingButton;
+import pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
 import pl.srw.billcalculator.intent.IntentCreator;
@@ -47,7 +48,7 @@ public abstract class SingleReadingFormFragment extends Fragment {
     protected @InjectView(R.id.et_reading_to) EditText etCurrentReading;
 
     protected @InjectView(R.id.button_date_from) DatePickingButton bFromDate;
-    protected @InjectView(R.id.button_date_to) DatePickingButton bToDate;
+    protected @InjectView(R.id.button_date_to) ErrorShowingDatePickerButton bToDate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -132,7 +133,7 @@ public abstract class SingleReadingFormFragment extends Fragment {
 
     private void onDatesError(@StringRes int errorMsg) {
         shake(bToDate);
-        //TODO bToDate.showError(errorMsg);
+        bToDate.showError(errorMsg);
     }
 
     private void initDates() {

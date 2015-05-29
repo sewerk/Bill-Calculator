@@ -1,6 +1,5 @@
 -focus on date error:
     open keyboard on prev reading > switch tab
--error message missing on toDate
 -picking previous reading from auto complete when error is shown does not hide error icon on et
     click calculate > pick value from hint
 -cannot swipe form page due to horizontal scroll view on readings

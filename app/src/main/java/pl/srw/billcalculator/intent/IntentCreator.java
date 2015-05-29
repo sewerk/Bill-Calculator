@@ -35,7 +35,7 @@ public final class IntentCreator {
     }
 
     public Intent from(final EditText etReadingFrom, final EditText etReadingTo,
-                       final Button bDateFrom, final DatePickingButton bDateTo) {
+                       final Button bDateFrom, final ErrorShowingDatePickerButton bDateTo) {
         return from(getIntText(etReadingFrom), getIntText(etReadingTo),
                 getStringText(bDateFrom), getStringText(bDateTo));
     }
@@ -48,7 +48,7 @@ public final class IntentCreator {
 
     public Intent from(final EditText etReadingDayFrom, final EditText etReadingDayTo,
                        final EditText etReadingNightFrom, final EditText etReadingNightTo,
-                       final Button bDateFrom, final DatePickingButton bDateTo) {
+                       final Button bDateFrom, final ErrorShowingDatePickerButton bDateTo) {
         return from(getIntText(etReadingDayFrom), getIntText(etReadingDayTo),
                 getIntText(etReadingNightFrom), getIntText(etReadingNightTo),
                 getStringText(bDateFrom), getStringText(bDateTo));
