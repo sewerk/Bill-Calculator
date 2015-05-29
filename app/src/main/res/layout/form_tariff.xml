@@ -8,7 +8,7 @@
         android:id="@+id/textView_tariff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pge_tariff_G11_on_bill"
+        android:text="@string/tariff_G11_on_bill"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView

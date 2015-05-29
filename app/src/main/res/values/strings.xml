@@ -39,8 +39,8 @@
     <string name="oplata_sieciowa_G12dzien" translatable="false">opłata sieciowa (strefa dzienna)</string>
     <string name="oplata_sieciowa_G12noc" translatable="false">opłata sieciowa (strefa nocna)</string>
 
-    <string name="pge_tariff_G11_on_bill" translatable="false">Taryfa: G11</string>
-    <string name="pge_tariff_G12_on_bill" translatable="false">Taryfa: G12</string>
+    <string name="tariff_G11_on_bill" translatable="false">Taryfa: G11</string>
+    <string name="tariff_G12_on_bill" translatable="false">Taryfa: G12</string>
 
     <string name="kWh" translatable="false">kWh</string>
     <string name="m_c" translatable="false">m-c</string>

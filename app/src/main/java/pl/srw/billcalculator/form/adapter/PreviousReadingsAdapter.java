@@ -19,6 +19,7 @@ import pl.srw.billcalculator.util.ToString;
 /**
  * Created by Kamil Seweryn.
  */
+@lombok.ToString(of = {"readingType", "prevReadings" })
 public class PreviousReadingsAdapter extends ArrayAdapter<String> {
 
     private Filter mFilter;

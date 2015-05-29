@@ -6,7 +6,6 @@ import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TableLayout;
 
-import com.f2prateek.dart.Dart;
 import com.f2prateek.dart.InjectExtra;
 import com.f2prateek.dart.Optional;
 
@@ -73,10 +72,10 @@ public class PgeBillActivity extends BackableActivity {
         TableLayout chargeDetailsTable = (TableLayout) findViewById(R.id.t_charge_details);
 
         if(isTwoUnitTariff()) {
-            Views.setTV(this, R.id.tv_tariff, getString(R.string.pge_tariff_G12_on_bill));
+            Views.setTV(this, R.id.tv_tariff, getString(R.string.tariff_G12_on_bill));
             setG12Rows(chargeDetailsTable, countDayConsumption(), countNightConsumption());
         } else {
-            Views.setTV(this, R.id.tv_tariff, getString(R.string.pge_tariff_G11_on_bill));
+            Views.setTV(this, R.id.tv_tariff, getString(R.string.tariff_G11_on_bill));
             setG11Rows(chargeDetailsTable, countConsumption());
         }
 

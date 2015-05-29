@@ -110,25 +110,25 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
     public void test_shouldShowTariffLabelForPgeOnly() {
         switchBill(solo);
         assertTrue(isPgnigForm(solo));
-        assertFalse(solo.searchText(getString(solo, R.string.pge_tariff_G11_on_bill)));
+        assertFalse(solo.searchText(getString(solo, R.string.tariff_G11_on_bill)));
 
         switchBill(solo);
         assertTrue(isPgeForm(solo));
         assertNotNull(solo.getView(R.id.ll_tariff));
-        assertTrue(solo.searchText(getString(solo, R.string.pge_tariff_G11_on_bill)));
+        assertTrue(solo.searchText(getString(solo, R.string.tariff_G11_on_bill)));
     }
 
     public void test_shouldShowTariffLabelAccordingToPreferences() {
         // given: G11 form
         // then: G11 tariff shown
-        assertTrue(solo.searchText(getString(solo, R.string.pge_tariff_G11_on_bill)));
+        assertTrue(solo.searchText(getString(solo, R.string.tariff_G11_on_bill)));
 
         // when: switch to G12 in preferences
         PreferenceUtil.changeToG12Tariff(solo.getCurrentActivity());
         redrawActivity(solo);
 
         // then: G12 tariff shown
-        assertTrue(solo.searchText(getString(solo, R.string.pge_tariff_G12_on_bill)));
+        assertTrue(solo.searchText(getString(solo, R.string.tariff_G12_on_bill)));
     }
 
     public void test_shouldChangeFocusOnSoftNextKeyForG11() throws Throwable {

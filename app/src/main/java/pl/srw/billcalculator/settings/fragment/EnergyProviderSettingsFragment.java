@@ -8,10 +8,7 @@ import android.support.annotation.StringDef;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import de.greenrobot.event.EventBus;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.event.TariffChangedEvent;
-import pl.srw.billcalculator.type.Provider;
 
 /**
  * Created by Kamil Seweryn.
@@ -44,11 +41,8 @@ public abstract class EnergyProviderSettingsFragment extends ProviderSettingsFra
 
         if (key.equals(getTariffKey())) {
             changePreferenceVisibilityDependingOnTaryfa();
-            EventBus.getDefault().post(TariffChangedEvent.of(getProvider()));
         }
     }
-
-    protected abstract Provider getProvider();
 
     private void changePreferenceVisibilityDependingOnTaryfa() {
         ListPreference taryfaPreference = (ListPreference) findPreference(getTariffKey());

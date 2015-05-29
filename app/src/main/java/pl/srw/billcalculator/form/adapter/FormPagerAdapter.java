@@ -4,7 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import pl.srw.billcalculator.form.fragment.FormFragment;
+import hugo.weaving.DebugLog;
+import pl.srw.billcalculator.form.fragment.PgeFormFragment;
+import pl.srw.billcalculator.form.fragment.PgnigFormFragment;
+import pl.srw.billcalculator.form.fragment.TauronFormFragment;
+import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 
 /**
@@ -21,9 +25,16 @@ public class FormPagerAdapter extends FragmentPagerAdapter {
         return Provider.values()[position].toString();
     }
 
+    @DebugLog
     @Override
     public Fragment getItem(int position) {
-        return FormFragment.of(Provider.values()[position]);
+        final Provider provider = Provider.values()[position];
+        switch (provider) {
+            case PGE: return new PgeFormFragment();
+            case PGNIG: return new PgnigFormFragment();
+            case TAURON: return new TauronFormFragment();
+        }
+        throw new EnumVariantNotHandledException(provider);
     }
 
     @Override
