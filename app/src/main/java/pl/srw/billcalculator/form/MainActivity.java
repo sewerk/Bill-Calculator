@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import pl.srw.billcalculator.form.adapter.FormPagerAdapter;
+import pl.srw.billcalculator.form.adapter.PreviousReadingsAdapterFactory;
 import pl.srw.billcalculator.form.view.SlidingTabLayout;
 
 import pl.srw.billcalculator.AboutActivity;
@@ -74,5 +75,12 @@ public class MainActivity extends FragmentActivity {
     public void start(Class<? extends Activity> activityClass) {
         Intent intent = new Intent(this, activityClass);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isFinishing())
+            PreviousReadingsAdapterFactory.onDestroy();
     }
 }

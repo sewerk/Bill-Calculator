@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import de.greenrobot.event.EventBus;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.event.HistoryChangedEvent;
@@ -31,7 +30,6 @@ public class PreviousReadingsAdapter extends ArrayAdapter<String> {
     PreviousReadingsAdapter(Context context, final CurrentReadingType readingType) {
         super(context, R.layout.dropdowntext, R.id.dropDown);
         this.readingType = readingType;
-        EventBus.getDefault().register(this);
         updateAll();
     }
 
