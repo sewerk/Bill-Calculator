@@ -1,9 +1,6 @@
 package pl.srw.billcalculator.test.bill.calculation;
 
-import android.support.test.runner.AndroidJUnit4;
-
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.math.BigDecimal;
 
@@ -16,7 +13,6 @@ import static org.junit.Assert.assertThat;
 /**
  * Created by Kamil Seweryn.
  */
-@RunWith(AndroidJUnit4.class)
 public class PgnigCalculatedBillTest {
 
     @Test

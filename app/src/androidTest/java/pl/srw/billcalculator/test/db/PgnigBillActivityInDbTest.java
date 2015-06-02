@@ -10,6 +10,7 @@ import pl.srw.billcalculator.form.MainActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.PgnigPrices;
+import pl.srw.billcalculator.form.view.SlidingTabLayout;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.testutils.PreferenceUtil;
 
@@ -38,7 +39,7 @@ public class PgnigBillActivityInDbTest extends ActivityInstrumentationTestCase2<
         runTestOnUiThread(new Runnable() {
             @Override
             public void run() {
-                sut.findViewById(R.id.iv_bill_type_switch).performClick();
+                ((SlidingTabLayout) sut.findViewById(R.id.sliding_tabs)).getChildAt(1).performClick();
             }
         });
         getInstrumentation().waitForIdleSync();

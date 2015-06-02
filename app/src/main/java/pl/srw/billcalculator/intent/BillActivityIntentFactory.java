@@ -4,6 +4,7 @@ import android.content.Context;
 
 import pl.srw.billcalculator.bill.PgeBillActivity;
 import pl.srw.billcalculator.bill.PgnigBillActivity;
+import pl.srw.billcalculator.bill.TauronBillActivity;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 
@@ -20,6 +21,8 @@ public final class BillActivityIntentFactory {
                 return new IntentCreator(context, PgeBillActivity.class);
             case PGNIG:
                 return new IntentCreator(context, PgnigBillActivity.class);
+            case TAURON:
+                return new IntentCreator(context, TauronBillActivity.class);
         }
         throw new EnumVariantNotHandledException(billType);
     }

@@ -13,6 +13,7 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.testutils.PreferenceUtil;
+import pl.srw.billcalculator.type.Provider;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
@@ -43,30 +44,11 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         super.tearDown();
     }
 
-    public void test_shouldSwitchFormOnSwitchButtonClick() {
-        assertTrue(isPgeForm(solo));
-
-        switchBill(solo);
-        assertTrue(isPgnigForm(solo));
-
-        switchBill(solo);
-        assertTrue(isPgeForm(solo));
-    }
-
-    public void test_shouldNotChangeFormOnScreenOrientationChange() {
-        solo.setActivityOrientation(Solo.PORTRAIT);
-        switchBill(solo);
-
-        solo.setActivityOrientation(Solo.LANDSCAPE);
-        assertTrue(isPgnigForm(solo));
-    }
-
     public void test_shouldShowReadingHintsAccordingToBillType() {
         PreferenceUtil.changeToG11Tariff(solo.getCurrentActivity());
         solo.setActivityOrientation(Solo.PORTRAIT);
-        switchBill(solo);
+        switchBill(solo, Provider.PGNIG);
 
-        assertTrue(isPgnigForm(solo));
         assertEquals(getString(solo, R.string.reading_hint_m3), findET(solo, R.id.et_reading_from).getHint());
         assertEquals(getString(solo, R.string.reading_hint_m3), findET(solo, R.id.et_reading_to).getHint());
 
@@ -74,8 +56,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         assertEquals(getString(solo, R.string.reading_hint_m3), findET(solo, R.id.et_reading_from).getHint());
         assertEquals(getString(solo, R.string.reading_hint_m3), findET(solo, R.id.et_reading_to).getHint());
 
-        switchBill(solo);
-        assertTrue(isPgeForm(solo));
+        switchBill(solo, Provider.PGE);
         assertEquals(getString(solo, R.string.reading_hint_kWh), findET(solo, R.id.et_reading_from).getHint());
         assertEquals(getString(solo, R.string.reading_hint_kWh), findET(solo, R.id.et_reading_to).getHint());
 
@@ -88,7 +69,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         final String dateFromValue = "01/01/2014";
         final String dateToValue = "31/12/2014";
 
-        switchBill(solo);
+        switchBill(solo, Provider.PGNIG);
         solo.enterText(0, readingFromValue);
         solo.enterText(1, readingToValue);
         runTestOnUiThread(new Runnable() {
@@ -100,7 +81,6 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         });
 
         solo.setActivityOrientation(Solo.LANDSCAPE);
-        assertTrue(isPgnigForm(solo));
         assertEquals(readingFromValue, solo.getEditText(0).getText().toString());
         assertEquals(readingToValue, solo.getEditText(1).getText().toString());
         assertEquals(dateFromValue, solo.getButton(0).getText());
@@ -108,12 +88,10 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
     }
 
     public void test_shouldShowTariffLabelForPgeOnly() {
-        switchBill(solo);
-        assertTrue(isPgnigForm(solo));
+        switchBill(solo, Provider.PGNIG);
         assertFalse(solo.searchText(getString(solo, R.string.tariff_G11_on_bill)));
 
-        switchBill(solo);
-        assertTrue(isPgeForm(solo));
+        switchBill(solo, Provider.PGE);
         assertNotNull(solo.getView(R.id.ll_tariff));
         assertTrue(solo.searchText(getString(solo, R.string.tariff_G11_on_bill)));
     }
@@ -261,7 +239,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
 
     public void test_shouldShowGasBillWhenGasBillType() {
         // given: gas form filled correctly
-        switchBill(solo);
+        switchBill(solo, Provider.PGNIG);
         solo.enterText(0, "123");
         solo.enterText(1, "234");
 

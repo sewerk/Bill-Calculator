@@ -12,6 +12,7 @@ import pl.srw.billcalculator.form.MainActivity;
 import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.testutils.HistoryGenerator;
 import pl.srw.billcalculator.testutils.SoloHelper;
+import pl.srw.billcalculator.type.Provider;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -71,8 +72,7 @@ public class PgnigUITest extends ActivityInstrumentationTestCase2<MainActivity> 
 
     private void inputValues() {
         // change bill type
-        SoloHelper.switchBill(solo);
-        assertThat(SoloHelper.isPgnigForm(solo),is(true));
+        SoloHelper.switchBill(solo, Provider.PGNIG);
 
         // type readings
         solo.enterText(0, "6696");

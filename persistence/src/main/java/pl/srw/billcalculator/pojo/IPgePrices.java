@@ -3,7 +3,7 @@ package pl.srw.billcalculator.pojo;
 /**
  * Created by Kamil Seweryn.
  */
-public interface IPgePrices {
+public interface IPgePrices extends IPrices {
     
     String getZaEnergieCzynna();
     String getSkladnikJakosciowy();

@@ -44,6 +44,8 @@
 
         <service android:name=".bill.service.PgeBillStoringService" />
 
+        <service android:name=".bill.service.TauronBillStoringService" />
+
     </application>
 
 </manifest>

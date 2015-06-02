@@ -3,35 +3,34 @@ package pl.srw.billcalculator.bill.calculation;
 import java.math.BigDecimal;
 
 import lombok.Getter;
-import pl.srw.billcalculator.pojo.IPgePrices;
 
 /**
  * Created by Kamil Seweryn.
  */
 @SuppressWarnings("FieldCanBeLocal")
 @Getter
-public abstract class PgeCalculatedBill extends CalculatedBill {
+public abstract class CalculatedEnergyBill extends CalculatedBill {
 
     public static final BigDecimal EXCISE = new BigDecimal("0.02");
 
     private final BigDecimal oplataAbonamentowaNetCharge;
     private final BigDecimal oplataPrzejsciowaNetCharge;
-    private final BigDecimal oplataStalaZaPrzesylNetCharge;
+    private final BigDecimal oplataDystrybucyjnaStalaNetCharge;
 
     private final BigDecimal oplataAbonamentowaVatCharge;
     private final BigDecimal oplataPrzejsciowaVatCharge;
-    private final BigDecimal oplataStalaZaPrzesylVatCharge;
+    private final BigDecimal oplataDystrybucyjnaStalaVatCharge;
 
-    protected PgeCalculatedBill(final String dateFrom, final String dateTo, final IPgePrices prices) {
+    protected CalculatedEnergyBill(final String dateFrom, final String dateTo, String oplataAbonamentowa, String oplataPrzejsciowa, String oplataStalaZaPrzesyl) {
         super(dateFrom, dateTo);
 
-        oplataAbonamentowaNetCharge = multiplyAndAddToSum(prices.getOplataAbonamentowa(), getMonthCount());
-        oplataPrzejsciowaNetCharge = multiplyAndAddToSum(prices.getOplataPrzejsciowa(), getMonthCount());
-        oplataStalaZaPrzesylNetCharge = multiplyAndAddToSum(prices.getOplataStalaZaPrzesyl(), getMonthCount());
+        oplataAbonamentowaNetCharge = multiplyAndAddToSum(oplataAbonamentowa, getMonthCount());
+        oplataPrzejsciowaNetCharge = multiplyAndAddToSum(oplataPrzejsciowa, getMonthCount());
+        oplataDystrybucyjnaStalaNetCharge = multiplyAndAddToSum(oplataStalaZaPrzesyl, getMonthCount());
 
         oplataAbonamentowaVatCharge = multiplyVatAndAddToSum(oplataAbonamentowaNetCharge);
         oplataPrzejsciowaVatCharge = multiplyVatAndAddToSum(oplataPrzejsciowaNetCharge);
-        oplataStalaZaPrzesylVatCharge = multiplyVatAndAddToSum(oplataStalaZaPrzesylNetCharge);
+        oplataDystrybucyjnaStalaVatCharge = multiplyVatAndAddToSum(oplataDystrybucyjnaStalaNetCharge);
     }
 
     public BigDecimal getExcise() {

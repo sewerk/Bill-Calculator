@@ -1,9 +1,6 @@
 package pl.srw.billcalculator.test.bill.calculation;
 
-import android.support.test.runner.AndroidJUnit4;
-
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.math.BigDecimal;
 
@@ -16,7 +13,6 @@ import static org.junit.Assert.assertThat;
 /**
  * Created by Kamil Seweryn.
  */
-@RunWith(AndroidJUnit4.class)
 public class PgeG11CalculatedBillTest {
 
     @Test
@@ -36,14 +32,14 @@ public class PgeG11CalculatedBillTest {
         assertThat(sut.getSkladnikJakosciowyNetCharge(), is(new BigDecimal("20.20")));
         assertThat(sut.getOplataSieciowaNetCharge(), is(new BigDecimal("30.30")));
         assertThat(sut.getOplataPrzejsciowaNetCharge(), is(new BigDecimal("8.08")));
-        assertThat(sut.getOplataStalaZaPrzesylNetCharge(), is(new BigDecimal("10.10")));
+        assertThat(sut.getOplataDystrybucyjnaStalaNetCharge(), is(new BigDecimal("10.10")));
         assertThat(sut.getOplataAbonamentowaNetCharge(), is(new BigDecimal("12.12")));
 
         assertThat(sut.getZaEnergieCzynnaVatCharge(), is(new BigDecimal("2.5530")));
         assertThat(sut.getSkladnikJakosciowyVatCharge(), is(new BigDecimal("4.6460")));
         assertThat(sut.getOplataSieciowaVatCharge(), is(new BigDecimal("6.9690")));
         assertThat(sut.getOplataPrzejsciowaVatCharge(), is(new BigDecimal("1.8584")));
-        assertThat(sut.getOplataStalaZaPrzesylVatCharge(), is(new BigDecimal("2.3230")));
+        assertThat(sut.getOplataDystrybucyjnaStalaVatCharge(), is(new BigDecimal("2.3230")));
         assertThat(sut.getOplataAbonamentowaVatCharge(), is(new BigDecimal("2.7876")));
 
         assertThat(sut.getNetChargeSum(), is(new BigDecimal("91.90")));

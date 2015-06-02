@@ -10,7 +10,7 @@ import pl.srw.billcalculator.pojo.IPgePrices;
  */
 @SuppressWarnings("FieldCanBeLocal")
 @Getter
-public class PgeG12CalculatedBill extends PgeCalculatedBill {
+public class PgeG12CalculatedBill extends CalculatedEnergyBill {
 
     private final int dayConsumption;
     private final int nightConsumption;
@@ -33,7 +33,7 @@ public class PgeG12CalculatedBill extends PgeCalculatedBill {
     public PgeG12CalculatedBill(final int readingDayFrom, final int readingDayTo,
                                 final int readingNightFrom, final int readingNightTo,
                                 final String dateFrom, final String dateTo, final IPgePrices prices) {
-        super(dateFrom, dateTo, prices);
+        super(dateFrom, dateTo, prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataStalaZaPrzesyl());
         dayConsumption = readingDayTo - readingDayFrom;
         nightConsumption = readingNightTo - readingNightFrom;
 

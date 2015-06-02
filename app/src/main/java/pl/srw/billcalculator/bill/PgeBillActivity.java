@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.bill.calculation.PgeCalculatedBill;
+import pl.srw.billcalculator.bill.calculation.CalculatedEnergyBill;
 import pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.PgeG12CalculatedBill;
 import pl.srw.billcalculator.intent.IntentCreator;
@@ -42,7 +42,7 @@ public class PgeBillActivity extends BackableActivity {
     @Optional @InjectExtra(IntentCreator.READING_NIGHT_TO) int readingNightTo;
     @Optional @InjectExtra(IntentCreator.PRICES) IPgePrices prices;
 
-    private PgeCalculatedBill bill;
+    private CalculatedEnergyBill bill;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +82,7 @@ public class PgeBillActivity extends BackableActivity {
         setRow(chargeDetailsTable, R.id.row_oplata_przejsciowa, R.string.strefa_pusta, R.string.oplata_przejsciowa, bill.getMonthCount(), R.string.m_c,
                 new BigDecimal(prices.getOplataPrzejsciowa()), bill.getOplataPrzejsciowaNetCharge());
         setRow(chargeDetailsTable, R.id.row_oplata_stala_za_przesyl, R.string.strefa_pusta, R.string.oplata_stala_za_przesyl, bill.getMonthCount(), R.string.m_c,
-                new BigDecimal(prices.getOplataStalaZaPrzesyl()), bill.getOplataStalaZaPrzesylNetCharge());
+                new BigDecimal(prices.getOplataStalaZaPrzesyl()), bill.getOplataDystrybucyjnaStalaNetCharge());
         setRow(chargeDetailsTable, R.id.row_oplata_abonamentowa, R.string.strefa_pusta, R.string.oplata_abonamentowa, bill.getMonthCount(), R.string.m_c,
                 new BigDecimal(prices.getOplataAbonamentowa()), bill.getOplataAbonamentowaNetCharge());
 
