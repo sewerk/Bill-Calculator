@@ -31,6 +31,10 @@ public abstract class HistoryItemValueProvider {
                 return new PgeG12BillHistoryItemValueProvider(item);
             case PGNIG:
                 return new PgnigBillHistoryItemValueProvider(item);
+            case TAURON_G11:
+                return new TauronG11BillHistoryItemValueProvider(item);
+            case TAURON_G12:
+                return new TauronG12BillHistoryItemValueProvider(item);
         }
         throw new EnumVariantNotHandledException(billType);
     }

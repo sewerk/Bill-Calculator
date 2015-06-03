@@ -10,6 +10,8 @@ import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgnigBill;
+import pl.srw.billcalculator.db.TauronG11Bill;
+import pl.srw.billcalculator.db.TauronG12Bill;
 import pl.srw.billcalculator.form.view.DatePickingButton;
 import pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton;
 import pl.srw.billcalculator.util.Dates;
@@ -78,6 +80,20 @@ public final class IntentCreator {
         putDatesExtra(bill);
         putReadingsExtra(bill.getReadingFrom(), bill.getReadingTo());
         intent.putExtra(PRICES, bill.getPgnigPrices());
+        return intent;
+    }
+
+    public Intent from(final TauronG11Bill bill) {
+        putDatesExtra(bill);
+        putReadingsExtra(bill.getReadingFrom(), bill.getReadingTo());
+        intent.putExtra(PRICES, bill.getTauronPrices());
+        return intent;
+    }
+
+    public Intent from(final TauronG12Bill bill) {
+        putDatesExtra(bill);
+        putReadingsG12Extra(bill.getReadingDayFrom(), bill.getReadingDayTo(), bill.getReadingNightFrom(), bill.getReadingNightTo());
+        intent.putExtra(PRICES, bill.getTauronPrices());
         return intent;
     }
 
