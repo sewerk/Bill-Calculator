@@ -7,13 +7,7 @@ import android.util.Base64;
 import android.view.View;
 import android.webkit.WebView;
 
-import org.rendersnake.DocType;
-import org.rendersnake.HtmlCanvas;
-
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
-import static org.rendersnake.HtmlAttributesFactory.src;
 
 /**
  * Created by kseweryn on 27.04.15.
@@ -39,23 +33,8 @@ public final class ToWebView {
     }
 
     private static String generateHtml(View billView) {
-        HtmlCanvas htmlCanvas = new HtmlCanvas();
-        try {
-            htmlCanvas
-                    .render(DocType.HTML5)
-                    .html()
-                    .body()
-
-                    .img(src(bitmapToString(loadBitmapFromView(billView)))//TODO: reafactor/optimize
-                            .width("100%").height("100%")
-                    )
-
-                    ._body()
-                    ._html();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return htmlCanvas.toHtml();
+        return "<!DOCTYPE html><html><body><img width='100%' height='100%' src='" + bitmapToString(loadBitmapFromView(billView)) + "' /></body></html>";
+//TODO: reafactor/optimize
     }
 
     private static String bitmapToString(Bitmap bitmap) {

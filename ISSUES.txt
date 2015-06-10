@@ -3,3 +3,9 @@
 -picking previous reading from auto complete when error is shown does not hide error icon on et
     click calculate > pick value from hint
 -cannot swipe form page due to horizontal scroll view on readings
+-leaking main activity on prev reading adapters
+-check leak on eventbus
+-replace nucleus with pure presenter
+
+Improvements
+-save last choosen form

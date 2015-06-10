@@ -1,18 +1,15 @@
 package pl.srw.billcalculator;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.f2prateek.dart.Dart;
 
-import butterknife.ButterKnife;
-import nucleus.presenter.Presenter;
-import nucleus.view.NucleusActivity;
-
 /**
  * Created by Kamil Seweryn.
  */
-public abstract class BackableActivity<T extends Presenter> extends NucleusActivity<T> {
+public abstract class BackableActivity extends Activity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

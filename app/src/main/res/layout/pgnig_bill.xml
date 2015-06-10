@@ -6,7 +6,7 @@
     android:scrollbars="none"
     android:padding="2dp"
     android:background="@android:color/white"
-    tools:context=".PgnigBillActivity">
+    tools:context=".bill.PgnigBillActivity">
 
     <ScrollView
         android:layout_width="wrap_content"

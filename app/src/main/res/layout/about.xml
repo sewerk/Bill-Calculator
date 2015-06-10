@@ -33,7 +33,7 @@
             android:layout_marginBottom="@dimen/double_padding"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:drawableLeft="@drawable/ic_launcher"
+            android:drawableLeft="@mipmap/ic_launcher"
             android:contentDescription="Application logo"
             android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceMedium"

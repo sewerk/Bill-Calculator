@@ -24,13 +24,13 @@ public abstract class CalculatedEnergyBill extends CalculatedBill {
     protected CalculatedEnergyBill(final String dateFrom, final String dateTo, String oplataAbonamentowa, String oplataPrzejsciowa, String oplataStalaZaPrzesyl) {
         super(dateFrom, dateTo);
 
-        oplataAbonamentowaNetCharge = multiplyAndAddToSum(oplataAbonamentowa, getMonthCount());
-        oplataPrzejsciowaNetCharge = multiplyAndAddToSum(oplataPrzejsciowa, getMonthCount());
-        oplataDystrybucyjnaStalaNetCharge = multiplyAndAddToSum(oplataStalaZaPrzesyl, getMonthCount());
+        oplataAbonamentowaNetCharge = countNetAndAddToSum(oplataAbonamentowa, getMonthCount());
+        oplataPrzejsciowaNetCharge = countNetAndAddToSum(oplataPrzejsciowa, getMonthCount());
+        oplataDystrybucyjnaStalaNetCharge = countNetAndAddToSum(oplataStalaZaPrzesyl, getMonthCount());
 
-        oplataAbonamentowaVatCharge = multiplyVatAndAddToSum(oplataAbonamentowaNetCharge);
-        oplataPrzejsciowaVatCharge = multiplyVatAndAddToSum(oplataPrzejsciowaNetCharge);
-        oplataDystrybucyjnaStalaVatCharge = multiplyVatAndAddToSum(oplataDystrybucyjnaStalaNetCharge);
+        oplataAbonamentowaVatCharge = countVatAndAddToSum(oplataAbonamentowaNetCharge);
+        oplataPrzejsciowaVatCharge = countVatAndAddToSum(oplataPrzejsciowaNetCharge);
+        oplataDystrybucyjnaStalaVatCharge = countVatAndAddToSum(oplataDystrybucyjnaStalaNetCharge);
     }
 
     public BigDecimal getExcise() {

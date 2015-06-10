@@ -10,7 +10,7 @@ import pl.srw.billcalculator.pojo.ITauronPrices;
  */
 @SuppressWarnings("FieldCanBeLocal")
 @Getter
-public class TauronG11CalculatedBill extends CalculatedEnergyBill {
+public class TauronG11CalculatedBill extends TauronCalculatedBill {
 
     private final int consumption;
 
@@ -24,15 +24,35 @@ public class TauronG11CalculatedBill extends CalculatedEnergyBill {
         super(dateFrom, dateTo, prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataDystrybucyjnaStala());
         consumption = readingTo - readingFrom;
 
-        energiaElektrycznaNetCharge = multiplyAndAddToSum(prices.getEnergiaElektrycznaCzynna(), consumption);
-        oplataDystrybucyjnaZmiennaNetCharge = multiplyAndAddToSum(prices.getOplataDystrybucyjnaZmienna(), consumption);
+        energiaElektrycznaNetCharge = countNetAndAddToSum(prices.getEnergiaElektrycznaCzynna(), consumption);
+        oplataDystrybucyjnaZmiennaNetCharge = countNetAndAddToSum(prices.getOplataDystrybucyjnaZmienna(), consumption);
 
-        energiaElektrycznaVatCharge = multiplyVatAndAddToSum(energiaElektrycznaNetCharge);
-        oplataDystrybucyjnaZmiennaVatCharge = multiplyVatAndAddToSum(oplataDystrybucyjnaZmiennaNetCharge);
+        energiaElektrycznaVatCharge = countVatAndAddToSum(energiaElektrycznaNetCharge);
+        oplataDystrybucyjnaZmiennaVatCharge = countVatAndAddToSum(oplataDystrybucyjnaZmiennaNetCharge);
     }
 
     @Override
     public int getTotalConsumption() {
         return consumption;
+    }
+
+    @Override
+    public BigDecimal getSellNetCharge() {
+        return sum(energiaElektrycznaNetCharge);
+    }
+
+    @Override
+    public BigDecimal getSellVatCharge() {
+        return sum(energiaElektrycznaVatCharge);
+    }
+
+    @Override
+    public BigDecimal getDistributeNetCharge() {
+        return sum(getAbsDistributeNetCharge(), oplataDystrybucyjnaZmiennaNetCharge);
+    }
+
+    @Override
+    public BigDecimal getDistributeVatCharge() {
+        return sum(getAbsDistributeVatCharge(), oplataDystrybucyjnaZmiennaVatCharge);
     }
 }

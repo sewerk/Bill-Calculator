@@ -8,29 +8,30 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import nucleus.presenter.Presenter;
 import pl.srw.billcalculator.type.Provider;
 
 /**
  * Created by kseweryn on 14.04.15.
  */
-public class SettingsPresenter extends Presenter<SettingsActivity> {
+public class SettingsPresenter implements ISettingsPresenter {
 
     private static final String TITLE = "TITLE";
     private static final String DESCRIPTION = "DESCRIPTION";
     public static final String[] COLUMNS = {TITLE, DESCRIPTION};
+
+    private final ISettingsView view;
     private List<Map<String, String>> entries = new ArrayList<>();
 
-    @Override
-    protected void onTakeView(SettingsActivity view) {
-        super.onTakeView(view);
+    public SettingsPresenter(ISettingsView view) {
+        this.view = view;
         if (entries.isEmpty()) {
             addEntries(Provider.values());
             entries = Collections.unmodifiableList(entries);
         }
-        getView().fillList(entries);
+        view.fillList(entries, COLUMNS);
     }
 
+    @Override
     public Provider getProviderAt(final int position) {
         return Provider.values()[position];
     }
@@ -49,6 +50,6 @@ public class SettingsPresenter extends Presenter<SettingsActivity> {
     }
 
     private String getString(@StringRes final int strRes) {
-        return getView().getString(strRes);
+        return view.getString(strRes);
     }
 }

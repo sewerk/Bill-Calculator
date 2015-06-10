@@ -10,7 +10,7 @@ import pl.srw.billcalculator.pojo.ITauronPrices;
  */
 @SuppressWarnings("FieldCanBeLocal")
 @Getter
-public class TauronG12CalculatedBill extends CalculatedEnergyBill {
+public class TauronG12CalculatedBill extends TauronCalculatedBill {
 
     private final int dayConsumption;
     private final int nightConsumption;
@@ -24,7 +24,7 @@ public class TauronG12CalculatedBill extends CalculatedEnergyBill {
     private final BigDecimal oplataDystrybucyjnaZmiennaDayVatCharge;
     private final BigDecimal energiaElektrycznaNightVatCharge;
     private final BigDecimal oplataDystrybucyjnaZmiennaNightVatCharge;
-    
+
     public TauronG12CalculatedBill(final int readingDayFrom, final int readingDayTo,
                                    final int readingNightFrom, final int readingNightTo,
                                    final String dateFrom, final String dateTo, final ITauronPrices prices) {
@@ -32,15 +32,15 @@ public class TauronG12CalculatedBill extends CalculatedEnergyBill {
         dayConsumption = readingDayTo - readingDayFrom;
         nightConsumption = readingNightTo - readingNightFrom;
 
-        energiaElektrycznaDayNetCharge = multiplyAndAddToSum(prices.getEnergiaElektrycznaCzynnaDzien(), dayConsumption);
-        oplataDystrybucyjnaZmiennaDayNetCharge = multiplyAndAddToSum(prices.getOplataDystrybucyjnaZmiennaDzien(), dayConsumption);
-        energiaElektrycznaNightNetCharge = multiplyAndAddToSum(prices.getEnergiaElektrycznaCzynnaNoc(), nightConsumption);
-        oplataDystrybucyjnaZmiennaNightNetCharge = multiplyAndAddToSum(prices.getOplataDystrybucyjnaZmiennaNoc(), nightConsumption);
+        energiaElektrycznaDayNetCharge = countNetAndAddToSum(prices.getEnergiaElektrycznaCzynnaDzien(), dayConsumption);
+        oplataDystrybucyjnaZmiennaDayNetCharge = countNetAndAddToSum(prices.getOplataDystrybucyjnaZmiennaDzien(), dayConsumption);
+        energiaElektrycznaNightNetCharge = countNetAndAddToSum(prices.getEnergiaElektrycznaCzynnaNoc(), nightConsumption);
+        oplataDystrybucyjnaZmiennaNightNetCharge = countNetAndAddToSum(prices.getOplataDystrybucyjnaZmiennaNoc(), nightConsumption);
 
-        energiaElektrycznaDayVatCharge = multiplyVatAndAddToSum(energiaElektrycznaDayNetCharge);
-        oplataDystrybucyjnaZmiennaDayVatCharge = multiplyVatAndAddToSum(oplataDystrybucyjnaZmiennaDayNetCharge);
-        energiaElektrycznaNightVatCharge = multiplyVatAndAddToSum(energiaElektrycznaNightNetCharge);
-        oplataDystrybucyjnaZmiennaNightVatCharge = multiplyVatAndAddToSum(oplataDystrybucyjnaZmiennaNightNetCharge);
+        energiaElektrycznaDayVatCharge = countVatAndAddToSum(energiaElektrycznaDayNetCharge);
+        oplataDystrybucyjnaZmiennaDayVatCharge = countVatAndAddToSum(oplataDystrybucyjnaZmiennaDayNetCharge);
+        energiaElektrycznaNightVatCharge = countVatAndAddToSum(energiaElektrycznaNightNetCharge);
+        oplataDystrybucyjnaZmiennaNightVatCharge = countVatAndAddToSum(oplataDystrybucyjnaZmiennaNightNetCharge);
     }
 
     @Override
@@ -48,4 +48,27 @@ public class TauronG12CalculatedBill extends CalculatedEnergyBill {
         return dayConsumption + nightConsumption;
     }
 
+    @Override
+    public BigDecimal getSellNetCharge() {
+        return sum(energiaElektrycznaDayNetCharge, energiaElektrycznaNightNetCharge);
+    }
+
+    @Override
+    public BigDecimal getSellVatCharge() {
+        return sum(energiaElektrycznaDayVatCharge, energiaElektrycznaNightVatCharge);
+    }
+
+    @Override
+    public BigDecimal getDistributeNetCharge() {
+        return sum(getAbsDistributeNetCharge(),
+                oplataDystrybucyjnaZmiennaDayNetCharge,
+                oplataDystrybucyjnaZmiennaNightNetCharge);
+    }
+
+    @Override
+    public BigDecimal getDistributeVatCharge() {
+        return sum(getAbsDistributeVatCharge(),
+                oplataDystrybucyjnaZmiennaDayVatCharge,
+                oplataDystrybucyjnaZmiennaNightVatCharge);
+    }
 }

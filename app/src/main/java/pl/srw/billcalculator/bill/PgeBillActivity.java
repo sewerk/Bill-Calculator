@@ -28,21 +28,11 @@ import pl.srw.billcalculator.util.Views;
 /**
  * Created by Kamil Seweryn
  */
-public class PgeBillActivity extends BackableActivity {
+public class PgeBillActivity extends EnergyBillActivity {
 
     private static final int PRICE_SCALE = 4;
 
-    @InjectExtra(IntentCreator.DATE_FROM) String dateFrom;
-    @InjectExtra(IntentCreator.DATE_TO) String dateTo;
-    @Optional @InjectExtra(IntentCreator.READING_FROM) int readingFrom;
-    @Optional @InjectExtra(IntentCreator.READING_TO) int readingTo;
-    @Optional @InjectExtra(IntentCreator.READING_DAY_FROM) int readingDayFrom;
-    @Optional @InjectExtra(IntentCreator.READING_DAY_TO) int readingDayTo;
-    @Optional @InjectExtra(IntentCreator.READING_NIGHT_FROM) int readingNightFrom;
-    @Optional @InjectExtra(IntentCreator.READING_NIGHT_TO) int readingNightTo;
     @Optional @InjectExtra(IntentCreator.PRICES) IPgePrices prices;
-
-    private CalculatedEnergyBill bill;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,10 +77,6 @@ public class PgeBillActivity extends BackableActivity {
                 new BigDecimal(prices.getOplataAbonamentowa()), bill.getOplataAbonamentowaNetCharge());
 
         setChargeSummary(chargeDetailsTable);
-    }
-
-    private boolean isTwoUnitTariff() {
-        return readingDayTo > 0;
     }
 
     private void setG11Rows(TableLayout chargeDetailsTable, int consumption) {

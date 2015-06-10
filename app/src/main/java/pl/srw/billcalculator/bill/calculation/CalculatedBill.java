@@ -23,13 +23,13 @@ public abstract class CalculatedBill {
         monthCount = Dates.countMonth(dateFrom, dateTo);
     }
 
-    protected BigDecimal multiplyAndAddToSum(final String oplataAbonamentowa, final int count) {
+    protected BigDecimal countNetAndAddToSum(final String oplataAbonamentowa, final int count) {
         BigDecimal netCharge = new BigDecimal(oplataAbonamentowa).multiply(new BigDecimal(count));
         netChargeSum = netChargeSum.add(netCharge.setScale(2, RoundingMode.HALF_UP));
         return netCharge;
     }
 
-    protected BigDecimal multiplyVatAndAddToSum(final BigDecimal netCharge) {
+    protected BigDecimal countVatAndAddToSum(final BigDecimal netCharge) {
         BigDecimal vatCharge = netCharge.multiply(VAT);
         vatChargeSum = vatChargeSum.add(vatCharge.setScale(2, RoundingMode.HALF_UP));
         return vatCharge;

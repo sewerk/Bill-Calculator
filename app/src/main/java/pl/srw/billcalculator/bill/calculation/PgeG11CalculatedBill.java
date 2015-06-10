@@ -26,13 +26,13 @@ public class PgeG11CalculatedBill extends CalculatedEnergyBill {
         super(dateFrom, dateTo, prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataStalaZaPrzesyl());
         consumption = readingTo - readingFrom;
 
-        zaEnergieCzynnaNetCharge = multiplyAndAddToSum(prices.getZaEnergieCzynna(), consumption);
-        skladnikJakosciowyNetCharge = multiplyAndAddToSum(prices.getSkladnikJakosciowy(), consumption);
-        oplataSieciowaNetCharge = multiplyAndAddToSum(prices.getOplataSieciowa(), consumption);
+        zaEnergieCzynnaNetCharge = countNetAndAddToSum(prices.getZaEnergieCzynna(), consumption);
+        skladnikJakosciowyNetCharge = countNetAndAddToSum(prices.getSkladnikJakosciowy(), consumption);
+        oplataSieciowaNetCharge = countNetAndAddToSum(prices.getOplataSieciowa(), consumption);
 
-        zaEnergieCzynnaVatCharge = multiplyVatAndAddToSum(zaEnergieCzynnaNetCharge);
-        skladnikJakosciowyVatCharge = multiplyVatAndAddToSum(skladnikJakosciowyNetCharge);
-        oplataSieciowaVatCharge = multiplyVatAndAddToSum(oplataSieciowaNetCharge);
+        zaEnergieCzynnaVatCharge = countVatAndAddToSum(zaEnergieCzynnaNetCharge);
+        skladnikJakosciowyVatCharge = countVatAndAddToSum(skladnikJakosciowyNetCharge);
+        oplataSieciowaVatCharge = countVatAndAddToSum(oplataSieciowaNetCharge);
     }
 
     @Override

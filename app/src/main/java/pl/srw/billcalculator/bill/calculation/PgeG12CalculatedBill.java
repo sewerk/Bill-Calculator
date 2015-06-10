@@ -37,19 +37,19 @@ public class PgeG12CalculatedBill extends CalculatedEnergyBill {
         dayConsumption = readingDayTo - readingDayFrom;
         nightConsumption = readingNightTo - readingNightFrom;
 
-        zaEnergieCzynnaDayNetCharge = multiplyAndAddToSum(prices.getZaEnergieCzynnaDzien(), dayConsumption);
-        skladnikJakosciowyDayNetCharge = multiplyAndAddToSum(prices.getSkladnikJakosciowy(), dayConsumption);
-        oplataSieciowaDayNetCharge = multiplyAndAddToSum(prices.getOplataSieciowaDzien(), dayConsumption);
-        zaEnergieCzynnaNightNetCharge = multiplyAndAddToSum(prices.getZaEnergieCzynnaNoc(), nightConsumption);
-        skladnikJakosciowyNightNetCharge = multiplyAndAddToSum(prices.getSkladnikJakosciowy(), nightConsumption);
-        oplataSieciowaNightNetCharge = multiplyAndAddToSum(prices.getOplataSieciowaNoc(), nightConsumption);
+        zaEnergieCzynnaDayNetCharge = countNetAndAddToSum(prices.getZaEnergieCzynnaDzien(), dayConsumption);
+        skladnikJakosciowyDayNetCharge = countNetAndAddToSum(prices.getSkladnikJakosciowy(), dayConsumption);
+        oplataSieciowaDayNetCharge = countNetAndAddToSum(prices.getOplataSieciowaDzien(), dayConsumption);
+        zaEnergieCzynnaNightNetCharge = countNetAndAddToSum(prices.getZaEnergieCzynnaNoc(), nightConsumption);
+        skladnikJakosciowyNightNetCharge = countNetAndAddToSum(prices.getSkladnikJakosciowy(), nightConsumption);
+        oplataSieciowaNightNetCharge = countNetAndAddToSum(prices.getOplataSieciowaNoc(), nightConsumption);
 
-        zaEnergieCzynnaDayVatCharge = multiplyVatAndAddToSum(zaEnergieCzynnaDayNetCharge);
-        skladnikJakosciowyDayVatCharge = multiplyVatAndAddToSum(skladnikJakosciowyDayNetCharge);
-        oplataSieciowaDayVatCharge = multiplyVatAndAddToSum(oplataSieciowaDayNetCharge);
-        zaEnergieCzynnaNightVatCharge = multiplyVatAndAddToSum(zaEnergieCzynnaNightNetCharge);
-        skladnikJakosciowyNightVatCharge = multiplyVatAndAddToSum(skladnikJakosciowyNightNetCharge);
-        oplataSieciowaNightVatCharge = multiplyVatAndAddToSum(oplataSieciowaNightNetCharge);
+        zaEnergieCzynnaDayVatCharge = countVatAndAddToSum(zaEnergieCzynnaDayNetCharge);
+        skladnikJakosciowyDayVatCharge = countVatAndAddToSum(skladnikJakosciowyDayNetCharge);
+        oplataSieciowaDayVatCharge = countVatAndAddToSum(oplataSieciowaDayNetCharge);
+        zaEnergieCzynnaNightVatCharge = countVatAndAddToSum(zaEnergieCzynnaNightNetCharge);
+        skladnikJakosciowyNightVatCharge = countVatAndAddToSum(skladnikJakosciowyNightNetCharge);
+        oplataSieciowaNightVatCharge = countVatAndAddToSum(oplataSieciowaNightNetCharge);
     }
 
     @Override

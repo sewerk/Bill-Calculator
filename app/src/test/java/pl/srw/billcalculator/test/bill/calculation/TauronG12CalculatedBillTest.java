@@ -49,5 +49,12 @@ public class TauronG12CalculatedBillTest {
         assertThat(sut.getVatChargeSum(), is(new BigDecimal("160.30")));
         assertThat(sut.getGrossChargeSum(), is(new BigDecimal("857.20")));
         assertThat(sut.getExcise(), is(new BigDecimal("0.60")));
+
+        assertThat(sut.getSellNetCharge(), is(new BigDecimal("232.30")));
+        assertThat(sut.getSellVatCharge(), is(new BigDecimal("53.43")));
+        assertThat(sut.getSellGrossCharge(), is(new BigDecimal("285.73")));
+        assertThat(sut.getDistributeNetCharge(), is(new BigDecimal("464.60")));
+        assertThat(sut.getDistributeVatCharge(), is(new BigDecimal("106.87")));
+        assertThat(sut.getDistributeGrossCharge(), is(new BigDecimal("571.47")));
     }
 }

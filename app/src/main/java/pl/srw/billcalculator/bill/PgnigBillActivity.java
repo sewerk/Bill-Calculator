@@ -54,6 +54,7 @@ public class PgnigBillActivity extends BackableActivity {
         setSummaryTable();
         setChargeTV();
 
+        //TODO: make optional
         View billView = findViewById(R.id.bill_content);
         setContentView(ToWebView.wrapByWebView(this, billView));
     }

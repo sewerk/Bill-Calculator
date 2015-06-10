@@ -60,7 +60,13 @@
     <string name="tauron_oplata_dyst_zmienna_G12dzien" translatable="false">Opłata dystr. zm. dzienna</string>
     <string name="tauron_oplata_dyst_zmienna_G12noc" translatable="false">Opłata dystr. zm. nocna</string>
 
-<!-- gas_bill -->
+    <string name="data_wystawienia" translatable="false">Data wystawienia %1$s</string>
+    <string name="grupa_taryfowa" translatable="false">Grupa taryfowa Sprzedawcy: %1$s\nGrupa taryfowa OSD(dystrybucja): %1$s</string>
+    <string name="data_sprzedazy" translatable="false">Data sprzedaży: %1$s\nRozliczenie z tytułu dostarczenia energii elektrycznej\n(PKWiU 35.11.10.0)</string>
+    <string name="okres_rozliczeniowy" translatable="false">Okres rozliczeniowy: %1$s - %2$s</string>
+    <string name="kwota_akcyzy" translatable="false">Kwota podatku akcyzowego, zawarta w wartości energii wykazanej w tym rozliczeniu wynosi %1$s zł.</string>
+
+    <!-- gas_bill -->
     <string name="gas_bill">Gas bill</string>
     <string name="rozliczenie_dnia" translatable="false">Rozliczenie z dnia %1$s</string>
     <string name="wartosc_faktury" translatable="false">Wartość faktury brutto: %1$s zł</string>
