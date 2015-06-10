@@ -4,6 +4,9 @@ import android.app.Application;
 import android.content.Context;
 
 import com.crashlytics.android.Crashlytics;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
+
 import io.fabric.sdk.android.Fabric;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.settings.GeneralPreferences;
@@ -23,8 +26,12 @@ public class BillCalculator extends Application {
         super.onCreate();
         context = getApplicationContext();
 
-        if (BuildConfig.DEBUG) Database.enableDatabaseLogging();
-        else Fabric.with(this, new Crashlytics());
+        if (BuildConfig.DEBUG) {
+            Database.enableDatabaseLogging();
+            LeakCanary.install(this);
+        } else  {
+            Fabric.with(this, new Crashlytics());
+        }
 
         Database.initialize(this);
 
