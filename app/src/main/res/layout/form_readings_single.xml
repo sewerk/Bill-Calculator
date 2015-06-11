@@ -31,7 +31,7 @@
             android:gravity="end"
             android:hint="@string/reading_hint_kWh"
             android:inputType="number"
-            android:imeOptions="actionNext" />
+            android:imeOptions="actionNext|flagNoExtractUi" />
 
     </LinearLayout>
 
@@ -57,7 +57,7 @@
             android:gravity="end"
             android:hint="@string/reading_hint_kWh"
             android:inputType="number"
-            android:imeOptions="actionDone"/>
+            android:imeOptions="actionDone|flagNoExtractUi"/>
 
     </LinearLayout>
 </LinearLayout>
