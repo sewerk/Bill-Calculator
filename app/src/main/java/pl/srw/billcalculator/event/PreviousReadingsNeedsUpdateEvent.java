@@ -5,11 +5,11 @@ import lombok.Value;
 import pl.srw.billcalculator.type.Provider;
 
 /**
- * Created by Kamil Seweryn.
+ * Created by kseweryn on 12.06.15.
  */
 @Value
 @AllArgsConstructor(suppressConstructorProperties = true)
-public class HistoryChangedEvent {
+public class PreviousReadingsNeedsUpdateEvent {
 
     private final Provider forProvider;
 }

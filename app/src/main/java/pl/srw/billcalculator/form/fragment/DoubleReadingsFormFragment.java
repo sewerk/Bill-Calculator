@@ -16,6 +16,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
 
@@ -26,7 +27,7 @@ import static pl.srw.billcalculator.form.FormValueValidator.isValueOrderCorrect;
 /**
  * Created by kseweryn on 29.05.15.
  */
-public abstract class DoubleReadingsFormFragment extends SingleReadingFormFragment {
+public abstract class DoubleReadingsFormFragment extends SingleReadingsFormFragment {
 
     protected @InjectView(R.id.textView_tariff_change) TextView tvTariffChange;
     protected @InjectView(R.id.textView_tariff) TextView tvTariff;
@@ -56,6 +57,13 @@ public abstract class DoubleReadingsFormFragment extends SingleReadingFormFragme
     }
 
     protected abstract boolean isTariffG12();
+
+    @Override
+    protected final void setPreviousReadings() {
+        super.setPreviousReadings();
+        etDayPreviousReading.setAdapter(new PreviousReadingsAdapter(getActivity(), getPreviousReadings(getCurrentReadingTypes()[1])));
+        etNightPreviousReading.setAdapter(new PreviousReadingsAdapter(getActivity(), getPreviousReadings(getCurrentReadingTypes()[2])));
+    }
 
     @OnClick(R.id.textView_tariff_change)
     public void moveToChangeTariff() {

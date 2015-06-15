@@ -5,7 +5,7 @@
 -cannot swipe form page due to horizontal scroll view on readings
 -leaking main activity on prev reading adapters
 -check leak on eventbus
--replace nucleus with pure presenter
+-check delete trigger working after upgrade db version
 
 Improvements
 -save last choosen form

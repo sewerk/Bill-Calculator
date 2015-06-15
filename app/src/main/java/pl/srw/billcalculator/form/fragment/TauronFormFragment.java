@@ -1,6 +1,5 @@
 package pl.srw.billcalculator.form.fragment;
 
-import pl.srw.billcalculator.form.adapter.PreviousReadingsAdapterFactory;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.type.Provider;
@@ -21,9 +20,7 @@ public class TauronFormFragment extends DoubleReadingsFormFragment {
     }
 
     @Override
-    protected void attachPreviousReadingAdapter() {
-        etDayPreviousReading.setAdapter(PreviousReadingsAdapterFactory.build(getActivity(), CurrentReadingType.TAURON_DAY_TO));
-        etNightPreviousReading.setAdapter(PreviousReadingsAdapterFactory.build(getActivity(), CurrentReadingType.TAURON_NIGHT_TO));
-        etPreviousReading.setAdapter(PreviousReadingsAdapterFactory.build(getActivity(), CurrentReadingType.TAURON_TO));
+    protected CurrentReadingType[] getCurrentReadingTypes() {
+        return new CurrentReadingType[]{CurrentReadingType.TAURON_TO, CurrentReadingType.TAURON_DAY_TO, CurrentReadingType.TAURON_NIGHT_TO};
     }
 }

@@ -16,6 +16,7 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.event.HistoryChangedEvent;
 import pl.srw.billcalculator.history.list.EmptyHistoryDataObserver;
 import pl.srw.billcalculator.history.list.HistoryAdapter;
+import pl.srw.billcalculator.type.Provider;
 
 /**
  * Created by Kamil Seweryn.
@@ -99,7 +100,8 @@ public class HistoryActivity extends BackableActivity {
                 case R.id.action_delete:
                     getAdapter().deleteSelected();
                     actionMode.finish();
-                    EventBus.getDefault().post(new HistoryChangedEvent());
+                    for (Provider provider : Provider.values())//TODO: optimise to send if needed
+                        EventBus.getDefault().post(new HistoryChangedEvent(provider));
                     dataObserver.onChanged();
                     return true;
             }

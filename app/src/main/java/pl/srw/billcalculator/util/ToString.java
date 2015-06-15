@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import hugo.weaving.DebugLog;
-
 /**
  * Created by Kamil Seweryn.
  */
@@ -13,7 +11,6 @@ final public class ToString {
 
     private ToString() {}
 
-    @DebugLog
     public static String[] toArray(Collection collection) {
         List<String> res = new ArrayList<>(collection.size());
         for (Object o : collection) {

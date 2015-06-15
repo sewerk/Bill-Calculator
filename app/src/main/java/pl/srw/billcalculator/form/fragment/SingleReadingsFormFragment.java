@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,12 +23,12 @@ import butterknife.OnClick;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.form.FormValueValidator;
+import pl.srw.billcalculator.form.adapter.PreviousReadingsAdapter;
 import pl.srw.billcalculator.form.view.DatePickingButton;
 import pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
 import pl.srw.billcalculator.intent.IntentCreator;
-import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 
 import static pl.srw.billcalculator.form.FormValueValidator.isDatesOrderCorrect;
@@ -39,7 +38,7 @@ import static pl.srw.billcalculator.form.FormValueValidator.isValueOrderCorrect;
 /**
  * Created by kseweryn on 28.05.15.
  */
-public abstract class SingleReadingFormFragment extends Fragment {
+public abstract class SingleReadingsFormFragment extends PreviousReadingsProvidingFormFragment {
 
     protected @InjectView(R.id.iv_logo) ImageView ivLogo;
     
@@ -61,7 +60,7 @@ public abstract class SingleReadingFormFragment extends Fragment {
         ButterKnife.inject(this, view);
 
         ivLogo.setImageResource(getProvider().logoRes);
-        attachPreviousReadingAdapter();
+        cachePreviousReadings();
         initDates();
     }
 
@@ -71,9 +70,10 @@ public abstract class SingleReadingFormFragment extends Fragment {
         ButterKnife.reset(this);
     }
 
-    protected abstract Provider getProvider();
-
-    protected abstract void attachPreviousReadingAdapter();
+    @Override
+    protected void setPreviousReadings() {
+        etPreviousReading.setAdapter(new PreviousReadingsAdapter(getActivity(), getPreviousReadings(getCurrentReadingTypes()[0])));
+    }
 
     @DebugLog
     @OnClick(R.id.button_calculate)
@@ -110,7 +110,7 @@ public abstract class SingleReadingFormFragment extends Fragment {
         return new FormValueValidator.OnErrorCallback() {
             @Override
             public void onError(@StringRes int errorMsgRes) {
-                SingleReadingFormFragment.this.onError(etView, errorMsgRes);
+                SingleReadingsFormFragment.this.onError(etView, errorMsgRes);
             }
         };
     }
@@ -119,7 +119,7 @@ public abstract class SingleReadingFormFragment extends Fragment {
         return new FormValueValidator.OnErrorCallback() {
             @Override
             public void onError(@StringRes int errorMsgRes) {
-                SingleReadingFormFragment.this.onDatesError(errorMsgRes);
+                SingleReadingsFormFragment.this.onDatesError(errorMsgRes);
             }
         };
     }

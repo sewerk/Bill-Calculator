@@ -4,14 +4,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.form.adapter.PreviousReadingsAdapterFactory;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 import pl.srw.billcalculator.type.Provider;
 
 /**
  * Created by kseweryn on 29.05.15.
  */
-public class PgnigFormFragment extends SingleReadingFormFragment {
+public class PgnigFormFragment extends SingleReadingsFormFragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -25,12 +24,12 @@ public class PgnigFormFragment extends SingleReadingFormFragment {
     }
 
     @Override
-    protected void attachPreviousReadingAdapter() {
-        etPreviousReading.setAdapter(PreviousReadingsAdapterFactory.build(getActivity(), CurrentReadingType.PGNIG_TO));
+    protected Provider getProvider() {
+        return Provider.PGNIG;
     }
 
     @Override
-    protected Provider getProvider() {
-        return Provider.PGNIG;
+    protected CurrentReadingType[] getCurrentReadingTypes() {
+        return new CurrentReadingType[]{CurrentReadingType.PGNIG_TO};
     }
 }

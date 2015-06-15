@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.crashlytics.android.Crashlytics;
 
+import hugo.weaving.DebugLog;
 import io.fabric.sdk.android.Fabric;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.settings.GeneralPreferences;
@@ -19,12 +20,14 @@ public class BillCalculator extends Application {
 
     public static Context context;
 
+    @DebugLog
     @Override
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
 
-        Fabric.with(this, new Crashlytics());
+        if (!BuildConfig.DEBUG)
+            Fabric.with(this, new Crashlytics());
 
         Database.initialize(this);
 

@@ -6,31 +6,25 @@ import android.widget.Filter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Collection;
 
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.event.HistoryChangedEvent;
-import pl.srw.billcalculator.persistence.Database;
-import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 import pl.srw.billcalculator.util.ToString;
 
 /**
  * Created by Kamil Seweryn.
  */
-@lombok.ToString(of = {"readingType", "prevReadings" })
+@lombok.ToString(of = {"prevReadings" })
 public class PreviousReadingsAdapter extends ArrayAdapter<String> {
 
     private Filter mFilter;
     private final Object mLock = new Object();
     private String[] prevReadings;
-    private final CurrentReadingType readingType;
 
-    @DebugLog
-    PreviousReadingsAdapter(Context context, final CurrentReadingType readingType) {
+    public PreviousReadingsAdapter(Context context, Collection readings) {
         super(context, R.layout.dropdowntext, R.id.dropDown);
-        this.readingType = readingType;
-        updateAll();
+        prevReadings = ToString.toArray(readings);
     }
 
     private void setResult(String[] result) {
@@ -48,23 +42,6 @@ public class PreviousReadingsAdapter extends ArrayAdapter<String> {
             return new String[0];
         else
             return allReadings;
-    }
-
-    public void onEvent(HistoryChangedEvent event) {
-        updateAll();
-    }
-
-    @DebugLog
-    private void updateAll() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                List<Integer> readings = Database.queryCurrentReadings(readingType);
-                synchronized (mLock) {
-                    prevReadings = ToString.toArray(readings);
-                }
-            }
-            }).start();
     }
 
     @Override

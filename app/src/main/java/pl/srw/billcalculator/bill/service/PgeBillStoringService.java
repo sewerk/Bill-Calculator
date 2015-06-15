@@ -7,6 +7,7 @@ import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgePrices;
 import pl.srw.billcalculator.persistence.Database;
+import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 
 /**
@@ -16,6 +17,11 @@ public class PgeBillStoringService extends BillStoringService<PgePrices, Calcula
 
     public PgeBillStoringService() {
         super("PgeBillStoringService");
+    }
+
+    @Override
+    protected Provider getProvider() {
+        return Provider.PGE;
     }
 
     @Override

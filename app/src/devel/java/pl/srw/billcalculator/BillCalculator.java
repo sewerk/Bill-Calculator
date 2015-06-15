@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.squareup.leakcanary.LeakCanary;
 
+import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.settings.prices.PgePrices;
@@ -18,6 +19,7 @@ public class BillCalculator extends Application {
 
     public static Context context;
 
+    @DebugLog
     @Override
     public void onCreate() {
         super.onCreate();
