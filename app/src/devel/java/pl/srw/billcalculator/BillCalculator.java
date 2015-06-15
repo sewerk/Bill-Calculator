@@ -8,7 +8,6 @@ import com.squareup.leakcanary.LeakCanary;
 
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.persistence.Database;
-import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
@@ -38,11 +37,9 @@ public class BillCalculator extends Application {
 
         //PreferenceMigration.migrate(getApplicationContext());
 
-        if (GeneralPreferences.isFirstLaunch()) {
-            new PgePrices().setDefault();
-            new PgnigPrices().setDefault();
-            new TauronPrices().setDefault();
-        }
+        new PgePrices().init();
+        new PgnigPrices().init();
+        new TauronPrices().init();
     }
 
 }

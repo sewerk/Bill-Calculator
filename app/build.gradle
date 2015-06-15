@@ -54,7 +54,6 @@ android {
 
     productFlavors {
         devel {
-            applicationId 'pl.srw.billcalculator.devel'
             buildConfigField "boolean", "DEVEL", "true"
         }
 

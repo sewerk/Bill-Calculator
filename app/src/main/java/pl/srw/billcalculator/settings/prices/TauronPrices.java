@@ -66,4 +66,9 @@ public class TauronPrices implements ITauronPrices {
         setEnergiaElektrycznaCzynnaNoc(getEnergiaElektrycznaCzynnaNoc());
         setOplataDystrybucyjnaZmiennaNoc(getOplataDystrybucyjnaZmiennaNoc());
     }
+
+    public void init() {
+        if (!containsEnergiaElektrycznaCzynna())
+            setDefault();
+    }
 }
