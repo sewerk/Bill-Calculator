@@ -3,6 +3,7 @@ package pl.srw.billcalculator;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 
 import hugo.weaving.DebugLog;
@@ -27,6 +28,11 @@ public class BillCalculator extends Application {
 
         Database.enableDatabaseLogging();
         LeakCanary.install(this);
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                        .build());
 
         Database.initialize(this);
 

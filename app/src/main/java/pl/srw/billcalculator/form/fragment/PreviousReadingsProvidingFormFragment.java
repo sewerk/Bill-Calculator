@@ -23,7 +23,7 @@ import pl.srw.billcalculator.type.Provider;
 public abstract class PreviousReadingsProvidingFormFragment extends Fragment {
 
     protected Lock lock;
-    protected Map<CurrentReadingType, Collection<Integer>> prevReadingsCache;
+    protected Map<CurrentReadingType, Collection<Integer>> prevReadingsCache;//TODO: improve: move cache to presenter and prevent from repopulate on rotation
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

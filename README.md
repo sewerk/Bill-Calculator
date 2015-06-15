@@ -20,6 +20,7 @@ With help of
 
 - [Hugo](https://github.com/jakewharton/hugo)
 - [LeakCanary](https://github.com/square/leakcanary)
+- [Stetho](http://facebook.github.io/stetho)
 - [Espresso](https://code.google.com/p/android-test-kit/wiki/Espresso)
 - [Mockito](http://mockito.org)
 - [Robotium] (https://code.google.com/p/robotium)
