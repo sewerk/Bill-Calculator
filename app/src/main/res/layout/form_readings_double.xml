@@ -5,7 +5,6 @@
     android:id="@+id/tl_readings_double"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:focusableInTouchMode="true"
     tools:showIn="@layout/form_input_double">
 
     <TableRow

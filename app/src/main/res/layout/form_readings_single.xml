@@ -7,7 +7,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="end"
-    android:focusableInTouchMode="true"
     tools:showIn="@layout/form_input_single">
 
     <LinearLayout
