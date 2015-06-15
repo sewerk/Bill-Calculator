@@ -1,8 +1,10 @@
-package pl.srw.billcalculator.form.component;
+package pl.srw.billcalculator.form.view;
 
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 
 import hugo.weaving.DebugLog;
@@ -10,17 +12,17 @@ import hugo.weaving.DebugLog;
 /**
  * Created by Kamil Seweryn.
  */
-public class InstantAutoComplete extends AutoCompleteTextView {
+public class InstantAutoCompleteTextView extends AutoCompleteTextView {
 
-    public InstantAutoComplete(Context context) {
+    public InstantAutoCompleteTextView(Context context) {
         super(context);
     }
 
-    public InstantAutoComplete(Context arg0, AttributeSet arg1) {
+    public InstantAutoCompleteTextView(Context arg0, AttributeSet arg1) {
         super(arg0, arg1);
     }
 
-    public InstantAutoComplete(Context arg0, AttributeSet arg1, int arg2) {
+    public InstantAutoCompleteTextView(Context arg0, AttributeSet arg1, int arg2) {
         super(arg0, arg1, arg2);
     }
 
@@ -40,4 +42,14 @@ public class InstantAutoComplete extends AutoCompleteTextView {
         }
     }
 
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                InstantAutoCompleteTextView.this.setError(null);
+            }
+        });
+    }
 }

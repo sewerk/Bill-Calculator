@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.form.component;
+package pl.srw.billcalculator.form.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

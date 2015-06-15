@@ -1,5 +1,0 @@
--picking previous reading from auto complete when error is shown does not hide error icon on et
-    click calculate > pick value from hint
-
-Improvements
--save last choosen form
