@@ -1,9 +1,11 @@
 package pl.srw.billcalculator.pojo;
 
+import pl.srw.billcalculator.db.Prices;
+
 /**
  * Created by kseweryn on 13.04.15.
  */
-public interface ITauronPrices extends IPrices {
+public interface ITauronPrices extends Prices {
 
     String getEnergiaElektrycznaCzynna();
     String getOplataDystrybucyjnaZmienna();

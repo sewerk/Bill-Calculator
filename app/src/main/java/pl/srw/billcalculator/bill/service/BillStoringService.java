@@ -12,13 +12,13 @@ import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.bill.calculation.CalculatedBill;
 import pl.srw.billcalculator.event.HistoryChangedEvent;
 import pl.srw.billcalculator.intent.IntentCreator;
-import pl.srw.billcalculator.pojo.IPrices;
+import pl.srw.billcalculator.db.Prices;
 import pl.srw.billcalculator.type.Provider;
 
 /**
  * Created by kseweryn on 02.06.15.
  */
-public abstract class BillStoringService<P extends IPrices, C extends CalculatedBill> extends IntentService {
+public abstract class BillStoringService<P extends Prices, C extends CalculatedBill> extends IntentService {
 
     protected @InjectExtra(IntentCreator.DATE_FROM) String dateFrom;
     protected @InjectExtra(IntentCreator.DATE_TO) String dateTo;
