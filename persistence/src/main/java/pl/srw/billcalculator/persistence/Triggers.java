@@ -49,7 +49,7 @@ public final class Triggers {
     }
 
     private static void addTriggers(SQLiteDatabase db, int fromIdx, int toIdx) {
-        for (int i = fromIdx; i < toIdx; i++) {
+        for (int i = fromIdx; i <= toIdx; i++) {
             db.execSQL(Triggers.BILL_INSERT_TRIGGERS[i]);
             db.execSQL(Triggers.BILL_DELETE_TRIGGERS[i]);
         }
