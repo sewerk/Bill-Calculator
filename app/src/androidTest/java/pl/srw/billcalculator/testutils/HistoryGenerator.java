@@ -20,9 +20,9 @@ public final class HistoryGenerator {
 
     private HistoryGenerator() { }
 
-    public static void generatePgeG11Bills(final int count) throws InterruptedException {
+    public static void generatePgeG11Bills(final int count) {
         final PgeG11BillDao dao = Database.getSession().getPgeG11BillDao();
-        final PgePrices pgePrices = new pl.srw.billcalculator.preference.PgePrices().convertToDb();
+        final PgePrices pgePrices = new pl.srw.billcalculator.settings.prices.PgePrices().convertToDb();
 
         Database.getSession().insert(pgePrices);
         List<PgeG11Bill> pgeBills = new ArrayList<>(count);
@@ -37,10 +37,15 @@ public final class HistoryGenerator {
 
     public static void clear() {
         final DaoSession session = Database.getSession();
+        //bills
         session.getPgnigBillDao().deleteAll();
         session.getPgeG11BillDao().deleteAll();
         session.getPgeG12BillDao().deleteAll();
+        session.getTauronG11BillDao().deleteAll();
+        session.getTauronG12BillDao().deleteAll();
+        //prices
         session.getPgnigPricesDao().deleteAll();
         session.getPgePricesDao().deleteAll();
+        session.getTauronPricesDao().deleteAll();
     }
 }

@@ -10,7 +10,7 @@ import org.threeten.bp.format.TextStyle;
 
 import java.util.Locale;
 
-import pl.srw.billcalculator.MainActivity;
+import pl.srw.billcalculator.form.MainActivity;
 import pl.srw.billcalculator.testutils.SoloHelper;
 import pl.srw.billcalculator.util.Dates;
 

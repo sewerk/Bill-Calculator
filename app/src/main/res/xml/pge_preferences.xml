@@ -4,10 +4,10 @@
     <ListPreference
         android:key="@string/preferences_pge_tariff"
         android:title="@string/pge_tariff_in_preferences"
-        android:entryValues="@array/preferences_pge_tariff_values"
-        android:entries="@array/pge_tariff_picks"
-        android:summary="@string/pge_tariff_G11_in_preferences"
-        android:defaultValue="@string/pge_tariff_G11_in_preferences" />
+        android:entryValues="@array/preferences_energy_tariff_values"
+        android:entries="@array/energy_tariff_picks"
+        android:summary="@string/energy_tariff_G11_in_preferences"
+        android:defaultValue="@string/energy_tariff_G11_in_preferences" />
 
     <EditTextPreference
         android:key="@string/preferences_pge_oplata_przejsciowa"
@@ -35,8 +35,8 @@
 
     <!-- G11 ============================================================ -->
     <PreferenceCategory
-        android:key="@string/preferences_pge_category_G11"
-        android:title="@string/pge_tariff_G11_in_preferences">
+        android:key="@string/preferences_category_G11"
+        android:title="@string/energy_tariff_G11_in_preferences">
 
         <EditTextPreference
             android:key="@string/preferences_pge_za_energie_czynna"
@@ -53,8 +53,8 @@
     </PreferenceCategory>
     <!-- G12 ============================================================ -->
     <PreferenceCategory
-        android:key="@string/preferences_pge_category_G12"
-        android:title="@string/pge_tariff_G12_in_preferences">
+        android:key="@string/preferences_energy_category_G12"
+        android:title="@string/energy_tariff_G12_in_preferences">
 
         <EditTextPreference
             android:key="@string/preferences_pge_za_energie_czynna_G12dzien"

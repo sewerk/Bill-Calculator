@@ -7,9 +7,9 @@ import de.greenrobot.dao.Property;
 */
 public class SqlBuilder {
 
-    private StringBuilder sql;
+    private final StringBuilder sql;
 
-    public SqlBuilder(final StringBuilder sql) {
+    private SqlBuilder(final StringBuilder sql) {
         this.sql = sql;
     }
 

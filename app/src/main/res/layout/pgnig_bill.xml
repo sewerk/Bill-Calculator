@@ -2,26 +2,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:scrollbars="none"
     android:padding="2dp"
     android:background="@android:color/white"
-    tools:context=".PgnigBillActivity">
+    tools:context=".bill.PgnigBillActivity">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:scrollbars="none">
 
         <RelativeLayout
+            android:id="@+id/bill_content"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="4dp" >
 
             <TextView
-                android:id="@+id/tv_invoice_number"
+                android:id="@+id/tv_invoice_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="Faktura VAT nr XXXXXXXX\nTyp faktury: ROZLICZENIOWY"/>
+                android:text="@string/rozliczenie_dnia"/>
+
             <ImageView
                 android:id="@+id/image_logo"
                 android:layout_width="wrap_content"
@@ -45,8 +51,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/tv_charge_place"
-                android:layout_alignParentRight="true"
-                android:text="Numer punktu poboru: 0000000001" />
+                android:layout_alignRight="@id/t_charge_details"
+                android:text="Numer punktu poboru: 0000000000" />
 
             <TextView
                 android:id="@+id/tv_tariff"
@@ -71,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/t_summary"
-                android:layout_alignParentRight="true"
+                android:layout_alignRight="@id/t_charge_details"
                 android:layout_marginTop="8dp"
                 android:textStyle="bold"
                 android:text="@string/wartosc_faktury"

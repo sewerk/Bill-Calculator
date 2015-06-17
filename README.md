@@ -12,9 +12,16 @@ With help of
 ---------
 - [AndroidViewAnimations](https://github.com/daimajia/AndroidViewAnimations)
 - [Butter Knife](https://github.com/JakeWharton/butterknife)
+- [Dart](https://github.com/f2prateek/dart)
 - [EventBus](https://github.com/greenrobot/EventBus)
 - [GreenDao](http://greendao-orm.com/)
 - [Hrisay](https://github.com/mg6maciej/hrisey)
-- [Hugo](https://github.com/jakewharton/hugo)
-- [Robotium] (https://code.google.com/p/robotium)
 - [ThreeTen] (https://github.com/ThreeTen/threetenbp)
+
+- [Hugo](https://github.com/jakewharton/hugo)
+- [LeakCanary](https://github.com/square/leakcanary)
+- [Crashlytics](https://fabric.io)
+- [Stetho](http://facebook.github.io/stetho)
+- [Espresso](https://code.google.com/p/android-test-kit/wiki/Espresso)
+- [Mockito](http://mockito.org)
+- [Robotium] (https://code.google.com/p/robotium)

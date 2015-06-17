@@ -2,12 +2,12 @@
 <resources>
     <!-- ENERGY -->
     <string name="preferences_pge_prices" translatable="false">ceny_pge</string>
-    <string name="preferences_pge_category_G11" translatable="false">category_G11</string>
-    <string name="preferences_pge_category_G12" translatable="false">category_G12</string>
+    <string name="preferences_category_G11" translatable="false">category_G11</string>
+    <string name="preferences_energy_category_G12" translatable="false">category_G12</string>
     <string name="preferences_pge_tariff" translatable="false">pge_tariff</string>
-    <array name="preferences_pge_tariff_values">
-        <item>@string/pge_tariff_G11_in_preferences</item>
-        <item>@string/pge_tariff_G12_in_preferences</item>
+    <array name="preferences_energy_tariff_values">
+        <item>@string/energy_tariff_G11_in_preferences</item>
+        <item>@string/energy_tariff_G12_in_preferences</item>
     </array>
 
     <string name="preferences_pge_za_energie_czynna" translatable="false">cena_za_energie_czynna</string>

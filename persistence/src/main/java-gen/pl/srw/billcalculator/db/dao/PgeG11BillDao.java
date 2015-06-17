@@ -19,6 +19,7 @@ import pl.srw.billcalculator.db.PgeG11Bill;
 /** 
  * DAO for table PGE_G11_BILL.
 */
+@SuppressWarnings("ALL")
 public class PgeG11BillDao extends AbstractDao<PgeG11Bill, Long> {
 
     public static final String TABLENAME = "PGE_G11_BILL";

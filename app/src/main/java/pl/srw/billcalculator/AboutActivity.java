@@ -19,8 +19,8 @@ import butterknife.OnClick;
  */
 public class AboutActivity extends Activity {
 
-    public static final String RECEIVER_EMAIL = "kalkulator.rachunkow@gmail.com";
-    public static final String BETA_HTTP = "https://plus.google.com/communities/113263640175495853700";
+    private static final String RECEIVER_EMAIL = "kalkulator.rachunkow@gmail.com";
+    private static final String BETA_HTTP = "https://plus.google.com/communities/113263640175495853700";
 
     @InjectView(R.id.tv_ver) TextView tvVersion;
     @InjectView(R.id.tv_link_emailme) TextView tvLinkEmail;

@@ -38,7 +38,8 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginRight="@dimen/padding"
-            android:src="@drawable/pge"/>
+            android:src="@drawable/pge"
+            android:contentDescription="Provider logo"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -66,9 +67,10 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:gravity="right|center_vertical"
+            android:gravity="end|center_vertical"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/history_amount"
+            android:singleLine="true"
             tools:text="3443.45 zł"/>
 
     </LinearLayout>

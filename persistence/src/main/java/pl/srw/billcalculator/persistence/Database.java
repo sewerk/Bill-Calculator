@@ -21,7 +21,7 @@ import pl.srw.billcalculator.persistence.type.CurrentReadingType;
  */
 public class Database {
 
-    public static final String QUERY_ROW_LIMIT = "100";
+    private static final String QUERY_ROW_LIMIT = "100";
     private static SQLiteDatabase database;
     private static DaoSession daoSession;
 
@@ -47,6 +47,7 @@ public class Database {
                 @Override
                 public void onUpgrade(final SQLiteDatabase db, final int oldVersion, final int newVersion) {
                     DBMigration.migrate(db, oldVersion, newVersion);
+                    Triggers.update(db, oldVersion, newVersion);
                 }
             }.getWritableDatabase();
         return database;
@@ -64,6 +65,7 @@ public class Database {
         while (cursor.moveToNext()) {
             readings.add(cursor.getInt(0));
         }
+        cursor.close();
         return readings;
     }
 
@@ -73,19 +75,7 @@ public class Database {
     }
 
     public static void deleteBillWithPrices(final BillType type, final Long billId, final Long pricesId) {
-        switch (type) {
-            case PGE_G11:
-                getSession().getPgePricesDao().deleteByKey(pricesId);
-                getSession().getPgeG11BillDao().deleteByKey(billId);
-                return;
-            case PGE_G12:
-                getSession().getPgePricesDao().deleteByKey(pricesId);
-                getSession().getPgeG12BillDao().deleteByKey(billId);
-                return;
-            case PGNIG:
-                getSession().getPgnigPricesDao().deleteByKey(pricesId);
-                getSession().getPgnigBillDao().deleteByKey(billId);
-                return;
-        }
+        type.getPricesDao().deleteByKey(pricesId);
+        type.getDao().deleteByKey(billId);
     }
 }

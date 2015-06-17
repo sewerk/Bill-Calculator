@@ -11,6 +11,8 @@ import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgnigBill;
+import pl.srw.billcalculator.db.TauronG11Bill;
+import pl.srw.billcalculator.db.TauronG12Bill;
 import pl.srw.billcalculator.db.dao.DaoMaster;
 import pl.srw.billcalculator.db.dao.DaoSession;
 import pl.srw.billcalculator.persistence.Triggers;
@@ -45,12 +47,28 @@ public class TriggersTest extends AbstractDaoSessionTest<BillCalculator, DaoMast
         testTriggerInsertHistoryEntryOnInsert(new PgnigBill(), BillType.PGNIG);
     }
 
+    public void testTriggerInsertHistoryEntryOnInsertTauronG11Bill() {
+        testTriggerInsertHistoryEntryOnInsert(new TauronG11Bill(), BillType.TAURON_G11);
+    }
+
+    public void testTriggerInsertHistoryEntryOnInsertTauronG12Bill() {
+        testTriggerInsertHistoryEntryOnInsert(new TauronG12Bill(), BillType.TAURON_G12);
+    }
+
     public void testTriggerDeleteHistoryEntryOnDeletePgeBill() {
         testTriggerDeleteHistoryEntryOnDelete(new PgeG11Bill());
     }
 
     public void testTriggerDeleteHistoryEntryOnDeletePgeG12Bill() {
         testTriggerDeleteHistoryEntryOnDelete(new PgeG12Bill());
+    }
+
+    public void testTriggerDeleteHistoryEntryOnDeleteTauronG11Bill() {
+        testTriggerDeleteHistoryEntryOnDelete(new TauronG11Bill());
+    }
+
+    public void testTriggerDeleteHistoryEntryOnDeleteTauronG12Bill() {
+        testTriggerDeleteHistoryEntryOnDelete(new TauronG12Bill());
     }
 
     public void testTriggerDeleteHistoryEntryOnDeletePgnigBill() {

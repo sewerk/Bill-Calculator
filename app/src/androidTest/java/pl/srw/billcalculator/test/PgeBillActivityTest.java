@@ -7,20 +7,20 @@ import android.widget.TextView;
 
 import java.math.BigDecimal;
 
-import pl.srw.billcalculator.PgeBillActivity;
+import pl.srw.billcalculator.bill.PgeBillActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.intent.IntentCreator;
-import pl.srw.billcalculator.preference.PgePrices;
+import pl.srw.billcalculator.settings.prices.PgePrices;
 
 /**
  * Created by Kamil Seweryn.
  */
 public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBillActivity> {
 
-    public static final String DATE_FROM = "01/12/2014";
-    public static final String DATE_TO = "31/12/2014";
-    public static final int FROM = 12;
-    public static final int TO = 25;
+    private static final String DATE_FROM = "01/12/2014";
+    private static final String DATE_TO = "31/12/2014";
+    private static final int FROM = 12;
+    private static final int TO = 25;
 
     private PgeBillActivity sut;
     private PgePrices pgePrices;
@@ -43,7 +43,7 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         setActivityIntent(intent);
 
         sut = getActivity();
-        String expected = sut.getString(R.string.pge_tariff_G11_on_bill);
+        String expected = sut.getString(R.string.tariff_G11_on_bill);
         assEqText(expected, R.id.tv_tariff);
     }
 
@@ -53,7 +53,7 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         setActivityIntent(intent);
 
         sut = getActivity();
-        String expected = sut.getString(R.string.pge_tariff_G12_on_bill);
+        String expected = sut.getString(R.string.tariff_G12_on_bill);
         assEqText(expected, R.id.tv_tariff);
     }
 
