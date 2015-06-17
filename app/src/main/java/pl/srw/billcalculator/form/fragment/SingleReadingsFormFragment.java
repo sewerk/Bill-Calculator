@@ -139,6 +139,12 @@ public abstract class SingleReadingsFormFragment extends PreviousReadingsProvidi
     private void initDates() {
         bFromDate.setText(Dates.format(Dates.firstDayOfThisMonth()));
         bToDate.setText(Dates.format(Dates.lastDayOfThisMonth()));
+        bFromDate.setOnDatePickedListener(new DatePickingButton.OnDatePickedListener() {
+            @Override
+            public void onDatePicked(DatePickingButton view) {
+                bToDate.clearError();
+            }
+        });
     }
 
     private void shake(View target) {
