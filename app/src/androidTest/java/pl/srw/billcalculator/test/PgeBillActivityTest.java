@@ -43,7 +43,7 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         setActivityIntent(intent);
 
         sut = getActivity();
-        String expected = sut.getString(R.string.pge_tariff_G11_on_bill);
+        String expected = sut.getString(R.string.tariff_G11_on_bill);
         assEqText(expected, R.id.tv_tariff);
     }
 
@@ -53,7 +53,7 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         setActivityIntent(intent);
 
         sut = getActivity();
-        String expected = sut.getString(R.string.pge_tariff_G12_on_bill);
+        String expected = sut.getString(R.string.tariff_G12_on_bill);
         assEqText(expected, R.id.tv_tariff);
     }
 

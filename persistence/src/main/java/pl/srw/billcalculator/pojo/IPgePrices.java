@@ -1,9 +1,11 @@
 package pl.srw.billcalculator.pojo;
 
+import pl.srw.billcalculator.db.Prices;
+
 /**
  * Created by Kamil Seweryn.
  */
-public interface IPgePrices {
+public interface IPgePrices extends Prices {
     
     String getZaEnergieCzynna();
     String getSkladnikJakosciowy();

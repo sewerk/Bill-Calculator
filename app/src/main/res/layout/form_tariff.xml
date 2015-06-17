@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/linearLayout_tariff"
+    android:id="@+id/ll_tariff"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -8,7 +8,7 @@
         android:id="@+id/textView_tariff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pge_tariff_G11_on_bill"
+        android:text="@string/tariff_G11_on_bill"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -16,6 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="4dp"
+        android:singleLine="true"
         android:text="zmień"/>
 
 </LinearLayout>

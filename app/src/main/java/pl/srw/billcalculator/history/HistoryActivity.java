@@ -8,14 +8,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 import pl.srw.billcalculator.BackableActivity;
+import pl.srw.billcalculator.CrashlyticsWrapper;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.event.HistoryChangedEvent;
 import pl.srw.billcalculator.history.list.EmptyHistoryDataObserver;
 import pl.srw.billcalculator.history.list.HistoryAdapter;
+import pl.srw.billcalculator.type.Provider;
 
 /**
  * Created by Kamil Seweryn.
@@ -38,6 +42,7 @@ public class HistoryActivity extends BackableActivity {
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(new HistoryAdapter(this));
+        CrashlyticsWrapper.setInt("History_size", list.getAdapter().getItemCount());
 
         dataObserver = new EmptyHistoryDataObserver(list.getAdapter(), tvEmptyHistory);
         dataObserver.onChanged();
@@ -99,7 +104,8 @@ public class HistoryActivity extends BackableActivity {
                 case R.id.action_delete:
                     getAdapter().deleteSelected();
                     actionMode.finish();
-                    EventBus.getDefault().post(new HistoryChangedEvent());
+                    for (Provider provider : Provider.values())//TODO: optimise to send if needed
+                        EventBus.getDefault().post(new HistoryChangedEvent(provider));
                     dataObserver.onChanged();
                     return true;
             }

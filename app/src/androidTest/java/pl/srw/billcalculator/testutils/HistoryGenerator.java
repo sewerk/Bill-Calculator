@@ -37,10 +37,15 @@ public final class HistoryGenerator {
 
     public static void clear() {
         final DaoSession session = Database.getSession();
+        //bills
         session.getPgnigBillDao().deleteAll();
         session.getPgeG11BillDao().deleteAll();
         session.getPgeG12BillDao().deleteAll();
+        session.getTauronG11BillDao().deleteAll();
+        session.getTauronG12BillDao().deleteAll();
+        //prices
         session.getPgnigPricesDao().deleteAll();
         session.getPgePricesDao().deleteAll();
+        session.getTauronPricesDao().deleteAll();
     }
 }

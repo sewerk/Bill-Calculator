@@ -3,34 +3,50 @@ package pl.srw.billcalculator.form;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import pl.srw.billcalculator.form.adapter.FormPagerAdapter;
+import pl.srw.billcalculator.form.view.SlidingTabLayout;
 
 import pl.srw.billcalculator.AboutActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
-import pl.srw.billcalculator.form.component.CheckPricesDialogFragment;
+import pl.srw.billcalculator.form.dialog.CheckPricesDialogFragment;
 import pl.srw.billcalculator.history.HistoryActivity;
 import pl.srw.billcalculator.settings.GeneralPreferences;
 
 /**
  * Created by Kamil Seweryn.
  */
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
     private static final String TAG_CHECK_PRICES_DIALOG = "CHECK_PRICES_DIALOG";
+
+    @InjectView(R.id.sliding_tabs) SlidingTabLayout slidingTabs;
+    @InjectView(R.id.form_pager) ViewPager formPager;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        ButterKnife.inject(this);
 
-        if (savedInstanceState == null) {
-            replaceFormFragments(ProviderForm.PGE);
-            if (GeneralPreferences.isFirstLaunch())
-                new CheckPricesDialogFragment()
-                        .show(getFragmentManager(), TAG_CHECK_PRICES_DIALOG);
-        }
+        initFormSwitching();
+
+        if (savedInstanceState == null && GeneralPreferences.isFirstLaunch())
+            new CheckPricesDialogFragment()
+                    .show(getFragmentManager(), TAG_CHECK_PRICES_DIALOG);
+    }
+
+    private void initFormSwitching() {
+        formPager.setAdapter(new FormPagerAdapter(getSupportFragmentManager()));
+        slidingTabs.setDistributeEvenly(true);
+        slidingTabs.setViewPager(formPager);
     }
 
     @Override
@@ -55,25 +71,8 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void replaceFormFragments(final ProviderForm form) {
-        getFragmentManager()
-                .beginTransaction()
-                .setCustomAnimations(R.animator.come_closer, 0)
-                .replace(R.id.fl_logo_section, form.getLogoFragment())
-                .replace(R.id.fl_input_section, form.getInputFragment())
-                .commit();
-        // getFragmentManager().executePendingTransactions();
-    }
-
     public void start(Class<? extends Activity> activityClass) {
         Intent intent = new Intent(this, activityClass);
         startActivity(intent);
-    }
-
-    public void replaceFormFragments(boolean isEnergyForm) {
-        if (isEnergyForm)
-            replaceFormFragments(ProviderForm.PGNIG);
-        else
-            replaceFormFragments(ProviderForm.PGE);
     }
 }

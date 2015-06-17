@@ -10,6 +10,10 @@ import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgnigBill;
+import pl.srw.billcalculator.db.TauronG11Bill;
+import pl.srw.billcalculator.db.TauronG12Bill;
+import pl.srw.billcalculator.form.view.DatePickingButton;
+import pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton;
 import pl.srw.billcalculator.util.Dates;
 
 /**
@@ -33,7 +37,7 @@ public final class IntentCreator {
     }
 
     public Intent from(final EditText etReadingFrom, final EditText etReadingTo,
-                       final Button bDateFrom, final Button bDateTo) {
+                       final Button bDateFrom, final ErrorShowingDatePickerButton bDateTo) {
         return from(getIntText(etReadingFrom), getIntText(etReadingTo),
                 getStringText(bDateFrom), getStringText(bDateTo));
     }
@@ -46,7 +50,7 @@ public final class IntentCreator {
 
     public Intent from(final EditText etReadingDayFrom, final EditText etReadingDayTo,
                        final EditText etReadingNightFrom, final EditText etReadingNightTo,
-                       final Button bDateFrom, final Button bDateTo) {
+                       final Button bDateFrom, final ErrorShowingDatePickerButton bDateTo) {
         return from(getIntText(etReadingDayFrom), getIntText(etReadingDayTo),
                 getIntText(etReadingNightFrom), getIntText(etReadingNightTo),
                 getStringText(bDateFrom), getStringText(bDateTo));
@@ -79,6 +83,20 @@ public final class IntentCreator {
         return intent;
     }
 
+    public Intent from(final TauronG11Bill bill) {
+        putDatesExtra(bill);
+        putReadingsExtra(bill.getReadingFrom(), bill.getReadingTo());
+        intent.putExtra(PRICES, bill.getTauronPrices());
+        return intent;
+    }
+
+    public Intent from(final TauronG12Bill bill) {
+        putDatesExtra(bill);
+        putReadingsG12Extra(bill.getReadingDayFrom(), bill.getReadingDayTo(), bill.getReadingNightFrom(), bill.getReadingNightTo());
+        intent.putExtra(PRICES, bill.getTauronPrices());
+        return intent;
+    }
+
     private void putDatesExtra(final Bill bill) {
         final String dateFrom = Dates.format(Dates.toLocalDate(bill.getDateFrom()));
         final String dateTo = Dates.format(Dates.toLocalDate(bill.getDateTo()));
@@ -108,5 +126,9 @@ public final class IntentCreator {
 
     private String getStringText(final TextView textView) {
         return textView.getText().toString();
+    }
+
+    private String getStringText(ErrorShowingDatePickerButton view) {
+        return view.getText().toString();
     }
 }

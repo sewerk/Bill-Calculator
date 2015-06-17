@@ -1,4 +1,10 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 apply from: 'signing.gradle'
 apply plugin: 'hugo'
 
@@ -10,13 +16,17 @@ android {
     defaultConfig {
         versionCode 15
         versionName "1.3.1"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 22
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
+        debug {
+            ext.enableCrashlytics = false
+        }
+
         release {
             minifyEnabled true
             shrinkResources true
@@ -37,11 +47,23 @@ android {
     }
 
     packagingOptions {
+        pickFirst 'META-INF/services/javax.annotation.processing.Processor'
         exclude 'LICENSE.txt'
+        exclude 'META-INF/LICENSE.txt'
     }
 
     lintOptions {
         abortOnError false
+    }
+
+    productFlavors {
+        devel {
+            buildConfigField "boolean", "DEVEL", "true"
+        }
+
+        prod {
+            buildConfigField "boolean", "DEVEL", "false"
+        }
     }
 }
 
@@ -50,20 +72,28 @@ dependencies {
 
     compile 'com.android.support:recyclerview-v7:22.0.0'
     compile 'com.android.support:appcompat-v7:22.0.0'
-    compile 'com.android.support:support-annotations:22.0.0'
 
-    compile 'com.jakewharton:butterknife:5.1.2'
+    compile 'com.jakewharton:butterknife:6.1.0'
     provided 'pl.mg6.hrisey:hrisey:0.3.1'
     compile 'org.threeten:threetenbp:1.2'
     compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'com.f2prateek.dart:dart:1.1.0'
     // AndroidViewAnimations dependencies
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.easing:library:1.0.0@aar'
     compile 'com.daimajia.androidanimations:library:1.1.2@aar'
 
+    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.1'
+    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.1') {
+        exclude module: 'support-annotations'
+    }
     androidTestCompile fileTree(dir: 'libs', include: '*.jar')
-//    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'
+
     testCompile 'junit:junit:4.12'
-    testCompile "org.mockito:mockito-core:1.9.5"
+    testCompile "org.mockito:mockito-core:1.10.19"
+    prodCompile('com.crashlytics.sdk.android:crashlytics:2.2.3@aar') {
+        transitive = true;
+    }
+    develCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
+    develCompile 'com.facebook.stetho:stetho:1.1.1'
 }

@@ -70,6 +70,7 @@
             android:gravity="end|center_vertical"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/history_amount"
+            android:singleLine="true"
             tools:text="3443.45 zł"/>
 
     </LinearLayout>

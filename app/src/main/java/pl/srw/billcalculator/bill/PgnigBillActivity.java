@@ -1,24 +1,29 @@
 package pl.srw.billcalculator.bill;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TableLayout;
 
+import com.f2prateek.dart.InjectExtra;
+import com.f2prateek.dart.Optional;
+
 import org.threeten.bp.LocalDate;
 
 import java.math.BigDecimal;
 
 import pl.srw.billcalculator.BackableActivity;
+import pl.srw.billcalculator.CrashlyticsWrapper;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
+import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
+import pl.srw.billcalculator.util.ToWebView;
 import pl.srw.billcalculator.util.Views;
 
 /**
@@ -28,22 +33,22 @@ public class PgnigBillActivity extends BackableActivity {
 
     private static final int PRICE_SCALE = 5;
 
-    private String dateFrom;
-    private String dateTo;
-    private int readingFrom;
-    private int readingTo;
+    @InjectExtra(IntentCreator.DATE_FROM) String dateFrom;
+    @InjectExtra(IntentCreator.DATE_TO) String dateTo;
+    @InjectExtra(IntentCreator.READING_FROM) int readingFrom;
+    @InjectExtra(IntentCreator.READING_TO) int readingTo;
+    @Optional @InjectExtra(IntentCreator.PRICES) IPgnigPrices prices;
 
-    private IPgnigPrices prices;
     private PgnigCalculatedBill bill;
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pgnig_bill);
+        CrashlyticsWrapper.setString(Provider.PGNIG.toString(), "new=" + (prices == null));
 
-        Intent intent = getIntent();
-        setInput(intent);
-        setPrices(intent);
+        if (prices == null)
+            prices = new PgnigPrices();
         this.bill = new PgnigCalculatedBill(readingFrom, readingTo, dateFrom, dateTo, prices);
 
         setDate();
@@ -51,20 +56,10 @@ public class PgnigBillActivity extends BackableActivity {
         setChargeDetailsTable();
         setSummaryTable();
         setChargeTV();
-	}
 
-    private void setInput(Intent intent) {
-        dateFrom = intent.getStringExtra(IntentCreator.DATE_FROM);
-        dateTo = intent.getStringExtra(IntentCreator.DATE_TO);
-        readingFrom = intent.getIntExtra(IntentCreator.READING_FROM, 0);
-        readingTo = intent.getIntExtra(IntentCreator.READING_TO, 0);
-    }
-
-    private void setPrices(Intent intent) {
-        if (intent.hasExtra(IntentCreator.PRICES))
-            prices = (IPgnigPrices) intent.getSerializableExtra(IntentCreator.PRICES);
-        else
-            prices = new PgnigPrices();
+        //TODO: make optional
+        View billView = findViewById(R.id.bill_content);
+        setContentView(ToWebView.wrapByWebView(this, billView));
     }
 
     private void setDate() {

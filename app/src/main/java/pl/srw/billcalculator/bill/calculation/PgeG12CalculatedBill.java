@@ -10,7 +10,7 @@ import pl.srw.billcalculator.pojo.IPgePrices;
  */
 @SuppressWarnings("FieldCanBeLocal")
 @Getter
-public class PgeG12CalculatedBill extends PgeCalculatedBill {
+public class PgeG12CalculatedBill extends CalculatedEnergyBill {
 
     private final int dayConsumption;
     private final int nightConsumption;
@@ -33,23 +33,23 @@ public class PgeG12CalculatedBill extends PgeCalculatedBill {
     public PgeG12CalculatedBill(final int readingDayFrom, final int readingDayTo,
                                 final int readingNightFrom, final int readingNightTo,
                                 final String dateFrom, final String dateTo, final IPgePrices prices) {
-        super(dateFrom, dateTo, prices);
+        super(dateFrom, dateTo, prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataStalaZaPrzesyl());
         dayConsumption = readingDayTo - readingDayFrom;
         nightConsumption = readingNightTo - readingNightFrom;
 
-        zaEnergieCzynnaDayNetCharge = multiplyAndAddToSum(prices.getZaEnergieCzynnaDzien(), dayConsumption);
-        skladnikJakosciowyDayNetCharge = multiplyAndAddToSum(prices.getSkladnikJakosciowy(), dayConsumption);
-        oplataSieciowaDayNetCharge = multiplyAndAddToSum(prices.getOplataSieciowaDzien(), dayConsumption);
-        zaEnergieCzynnaNightNetCharge = multiplyAndAddToSum(prices.getZaEnergieCzynnaNoc(), nightConsumption);
-        skladnikJakosciowyNightNetCharge = multiplyAndAddToSum(prices.getSkladnikJakosciowy(), nightConsumption);
-        oplataSieciowaNightNetCharge = multiplyAndAddToSum(prices.getOplataSieciowaNoc(), nightConsumption);
+        zaEnergieCzynnaDayNetCharge = countNetAndAddToSum(prices.getZaEnergieCzynnaDzien(), dayConsumption);
+        skladnikJakosciowyDayNetCharge = countNetAndAddToSum(prices.getSkladnikJakosciowy(), dayConsumption);
+        oplataSieciowaDayNetCharge = countNetAndAddToSum(prices.getOplataSieciowaDzien(), dayConsumption);
+        zaEnergieCzynnaNightNetCharge = countNetAndAddToSum(prices.getZaEnergieCzynnaNoc(), nightConsumption);
+        skladnikJakosciowyNightNetCharge = countNetAndAddToSum(prices.getSkladnikJakosciowy(), nightConsumption);
+        oplataSieciowaNightNetCharge = countNetAndAddToSum(prices.getOplataSieciowaNoc(), nightConsumption);
 
-        zaEnergieCzynnaDayVatCharge = multiplyVatAndAddToSum(zaEnergieCzynnaDayNetCharge);
-        skladnikJakosciowyDayVatCharge = multiplyVatAndAddToSum(skladnikJakosciowyDayNetCharge);
-        oplataSieciowaDayVatCharge = multiplyVatAndAddToSum(oplataSieciowaDayNetCharge);
-        zaEnergieCzynnaNightVatCharge = multiplyVatAndAddToSum(zaEnergieCzynnaNightNetCharge);
-        skladnikJakosciowyNightVatCharge = multiplyVatAndAddToSum(skladnikJakosciowyNightNetCharge);
-        oplataSieciowaNightVatCharge = multiplyVatAndAddToSum(oplataSieciowaNightNetCharge);
+        zaEnergieCzynnaDayVatCharge = countVatAndAddToSum(zaEnergieCzynnaDayNetCharge);
+        skladnikJakosciowyDayVatCharge = countVatAndAddToSum(skladnikJakosciowyDayNetCharge);
+        oplataSieciowaDayVatCharge = countVatAndAddToSum(oplataSieciowaDayNetCharge);
+        zaEnergieCzynnaNightVatCharge = countVatAndAddToSum(zaEnergieCzynnaNightNetCharge);
+        skladnikJakosciowyNightVatCharge = countVatAndAddToSum(skladnikJakosciowyNightNetCharge);
+        oplataSieciowaNightVatCharge = countVatAndAddToSum(oplataSieciowaNightNetCharge);
     }
 
     @Override

@@ -15,7 +15,6 @@ import java.util.Date;
 public class Dates {
 
     private static final String DATE_PATTERN = "dd/MM/yyyy";
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
 
     public static LocalDate parse(String text) {
         return LocalDate.parse(text, DateTimeFormatter.ofPattern(DATE_PATTERN));
@@ -23,13 +22,17 @@ public class Dates {
 
     public static String format(int year, Month month, int day) {
         final LocalDate date = LocalDate.of(year, month, day);
-        return date.format(FORMATTER);
+        return format(date, DATE_PATTERN);
     }
 
     public static String format(LocalDate date) {
-        return date.format(FORMATTER);
+        return format(date, DATE_PATTERN);
     }
-    
+
+    public static String format(LocalDate date, String datePattern) {
+        return date.format(DateTimeFormatter.ofPattern(datePattern));
+    }
+
     public static LocalDate toLocalDate(Date utilDate) {
         return DateTimeUtils.toLocalDate(new java.sql.Date(utilDate.getTime()));
     }

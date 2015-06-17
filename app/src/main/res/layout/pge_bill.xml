@@ -7,7 +7,7 @@
     android:scrollbars="none"
     android:padding="2dp"
     android:background="@android:color/white"
-    tools:context=".PgeBillActivity">
+    tools:context=".bill.PgeBillActivity">
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -16,6 +16,7 @@
         android:scrollbars="none">
 
         <RelativeLayout
+            android:id="@+id/bill_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

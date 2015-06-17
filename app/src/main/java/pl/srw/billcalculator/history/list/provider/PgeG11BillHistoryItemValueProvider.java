@@ -13,6 +13,7 @@ import pl.srw.billcalculator.db.dao.PgeG11BillDao;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.persistence.exception.DbRelationMissingException;
 import pl.srw.billcalculator.persistence.type.BillType;
+import pl.srw.billcalculator.type.Provider;
 
 /**
 * Created by Kamil Seweryn.
@@ -35,7 +36,7 @@ public class PgeG11BillHistoryItemValueProvider extends HistoryItemValueProvider
 
     @Override
     public int getLogoId() {
-        return pl.srw.billcalculator.type.BillType.PGE.logoDrawableId;
+        return Provider.PGE.logoSmallRes;
     }
 
     @Override
@@ -45,6 +46,6 @@ public class PgeG11BillHistoryItemValueProvider extends HistoryItemValueProvider
 
     @Override
     public Intent getIntent() {
-        return BillActivityIntentFactory.of(BillCalculator.context, pl.srw.billcalculator.type.BillType.PGE).from(bill);
+        return BillActivityIntentFactory.of(BillCalculator.context, Provider.PGE).from(bill);
     }
 }

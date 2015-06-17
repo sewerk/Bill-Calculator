@@ -1,8 +1,20 @@
 package pl.srw.billcalculator.test.db;
 
+import android.content.Context;
+import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.Espresso;
+import android.support.test.espresso.action.ViewActions;
+import android.support.test.espresso.matcher.ViewMatchers;
+import android.support.test.rule.ActivityTestRule;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.RenamingDelegatingContext;
+import android.test.suitebuilder.annotation.SmallTest;
 import android.widget.EditText;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 
 import java.util.List;
 
@@ -13,40 +25,41 @@ import pl.srw.billcalculator.db.PgePrices;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.testutils.PreferenceUtil;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 /**
  * Created by Kamil Seweryn.
  */
-public class PgeBillActivityInDbTest extends ActivityInstrumentationTestCase2<MainActivity> {
+@SmallTest
+public class PgeBillActivityInDbTest {
 
-    private MainActivity sut;
+    @Rule public final ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class);
 
-    public PgeBillActivityInDbTest() {
-        super(MainActivity.class);
-    }
-
-    @Override
-    protected void setUp() throws Exception {
-        RenamingDelegatingContext newContext = new RenamingDelegatingContext(getInstrumentation().getContext(), "test_");
-        Database.initialize(newContext);
+    @Before
+    public void setUp() throws Exception {
+        final Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        Database.initialize(targetContext);
         Database.getSession().deleteAll(PgeG12Bill.class);
 
-        PreferenceUtil.changeToG12Tariff(getInstrumentation().getTargetContext());
-        sut = getActivity();
+        PreferenceUtil.changeToG12Tariff(targetContext);
     }
 
-    public void testPgeG12BillStoredInHistory() throws Throwable {
-        runTestOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ((EditText)sut.findViewById(R.id.editText_reading_day_from)).setText("123");
-                ((EditText)sut.findViewById(R.id.editText_reading_day_to)).setText("321");
-                ((EditText)sut.findViewById(R.id.editText_reading_night_from)).setText("234");
-                ((EditText)sut.findViewById(R.id.editText_reading_night_to)).setText("432");
-
-                sut.findViewById(R.id.button_calculate).performClick();
-            }
-        });
-        getInstrumentation().waitForIdleSync();
+    @Test
+    public void shouldStoreBillInHistoryOnCalculateAction() throws Throwable {
+        activityTestRule.getActivity();
+        onView(withId(R.id.editText_reading_day_from)).perform(typeText("123"), closeSoftKeyboard());
+        onView(withId(R.id.editText_reading_day_to)).perform(typeText("321"), closeSoftKeyboard());
+        onView(withId(R.id.editText_reading_night_from)).perform(typeText("234"), closeSoftKeyboard());
+        onView(withId(R.id.editText_reading_night_to)).perform(typeText("432"), closeSoftKeyboard());
+        onView(withId(R.id.button_calculate)).perform(click());
 
         final List<PgeG12Bill> bills = Database.getSession().getPgeG12BillDao().loadAll();
         assertEquals(1, bills.size());

@@ -52,4 +52,11 @@ public class MultiSelect<P, I> implements android.os.Parcelable {
         Collections.sort(keys, Collections.reverseOrder());
         return keys;
     }
+
+    @Override
+    public String toString() {
+        return "MultiSelect{" +
+                "selectedItems=" + selectedItems +
+                '}';
+    }
 }

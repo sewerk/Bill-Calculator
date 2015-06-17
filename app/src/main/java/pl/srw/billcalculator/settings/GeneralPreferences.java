@@ -27,6 +27,11 @@ public final class GeneralPreferences {
                 .getString(context.getString(R.string.preferences_pge_tariff), "").equals(PgeSettingsFragment.TARIFF_G12);
     }
 
+    public static boolean isTauronTariffG12() {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString("preferences_tauron_tariff", "").equals(PgeSettingsFragment.TARIFF_G12);
+    }
+
     public static boolean isFirstLaunch() {
         return getSharedPreferences()
                 .getString(PREFERENCE_KEY_FIRST_LAUNCH, "").isEmpty();

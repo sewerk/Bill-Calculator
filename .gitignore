@@ -8,3 +8,4 @@ BillCalculator.iml
 app/signing.gradle
 persistence/persistence.iml
 database-generator/database-generator.iml
+app/fabric.properties

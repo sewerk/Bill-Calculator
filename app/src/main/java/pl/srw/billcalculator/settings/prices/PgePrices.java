@@ -162,6 +162,11 @@ public class PgePrices implements IPgePrices {
         wrappedPgePrices.setCena_oplata_abonamentowa(wrappedPgePrices.getCena_oplata_abonamentowa());
     }
 
+    public void init() {
+        if (!wrappedPgePrices.containsCena_za_energie_czynna())
+            setDefault();
+    }
+
     @hrisey.Preferences
     private class WrappedPgePrices {
         private String cena_za_energie_czynna = "0.2553";

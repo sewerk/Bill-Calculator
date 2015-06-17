@@ -1,24 +1,28 @@
 package pl.srw.billcalculator.bill;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TableLayout;
 
+import com.f2prateek.dart.InjectExtra;
+import com.f2prateek.dart.Optional;
+
 import org.threeten.bp.LocalDate;
 
 import java.math.BigDecimal;
 
 import pl.srw.billcalculator.BackableActivity;
+import pl.srw.billcalculator.CrashlyticsWrapper;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.bill.calculation.PgeCalculatedBill;
+import pl.srw.billcalculator.bill.calculation.CalculatedEnergyBill;
 import pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.PgeG12CalculatedBill;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgePrices;
 import pl.srw.billcalculator.settings.prices.PgePrices;
+import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 import pl.srw.billcalculator.util.Views;
@@ -26,30 +30,20 @@ import pl.srw.billcalculator.util.Views;
 /**
  * Created by Kamil Seweryn
  */
-public class PgeBillActivity extends BackableActivity {
+public class PgeBillActivity extends EnergyBillActivity {
 
     private static final int PRICE_SCALE = 4;
 
-    private String dateFrom;
-    private String dateTo;
-    private int readingFrom;
-    private int readingTo;
-    private int readingDayFrom;
-    private int readingDayTo;
-    private int readingNightFrom;
-    private int readingNightTo;
-
-    private IPgePrices prices;
-    private PgeCalculatedBill bill;
+    @Optional @InjectExtra(IntentCreator.PRICES) IPgePrices prices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pge_bill);
+        CrashlyticsWrapper.setString(Provider.PGE.toString(), "new="+(prices == null));
 
-        final Intent intent = getIntent();
-        readExtra(intent);
-        setPrices(intent);
+        if (prices == null)
+            prices = new PgePrices();
 
         bill = isTwoUnitTariff() ?
                 new PgeG12CalculatedBill(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices)
@@ -62,26 +56,6 @@ public class PgeBillActivity extends BackableActivity {
         setToPayTV();
     }
 
-    private void readExtra(Intent intent) {
-        dateFrom = intent.getStringExtra(IntentCreator.DATE_FROM);
-        dateTo = intent.getStringExtra(IntentCreator.DATE_TO);
-
-        readingFrom = intent.getIntExtra(IntentCreator.READING_FROM, -1);
-        readingTo = intent.getIntExtra(IntentCreator.READING_TO, -1);
-
-        readingDayFrom = intent.getIntExtra(IntentCreator.READING_DAY_FROM, -1);
-        readingDayTo = intent.getIntExtra(IntentCreator.READING_DAY_TO, -1);
-        readingNightFrom = intent.getIntExtra(IntentCreator.READING_NIGHT_FROM, -1);
-        readingNightTo = intent.getIntExtra(IntentCreator.READING_NIGHT_TO, -1);
-    }
-
-    private void setPrices(Intent intent) {
-        if (intent.hasExtra(IntentCreator.PRICES))
-            prices = (IPgePrices) intent.getSerializableExtra(IntentCreator.PRICES);
-        else 
-            prices = new PgePrices();
-    }
-
     private void setDates() {
         Views.setTV(this, R.id.tv_title, getString(R.string.rachunek_rozliczeniowy, Dates.format(LocalDate.now())));
         Views.setTV(this, R.id.tv_for_period, getString(R.string.for_period, dateFrom, dateTo));
@@ -91,25 +65,21 @@ public class PgeBillActivity extends BackableActivity {
         TableLayout chargeDetailsTable = (TableLayout) findViewById(R.id.t_charge_details);
 
         if(isTwoUnitTariff()) {
-            Views.setTV(this, R.id.tv_tariff, getString(R.string.pge_tariff_G12_on_bill));
+            Views.setTV(this, R.id.tv_tariff, getString(R.string.tariff_G12_on_bill));
             setG12Rows(chargeDetailsTable, countDayConsumption(), countNightConsumption());
         } else {
-            Views.setTV(this, R.id.tv_tariff, getString(R.string.pge_tariff_G11_on_bill));
+            Views.setTV(this, R.id.tv_tariff, getString(R.string.tariff_G11_on_bill));
             setG11Rows(chargeDetailsTable, countConsumption());
         }
 
         setRow(chargeDetailsTable, R.id.row_oplata_przejsciowa, R.string.strefa_pusta, R.string.oplata_przejsciowa, bill.getMonthCount(), R.string.m_c,
                 new BigDecimal(prices.getOplataPrzejsciowa()), bill.getOplataPrzejsciowaNetCharge());
         setRow(chargeDetailsTable, R.id.row_oplata_stala_za_przesyl, R.string.strefa_pusta, R.string.oplata_stala_za_przesyl, bill.getMonthCount(), R.string.m_c,
-                new BigDecimal(prices.getOplataStalaZaPrzesyl()), bill.getOplataStalaZaPrzesylNetCharge());
+                new BigDecimal(prices.getOplataStalaZaPrzesyl()), bill.getOplataDystrybucyjnaStalaNetCharge());
         setRow(chargeDetailsTable, R.id.row_oplata_abonamentowa, R.string.strefa_pusta, R.string.oplata_abonamentowa, bill.getMonthCount(), R.string.m_c,
                 new BigDecimal(prices.getOplataAbonamentowa()), bill.getOplataAbonamentowaNetCharge());
 
         setChargeSummary(chargeDetailsTable);
-    }
-
-    private boolean isTwoUnitTariff() {
-        return readingDayTo > 0;
     }
 
     private void setG11Rows(TableLayout chargeDetailsTable, int consumption) {

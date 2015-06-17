@@ -3,14 +3,21 @@ package pl.srw.billcalculator.settings.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.LayoutRes;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.f2prateek.dart.InjectExtra;
+
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.type.EnumVariantNotHandledException;
+import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.settings.fragment.PgeSettingsFragment;
 import pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment;
 import pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment;
+import pl.srw.billcalculator.settings.fragment.TauronSettingsFragment;
 
 /**
  * Created by Kamil Seweryn.
@@ -19,10 +26,7 @@ public class ProviderSettingsActivity extends BackableActivity {
 
     private static final String FRAGMENT_TAG = "SettingsFragment";
     private static final String EXTRA_PROVIDER_NAME = "PROVIDER_NAME";
-
-    public enum Provider {
-        PGE, PGNIG
-    }
+    @InjectExtra(EXTRA_PROVIDER_NAME) String providerName;
 
     public static Intent createIntent(final Context context, final Provider type) {
         Intent i = new Intent(context, ProviderSettingsActivity.class);
@@ -51,17 +55,16 @@ public class ProviderSettingsActivity extends BackableActivity {
     }
 
     private ProviderSettingsFragment getProviderSettingsFragment() {
-        ProviderSettingsFragment fragment;
-        final Provider provider = Provider.valueOf(getProviderFromIntent());
-        if (provider == Provider.PGNIG)
-            fragment = new PgnigSettingsFragment();
-        else
-            fragment = new PgeSettingsFragment();
-        return fragment;
-    }
-
-    private String getProviderFromIntent() {
-        return getIntent().getStringExtra(EXTRA_PROVIDER_NAME);
+        final Provider provider = Provider.valueOf(providerName);
+        switch (provider) {
+            case PGNIG:
+                return new PgnigSettingsFragment();
+            case PGE:
+                return new PgeSettingsFragment();
+            case TAURON:
+                return new TauronSettingsFragment();
+        }
+        throw new EnumVariantNotHandledException(provider);
     }
 
     @Override
@@ -84,12 +87,16 @@ public class ProviderSettingsActivity extends BackableActivity {
     }
 
     private void showHelp() {
-        final Intent intent = ProviderSettingsHelpActivity.createIntent(this, getHelpResource());
+        final Intent intent = ProviderSettingsHelpActivity.createIntent(this, getHelpResource(), getExampleImageResource());
         startActivity(intent);
     }
 
-    private int getHelpResource() {
+    private @LayoutRes int getHelpResource() {
         return getCurrentFragment().getHelpLayoutResource();
+    }
+
+    private @DrawableRes int getExampleImageResource() {
+        return getCurrentFragment().getHelpImageExampleResource();
     }
 
     private ProviderSettingsFragment getCurrentFragment() {

@@ -32,15 +32,15 @@ public class PgnigCalculatedBill extends CalculatedBill {
         consumptionKWh = new BigDecimal(consumptionM3).multiply(new BigDecimal(prices.getWspolczynnikKonwersji()))
                 .setScale(0, RoundingMode.HALF_UP).intValue();
 
-        oplataAbonamentowaNetCharge = multiplyAndAddToSum(prices.getOplataAbonamentowa(), getMonthCount());
-        paliwoGazoweNetCharge = multiplyAndAddToSum(prices.getPaliwoGazowe(), consumptionKWh);
-        dystrybucyjnaStalaNetCharge = multiplyAndAddToSum(prices.getDystrybucyjnaStala(), getMonthCount());
-        dystrybucyjnaZmiennaNetCharge = multiplyAndAddToSum(prices.getDystrybucyjnaZmienna(), consumptionKWh);
+        oplataAbonamentowaNetCharge = countNetAndAddToSum(prices.getOplataAbonamentowa(), getMonthCount());
+        paliwoGazoweNetCharge = countNetAndAddToSum(prices.getPaliwoGazowe(), consumptionKWh);
+        dystrybucyjnaStalaNetCharge = countNetAndAddToSum(prices.getDystrybucyjnaStala(), getMonthCount());
+        dystrybucyjnaZmiennaNetCharge = countNetAndAddToSum(prices.getDystrybucyjnaZmienna(), consumptionKWh);
 
-        oplataAbonamentowaVatCharge = multiplyVatAndAddToSum(oplataAbonamentowaNetCharge);
-        paliwoGazoweVatCharge = multiplyVatAndAddToSum(paliwoGazoweNetCharge);
-        dystrybucyjnaStalaVatCharge = multiplyVatAndAddToSum(dystrybucyjnaStalaNetCharge);
-        dystrybucyjnaZmiennaVatCharge = multiplyVatAndAddToSum(dystrybucyjnaZmiennaNetCharge);
+        oplataAbonamentowaVatCharge = countVatAndAddToSum(oplataAbonamentowaNetCharge);
+        paliwoGazoweVatCharge = countVatAndAddToSum(paliwoGazoweNetCharge);
+        dystrybucyjnaStalaVatCharge = countVatAndAddToSum(dystrybucyjnaStalaNetCharge);
+        dystrybucyjnaZmiennaVatCharge = countVatAndAddToSum(dystrybucyjnaZmiennaNetCharge);
 
     }
 }

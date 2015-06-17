@@ -93,7 +93,12 @@ public class PgnigPrices implements IPgnigPrices {
         wrappedPgnigPrices.setPaliwo_gazowe(wrappedPgnigPrices.getPaliwo_gazowe());
         wrappedPgnigPrices.setWsp_konwersji(wrappedPgnigPrices.getWsp_konwersji());
     }
-    
+
+    public void init() {
+        if (!wrappedPgnigPrices.containsAbonamentowa())
+            setDefault();
+    }
+
     @Preferences
     private class WrappedPgnigPrices {
         private String abonamentowa = "8.67";
