@@ -14,6 +14,7 @@ import org.threeten.bp.LocalDate;
 import java.math.BigDecimal;
 
 import pl.srw.billcalculator.BackableActivity;
+import pl.srw.billcalculator.CrashlyticsWrapper;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.calculation.CalculatedEnergyBill;
 import pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill;
@@ -21,6 +22,7 @@ import pl.srw.billcalculator.bill.calculation.PgeG12CalculatedBill;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgePrices;
 import pl.srw.billcalculator.settings.prices.PgePrices;
+import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 import pl.srw.billcalculator.util.Views;
@@ -38,6 +40,7 @@ public class PgeBillActivity extends EnergyBillActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pge_bill);
+        CrashlyticsWrapper.setString(Provider.PGE.toString(), "new="+(prices == null));
 
         if (prices == null)
             prices = new PgePrices();

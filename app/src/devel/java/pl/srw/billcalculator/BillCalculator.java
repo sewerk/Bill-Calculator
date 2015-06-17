@@ -25,13 +25,7 @@ public class BillCalculator extends Application {
         super.onCreate();
         context = getApplicationContext();
 
-        Database.enableDatabaseLogging();
-        LeakCanary.install(this);
-        Stetho.initialize(
-                Stetho.newInitializerBuilder(this)
-                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
-                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
-                        .build());
+        initializeDevelTools();
 
         Database.initialize(this);
 
@@ -40,6 +34,16 @@ public class BillCalculator extends Application {
         new PgePrices().init();
         new PgnigPrices().init();
         new TauronPrices().init();
+    }
+
+    private void initializeDevelTools() {
+        Database.enableDatabaseLogging();
+        LeakCanary.install(this);
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                        .build());
     }
 
 }

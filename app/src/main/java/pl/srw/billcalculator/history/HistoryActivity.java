@@ -8,10 +8,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 import pl.srw.billcalculator.BackableActivity;
+import pl.srw.billcalculator.CrashlyticsWrapper;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.event.HistoryChangedEvent;
 import pl.srw.billcalculator.history.list.EmptyHistoryDataObserver;
@@ -39,6 +42,7 @@ public class HistoryActivity extends BackableActivity {
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(new HistoryAdapter(this));
+        CrashlyticsWrapper.setInt("History_size", list.getAdapter().getItemCount());
 
         dataObserver = new EmptyHistoryDataObserver(list.getAdapter(), tvEmptyHistory);
         dataObserver.onChanged();

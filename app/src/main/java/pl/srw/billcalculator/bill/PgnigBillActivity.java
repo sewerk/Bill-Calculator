@@ -14,11 +14,13 @@ import org.threeten.bp.LocalDate;
 import java.math.BigDecimal;
 
 import pl.srw.billcalculator.BackableActivity;
+import pl.srw.billcalculator.CrashlyticsWrapper;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
+import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 import pl.srw.billcalculator.util.ToWebView;
@@ -43,6 +45,7 @@ public class PgnigBillActivity extends BackableActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pgnig_bill);
+        CrashlyticsWrapper.setString(Provider.PGNIG.toString(), "new=" + (prices == null));
 
         if (prices == null)
             prices = new PgnigPrices();

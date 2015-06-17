@@ -13,6 +13,7 @@ import org.threeten.bp.LocalDate;
 
 import java.math.BigDecimal;
 
+import pl.srw.billcalculator.CrashlyticsWrapper;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.calculation.TauronCalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG11CalculatedBill;
@@ -20,6 +21,7 @@ import pl.srw.billcalculator.bill.calculation.TauronG12CalculatedBill;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.ITauronPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
+import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 import pl.srw.billcalculator.util.Views;
@@ -38,6 +40,7 @@ public class TauronBillActivity extends EnergyBillActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tauron_bill);
+        CrashlyticsWrapper.setString(Provider.TAURON.toString(), "new=" + (prices == null));
 
         if (prices == null)
             prices = new TauronPrices();

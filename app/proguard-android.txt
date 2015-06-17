@@ -84,3 +84,6 @@
 -dontwarn com.f2prateek.dart.internal.**
 -keep class **$$ExtraInjector { *; }
 -keepnames class * { @com.f2prateek.dart.InjectExtra *;}
+
+# Crashlytics
+-keepattributes SourceFile,LineNumberTable

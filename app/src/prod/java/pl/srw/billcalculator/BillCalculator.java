@@ -25,9 +25,7 @@ public class BillCalculator extends Application {
         super.onCreate();
         context = getApplicationContext();
 
-        if (!BuildConfig.DEBUG)
-            Fabric.with(this, new Crashlytics());
-
+        CrashlyticsWrapper.initialize(this);
         Database.initialize(this);
 
         //PreferenceMigration.migrate(getApplicationContext());
