@@ -70,21 +70,17 @@ android {
 dependencies {
     compile project(':persistence')
 
-    compile 'com.android.support:recyclerview-v7:22.0.0'
-    compile 'com.android.support:appcompat-v7:22.0.0'
+    compile 'com.android.support:recyclerview-v7:22.2.0'
+    compile 'com.android.support:appcompat-v7:22.2.0'
 
     compile 'com.jakewharton:butterknife:6.1.0'
     provided 'pl.mg6.hrisey:hrisey:0.3.1'
     compile 'org.threeten:threetenbp:1.2'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.f2prateek.dart:dart:1.1.0'
-    // AndroidViewAnimations dependencies
-    compile 'com.nineoldandroids:library:2.4.0'
-    compile 'com.daimajia.easing:library:1.0.0@aar'
-    compile 'com.daimajia.androidanimations:library:1.1.2@aar'
 
-    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.1'
-    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.1') {
+    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2'
+    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2') {
         exclude module: 'support-annotations'
     }
     androidTestCompile fileTree(dir: 'libs', include: '*.jar')
