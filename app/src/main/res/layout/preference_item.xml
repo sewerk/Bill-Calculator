@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
@@ -10,7 +11,8 @@
         android:id="@+id/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:src="@drawable/pge_small"/>
 
     <RelativeLayout
         android:layout_width="0dp"
@@ -28,7 +30,8 @@
             android:singleLine="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:ellipsize="marquee"
-            android:requiresFadingEdge="horizontal" />
+            android:requiresFadingEdge="horizontal"
+            tools:text="PGE prices"/>
 
         <TextView
             android:id="@+id/summary"
@@ -37,7 +40,8 @@
             android:layout_below="@id/title"
             android:layout_alignLeft="@id/title"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:maxLines="4" />
+            android:maxLines="4"
+            tools:text="Tap to set prices"/>
 
     </RelativeLayout>
 

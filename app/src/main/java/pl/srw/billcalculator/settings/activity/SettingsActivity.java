@@ -17,10 +17,10 @@ import pl.srw.billcalculator.R;
 /**
  * Created by Kamil Seweryn
  */
-public class SettingsActivity extends BackableActivity implements ISettingsView {
+public class SettingsActivity extends BackableActivity implements SettingsViewing {
 
     @InjectView(R.id.list) ListView list;
-    private ISettingsPresenter presenter;
+    private SettingsPresenting presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +38,9 @@ public class SettingsActivity extends BackableActivity implements ISettingsView 
     }
 
     @Override
-    public void fillList(List<Map<String, String>> entries, String[] columns) {
+    public void fillList(List<Map<String, Object>> entries, String[] columns) {
         SimpleAdapter adapter = new SimpleAdapter(this, entries, R.layout.preference_item,
-                columns, new int[]{R.id.title, R.id.summary});
+                columns, new int[]{R.id.icon, R.id.title, R.id.summary});
         list.setAdapter(adapter);
     }
 }

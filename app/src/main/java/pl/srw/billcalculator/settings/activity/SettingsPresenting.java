@@ -5,7 +5,7 @@ import pl.srw.billcalculator.type.Provider;
 /**
  * Created by kseweryn on 10.06.15.
  */
-public interface ISettingsPresenter {
+public interface SettingsPresenting {
 
     Provider getProviderAt(int position);
 }

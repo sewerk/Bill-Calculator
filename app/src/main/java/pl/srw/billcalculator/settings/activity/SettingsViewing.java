@@ -8,9 +8,9 @@ import java.util.Map;
 /**
  * Created by kseweryn on 10.06.15.
  */
-public interface ISettingsView {
+public interface SettingsViewing {
 
-    void fillList(List<Map<String, String>> entries, String[] columns);
+    void fillList(List<Map<String, Object>> entries, String[] columns);
 
     String getString(@StringRes int strRes);
 }

@@ -25,10 +25,10 @@
 <!-- Preferences -->
     <string name="settings_label">Ustawienia</string>
     <string name="action_help">Pomoc</string>
-    <string name="pge_prices">Ceny PGE</string>
-    <string name="settings_pge_summary">Kliknij aby ustawić ceny za prąd od PGE</string>
-    <string name="pgnig_prices">Ceny PGNiG</string>
-    <string name="settings_pgnig_summary">Kliknij aby ustawić ceny za gaz od PGNiG</string>
+    <string name="pge_prices">PGE</string>
+    <string name="settings_pge_summary">Ustaw taryfę i ceny za energię</string>
+    <string name="pgnig_prices">PGNiG</string>
+    <string name="settings_pgnig_summary">Ustaw współ. konwersji i ceny za gaz</string>
     <string name="check_prices_info_title">Sprawdź ceny przed wyliczeniem</string>
     <string name="check_price_info_message">Wartość twojej faktury uzależniona jest od cen, które oferuje dostawca mediów. Na wysokość cen wpływa: rodzaj taryfy oraz lokalizacja, pora dnia i wielkość zużycia. Dostosuj ceny do własnego planu taryfowego.</string>
     <string name="check_prices_info_ok">Sprawdź</string>
@@ -37,8 +37,8 @@
     <string name="restore_prices_cancel">Anuluj</string>
     <string name="restore_prices_confirm">Tak</string>
     <string name="confirm_restore_prices_message">Czy chcesz przywrócić domyśne wartości ustawień?</string>
-    <string name="settings_tauron_summary">Kliknij aby ustawić ceny za prąd od Tauron</string>
-    <string name="tauron_prices">Ceny Tauron</string>
+    <string name="settings_tauron_summary">Ustaw taryfę i ceny za energię</string>
+    <string name="tauron_prices">Tauron</string>
 <!-- about -->
     <string name="about_label">O programie</string>
     <string name="version_text">Wersja %1$s<![CDATA[<br/>na <a href="http://opensource.org/licenses/MIT">licencji MIT</a>]]></string>
