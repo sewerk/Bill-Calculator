@@ -10,7 +10,7 @@ import pl.srw.billcalculator.intent.IntentCreator;
 /**
  * Created by kseweryn on 08.06.15.
  */
-public abstract class EnergyBillActivity extends BackableActivity {
+public abstract class EnergyBillActivity extends BillActivity {
     protected CalculatedEnergyBill bill;
     protected @InjectExtra(IntentCreator.DATE_FROM) String dateFrom;
     protected @InjectExtra(IntentCreator.DATE_TO) String dateTo;

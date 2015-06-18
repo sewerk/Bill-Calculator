@@ -3,6 +3,8 @@ package pl.srw.billcalculator.bill;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
 
@@ -13,12 +15,15 @@ import org.threeten.bp.LocalDate;
 
 import java.math.BigDecimal;
 
+import pl.srw.billcalculator.AboutActivity;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.CrashlyticsWrapper;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
+import pl.srw.billcalculator.history.HistoryActivity;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
+import pl.srw.billcalculator.settings.activity.SettingsActivity;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
@@ -29,7 +34,7 @@ import pl.srw.billcalculator.util.Views;
 /**
  * Created by Kamil Seweryn
  */
-public class PgnigBillActivity extends BackableActivity {
+public class PgnigBillActivity extends BillActivity {
 
     private static final int PRICE_SCALE = 5;
 
@@ -56,10 +61,6 @@ public class PgnigBillActivity extends BackableActivity {
         setChargeDetailsTable();
         setSummaryTable();
         setChargeTV();
-
-        //TODO: make optional
-        View billView = findViewById(R.id.bill_content);
-        setContentView(ToWebView.wrapByWebView(this, billView));
     }
 
     private void setDate() {

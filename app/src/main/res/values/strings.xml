@@ -19,7 +19,9 @@
     <string name="reading_hint_m3" translatable="false">[m\u00B3]</string>
     <string name="reading_hint_kWh" translatable="false">[kWh]</string>
 
-<!-- energy_bill -->
+<!-- bill -->
+    <string name="page_view_label">Page view</string>
+    <!-- energy_bill -->
     <string name="energy_bill">Energy bill</string>
     <string name="rachunek_rozliczeniowy" translatable="false">RACHUNEK ROZLICZENIOWY z dnia %1$s\nZA ENERGIĘ ELEKTRYCZNĄ I USŁUGI DYSTRYBUCJI</string>
     <string name="strefa_calodobowa" translatable="false">całodobowa</string>

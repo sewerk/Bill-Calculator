@@ -16,6 +16,8 @@
     <string name="reading_missing">Pole nie może być puste!</string>
     <string name="reading_order_error">Wartość wskazania bieżącego musi być większa od poprzedniego!</string>
     <string name="date_error">Data \"Za okres do\" musi być późniejsza niż \"Za okres od\"!</string>
+<!-- bill -->
+    <string name="page_view_label">Widok strony</string>
 <!-- energy_bill -->
     <string name="energy_bill">Rachunek za energię</string>
 <!-- gas_bill -->
