@@ -105,6 +105,6 @@ public class PgnigPrices implements IPgnigPrices {
         private String paliwo_gazowe = "0.11616";
         private String dystrybucyjna_stala = "11.39";
         private String dystrybucyjna_zmienna = "0.02821";
-        private String wsp_konwersji = "11.171";
+        private String wsp_konwersji = "11.251";
     }
 }
