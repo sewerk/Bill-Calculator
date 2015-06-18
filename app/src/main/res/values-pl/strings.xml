@@ -34,6 +34,9 @@
     <string name="check_prices_info_ok">Sprawdź</string>
     <string name="check_prices_info_cancel">Później</string>
     <string name="action_restore">Przywróć domyślne</string>
+    <string name="restore_prices_cancel">Anuluj</string>
+    <string name="restore_prices_confirm">Tak</string>
+    <string name="confirm_restore_prices_message">Czy chcesz przywrócić domyśne wartości ustawień?</string>
     <string name="settings_tauron_summary">Kliknij aby ustawić ceny za prąd od Tauron</string>
     <string name="tauron_prices">Ceny Tauron</string>
 <!-- about -->

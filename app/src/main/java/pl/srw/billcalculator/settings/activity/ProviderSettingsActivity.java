@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.settings.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
@@ -12,6 +13,7 @@ import com.f2prateek.dart.InjectExtra;
 
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.dialog.ConfirmRestoreSettingsDialogFragment;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.settings.fragment.PgeSettingsFragment;
@@ -26,6 +28,7 @@ public class ProviderSettingsActivity extends BackableActivity {
 
     private static final String FRAGMENT_TAG = "SettingsFragment";
     private static final String EXTRA_PROVIDER_NAME = "PROVIDER_NAME";
+    public static final String TAG_CONFIRM_RESTORE = "RESTORE_DEFAULT_CONFIRM_DIALOG";
     @InjectExtra(EXTRA_PROVIDER_NAME) String providerName;
 
     public static Intent createIntent(final Context context, final Provider type) {
@@ -40,21 +43,21 @@ public class ProviderSettingsActivity extends BackableActivity {
 
         final ProviderSettingsFragment preferenceFragment;
         if (savedInstanceState == null) {
-            preferenceFragment = getProviderSettingsFragment();
+            preferenceFragment = newProviderSettingsFragment();
             getFragmentManager()
                     .beginTransaction()
                     .replace(android.R.id.content, preferenceFragment, FRAGMENT_TAG)
                     .commit();
 
         } else {
-            preferenceFragment = getCurrentFragment();
+            preferenceFragment = getProviderSettingsFragment();
         }
 
         if (getActionBar() != null && preferenceFragment != null)
             getActionBar().setTitle(preferenceFragment.getTitleResource());
     }
 
-    private ProviderSettingsFragment getProviderSettingsFragment() {
+    private ProviderSettingsFragment newProviderSettingsFragment() {
         final Provider provider = Provider.valueOf(providerName);
         switch (provider) {
             case PGNIG:
@@ -80,7 +83,7 @@ public class ProviderSettingsActivity extends BackableActivity {
             showHelp();
             return true;
         } else if (item.getItemId() == R.id.action_default) {
-            getCurrentFragment().restoreDefault();
+            new ConfirmRestoreSettingsDialogFragment().show(getFragmentManager(), TAG_CONFIRM_RESTORE);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -92,14 +95,14 @@ public class ProviderSettingsActivity extends BackableActivity {
     }
 
     private @LayoutRes int getHelpResource() {
-        return getCurrentFragment().getHelpLayoutResource();
+        return getProviderSettingsFragment().getHelpLayoutResource();
     }
 
     private @DrawableRes int getExampleImageResource() {
-        return getCurrentFragment().getHelpImageExampleResource();
+        return getProviderSettingsFragment().getHelpImageExampleResource();
     }
 
-    private ProviderSettingsFragment getCurrentFragment() {
+    public ProviderSettingsFragment getProviderSettingsFragment() {
         return (ProviderSettingsFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
     }
 }

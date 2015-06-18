@@ -96,7 +96,11 @@
     <string name="check_prices_info_title">Check your prices before calculation</string>
     <string name="check_price_info_message">Calculated bill cost depends on prices, which differs according to individual tariff, as well as location, amount and time of usage. Enter the prices you get on your utility bill.</string>
     <string name="check_prices_info_ok">Check</string>
-    <string name="check_prices_info_cancel">Cancel</string>
+    <string name="check_prices_info_cancel">Later</string>
+
+    <string name="confirm_restore_prices_message">Are you sure you want to restore settings default values?</string>
+    <string name="restore_prices_confirm">Yes</string>
+    <string name="restore_prices_cancel">Cancel</string>
 
     <string name="energy_tariff_G11_in_preferences" translatable="false">G11</string>
     <string name="energy_tariff_G12_in_preferences" translatable="false">G12</string>
