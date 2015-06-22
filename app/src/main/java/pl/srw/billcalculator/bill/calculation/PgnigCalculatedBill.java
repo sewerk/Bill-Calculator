@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.bill.calculation;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.RoundingMode;
 
 import lombok.Getter;
@@ -14,7 +15,7 @@ import pl.srw.billcalculator.pojo.IPgnigPrices;
 public class PgnigCalculatedBill extends CalculatedBill {
 
     private final int consumptionM3;
-    private final int consumptionKWh;
+    private final BigInteger consumptionKWh;
 
     private final BigDecimal oplataAbonamentowaNetCharge;
     private final BigDecimal paliwoGazoweNetCharge;
@@ -30,7 +31,7 @@ public class PgnigCalculatedBill extends CalculatedBill {
         super(dateFrom, dateTo);
         consumptionM3 = readingTo - readingFrom;
         consumptionKWh = new BigDecimal(consumptionM3).multiply(new BigDecimal(prices.getWspolczynnikKonwersji()))
-                .setScale(0, RoundingMode.HALF_UP).intValue();
+                .setScale(0, RoundingMode.HALF_UP).toBigInteger();
 
         oplataAbonamentowaNetCharge = countNetAndAddToSum(prices.getOplataAbonamentowa(), getMonthCount());
         paliwoGazoweNetCharge = countNetAndAddToSum(prices.getPaliwoGazowe(), consumptionKWh);

@@ -5,10 +5,8 @@
 
     <TableLayout
         android:id="@+id/t_readings"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_tariff"
-        android:layout_alignLeft="@id/t_charge_details"
         android:background="@drawable/border">
 
         <TableRow
@@ -46,10 +44,10 @@
             <TextView
                 android:id="@+id/tv_previous_reading"
                 android:layout_width="wrap_content"
+                android:minWidth="120dp"
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:textStyle="bold"
-                android:paddingLeft="20dp"
                 android:text="@string/odczyt_na_dzien"
                 tools:text="249 [m\u00B3]"/>
 
@@ -85,9 +83,9 @@
             <TextView
                 android:id="@+id/tv_current_reading"
                 android:layout_width="wrap_content"
+                android:minWidth="90dp"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:paddingLeft="20dp"
                 android:textStyle="bold"
                 android:text="@string/odczyt_na_dzien"
                 tools:text="290 [m\u00B3]"/>
@@ -95,16 +93,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="30dp"
+                android:paddingLeft="20dp"
                 android:textStyle="bold"
                 android:text="Zużycie:"/>
 
-            <!--TODO: ems is not precise, align to right-->
             <TextView
                 android:id="@+id/tv_consumption"
                 android:layout_width="wrap_content"
+                android:minWidth="160dp"
                 android:layout_height="wrap_content"
-                android:ems="6"
                 android:gravity="end"
                 android:textStyle="bold"
                 android:text="@string/zuzycie"

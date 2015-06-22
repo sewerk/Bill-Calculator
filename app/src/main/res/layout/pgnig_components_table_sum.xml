@@ -33,6 +33,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_span="2"
             android:gravity="end"
             android:paddingRight="20dp"
             android:textStyle="bold"
@@ -52,7 +53,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_span="2"
             android:gravity="end"
             android:textStyle="bold"
             android:lines="1"
@@ -95,6 +95,7 @@
             android:id="@+id/tv_vat_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_span="2"
             android:layout_gravity="end"
             android:paddingRight="20dp"
             android:textStyle="bold"
@@ -107,7 +108,8 @@
             android:layout_gravity="end"
             android:paddingRight="20dp"
             android:textStyle="bold"
-            android:layout_column="7"
+            android:layout_column="6"
+            android:layout_span="2"
             tools:text="114,11" />
 
         <TextView

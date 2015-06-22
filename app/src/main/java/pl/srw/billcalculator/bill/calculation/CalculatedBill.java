@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.bill.calculation;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.RoundingMode;
 
 import lombok.Getter;
@@ -23,8 +24,16 @@ public abstract class CalculatedBill {
         monthCount = Dates.countMonth(dateFrom, dateTo);
     }
 
-    protected BigDecimal countNetAndAddToSum(final String oplataAbonamentowa, final int count) {
-        BigDecimal netCharge = new BigDecimal(oplataAbonamentowa).multiply(new BigDecimal(count));
+    protected BigDecimal countNetAndAddToSum(final String price, final int count) {
+        return countNetAndAddToSum(price, new BigDecimal(count));
+    }
+
+    protected BigDecimal countNetAndAddToSum(final String price, final BigInteger count) {
+        return countNetAndAddToSum(price, new BigDecimal(count));
+    }
+
+    private BigDecimal countNetAndAddToSum(String price, BigDecimal count) {
+        BigDecimal netCharge = new BigDecimal(price).multiply(count);
         netChargeSum = netChargeSum.add(netCharge.setScale(2, RoundingMode.HALF_UP));
         return netCharge;
     }

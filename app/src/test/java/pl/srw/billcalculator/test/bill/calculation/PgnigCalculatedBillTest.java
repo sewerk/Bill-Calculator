@@ -3,6 +3,7 @@ package pl.srw.billcalculator.test.bill.calculation;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.db.PgnigPrices;
@@ -25,7 +26,7 @@ public class PgnigCalculatedBillTest {
 
         // verify
         assertThat(sut.getConsumptionM3(), is(100));
-        assertThat(sut.getConsumptionKWh(), is(505));
+        assertThat(sut.getConsumptionKWh(), is(BigInteger.valueOf(505)));
         assertThat(sut.getMonthCount(), is(2));
 
         assertThat(sut.getOplataAbonamentowaNetCharge(), is(new BigDecimal("2.02")));

@@ -58,7 +58,7 @@ public class TauronBillActivity extends EnergyBillActivity {
     private void setDates() {
         Views.setTV(this, R.id.tv_invoice_date, getString(R.string.data_wystawienia, Dates.format(LocalDate.now(), DATE_PATTERN)));
         Views.setTV(this, R.id.tv_title, getString(R.string.data_sprzedazy, Dates.format(Dates.parse(dateTo), "MM.yyyy")));
-        Views.setTV(this, R.id.tv_for_period, getString(R.string.okres_rozliczeniowy, format(dateFrom), format(dateTo)));
+        Views.setTV(this, R.id.tv_for_period, getString(R.string.okres_rozliczeniowy, Dates.changeSeparator(dateFrom, "."), Dates.changeSeparator(dateTo, ".")));
     }
 
     private void setTariff() {
@@ -78,7 +78,7 @@ public class TauronBillActivity extends EnergyBillActivity {
         setRow(R.id.row_oplata_przejsciowa, R.string.tauron_oplata_przejsciowa, "", "", "", bill.getMonthCount(), "", new BigDecimal(prices.getOplataPrzejsciowa()), bill.getOplataPrzejsciowaNetCharge());
         setRow(R.id.row_oplata_abonamentowa, R.string.tauron_oplata_abonamentowa, "", "", "", bill.getMonthCount(), "", new BigDecimal(prices.getOplataAbonamentowa()), bill.getOplataAbonamentowaNetCharge());
 
-        setSumarry();
+        setSummary();
     }
 
     private void setG12Rows() {
@@ -106,9 +106,9 @@ public class TauronBillActivity extends EnergyBillActivity {
         final TableRow row = (TableRow) findViewById(rowId);
         Views.setTVInRow(row, R.id.tv_description, descId);
         Views.setTVInRow(row, R.id.tv_meter_no, meterNo);
-        Views.setTVInRow(row, R.id.tv_prev_date, format(dateFrom));
+        Views.setTVInRow(row, R.id.tv_prev_date, Dates.changeSeparator(dateFrom, "."));
         Views.setTVInRow(row, R.id.tv_prev_reading, prevReading);
-        Views.setTVInRow(row, R.id.tv_curr_date, format(dateTo));
+        Views.setTVInRow(row, R.id.tv_curr_date, Dates.changeSeparator(dateTo, "."));
         Views.setTVInRow(row, R.id.tv_curr_reading, currReading);
         Views.setTVInRow(row, R.id.tv_count, Integer.toString(count));
         Views.setTVInRow(row, R.id.tv_consumption, consumption);
@@ -116,7 +116,7 @@ public class TauronBillActivity extends EnergyBillActivity {
         Views.setTVInRow(row, R.id.tv_amount, Display.toPay(amount));
     }
 
-    private void setSumarry() {
+    private void setSummary() {
         Views.setTV(this, R.id.tv_total_consumption, "" + bill.getTotalConsumption());
         Views.setTV(this, R.id.tv_component_net_amount, Display.toPay(bill.getNetChargeSum()));
         setSummaryDetails();
@@ -142,10 +142,6 @@ public class TauronBillActivity extends EnergyBillActivity {
         if (isTwoUnitTariff()) tariff = "G12";
         else tariff = "G11";
         return tariff;
-    }
-
-    private String format(String date) {
-        return Dates.format(Dates.parse(date), DATE_PATTERN);
     }
 
 }

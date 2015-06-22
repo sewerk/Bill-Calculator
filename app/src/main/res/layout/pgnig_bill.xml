@@ -26,6 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:textStyle="bold"
                 android:text="@string/rozliczenie_dnia"/>
 
             <ImageView
@@ -43,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/image_logo"
                 android:layout_alignParentLeft="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Rozliczenie punktu poboru:"
                 android:paddingTop="24dp"/>
 
@@ -51,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/tv_charge_place"
-                android:layout_alignRight="@id/t_charge_details"
+                android:layout_alignRight="@+id/tables"
                 android:text="Numer punktu poboru: 0000000000" />
 
             <TextView
@@ -59,25 +61,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_charge_place"
+                android:layout_marginTop="24dp"
                 android:layout_alignParentLeft="true"
-                android:text="Grupa taryfowa PGNiG: W-x.x"
-                android:layout_marginTop="24dp"/>
+                android:text="Grupa taryfowa PGNiG: W-x.x"/>
 
-            <include
-                layout="@layout/pgnig_reading_table" />
+            <LinearLayout
+                android:id="@+id/tables"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/tv_tariff" >
 
-            <include
-                layout="@layout/pgnig_components_table" />
+                <include
+                    layout="@layout/pgnig_reading_table" />
 
-            <include
-                layout="@layout/pgnig_sum_table" />
+                <include
+                    layout="@layout/pgnig_components_table" />
+
+                <include
+                    layout="@layout/pgnig_sum_table" />
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/tv_invoice_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/t_summary"
-                android:layout_alignRight="@id/t_charge_details"
+                android:layout_below="@+id/tables"
+                android:layout_alignRight="@id/tables"
                 android:layout_marginTop="8dp"
                 android:textStyle="bold"
                 android:text="@string/wartosc_faktury"

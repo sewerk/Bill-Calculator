@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/pgnig_components_table" >
 
     <TableRow
         android:layout_width="wrap_content"
@@ -10,33 +12,31 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="20dp"
+            android:paddingRight="120dp"
             android:textStyle="bold"
             android:text="Opłaty" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="20dp"
             android:layout_span="2"
             android:textStyle="bold"
             android:gravity="center_horizontal"
-            android:text="za okres\nod                 do" />
+            android:text="za okres\nod                         do" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="20dp"
             android:textStyle="bold"
-            android:layout_gravity="bottom"
+            android:layout_gravity="bottom|end"
             android:text="Ilość" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
             android:textStyle="bold"
-            android:layout_gravity="bottom"
+            android:layout_gravity="bottom|end"
             android:text="j.m." />
 
         <TextView
@@ -74,9 +74,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="end"
+            android:layout_gravity="bottom|end"
             android:textStyle="bold"
-            android:text="wartość\n netto [zł]" />
+            android:text="wartość netto [zł]" />
 
     </TableRow>
 
