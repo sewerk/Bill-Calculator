@@ -3,10 +3,7 @@ package pl.srw.billcalculator;
 import android.app.Application;
 import android.content.Context;
 
-import com.crashlytics.android.Crashlytics;
-
 import hugo.weaving.DebugLog;
-import io.fabric.sdk.android.Fabric;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
@@ -25,7 +22,7 @@ public class BillCalculator extends Application {
         super.onCreate();
         context = getApplicationContext();
 
-        CrashlyticsWrapper.initialize(this);
+        AnalyticsWrapper.initialize(this);
         Database.initialize(this);
 
         //PreferenceMigration.migrate(getApplicationContext());

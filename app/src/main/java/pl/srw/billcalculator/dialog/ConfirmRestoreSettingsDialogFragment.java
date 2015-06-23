@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
 
@@ -30,6 +31,7 @@ public class ConfirmRestoreSettingsDialogFragment extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 ((ProviderSettingsActivity) getActivity()).getProviderSettingsFragment().restoreDefault();
+                AnalyticsWrapper.log("Default prices restored");
             }
         };
     }

@@ -8,11 +8,13 @@ import java.util.List;
 
 import hrisey.Parcelable;
 import hugo.weaving.DebugLog;
+import lombok.*;
 
 /**
  * Created by Kamil Seweryn.
  */
 @Parcelable
+@lombok.ToString(includeFieldNames = true)
 public class MultiSelect<P, I> implements android.os.Parcelable {
 
     private HashMap<P, I> selectedItems;
@@ -51,12 +53,5 @@ public class MultiSelect<P, I> implements android.os.Parcelable {
         final List<P> keys = new LinkedList<>(selectedItems.keySet());
         Collections.sort(keys, Collections.reverseOrder());
         return keys;
-    }
-
-    @Override
-    public String toString() {
-        return "MultiSelect{" +
-                "selectedItems=" + selectedItems +
-                '}';
     }
 }

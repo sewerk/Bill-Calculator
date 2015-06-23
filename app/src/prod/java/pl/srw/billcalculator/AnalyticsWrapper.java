@@ -9,7 +9,7 @@ import io.fabric.sdk.android.Fabric;
 /**
  * Created by kseweryn on 17.06.15.
  */
-public class CrashlyticsWrapper {
+public class AnalyticsWrapper {
 
     public static void initialize(Context context) {
         if (isEnabled())
@@ -24,6 +24,11 @@ public class CrashlyticsWrapper {
     public static void setString(String key, String val) {
         if (isEnabled())
             Crashlytics.setString(key, val);
+    }
+
+    public static void log(String message) {
+        if (isEnabled())
+            Crashlytics.log(message);
     }
 
     private static boolean isEnabled() {

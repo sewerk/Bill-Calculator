@@ -13,7 +13,7 @@ import org.threeten.bp.LocalDate;
 
 import java.math.BigDecimal;
 
-import pl.srw.billcalculator.CrashlyticsWrapper;
+import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.intent.IntentCreator;
@@ -44,7 +44,7 @@ public class PgnigBillActivity extends BillActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pgnig_bill);
-        CrashlyticsWrapper.setString(Provider.PGNIG.toString(), "new=" + (prices == null));
+        AnalyticsWrapper.log(Provider.PGNIG.toString() + " bill opened, new=" + (prices == null));
 
         if (prices == null)
             prices = new PgnigPrices();

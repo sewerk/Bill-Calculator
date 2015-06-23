@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import de.greenrobot.dao.query.LazyList;
 import hugo.weaving.DebugLog;
+import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.history.HistoryActivity;
@@ -62,6 +63,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryItemViewHolder> 
 
     @DebugLog
     public void deleteSelected() {
+        AnalyticsWrapper.log("Deleting items: " + selection.getItems().size() + " selected");
         for (SelectedBill bill : selection.getItems())
             Database.deleteBillWithPrices(bill.getType(), bill.getBillId(), bill.getPricesId());
         loadListFromDB();

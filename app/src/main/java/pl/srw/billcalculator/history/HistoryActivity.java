@@ -12,7 +12,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 import pl.srw.billcalculator.BackableActivity;
-import pl.srw.billcalculator.CrashlyticsWrapper;
+import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.event.HistoryChangedEvent;
 import pl.srw.billcalculator.history.list.EmptyHistoryDataObserver;
@@ -40,10 +40,11 @@ public class HistoryActivity extends BackableActivity {
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(new HistoryAdapter(this));
-        CrashlyticsWrapper.setInt("History_size", list.getAdapter().getItemCount());
+        AnalyticsWrapper.setInt("History_size", list.getAdapter().getItemCount());
 
         dataObserver = new EmptyHistoryDataObserver(list.getAdapter(), tvEmptyHistory);
         dataObserver.onChanged();
+        AnalyticsWrapper.log("History opened.");
     }
 
     @Override
@@ -112,6 +113,7 @@ public class HistoryActivity extends BackableActivity {
 
         @Override
         public void onDestroyActionMode(final ActionMode actionMode) {
+            AnalyticsWrapper.log("Exit history delete");
             getAdapter().exitSelectMode();
             HistoryActivity.this.actionMode = null;
         }
