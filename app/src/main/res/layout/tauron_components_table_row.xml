@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="2dp">
+    android:padding="2dp"
+    tools:showIn="@layout/tauron_components_table">
 
     <TextView
         android:id="@+id/tv_description"
@@ -30,7 +31,7 @@
     <TextView
         android:id="@+id/tv_prev_reading"
         android:layout_width="wrap_content"
-        android:minWidth="90dp"
+        android:minWidth="100dp"
         android:layout_height="wrap_content"
         android:gravity="end"
         android:paddingRight="20dp"
@@ -47,7 +48,7 @@
     <TextView
         android:id="@+id/tv_curr_reading"
         android:layout_width="wrap_content"
-        android:minWidth="90dp"
+        android:minWidth="100dp"
         android:layout_height="wrap_content"
         android:gravity="end"
         android:paddingRight="20dp"
