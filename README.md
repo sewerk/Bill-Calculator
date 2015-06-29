@@ -1,7 +1,7 @@
-![Logo](app/src/main/res/drawable-xhdpi/ic_launcher.png) Bill-Calculator
+![Logo](img/icon_small.png) Bill-Calculator
 ===============
 
-Android application to calculates bill value for PGE and PGNiG providers.
+Android app to calculate bill value for PGE, PGNiG and Tauron providers.
 
 <a href="https://play.google.com/store/apps/details?id=pl.srw.billcalculator">
   <img alt="Get it on Google Play"
@@ -16,7 +16,6 @@ With help of
 - [GreenDao](http://greendao-orm.com/)
 - [Hrisay](https://github.com/mg6maciej/hrisey)
 - [ThreeTen] (https://github.com/ThreeTen/threetenbp)
-
 - [Hugo](https://github.com/jakewharton/hugo)
 - [LeakCanary](https://github.com/square/leakcanary)
 - [Crashlytics](https://fabric.io)
