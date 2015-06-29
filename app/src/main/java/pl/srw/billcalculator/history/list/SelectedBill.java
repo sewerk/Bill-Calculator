@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.util;
+package pl.srw.billcalculator.history.list;
 
 import hrisey.Parcelable;
 import pl.srw.billcalculator.db.Bill;

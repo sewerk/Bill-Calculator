@@ -17,7 +17,7 @@ import pl.srw.billcalculator.history.list.HistoryAdapter;
 import pl.srw.billcalculator.history.list.provider.HistoryItemValueProvider;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.util.MultiSelect;
-import pl.srw.billcalculator.util.SelectedBill;
+import pl.srw.billcalculator.history.list.SelectedBill;
 
 /**
 * Created by Kamil Seweryn.

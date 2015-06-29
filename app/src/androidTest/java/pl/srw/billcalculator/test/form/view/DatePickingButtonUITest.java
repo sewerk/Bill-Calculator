@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.test.util;
+package pl.srw.billcalculator.test.form.view;
 
 import android.test.ActivityInstrumentationTestCase2;
 
@@ -17,11 +17,11 @@ import pl.srw.billcalculator.util.Dates;
 /**
  * Created by Kamil Seweryn.
  */
-public class DatesUITest extends ActivityInstrumentationTestCase2<MainActivity> {
+public class DatePickingButtonUITest extends ActivityInstrumentationTestCase2<MainActivity> {
     
     private Solo solo;
 
-    public DatesUITest() {
+    public DatePickingButtonUITest() {
         super(MainActivity.class);
     }
 
