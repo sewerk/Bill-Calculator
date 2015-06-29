@@ -20,6 +20,7 @@
     <string name="page_view_label">Widok strony</string>
 <!-- energy_bill -->
     <string name="energy_bill">Rachunek za energię</string>
+    <string name="action_print">Zapisz do PDF</string>
 <!-- gas_bill -->
     <string name="gas_bill">Rachunek za gaz</string>
 <!-- Preferences -->

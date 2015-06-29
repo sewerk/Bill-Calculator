@@ -23,6 +23,7 @@
     <string name="page_view_label">Page view</string>
     <!-- energy_bill -->
     <string name="energy_bill">Energy bill</string>
+    <string name="action_print">Save to PDF</string>
     <string name="rachunek_rozliczeniowy" translatable="false">RACHUNEK ROZLICZENIOWY z dnia %1$s\nZA ENERGIĘ ELEKTRYCZNĄ I USŁUGI DYSTRYBUCJI</string>
     <string name="strefa_calodobowa" translatable="false">całodobowa</string>
     <string name="strefa_dzienna" translatable="false">dzienna</string>

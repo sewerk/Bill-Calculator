@@ -3,7 +3,6 @@ package pl.srw.billcalculator.bill;
 import com.f2prateek.dart.InjectExtra;
 import com.f2prateek.dart.Optional;
 
-import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.bill.calculation.CalculatedEnergyBill;
 import pl.srw.billcalculator.intent.IntentCreator;
 
