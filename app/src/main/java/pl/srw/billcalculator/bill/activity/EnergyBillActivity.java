@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.bill;
+package pl.srw.billcalculator.bill.activity;
 
 import com.f2prateek.dart.InjectExtra;
 import com.f2prateek.dart.Optional;

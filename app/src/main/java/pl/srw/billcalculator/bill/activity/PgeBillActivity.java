@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.bill;
+package pl.srw.billcalculator.bill.activity;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;

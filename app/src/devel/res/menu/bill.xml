@@ -12,7 +12,7 @@
         android:id="@+id/action_print"
         android:orderInCategory="101"
         android:showAsAction="ifRoom"
-        android:icon="@drawable/abc_ic_menu_paste_mtrl_am_alpha"
+        android:icon="@drawable/ic_print_grey_300_36dp"
         android:title="@string/action_print"/>
 
 </menu>
