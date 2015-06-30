@@ -6,11 +6,10 @@ import android.widget.Filter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.util.ToString;
+import pl.srw.billcalculator.util.Strings;
 
 /**
  * Created by Kamil Seweryn.
@@ -22,9 +21,9 @@ public class PreviousReadingsAdapter extends ArrayAdapter<String> {
     private final Object mLock = new Object();
     private String[] prevReadings;
 
-    public PreviousReadingsAdapter(Context context, Collection readings) {
+    public PreviousReadingsAdapter(Context context, int[] readings) {
         super(context, R.layout.dropdowntext, R.id.dropDown);
-        prevReadings = ToString.toArray(readings);
+        prevReadings = Strings.toArray(readings);
     }
 
     private void setResult(String[] result) {

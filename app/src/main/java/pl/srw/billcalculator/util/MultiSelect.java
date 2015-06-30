@@ -1,10 +1,12 @@
 package pl.srw.billcalculator.util;
 
+import android.support.v4.util.ArrayMap;
+
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import hrisey.Parcelable;
 import hugo.weaving.DebugLog;
@@ -17,10 +19,10 @@ import lombok.*;
 @lombok.ToString(includeFieldNames = true)
 public class MultiSelect<P, I> implements android.os.Parcelable {
 
-    private HashMap<P, I> selectedItems;
+    private Map<P, I> selectedItems;
 
     public MultiSelect() {
-        selectedItems = new HashMap<>();
+        selectedItems = new ArrayMap<>();
     }
 
     @DebugLog

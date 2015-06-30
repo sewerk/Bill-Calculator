@@ -2,10 +2,10 @@ package pl.srw.billcalculator.settings.activity;
 
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
+import android.support.v4.util.ArrayMap;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,11 +45,11 @@ public class SettingsPresenter implements SettingsPresenting {
     }
 
     private void addEntry(@DrawableRes int icon, @StringRes final int title, @StringRes int desc) {
-        HashMap<String, Object> entry = new HashMap<>(2);
+        ArrayMap<String, Object> entry = new ArrayMap<>(2);
         entry.put(ICON, icon);
         entry.put(TITLE, getString(title));
         entry.put(DESCRIPTION, getString(desc));
-        entries.add(Collections.unmodifiableMap(entry));
+        entries.add(entry);
     }
 
     private String getString(@StringRes final int strRes) {

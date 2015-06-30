@@ -4,9 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.dao.query.QueryBuilder;
 import pl.srw.billcalculator.db.History;
@@ -57,14 +54,14 @@ public class Database {
         return daoSession;
     }
 
-    public static List<Integer> queryCurrentReadings(CurrentReadingType readingType) {
+    public static int[] queryCurrentReadings(CurrentReadingType readingType) {
         String[] columns = {readingType.getColumnName()};
         Cursor cursor = database.query(true, readingType.getTableName(), columns, null, null, null, null, columns[0] + " DESC", QUERY_ROW_LIMIT);
 
-        List<Integer> readings = new ArrayList<>(cursor.getCount());
-        while (cursor.moveToNext()) {
-            readings.add(cursor.getInt(0));
-        }
+        int[] readings = new int[cursor.getCount()];
+        int idx = 0;
+        while (cursor.moveToNext())
+            readings[idx++] = cursor.getInt(0);
         cursor.close();
         return readings;
     }

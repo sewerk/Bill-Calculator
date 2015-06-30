@@ -2,10 +2,8 @@ package pl.srw.billcalculator.form.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.SimpleArrayMap;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -23,7 +21,7 @@ import pl.srw.billcalculator.type.Provider;
 public abstract class PreviousReadingsProvidingFormFragment extends Fragment {
 
     protected Lock lock;
-    protected Map<CurrentReadingType, Collection<Integer>> prevReadingsCache;//TODO: improve: move cache to presenter and prevent from repopulate on rotation
+    protected SimpleArrayMap<CurrentReadingType, int[]> prevReadingsCache;//TODO: improve: move cache to presenter and prevent from repopulate on rotation
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,7 +55,7 @@ public abstract class PreviousReadingsProvidingFormFragment extends Fragment {
     protected abstract void setPreviousReadings();
 
     protected void cachePreviousReadings() {
-        prevReadingsCache = new HashMap<>();
+        prevReadingsCache = new SimpleArrayMap<>();
         lock.lock();
         try {
             fillCacheFor(getCurrentReadingTypes());
@@ -67,7 +65,7 @@ public abstract class PreviousReadingsProvidingFormFragment extends Fragment {
         }
     }
 
-    protected Collection<Integer> getPreviousReadings(CurrentReadingType readingType) {
+    protected int[] getPreviousReadings(CurrentReadingType readingType) {
         lock.lock();
         try {
             return prevReadingsCache.get(readingType);
