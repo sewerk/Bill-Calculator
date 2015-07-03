@@ -33,6 +33,10 @@ public class Dates {
         return date.format(DateTimeFormatter.ofPattern(datePattern));
     }
 
+    public static String changeSeparator(String date, String separator) {
+        return date.replaceAll("/", separator);
+    }
+
     public static LocalDate toLocalDate(Date utilDate) {
         return DateTimeUtils.toLocalDate(new java.sql.Date(utilDate.getTime()));
     }

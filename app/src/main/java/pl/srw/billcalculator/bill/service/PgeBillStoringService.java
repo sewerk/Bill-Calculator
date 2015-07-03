@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.bill.service;
 
+import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.CalculatedEnergyBill;
 import pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.PgeG12CalculatedBill;
@@ -31,11 +32,13 @@ public class PgeBillStoringService extends BillStoringService<PgePrices, Calcula
                     Dates.toDate(Dates.parse(dateFrom)), Dates.toDate(Dates.parse(dateTo)),
                     calculatedBill.getGrossChargeSum().doubleValue(), prices.getId());
             Database.getSession().insert(bill);
+            SavedBillsRegistry.getInstance().register(bill);
         } else {
             final PgeG11Bill bill = new PgeG11Bill(null, readingFrom, readingTo,
                     Dates.toDate(Dates.parse(dateFrom)), Dates.toDate(Dates.parse(dateTo)),
                     calculatedBill.getGrossChargeSum().doubleValue(), prices.getId());
             Database.getSession().insert(bill);
+            SavedBillsRegistry.getInstance().register(bill);
         }
     }
 

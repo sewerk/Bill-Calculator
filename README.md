@@ -1,7 +1,7 @@
-![Logo](app/src/main/res/drawable-xhdpi/ic_launcher.png) Bill-Calculator
+![Logo](img/icon_small.png) Bill-Calculator
 ===============
 
-Android application to calculates bill value for PGE and PGNiG providers.
+Android app to calculate bill value for PGE, PGNiG and Tauron providers.
 
 <a href="https://play.google.com/store/apps/details?id=pl.srw.billcalculator">
   <img alt="Get it on Google Play"
@@ -10,18 +10,17 @@ Android application to calculates bill value for PGE and PGNiG providers.
 
 With help of
 ---------
-- [AndroidViewAnimations](https://github.com/daimajia/AndroidViewAnimations)
 - [Butter Knife](https://github.com/JakeWharton/butterknife)
 - [Dart](https://github.com/f2prateek/dart)
 - [EventBus](https://github.com/greenrobot/EventBus)
 - [GreenDao](http://greendao-orm.com/)
 - [Hrisay](https://github.com/mg6maciej/hrisey)
 - [ThreeTen] (https://github.com/ThreeTen/threetenbp)
-
 - [Hugo](https://github.com/jakewharton/hugo)
 - [LeakCanary](https://github.com/square/leakcanary)
 - [Crashlytics](https://fabric.io)
 - [Stetho](http://facebook.github.io/stetho)
 - [Espresso](https://code.google.com/p/android-test-kit/wiki/Espresso)
 - [Mockito](http://mockito.org)
+- [JUnitParams](https://github.com/Pragmatists/junitparams)
 - [Robotium] (https://code.google.com/p/robotium)

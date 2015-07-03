@@ -12,12 +12,14 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import hugo.weaving.DebugLog;
+import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.history.list.HistoryAdapter;
 import pl.srw.billcalculator.history.list.provider.HistoryItemValueProvider;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.util.MultiSelect;
-import pl.srw.billcalculator.util.SelectedBill;
+import pl.srw.billcalculator.history.list.SelectedBill;
 
 /**
 * Created by Kamil Seweryn.
@@ -77,8 +79,10 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder
     public void onTap() {
         if (adapter.getActivity().isInDeleteMode())
             toggleSelection();
-        else
+        else {
             itemView.getContext().startActivity(itemValuesProvider.getIntent());
+            SavedBillsRegistry.getInstance().register(itemValuesProvider.getBill());
+        }
     }
 
     @Override
@@ -98,9 +102,11 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder
     }
 
     private void toggleSelection() {
-        if (selection.isSelected(getLayoutPosition()))
+        if (selection.isSelected(getLayoutPosition())) {
+            AnalyticsWrapper.log("Selecting " + getLayoutPosition() + "-th item");
             selection.deselect(getLayoutPosition());
-        else {
+        } else {
+            AnalyticsWrapper.log("Deselecting " + getLayoutPosition() + "-th item");
             selection.select(getLayoutPosition(), new SelectedBill(itemValuesProvider.getBill()));
         }
         setLogoImage(true);

@@ -2,9 +2,9 @@ package pl.srw.billcalculator.intent;
 
 import android.content.Context;
 
-import pl.srw.billcalculator.bill.PgeBillActivity;
-import pl.srw.billcalculator.bill.PgnigBillActivity;
-import pl.srw.billcalculator.bill.TauronBillActivity;
+import pl.srw.billcalculator.bill.activity.PgeBillActivity;
+import pl.srw.billcalculator.bill.activity.PgnigBillActivity;
+import pl.srw.billcalculator.bill.activity.TauronBillActivity;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 

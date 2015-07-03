@@ -16,7 +16,7 @@ import pl.srw.billcalculator.form.view.SlidingTabLayout;
 import pl.srw.billcalculator.AboutActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
-import pl.srw.billcalculator.form.dialog.CheckPricesDialogFragment;
+import pl.srw.billcalculator.dialog.CheckPricesDialogFragment;
 import pl.srw.billcalculator.history.HistoryActivity;
 import pl.srw.billcalculator.settings.GeneralPreferences;
 

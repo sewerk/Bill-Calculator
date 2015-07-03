@@ -14,9 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -29,6 +26,7 @@ import pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
 import pl.srw.billcalculator.intent.IntentCreator;
+import pl.srw.billcalculator.util.Animations;
 import pl.srw.billcalculator.util.Dates;
 
 import static pl.srw.billcalculator.form.FormValueValidator.isDatesOrderCorrect;
@@ -125,14 +123,14 @@ public abstract class SingleReadingsFormFragment extends PreviousReadingsProvidi
     }
 
     private void onError(EditText et, @StringRes int errorMsgRes) {
-        shake(et);
+        Animations.shake(et);
         et.setError(getActivity().getString(errorMsgRes));
         et.requestFocus();
         showKeyboard(et);
     }
 
     private void onDatesError(@StringRes int errorMsg) {
-        shake(bToDate);
+        Animations.shake(bToDate);
         bToDate.showError(errorMsg);
     }
 
@@ -145,10 +143,6 @@ public abstract class SingleReadingsFormFragment extends PreviousReadingsProvidi
                 bToDate.clearError();
             }
         });
-    }
-
-    private void shake(View target) {
-        YoYo.with(Techniques.Shake).playOn(target);
     }
 
     private void showKeyboard(TextView mTextView) {

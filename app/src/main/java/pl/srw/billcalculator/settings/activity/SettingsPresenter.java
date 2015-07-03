@@ -1,10 +1,11 @@
 package pl.srw.billcalculator.settings.activity;
 
+import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
+import android.support.v4.util.ArrayMap;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,16 +14,17 @@ import pl.srw.billcalculator.type.Provider;
 /**
  * Created by kseweryn on 14.04.15.
  */
-public class SettingsPresenter implements ISettingsPresenter {
+public class SettingsPresenter implements SettingsPresenting {
 
+    private static final String ICON = "ICON";
     private static final String TITLE = "TITLE";
     private static final String DESCRIPTION = "DESCRIPTION";
-    public static final String[] COLUMNS = {TITLE, DESCRIPTION};
+    public static final String[] COLUMNS = {ICON, TITLE, DESCRIPTION};
 
-    private final ISettingsView view;
-    private List<Map<String, String>> entries = new ArrayList<>();
+    private final SettingsViewing view;
+    private List<Map<String, Object>> entries = new ArrayList<>();
 
-    public SettingsPresenter(ISettingsView view) {
+    public SettingsPresenter(SettingsViewing view) {
         this.view = view;
         if (entries.isEmpty()) {
             addEntries(Provider.values());
@@ -38,15 +40,16 @@ public class SettingsPresenter implements ISettingsPresenter {
 
     private void addEntries(Provider[] values) {
         for (Provider provider : values) {
-            addEntry(getString(provider.titleRes), getString(provider.settingsDescRes));
+            addEntry(provider.logoSmallRes, provider.titleRes, provider.settingsDescRes);
         }
     }
 
-    private void addEntry(String title, String desc) {
-        HashMap<String, String> entry = new HashMap<>(2);
-        entry.put(TITLE, title);
-        entry.put(DESCRIPTION, desc);
-        entries.add(Collections.unmodifiableMap(entry));
+    private void addEntry(@DrawableRes int icon, @StringRes final int title, @StringRes int desc) {
+        ArrayMap<String, Object> entry = new ArrayMap<>(2);
+        entry.put(ICON, icon);
+        entry.put(TITLE, getString(title));
+        entry.put(DESCRIPTION, getString(desc));
+        entries.add(entry);
     }
 
     private String getString(@StringRes final int strRes) {

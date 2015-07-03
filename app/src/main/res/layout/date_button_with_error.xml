@@ -18,6 +18,8 @@
         android:layout_alignBottom="@id/button_date"
         android:layout_alignRight="@id/button_date"
         android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:editable="false"
         android:ems="1"
         android:background="@android:color/transparent"

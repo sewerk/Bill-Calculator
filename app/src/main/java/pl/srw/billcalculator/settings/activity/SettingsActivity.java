@@ -11,20 +11,22 @@ import java.util.Map;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnItemClick;
+import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
 
 /**
  * Created by Kamil Seweryn
  */
-public class SettingsActivity extends BackableActivity implements ISettingsView {
+public class SettingsActivity extends BackableActivity implements SettingsViewing {
 
     @InjectView(R.id.list) ListView list;
-    private ISettingsPresenter presenter;
+    private SettingsPresenting presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AnalyticsWrapper.log("Settings opened");
 
         setContentView(R.layout.preference_list);
         ButterKnife.inject(this);
@@ -38,9 +40,9 @@ public class SettingsActivity extends BackableActivity implements ISettingsView 
     }
 
     @Override
-    public void fillList(List<Map<String, String>> entries, String[] columns) {
+    public void fillList(List<Map<String, Object>> entries, String[] columns) {
         SimpleAdapter adapter = new SimpleAdapter(this, entries, R.layout.preference_item,
-                columns, new int[]{R.id.title, R.id.summary});
+                columns, new int[]{R.id.icon, R.id.title, R.id.summary});
         list.setAdapter(adapter);
     }
 }
