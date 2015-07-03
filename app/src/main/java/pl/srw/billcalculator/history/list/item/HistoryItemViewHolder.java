@@ -14,6 +14,7 @@ import butterknife.InjectView;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.history.list.HistoryAdapter;
 import pl.srw.billcalculator.history.list.provider.HistoryItemValueProvider;
 import pl.srw.billcalculator.db.History;
@@ -78,8 +79,10 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder
     public void onTap() {
         if (adapter.getActivity().isInDeleteMode())
             toggleSelection();
-        else
+        else {
             itemView.getContext().startActivity(itemValuesProvider.getIntent());
+            SavedBillsRegistry.getInstance().register(itemValuesProvider.getBill());
+        }
     }
 
     @Override

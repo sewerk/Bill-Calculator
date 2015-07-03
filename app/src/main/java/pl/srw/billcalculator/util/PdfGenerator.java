@@ -10,13 +10,17 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import hugo.weaving.DebugLog;
+import pl.srw.billcalculator.AnalyticsWrapper;
+
 /**
  * Created by Kamil Seweryn.
  */
 public final class PdfGenerator {
 
+    @DebugLog
     public static String generate(final String path, Bitmap bitmap) {
-        try {
+        try {//TODO: optimise performance: 7731ms
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(path));
             document.open();
@@ -32,8 +36,8 @@ public final class PdfGenerator {
 
             document.close();
         } catch (Exception e) {
-            e.printStackTrace();//TODO
-            return null;
+            throw new RuntimeException(e);
+            //TODO: later maybe: return null;
         }
         return path;
     }

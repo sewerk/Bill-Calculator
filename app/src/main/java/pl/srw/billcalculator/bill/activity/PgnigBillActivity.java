@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 
 import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
@@ -55,6 +56,11 @@ public class PgnigBillActivity extends BillActivity {
         setChargeDetailsTable();
         setSummaryTable();
         setChargeTV();
+    }
+
+    @Override
+    protected String getBillIdentifier() {
+        return SavedBillsRegistry.getInstance().getIdentifier(Provider.PGNIG, readingFrom, readingTo, dateFrom, dateTo, prices);
     }
 
     private void setDate() {

@@ -42,7 +42,6 @@ public abstract class PreviousReadingsProvidingFormFragment extends Fragment {
             cachePreviousReadings();
     }
 
-    @DebugLog
     public void onEventMainThread(PreviousReadingsNeedsUpdateEvent event) {
         if (event.getForProvider() == getProvider())
             setPreviousReadings();

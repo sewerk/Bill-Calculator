@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.bill.service;
 
+import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.CalculatedEnergyBill;
 import pl.srw.billcalculator.bill.calculation.TauronG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG12CalculatedBill;
@@ -31,11 +32,13 @@ public class TauronBillStoringService extends BillStoringService<TauronPrices, C
                     Dates.toDate(Dates.parse(dateFrom)), Dates.toDate(Dates.parse(dateTo)),
                     calculatedBill.getGrossChargeSum().doubleValue(), prices.getId());
             Database.getSession().insert(bill);
+            SavedBillsRegistry.getInstance().register(bill);
         } else {
             final TauronG11Bill bill = new TauronG11Bill(null, readingFrom, readingTo,
                     Dates.toDate(Dates.parse(dateFrom)), Dates.toDate(Dates.parse(dateTo)),
                     calculatedBill.getGrossChargeSum().doubleValue(), prices.getId());
             Database.getSession().insert(bill);
+            SavedBillsRegistry.getInstance().register(bill);
         }
     }
 

@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.bill.service;
 
+import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.PgnigPrices;
@@ -27,6 +28,7 @@ public class PgnigBillStoringService extends BillStoringService<PgnigPrices, Pgn
                 Dates.toDate(Dates.parse(dateFrom)), Dates.toDate(Dates.parse(dateTo)),
                 calculatedBill.getGrossChargeSum().doubleValue(), prices.getId());
         Database.getSession().insert(bill);
+        SavedBillsRegistry.getInstance().register(bill);
     }
 
     @Override

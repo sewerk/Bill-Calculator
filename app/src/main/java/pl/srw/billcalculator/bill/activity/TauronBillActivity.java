@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 
 import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.TauronCalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG12CalculatedBill;
@@ -53,6 +54,14 @@ public class TauronBillActivity extends EnergyBillActivity {
         setTariff();
         setTable();
         setExcise();
+    }
+
+    @Override
+    protected String getBillIdentifier() {
+        if (isTwoUnitTariff())
+            return SavedBillsRegistry.getInstance().getIdentifier(Provider.TAURON, readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices);
+        else
+            return SavedBillsRegistry.getInstance().getIdentifier(Provider.TAURON, readingFrom, readingTo, dateFrom, dateTo, prices);
     }
 
     private void setDates() {

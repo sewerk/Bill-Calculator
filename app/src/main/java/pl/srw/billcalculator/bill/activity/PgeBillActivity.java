@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 
 import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.PgeG12CalculatedBill;
 import pl.srw.billcalculator.intent.IntentCreator;
@@ -52,6 +53,14 @@ public class PgeBillActivity extends EnergyBillActivity {
         setExcise();
         setSummaryTable();
         setToPayTV();
+    }
+
+    @Override
+    protected String getBillIdentifier() {
+        if (isTwoUnitTariff())
+            return SavedBillsRegistry.getInstance().getIdentifier(Provider.PGE, readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices);
+        else
+            return SavedBillsRegistry.getInstance().getIdentifier(Provider.PGE, readingFrom, readingTo, dateFrom, dateTo, prices);
     }
 
     private void setDates() {
