@@ -87,3 +87,8 @@
 
 # Crashlytics
 -keepattributes SourceFile,LineNumberTable
+
+#itextPDF
+-keep class org.spongycastle.** { *; }
+-dontwarn org.spongycastle.**
+-dontwarn com.itextpdf.testutils.ITextTest
