@@ -32,7 +32,7 @@ import pl.srw.billcalculator.util.Views;
  */
 public class TauronBillActivity extends EnergyBillActivity {
 
-    public static final String DATE_PATTERN = "dd.MM.yyyy";
+    private static final String DATE_PATTERN = "dd.MM.yyyy";
     private static final int PRICE_SCALE = 5;
 
     @Optional @InjectExtra(IntentCreator.PRICES) ITauronPrices prices;

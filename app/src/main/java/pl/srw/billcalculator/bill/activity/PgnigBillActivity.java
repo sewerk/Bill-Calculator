@@ -30,7 +30,7 @@ import pl.srw.billcalculator.util.Views;
  */
 public class PgnigBillActivity extends BillActivity {
 
-    public static final String DATE_PATTERN = "dd.MM.yyyy";
+    private static final String DATE_PATTERN = "dd.MM.yyyy";
     private static final int PRICE_SCALE = 5;
 
     @InjectExtra(IntentCreator.DATE_FROM) String dateFrom;

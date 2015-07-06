@@ -12,7 +12,6 @@ import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.TauronG11Bill;
 import pl.srw.billcalculator.db.TauronG12Bill;
-import pl.srw.billcalculator.form.view.DatePickingButton;
 import pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton;
 import pl.srw.billcalculator.util.Dates;
 
@@ -42,7 +41,7 @@ public final class IntentCreator {
                 getStringText(bDateFrom), getStringText(bDateTo));
     }
 
-    public Intent from(int readingFrom, int readingTo, String dateFrom, String dateTo) {
+    private Intent from(int readingFrom, int readingTo, String dateFrom, String dateTo) {
         putReadingsExtra(readingFrom, readingTo);
         putDatesExtra(dateFrom, dateTo);
         return intent;
@@ -56,7 +55,7 @@ public final class IntentCreator {
                 getStringText(bDateFrom), getStringText(bDateTo));
     }
 
-    public Intent from(int readingDayFrom, int readingDayTo, int readingNightFrom, int readingNightTo, String dateFrom, String dateTo) {
+    private Intent from(int readingDayFrom, int readingDayTo, int readingNightFrom, int readingNightTo, String dateFrom, String dateTo) {
         putReadingsG12Extra(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo);
         putDatesExtra(dateFrom, dateTo);
         return intent;

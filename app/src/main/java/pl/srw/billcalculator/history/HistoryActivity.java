@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.history;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ActionMode;
@@ -54,7 +55,7 @@ public class HistoryActivity extends BackableActivity {
     }
 
     @Override
-    protected void onRestoreInstanceState(final Bundle savedInstanceState) {
+    protected void onRestoreInstanceState(@NonNull final Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState.getBoolean(STATE_ACTION_MODE_ENABLED, false)) {
             enableDeleteMode();
@@ -63,7 +64,7 @@ public class HistoryActivity extends BackableActivity {
     }
 
     @Override
-    protected void onSaveInstanceState(final Bundle outState) {
+    protected void onSaveInstanceState(@NonNull final Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(STATE_ACTION_MODE_ENABLED, isInDeleteMode());
         getAdapter().onSaveInstanceState(outState);

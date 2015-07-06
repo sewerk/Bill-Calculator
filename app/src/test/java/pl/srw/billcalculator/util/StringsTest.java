@@ -15,7 +15,7 @@ public class StringsTest {
 
     @Test
     public void testToArrayFromCollection() throws Exception {
-        Collection<Integer> intCollection = Arrays.asList(new Integer(1), new Integer(2));
+        Collection<Integer> intCollection = Arrays.asList(1, 2);
         assertThat(Strings.toArray(intCollection), is(new String[]{"1", "2"}));
     }
 

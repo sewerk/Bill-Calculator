@@ -11,7 +11,7 @@ import lombok.Getter;
 @Getter
 public abstract class CalculatedEnergyBill extends CalculatedBill {
 
-    public static final BigDecimal EXCISE = new BigDecimal("0.02");
+    private static final BigDecimal EXCISE = new BigDecimal("0.02");
 
     private final BigDecimal oplataAbonamentowaNetCharge;
     private final BigDecimal oplataPrzejsciowaNetCharge;

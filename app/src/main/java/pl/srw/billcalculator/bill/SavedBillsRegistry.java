@@ -22,10 +22,11 @@ import pl.srw.billcalculator.util.Dates;
 /**
  * Created by kseweryn on 02.07.15.
  */
+@SuppressWarnings("StringBufferReplaceableByString")
 public class SavedBillsRegistry {
 
     private static final SavedBillsRegistry INSTANCE = new SavedBillsRegistry();
-    private SimpleArrayMap<String, Long> registry;
+    private final SimpleArrayMap<String, Long> registry;
 
     private SavedBillsRegistry() {
         registry = new SimpleArrayMap<>();

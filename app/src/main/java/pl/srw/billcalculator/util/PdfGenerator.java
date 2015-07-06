@@ -1,17 +1,15 @@
 package pl.srw.billcalculator.util;
 
 import android.graphics.Bitmap;
-import android.os.Environment;
 
-import com.itextpdf.text.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileOutputStream;
 
 import hugo.weaving.DebugLog;
-import pl.srw.billcalculator.AnalyticsWrapper;
 
 /**
  * Created by Kamil Seweryn.

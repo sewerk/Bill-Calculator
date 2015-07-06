@@ -77,7 +77,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
     private boolean mDistributeEvenly;
 
     private ViewPager mViewPager;
-    private SparseArray<String> mContentDescriptions = new SparseArray<String>();
+    private SparseArray<String> mContentDescriptions = new SparseArray<>();
     private ViewPager.OnPageChangeListener mViewPagerPageChangeListener;
 
     private final SlidingTabStrip mTabStrip;
@@ -166,7 +166,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
         mViewPager = viewPager;
         if (viewPager != null) {
-            viewPager.setOnPageChangeListener(new InternalViewPagerListener());
+            viewPager.addOnPageChangeListener(new InternalViewPagerListener());
             populateTabStrip();
         }
     }

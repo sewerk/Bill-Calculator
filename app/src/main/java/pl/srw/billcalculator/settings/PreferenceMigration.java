@@ -3,6 +3,7 @@ package pl.srw.billcalculator.settings;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.VisibleForTesting;
 
 import junit.framework.Assert;
 
@@ -14,8 +15,10 @@ import pl.srw.billcalculator.settings.prices.PgnigPrices;
  * Created by Kamil Seweryn.
  */
 public class PreferenceMigration {
-    
+
+    @VisibleForTesting
     public static final String VERSION_PREF_KEY = "pref_version";
+    @VisibleForTesting
     public static final int CURRENT_VERSION = 2;
     
     public static void migrate(Context context) {

@@ -85,12 +85,12 @@ public abstract class SingleReadingsFormFragment extends PreviousReadingsProvidi
             this.onValidationSuccess();
     }
 
-    protected Intent getBillActivityIntent() {
+    private Intent getBillActivityIntent() {
         IntentCreator intentCreator = BillActivityIntentFactory.of(getActivity(), getProvider());
         return provideExtra(intentCreator);
     }
 
-    protected Intent getBillStorerIntent() {
+    private Intent getBillStorerIntent() {
         IntentCreator intentCreator = BillStoringServiceIntentFactory.of(getActivity(), getProvider());
         return provideExtra(intentCreator);
     }

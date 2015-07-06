@@ -29,7 +29,7 @@ import pl.srw.billcalculator.util.ToWebView;
  */
 public abstract class BillActivity extends BackableActivity {
 
-    public static final String PRINT_TARGET_DIR = BillCalculator.context.getString(R.string.print_dir);
+    private static final String PRINT_TARGET_DIR = BillCalculator.context.getString(R.string.print_dir);
     private Menu menu;
 
     @Override
@@ -89,7 +89,7 @@ public abstract class BillActivity extends BackableActivity {
         setPrintFinished();
     }
 
-    public void openPdfFile(File file) {
+    private void openPdfFile(File file) {
         final Uri uri = Uri.fromFile(file);
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(uri, "application/pdf");

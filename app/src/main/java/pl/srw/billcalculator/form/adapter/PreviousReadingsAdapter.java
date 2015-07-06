@@ -19,7 +19,7 @@ public class PreviousReadingsAdapter extends ArrayAdapter<String> {
 
     private Filter mFilter;
     private final Object mLock = new Object();
-    private String[] prevReadings;
+    private final String[] prevReadings;
 
     public PreviousReadingsAdapter(Context context, int[] readings) {
         super(context, R.layout.dropdowntext, R.id.dropDown);

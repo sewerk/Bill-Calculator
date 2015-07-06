@@ -80,7 +80,8 @@
             android:paddingRight="20dp"
             android:textStyle="bold"
             android:layout_column="2"
-            android:text="0,00" />
+            android:text="0.00"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -89,7 +90,8 @@
             android:paddingRight="20dp"
             android:textStyle="bold"
             android:layout_column="4"
-            android:text="23" />
+            android:text="23"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/tv_vat_amount"

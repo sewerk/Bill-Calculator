@@ -1,7 +1,6 @@
 package pl.srw.billcalculator.settings.activity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
@@ -29,7 +28,7 @@ public class ProviderSettingsActivity extends BackableActivity {
 
     private static final String FRAGMENT_TAG = "SettingsFragment";
     private static final String EXTRA_PROVIDER_NAME = "PROVIDER_NAME";
-    public static final String TAG_CONFIRM_RESTORE = "RESTORE_DEFAULT_CONFIRM_DIALOG";
+    private static final String TAG_CONFIRM_RESTORE = "RESTORE_DEFAULT_CONFIRM_DIALOG";
     @InjectExtra(EXTRA_PROVIDER_NAME) String providerName;
 
     public static Intent createIntent(final Context context, final Provider type) {

@@ -13,7 +13,7 @@ import pl.srw.billcalculator.util.Dates;
 @Getter
 public abstract class CalculatedBill {
 
-    public static final BigDecimal VAT = new BigDecimal("0.23");
+    private static final BigDecimal VAT = new BigDecimal("0.23");
 
     private BigDecimal netChargeSum = BigDecimal.ZERO;
     private BigDecimal vatChargeSum = BigDecimal.ZERO;

@@ -8,7 +8,7 @@ import java.math.RoundingMode;
  */
 public class Display {
 
-    public static final int PAY_VALUE_SCALE = 2;
+    private static final int PAY_VALUE_SCALE = 2;
 
     public static String withScale(BigDecimal value, int scale) {
         return value.setScale(scale, RoundingMode.HALF_UP).toString();
