@@ -15,6 +15,7 @@ import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
+import pl.srw.billcalculator.history.HasDeleteMode;
 import pl.srw.billcalculator.history.list.HistoryAdapter;
 import pl.srw.billcalculator.history.list.provider.HistoryItemValueProvider;
 import pl.srw.billcalculator.db.History;
@@ -77,7 +78,7 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder
 
     @Override
     public void onTap() {
-        if (adapter.getActivity().isInDeleteMode())
+        if (getActivity().isInDeleteMode())
             toggleSelection();
         else {
             itemView.getContext().startActivity(itemValuesProvider.getIntent());
@@ -85,14 +86,18 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder
         }
     }
 
+    private HasDeleteMode getActivity() {
+        return (HasDeleteMode) adapter.getActivity();
+    }
+
     @Override
     public void onLongPress() {
-        if (adapter.getActivity().isInDeleteMode()) {
+        if (getActivity().isInDeleteMode()) {
             onTap();
             return;
         }
 
-        adapter.getActivity().enableDeleteMode();
+        getActivity().enableDeleteMode();
         toggleSelection();
     }
 

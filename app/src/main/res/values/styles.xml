@@ -1,25 +1,35 @@
 <resources>
 
-    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <!--
-        Theme customizations available in newer API levels can go in
-        res/values-vXX/styles.xml, while customizations related to
-        backward-compatibility can go here.
-        -->
-        <!--<style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
-        <!--&lt;!&ndash; customize the color palette &ndash;&gt;-->
-        <!--<item name="colorPrimary">@color/primary</item>-->
-        <!--<item name="colorPrimaryDark">@color/primaryDark</item>-->
-        <!--<item name="colorAccent">@color/accent</item>-->
-        <!--<item name="colorControlHighlight">@color/primaryTransparent</item>-->
-    </style>
-
-    <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        <item name="android:actionModeCloseDrawable">@drawable/ic_action_previous_item</item>
+
     </style>
 
-    <style name="DialogTheme" parent="android:Theme.Holo.Light.Dialog" />
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorControlHighlight">@color/primaryTransparent</item>
 
+        <item name="android:actionModeCloseDrawable">@drawable/ic_action_previous_item</item>
+        <item name="alertDialogTheme">@style/AppCompatAlertDialogTheme</item>
+    </style>
+
+    <style name="AppCompatAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!--<item name="colorAccent">#FFCC00</item>-->
+        <!--<item name="android:textColorPrimary">#FFFFFF</item>-->
+        <!--<item name="android:background">#5fa3d0</item>-->
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog" />
+
+    <style name="Title" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="Title.expanded" parent="Title">
+        <item name="android:textSize">32sp</item>
+    </style>
+    <style name="Title.collapsed" parent="Title">
+        <!--<item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>-->
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

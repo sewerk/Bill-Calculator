@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/my_bills"
+            android:checked="true"
+            android:icon="@drawable/ic_view_list_white_18dp"
+            android:title="My bills"/>
+
+        <item
+            android:title="New bill">
+            <menu>
+                <item
+                    android:id="@+id/new_bill_pge"
+                    android:icon="@drawable/pge_small"
+                    android:title="PGE"/>
+                <item
+                    android:id="@+id/new_bill_pgnig"
+                    android:icon="@drawable/pgnig_small"
+                    android:title="PGNiG"/>
+                <item
+                    android:id="@+id/new_bill_tauron"
+                    android:icon="@drawable/tauron_small"
+                    android:title="TAURON"/>
+            </menu>
+        </item>
+
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/ic_info_outline_white_18dp"
+            android:title="@string/about_label"/>
+    </group>
+</menu>

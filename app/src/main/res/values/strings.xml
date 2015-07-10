@@ -34,6 +34,7 @@
     <string name="strefa_nocna" translatable="false">nocna</string>
     <string name="strefa_pusta" translatable="false"></string>
 
+    <string name="new_pge_bill">New PGE bill</string>
     <string name="za_energie_czynna" translatable="false">za energię czynną</string>
     <string name="skladnik_jakosciowy" translatable="false">składnik jakościowy</string>
     <string name="oplata_sieciowa" translatable="false">opłata sieciowa</string>
@@ -56,6 +57,7 @@
     <string name="for_period" translatable="false">Za okres od %1$s do %2$s</string>
 
     <!--tauron-->
+    <string name="new_tauron_bill">New TAURON bill</string>
     <string name="tauron_energia_elektryczna" translatable="false">Energia elektryczna czynna całodobowa</string>
     <string name="tauron_oplata_dyst_zmienna" translatable="false">Opłata dystr. zm. całodobowa</string>
     <string name="tauron_oplata_dyst_stala" translatable="false">Opłata dystrybucyjna stała</string>
@@ -74,6 +76,7 @@
     <string name="kwota_akcyzy" translatable="false">Kwota podatku akcyzowego, zawarta w wartości energii wykazanej w tym rozliczeniu wynosi %1$s zł.</string>
 
     <!-- gas_bill -->
+    <string name="new_pgnig_bill">New PGNiG bill</string>
     <string name="gas_bill">Gas bill</string>
     <string name="rozliczenie_dnia" translatable="false">Rozliczenie z dnia %1$s</string>
     <string name="wartosc_faktury" translatable="false">Wartość faktury brutto: %1$s zł</string>
@@ -164,5 +167,6 @@
     <string name="history_readingsG12">day(%1$s - %2$s)\nnight(%3$s - %4$s)</string>
     <string name="history_amount" translatable="false">%1$s zł</string>
     <string name="empty_history">No bill calculated yet</string>
+    <string name="my_bills">My bills</string>
 
 </resources>

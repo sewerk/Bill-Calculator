@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.history.list;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,7 +12,6 @@ import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.History;
-import pl.srw.billcalculator.history.HistoryActivity;
 import pl.srw.billcalculator.history.list.item.HistoryItemViewHolder;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.util.MultiSelect;
@@ -22,11 +22,11 @@ import pl.srw.billcalculator.util.MultiSelect;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryItemViewHolder> {
 
     private static final String STATE_SELECTION = "SELECTION";
-    private final HistoryActivity activity;
+    private final Activity activity;
     private LazyList<History> lazyList;
     private MultiSelect<Integer, SelectedBill> selection = new MultiSelect<>();
 
-    public HistoryAdapter(HistoryActivity activity) {
+    public HistoryAdapter(Activity activity) {
         this.activity = activity;
         loadListFromDB();
     }
@@ -57,7 +57,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryItemViewHolder> 
         }
     }
 
-    public HistoryActivity getActivity() {
+    public Activity getActivity() {
         return activity;
     }
 

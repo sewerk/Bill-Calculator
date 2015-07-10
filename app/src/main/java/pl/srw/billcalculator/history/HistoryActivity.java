@@ -24,7 +24,7 @@ import pl.srw.billcalculator.type.Provider;
 /**
  * Created by Kamil Seweryn.
  */
-public class HistoryActivity extends BackableActivity {
+public class HistoryActivity extends BackableActivity implements HasDeleteMode {
 
     private static final String STATE_ACTION_MODE_ENABLED = "STATE_ACTION_MODE_ENABLED";
     private EmptyHistoryDataObserver dataObserver;
@@ -81,6 +81,7 @@ public class HistoryActivity extends BackableActivity {
             actionMode = startActionMode(deleteMode);
     }
 
+    @Override
     public boolean isInDeleteMode() {
         return actionMode != null;
     }

@@ -16,7 +16,7 @@
             android:name="io.fabric.ApiKey"
             android:value="a7369bc28192a2f175b7c8d7473f0e61a756366c" />
 
-        <activity android:name=".form.MainActivity" android:label="@string/app_name" >
+        <activity android:name=".DrawerActivity" android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

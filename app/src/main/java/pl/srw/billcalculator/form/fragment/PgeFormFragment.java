@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.form.fragment;
 
+import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.type.Provider;
@@ -7,7 +8,7 @@ import pl.srw.billcalculator.type.Provider;
 /**
  * Created by kseweryn on 29.05.15.
  */
-public class PgeFormFragment extends DoubleReadingsFormFragment {
+public class PgeFormFragment extends DoubleReadingsFormFragment implements HasTitle {
 
     @Override
     public boolean isTariffG12() {
@@ -22,5 +23,10 @@ public class PgeFormFragment extends DoubleReadingsFormFragment {
     @Override
     protected CurrentReadingType[] getCurrentReadingTypes() {
         return new CurrentReadingType[]{CurrentReadingType.PGE_TO, CurrentReadingType.PGE_DAY_TO, CurrentReadingType.PGE_NIGHT_TO};
+    }
+
+    @Override
+    public int getTitle() {
+        return R.string.new_pge_bill;
     }
 }
