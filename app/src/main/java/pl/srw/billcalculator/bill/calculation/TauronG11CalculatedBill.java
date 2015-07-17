@@ -38,21 +38,11 @@ public class TauronG11CalculatedBill extends TauronCalculatedBill {
 
     @Override
     public BigDecimal getSellNetCharge() {
-        return sum(energiaElektrycznaNetCharge);
+        return round(energiaElektrycznaNetCharge);
     }
 
     @Override
     public BigDecimal getSellVatCharge() {
-        return sum(energiaElektrycznaVatCharge);
-    }
-
-    @Override
-    public BigDecimal getDistributeNetCharge() {
-        return sum(getAbsDistributeNetCharge(), oplataDystrybucyjnaZmiennaNetCharge);
-    }
-
-    @Override
-    public BigDecimal getDistributeVatCharge() {
-        return sum(getAbsDistributeVatCharge(), oplataDystrybucyjnaZmiennaVatCharge);
+        return round(energiaElektrycznaVatCharge);
     }
 }

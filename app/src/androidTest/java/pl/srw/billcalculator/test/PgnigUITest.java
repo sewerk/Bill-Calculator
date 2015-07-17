@@ -1,169 +1,115 @@
 package pl.srw.billcalculator.test;
 
-import android.test.ActivityInstrumentationTestCase2;
+import android.support.test.rule.ActivityTestRule;
 import android.test.suitebuilder.annotation.LargeTest;
 
-import com.robotium.solo.Solo;
-
-import java.util.regex.Pattern;
+import org.junit.Rule;
+import org.junit.Test;
+import org.threeten.bp.Month;
 
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.form.MainActivity;
-import pl.srw.billcalculator.settings.GeneralPreferences;
-import pl.srw.billcalculator.testutils.HistoryGenerator;
-import pl.srw.billcalculator.testutils.SoloHelper;
 import pl.srw.billcalculator.type.Provider;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.CoreMatchers.allOf;
+import static pl.srw.billcalculator.testutils.EspressoHelper.checkTvInRowMatch;
+import static pl.srw.billcalculator.testutils.EspressoHelper.checkTvMatch;
+import static pl.srw.billcalculator.testutils.EspressoHelper.onDatePickerSet;
+import static pl.srw.billcalculator.testutils.EspressoHelper.waitForUi;
 
 /**
  * Created by Kamil Seweryn.
  */
-@LargeTest
-public class PgnigUITest extends ActivityInstrumentationTestCase2<MainActivity> {
+public class PgnigUITest extends AbstractVerifyBillCreationUITest {
 
-    public PgnigUITest() {
-        super(MainActivity.class);
-    }
-
-    private Solo solo;
+    @Rule
+    public final ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class, true);
 
     @Override
-    public void setUp() throws Exception {
-        super.setUp();
-        GeneralPreferences.markFirstLaunch();
-        HistoryGenerator.clear();
-        solo = new Solo(getInstrumentation(), getActivity());
+    @Test
+    @LargeTest
+    public void testBillCalculationWithStorage() throws Exception {
+        setPricesInSettings(R.string.pgnig_prices);
+        inputFormValuesAndCalculate();
+        verifyCalculatedValues();
+        revertPricesToDefault(R.string.pgnig_prices);
+        verifyBillInHistory();
+        verifyCalculatedValues();
     }
 
     @Override
-    public void tearDown() throws Exception {
-        solo.finishOpenedActivities();
-        super.tearDown();
+    protected void changePrices() {
+        changePrice(R.string.wspolczynnik_konwersji, "11.094");
+        changePrice(R.string.paliwo_gazowe, "0.11815");
+        changePrice(R.string.settings_oplata_abonamentowa, "6.97");
+        changePrice(R.string.dystrybucyjna_stala, "22.62");
+        changePrice(R.string.dystrybucyjna_zmienna, "0.03823");
     }
 
-    public void testCalculateBillAndStoreItAccordingToPrices() {
-        setPricesInSettings();
-        inputValues();
-        // calculate
-        solo.clickOnButton(2);
+    private void inputFormValuesAndCalculate() {
+        onView(withText(Provider.PGNIG.toString())).perform(click());
+        onView(allOf(withId(R.id.et_reading_from), isDisplayed())).perform(typeText("6696"));
+        onView(allOf(withId(R.id.et_reading_to), isDisplayed())).perform(typeText("7101"), closeSoftKeyboard());
+        waitForUi();
 
-        verifyBillCalculation();
-        solo.goBack();
+        onDatePickerSet(R.id.button_date_from, 10, Month.OCTOBER, 2014);
+        onDatePickerSet(R.id.button_date_to, 15, Month.DECEMBER, 2014);
 
-        changePricesInSettings();
-        verifyBillStoredInHistory();
+        onView(allOf(withId(R.id.button_calculate), isDisplayed())).perform(click());
     }
 
-    private void setPricesInSettings() {
-        solo.clickOnActionBarItem(R.id.action_settings);
-        solo.clickOnText(SoloHelper.getString(solo, R.string.pgnig_prices));
-
-        setPrice(R.string.wspolczynnik_konwersji, "11.094");
-        setPrice(R.string.paliwo_gazowe, "0.11815");
-        setPrice(R.string.settings_oplata_abonamentowa, "6.97");
-        setPrice(R.string.dystrybucyjna_stala, "22.62");
-        setPrice(R.string.dystrybucyjna_zmienna, "0.03823");
-
-        solo.goBack();
-        solo.goBack();
-    }
-
-    private void inputValues() {
-        // change bill type
-        SoloHelper.switchBill(solo, Provider.PGNIG);
-
-        // type readings
-        solo.enterText(0, "6696");
-        solo.enterText(1, "7101");
-
-        // change from date 2014.10.10
-        solo.clickOnButton(0);
-        solo.setDatePicker(0, 2014, 9, 10);
-        solo.clickOnView(solo.getView(android.R.id.button1));
-        // change to date 2014.12.15
-        solo.clickOnButton(1);
-        solo.setDatePicker(0, 2014, 11, 15);
-        solo.clickOnView(solo.getView(android.R.id.button1));
-    }
-
-    private void verifyBillCalculation() {
-        // verify na dzień 2014.10.10
-        assertTrue(solo.searchText("10/10/2014"));
-        // verify na dzień 2014.12.15
-        assertTrue(solo.searchText("15/12/2014"));
+    private void verifyCalculatedValues() {
+        checkTvMatch(R.id.tv_prev_reading_date, "10.10.2014");
+        checkTvMatch(R.id.tv_curr_reading_date, "15.12.2014");
         // verify odczyty
-        assertTrue(solo.searchText(Pattern.quote("6696 [m³]")));
-        assertTrue(solo.searchText(Pattern.quote("7101 [m³]")));
+        checkTvMatch(R.id.tv_previous_reading, "6696 [m³]");
+        checkTvMatch(R.id.tv_current_reading, "7101 [m³]");
         // verify zużycie 405 m3
-        assertTrue(solo.searchText(Pattern.quote("405 [m³]")));
-        assertTrue(solo.searchText(Pattern.quote("Zużycie razem: 405 [m³]")));
+        checkTvMatch(R.id.tv_consumption, "405 [m³]");
+        checkTvMatch(R.id.tv_total_consumption, "Zużycie razem: 405 [m³]");
         // verify współ.konw
-        assertTrue(solo.searchText("Wsp. konwersji: 11.094"));
+        checkTvMatch(R.id.tv_conversion_factor, "Wsp. konwersji: 11.094");
         // verify ilość 4493 kWh
-        assertTrue(solo.searchText(Pattern.quote("Zużycie razem: 4493 [kWh]")));
-        // verify ilość 2 m-c
-        assertTrue(solo.searchText("2.000"));
+        checkTvMatch(R.id.tv_total_consumption_kWh, "Zużycie razem: 4493 [kWh]");
+        //verify za okres
+        checkTvInRowMatch(R.id.tv_date_from, R.id.row_abonamentowa, "10.10.2014");
+        checkTvInRowMatch(R.id.tv_date_to, R.id.row_abonamentowa, "15.12.2014");
+        // verify ilość
+        checkTvInRowMatch(R.id.tv_count, R.id.row_abonamentowa, "2.000");
+        checkTvInRowMatch(R.id.tv_count, R.id.row_paliwo_gazowe, "4493");
 
         // verify cenny netto
-        assertTrue(solo.searchText("0.11815"));
-        assertTrue(solo.searchText("6.97000"));
-        assertTrue(solo.searchText("22.62000"));
-        assertTrue(solo.searchText("0.03823"));
+        checkTvInRowMatch(R.id.tv_net_price, R.id.row_abonamentowa, "6.97000");
+        checkTvInRowMatch(R.id.tv_net_price, R.id.row_paliwo_gazowe, "0.11815");
+        checkTvInRowMatch(R.id.tv_net_price, R.id.row_dystrybucyjna_stala, "22.62000");
+        checkTvInRowMatch(R.id.tv_net_price, R.id.row_dystrybucyjna_zmienna, "0.03823");
         // verify warotść netto 530.85 13,94 45,24 171,77
-        assertTrue(solo.searchText("530.85"));
-        assertTrue(solo.searchText("13.94"));
-        assertTrue(solo.searchText("45.24"));
-        assertTrue(solo.searchText("171.77"));
+        checkTvInRowMatch(R.id.tv_net_charge, R.id.row_abonamentowa, "13.94");
+        checkTvInRowMatch(R.id.tv_net_charge, R.id.row_paliwo_gazowe, "530.85");
+        checkTvInRowMatch(R.id.tv_net_charge, R.id.row_dystrybucyjna_stala, "45.24");
+        checkTvInRowMatch(R.id.tv_net_charge, R.id.row_dystrybucyjna_zmienna, "171.77");
 
         // VAT 122,10 3,21 10,41 39,51
         // wartość brutto 652,95 17,15 55,65 211,28
         // verify Razem 761,80 175,23 937,03
-        assertTrue(solo.searchText("761.80"));
-        assertTrue(solo.searchText("175.23"));
-        assertTrue(solo.searchText(Pattern.quote("Wartość faktury brutto: 937.03 zł")));
+        checkTvInRowMatch(R.id.tv_net_charge, R.id.row_sum, "761.80");
+        checkTvInRowMatch(R.id.tv_vat_amount, R.id.row_sum, "175.23");
+        checkTvInRowMatch(R.id.tv_gross_charge, R.id.row_sum, "937.03");
+        checkTvMatch(R.id.tv_invoice_value, "Wartość faktury brutto: 937.03 zł");
+
+        pressBack();
     }
 
-    private void setPrice(final int labelId, final String text) {
-        solo.clickOnText(SoloHelper.getString(solo, labelId));
-        solo.clearEditText(0);
-        solo.enterText(0, text);
-        solo.clickOnView(solo.getView(android.R.id.button1));
+    private void verifyBillInHistory() {
+        onView(withId(R.id.action_history)).perform(click());
+        onView(withText("6696 - 7101")).perform(click());
     }
-
-    private void changePricesInSettings() {
-        solo.clickOnActionBarItem(R.id.action_settings);
-        solo.clickOnText(SoloHelper.getString(solo, R.string.pgnig_prices));
-
-        setPrice(R.string.wspolczynnik_konwersji, "11.172");
-        setPrice(R.string.settings_oplata_abonamentowa, "8.67");
-
-        solo.goBack();
-        solo.goBack();
-    }
-
-    private void verifyBillStoredInHistory() {
-        solo.clickOnActionBarItem(R.id.action_history);
-
-        // verify bill visible on list
-        assertTrue(solo.searchText("10/10/2014 - 15/12/2014"));
-        assertThat(SoloHelper.getDrawableFromRow(solo, 0), is(R.drawable.pgnig));
-        assertTrue(solo.searchText("6696 - 7101"));
-        assertTrue(solo.searchText(Pattern.quote("937.03 zł")));
-
-        // verify bill values again
-        solo.clickOnText("10/10/2014 - 15/12/2014");
-        assertTrue(solo.searchText(Pattern.quote("6696 [m³]")));
-        assertTrue(solo.searchText(Pattern.quote("7101 [m³]")));
-        assertTrue(solo.searchText(Pattern.quote("Zużycie razem: 4493 [kWh]")));
-        assertTrue(solo.searchText(Pattern.quote("Wartość faktury brutto: 937.03 zł")));
-
-        // verify prices from history are used
-        assertTrue(solo.searchText("Wsp. konwersji: 11.094"));
-        assertFalse(solo.searchText("Wsp. konwersji: 11.172"));
-        assertTrue(solo.searchText("6.97000"));
-        assertFalse(solo.searchText("8.67"));
-    }
-
 }

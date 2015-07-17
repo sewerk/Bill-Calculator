@@ -50,25 +50,11 @@ public class TauronG12CalculatedBill extends TauronCalculatedBill {
 
     @Override
     public BigDecimal getSellNetCharge() {
-        return sum(energiaElektrycznaDayNetCharge, energiaElektrycznaNightNetCharge);
+        return round(energiaElektrycznaDayNetCharge).add(round(energiaElektrycznaNightNetCharge));
     }
 
     @Override
     public BigDecimal getSellVatCharge() {
-        return sum(energiaElektrycznaDayVatCharge, energiaElektrycznaNightVatCharge);
-    }
-
-    @Override
-    public BigDecimal getDistributeNetCharge() {
-        return sum(getAbsDistributeNetCharge(),
-                oplataDystrybucyjnaZmiennaDayNetCharge,
-                oplataDystrybucyjnaZmiennaNightNetCharge);
-    }
-
-    @Override
-    public BigDecimal getDistributeVatCharge() {
-        return sum(getAbsDistributeVatCharge(),
-                oplataDystrybucyjnaZmiennaDayVatCharge,
-                oplataDystrybucyjnaZmiennaNightVatCharge);
+        return round(energiaElektrycznaDayVatCharge).add(round(energiaElektrycznaNightVatCharge));
     }
 }

@@ -28,7 +28,7 @@ public class PgnigCalculatedBill extends CalculatedBill {
     private final BigDecimal dystrybucyjnaZmiennaVatCharge;
 
     public PgnigCalculatedBill(final int readingFrom, final int readingTo, final String dateFrom, final String dateTo, final IPgnigPrices prices) {
-        super(dateFrom, dateTo);
+        super(true, dateFrom, dateTo);
         consumptionM3 = readingTo - readingFrom;
         consumptionKWh = new BigDecimal(consumptionM3).multiply(new BigDecimal(prices.getWspolczynnikKonwersji()))
                 .setScale(0, RoundingMode.HALF_UP).toBigInteger();

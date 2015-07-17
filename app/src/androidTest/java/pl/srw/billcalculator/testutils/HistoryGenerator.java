@@ -27,8 +27,9 @@ public final class HistoryGenerator {
         Database.getSession().insert(pgePrices);
         List<PgeG11Bill> pgeBills = new ArrayList<>(count);
         for (int i = 1; i <= count; i++) {
-            final Date fromDate = Dates.toDate(LocalDate.ofYearDay(2014, i));
-            final Date toDate = Dates.toDate(LocalDate.ofYearDay(2014, i + 30));
+            final int day = (i%335 == 0) ? 1 : i%335 ;
+            final Date fromDate = Dates.toDate(LocalDate.ofYearDay(2014, day));
+            final Date toDate = Dates.toDate(LocalDate.ofYearDay(2014, day + 30));
             pgeBills.add(new PgeG11Bill(null, i, i+10, fromDate, toDate, i*11.11, pgePrices.getId()));
         }
 

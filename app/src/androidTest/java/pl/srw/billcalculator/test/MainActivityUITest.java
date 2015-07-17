@@ -3,6 +3,7 @@ package pl.srw.billcalculator.test;
 import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.robotium.solo.Solo;
 
@@ -10,6 +11,8 @@ import org.threeten.bp.Month;
 
 import pl.srw.billcalculator.form.MainActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.form.view.DatePickingButton;
+import pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.testutils.PreferenceUtil;
@@ -49,12 +52,12 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         solo.setActivityOrientation(Solo.PORTRAIT);
         switchBill(solo, Provider.PGNIG);
 
-        assertEquals(getString(solo, R.string.reading_hint_m3), findET(solo, R.id.et_reading_from).getHint());
-        assertEquals(getString(solo, R.string.reading_hint_m3), findET(solo, R.id.et_reading_to).getHint());
+        assertEquals(getString(solo, R.string.reading_hint_m3), solo.getEditText(3).getHint());
+        assertEquals(getString(solo, R.string.reading_hint_m3), solo.getEditText(4).getHint());
 
         solo.setActivityOrientation(Solo.LANDSCAPE);
-        assertEquals(getString(solo, R.string.reading_hint_m3), findET(solo, R.id.et_reading_from).getHint());
-        assertEquals(getString(solo, R.string.reading_hint_m3), findET(solo, R.id.et_reading_to).getHint());
+        assertEquals(getString(solo, R.string.reading_hint_m3), solo.getEditText(3).getHint());
+        assertEquals(getString(solo, R.string.reading_hint_m3), solo.getEditText(4).getHint());
 
         switchBill(solo, Provider.PGE);
         assertEquals(getString(solo, R.string.reading_hint_kWh), findET(solo, R.id.et_reading_from).getHint());
@@ -75,8 +78,8 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         runTestOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ((Button) solo.getView(R.id.button_date_from)).setText(dateFromValue);
-                ((Button) solo.getView(R.id.button_date_to)).setText(dateToValue);
+                ((DatePickingButton) solo.getView(R.id.button_date_from)).setText(dateFromValue);
+                ((ErrorShowingDatePickerButton) solo.getView(R.id.button_date_to)).setText(dateToValue);
             }
         });
 
@@ -85,15 +88,6 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         assertEquals(readingToValue, solo.getEditText(1).getText().toString());
         assertEquals(dateFromValue, solo.getButton(0).getText());
         assertEquals(dateToValue, solo.getButton(1).getText());
-    }
-
-    public void test_shouldShowTariffLabelForPgeOnly() {
-        switchBill(solo, Provider.PGNIG);
-        assertFalse(solo.searchText(getString(solo, R.string.tariff_G11_on_bill)));
-
-        switchBill(solo, Provider.PGE);
-        assertNotNull(solo.getView(R.id.ll_tariff));
-        assertTrue(solo.searchText(getString(solo, R.string.tariff_G11_on_bill)));
     }
 
     public void test_shouldShowTariffLabelAccordingToPreferences() {
@@ -240,11 +234,11 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
     public void test_shouldShowGasBillWhenGasBillType() {
         // given: gas form filled correctly
         switchBill(solo, Provider.PGNIG);
-        solo.enterText(0, "123");
-        solo.enterText(1, "234");
+        solo.enterText(3, "123");
+        solo.enterText(4, "234");
 
         // when: calculate clicked
-        solo.clickOnButton(getString(solo, R.string.calculate));
+        solo.clickOnButton(5);
 
         // then: gas bill opened
         assertTrue(solo.searchText(getString(solo, R.string.gas_bill)));
@@ -258,7 +252,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         setDateOnButton(solo, 1, 2015, Month.MARCH, 31);
 
         // when: calculate clicked
-        solo.clickOnButton(getString(solo, R.string.calculate));
+        solo.clickOnButton(2);
         getInstrumentation().waitForIdleSync();
 
         // then: next activity intent contains input values

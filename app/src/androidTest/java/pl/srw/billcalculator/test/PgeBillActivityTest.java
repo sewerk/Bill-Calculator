@@ -175,10 +175,10 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         assEqTextInRow("7.07", R.id.tv_charge, R.id.row_oplata_stala_za_przesyl);
         assEqTextInRow("8.08", R.id.tv_charge, R.id.row_oplata_abonamentowa);
 
-        assEqText("1112.01", R.id.tv_total_net_charge);
-        assEqText("1112.01", R.id.tv_net_charge);
+        assEqText("1 112.01", R.id.tv_total_net_charge);
+        assEqText("1 112.01", R.id.tv_net_charge);
         assEqText("255.76", R.id.tv_vat_amount);
-        assEqText("1367.77", R.id.tv_gross_charge);
+        assEqText("1 367.77", R.id.tv_gross_charge);
     }
 
     // ================================================================ private methods
