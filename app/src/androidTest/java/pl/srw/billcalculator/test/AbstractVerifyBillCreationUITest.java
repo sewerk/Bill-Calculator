@@ -8,12 +8,14 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.testutils.HistoryGenerator;
 
+import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.matcher.PreferenceMatchers.withTitle;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static pl.srw.billcalculator.testutils.EspressoHelper.waitForUi;
@@ -41,8 +43,8 @@ public abstract class AbstractVerifyBillCreationUITest {
 
     protected abstract void changePrices();
 
-    protected void changePrice(int textRes, String input) {
-        onView(withText(textRes)).perform(click());
+    protected void changePrice(@StringRes int textRes, String input) {
+        onData(withTitle(textRes)).perform(click());
         waitForUi();
         onView(withId(android.R.id.edit)).perform(clearText(), typeText(input), closeSoftKeyboard());
         waitForUi();

@@ -9,6 +9,7 @@ import org.threeten.bp.Month;
 
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.form.MainActivity;
+import pl.srw.billcalculator.testutils.PreferenceUtil;
 import pl.srw.billcalculator.type.Provider;
 
 import static android.support.test.espresso.Espresso.onView;
@@ -34,6 +35,12 @@ import static pl.srw.billcalculator.testutils.EspressoHelper.waitForUi;
 public class TauronUITest extends AbstractVerifyBillCreationUITest {
 
     @Rule public final ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class, true);
+
+    @Override
+    public void setUp() throws Exception {
+        super.setUp();
+        PreferenceUtil.changeToG11Tariff(Provider.TAURON);
+    }
 
     @Override
     @LargeTest

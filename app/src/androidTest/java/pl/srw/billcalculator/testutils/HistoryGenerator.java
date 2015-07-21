@@ -49,4 +49,17 @@ public final class HistoryGenerator {
         session.getPgePricesDao().deleteAll();
         session.getTauronPricesDao().deleteAll();
     }
+
+    public static void generatePgeG11Bill(int readingTo) {
+        final PgeG11BillDao dao = Database.getSession().getPgeG11BillDao();
+        final PgePrices pgePrices = new pl.srw.billcalculator.settings.prices.PgePrices().convertToDb();
+
+        Database.getSession().insert(pgePrices);
+        final int day = (readingTo%335 == 0) ? 1 : readingTo%335 ;
+        final Date fromDate = Dates.toDate(LocalDate.ofYearDay(2014, day));
+        final Date toDate = Dates.toDate(LocalDate.ofYearDay(2014, day + 30));
+
+        final int readingFrom = (readingTo - 10) < 0 ? 0 : readingTo-10;
+        dao.insert(new PgeG11Bill(null, readingFrom, readingTo, fromDate, toDate, readingTo * 11.11, pgePrices.getId()));
+    }
 }
