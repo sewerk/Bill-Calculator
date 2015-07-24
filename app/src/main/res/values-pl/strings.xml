@@ -18,7 +18,7 @@
     <string name="date_error">Data \"Za okres do\" musi być późniejsza niż \"Za okres od\"!</string>
 <!-- bill -->
     <string name="page_view_label">Widok strony</string>
-    <string name="action_print">Zapisz do PDF</string>
+    <string name="action_print">Drukuj do PDF</string>
     <string name="print_dir">Rachunki</string>
     <string name="print_io_problem">Wystąpił błąd z dostępem do pamięci</string>
     <string name="print_failed">Błąd: Zapis do PDF nieudany.</string>

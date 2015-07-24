@@ -1,6 +1,7 @@
 package pl.srw.billcalculator;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 
@@ -10,6 +11,8 @@ import io.fabric.sdk.android.Fabric;
  * Created by kseweryn on 17.06.15.
  */
 public class AnalyticsWrapper {
+
+    public static final String TAG = "AnalyticsLogger";
 
     public static void initialize(Context context) {
         if (isEnabled())
@@ -29,9 +32,10 @@ public class AnalyticsWrapper {
     public static void log(String message) {
         if (isEnabled())
             Crashlytics.log(message);
+        Log.d(TAG, message);
     }
 
     private static boolean isEnabled() {
-        return !BuildConfig.DEBUG && !BuildConfig.DEVEL;
+        return !BuildConfig.DEBUG;
     }
 }

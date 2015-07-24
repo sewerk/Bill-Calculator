@@ -21,7 +21,7 @@
 
 <!-- bill -->
     <string name="page_view_label">Page view</string>
-    <string name="action_print">Save to PDF</string>
+    <string name="action_print">Print to PDF</string>
     <string name="print_dir">Bills</string>
     <string name="print_io_problem">Error: cannot access external storage</string>
     <string name="print_failed">Saving to PDF failed</string>

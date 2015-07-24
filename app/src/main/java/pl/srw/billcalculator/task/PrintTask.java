@@ -4,10 +4,13 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.view.View;
 
+import java.io.File;
+import java.io.IOException;
+
 import de.greenrobot.event.EventBus;
+import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.event.PdfGeneratedEvent;
-import pl.srw.billcalculator.task.TaskManager;
-import pl.srw.billcalculator.util.PdfGenerator;
+import pl.srw.billcalculator.util.BillExporter;
 import pl.srw.billcalculator.util.Views;
 
 /**
@@ -23,8 +26,27 @@ public class PrintTask extends AsyncTask<View, Void, String> {
 
     @Override
     protected String doInBackground(View... params) {
-        Bitmap bitmap = Views.buildBitmapFrom(params[0]);
-        return PdfGenerator.generate(path, bitmap);
+        final View contentView = params[0];
+        final Bitmap bitmap = Views.buildBitmapFrom(contentView);
+        final File targetFile = new File(path);
+        File tmpImg = null;
+        try {
+            tmpImg = File.createTempFile("img", null, targetFile.getParentFile());
+            tmpImg = BillExporter.writeToImage(tmpImg, bitmap);
+            if (tmpImg != null) {
+                final File pdfFile = BillExporter.printToPdf(targetFile, tmpImg.getAbsolutePath());
+                if (pdfFile != null) return pdfFile.getAbsolutePath();
+            }
+        } catch (IOException e) {
+            AnalyticsWrapper.log(e.getMessage());
+        } finally {
+            if (tmpImg != null) {
+                final boolean deleted = tmpImg.delete();
+                if (!deleted)
+                    AnalyticsWrapper.log("Tmp file deleted=" + deleted);
+            }
+        }
+        return null;
     }
 
     @Override
