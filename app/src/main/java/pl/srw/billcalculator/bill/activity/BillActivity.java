@@ -59,9 +59,9 @@ public abstract class BillActivity extends BackableActivity {
     @Override
     @CallSuper
     protected void onDestroy() {
-        super.onDestroy();
         EventBus.getDefault().unregister(this);
         setPrintFinished();
+        super.onDestroy();
     }
 
     @CallSuper
@@ -135,16 +135,20 @@ public abstract class BillActivity extends BackableActivity {
     protected abstract String getBillIdentifier();
 
     private void setPrintInProgress() {
-        MenuItem printMenuItem = menu.findItem(R.id.action_print);
-        printMenuItem.setEnabled(false);
-        printMenuItem.setActionView(new ProgressBar(this));
+        if (menu != null) {
+            MenuItem printMenuItem = menu.findItem(R.id.action_print);
+            printMenuItem.setEnabled(false);
+            printMenuItem.setActionView(new ProgressBar(this));
+        }
     }
 
     private void setPrintFinished() {
-        MenuItem printMenuItem = menu.findItem(R.id.action_print);
-        if (printMenuItem.getActionView() != null) {
-            printMenuItem.setActionView(null);
-            printMenuItem.setEnabled(true);
+        if (menu != null) {
+            MenuItem printMenuItem = menu.findItem(R.id.action_print);
+            if (printMenuItem.getActionView() != null) {
+                printMenuItem.setActionView(null);
+                printMenuItem.setEnabled(true);
+            }
         }
     }
 
