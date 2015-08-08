@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.view.View;
 
+import com.itextpdf.text.DocumentException;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -27,23 +29,22 @@ public class PrintTask extends AsyncTask<View, Void, String> {
     @Override
     protected String doInBackground(View... params) {
         final View contentView = params[0];
-        final Bitmap bitmap = Views.buildBitmapFrom(contentView);
+        final Bitmap bitmap = Views.buildBitmapFrom(contentView);//TODO: do in UIThread
         final File targetFile = new File(path);
         File tmpImg = null;
         try {
             tmpImg = File.createTempFile("img", null, targetFile.getParentFile());
             tmpImg = BillExporter.writeToImage(tmpImg, bitmap);
-            if (tmpImg != null) {
-                final File pdfFile = BillExporter.printToPdf(targetFile, tmpImg.getAbsolutePath());
-                if (pdfFile != null) return pdfFile.getAbsolutePath();
-            }
-        } catch (IOException e) {
-            AnalyticsWrapper.log(e.getMessage());
+
+            final File pdfFile = BillExporter.printToPdf(targetFile, tmpImg.getAbsolutePath());
+            return pdfFile.getAbsolutePath();
+        } catch (IOException | DocumentException e) {
+            AnalyticsWrapper.error(e);
         } finally {
             if (tmpImg != null) {
                 final boolean deleted = tmpImg.delete();
                 if (!deleted)
-                    AnalyticsWrapper.log("Tmp file deleted=" + deleted);
+                    AnalyticsWrapper.warning("Tmp file deleted=" + deleted);
             }
         }
         return null;

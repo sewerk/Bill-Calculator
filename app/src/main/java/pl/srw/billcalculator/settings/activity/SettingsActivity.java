@@ -11,7 +11,6 @@ import java.util.Map;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnItemClick;
-import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
 
@@ -26,7 +25,6 @@ public class SettingsActivity extends BackableActivity implements SettingsViewin
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AnalyticsWrapper.log("Settings opened");
 
         setContentView(R.layout.preference_list);
         ButterKnife.inject(this);

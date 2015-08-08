@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
-import android.support.annotation.WorkerThread;
+import android.support.annotation.UiThread;
 import android.view.View;
 import android.widget.TextView;
 
@@ -48,7 +48,7 @@ public final class Views {
         tv.setText(BillCalculator.context.getString(stringId));
     }
 
-    @WorkerThread
+    @UiThread
     @DebugLog
     public static Bitmap buildBitmapFrom(View v) {
         Bitmap b = Bitmap.createBitmap(v.getMeasuredWidth(), v.getMeasuredHeight(), Bitmap.Config.ARGB_8888);

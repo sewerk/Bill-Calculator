@@ -18,6 +18,7 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.event.HistoryChangedEvent;
 import pl.srw.billcalculator.history.list.EmptyHistoryDataObserver;
 import pl.srw.billcalculator.history.list.HistoryAdapter;
+import pl.srw.billcalculator.type.ContentType;
 import pl.srw.billcalculator.type.Provider;
 
 /**
@@ -41,11 +42,10 @@ public class HistoryActivity extends BackableActivity {
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(new HistoryAdapter(this));
-        AnalyticsWrapper.setInt("History_size", list.getAdapter().getItemCount());
 
         dataObserver = new EmptyHistoryDataObserver(list.getAdapter(), tvEmptyHistory);
         dataObserver.onChanged();
-        AnalyticsWrapper.log("History opened.");
+        AnalyticsWrapper.logContent(ContentType.HISTORY, "history size", String.valueOf(list.getAdapter().getItemCount()));
     }
 
     @Override

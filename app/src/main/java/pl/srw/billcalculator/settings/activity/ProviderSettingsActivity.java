@@ -14,6 +14,7 @@ import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.dialog.ConfirmRestoreSettingsDialogFragment;
+import pl.srw.billcalculator.type.ContentType;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.settings.fragment.PgeSettingsFragment;
@@ -40,7 +41,7 @@ public class ProviderSettingsActivity extends BackableActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AnalyticsWrapper.log("Settings for " + providerName);
+        AnalyticsWrapper.logContent(ContentType.SETTINGS, "settings for", providerName);
 
         final ProviderSettingsFragment preferenceFragment;
         if (savedInstanceState == null) {
@@ -105,5 +106,9 @@ public class ProviderSettingsActivity extends BackableActivity {
 
     public ProviderSettingsFragment getProviderSettingsFragment() {
         return (ProviderSettingsFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+    }
+
+    public String getProviderName() {
+        return providerName;
     }
 }
