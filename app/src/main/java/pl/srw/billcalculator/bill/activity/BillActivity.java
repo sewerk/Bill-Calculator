@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.bill.activity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -113,7 +114,11 @@ public abstract class BillActivity extends BackableActivity {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(uri, type);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, getString(R.string.print_no_pdf_viewer) + file.getAbsolutePath(), Toast.LENGTH_LONG).show();
+        }
     }
 
     @StringDef({"pdf", "jpg"})

@@ -22,6 +22,7 @@
     <string name="print_dir">Rachunki</string>
     <string name="print_io_problem">Wystąpił błąd z dostępem do pamięci</string>
     <string name="print_failed">Błąd: Zapis do PDF nieudany.</string>
+    <string name="print_no_pdf_viewer">"Wydruk wygenerowany: "</string>
 <!-- energy_bill -->
     <string name="energy_bill">Rachunek za energię</string>
 <!-- gas_bill -->
