@@ -11,7 +11,7 @@ import lombok.Getter;
 @Getter
 public abstract class CalculatedEnergyBill extends CalculatedBill {
 
-    public static final BigDecimal EXCISE = new BigDecimal("0.02");
+    private static final BigDecimal EXCISE = new BigDecimal("0.02");
 
     private final BigDecimal oplataAbonamentowaNetCharge;
     private final BigDecimal oplataPrzejsciowaNetCharge;
@@ -22,7 +22,7 @@ public abstract class CalculatedEnergyBill extends CalculatedBill {
     private final BigDecimal oplataDystrybucyjnaStalaVatCharge;
 
     protected CalculatedEnergyBill(final String dateFrom, final String dateTo, String oplataAbonamentowa, String oplataPrzejsciowa, String oplataStalaZaPrzesyl) {
-        super(dateFrom, dateTo);
+        super(false, dateFrom, dateTo);
 
         oplataAbonamentowaNetCharge = countNetAndAddToSum(oplataAbonamentowa, getMonthCount());
         oplataPrzejsciowaNetCharge = countNetAndAddToSum(oplataPrzejsciowa, getMonthCount());

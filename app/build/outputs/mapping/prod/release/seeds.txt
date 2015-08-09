@@ -3065,128 +3065,178 @@ butterknife.internal.ViewInjection
 butterknife.internal.ViewInjector
 butterknife.internal.ViewInjector$1
 com.crashlytics.android.BuildConfig
-com.crashlytics.android.BuildIdValidator
-com.crashlytics.android.ByteString
-com.crashlytics.android.ByteString$1
-com.crashlytics.android.ByteString$CodedBuilder
-com.crashlytics.android.ByteString$Output
-com.crashlytics.android.CLSUUID
-com.crashlytics.android.ClsFileOutputStream
-com.crashlytics.android.ClsFileOutputStream$1
-com.crashlytics.android.CodedOutputStream
-com.crashlytics.android.CodedOutputStream$OutOfSpaceException
-com.crashlytics.android.CrashTest
-com.crashlytics.android.CrashTest$1
 com.crashlytics.android.Crashlytics
-com.crashlytics.android.Crashlytics$1
-com.crashlytics.android.Crashlytics$2
-com.crashlytics.android.Crashlytics$3
-com.crashlytics.android.Crashlytics$4
-com.crashlytics.android.Crashlytics$5
-com.crashlytics.android.Crashlytics$6
-com.crashlytics.android.Crashlytics$7
-com.crashlytics.android.Crashlytics$7$1
-com.crashlytics.android.Crashlytics$7$2
-com.crashlytics.android.Crashlytics$7$3
 com.crashlytics.android.Crashlytics$Builder
-com.crashlytics.android.Crashlytics$OptInLatch
-com.crashlytics.android.CrashlyticsExecutorServiceWrapper
-com.crashlytics.android.CrashlyticsExecutorServiceWrapper$1
-com.crashlytics.android.CrashlyticsExecutorServiceWrapper$2
-com.crashlytics.android.CrashlyticsListener
-com.crashlytics.android.CrashlyticsMissingDependencyException
-com.crashlytics.android.CrashlyticsPinningInfoProvider
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$1
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$10
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$11
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$12
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$13
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$14
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$2
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$3
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$4
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$5
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$6
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$7
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$8
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$9
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$AnySessionPartFileFilter
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$FileNameContainsFilter
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$SessionPartFileFilter
-com.crashlytics.android.CreateReportRequest
-com.crashlytics.android.CreateReportSpiCall
-com.crashlytics.android.DefaultCreateReportSpiCall
-com.crashlytics.android.DialogStringResolver
-com.crashlytics.android.ExceptionUtils
-com.crashlytics.android.LogFileManager
-com.crashlytics.android.LogFileManager$1
-com.crashlytics.android.NativeCrashWriter
-com.crashlytics.android.NativeCrashWriter$ApplicationMessage
-com.crashlytics.android.NativeCrashWriter$BinaryImageMessage
-com.crashlytics.android.NativeCrashWriter$CustomAttributeMessage
-com.crashlytics.android.NativeCrashWriter$DeviceMessage
-com.crashlytics.android.NativeCrashWriter$EventMessage
-com.crashlytics.android.NativeCrashWriter$ExecutionMessage
-com.crashlytics.android.NativeCrashWriter$FrameMessage
-com.crashlytics.android.NativeCrashWriter$ProtobufMessage
-com.crashlytics.android.NativeCrashWriter$RepeatedMessage
-com.crashlytics.android.NativeCrashWriter$SignalMessage
-com.crashlytics.android.NativeCrashWriter$ThreadMessage
-com.crashlytics.android.PinningInfoProvider
-com.crashlytics.android.Report
-com.crashlytics.android.ReportUploader
-com.crashlytics.android.ReportUploader$1
-com.crashlytics.android.ReportUploader$Worker
-com.crashlytics.android.SessionDataWriter
-com.crashlytics.android.SessionReport
-com.crashlytics.android.Utils
-com.crashlytics.android.WireFormat
-com.crashlytics.android.WireFormat$1
-com.crashlytics.android.WireFormat$FieldType
-com.crashlytics.android.WireFormat$FieldType: com.crashlytics.android.WireFormat$FieldType[] values()
-com.crashlytics.android.WireFormat$FieldType: com.crashlytics.android.WireFormat$FieldType valueOf(java.lang.String)
-com.crashlytics.android.WireFormat$FieldType$1
-com.crashlytics.android.WireFormat$FieldType$2
-com.crashlytics.android.WireFormat$FieldType$3
-com.crashlytics.android.WireFormat$FieldType$4
-com.crashlytics.android.WireFormat$JavaType
-com.crashlytics.android.WireFormat$JavaType: com.crashlytics.android.WireFormat$JavaType[] values()
-com.crashlytics.android.WireFormat$JavaType: com.crashlytics.android.WireFormat$JavaType valueOf(java.lang.String)
+com.crashlytics.android.answers.AddToCartEvent
 com.crashlytics.android.answers.Answers
-com.crashlytics.android.answers.AnswersKit
-com.crashlytics.android.answers.AutoSessionAnalyticsManager
-com.crashlytics.android.answers.AutoSessionAnalyticsManager$1
+com.crashlytics.android.answers.AnswersAttributes
+com.crashlytics.android.answers.AnswersEvent
+com.crashlytics.android.answers.AnswersEventValidator
+com.crashlytics.android.answers.AnswersEventsHandler
+com.crashlytics.android.answers.AnswersEventsHandler$1
+com.crashlytics.android.answers.AnswersEventsHandler$2
+com.crashlytics.android.answers.AnswersEventsHandler$3
+com.crashlytics.android.answers.AnswersEventsHandler$4
+com.crashlytics.android.answers.AnswersEventsHandler$5
+com.crashlytics.android.answers.AnswersLifecycleCallbacks
+com.crashlytics.android.answers.AnswersPreferenceManager
+com.crashlytics.android.answers.AnswersRetryFilesSender
 com.crashlytics.android.answers.BuildConfig
-com.crashlytics.android.answers.DefaultSessionAnalyticsFilesSender
+com.crashlytics.android.answers.ContentViewEvent
+com.crashlytics.android.answers.CustomEvent
 com.crashlytics.android.answers.DisabledSessionAnalyticsManagerStrategy
 com.crashlytics.android.answers.EnabledSessionAnalyticsManagerStrategy
+com.crashlytics.android.answers.EventFilter
+com.crashlytics.android.answers.InviteEvent
+com.crashlytics.android.answers.KeepAllEventFilter
+com.crashlytics.android.answers.LevelEndEvent
+com.crashlytics.android.answers.LevelStartEvent
+com.crashlytics.android.answers.LoginEvent
+com.crashlytics.android.answers.PredefinedEvent
+com.crashlytics.android.answers.PurchaseEvent
+com.crashlytics.android.answers.RandomBackoff
+com.crashlytics.android.answers.RatingEvent
+com.crashlytics.android.answers.RetryManager
+com.crashlytics.android.answers.SamplingEventFilter
+com.crashlytics.android.answers.SamplingEventFilter$1
+com.crashlytics.android.answers.SearchEvent
 com.crashlytics.android.answers.SessionAnalyticsFilesManager
+com.crashlytics.android.answers.SessionAnalyticsFilesSender
 com.crashlytics.android.answers.SessionAnalyticsManager
 com.crashlytics.android.answers.SessionAnalyticsManagerStrategy
 com.crashlytics.android.answers.SessionEvent
+com.crashlytics.android.answers.SessionEvent$1
+com.crashlytics.android.answers.SessionEvent$Builder
 com.crashlytics.android.answers.SessionEvent$Type
 com.crashlytics.android.answers.SessionEvent$Type: com.crashlytics.android.answers.SessionEvent$Type[] values()
 com.crashlytics.android.answers.SessionEvent$Type: com.crashlytics.android.answers.SessionEvent$Type valueOf(java.lang.String)
 com.crashlytics.android.answers.SessionEventMetadata
 com.crashlytics.android.answers.SessionEventTransform
-com.crashlytics.android.answers.SessionEventsHandler
-com.crashlytics.android.answers.SessionEventsHandler$1
+com.crashlytics.android.answers.SessionMetadataCollector
+com.crashlytics.android.answers.ShareEvent
+com.crashlytics.android.answers.SignUpEvent
+com.crashlytics.android.answers.StartCheckoutEvent
+com.crashlytics.android.beta.AbstractCheckForUpdatesController
+com.crashlytics.android.beta.ActivityLifecycleCheckForUpdatesController
+com.crashlytics.android.beta.ActivityLifecycleCheckForUpdatesController$1
+com.crashlytics.android.beta.ActivityLifecycleCheckForUpdatesController$1$1
 com.crashlytics.android.beta.Beta
 com.crashlytics.android.beta.BuildConfig
 com.crashlytics.android.beta.BuildProperties
-com.crashlytics.android.beta.CheckForUpdatesController
 com.crashlytics.android.beta.CheckForUpdatesRequest
 com.crashlytics.android.beta.CheckForUpdatesResponse
 com.crashlytics.android.beta.CheckForUpdatesResponseTransform
 com.crashlytics.android.beta.DeviceTokenLoader
-com.crashlytics.android.internal.CrashEventDataProvider
-com.crashlytics.android.internal.models.BinaryImageData
-com.crashlytics.android.internal.models.CustomAttributeData
-com.crashlytics.android.internal.models.SessionEventData
-com.crashlytics.android.internal.models.SignalData
-com.crashlytics.android.internal.models.ThreadData
-com.crashlytics.android.internal.models.ThreadData$FrameData
+com.crashlytics.android.beta.ImmediateCheckForUpdatesController
+com.crashlytics.android.beta.UpdatesController
+com.crashlytics.android.core.BuildConfig
+com.crashlytics.android.core.BuildIdValidator
+com.crashlytics.android.core.ByteString
+com.crashlytics.android.core.ByteString$1
+com.crashlytics.android.core.ByteString$CodedBuilder
+com.crashlytics.android.core.ByteString$Output
+com.crashlytics.android.core.CLSUUID
+com.crashlytics.android.core.ClsFileOutputStream
+com.crashlytics.android.core.ClsFileOutputStream$1
+com.crashlytics.android.core.CodedOutputStream
+com.crashlytics.android.core.CodedOutputStream$OutOfSpaceException
+com.crashlytics.android.core.CrashTest
+com.crashlytics.android.core.CrashTest$1
+com.crashlytics.android.core.CrashlyticsCore
+com.crashlytics.android.core.CrashlyticsCore$1
+com.crashlytics.android.core.CrashlyticsCore$2
+com.crashlytics.android.core.CrashlyticsCore$3
+com.crashlytics.android.core.CrashlyticsCore$4
+com.crashlytics.android.core.CrashlyticsCore$5
+com.crashlytics.android.core.CrashlyticsCore$6
+com.crashlytics.android.core.CrashlyticsCore$7
+com.crashlytics.android.core.CrashlyticsCore$7$1
+com.crashlytics.android.core.CrashlyticsCore$7$2
+com.crashlytics.android.core.CrashlyticsCore$7$3
+com.crashlytics.android.core.CrashlyticsCore$Builder
+com.crashlytics.android.core.CrashlyticsCore$OptInLatch
+com.crashlytics.android.core.CrashlyticsExecutorServiceWrapper
+com.crashlytics.android.core.CrashlyticsExecutorServiceWrapper$1
+com.crashlytics.android.core.CrashlyticsExecutorServiceWrapper$2
+com.crashlytics.android.core.CrashlyticsListener
+com.crashlytics.android.core.CrashlyticsMissingDependencyException
+com.crashlytics.android.core.CrashlyticsPinningInfoProvider
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$1
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$10
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$11
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$12
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$13
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$14
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$15
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$16
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$2
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$3
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$4
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$5
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$6
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$7
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$8
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$9
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$AnySessionPartFileFilter
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$FileNameContainsFilter
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$SessionPartFileFilter
+com.crashlytics.android.core.CreateReportRequest
+com.crashlytics.android.core.CreateReportSpiCall
+com.crashlytics.android.core.DefaultCreateReportSpiCall
+com.crashlytics.android.core.DialogStringResolver
+com.crashlytics.android.core.ExceptionUtils
+com.crashlytics.android.core.FileLogStore
+com.crashlytics.android.core.LogFileManager
+com.crashlytics.android.core.LogFileManager$1
+com.crashlytics.android.core.LogFileManager$NoopLogStore
+com.crashlytics.android.core.MetaDataStore
+com.crashlytics.android.core.MetaDataStore$1
+com.crashlytics.android.core.NativeCrashWriter
+com.crashlytics.android.core.NativeCrashWriter$ApplicationMessage
+com.crashlytics.android.core.NativeCrashWriter$BinaryImageMessage
+com.crashlytics.android.core.NativeCrashWriter$CustomAttributeMessage
+com.crashlytics.android.core.NativeCrashWriter$DeviceMessage
+com.crashlytics.android.core.NativeCrashWriter$EventMessage
+com.crashlytics.android.core.NativeCrashWriter$ExecutionMessage
+com.crashlytics.android.core.NativeCrashWriter$FrameMessage
+com.crashlytics.android.core.NativeCrashWriter$LogMessage
+com.crashlytics.android.core.NativeCrashWriter$NullMessage
+com.crashlytics.android.core.NativeCrashWriter$ProtobufMessage
+com.crashlytics.android.core.NativeCrashWriter$RepeatedMessage
+com.crashlytics.android.core.NativeCrashWriter$SignalMessage
+com.crashlytics.android.core.NativeCrashWriter$ThreadMessage
+com.crashlytics.android.core.PinningInfoProvider
+com.crashlytics.android.core.QueueFileLogStore
+com.crashlytics.android.core.QueueFileLogStore$1
+com.crashlytics.android.core.Report
+com.crashlytics.android.core.ReportUploader
+com.crashlytics.android.core.ReportUploader$1
+com.crashlytics.android.core.ReportUploader$Worker
+com.crashlytics.android.core.SessionDataWriter
+com.crashlytics.android.core.SessionReport
+com.crashlytics.android.core.UserMetaData
+com.crashlytics.android.core.Utils
+com.crashlytics.android.core.WireFormat
+com.crashlytics.android.core.WireFormat$1
+com.crashlytics.android.core.WireFormat$FieldType
+com.crashlytics.android.core.WireFormat$FieldType: com.crashlytics.android.core.WireFormat$FieldType[] values()
+com.crashlytics.android.core.WireFormat$FieldType: com.crashlytics.android.core.WireFormat$FieldType valueOf(java.lang.String)
+com.crashlytics.android.core.WireFormat$FieldType$1
+com.crashlytics.android.core.WireFormat$FieldType$2
+com.crashlytics.android.core.WireFormat$FieldType$3
+com.crashlytics.android.core.WireFormat$FieldType$4
+com.crashlytics.android.core.WireFormat$JavaType
+com.crashlytics.android.core.WireFormat$JavaType: com.crashlytics.android.core.WireFormat$JavaType[] values()
+com.crashlytics.android.core.WireFormat$JavaType: com.crashlytics.android.core.WireFormat$JavaType valueOf(java.lang.String)
+com.crashlytics.android.core.internal.CrashEventDataProvider
+com.crashlytics.android.core.internal.models.BinaryImageData
+com.crashlytics.android.core.internal.models.CustomAttributeData
+com.crashlytics.android.core.internal.models.DeviceData
+com.crashlytics.android.core.internal.models.SessionEventData
+com.crashlytics.android.core.internal.models.SignalData
+com.crashlytics.android.core.internal.models.ThreadData
+com.crashlytics.android.core.internal.models.ThreadData$FrameData
 com.f2prateek.dart.Dart
 com.f2prateek.dart.Dart$1
 com.f2prateek.dart.Dart$Finder
@@ -4177,6 +4227,7 @@ io.fabric.sdk.android.Fabric$1
 io.fabric.sdk.android.Fabric$2
 io.fabric.sdk.android.Fabric$Builder
 io.fabric.sdk.android.FabricContext
+io.fabric.sdk.android.FabricKitsFinder
 io.fabric.sdk.android.InitializationCallback
 io.fabric.sdk.android.InitializationCallback$1
 io.fabric.sdk.android.InitializationCallback$Empty
@@ -4184,6 +4235,7 @@ io.fabric.sdk.android.InitializationException
 io.fabric.sdk.android.InitializationTask
 io.fabric.sdk.android.Kit
 io.fabric.sdk.android.KitGroup
+io.fabric.sdk.android.KitInfo
 io.fabric.sdk.android.Logger
 io.fabric.sdk.android.Onboarding
 io.fabric.sdk.android.SilentLogger
@@ -5082,11 +5134,9 @@ pl.srw.billcalculator.R$drawable: int ic_warning
 pl.srw.billcalculator.R$drawable: int notification_template_icon_bg
 pl.srw.billcalculator.R$drawable: int pge
 pl.srw.billcalculator.R$drawable: int pge_example
-pl.srw.billcalculator.R$drawable: int pge_on_pgnig
 pl.srw.billcalculator.R$drawable: int pge_small
 pl.srw.billcalculator.R$drawable: int pgnig
 pl.srw.billcalculator.R$drawable: int pgnig_example
-pl.srw.billcalculator.R$drawable: int pgnig_on_pge
 pl.srw.billcalculator.R$drawable: int pgnig_small
 pl.srw.billcalculator.R$drawable: int selected
 pl.srw.billcalculator.R$drawable: int tauron
@@ -5521,6 +5571,7 @@ pl.srw.billcalculator.R$string: int previous_reading
 pl.srw.billcalculator.R$string: int print_dir
 pl.srw.billcalculator.R$string: int print_failed
 pl.srw.billcalculator.R$string: int print_io_problem
+pl.srw.billcalculator.R$string: int print_no_pdf_viewer
 pl.srw.billcalculator.R$string: int rachunek_rozliczeniowy
 pl.srw.billcalculator.R$string: int reading
 pl.srw.billcalculator.R$string: int reading_day_time
@@ -6192,6 +6243,8 @@ pl.srw.billcalculator.bill.SavedBillsRegistry
 pl.srw.billcalculator.bill.activity.BillActivity
 pl.srw.billcalculator.bill.activity.BillActivity: BillActivity()
 pl.srw.billcalculator.bill.activity.BillActivity: void onEventMainThread(pl.srw.billcalculator.event.PdfGeneratedEvent)
+pl.srw.billcalculator.bill.activity.BillActivity$FileExtention
+pl.srw.billcalculator.bill.activity.BillActivity$FileType
 pl.srw.billcalculator.bill.activity.EnergyBillActivity
 pl.srw.billcalculator.bill.activity.EnergyBillActivity: java.lang.String dateFrom
 pl.srw.billcalculator.bill.activity.EnergyBillActivity: java.lang.String dateTo
@@ -6521,19 +6574,21 @@ pl.srw.billcalculator.settings.prices.PgnigPrices$WrappedPgnigPrices
 pl.srw.billcalculator.settings.prices.TauronPrices
 pl.srw.billcalculator.task.PrintTask
 pl.srw.billcalculator.task.TaskManager
+pl.srw.billcalculator.type.ActionType
+pl.srw.billcalculator.type.ContentType
 pl.srw.billcalculator.type.EnumVariantNotHandledException
 pl.srw.billcalculator.type.Provider
 pl.srw.billcalculator.type.Provider: pl.srw.billcalculator.type.Provider[] values()
 pl.srw.billcalculator.type.Provider: pl.srw.billcalculator.type.Provider valueOf(java.lang.String)
 pl.srw.billcalculator.type.Provider$1
 pl.srw.billcalculator.util.Animations
+pl.srw.billcalculator.util.BillExporter
 pl.srw.billcalculator.util.Dates
 pl.srw.billcalculator.util.Display
 pl.srw.billcalculator.util.MultiSelect
 pl.srw.billcalculator.util.MultiSelect: android.os.Parcelable$Creator CREATOR
 pl.srw.billcalculator.util.MultiSelect$1
 pl.srw.billcalculator.util.MultiSelect$CreatorImpl
-pl.srw.billcalculator.util.PdfGenerator
 pl.srw.billcalculator.util.Preconditions
 pl.srw.billcalculator.util.Strings
 pl.srw.billcalculator.util.ToWebView

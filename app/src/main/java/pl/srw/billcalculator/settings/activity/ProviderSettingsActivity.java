@@ -1,7 +1,6 @@
 package pl.srw.billcalculator.settings.activity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
@@ -15,6 +14,7 @@ import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.dialog.ConfirmRestoreSettingsDialogFragment;
+import pl.srw.billcalculator.type.ContentType;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.settings.fragment.PgeSettingsFragment;
@@ -29,7 +29,7 @@ public class ProviderSettingsActivity extends BackableActivity {
 
     private static final String FRAGMENT_TAG = "SettingsFragment";
     private static final String EXTRA_PROVIDER_NAME = "PROVIDER_NAME";
-    public static final String TAG_CONFIRM_RESTORE = "RESTORE_DEFAULT_CONFIRM_DIALOG";
+    private static final String TAG_CONFIRM_RESTORE = "RESTORE_DEFAULT_CONFIRM_DIALOG";
     @InjectExtra(EXTRA_PROVIDER_NAME) String providerName;
 
     public static Intent createIntent(final Context context, final Provider type) {
@@ -41,7 +41,7 @@ public class ProviderSettingsActivity extends BackableActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AnalyticsWrapper.log("Settings for " + providerName);
+        AnalyticsWrapper.logContent(ContentType.SETTINGS, "settings for", providerName);
 
         final ProviderSettingsFragment preferenceFragment;
         if (savedInstanceState == null) {
@@ -106,5 +106,9 @@ public class ProviderSettingsActivity extends BackableActivity {
 
     public ProviderSettingsFragment getProviderSettingsFragment() {
         return (ProviderSettingsFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+    }
+
+    public String getProviderName() {
+        return providerName;
     }
 }

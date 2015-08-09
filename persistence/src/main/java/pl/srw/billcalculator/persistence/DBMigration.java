@@ -11,7 +11,7 @@ import pl.srw.billcalculator.db.dao.TauronPricesDao;
 /**
  * Created by Kamil Seweryn.
  */
-public class DBMigration {
+class DBMigration {
 
     public static final int CURRENT_VERSION = DaoMaster.SCHEMA_VERSION;
 

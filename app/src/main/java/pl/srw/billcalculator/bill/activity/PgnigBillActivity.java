@@ -20,6 +20,7 @@ import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
+import pl.srw.billcalculator.type.ContentType;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
@@ -30,7 +31,7 @@ import pl.srw.billcalculator.util.Views;
  */
 public class PgnigBillActivity extends BillActivity {
 
-    public static final String DATE_PATTERN = "dd.MM.yyyy";
+    private static final String DATE_PATTERN = "dd.MM.yyyy";
     private static final int PRICE_SCALE = 5;
 
     @InjectExtra(IntentCreator.DATE_FROM) String dateFrom;
@@ -45,7 +46,7 @@ public class PgnigBillActivity extends BillActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pgnig_bill);
-        AnalyticsWrapper.log(Provider.PGNIG.toString() + " bill opened, new=" + (prices == null));
+        AnalyticsWrapper.logContent(ContentType.PGNIG_BILL, "PGNIG new", String.valueOf(prices == null));
 
         if (prices == null)
             prices = new PgnigPrices();

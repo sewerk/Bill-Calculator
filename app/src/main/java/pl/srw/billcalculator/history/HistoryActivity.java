@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.history;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ActionMode;
@@ -17,6 +18,7 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.event.HistoryChangedEvent;
 import pl.srw.billcalculator.history.list.EmptyHistoryDataObserver;
 import pl.srw.billcalculator.history.list.HistoryAdapter;
+import pl.srw.billcalculator.type.ContentType;
 import pl.srw.billcalculator.type.Provider;
 
 /**
@@ -40,11 +42,10 @@ public class HistoryActivity extends BackableActivity {
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(new HistoryAdapter(this));
-        AnalyticsWrapper.setInt("History_size", list.getAdapter().getItemCount());
 
         dataObserver = new EmptyHistoryDataObserver(list.getAdapter(), tvEmptyHistory);
         dataObserver.onChanged();
-        AnalyticsWrapper.log("History opened.");
+        AnalyticsWrapper.logContent(ContentType.HISTORY, "history size", String.valueOf(list.getAdapter().getItemCount()));
     }
 
     @Override
@@ -54,7 +55,7 @@ public class HistoryActivity extends BackableActivity {
     }
 
     @Override
-    protected void onRestoreInstanceState(final Bundle savedInstanceState) {
+    protected void onRestoreInstanceState(@NonNull final Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState.getBoolean(STATE_ACTION_MODE_ENABLED, false)) {
             enableDeleteMode();
@@ -63,7 +64,7 @@ public class HistoryActivity extends BackableActivity {
     }
 
     @Override
-    protected void onSaveInstanceState(final Bundle outState) {
+    protected void onSaveInstanceState(@NonNull final Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(STATE_ACTION_MODE_ENABLED, isInDeleteMode());
         getAdapter().onSaveInstanceState(outState);

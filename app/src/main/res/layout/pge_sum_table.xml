@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TableLayout
         android:id="@+id/t_summary"
@@ -66,7 +67,7 @@
                 android:gravity="end"
                 android:textStyle="bold"
                 android:paddingRight="30dp"
-                android:text="61,09" />
+                tools:text="61,09" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -74,7 +75,8 @@
                 android:gravity="center"
                 android:textStyle="bold"
                 android:paddingRight="30dp"
-                android:text="23" />
+                android:text="23"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_vat_amount"
@@ -83,7 +85,7 @@
                 android:gravity="end"
                 android:textStyle="bold"
                 android:paddingRight="30dp"
-                android:text="14,05" />
+                tools:text="14,05" />
 
             <TextView
                 android:id="@+id/tv_gross_charge"
@@ -91,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:textStyle="bold"
-                android:text="75,14" />
+                tools:text="75,14" />
         </TableRow>
     </TableLayout>
 

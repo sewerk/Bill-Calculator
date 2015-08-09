@@ -8,8 +8,8 @@ import android.view.View;
  */
 public final class Animations {
 
-    public static final long DURATION = 1000;
-    public static final ObjectAnimator SHAKE = ObjectAnimator.ofFloat(null, "translationX", 0, 25, -25, 25, -25, 15, -15, 6, -6, 0).setDuration(DURATION);
+    private static final long DURATION = 1000;
+    private static final ObjectAnimator SHAKE = ObjectAnimator.ofFloat(null, "translationX", 0, 25, -25, 25, -25, 15, -15, 6, -6, 0).setDuration(DURATION);
 
     private Animations() {
     }

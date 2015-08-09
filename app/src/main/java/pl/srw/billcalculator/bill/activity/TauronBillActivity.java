@@ -22,6 +22,7 @@ import pl.srw.billcalculator.bill.calculation.TauronG12CalculatedBill;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.ITauronPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
+import pl.srw.billcalculator.type.ContentType;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
@@ -32,7 +33,7 @@ import pl.srw.billcalculator.util.Views;
  */
 public class TauronBillActivity extends EnergyBillActivity {
 
-    public static final String DATE_PATTERN = "dd.MM.yyyy";
+    private static final String DATE_PATTERN = "dd.MM.yyyy";
     private static final int PRICE_SCALE = 5;
 
     @Optional @InjectExtra(IntentCreator.PRICES) ITauronPrices prices;
@@ -41,7 +42,9 @@ public class TauronBillActivity extends EnergyBillActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tauron_bill);
-        AnalyticsWrapper.log(Provider.TAURON.toString() + " bill opened, new=" + (prices == null));
+        AnalyticsWrapper.logContent(ContentType.TAURON_BILL,
+                "Tauron new", String.valueOf(prices == null),
+                "Tauron tariff", (isTwoUnitTariff() ? "G12" : "G11"));
 
         if (prices == null)
             prices = new TauronPrices();

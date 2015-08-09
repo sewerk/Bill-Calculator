@@ -2,7 +2,6 @@ package pl.srw.billcalculator.test;
 
 import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
-import android.widget.Button;
 
 import com.robotium.solo.Solo;
 
@@ -10,6 +9,8 @@ import org.threeten.bp.Month;
 
 import pl.srw.billcalculator.form.MainActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.form.view.DatePickingButton;
+import pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.testutils.PreferenceUtil;
@@ -39,22 +40,22 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
 
     @Override
     public void tearDown() throws Exception {
-        PreferenceUtil.changeToG11Tariff(solo.getCurrentActivity());
+        PreferenceUtil.changeToG11Tariff(Provider.PGE);
         solo.finishOpenedActivities();
         super.tearDown();
     }
 
     public void test_shouldShowReadingHintsAccordingToBillType() {
-        PreferenceUtil.changeToG11Tariff(solo.getCurrentActivity());
+        PreferenceUtil.changeToG11Tariff(Provider.PGE);
         solo.setActivityOrientation(Solo.PORTRAIT);
         switchBill(solo, Provider.PGNIG);
 
-        assertEquals(getString(solo, R.string.reading_hint_m3), findET(solo, R.id.et_reading_from).getHint());
-        assertEquals(getString(solo, R.string.reading_hint_m3), findET(solo, R.id.et_reading_to).getHint());
+        assertEquals(getString(solo, R.string.reading_hint_m3), solo.getEditText(3).getHint());
+        assertEquals(getString(solo, R.string.reading_hint_m3), solo.getEditText(4).getHint());
 
         solo.setActivityOrientation(Solo.LANDSCAPE);
-        assertEquals(getString(solo, R.string.reading_hint_m3), findET(solo, R.id.et_reading_from).getHint());
-        assertEquals(getString(solo, R.string.reading_hint_m3), findET(solo, R.id.et_reading_to).getHint());
+        assertEquals(getString(solo, R.string.reading_hint_m3), solo.getEditText(3).getHint());
+        assertEquals(getString(solo, R.string.reading_hint_m3), solo.getEditText(4).getHint());
 
         switchBill(solo, Provider.PGE);
         assertEquals(getString(solo, R.string.reading_hint_kWh), findET(solo, R.id.et_reading_from).getHint());
@@ -75,8 +76,8 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         runTestOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ((Button) solo.getView(R.id.button_date_from)).setText(dateFromValue);
-                ((Button) solo.getView(R.id.button_date_to)).setText(dateToValue);
+                ((DatePickingButton) solo.getView(R.id.button_date_from)).setText(dateFromValue);
+                ((ErrorShowingDatePickerButton) solo.getView(R.id.button_date_to)).setText(dateToValue);
             }
         });
 
@@ -87,22 +88,13 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         assertEquals(dateToValue, solo.getButton(1).getText());
     }
 
-    public void test_shouldShowTariffLabelForPgeOnly() {
-        switchBill(solo, Provider.PGNIG);
-        assertFalse(solo.searchText(getString(solo, R.string.tariff_G11_on_bill)));
-
-        switchBill(solo, Provider.PGE);
-        assertNotNull(solo.getView(R.id.ll_tariff));
-        assertTrue(solo.searchText(getString(solo, R.string.tariff_G11_on_bill)));
-    }
-
     public void test_shouldShowTariffLabelAccordingToPreferences() {
         // given: G11 form
         // then: G11 tariff shown
         assertTrue(solo.searchText(getString(solo, R.string.tariff_G11_on_bill)));
 
         // when: switch to G12 in preferences
-        PreferenceUtil.changeToG12Tariff(solo.getCurrentActivity());
+        PreferenceUtil.changeToG12Tariff(Provider.PGE);
         redrawActivity(solo);
 
         // then: G12 tariff shown
@@ -123,7 +115,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
 
     public void test_shouldChangeFocusOnSoftNextKeyForG12() throws Throwable {
         // given: pge G12 form
-        PreferenceUtil.changeToG12Tariff(solo.getCurrentActivity());
+        PreferenceUtil.changeToG12Tariff(Provider.PGE);
         redrawActivity(solo);
         // and focus on first edit text
         solo.clickOnEditText(0);
@@ -157,7 +149,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
 
     public void test_shouldShowErrorOnEmptyReadingsG12() {
         // given: empty readings G12
-        PreferenceUtil.changeToG12Tariff(solo.getCurrentActivity());
+        PreferenceUtil.changeToG12Tariff(Provider.PGE);
         redrawActivity(solo);
 
         // when: click calculate
@@ -192,7 +184,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
 
     public void test_shouldShowErrorOnReadingG12WrongOrder() {
         // given: G12 readings fill in wrong order
-        PreferenceUtil.changeToG12Tariff(solo.getCurrentActivity());
+        PreferenceUtil.changeToG12Tariff(Provider.PGE);
         redrawActivity(solo);
         solo.enterText(0, "123");
         solo.enterText(2, "122");
@@ -240,11 +232,11 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
     public void test_shouldShowGasBillWhenGasBillType() {
         // given: gas form filled correctly
         switchBill(solo, Provider.PGNIG);
-        solo.enterText(0, "123");
-        solo.enterText(1, "234");
+        solo.enterText(3, "123");
+        solo.enterText(4, "234");
 
         // when: calculate clicked
-        solo.clickOnButton(getString(solo, R.string.calculate));
+        solo.clickOnButton(5);
 
         // then: gas bill opened
         assertTrue(solo.searchText(getString(solo, R.string.gas_bill)));
@@ -258,7 +250,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         setDateOnButton(solo, 1, 2015, Month.MARCH, 31);
 
         // when: calculate clicked
-        solo.clickOnButton(getString(solo, R.string.calculate));
+        solo.clickOnButton(2);
         getInstrumentation().waitForIdleSync();
 
         // then: next activity intent contains input values
@@ -271,7 +263,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
 
     public void test_shouldPutInputValuesToIntentForG12Form() {
         // given: G12 form filled correctly
-        PreferenceUtil.changeToG12Tariff(solo.getCurrentActivity());
+        PreferenceUtil.changeToG12Tariff(Provider.PGE);
         redrawActivity(solo);
         solo.enterText(0, "123");
         solo.enterText(2, "234");
@@ -296,7 +288,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
 
     public void test_shouldShowCheckPricesDialogOnFirstStart() {
         // given: first start
-        PreferenceUtil.clearFirstLaunch(solo.getCurrentActivity());
+        PreferenceUtil.clearFirstLaunch();
 
         // when: application start
         solo.finishOpenedActivities();

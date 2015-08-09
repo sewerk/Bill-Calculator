@@ -9,7 +9,6 @@ import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.db.TauronG12Bill;
 import pl.srw.billcalculator.db.dao.HistoryDao;
-import pl.srw.billcalculator.db.dao.TauronG11BillDao;
 import pl.srw.billcalculator.db.dao.TauronG12BillDao;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.persistence.exception.DbRelationMissingException;

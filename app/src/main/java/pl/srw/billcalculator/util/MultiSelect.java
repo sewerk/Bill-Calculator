@@ -10,7 +10,6 @@ import java.util.Map;
 
 import hrisey.Parcelable;
 import hugo.weaving.DebugLog;
-import lombok.*;
 
 /**
  * Created by Kamil Seweryn.

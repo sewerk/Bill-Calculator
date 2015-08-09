@@ -49,8 +49,8 @@ public class PgeG12CalculatedBillTest {
         assertThat(sut.getOplataAbonamentowaVatCharge(), is(new BigDecimal("13.9380")));
 
         assertThat(sut.getNetChargeSum(), is(new BigDecimal("757.50")));
-        assertThat(sut.getVatChargeSum(), is(new BigDecimal("174.24")));
-        assertThat(sut.getGrossChargeSum(), is(new BigDecimal("931.74")));
+        assertThat(sut.getVatChargeSum(), is(new BigDecimal("174.23")));
+        assertThat(sut.getGrossChargeSum(), is(new BigDecimal("931.73")));
         assertThat(sut.getExcise(), is(new BigDecimal("0.60")));
     }
 }

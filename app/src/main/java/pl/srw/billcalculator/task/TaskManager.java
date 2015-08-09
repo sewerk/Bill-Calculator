@@ -11,8 +11,8 @@ import hugo.weaving.DebugLog;
 
 public class TaskManager {
 
-    private static TaskManager INSTANCE = new TaskManager();
-    private SimpleArrayMap<String, AsyncTask> tasks;
+    private static final TaskManager INSTANCE = new TaskManager();
+    private final SimpleArrayMap<String, AsyncTask> tasks;
 
     private TaskManager() {
         tasks = new SimpleArrayMap<>();

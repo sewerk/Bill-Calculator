@@ -9,6 +9,7 @@ import android.os.Bundle;
 import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
+import pl.srw.billcalculator.type.ActionType;
 
 /**
  * Created by kseweryn on 18.06.15.
@@ -30,8 +31,9 @@ public class ConfirmRestoreSettingsDialogFragment extends DialogFragment {
         return new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                ((ProviderSettingsActivity) getActivity()).getProviderSettingsFragment().restoreDefault();
-                AnalyticsWrapper.log("Default prices restored");
+                ProviderSettingsActivity activity = (ProviderSettingsActivity) getActivity();
+                activity.getProviderSettingsFragment().restoreDefault();
+                AnalyticsWrapper.logAction(ActionType.RESTORE_PRICES, "Default prices restored", activity.getProviderName());
             }
         };
     }

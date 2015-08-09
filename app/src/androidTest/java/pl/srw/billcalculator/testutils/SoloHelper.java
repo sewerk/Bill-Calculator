@@ -1,10 +1,8 @@
 package pl.srw.billcalculator.testutils;
 
-import android.app.Fragment;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.support.test.InstrumentationRegistry;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
@@ -12,8 +10,6 @@ import com.robotium.solo.Solo;
 
 import org.threeten.bp.Month;
 
-import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.form.view.SlidingTabLayout;
 import pl.srw.billcalculator.type.Provider;
 
 /**
@@ -33,17 +29,13 @@ public final class SoloHelper {
     }
 
     public static void switchBill(final Solo solo, final Provider provider) {
-        solo.clickOnView(solo.getView(provider.toString()));
+        solo.clickOnView(solo.getText(provider.toString()));
         InstrumentationRegistry.getInstrumentation().waitForIdleSync();
     }
 
     public static void redrawActivity(final Solo solo) {
         solo.setActivityOrientation(Solo.LANDSCAPE);
         solo.setActivityOrientation(Solo.PORTRAIT);
-    }
-
-    public static int getDrawableFromRow(final Solo solo, final int index) {
-        return (int) solo.getImage(index + 2).getTag();
     }
 
     public static void pressSoftKeyboardNextButton(final Solo solo) {

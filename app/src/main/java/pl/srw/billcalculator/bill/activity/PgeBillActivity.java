@@ -21,6 +21,7 @@ import pl.srw.billcalculator.bill.calculation.PgeG12CalculatedBill;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgePrices;
 import pl.srw.billcalculator.settings.prices.PgePrices;
+import pl.srw.billcalculator.type.ContentType;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
@@ -39,7 +40,9 @@ public class PgeBillActivity extends EnergyBillActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pge_bill);
-        AnalyticsWrapper.log(Provider.PGE.toString() + " bill opened, new=" + (prices == null));
+        AnalyticsWrapper.logContent(ContentType.PGE_BILL,
+                "PGE new", String.valueOf(prices == null),
+                "PGE tariff", (isTwoUnitTariff() ? "G12" : "G11"));
 
         if (prices == null)
             prices = new PgePrices();

@@ -19,7 +19,7 @@ public class SettingsPresenter implements SettingsPresenting {
     private static final String ICON = "ICON";
     private static final String TITLE = "TITLE";
     private static final String DESCRIPTION = "DESCRIPTION";
-    public static final String[] COLUMNS = {ICON, TITLE, DESCRIPTION};
+    private static final String[] COLUMNS = {ICON, TITLE, DESCRIPTION};
 
     private final SettingsViewing view;
     private List<Map<String, Object>> entries = new ArrayList<>();

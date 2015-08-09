@@ -21,10 +21,11 @@
 
 <!-- bill -->
     <string name="page_view_label">Page view</string>
-    <string name="action_print">Save to PDF</string>
+    <string name="action_print">Print to PDF</string>
     <string name="print_dir">Bills</string>
     <string name="print_io_problem">Error: cannot access external storage</string>
     <string name="print_failed">Saving to PDF failed</string>
+    <string name="print_no_pdf_viewer">"Bill printed to file: "</string>
     <!-- energy_bill -->
     <string name="energy_bill">Energy bill</string>
     <string name="rachunek_rozliczeniowy" translatable="false">RACHUNEK ROZLICZENIOWY z dnia %1$s\nZA ENERGIĘ ELEKTRYCZNĄ I USŁUGI DYSTRYBUCJI</string>

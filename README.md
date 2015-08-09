@@ -15,6 +15,7 @@ With help of
 - [EventBus](https://github.com/greenrobot/EventBus)
 - [GreenDao](http://greendao-orm.com/)
 - [Hrisay](https://github.com/mg6maciej/hrisey)
+- [ITEXTG](http://itextpdf.com/product/itextg)
 - [ThreeTen] (https://github.com/ThreeTen/threetenbp)
 - [Hugo](https://github.com/jakewharton/hugo)
 - [LeakCanary](https://github.com/square/leakcanary)

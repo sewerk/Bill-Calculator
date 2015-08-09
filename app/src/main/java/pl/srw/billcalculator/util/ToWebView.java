@@ -2,7 +2,6 @@ package pl.srw.billcalculator.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.util.Base64;
 import android.view.View;
 import android.webkit.WebView;
