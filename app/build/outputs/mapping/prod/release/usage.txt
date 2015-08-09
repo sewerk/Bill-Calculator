@@ -1673,7 +1673,6 @@ android.support.v4.view.ViewPager:
     public static final int SCROLL_STATE_IDLE
     public static final int SCROLL_STATE_DRAGGING
     public static final int SCROLL_STATE_SETTLING
-    605:609:public void addOnPageChangeListener(android.support.v4.view.ViewPager$OnPageChangeListener)
     618:621:public void removeOnPageChangeListener(android.support.v4.view.ViewPager$OnPageChangeListener)
     627:630:public void clearOnPageChangeListeners()
     645:657:public void setPageTransformer(boolean,android.support.v4.view.ViewPager$PageTransformer)
@@ -4137,240 +4136,88 @@ butterknife.internal.ViewInjection
 butterknife.internal.ViewInjector
 butterknife.internal.ViewInjector$1
 com.crashlytics.android.BuildConfig
-com.crashlytics.android.BuildIdValidator:
-    private static final java.lang.String MESSAGE
-com.crashlytics.android.ByteString:
-    62:62:public byte byteAt(int)
-    76:76:public boolean isEmpty()
-    101:101:public static com.crashlytics.android.ByteString copyFrom(byte[])
-    109:111:public static com.crashlytics.android.ByteString copyFrom(java.nio.ByteBuffer,int)
-    119:119:public static com.crashlytics.android.ByteString copyFrom(java.nio.ByteBuffer)
-    128:128:public static com.crashlytics.android.ByteString copyFrom(java.lang.String,java.lang.String)
-    152:168:public static com.crashlytics.android.ByteString copyFrom(java.util.List)
-    181:182:public void copyTo(byte[],int)
-    207:208:public void copyTo(java.nio.ByteBuffer)
-    214:217:public byte[] toByteArray()
-    225:226:public java.nio.ByteBuffer asReadOnlyByteBuffer()
-    235:235:public java.lang.String toString(java.lang.String)
-    243:245:public java.lang.String toStringUtf8()
-    320:320:public static com.crashlytics.android.ByteString$Output newOutput(int)
-    327:327:public static com.crashlytics.android.ByteString$Output newOutput()
-    368:368:static com.crashlytics.android.ByteString$CodedBuilder newCodedBuilder(int)
-    49:49:synthetic ByteString(byte[],com.crashlytics.android.ByteString$1)
-com.crashlytics.android.ByteString$1
-com.crashlytics.android.ByteString$CodedBuilder
-com.crashlytics.android.ByteString$Output
-com.crashlytics.android.ClsFileOutputStream:
-    public static final java.lang.String SESSION_FILE_EXTENSION
-    public static final java.lang.String IN_PROGRESS_SESSION_FILE_EXTENSION
-    36:37:public ClsFileOutputStream(java.lang.String,java.lang.String)
-    92:92:public java.io.File getCompleteFile()
-    100:100:public java.io.File getInProgressFile()
-com.crashlytics.android.CodedOutputStream:
-    public static final int DEFAULT_BUFFER_SIZE
-    public static final int LITTLE_ENDIAN_32_SIZE
-    public static final int LITTLE_ENDIAN_64_SIZE
-    75:76:static int computePreferredBufferSize(int)
-    80:85:private CodedOutputStream(byte[],int,int)
-    119:119:public static com.crashlytics.android.CodedOutputStream newInstance(byte[])
-    132:132:public static com.crashlytics.android.CodedOutputStream newInstance(byte[],int,int)
-    140:142:public void writeDouble(int,double)
-    161:163:public void writeInt64(int,long)
-    175:177:public void writeFixed64(int,long)
-    182:184:public void writeFixed32(int,int)
-    227:229:public void writeSFixed32(int,int)
-    234:236:public void writeSFixed64(int,long)
-    248:250:public void writeSInt64(int,long)
-    259:263:public void writeRawMessageSetExtension(int,com.crashlytics.android.ByteString)
-    269:270:public void writeDoubleNoTag(double)
-    284:285:public void writeInt64NoTag(long)
-    299:300:public void writeFixed64NoTag(long)
-    304:305:public void writeFixed32NoTag(int)
-    343:344:public void writeSFixed32NoTag(int)
-    348:349:public void writeSFixed64NoTag(long)
-    358:359:public void writeSInt64NoTag(long)
-    369:369:public static int computeDoubleSize(int,double)
-    393:393:public static int computeInt64Size(int,long)
-    410:410:public static int computeFixed64Size(int,long)
-    419:419:public static int computeFixed32Size(int,int)
-    437:437:public static int computeStringSize(int,java.lang.String)
-    472:472:public static int computeSFixed32Size(int,int)
-    481:481:public static int computeSFixed64Size(int,long)
-    497:497:public static int computeSInt64Size(int,long)
-    507:507:public static int computeRawMessageSetExtensionSize(int,com.crashlytics.android.ByteString)
-    519:519:public static int computeDoubleSizeNoTag(double)
-    543:543:public static int computeInt64SizeNoTag(long)
-    564:564:public static int computeFixed64SizeNoTag(long)
-    572:572:public static int computeFixed32SizeNoTag(int)
-    589:593:public static int computeStringSizeNoTag(java.lang.String)
-    627:627:public static int computeSFixed32SizeNoTag(int)
-    635:635:public static int computeSFixed64SizeNoTag(long)
-    651:651:public static int computeSInt64SizeNoTag(long)
-    687:690:public int spaceLeft()
-    704:708:public void checkNoSpaceLeft()
-    905:913:public void writeRawLittleEndian64(long)
-    944:944:public static long encodeZigZag64(long)
-com.crashlytics.android.CodedOutputStream$OutOfSpaceException:
-    private static final long serialVersionUID
-com.crashlytics.android.CrashTest
-com.crashlytics.android.CrashTest$1
 com.crashlytics.android.Crashlytics:
     public static final java.lang.String TAG
-    static final float CLS_DEFAULT_PROCESS_DELAY
-    static final java.lang.String CRASHLYTICS_API_ENDPOINT
-    static final java.lang.String CRASHLYTICS_REQUIRE_BUILD_ID
-    static final boolean CRASHLYTICS_REQUIRE_BUILD_ID_DEFAULT
-    static final java.lang.String COLLECT_CUSTOM_LOGS
-    static final java.lang.String COLLECT_CUSTOM_KEYS
-    static final int MAX_ATTRIBUTES
-    static final int MAX_ATTRIBUTE_SIZE
-    static final int DEFAULT_MAIN_HANDLER_TIMEOUT_SEC
-    private static final java.lang.String PREF_ALWAYS_SEND_REPORTS_KEY
-    private static final boolean SHOULD_PROMPT_BEFORE_SENDING_REPORTS_DEFAULT
-    private static final java.lang.String INITIALIZATION_MARKER_FILE_NAME
-    430:430:public static com.crashlytics.android.PinningInfoProvider getPinningInfoProvider()
-    442:456:public static void logException(java.lang.Throwable)
-    498:502:public static void log(int,java.lang.String,java.lang.String)
-    526:531:public static void setUserIdentifier(java.lang.String)
-    539:544:public static void setUserName(java.lang.String)
-    552:557:public static void setUserEmail(java.lang.String)
-    604:605:public static void setBool(java.lang.String,boolean)
-    613:614:public static void setDouble(java.lang.String,double)
-    622:623:public static void setFloat(java.lang.String,float)
-    640:641:public static void setLong(java.lang.String,long)
-    651:652:public void crash()
-    664:667:public boolean verifyPinning(java.net.URL)
-    680:685:public synchronized void setListener(com.crashlytics.android.CrashlyticsListener)
-    692:693:public void setDebugMode(boolean)
-    700:701:public boolean getDebugMode()
-    710:711:public static void setPinningInfoProvider(com.crashlytics.android.PinningInfoProvider)
-    760:765:static void recordLoggedExceptionEvent(java.lang.String)
-    819:819:java.lang.String getBuildId()
-    893:894:void setExternalCrashEventDataProvider(com.crashlytics.android.internal.CrashEventDataProvider)
-    913:923:boolean internalVerifyPinning(java.net.URL)
+    198:199:public static com.crashlytics.android.core.PinningInfoProvider getPinningInfoProvider()
+    230:232:public static void log(int,java.lang.String,java.lang.String)
+    239:241:public static void setUserIdentifier(java.lang.String)
+    248:250:public static void setUserName(java.lang.String)
+    257:259:public static void setUserEmail(java.lang.String)
+    266:268:public static void setString(java.lang.String,java.lang.String)
+    275:277:public static void setBool(java.lang.String,boolean)
+    284:286:public static void setDouble(java.lang.String,double)
+    293:295:public static void setFloat(java.lang.String,float)
+    302:304:public static void setInt(java.lang.String,int)
+    311:313:public static void setLong(java.lang.String,long)
+    321:322:public void crash()
+    333:333:public boolean verifyPinning(java.net.URL)
+    341:342:public synchronized void setListener(com.crashlytics.android.core.CrashlyticsListener)
+    349:350:public void setDebugMode(boolean)
+    357:358:public boolean getDebugMode()
+    367:368:public static void setPinningInfoProvider(com.crashlytics.android.core.PinningInfoProvider)
 com.crashlytics.android.Crashlytics$Builder
-com.crashlytics.android.CrashlyticsMissingDependencyException:
-    private static final long serialVersionUID
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler:
-    private static final int MAX_LOCAL_LOGGED_EXCEPTIONS
-    static final int MAX_OPEN_SESSIONS
-    private static final int MAX_COMPLETE_SESSIONS_COUNT
-    static final java.lang.String CLS_CRASH_MARKER_FILE_NAME
-    static final java.lang.String INVALID_CLS_CACHE_DIR
-    private static final java.lang.String GENERATOR_FORMAT
-    private static final java.lang.String EVENT_TYPE_CRASH
-    private static final java.lang.String EVENT_TYPE_LOGGED
-    private static final int SESSION_ID_LENGTH
-    private static final int ANALYZER_VERSION
-    static final java.lang.String SESSION_USER_TAG
-    static final java.lang.String SESSION_NON_FATAL_TAG
-    static final java.lang.String SESSION_FATAL_TAG
-    static final java.lang.String SESSION_APP_TAG
-    static final java.lang.String SESSION_OS_TAG
-    static final java.lang.String SESSION_DEVICE_TAG
-    static final java.lang.String SESSION_BEGIN_TAG
-    362:372:void writeNonFatalException(java.lang.Thread,java.lang.Throwable)
-    971:1014:private void doWriteNonFatal(java.util.Date,java.lang.Thread,java.lang.Throwable)
-    56:56:static synthetic void access$500(com.crashlytics.android.CrashlyticsUncaughtExceptionHandler,java.util.Date,java.lang.Thread,java.lang.Throwable)
-com.crashlytics.android.CrashlyticsUncaughtExceptionHandler$9
-com.crashlytics.android.DefaultCreateReportSpiCall:
-    static final java.lang.String FILE_PARAM
-    static final java.lang.String IDENTIFIER_PARAM
-    static final java.lang.String FILE_CONTENT_TYPE
-    52:54:DefaultCreateReportSpiCall(io.fabric.sdk.android.Kit,java.lang.String,java.lang.String,io.fabric.sdk.android.services.network.HttpRequestFactory,io.fabric.sdk.android.services.network.HttpMethod)
-com.crashlytics.android.DialogStringResolver:
-    private static final java.lang.String PROMPT_TITLE_RES_NAME
-    private static final java.lang.String PROMPT_MESSAGE_RES_NAME
-    private static final java.lang.String SUBMISSION_SEND_RES_NAME
-    private static final java.lang.String SUBMISSION_ALWAYS_SEND_RES_NAME
-    private static final java.lang.String SUBMISSION_CANCEL_RES_NAME
-com.crashlytics.android.ExceptionUtils:
-    17:17:private ExceptionUtils()
-    35:44:public static void writeStackTrace(android.content.Context,java.lang.Throwable,java.lang.String)
-com.crashlytics.android.LogFileManager:
-    static final int MAX_LOG_SIZE
-com.crashlytics.android.NativeCrashWriter:
-    static final java.lang.String NDK_CRASH_TYPE
-    14:393:NativeCrashWriter()
-com.crashlytics.android.NativeCrashWriter$ApplicationMessage:
-    private static final int PROTOBUF_TAG
-com.crashlytics.android.NativeCrashWriter$BinaryImageMessage:
-    private static final int PROTOBUF_TAG
-com.crashlytics.android.NativeCrashWriter$CustomAttributeMessage:
-    private static final int PROTOBUF_TAG
-com.crashlytics.android.NativeCrashWriter$DeviceMessage:
-    private static final int PROTOBUF_TAG
-com.crashlytics.android.NativeCrashWriter$EventMessage:
-    private static final int PROTOBUF_TAG
-com.crashlytics.android.NativeCrashWriter$ExecutionMessage:
-    private static final int PROTOBUF_TAG
-com.crashlytics.android.NativeCrashWriter$FrameMessage:
-    private static final int PROTOBUF_TAG
-com.crashlytics.android.NativeCrashWriter$SignalMessage:
-    private static final int PROTOBUF_TAG
-com.crashlytics.android.NativeCrashWriter$ThreadMessage:
-    private static final int PROTOBUF_TAG
-com.crashlytics.android.ReportUploader:
-    private static final java.lang.String CLS_FILE_EXT
-    50:51:public void uploadReports()
-    62:62:boolean isUploading()
-com.crashlytics.android.SessionDataWriter:
-    private static final java.lang.String SIGNAL_DEFAULT
-com.crashlytics.android.Utils:
-    12:12:private Utils()
-com.crashlytics.android.WireFormat:
-    public static final int WIRETYPE_VARINT
-    public static final int WIRETYPE_FIXED64
-    public static final int WIRETYPE_LENGTH_DELIMITED
-    public static final int WIRETYPE_START_GROUP
-    public static final int WIRETYPE_END_GROUP
-    public static final int WIRETYPE_FIXED32
-    static final int TAG_TYPE_BITS
-    static final int TAG_TYPE_MASK
-    static final int MESSAGE_SET_ITEM
-    static final int MESSAGE_SET_TYPE_ID
-    static final int MESSAGE_SET_MESSAGE
-    47:47:private WireFormat()
-    61:61:static int getTagWireType(int)
-    66:66:public static int getTagFieldNumber(int)
-com.crashlytics.android.WireFormat$1
-com.crashlytics.android.WireFormat$FieldType
-com.crashlytics.android.WireFormat$FieldType$1
-com.crashlytics.android.WireFormat$FieldType$2
-com.crashlytics.android.WireFormat$FieldType$3
-com.crashlytics.android.WireFormat$FieldType$4
-com.crashlytics.android.WireFormat$JavaType
+com.crashlytics.android.answers.AddToCartEvent
 com.crashlytics.android.answers.Answers:
-    5:5:public bridge synthetic void onException(io.fabric.sdk.android.services.common.Crash$LoggedException)
-com.crashlytics.android.answers.AnswersKit:
     public static final java.lang.String TAG
+    static final java.lang.String PREF_STORE_NAME
     static final java.lang.String CRASHLYTICS_API_ENDPOINT
-    static final java.lang.String PREFKEY_ANALYTICS_LAUNCHED
     static final long FIRST_LAUNCH_INTERVAL_IN_MS
     static final java.lang.String SESSION_ANALYTICS_FILE_EXTENSION
     static final java.lang.String SESSION_ANALYTICS_FILE_NAME
     private static final java.lang.String SESSION_ANALYTICS_TO_SEND_DIR
-    52:53:void setAnalyticsManager(com.crashlytics.android.answers.SessionAnalyticsManager)
-    192:195:public void onException(io.fabric.sdk.android.services.common.Crash$LoggedException)
-    210:213:void onCustom(java.lang.String,java.util.Map)
-com.crashlytics.android.answers.AutoSessionAnalyticsManager:
+    98:104:public void logPurchase(com.crashlytics.android.answers.PurchaseEvent)
+    119:125:public void logLogin(com.crashlytics.android.answers.LoginEvent)
+    142:148:public void logShare(com.crashlytics.android.answers.ShareEvent)
+    162:168:public void logInvite(com.crashlytics.android.answers.InviteEvent)
+    183:189:public void logSignUp(com.crashlytics.android.answers.SignUpEvent)
+    203:209:public void logLevelStart(com.crashlytics.android.answers.LevelStartEvent)
+    225:231:public void logLevelEnd(com.crashlytics.android.answers.LevelEndEvent)
+    250:256:public void logAddToCart(com.crashlytics.android.answers.AddToCartEvent)
+    273:279:public void logStartCheckout(com.crashlytics.android.answers.StartCheckoutEvent)
+    296:302:public void logRating(com.crashlytics.android.answers.RatingEvent)
+    338:344:public void logSearch(com.crashlytics.android.answers.SearchEvent)
+com.crashlytics.android.answers.AnswersAttributes:
+    43:48:void put(java.lang.String,java.lang.Number)
+com.crashlytics.android.answers.AnswersEvent:
+    public static final int MAX_STRING_LENGTH
+    public static final int MAX_NUM_ATTRIBUTES
+    71:72:public com.crashlytics.android.answers.AnswersEvent putCustomAttribute(java.lang.String,java.lang.Number)
+com.crashlytics.android.answers.AnswersEventsHandler:
     private static final java.lang.String EXECUTOR_SERVICE
+com.crashlytics.android.answers.AnswersPreferenceManager:
+    static final java.lang.String PREFKEY_ANALYTICS_LAUNCHED
+com.crashlytics.android.answers.AnswersRetryFilesSender:
+    private static final int MAX_RETRIES
+    private static final int BACKOFF_MS
+    private static final int BACKOFF_POWER
+    private static final double JITTER_PERCENT
 com.crashlytics.android.answers.BuildConfig
-com.crashlytics.android.answers.DefaultSessionAnalyticsFilesSender:
-    static final java.lang.String FILE_PARAM_NAME
-    static final java.lang.String FILE_CONTENT_TYPE
+com.crashlytics.android.answers.ContentViewEvent:
+    static final java.lang.String TYPE
+    static final java.lang.String CONTENT_ID_ATTRIBUTE
+    static final java.lang.String CONTENT_NAME_ATTRIBUTE
+    static final java.lang.String CONTENT_TYPE_ATTRIBUTE
+    32:33:public com.crashlytics.android.answers.ContentViewEvent putContentName(java.lang.String)
+    43:44:public com.crashlytics.android.answers.ContentViewEvent putContentType(java.lang.String)
+com.crashlytics.android.answers.InviteEvent
+com.crashlytics.android.answers.LevelEndEvent
+com.crashlytics.android.answers.LevelStartEvent
+com.crashlytics.android.answers.LoginEvent
+com.crashlytics.android.answers.PurchaseEvent
+com.crashlytics.android.answers.RatingEvent
+com.crashlytics.android.answers.RetryManager:
+    private static final long NANOSECONDS_IN_MS
+com.crashlytics.android.answers.SearchEvent
 com.crashlytics.android.answers.SessionAnalyticsFilesManager:
     private static final java.lang.String SESSION_ANALYTICS_TO_SEND_FILE_PREFIX
+com.crashlytics.android.answers.SessionAnalyticsFilesSender:
+    static final java.lang.String FILE_PARAM_NAME
+    static final java.lang.String FILE_CONTENT_TYPE
 com.crashlytics.android.answers.SessionAnalyticsManager:
     static final java.lang.String ON_CRASH_ERROR_MSG
-    private static final java.lang.String EXECUTOR_SERVICE
-    59:60:public void onError(java.lang.String)
-    63:65:public void onCustom(java.lang.String,java.util.Map)
 com.crashlytics.android.answers.SessionEvent:
     static final java.lang.String ACTIVITY_KEY
     static final java.lang.String SESSION_ID_KEY
-    48:49:public static com.crashlytics.android.answers.SessionEvent buildErrorEvent(com.crashlytics.android.answers.SessionEventMetadata,java.lang.String)
-    59:59:public static com.crashlytics.android.answers.SessionEvent buildCustomEvent(com.crashlytics.android.answers.SessionEventMetadata,java.lang.String,java.util.Map)
 com.crashlytics.android.answers.SessionEventTransform:
     static final java.lang.String APP_BUNDLE_ID_KEY
     static final java.lang.String EXECUTION_ID_KEY
@@ -4388,21 +4235,29 @@ com.crashlytics.android.answers.SessionEventTransform:
     static final java.lang.String DETAILS_KEY
     static final java.lang.String CUSTOM_TYPE
     static final java.lang.String CUSTOM_ATTRIBUTES
+    static final java.lang.String PREDEFINED_TYPE
+    static final java.lang.String PREDEFINED_ATTRIBUTES
+com.crashlytics.android.answers.ShareEvent
+com.crashlytics.android.answers.SignUpEvent
+com.crashlytics.android.answers.StartCheckoutEvent
+com.crashlytics.android.beta.AbstractCheckForUpdatesController:
+    static final java.lang.String LAST_UPDATE_CHECK_KEY
+    static final long LAST_UPDATE_CHECK_DEFAULT
+    private static final long MILLIS_PER_SECOND
+com.crashlytics.android.beta.ActivityLifecycleCheckForUpdatesController:
+    44:44:public boolean isActivityLifecycleTriggered()
 com.crashlytics.android.beta.Beta:
     public static final java.lang.String TAG
     static final java.lang.String NO_DEVICE_TOKEN
     private static final java.lang.String CRASHLYTICS_API_ENDPOINT
     private static final java.lang.String CRASHLYTICS_BUILD_PROPERTIES
-    44:44:public static com.crashlytics.android.beta.Beta getInstance()
+    48:48:public static com.crashlytics.android.beta.Beta getInstance()
 com.crashlytics.android.beta.BuildConfig
 com.crashlytics.android.beta.BuildProperties:
     private static final java.lang.String VERSION_CODE
     private static final java.lang.String VERSION_NAME
     private static final java.lang.String BUILD_ID
     private static final java.lang.String PACKAGE_NAME
-com.crashlytics.android.beta.CheckForUpdatesController:
-    static final java.lang.String LAST_UPDATE_CHECK_KEY
-    static final long LAST_UPDATE_CHECK_DEFAULT
 com.crashlytics.android.beta.CheckForUpdatesRequest:
     static final java.lang.String BUILD_VERSION
     static final java.lang.String DISPLAY_VERSION
@@ -4418,17 +4273,243 @@ com.crashlytics.android.beta.CheckForUpdatesResponseTransform:
     static final java.lang.String INSTANCE_IDENTIFIER
 com.crashlytics.android.beta.DeviceTokenLoader:
     private static final java.lang.String DIRFACTOR_DEVICE_TOKEN_PREFIX
-com.crashlytics.android.internal.models.BinaryImageData:
+com.crashlytics.android.beta.ImmediateCheckForUpdatesController:
+    14:14:public boolean isActivityLifecycleTriggered()
+com.crashlytics.android.beta.UpdatesController:
+    public abstract boolean isActivityLifecycleTriggered()
+com.crashlytics.android.core.BuildConfig
+com.crashlytics.android.core.BuildIdValidator:
+    private static final java.lang.String MESSAGE
+com.crashlytics.android.core.ByteString:
+    62:62:public byte byteAt(int)
+    76:76:public boolean isEmpty()
+    101:101:public static com.crashlytics.android.core.ByteString copyFrom(byte[])
+    109:111:public static com.crashlytics.android.core.ByteString copyFrom(java.nio.ByteBuffer,int)
+    119:119:public static com.crashlytics.android.core.ByteString copyFrom(java.nio.ByteBuffer)
+    128:128:public static com.crashlytics.android.core.ByteString copyFrom(java.lang.String,java.lang.String)
+    152:168:public static com.crashlytics.android.core.ByteString copyFrom(java.util.List)
+    181:182:public void copyTo(byte[],int)
+    207:208:public void copyTo(java.nio.ByteBuffer)
+    214:217:public byte[] toByteArray()
+    225:226:public java.nio.ByteBuffer asReadOnlyByteBuffer()
+    235:235:public java.lang.String toString(java.lang.String)
+    243:245:public java.lang.String toStringUtf8()
+    320:320:public static com.crashlytics.android.core.ByteString$Output newOutput(int)
+    327:327:public static com.crashlytics.android.core.ByteString$Output newOutput()
+    368:368:static com.crashlytics.android.core.ByteString$CodedBuilder newCodedBuilder(int)
+    49:49:synthetic ByteString(byte[],com.crashlytics.android.core.ByteString$1)
+com.crashlytics.android.core.ByteString$1
+com.crashlytics.android.core.ByteString$CodedBuilder
+com.crashlytics.android.core.ByteString$Output
+com.crashlytics.android.core.ClsFileOutputStream:
+    public static final java.lang.String SESSION_FILE_EXTENSION
+    public static final java.lang.String IN_PROGRESS_SESSION_FILE_EXTENSION
+    36:37:public ClsFileOutputStream(java.lang.String,java.lang.String)
+    92:92:public java.io.File getCompleteFile()
+    100:100:public java.io.File getInProgressFile()
+com.crashlytics.android.core.CodedOutputStream:
+    public static final int DEFAULT_BUFFER_SIZE
+    public static final int LITTLE_ENDIAN_32_SIZE
+    public static final int LITTLE_ENDIAN_64_SIZE
+    75:76:static int computePreferredBufferSize(int)
+    80:85:private CodedOutputStream(byte[],int,int)
+    119:119:public static com.crashlytics.android.core.CodedOutputStream newInstance(byte[])
+    132:132:public static com.crashlytics.android.core.CodedOutputStream newInstance(byte[],int,int)
+    140:142:public void writeDouble(int,double)
+    161:163:public void writeInt64(int,long)
+    168:170:public void writeInt32(int,int)
+    175:177:public void writeFixed64(int,long)
+    182:184:public void writeFixed32(int,int)
+    227:229:public void writeSFixed32(int,int)
+    234:236:public void writeSFixed64(int,long)
+    248:250:public void writeSInt64(int,long)
+    259:263:public void writeRawMessageSetExtension(int,com.crashlytics.android.core.ByteString)
+    269:270:public void writeDoubleNoTag(double)
+    284:285:public void writeInt64NoTag(long)
+    299:300:public void writeFixed64NoTag(long)
+    304:305:public void writeFixed32NoTag(int)
+    343:344:public void writeSFixed32NoTag(int)
+    348:349:public void writeSFixed64NoTag(long)
+    358:359:public void writeSInt64NoTag(long)
+    369:369:public static int computeDoubleSize(int,double)
+    393:393:public static int computeInt64Size(int,long)
+    401:401:public static int computeInt32Size(int,int)
+    410:410:public static int computeFixed64Size(int,long)
+    419:419:public static int computeFixed32Size(int,int)
+    437:437:public static int computeStringSize(int,java.lang.String)
+    472:472:public static int computeSFixed32Size(int,int)
+    481:481:public static int computeSFixed64Size(int,long)
+    497:497:public static int computeSInt64Size(int,long)
+    507:507:public static int computeRawMessageSetExtensionSize(int,com.crashlytics.android.core.ByteString)
+    519:519:public static int computeDoubleSizeNoTag(double)
+    543:543:public static int computeInt64SizeNoTag(long)
+    564:564:public static int computeFixed64SizeNoTag(long)
+    572:572:public static int computeFixed32SizeNoTag(int)
+    589:593:public static int computeStringSizeNoTag(java.lang.String)
+    627:627:public static int computeSFixed32SizeNoTag(int)
+    635:635:public static int computeSFixed64SizeNoTag(long)
+    651:651:public static int computeSInt64SizeNoTag(long)
+    687:690:public int spaceLeft()
+    704:708:public void checkNoSpaceLeft()
+    905:913:public void writeRawLittleEndian64(long)
+    944:944:public static long encodeZigZag64(long)
+com.crashlytics.android.core.CodedOutputStream$OutOfSpaceException:
+    private static final long serialVersionUID
+com.crashlytics.android.core.CrashTest
+com.crashlytics.android.core.CrashTest$1
+com.crashlytics.android.core.CrashlyticsCore:
+    public static final java.lang.String TAG
+    static final float CLS_DEFAULT_PROCESS_DELAY
+    static final java.lang.String CRASHLYTICS_API_ENDPOINT
+    static final java.lang.String CRASHLYTICS_REQUIRE_BUILD_ID
+    static final boolean CRASHLYTICS_REQUIRE_BUILD_ID_DEFAULT
+    static final java.lang.String COLLECT_CUSTOM_LOGS
+    static final java.lang.String COLLECT_CUSTOM_KEYS
+    static final int MAX_ATTRIBUTES
+    static final int MAX_ATTRIBUTE_SIZE
+    static final int DEFAULT_MAIN_HANDLER_TIMEOUT_SEC
+    private static final java.lang.String PREF_ALWAYS_SEND_REPORTS_KEY
+    private static final boolean SHOULD_PROMPT_BEFORE_SENDING_REPORTS_DEFAULT
+    private static final java.lang.String INITIALIZATION_MARKER_FILE_NAME
+    410:410:public com.crashlytics.android.core.PinningInfoProvider getPinningInfoProvider()
+    476:480:public void log(int,java.lang.String,java.lang.String)
+    504:510:public void setUserIdentifier(java.lang.String)
+    518:524:public void setUserName(java.lang.String)
+    532:538:public void setUserEmail(java.lang.String)
+    549:574:public void setString(java.lang.String,java.lang.String)
+    582:583:public void setBool(java.lang.String,boolean)
+    591:592:public void setDouble(java.lang.String,double)
+    600:601:public void setFloat(java.lang.String,float)
+    609:610:public void setInt(java.lang.String,int)
+    618:619:public void setLong(java.lang.String,long)
+    628:629:public void crash()
+    641:644:public boolean verifyPinning(java.net.URL)
+    694:699:public synchronized void setListener(com.crashlytics.android.core.CrashlyticsListener)
+    767:767:java.lang.String getBuildId()
+    841:842:void setExternalCrashEventDataProvider(com.crashlytics.android.core.internal.CrashEventDataProvider)
+    861:871:boolean internalVerifyPinning(java.net.URL)
+    1046:1052:private static java.lang.String sanitizeAttribute(java.lang.String)
+com.crashlytics.android.core.CrashlyticsCore$Builder
+com.crashlytics.android.core.CrashlyticsMissingDependencyException:
+    private static final long serialVersionUID
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler:
+    private static final int MAX_LOCAL_LOGGED_EXCEPTIONS
+    static final int MAX_OPEN_SESSIONS
+    private static final int MAX_COMPLETE_SESSIONS_COUNT
+    static final java.lang.String CLS_CRASH_MARKER_FILE_NAME
+    static final java.lang.String INVALID_CLS_CACHE_DIR
+    private static final java.lang.String GENERATOR_FORMAT
+    private static final java.lang.String EVENT_TYPE_CRASH
+    private static final java.lang.String EVENT_TYPE_LOGGED
+    private static final int SESSION_ID_LENGTH
+    private static final int ANALYZER_VERSION
+    static final java.lang.String SESSION_USER_TAG
+    static final java.lang.String SESSION_NON_FATAL_TAG
+    static final java.lang.String SESSION_FATAL_TAG
+    static final java.lang.String SESSION_APP_TAG
+    static final java.lang.String SESSION_OS_TAG
+    static final java.lang.String SESSION_DEVICE_TAG
+    static final java.lang.String SESSION_BEGIN_TAG
+    461:470:void cacheUserData(java.lang.String,java.lang.String,java.lang.String)
+    481:490:void cacheKeyData(java.util.Map)
+    56:56:static synthetic java.io.File access$700(com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler)
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$10
+com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$11
+com.crashlytics.android.core.DefaultCreateReportSpiCall:
+    static final java.lang.String FILE_PARAM
+    static final java.lang.String IDENTIFIER_PARAM
+    static final java.lang.String FILE_CONTENT_TYPE
+    52:54:DefaultCreateReportSpiCall(io.fabric.sdk.android.Kit,java.lang.String,java.lang.String,io.fabric.sdk.android.services.network.HttpRequestFactory,io.fabric.sdk.android.services.network.HttpMethod)
+com.crashlytics.android.core.DialogStringResolver:
+    private static final java.lang.String PROMPT_TITLE_RES_NAME
+    private static final java.lang.String PROMPT_MESSAGE_RES_NAME
+    private static final java.lang.String SUBMISSION_SEND_RES_NAME
+    private static final java.lang.String SUBMISSION_ALWAYS_SEND_RES_NAME
+    private static final java.lang.String SUBMISSION_CANCEL_RES_NAME
+com.crashlytics.android.core.ExceptionUtils:
+    17:17:private ExceptionUtils()
+    35:44:public static void writeStackTrace(android.content.Context,java.lang.Throwable,java.lang.String)
+com.crashlytics.android.core.LogFileManager:
+    private static final java.lang.String LOGFILE_EXT
+    private static final java.lang.String LOGFILE_PREFIX
+    private static final java.lang.String DIRECTORY_NAME
+    static final int MAX_LOG_SIZE
+com.crashlytics.android.core.MetaDataStore:
+    private static final java.lang.String USERDATA_SUFFIX
+    private static final java.lang.String KEYDATA_SUFFIX
+    private static final java.lang.String METADATA_EXT
+    private static final java.lang.String KEY_USER_ID
+    private static final java.lang.String KEY_USER_NAME
+    private static final java.lang.String KEY_USER_EMAIL
+    61:75:public void writeUserData(java.lang.String,com.crashlytics.android.core.UserMetaData)
+    96:110:public void writeKeyData(java.lang.String,java.util.Map)
+    147:147:private static java.lang.String userDataToJson(com.crashlytics.android.core.UserMetaData)
+    166:166:private static java.lang.String keysDataToJson(java.util.Map)
+com.crashlytics.android.core.MetaDataStore$1
+com.crashlytics.android.core.NativeCrashWriter:
+    static final java.lang.String NDK_CRASH_TYPE
+    19:457:NativeCrashWriter()
+com.crashlytics.android.core.NativeCrashWriter$ApplicationMessage:
+    private static final int PROTOBUF_TAG
+com.crashlytics.android.core.NativeCrashWriter$BinaryImageMessage:
+    private static final int PROTOBUF_TAG
+com.crashlytics.android.core.NativeCrashWriter$CustomAttributeMessage:
+    private static final int PROTOBUF_TAG
+com.crashlytics.android.core.NativeCrashWriter$DeviceMessage:
+    private static final int PROTOBUF_TAG
+com.crashlytics.android.core.NativeCrashWriter$EventMessage:
+    private static final int PROTOBUF_TAG
+com.crashlytics.android.core.NativeCrashWriter$ExecutionMessage:
+    private static final int PROTOBUF_TAG
+com.crashlytics.android.core.NativeCrashWriter$FrameMessage:
+    private static final int PROTOBUF_TAG
+com.crashlytics.android.core.NativeCrashWriter$LogMessage:
+    private static final int PROTOBUF_TAG
+com.crashlytics.android.core.NativeCrashWriter$SignalMessage:
+    private static final int PROTOBUF_TAG
+com.crashlytics.android.core.NativeCrashWriter$ThreadMessage:
+    private static final int PROTOBUF_TAG
+com.crashlytics.android.core.ReportUploader:
+    private static final java.lang.String CLS_FILE_EXT
+    50:51:public void uploadReports()
+    62:62:boolean isUploading()
+com.crashlytics.android.core.SessionDataWriter:
+    private static final java.lang.String SIGNAL_DEFAULT
+com.crashlytics.android.core.Utils:
+    12:12:private Utils()
+com.crashlytics.android.core.WireFormat:
+    public static final int WIRETYPE_VARINT
+    public static final int WIRETYPE_FIXED64
+    public static final int WIRETYPE_LENGTH_DELIMITED
+    public static final int WIRETYPE_START_GROUP
+    public static final int WIRETYPE_END_GROUP
+    public static final int WIRETYPE_FIXED32
+    static final int TAG_TYPE_BITS
+    static final int TAG_TYPE_MASK
+    static final int MESSAGE_SET_ITEM
+    static final int MESSAGE_SET_TYPE_ID
+    static final int MESSAGE_SET_MESSAGE
+    47:47:private WireFormat()
+    61:61:static int getTagWireType(int)
+    66:66:public static int getTagFieldNumber(int)
+com.crashlytics.android.core.WireFormat$1
+com.crashlytics.android.core.WireFormat$FieldType
+com.crashlytics.android.core.WireFormat$FieldType$1
+com.crashlytics.android.core.WireFormat$FieldType$2
+com.crashlytics.android.core.WireFormat$FieldType$3
+com.crashlytics.android.core.WireFormat$FieldType$4
+com.crashlytics.android.core.WireFormat$JavaType
+com.crashlytics.android.core.internal.models.BinaryImageData:
     28:33:public BinaryImageData(long,long,java.lang.String,java.lang.String)
-com.crashlytics.android.internal.models.CustomAttributeData:
-    18:21:public CustomAttributeData(java.lang.String,java.lang.String)
-com.crashlytics.android.internal.models.SessionEventData:
-    35:41:public SessionEventData(long,com.crashlytics.android.internal.models.SignalData,com.crashlytics.android.internal.models.ThreadData[],com.crashlytics.android.internal.models.BinaryImageData[],com.crashlytics.android.internal.models.CustomAttributeData[])
-com.crashlytics.android.internal.models.ThreadData:
+com.crashlytics.android.core.internal.models.DeviceData:
+    50:59:public DeviceData(int,long,long,long,long,int,int,boolean)
+com.crashlytics.android.core.internal.models.SessionEventData:
+    45:52:public SessionEventData(long,com.crashlytics.android.core.internal.models.SignalData,com.crashlytics.android.core.internal.models.ThreadData[],com.crashlytics.android.core.internal.models.BinaryImageData[],com.crashlytics.android.core.internal.models.CustomAttributeData[],com.crashlytics.android.core.internal.models.DeviceData)
+com.crashlytics.android.core.internal.models.ThreadData:
     public static final int IMPORTANCE_CRASHED_THREAD
-    78:79:public ThreadData(int,com.crashlytics.android.internal.models.ThreadData$FrameData[])
-    81:85:public ThreadData(java.lang.String,int,com.crashlytics.android.internal.models.ThreadData$FrameData[])
-com.crashlytics.android.internal.models.ThreadData$FrameData:
+    78:79:public ThreadData(int,com.crashlytics.android.core.internal.models.ThreadData$FrameData[])
+    81:85:public ThreadData(java.lang.String,int,com.crashlytics.android.core.internal.models.ThreadData$FrameData[])
+com.crashlytics.android.core.internal.models.ThreadData$FrameData:
     46:47:public ThreadData$FrameData(long,int)
     50:51:public ThreadData$FrameData(long,java.lang.String,int)
     53:59:public ThreadData$FrameData(long,java.lang.String,java.lang.String,long,int)
@@ -4923,15 +5004,15 @@ com.itextpdf.text.Image:
     public static final int ORIGINAL_PS
     public static final int ORIGINAL_JPEG2000
     public static final int ORIGINAL_JBIG2
-    241:241:public static com.itextpdf.text.Image getInstance(java.net.URL)
-    256:346:public static com.itextpdf.text.Image getInstance(java.net.URL,boolean)
-    364:364:public static com.itextpdf.text.Image getInstance(java.lang.String)
     368:368:public static com.itextpdf.text.Image getInstance(java.lang.String,boolean)
+    374:374:public static com.itextpdf.text.Image getInstance(byte[])
+    389:476:public static com.itextpdf.text.Image getInstance(byte[],boolean)
     513:513:public static com.itextpdf.text.Image getInstance(int,int,byte[],byte[])
     632:632:public static com.itextpdf.text.Image getInstance(com.itextpdf.text.pdf.PdfTemplate)
     657:658:public void setDirectReference(com.itextpdf.text.pdf.PdfIndirectReference)
     667:686:public static com.itextpdf.text.Image getInstance(com.itextpdf.text.pdf.PRIndirectReference)
     802:802:public boolean isJpeg()
+    913:914:public void setAlignment(int)
     923:923:public java.lang.String getAlt()
     934:936:public void setAlt(java.lang.String)
     1014:1014:public float getPlainWidth()
@@ -4952,6 +5033,7 @@ com.itextpdf.text.Image:
     1484:1485:public void setLayer(com.itextpdf.text.pdf.PdfOCG)
     1509:1510:public void setInterpolation(boolean)
     1527:1527:public int getOriginalType()
+    1548:1548:public byte[] getOriginalData()
     1601:1601:public int getDpiX()
     1610:1610:public int getDpiY()
     1637:1637:public float getXYRatio()
@@ -4969,8 +5051,8 @@ com.itextpdf.text.ImgRaw:
 com.itextpdf.text.ImgTemplate
 com.itextpdf.text.ImgWMF:
     70:71:ImgWMF(com.itextpdf.text.Image)
-    82:84:public ImgWMF(java.net.URL)
     96:97:public ImgWMF(java.lang.String)
+    108:112:public ImgWMF(byte[])
 com.itextpdf.text.Jpeg:
     public static final int NOT_A_MARKER
     public static final int VALID_MARKER
@@ -4981,7 +5063,6 @@ com.itextpdf.text.Jpeg:
     public static final int M_APPE
     public static final int M_APPD
     106:107:Jpeg(com.itextpdf.text.Image)
-    117:119:public Jpeg(java.net.URL)
     147:150:public Jpeg(byte[],float,float)
 com.itextpdf.text.Jpeg2000:
     public static final int JP2_JP
@@ -4996,7 +5077,7 @@ com.itextpdf.text.Jpeg2000:
     public static final int JP2_BPCC
     public static final int JP2_JP2
     83:101:Jpeg2000(com.itextpdf.text.Image)
-    83:113:public Jpeg2000(java.net.URL)
+    83:128:public Jpeg2000(byte[])
     141:144:public Jpeg2000(byte[],float,float)
     293:293:public int getNumOfComps()
     297:297:public byte[] getBpcBoxData()
@@ -5218,8 +5299,6 @@ com.itextpdf.text.Utilities:
     67:67:public Utilities()
     80:80:public static java.util.Set getKeySet(java.util.Hashtable)
     112:112:public static boolean checkTrueOrFalse(java.util.Properties,java.lang.String)
-    121:142:public static java.lang.String unEscapeURL(java.lang.String)
-    158:161:public static java.net.URL toURL(java.lang.String)
     193:193:public static final float millimetersToPoints(float)
     203:203:public static final float millimetersToInches(float)
     213:213:public static final float pointsToMillimeters(float)
@@ -7100,8 +7179,8 @@ com.itextpdf.text.pdf.codec.BmpImage:
     private static final int BI_RLE8
     private static final int BI_RLE4
     private static final int BI_BITFIELDS
-    180:189:public static com.itextpdf.text.Image getImage(java.net.URL)
     230:230:public static com.itextpdf.text.Image getImage(java.lang.String)
+    239:242:public static com.itextpdf.text.Image getImage(byte[])
     1283:1285:private int readShort(java.io.InputStream)
 com.itextpdf.text.pdf.codec.CCITTG4Encoder:
     private static final int LENGTH
@@ -7117,8 +7196,8 @@ com.itextpdf.text.pdf.codec.GifImage:
     protected static final int MaxStackSize
     protected byte[] pixels
     protected byte[] m_local_table
-    79:139:public GifImage(java.net.URL)
     146:147:public GifImage(java.lang.String)
+    79:165:public GifImage(byte[])
     79:173:public GifImage(java.io.InputStream)
     179:179:public int getFrameCount()
     197:198:public int[] getFramePosition(int)
@@ -7171,8 +7250,8 @@ com.itextpdf.text.pdf.codec.PngImage:
     private static final int PNG_FILTER_UP
     private static final int PNG_FILTER_AVERAGE
     private static final int PNG_FILTER_PAETH
-    210:219:public static com.itextpdf.text.Image getImage(java.net.URL)
     240:240:public static com.itextpdf.text.Image getImage(java.lang.String)
+    249:252:public static com.itextpdf.text.Image getImage(byte[])
     814:821:static int getPixel(byte[],int,int,int,int)
 com.itextpdf.text.pdf.codec.PngWriter
 com.itextpdf.text.pdf.codec.TIFFConstants
@@ -8352,38 +8431,35 @@ de.greenrobot.event.util.ExceptionToResourceMapping
 de.greenrobot.event.util.HasExecutionScope
 de.greenrobot.event.util.ThrowableFailureEvent
 hugo.weaving.DebugLog
-io.fabric.sdk.android.ActivityLifecycleManager:
-    59:62:public void resetCallbacks()
-io.fabric.sdk.android.ActivityLifecycleManager$ActivityLifecycleCallbacksWrapper:
-    75:78:private void clearCallbacks()
-    64:64:static synthetic void access$100(io.fabric.sdk.android.ActivityLifecycleManager$ActivityLifecycleCallbacksWrapper)
 io.fabric.sdk.android.BuildConfig
 io.fabric.sdk.android.DefaultLogger:
-    26:26:public int getLogLevel()
-    31:32:public void setLogLevel(int)
-    43:46:public void v(java.lang.String,java.lang.String,java.lang.Throwable)
-    76:77:public void v(java.lang.String,java.lang.String)
+    43:43:public int getLogLevel()
+    48:49:public void setLogLevel(int)
 io.fabric.sdk.android.Fabric:
     public static final java.lang.String TAG
     static final java.lang.String ROOT_DIR
     static final boolean DEFAULT_DEBUGGABLE
-    308:315:public static io.fabric.sdk.android.Fabric with(io.fabric.sdk.android.Fabric)
-    473:473:public io.fabric.sdk.android.ActivityLifecycleManager getActivityLifecycleManager()
-    481:481:public android.os.Handler getMainHandler()
-    528:528:public static boolean isInitialized()
-    535:535:public java.lang.String getAppIdentifier()
-    542:542:public java.lang.String getAppInstallIdentifier()
+    320:327:public static io.fabric.sdk.android.Fabric with(io.fabric.sdk.android.Fabric)
+    496:496:public android.os.Handler getMainHandler()
+    543:543:public static boolean isInitialized()
+    550:550:public java.lang.String getAppIdentifier()
+    557:557:public java.lang.String getAppInstallIdentifier()
 io.fabric.sdk.android.Fabric$Builder:
-    103:103:public io.fabric.sdk.android.Fabric$Builder executorService(java.util.concurrent.ExecutorService)
-    110:119:public io.fabric.sdk.android.Fabric$Builder threadPoolExecutor(io.fabric.sdk.android.services.concurrency.PriorityThreadPoolExecutor)
-    127:127:public io.fabric.sdk.android.Fabric$Builder handler(android.os.Handler)
-    134:143:public io.fabric.sdk.android.Fabric$Builder logger(io.fabric.sdk.android.Logger)
-    150:159:public io.fabric.sdk.android.Fabric$Builder appIdentifier(java.lang.String)
-    166:175:public io.fabric.sdk.android.Fabric$Builder appInstallIdentifier(java.lang.String)
-    182:183:public io.fabric.sdk.android.Fabric$Builder debuggable(boolean)
-    191:200:public io.fabric.sdk.android.Fabric$Builder initializationCallback(io.fabric.sdk.android.InitializationCallback)
+    115:115:public io.fabric.sdk.android.Fabric$Builder executorService(java.util.concurrent.ExecutorService)
+    122:131:public io.fabric.sdk.android.Fabric$Builder threadPoolExecutor(io.fabric.sdk.android.services.concurrency.PriorityThreadPoolExecutor)
+    139:139:public io.fabric.sdk.android.Fabric$Builder handler(android.os.Handler)
+    146:155:public io.fabric.sdk.android.Fabric$Builder logger(io.fabric.sdk.android.Logger)
+    162:171:public io.fabric.sdk.android.Fabric$Builder appIdentifier(java.lang.String)
+    178:187:public io.fabric.sdk.android.Fabric$Builder appInstallIdentifier(java.lang.String)
+    194:195:public io.fabric.sdk.android.Fabric$Builder debuggable(boolean)
+    203:212:public io.fabric.sdk.android.Fabric$Builder initializationCallback(io.fabric.sdk.android.InitializationCallback)
+io.fabric.sdk.android.FabricKitsFinder:
+    static final java.lang.String FABRIC_DIR
+    private static final java.lang.String FABRIC_IDENTIFIER_KEY
+    private static final java.lang.String FABRIC_VERSION_KEY
+    private static final java.lang.String FABRIC_BUILD_TYPE_KEY
 io.fabric.sdk.android.InitializationException:
-    13:14:public InitializationException(java.lang.String,java.lang.Throwable)
+    30:31:public InitializationException(java.lang.String,java.lang.Throwable)
 io.fabric.sdk.android.InitializationTask:
     private static final java.lang.String TIMING_METRIC_TAG
 io.fabric.sdk.android.Logger:
@@ -8391,17 +8467,17 @@ io.fabric.sdk.android.Logger:
     public abstract void setLogLevel(int)
     public abstract void v(java.lang.String,java.lang.String,java.lang.Throwable)
     public abstract void i(java.lang.String,java.lang.String,java.lang.Throwable)
-    public abstract void v(java.lang.String,java.lang.String)
     public abstract void log(int,java.lang.String,java.lang.String,boolean)
 io.fabric.sdk.android.Onboarding:
     static final java.lang.String CRASHLYTICS_API_ENDPOINT
+    private static final java.lang.String BINARY_BUILD_TYPE
 io.fabric.sdk.android.SilentLogger
 io.fabric.sdk.android.services.cache.AbstractValueCache:
-    10:11:public AbstractValueCache()
-    35:36:public final synchronized void invalidate(android.content.Context)
+    27:28:public AbstractValueCache()
+    52:53:public final synchronized void invalidate(android.content.Context)
     protected abstract void doInvalidate(android.content.Context)
 io.fabric.sdk.android.services.cache.MemoryValueCache:
-    19:20:protected void doInvalidate(android.content.Context)
+    36:37:protected void doInvalidate(android.content.Context)
 io.fabric.sdk.android.services.cache.ValueCache:
     public abstract void invalidate(android.content.Context)
 io.fabric.sdk.android.services.common.AbstractSpiCall:
@@ -8446,8 +8522,8 @@ io.fabric.sdk.android.services.common.AdvertisingInfoServiceStrategy$Advertising
 io.fabric.sdk.android.services.common.ApiKey:
     static final java.lang.String FABRIC_API_KEY
     static final java.lang.String CRASHLYTICS_API_KEY
-    21:23:public static java.lang.String getApiKey(android.content.Context)
-    31:33:public static java.lang.String getApiKey(android.content.Context,boolean)
+    38:40:public static java.lang.String getApiKey(android.content.Context)
+    48:50:public static java.lang.String getApiKey(android.content.Context,boolean)
 io.fabric.sdk.android.services.common.CommonUtils:
     private static final java.lang.String LOG_PRIORITY_NAME_ASSERT
     private static final java.lang.String LOG_PRIORITY_NAME_DEBUG
@@ -8478,29 +8554,26 @@ io.fabric.sdk.android.services.common.CommonUtils:
     public static final int DEVICE_STATE_BETAOS
     public static final int DEVICE_STATE_VENDORINTERNAL
     public static final int DEVICE_STATE_COMPROMISEDLIBRARIES
-    67:158:public CommonUtils()
-    284:284:public static java.lang.String md5(java.lang.String)
-    288:288:public static java.lang.String md5(byte[])
-    296:296:public static java.lang.String sha1(byte[])
-    477:482:public static boolean isLoggingEnabled(android.content.Context)
-    640:643:public static byte[] getBitmapBytes(android.graphics.Bitmap)
-    690:696:public static byte[] dehexify(java.lang.String)
-    779:784:public static java.lang.String padWithZerosToMaxIntWidth(int)
-    788:799:public static boolean stringsEqualIncludingNull(java.lang.String,java.lang.String)
-    898:906:public static void closeQuietly(java.io.Closeable)
-    917:922:public static void hideKeyboard(android.content.Context,android.view.View)
-    925:930:public static void openKeyboard(android.content.Context,android.view.View)
-    935:938:public static void finishAffinity(android.content.Context,int)
-    950:959:public static void finishAffinity(android.app.Activity,int)
-    986:991:public static void logOrThrowIllegalStateException(java.lang.String,java.lang.String)
-    1001:1006:public static void logOrThrowIllegalArgumentException(java.lang.String,java.lang.String)
-io.fabric.sdk.android.services.common.Crash$LoggedException
+    76:167:public CommonUtils()
+    293:293:public static java.lang.String md5(java.lang.String)
+    297:297:public static java.lang.String md5(byte[])
+    305:305:public static java.lang.String sha1(byte[])
+    486:491:public static boolean isLoggingEnabled(android.content.Context)
+    649:652:public static byte[] getBitmapBytes(android.graphics.Bitmap)
+    699:705:public static byte[] dehexify(java.lang.String)
+    797:808:public static boolean stringsEqualIncludingNull(java.lang.String,java.lang.String)
+    926:931:public static void hideKeyboard(android.content.Context,android.view.View)
+    934:939:public static void openKeyboard(android.content.Context,android.view.View)
+    944:947:public static void finishAffinity(android.content.Context,int)
+    959:968:public static void finishAffinity(android.app.Activity,int)
+    995:1000:public static void logOrThrowIllegalStateException(java.lang.String,java.lang.String)
+    1010:1015:public static void logOrThrowIllegalArgumentException(java.lang.String,java.lang.String)
 io.fabric.sdk.android.services.common.DeliveryMechanism:
     public static final java.lang.String BETA_APP_PACKAGE_NAME
 io.fabric.sdk.android.services.common.ExecutorUtils:
     private static final long DEFAULT_TERMINATION_TIMEOUT
-    21:22:private ExecutorUtils()
-    33:37:public static io.fabric.sdk.android.services.concurrency.internal.RetryThreadPoolExecutor buildRetryThreadPoolExecutor(java.lang.String,int,io.fabric.sdk.android.services.concurrency.internal.RetryPolicy,io.fabric.sdk.android.services.concurrency.internal.Backoff)
+    38:39:private ExecutorUtils()
+    50:54:public static io.fabric.sdk.android.services.concurrency.internal.RetryThreadPoolExecutor buildRetryThreadPoolExecutor(java.lang.String,int,io.fabric.sdk.android.services.concurrency.internal.RetryPolicy,io.fabric.sdk.android.services.concurrency.internal.Backoff)
 io.fabric.sdk.android.services.common.IdManager:
     public static final java.lang.String COLLECT_DEVICE_IDENTIFIERS
     public static final java.lang.String COLLECT_USER_IDENTIFIERS
@@ -8513,38 +8586,38 @@ io.fabric.sdk.android.services.common.IdManager:
     public static final java.lang.String MODEL_FIELD
     public static final java.lang.String OS_VERSION_FIELD
     public static final java.lang.String BETA_DEVICE_TOKEN_FIELD
-    433:433:private java.lang.String[] getTwitterSdkAssetsList()
+    443:443:private java.lang.String[] getTwitterSdkAssetsList()
 io.fabric.sdk.android.services.common.InstallerPackageNameProvider:
     private static final java.lang.String NO_INSTALLER_PACKAGE_NAME
 io.fabric.sdk.android.services.common.QueueFile:
     private static final int INITIAL_LENGTH
     static final int HEADER_LENGTH
-    105:123:QueueFile(java.io.RandomAccessFile)
-    403:409:public synchronized byte[] peek()
-    414:417:public synchronized void peek(io.fabric.sdk.android.services.common.QueueFile$ElementReader)
-    487:487:public synchronized int size()
+    122:140:QueueFile(java.io.RandomAccessFile)
+    420:426:public synchronized byte[] peek()
+    431:434:public synchronized void peek(io.fabric.sdk.android.services.common.QueueFile$ElementReader)
+    504:504:public synchronized int size()
 io.fabric.sdk.android.services.common.QueueFile$Element:
     static final int HEADER_LENGTH
 io.fabric.sdk.android.services.common.ResponseParser:
     public static final int ResponseActionDiscard
     public static final int ResponseActionRetry
-    11:11:public ResponseParser()
+    20:20:public ResponseParser()
 io.fabric.sdk.android.services.common.SafeToast
 io.fabric.sdk.android.services.common.SafeToast$1
 io.fabric.sdk.android.services.common.TimingMetric:
-    46:46:public long getDuration()
+    56:56:public long getDuration()
 io.fabric.sdk.android.services.concurrency.AsyncTask:
     private static final java.lang.String LOG_TAG
     private static final int KEEP_ALIVE
     private static final int MESSAGE_POST_RESULT
     private static final int MESSAGE_POST_PROGRESS
-    276:277:public static void init()
-    281:282:public static void setDefaultExecutor(java.util.concurrent.Executor)
-    489:489:public final java.lang.Object get()
-    509:509:public final java.lang.Object get(long,java.util.concurrent.TimeUnit)
-    541:541:public final varargs io.fabric.sdk.android.services.concurrency.AsyncTask execute(java.lang.Object[])
-    611:612:public static void execute(java.lang.Runnable)
-    629:633:protected final varargs void publishProgress(java.lang.Object[])
+    293:294:public static void init()
+    298:299:public static void setDefaultExecutor(java.util.concurrent.Executor)
+    506:506:public final java.lang.Object get()
+    526:526:public final java.lang.Object get(long,java.util.concurrent.TimeUnit)
+    558:558:public final varargs io.fabric.sdk.android.services.concurrency.AsyncTask execute(java.lang.Object[])
+    628:629:public static void execute(java.lang.Runnable)
+    646:650:protected final varargs void publishProgress(java.lang.Object[])
 io.fabric.sdk.android.services.concurrency.DelegateProvider
 io.fabric.sdk.android.services.concurrency.DependencyPriorityBlockingQueue:
     static final int TAKE
@@ -8552,51 +8625,67 @@ io.fabric.sdk.android.services.concurrency.DependencyPriorityBlockingQueue:
     static final int POLL
     static final int POLL_WITH_TIMEOUT
 io.fabric.sdk.android.services.concurrency.PriorityAsyncTask:
-    79:79:public java.lang.Throwable getError()
+    96:96:public java.lang.Throwable getError()
 io.fabric.sdk.android.services.concurrency.PriorityFutureTask:
-    73:73:public java.lang.Throwable getError()
+    90:90:public java.lang.Throwable getError()
 io.fabric.sdk.android.services.concurrency.PriorityRunnable
 io.fabric.sdk.android.services.concurrency.PriorityTask:
-    61:61:public java.lang.Throwable getError()
+    78:78:public java.lang.Throwable getError()
 io.fabric.sdk.android.services.concurrency.PriorityThreadPoolExecutor:
     private static final long KEEP_ALIVE
-    55:55:public static io.fabric.sdk.android.services.concurrency.PriorityThreadPoolExecutor create(int)
+    72:72:public static io.fabric.sdk.android.services.concurrency.PriorityThreadPoolExecutor create(int)
 io.fabric.sdk.android.services.concurrency.Task:
     public abstract java.lang.Throwable getError()
 io.fabric.sdk.android.services.concurrency.UnmetDependencyException:
-    17:18:public UnmetDependencyException(java.lang.String,java.lang.Throwable)
+    34:35:public UnmetDependencyException(java.lang.String,java.lang.Throwable)
 io.fabric.sdk.android.services.concurrency.internal.AbstractFuture
 io.fabric.sdk.android.services.concurrency.internal.AbstractFuture$Sync
-io.fabric.sdk.android.services.concurrency.internal.Backoff
-io.fabric.sdk.android.services.concurrency.internal.DefaultRetryPolicy
-io.fabric.sdk.android.services.concurrency.internal.ExponentialBackoff
+io.fabric.sdk.android.services.concurrency.internal.DefaultRetryPolicy:
+    33:33:public boolean shouldRetry(int,java.lang.Throwable)
+io.fabric.sdk.android.services.concurrency.internal.ExponentialBackoff:
+    private static final int DEFAULT_POWER
+    31:32:public ExponentialBackoff(long)
 io.fabric.sdk.android.services.concurrency.internal.RetryFuture
-io.fabric.sdk.android.services.concurrency.internal.RetryPolicy
-io.fabric.sdk.android.services.concurrency.internal.RetryState
+io.fabric.sdk.android.services.concurrency.internal.RetryPolicy:
+    public abstract boolean shouldRetry(int,java.lang.Throwable)
+io.fabric.sdk.android.services.concurrency.internal.RetryState:
+    36:36:public int getRetryCount()
+    44:44:public io.fabric.sdk.android.services.concurrency.internal.Backoff getBackoff()
+    48:48:public io.fabric.sdk.android.services.concurrency.internal.RetryPolicy getRetryPolicy()
 io.fabric.sdk.android.services.concurrency.internal.RetryThreadPoolExecutor
 io.fabric.sdk.android.services.events.DisabledEventsStrategy:
-    28:28:public void scheduleTimeBasedRollOverIfNeeded()
+    35:35:public void recordEvent(java.lang.Object)
+    45:45:public void scheduleTimeBasedRollOverIfNeeded()
 io.fabric.sdk.android.services.events.EnabledEventsStrategy:
-    protected static final int UNDEFINED_ROLLOVER_INTERVAL_SECONDS
+    static final int UNDEFINED_ROLLOVER_INTERVAL_SECONDS
+    113:113:public int getRollover()
 io.fabric.sdk.android.services.events.EventsFilesManager:
     public static final java.lang.String ROLL_OVER_FILE_NAME_SEPARATOR
+    public static final int MAX_BYTE_SIZE_PER_FILE
     public static final int MAX_FILES_IN_BATCH
     public static final int MAX_FILES_TO_KEEP
-    143:143:public long getLastRollOverTime()
+    162:162:public long getLastRollOverTime()
+io.fabric.sdk.android.services.events.EventsHandler
+io.fabric.sdk.android.services.events.EventsHandler$1
+io.fabric.sdk.android.services.events.EventsHandler$2
+io.fabric.sdk.android.services.events.EventsHandler$3
+io.fabric.sdk.android.services.events.EventsHandler$4
+io.fabric.sdk.android.services.events.EventsManager:
+    public abstract void recordEvent(java.lang.Object)
 io.fabric.sdk.android.services.events.EventsStorage:
     public abstract java.io.File getWorkingDirectory()
     public abstract java.io.File getRollOverDirectory()
 io.fabric.sdk.android.services.events.FileRollOverManager:
     public abstract void scheduleTimeBasedRollOverIfNeeded()
 io.fabric.sdk.android.services.events.QueueFileEventStorage:
-    108:108:public java.io.File getWorkingDirectory()
-    113:113:public java.io.File getRollOverDirectory()
+    125:125:public java.io.File getWorkingDirectory()
+    130:130:public java.io.File getRollOverDirectory()
 io.fabric.sdk.android.services.network.CertificateChainCleaner:
-    17:18:private CertificateChainCleaner()
+    34:35:private CertificateChainCleaner()
 io.fabric.sdk.android.services.network.DefaultHttpRequestFactory:
     private static final java.lang.String HTTPS
-    41:41:public io.fabric.sdk.android.services.network.PinningInfoProvider getPinningInfoProvider()
-    59:59:public io.fabric.sdk.android.services.network.HttpRequest buildHttpRequest(io.fabric.sdk.android.services.network.HttpMethod,java.lang.String)
+    58:58:public io.fabric.sdk.android.services.network.PinningInfoProvider getPinningInfoProvider()
+    76:76:public io.fabric.sdk.android.services.network.HttpRequest buildHttpRequest(io.fabric.sdk.android.services.network.HttpMethod,java.lang.String)
 io.fabric.sdk.android.services.network.HttpRequest:
     public static final java.lang.String CHARSET_UTF8
     public static final java.lang.String CONTENT_TYPE_FORM
@@ -8634,113 +8723,113 @@ io.fabric.sdk.android.services.network.HttpRequest:
     private static javax.net.ssl.SSLSocketFactory TRUSTED_FACTORY
     private static javax.net.ssl.HostnameVerifier TRUSTED_VERIFIER
     private boolean form
-    267:293:private static javax.net.ssl.SSLSocketFactory getTrustedFactory()
-    297:305:private static javax.net.ssl.HostnameVerifier getTrustedVerifier()
-    367:371:public static void setConnectionFactory(io.fabric.sdk.android.services.network.HttpRequest$ConnectionFactory)
-    835:863:public static varargs java.lang.String append(java.lang.CharSequence,java.lang.Object[])
-    885:885:public static io.fabric.sdk.android.services.network.HttpRequest get(java.net.URL)
-    918:919:public static varargs io.fabric.sdk.android.services.network.HttpRequest get(java.lang.CharSequence,boolean,java.lang.Object[])
-    941:941:public static io.fabric.sdk.android.services.network.HttpRequest post(java.net.URL)
-    974:975:public static varargs io.fabric.sdk.android.services.network.HttpRequest post(java.lang.CharSequence,boolean,java.lang.Object[])
-    997:997:public static io.fabric.sdk.android.services.network.HttpRequest put(java.net.URL)
-    1013:1014:public static io.fabric.sdk.android.services.network.HttpRequest put(java.lang.CharSequence,java.util.Map,boolean)
-    1030:1031:public static varargs io.fabric.sdk.android.services.network.HttpRequest put(java.lang.CharSequence,boolean,java.lang.Object[])
-    1053:1053:public static io.fabric.sdk.android.services.network.HttpRequest delete(java.net.URL)
-    1069:1070:public static io.fabric.sdk.android.services.network.HttpRequest delete(java.lang.CharSequence,java.util.Map,boolean)
-    1086:1087:public static varargs io.fabric.sdk.android.services.network.HttpRequest delete(java.lang.CharSequence,boolean,java.lang.Object[])
-    1098:1098:public static io.fabric.sdk.android.services.network.HttpRequest head(java.lang.CharSequence)
-    1109:1109:public static io.fabric.sdk.android.services.network.HttpRequest head(java.net.URL)
-    1125:1126:public static io.fabric.sdk.android.services.network.HttpRequest head(java.lang.CharSequence,java.util.Map,boolean)
-    1142:1143:public static varargs io.fabric.sdk.android.services.network.HttpRequest head(java.lang.CharSequence,boolean,java.lang.Object[])
-    1154:1154:public static io.fabric.sdk.android.services.network.HttpRequest options(java.lang.CharSequence)
-    1165:1165:public static io.fabric.sdk.android.services.network.HttpRequest options(java.net.URL)
-    1176:1176:public static io.fabric.sdk.android.services.network.HttpRequest trace(java.lang.CharSequence)
-    1187:1187:public static io.fabric.sdk.android.services.network.HttpRequest trace(java.net.URL)
-    1198:1199:public static void keepAlive(boolean)
-    1209:1211:public static void proxyHost(java.lang.String)
-    1221:1224:public static void proxyPort(int)
-    1236:1245:public static varargs void nonProxyHosts(java.lang.String[])
-    1258:1272:private static java.lang.String setProperty(java.lang.String,java.lang.String)
-    1275:1323:public HttpRequest(java.net.URL,java.lang.String)
-    1368:1369:public io.fabric.sdk.android.services.network.HttpRequest ignoreCloseExceptions(boolean)
-    1378:1378:public boolean ignoreCloseExceptions()
-    1404:1405:public io.fabric.sdk.android.services.network.HttpRequest code(java.util.concurrent.atomic.AtomicInteger)
-    1425:1425:public boolean created()
-    1435:1435:public boolean serverError()
-    1445:1445:public boolean badRequest()
-    1455:1455:public boolean notFound()
-    1465:1465:public boolean notModified()
-    1476:1479:public java.lang.String message()
-    1489:1490:public io.fabric.sdk.android.services.network.HttpRequest disconnect()
-    1500:1501:public io.fabric.sdk.android.services.network.HttpRequest chunk(int)
-    1515:1518:public io.fabric.sdk.android.services.network.HttpRequest bufferSize(int)
-    1529:1529:public int bufferSize()
-    1548:1549:public io.fabric.sdk.android.services.network.HttpRequest uncompress(boolean)
-    1602:1603:public io.fabric.sdk.android.services.network.HttpRequest body(java.util.concurrent.atomic.AtomicReference)
-    1616:1617:public io.fabric.sdk.android.services.network.HttpRequest body(java.util.concurrent.atomic.AtomicReference,java.lang.String)
-    1627:1627:public boolean isBodyEmpty()
-    1637:1643:public byte[] bytes()
-    1702:1704:public java.io.InputStreamReader reader(java.lang.String)
-    1715:1715:public java.io.InputStreamReader reader()
-    1728:1728:public java.io.BufferedReader bufferedReader(java.lang.String)
-    1740:1740:public java.io.BufferedReader bufferedReader()
-    1753:1757:public io.fabric.sdk.android.services.network.HttpRequest receive(java.io.File)
-    1775:1777:public io.fabric.sdk.android.services.network.HttpRequest receive(java.io.OutputStream)
-    1789:1789:public io.fabric.sdk.android.services.network.HttpRequest receive(java.io.PrintStream)
-    1800:1801:public io.fabric.sdk.android.services.network.HttpRequest receive(java.lang.Appendable)
-    1825:1826:public io.fabric.sdk.android.services.network.HttpRequest receive(java.io.Writer)
-    1842:1843:public io.fabric.sdk.android.services.network.HttpRequest readTimeout(int)
-    1877:1877:public io.fabric.sdk.android.services.network.HttpRequest header(java.lang.String,java.lang.Number)
-    1888:1891:public io.fabric.sdk.android.services.network.HttpRequest headers(java.util.Map)
-    1923:1924:public java.util.Map headers()
-    1936:1936:public long dateHeader(java.lang.String)
-    1949:1950:public long dateHeader(java.lang.String,long)
-    1986:1994:public java.lang.String[] headers(java.lang.String)
-    2017:2017:public java.util.Map parameters(java.lang.String)
-    2027:2061:protected java.util.Map getParams(java.lang.String)
-    2121:2121:public io.fabric.sdk.android.services.network.HttpRequest userAgent(java.lang.String)
-    2131:2131:public io.fabric.sdk.android.services.network.HttpRequest referer(java.lang.String)
-    2152:2152:public io.fabric.sdk.android.services.network.HttpRequest acceptEncoding(java.lang.String)
-    2162:2162:public io.fabric.sdk.android.services.network.HttpRequest acceptGzipEncoding()
-    2172:2172:public io.fabric.sdk.android.services.network.HttpRequest acceptCharset(java.lang.String)
-    2190:2190:public java.lang.String server()
-    2199:2199:public long date()
-    2208:2208:public java.lang.String cacheControl()
-    2217:2217:public java.lang.String eTag()
-    2226:2226:public long expires()
-    2235:2235:public long lastModified()
-    2244:2244:public java.lang.String location()
-    2254:2254:public io.fabric.sdk.android.services.network.HttpRequest authorization(java.lang.String)
-    2264:2264:public io.fabric.sdk.android.services.network.HttpRequest proxyAuthorization(java.lang.String)
-    2275:2275:public io.fabric.sdk.android.services.network.HttpRequest basic(java.lang.String,java.lang.String)
-    2286:2286:public io.fabric.sdk.android.services.network.HttpRequest proxyBasic(java.lang.String,java.lang.String)
-    2296:2297:public io.fabric.sdk.android.services.network.HttpRequest ifModifiedSince(long)
-    2307:2307:public io.fabric.sdk.android.services.network.HttpRequest ifNoneMatch(java.lang.String)
-    2341:2341:public java.lang.String contentType()
-    2360:2360:public io.fabric.sdk.android.services.network.HttpRequest contentLength(java.lang.String)
-    2370:2371:public io.fabric.sdk.android.services.network.HttpRequest contentLength(int)
-    2381:2381:public io.fabric.sdk.android.services.network.HttpRequest accept(java.lang.String)
-    2390:2390:public io.fabric.sdk.android.services.network.HttpRequest acceptJson()
-    2424:2424:protected io.fabric.sdk.android.services.network.HttpRequest copy(java.io.Reader,java.io.Writer)
-    2516:2516:protected io.fabric.sdk.android.services.network.HttpRequest writePartHeader(java.lang.String,java.lang.String)
-    2623:2623:public io.fabric.sdk.android.services.network.HttpRequest part(java.lang.String,java.io.File)
-    2636:2636:public io.fabric.sdk.android.services.network.HttpRequest part(java.lang.String,java.lang.String,java.io.File)
-    2676:2676:public io.fabric.sdk.android.services.network.HttpRequest part(java.lang.String,java.io.InputStream)
-    2723:2727:public io.fabric.sdk.android.services.network.HttpRequest send(java.io.File)
-    2738:2738:public io.fabric.sdk.android.services.network.HttpRequest send(byte[])
-    2752:2757:public io.fabric.sdk.android.services.network.HttpRequest send(java.io.InputStream)
-    2771:2776:public io.fabric.sdk.android.services.network.HttpRequest send(java.io.Reader)
-    2813:2816:public java.io.OutputStreamWriter writer()
-    2831:2831:public io.fabric.sdk.android.services.network.HttpRequest form(java.util.Map)
-    2845:2845:public io.fabric.sdk.android.services.network.HttpRequest form(java.util.Map$Entry)
-    2860:2860:public io.fabric.sdk.android.services.network.HttpRequest form(java.util.Map$Entry,java.lang.String)
-    2875:2875:public io.fabric.sdk.android.services.network.HttpRequest form(java.lang.Object,java.lang.Object)
-    2891:2908:public io.fabric.sdk.android.services.network.HttpRequest form(java.lang.Object,java.lang.Object,java.lang.String)
-    2920:2923:public io.fabric.sdk.android.services.network.HttpRequest form(java.util.Map,java.lang.String)
-    2935:2938:public io.fabric.sdk.android.services.network.HttpRequest trustAllCerts()
-    2950:2953:public io.fabric.sdk.android.services.network.HttpRequest trustAllHosts()
-    2983:2989:public io.fabric.sdk.android.services.network.HttpRequest useProxy(java.lang.String,int)
-    2999:3000:public io.fabric.sdk.android.services.network.HttpRequest followRedirects(boolean)
+    284:310:private static javax.net.ssl.SSLSocketFactory getTrustedFactory()
+    314:322:private static javax.net.ssl.HostnameVerifier getTrustedVerifier()
+    384:388:public static void setConnectionFactory(io.fabric.sdk.android.services.network.HttpRequest$ConnectionFactory)
+    852:880:public static varargs java.lang.String append(java.lang.CharSequence,java.lang.Object[])
+    902:902:public static io.fabric.sdk.android.services.network.HttpRequest get(java.net.URL)
+    935:936:public static varargs io.fabric.sdk.android.services.network.HttpRequest get(java.lang.CharSequence,boolean,java.lang.Object[])
+    958:958:public static io.fabric.sdk.android.services.network.HttpRequest post(java.net.URL)
+    991:992:public static varargs io.fabric.sdk.android.services.network.HttpRequest post(java.lang.CharSequence,boolean,java.lang.Object[])
+    1014:1014:public static io.fabric.sdk.android.services.network.HttpRequest put(java.net.URL)
+    1030:1031:public static io.fabric.sdk.android.services.network.HttpRequest put(java.lang.CharSequence,java.util.Map,boolean)
+    1047:1048:public static varargs io.fabric.sdk.android.services.network.HttpRequest put(java.lang.CharSequence,boolean,java.lang.Object[])
+    1070:1070:public static io.fabric.sdk.android.services.network.HttpRequest delete(java.net.URL)
+    1086:1087:public static io.fabric.sdk.android.services.network.HttpRequest delete(java.lang.CharSequence,java.util.Map,boolean)
+    1103:1104:public static varargs io.fabric.sdk.android.services.network.HttpRequest delete(java.lang.CharSequence,boolean,java.lang.Object[])
+    1115:1115:public static io.fabric.sdk.android.services.network.HttpRequest head(java.lang.CharSequence)
+    1126:1126:public static io.fabric.sdk.android.services.network.HttpRequest head(java.net.URL)
+    1142:1143:public static io.fabric.sdk.android.services.network.HttpRequest head(java.lang.CharSequence,java.util.Map,boolean)
+    1159:1160:public static varargs io.fabric.sdk.android.services.network.HttpRequest head(java.lang.CharSequence,boolean,java.lang.Object[])
+    1171:1171:public static io.fabric.sdk.android.services.network.HttpRequest options(java.lang.CharSequence)
+    1182:1182:public static io.fabric.sdk.android.services.network.HttpRequest options(java.net.URL)
+    1193:1193:public static io.fabric.sdk.android.services.network.HttpRequest trace(java.lang.CharSequence)
+    1204:1204:public static io.fabric.sdk.android.services.network.HttpRequest trace(java.net.URL)
+    1215:1216:public static void keepAlive(boolean)
+    1226:1228:public static void proxyHost(java.lang.String)
+    1238:1241:public static void proxyPort(int)
+    1253:1262:public static varargs void nonProxyHosts(java.lang.String[])
+    1275:1289:private static java.lang.String setProperty(java.lang.String,java.lang.String)
+    1292:1340:public HttpRequest(java.net.URL,java.lang.String)
+    1385:1386:public io.fabric.sdk.android.services.network.HttpRequest ignoreCloseExceptions(boolean)
+    1395:1395:public boolean ignoreCloseExceptions()
+    1421:1422:public io.fabric.sdk.android.services.network.HttpRequest code(java.util.concurrent.atomic.AtomicInteger)
+    1442:1442:public boolean created()
+    1452:1452:public boolean serverError()
+    1462:1462:public boolean badRequest()
+    1472:1472:public boolean notFound()
+    1482:1482:public boolean notModified()
+    1493:1496:public java.lang.String message()
+    1506:1507:public io.fabric.sdk.android.services.network.HttpRequest disconnect()
+    1517:1518:public io.fabric.sdk.android.services.network.HttpRequest chunk(int)
+    1532:1535:public io.fabric.sdk.android.services.network.HttpRequest bufferSize(int)
+    1546:1546:public int bufferSize()
+    1565:1566:public io.fabric.sdk.android.services.network.HttpRequest uncompress(boolean)
+    1619:1620:public io.fabric.sdk.android.services.network.HttpRequest body(java.util.concurrent.atomic.AtomicReference)
+    1633:1634:public io.fabric.sdk.android.services.network.HttpRequest body(java.util.concurrent.atomic.AtomicReference,java.lang.String)
+    1644:1644:public boolean isBodyEmpty()
+    1654:1660:public byte[] bytes()
+    1719:1721:public java.io.InputStreamReader reader(java.lang.String)
+    1732:1732:public java.io.InputStreamReader reader()
+    1745:1745:public java.io.BufferedReader bufferedReader(java.lang.String)
+    1757:1757:public java.io.BufferedReader bufferedReader()
+    1770:1774:public io.fabric.sdk.android.services.network.HttpRequest receive(java.io.File)
+    1792:1794:public io.fabric.sdk.android.services.network.HttpRequest receive(java.io.OutputStream)
+    1806:1806:public io.fabric.sdk.android.services.network.HttpRequest receive(java.io.PrintStream)
+    1817:1818:public io.fabric.sdk.android.services.network.HttpRequest receive(java.lang.Appendable)
+    1842:1843:public io.fabric.sdk.android.services.network.HttpRequest receive(java.io.Writer)
+    1859:1860:public io.fabric.sdk.android.services.network.HttpRequest readTimeout(int)
+    1894:1894:public io.fabric.sdk.android.services.network.HttpRequest header(java.lang.String,java.lang.Number)
+    1905:1908:public io.fabric.sdk.android.services.network.HttpRequest headers(java.util.Map)
+    1940:1941:public java.util.Map headers()
+    1953:1953:public long dateHeader(java.lang.String)
+    1966:1967:public long dateHeader(java.lang.String,long)
+    2003:2011:public java.lang.String[] headers(java.lang.String)
+    2034:2034:public java.util.Map parameters(java.lang.String)
+    2044:2078:protected java.util.Map getParams(java.lang.String)
+    2138:2138:public io.fabric.sdk.android.services.network.HttpRequest userAgent(java.lang.String)
+    2148:2148:public io.fabric.sdk.android.services.network.HttpRequest referer(java.lang.String)
+    2169:2169:public io.fabric.sdk.android.services.network.HttpRequest acceptEncoding(java.lang.String)
+    2179:2179:public io.fabric.sdk.android.services.network.HttpRequest acceptGzipEncoding()
+    2189:2189:public io.fabric.sdk.android.services.network.HttpRequest acceptCharset(java.lang.String)
+    2207:2207:public java.lang.String server()
+    2216:2216:public long date()
+    2225:2225:public java.lang.String cacheControl()
+    2234:2234:public java.lang.String eTag()
+    2243:2243:public long expires()
+    2252:2252:public long lastModified()
+    2261:2261:public java.lang.String location()
+    2271:2271:public io.fabric.sdk.android.services.network.HttpRequest authorization(java.lang.String)
+    2281:2281:public io.fabric.sdk.android.services.network.HttpRequest proxyAuthorization(java.lang.String)
+    2292:2292:public io.fabric.sdk.android.services.network.HttpRequest basic(java.lang.String,java.lang.String)
+    2303:2303:public io.fabric.sdk.android.services.network.HttpRequest proxyBasic(java.lang.String,java.lang.String)
+    2313:2314:public io.fabric.sdk.android.services.network.HttpRequest ifModifiedSince(long)
+    2324:2324:public io.fabric.sdk.android.services.network.HttpRequest ifNoneMatch(java.lang.String)
+    2358:2358:public java.lang.String contentType()
+    2377:2377:public io.fabric.sdk.android.services.network.HttpRequest contentLength(java.lang.String)
+    2387:2388:public io.fabric.sdk.android.services.network.HttpRequest contentLength(int)
+    2398:2398:public io.fabric.sdk.android.services.network.HttpRequest accept(java.lang.String)
+    2407:2407:public io.fabric.sdk.android.services.network.HttpRequest acceptJson()
+    2441:2441:protected io.fabric.sdk.android.services.network.HttpRequest copy(java.io.Reader,java.io.Writer)
+    2533:2533:protected io.fabric.sdk.android.services.network.HttpRequest writePartHeader(java.lang.String,java.lang.String)
+    2640:2640:public io.fabric.sdk.android.services.network.HttpRequest part(java.lang.String,java.io.File)
+    2653:2653:public io.fabric.sdk.android.services.network.HttpRequest part(java.lang.String,java.lang.String,java.io.File)
+    2693:2693:public io.fabric.sdk.android.services.network.HttpRequest part(java.lang.String,java.io.InputStream)
+    2740:2744:public io.fabric.sdk.android.services.network.HttpRequest send(java.io.File)
+    2755:2755:public io.fabric.sdk.android.services.network.HttpRequest send(byte[])
+    2769:2774:public io.fabric.sdk.android.services.network.HttpRequest send(java.io.InputStream)
+    2788:2793:public io.fabric.sdk.android.services.network.HttpRequest send(java.io.Reader)
+    2830:2833:public java.io.OutputStreamWriter writer()
+    2848:2848:public io.fabric.sdk.android.services.network.HttpRequest form(java.util.Map)
+    2862:2862:public io.fabric.sdk.android.services.network.HttpRequest form(java.util.Map$Entry)
+    2877:2877:public io.fabric.sdk.android.services.network.HttpRequest form(java.util.Map$Entry,java.lang.String)
+    2892:2892:public io.fabric.sdk.android.services.network.HttpRequest form(java.lang.Object,java.lang.Object)
+    2908:2925:public io.fabric.sdk.android.services.network.HttpRequest form(java.lang.Object,java.lang.Object,java.lang.String)
+    2937:2940:public io.fabric.sdk.android.services.network.HttpRequest form(java.util.Map,java.lang.String)
+    2952:2955:public io.fabric.sdk.android.services.network.HttpRequest trustAllCerts()
+    2967:2970:public io.fabric.sdk.android.services.network.HttpRequest trustAllHosts()
+    3000:3006:public io.fabric.sdk.android.services.network.HttpRequest useProxy(java.lang.String,int)
+    3016:3017:public io.fabric.sdk.android.services.network.HttpRequest followRedirects(boolean)
 io.fabric.sdk.android.services.network.HttpRequest$1
 io.fabric.sdk.android.services.network.HttpRequest$10
 io.fabric.sdk.android.services.network.HttpRequest$2
@@ -8755,12 +8844,12 @@ io.fabric.sdk.android.services.network.HttpRequest$FlushOperation
 io.fabric.sdk.android.services.network.HttpRequest$HttpRequestException:
     private static final long serialVersionUID
 io.fabric.sdk.android.services.network.HttpRequest$RequestOutputStream:
-    709:709:static synthetic java.nio.charset.CharsetEncoder access$200(io.fabric.sdk.android.services.network.HttpRequest$RequestOutputStream)
+    726:726:static synthetic java.nio.charset.CharsetEncoder access$200(io.fabric.sdk.android.services.network.HttpRequest$RequestOutputStream)
 io.fabric.sdk.android.services.network.HttpRequestFactory:
     public abstract io.fabric.sdk.android.services.network.PinningInfoProvider getPinningInfoProvider()
     public abstract io.fabric.sdk.android.services.network.HttpRequest buildHttpRequest(io.fabric.sdk.android.services.network.HttpMethod,java.lang.String)
 io.fabric.sdk.android.services.network.NetworkUtils:
-    15:16:private NetworkUtils()
+    32:33:private NetworkUtils()
 io.fabric.sdk.android.services.network.PinningInfoProvider:
     public static final long PIN_CREATION_TIME_UNDEFINED
 io.fabric.sdk.android.services.network.PinningTrustManager:
@@ -8768,10 +8857,10 @@ io.fabric.sdk.android.services.network.PinningTrustManager:
 io.fabric.sdk.android.services.network.UrlUtils
 io.fabric.sdk.android.services.persistence.FileStore
 io.fabric.sdk.android.services.persistence.FileStoreImpl:
-    37:37:public java.io.File getCacheDir()
-    47:56:public java.io.File getExternalCacheDir()
-    76:85:public java.io.File getExternalFilesDir()
-    102:111:boolean isExternalStorageAvailable()
+    54:54:public java.io.File getCacheDir()
+    64:73:public java.io.File getExternalCacheDir()
+    93:102:public java.io.File getExternalFilesDir()
+    119:128:boolean isExternalStorageAvailable()
 io.fabric.sdk.android.services.persistence.PersistenceStrategy
 io.fabric.sdk.android.services.persistence.PreferenceStoreStrategy
 io.fabric.sdk.android.services.persistence.SerializationStrategy
@@ -8790,8 +8879,14 @@ io.fabric.sdk.android.services.settings.AbstractAppSpiCall:
     public static final java.lang.String APP_ICON_HEIGHT_PARAM
     public static final java.lang.String APP_ICON_PRERENDERED_PARAM
     public static final java.lang.String APP_SDK_MODULES_PARAM_PREFIX
+    public static final java.lang.String APP_SDK_MODULES_PARAM_VERSION
+    public static final java.lang.String APP_SDK_MODULES_PARAM_BUILD_TYPE
     static final java.lang.String ICON_FILE_NAME
     static final java.lang.String ICON_CONTENT_TYPE
+io.fabric.sdk.android.services.settings.AnalyticsSettingsData:
+    public static final int DEFAULT_SAMPLING_RATE
+    57:61:public AnalyticsSettingsData(java.lang.String,int,int,int,int,boolean,int)
+    71:75:public AnalyticsSettingsData(java.lang.String,int,int,int,int,boolean)
 io.fabric.sdk.android.services.settings.AppSettingsData:
     public static final java.lang.String STATUS_NEW
     public static final java.lang.String STATUS_CONFIGURED
@@ -8801,14 +8896,14 @@ io.fabric.sdk.android.services.settings.DefaultSettingsController:
     private static final java.lang.String LOAD_ERROR_MESSAGE
     private static final java.lang.String PREFS_BUILD_INSTANCE_IDENTIFIER
 io.fabric.sdk.android.services.settings.DefaultSettingsJsonTransform:
-    45:45:public org.json.JSONObject toJson(io.fabric.sdk.android.services.settings.SettingsData)
-    215:226:private org.json.JSONObject toAppJson(io.fabric.sdk.android.services.settings.AppSettingsData)
-    230:230:private org.json.JSONObject toIconJson(io.fabric.sdk.android.services.settings.AppIconSettingsData)
-    236:236:private org.json.JSONObject toFeaturesJson(io.fabric.sdk.android.services.settings.FeaturesSettingsData)
-    245:245:private org.json.JSONObject toSessionJson(io.fabric.sdk.android.services.settings.SessionSettingsData)
-    260:260:private org.json.JSONObject toAnalyticsJson(io.fabric.sdk.android.services.settings.AnalyticsSettingsData)
-    273:273:private org.json.JSONObject toBetaJson(io.fabric.sdk.android.services.settings.BetaSettingsData)
-    280:280:private org.json.JSONObject toPromptJson(io.fabric.sdk.android.services.settings.PromptSettingsData)
+    62:62:public org.json.JSONObject toJson(io.fabric.sdk.android.services.settings.SettingsData)
+    232:243:private org.json.JSONObject toAppJson(io.fabric.sdk.android.services.settings.AppSettingsData)
+    247:247:private org.json.JSONObject toIconJson(io.fabric.sdk.android.services.settings.AppIconSettingsData)
+    253:253:private org.json.JSONObject toFeaturesJson(io.fabric.sdk.android.services.settings.FeaturesSettingsData)
+    262:262:private org.json.JSONObject toSessionJson(io.fabric.sdk.android.services.settings.SessionSettingsData)
+    277:277:private org.json.JSONObject toAnalyticsJson(io.fabric.sdk.android.services.settings.AnalyticsSettingsData)
+    290:290:private org.json.JSONObject toBetaJson(io.fabric.sdk.android.services.settings.BetaSettingsData)
+    297:297:private org.json.JSONObject toPromptJson(io.fabric.sdk.android.services.settings.PromptSettingsData)
 io.fabric.sdk.android.services.settings.DefaultSettingsSpiCall:
     static final java.lang.String BUILD_VERSION_PARAM
     static final java.lang.String DISPLAY_VERSION_PARAM
@@ -8818,10 +8913,10 @@ io.fabric.sdk.android.services.settings.DefaultSettingsSpiCall:
 io.fabric.sdk.android.services.settings.Settings:
     public static final java.lang.String SETTINGS_CACHE_FILENAME
     private static final java.lang.String SETTINGS_URL_FORMAT
-    100:101:public void clearSettings()
-    109:110:public void setSettingsController(io.fabric.sdk.android.services.settings.SettingsController)
+    117:118:public void clearSettings()
+    126:127:public void setSettingsController(io.fabric.sdk.android.services.settings.SettingsController)
 io.fabric.sdk.android.services.settings.Settings$LazyHolder:
-    29:29:Settings$LazyHolder()
+    46:46:Settings$LazyHolder()
 io.fabric.sdk.android.services.settings.SettingsJsonConstants:
     public static final java.lang.String EXPIRES_AT_KEY
     public static final java.lang.String APP_KEY
@@ -8838,11 +8933,17 @@ io.fabric.sdk.android.services.settings.SettingsJsonConstants:
     public static final java.lang.String ANALYTICS_MAX_BYTE_SIZE_PER_FILE_KEY
     public static final java.lang.String ANALYTICS_MAX_FILE_COUNT_PER_SEND_KEY
     public static final java.lang.String ANALYTICS_MAX_PENDING_SEND_FILE_COUNT_KEY
+    public static final java.lang.String ANALYTICS_TRACK_CUSTOM_EVENTS_KEY
+    public static final java.lang.String ANALYTICS_TRACK_PREDEFINED_EVENTS_KEY
+    public static final java.lang.String ANALYTICS_SAMPLING_RATE_KEY
     public static final java.lang.String ANALYTICS_URL_DEFAULT
     public static final int ANALYTICS_FLUSH_INTERVAL_SECS_DEFAULT
     public static final int ANALYTICS_MAX_BYTE_SIZE_PER_FILE_DEFAULT
     public static final int ANALYTICS_MAX_FILE_COUNT_PER_SEND_DEFAULT
     public static final int ANALYTICS_MAX_PENDING_SEND_FILE_COUNT_DEFAULT
+    public static final boolean ANALYTICS_TRACK_CUSTOM_EVENTS_DEFAULT
+    public static final boolean ANALYTICS_TRACK_PREDEFINED_EVENTS_DEFAULT
+    public static final int ANALYTICS_SAMPLING_RATE_DEFAULT
     public static final java.lang.String BETA_UPDATE_ENDPOINT
     public static final java.lang.String BETA_UPDATE_SUSPEND_DURATION
     public static final int BETA_UPDATE_SUSPEND_DURATION_DEFAULT
@@ -8892,7 +8993,7 @@ io.fabric.sdk.android.services.settings.SettingsJsonConstants:
     public static final java.lang.String PROMPT_SEND_BUTTON_TITLE_DEFAULT
     public static final java.lang.String PROMPT_ALWAYS_SEND_BUTTON_TITLE_DEFAULT
     public static final java.lang.String PROMPT_CANCEL_BUTTON_TITLE_DEFAULT
-    3:3:public SettingsJsonConstants()
+    20:20:public SettingsJsonConstants()
 io.fabric.sdk.android.services.settings.SettingsJsonTransform:
     public abstract org.json.JSONObject toJson(io.fabric.sdk.android.services.settings.SettingsData)
 org.threeten.bp.Clock:
@@ -9837,8 +9938,11 @@ pl.srw.billcalculator.AboutActivity:
     private static final java.lang.String RECEIVER_EMAIL
     private static final java.lang.String BETA_HTTP
 pl.srw.billcalculator.AnalyticsWrapper:
-    12:12:public AnalyticsWrapper()
-    25:27:public static void setString(java.lang.String,java.lang.String)
+    public static final java.lang.String TAG
+    public static final boolean ENABLED
+    21:21:public AnalyticsWrapper()
+    39:40:public static void setInt(java.lang.String,int)
+    50:51:public static void setString(java.lang.String,java.lang.String)
 pl.srw.billcalculator.BuildConfig
 pl.srw.billcalculator.R
 pl.srw.billcalculator.R$anim
@@ -9858,14 +9962,23 @@ pl.srw.billcalculator.R$string
 pl.srw.billcalculator.R$style
 pl.srw.billcalculator.R$styleable
 pl.srw.billcalculator.R$xml
+pl.srw.billcalculator.bill.activity.BillActivity:
+    public static final java.lang.String MIME_APPLICATION_PDF
+    public static final java.lang.String MIME_IMAGE
+pl.srw.billcalculator.bill.activity.BillActivity$FileExtention
+pl.srw.billcalculator.bill.activity.BillActivity$FileType
 pl.srw.billcalculator.bill.activity.PgeBillActivity:
     private static final int PRICE_SCALE
 pl.srw.billcalculator.bill.activity.PgnigBillActivity:
-    public static final java.lang.String DATE_PATTERN
+    private static final java.lang.String DATE_PATTERN
     private static final int PRICE_SCALE
 pl.srw.billcalculator.bill.activity.TauronBillActivity:
-    public static final java.lang.String DATE_PATTERN
+    private static final java.lang.String DATE_PATTERN
     private static final int PRICE_SCALE
+pl.srw.billcalculator.bill.calculation.CalculatedEnergyBill:
+    20:20:public java.math.BigDecimal getOplataAbonamentowaVatCharge()
+    21:21:public java.math.BigDecimal getOplataPrzejsciowaVatCharge()
+    22:22:public java.math.BigDecimal getOplataDystrybucyjnaStalaVatCharge()
 pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill:
     21:21:public java.math.BigDecimal getZaEnergieCzynnaVatCharge()
     22:22:public java.math.BigDecimal getSkladnikJakosciowyVatCharge()
@@ -10115,7 +10228,7 @@ pl.srw.billcalculator.intent.IntentCreator:
     public static final java.lang.String PRICES
 pl.srw.billcalculator.persistence.DBMigration:
     public static final int CURRENT_VERSION
-    14:14:public DBMigration()
+    14:14:DBMigration()
 pl.srw.billcalculator.persistence.Database:
     private static final java.lang.String QUERY_ROW_LIMIT
     19:19:public Database()
@@ -10123,16 +10236,18 @@ pl.srw.billcalculator.persistence.Database:
 pl.srw.billcalculator.persistence.Triggers:
     private static final java.lang.String DELETE
     private static final java.lang.String INSERT
+    public static final int DB_VER_2_FROM_TRIGGER
+    public static final int DB_VER_2_TO_TRIGGER
     18:18:public Triggers()
 pl.srw.billcalculator.settings.GeneralPreferences:
     public static final java.lang.String SHARED_PREFERENCES_FILE
     public static final java.lang.String PREFERENCE_KEY_FIRST_LAUNCH
-    23:23:private GeneralPreferences()
+    26:26:private GeneralPreferences()
 pl.srw.billcalculator.settings.PreferenceMigration
 pl.srw.billcalculator.settings.activity.ProviderSettingsActivity:
     private static final java.lang.String FRAGMENT_TAG
     private static final java.lang.String EXTRA_PROVIDER_NAME
-    public static final java.lang.String TAG_CONFIRM_RESTORE
+    private static final java.lang.String TAG_CONFIRM_RESTORE
 pl.srw.billcalculator.settings.activity.ProviderSettingsHelpActivity:
     private static final java.lang.String EXTRA_LAYOUT_RESOURCE
     private static final java.lang.String EXTRA_IMAGE_RESOURCE
@@ -10187,25 +10302,27 @@ pl.srw.billcalculator.settings.prices.TauronPrices:
     public boolean containsOplataDystrybucyjnaZmiennaDzien()
     public boolean containsEnergiaElektrycznaCzynnaNoc()
     public boolean containsOplataDystrybucyjnaZmiennaNoc()
+pl.srw.billcalculator.type.ActionType
+pl.srw.billcalculator.type.ContentType
 pl.srw.billcalculator.type.Provider:
     31:41:public static pl.srw.billcalculator.type.Provider mapFrom(pl.srw.billcalculator.persistence.type.BillType)
 pl.srw.billcalculator.type.Provider$1
 pl.srw.billcalculator.util.Animations:
-    public static final long DURATION
+    private static final long DURATION
     14:15:private Animations()
+pl.srw.billcalculator.util.BillExporter:
+    20:20:public BillExporter()
 pl.srw.billcalculator.util.Dates:
     private static final java.lang.String DATE_PATTERN
     15:15:public Dates()
 pl.srw.billcalculator.util.Display:
-    public static final int PAY_VALUE_SCALE
+    private static final int PAY_VALUE_SCALE
     9:9:public Display()
-pl.srw.billcalculator.util.PdfGenerator:
-    19:19:public PdfGenerator()
 pl.srw.billcalculator.util.Preconditions
 pl.srw.billcalculator.util.Strings:
     10:10:private Strings()
     13:17:public static java.lang.String[] toArray(java.util.Collection)
 pl.srw.billcalculator.util.ToWebView:
-    17:18:private ToWebView()
+    16:17:private ToWebView()
 pl.srw.billcalculator.util.Views:
     20:20:private Views()
