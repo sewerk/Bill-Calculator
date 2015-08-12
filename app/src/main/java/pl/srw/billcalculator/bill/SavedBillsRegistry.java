@@ -18,6 +18,7 @@ import pl.srw.billcalculator.pojo.IPgnigPrices;
 import pl.srw.billcalculator.pojo.ITauronPrices;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
+import pl.srw.billcalculator.util.Preconditions;
 
 /**
  * Created by kseweryn on 02.07.15.
@@ -38,6 +39,7 @@ public class SavedBillsRegistry {
 
     @DebugLog
     public String register(Bill bill) {
+        Preconditions.checkNotNull(bill);
         String key;
         if (bill instanceof PgnigBill) {
             PgnigBill b = (PgnigBill) bill;

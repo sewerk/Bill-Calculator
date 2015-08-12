@@ -17,7 +17,6 @@ import pl.srw.billcalculator.AboutActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
 import pl.srw.billcalculator.dialog.CheckPricesDialogFragment;
-import pl.srw.billcalculator.history.HistoryActivity;
 import pl.srw.billcalculator.settings.GeneralPreferences;
 
 /**
@@ -65,7 +64,7 @@ public class MainActivity extends FragmentActivity {
             start(AboutActivity.class);
             return true;
         } else if (item.getItemId() == R.id.action_history) {
-            start(HistoryActivity.class);
+//            start(HistoryActivity.class);
             return true;
         }
         return super.onOptionsItemSelected(item);

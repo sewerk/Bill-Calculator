@@ -6,19 +6,15 @@ import android.view.View;
 /**
  * Created by Kamil Seweryn.
  */
-public class EmptyHistoryDataObserver extends RecyclerView.AdapterDataObserver {
+public class EmptyHistoryDataObserver {
 
     private final View view;
-    private final RecyclerView.Adapter adapter;
 
-    public EmptyHistoryDataObserver(RecyclerView.Adapter adapter, View emptyHistoryView) {
-        this.adapter = adapter;
+    public EmptyHistoryDataObserver(View emptyHistoryView) {
         view = emptyHistoryView;
     }
 
-    @Override
-    public void onChanged() {
-        super.onChanged();
+    public void onChanged(RecyclerView.Adapter adapter) {
         if (adapter.getItemCount() == 0) {
             view.setVisibility(View.VISIBLE);
         } else {

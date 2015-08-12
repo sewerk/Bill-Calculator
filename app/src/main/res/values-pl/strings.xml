@@ -63,4 +63,6 @@
     <string name="history_readingsG12">dzienna(%1$s - %2$s)\nnocna(%3$s - %4$s)</string>
     <string name="empty_history">Brak wyliczeń rachunków</string>
     <string name="my_bills">Moje rachunki</string>
+    <string name="bill_deleted">Rachunek usunięty</string>
+    <string name="action_undo_delete">COFNIJ</string>
 </resources>

@@ -30,6 +30,5 @@
     </style>
     <style name="Title.collapsed" parent="Title">
         <!--<item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>-->
-        <item name="android:textStyle">bold</item>
     </style>
 </resources>

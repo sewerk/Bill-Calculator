@@ -4,9 +4,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import de.greenrobot.dao.AbstractDao;
 import de.greenrobot.dao.query.LazyList;
+import de.greenrobot.dao.query.Query;
 import de.greenrobot.dao.query.QueryBuilder;
+import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
+import pl.srw.billcalculator.db.Prices;
 import pl.srw.billcalculator.db.dao.DaoMaster;
 import pl.srw.billcalculator.db.dao.DaoSession;
 import pl.srw.billcalculator.db.dao.HistoryDao;
@@ -21,6 +25,9 @@ public class Database {
     private static final String QUERY_ROW_LIMIT = "100";
     private static SQLiteDatabase database;
     private static DaoSession daoSession;
+    private static Query<History> historyQuery;
+    private static Prices deletedPrices;
+    private static Bill deletedBill;
 
     public static void initialize(Context context) {
         daoSession = new DaoMaster(getDatabase(context)).newSession();
@@ -67,12 +74,26 @@ public class Database {
     }
 
     public static LazyList<History> getHistory() {
-        return getSession().getHistoryDao().queryBuilder()
-                .orderDesc(HistoryDao.Properties.DateFrom, HistoryDao.Properties.Id).listLazy();
+        if (historyQuery == null)
+            historyQuery = getSession().getHistoryDao().queryBuilder()
+                .orderDesc(HistoryDao.Properties.DateFrom, HistoryDao.Properties.BillType, HistoryDao.Properties.BillId).build();
+        return historyQuery.listLazy();
     }
 
     public static void deleteBillWithPrices(final BillType type, final Long billId, final Long pricesId) {
+        deletedPrices = type.getPricesDao().load(pricesId);
         type.getPricesDao().deleteByKey(pricesId);
+        deletedBill = type.getDao().load(billId);
         type.getDao().deleteByKey(billId);
+    }
+
+    public static void undelete() {
+        if (deletedBill != null && deletedPrices != null) {
+            final BillType type = BillType.valueOf(deletedBill);
+            ((AbstractDao<Prices, Long>) type.getPricesDao()).insert(deletedPrices);
+            deletedPrices = null;
+            ((AbstractDao<Bill, Long>) type.getDao()).insert(deletedBill);
+            deletedBill = null;
+        }
     }
 }

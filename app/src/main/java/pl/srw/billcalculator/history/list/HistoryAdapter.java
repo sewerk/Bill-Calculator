@@ -1,7 +1,5 @@
 package pl.srw.billcalculator.history.list;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,37 +7,41 @@ import android.view.ViewGroup;
 
 import de.greenrobot.dao.query.LazyList;
 import hugo.weaving.DebugLog;
-import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
+import pl.srw.billcalculator.history.MyBillsFragment;
 import pl.srw.billcalculator.history.list.item.HistoryItemViewHolder;
+import pl.srw.billcalculator.history.list.item.ItemDismissHandling;
 import pl.srw.billcalculator.persistence.Database;
-import pl.srw.billcalculator.util.MultiSelect;
+import pl.srw.billcalculator.persistence.type.BillType;
 
 /**
  * Created by Kamil Seweryn.
  */
-public class HistoryAdapter extends RecyclerView.Adapter<HistoryItemViewHolder> {
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryItemViewHolder> implements ItemDismissHandling {
 
-    private static final String STATE_SELECTION = "SELECTION";
-    private final Activity activity;
+    private final MyBillsFragment view;
+    private final EmptyHistoryDataObserver dataChangeObserver;
     private LazyList<History> lazyList;
-    private MultiSelect<Integer, SelectedBill> selection = new MultiSelect<>();
 
-    public HistoryAdapter(Activity activity) {
-        this.activity = activity;
+    public HistoryAdapter(MyBillsFragment myBillsFragment, EmptyHistoryDataObserver emptyHistoryDataObserver) {
+        view = myBillsFragment;
+        dataChangeObserver = emptyHistoryDataObserver;
         loadListFromDB();
     }
 
     private void loadListFromDB() {
-        this.lazyList = Database.getHistory();
+        if (lazyList != null)
+            lazyList.close();
+        lazyList = Database.getHistory();
+        dataChangeObserver.onChanged(this);
     }
 
     @Override
     public HistoryItemViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.history_item, parent, false);
-
-        return new HistoryItemViewHolder(this, selection, itemView);
+        return new HistoryItemViewHolder(itemView);
     }
 
     @Override
@@ -57,35 +59,22 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryItemViewHolder> 
         }
     }
 
-    public Activity getActivity() {
-        return activity;
+    @DebugLog
+    @Override
+    public void onItemDismiss(int position, RecyclerView.ViewHolder viewHolder) {
+        final Bill bill = ((HistoryItemViewHolder) viewHolder).getBill();
+        Database.deleteBillWithPrices(BillType.valueOf(bill), bill.getId(), bill.getPricesId());
+        loadListFromDB();
+
+        notifyItemRemoved(position);
+        view.makeUndoDeleteSnackbar(position);
     }
 
     @DebugLog
-    public void deleteSelected() {
-        AnalyticsWrapper.log("Deleting items: " + selection.getItems().size() + " selected");
-        for (SelectedBill bill : selection.getItems())
-            Database.deleteBillWithPrices(bill.getType(), bill.getBillId(), bill.getPricesId());
+    @Override
+    public void undoDismiss(int position) {
+        Database.undelete();
         loadListFromDB();
-
-        for (Integer position : selection.getPositionsReverseOrder())
-            notifyItemRemoved(position);
-
-        selection.deselectAll();
-    }
-
-    public void exitSelectMode() {
-        if (selection.isAnySelected()) {
-            selection.deselectAll();
-            notifyDataSetChanged();
-        }
-    }
-
-    public void onRestoreInstanceState(final Bundle savedInstanceState) {
-        selection = savedInstanceState.getParcelable(STATE_SELECTION);
-    }
-
-    public void onSaveInstanceState(final Bundle outState) {
-        outState.putParcelable(STATE_SELECTION, selection);
+        notifyItemInserted(position);
     }
 }

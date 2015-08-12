@@ -168,5 +168,7 @@
     <string name="history_amount" translatable="false">%1$s zł</string>
     <string name="empty_history">No bill calculated yet</string>
     <string name="my_bills">My bills</string>
+    <string name="bill_deleted">Bill deleted</string>
+    <string name="action_undo_delete">UNDO</string>
 
 </resources>

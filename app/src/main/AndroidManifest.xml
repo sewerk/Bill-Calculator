@@ -39,7 +39,7 @@
         <activity android:name=".AboutActivity" android:label="@string/about_label"
                   android:theme="@style/DialogTheme" />
 
-        <activity android:name=".history.HistoryActivity" android:label="@string/history_label" />
+        <activity android:name=".form.MainActivity" android:label="@string/app_name" />
 
         <service android:name=".bill.service.PgnigBillStoringService" />
 
