@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.history;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -7,6 +8,8 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.wnafee.vector.compat.ResourcesCompat;
+
 import java.util.Date;
 
 import butterknife.ButterKnife;
@@ -24,7 +29,6 @@ import butterknife.OnClick;
 import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.PgeG11Bill;
-import pl.srw.billcalculator.form.fragment.HasTitle;
 import pl.srw.billcalculator.history.list.EmptyHistoryDataObserver;
 import pl.srw.billcalculator.history.list.HistoryAdapter;
 import pl.srw.billcalculator.history.list.item.ItemTouchCallback;
@@ -35,7 +39,7 @@ import pl.srw.billcalculator.type.ContentType;
 /**
  * Created by kseweryn on 09.07.15.
  */
-public class MyBillsFragment extends Fragment implements HasTitle {
+public class MyBillsFragment extends Fragment {
 
     @InjectView(R.id.coordinator_layout) CoordinatorLayout coordinatorLayout;
     @InjectView(R.id.toolbar_layout) CollapsingToolbarLayout toolbarLayout;
@@ -45,6 +49,10 @@ public class MyBillsFragment extends Fragment implements HasTitle {
     @InjectView(R.id.add_new_bill) FloatingActionButton bNewBill;
     private HistoryAdapter adapter;
 
+    public static MyBillsFragment newInstance() {
+        return new MyBillsFragment();
+    }
+    
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,6 +65,26 @@ public class MyBillsFragment extends Fragment implements HasTitle {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        setupToolbar();
+        setupList();
+        setupFAB();
+
+        AnalyticsWrapper.logContent(ContentType.HISTORY, "history size", String.valueOf(adapter.getItemCount()));
+    }
+
+    private void setupToolbar() {
+        toolbar.setTitle(R.string.my_bills);
+        toolbarLayout.setTitle(toolbar.getTitle());
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    private void setupList() {
         rcList.setHasFixedSize(true);
         rcList.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new HistoryAdapter(this, new EmptyHistoryDataObserver(tvEmptyHistory));
@@ -64,11 +92,11 @@ public class MyBillsFragment extends Fragment implements HasTitle {
 
         ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchCallback(adapter));
         helper.attachToRecyclerView(rcList);
+    }
 
-        AnalyticsWrapper.logContent(ContentType.HISTORY, "history size", String.valueOf(adapter.getItemCount()));
-
-        toolbar.setTitle(getTitle());
-        toolbarLayout.setTitle(toolbar.getTitle());
+    private void setupFAB() {
+        Drawable plusDrawable = ResourcesCompat.getDrawable(getActivity(), R.drawable.ic_add_white_24px);
+        bNewBill.setImageDrawable(plusDrawable);
     }
 
     @OnClick(R.id.add_new_bill)
@@ -89,10 +117,5 @@ public class MyBillsFragment extends Fragment implements HasTitle {
                 }
             })
             .show();
-    }
-
-    @Override
-    public int getTitle() {
-        return R.string.my_bills;
     }
 }

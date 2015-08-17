@@ -8,7 +8,7 @@ import pl.srw.billcalculator.type.Provider;
 /**
  * Created by kseweryn on 29.05.15.
  */
-public class PgeFormFragment extends DoubleReadingsFormFragment implements HasTitle {
+public class PgeFormFragment extends DoubleReadingsFormFragment {
 
     @Override
     public boolean isTariffG12() {
@@ -25,7 +25,6 @@ public class PgeFormFragment extends DoubleReadingsFormFragment implements HasTi
         return new CurrentReadingType[]{CurrentReadingType.PGE_TO, CurrentReadingType.PGE_DAY_TO, CurrentReadingType.PGE_NIGHT_TO};
     }
 
-    @Override
     public int getTitle() {
         return R.string.new_pge_bill;
     }

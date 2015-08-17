@@ -8,7 +8,7 @@ import pl.srw.billcalculator.type.Provider;
 /**
  * Created by kseweryn on 29.05.15.
  */
-public class TauronFormFragment extends DoubleReadingsFormFragment implements HasTitle {
+public class TauronFormFragment extends DoubleReadingsFormFragment {
     
     @Override
     public boolean isTariffG12() {
@@ -25,7 +25,6 @@ public class TauronFormFragment extends DoubleReadingsFormFragment implements Ha
         return new CurrentReadingType[]{CurrentReadingType.TAURON_TO, CurrentReadingType.TAURON_DAY_TO, CurrentReadingType.TAURON_NIGHT_TO};
     }
 
-    @Override
     public int getTitle() {
         return R.string.new_tauron_bill;
     }

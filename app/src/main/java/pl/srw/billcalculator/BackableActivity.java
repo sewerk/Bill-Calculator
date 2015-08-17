@@ -1,7 +1,7 @@
 package pl.srw.billcalculator;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.f2prateek.dart.Dart;
@@ -9,7 +9,7 @@ import com.f2prateek.dart.Dart;
 /**
  * Created by Kamil Seweryn.
  */
-public abstract class BackableActivity extends Activity {
+public abstract class BackableActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

@@ -92,3 +92,6 @@
 -keep class org.spongycastle.** { *; }
 -dontwarn org.spongycastle.**
 -dontwarn com.itextpdf.testutils.ITextTest
+
+-keep class com.wnafee.vector.** { *; }
+

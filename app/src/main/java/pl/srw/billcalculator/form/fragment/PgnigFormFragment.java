@@ -10,7 +10,7 @@ import pl.srw.billcalculator.type.Provider;
 /**
  * Created by kseweryn on 29.05.15.
  */
-public class PgnigFormFragment extends SingleReadingsFormFragment implements HasTitle {
+public class PgnigFormFragment extends SingleReadingsFormFragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -33,7 +33,6 @@ public class PgnigFormFragment extends SingleReadingsFormFragment implements Has
         return new CurrentReadingType[]{CurrentReadingType.PGNIG_TO};
     }
 
-    @Override
     public int getTitle() {
         return R.string.new_pgnig_bill;
     }
