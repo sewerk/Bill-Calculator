@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.test;
 
+import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.support.test.rule.ActivityTestRule;
@@ -10,7 +11,8 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.history.HistoryActivity;
+//import pl.srw.billcalculator.history.HistoryActivity;
+import pl.srw.billcalculator.form.MainActivity;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.testutils.HistoryGenerator;
@@ -32,7 +34,7 @@ import static pl.srw.billcalculator.testutils.EspressoHelper.checkImageInRowHasT
 @MediumTest
 public class HistoryUITest {
 
-    @Rule public ActivityTestRule<HistoryActivity> activity = new ActivityTestRule<>(HistoryActivity.class, true, false);
+    @Rule public ActivityTestRule<MainActivity> activity;// = new ActivityTestRule<>(HistoryActivity.class, true, false);
 
     @Before
     public void setUp() throws Exception {
@@ -103,7 +105,7 @@ public class HistoryUITest {
     public void shouldRestoreSelectionOnScreenRotation() throws InterruptedException {
         // given: one item is selected
         HistoryGenerator.generatePgeG11Bills(3);
-        HistoryActivity activity = this.activity.launchActivity(null);
+        Activity activity = this.activity.launchActivity(null);
         onView(withText("2 - 12")).perform(longClick());
         checkImageInRowHasTag("2 - 12", R.drawable.selected);
 
