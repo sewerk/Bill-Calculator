@@ -1,0 +1,2 @@
+- drawer is opened when rotate screen with about open
+- fragment animations are gone from backstack after rotation
