@@ -10,14 +10,14 @@ apply plugin: 'hugo'
 
 android {
 
-    compileSdkVersion 22
+    compileSdkVersion 23
     buildToolsVersion "22.0.1"
 
     defaultConfig {
         versionCode 18
         versionName "1.4"
         minSdkVersion 15
-        targetSdkVersion 22
+        targetSdkVersion 23
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -61,9 +61,9 @@ android {
 dependencies {
     compile project(':persistence')
 
-    compile 'com.android.support:recyclerview-v7:22.2.1'
-    compile 'com.android.support:cardview-v7:22.2.1'
-    compile 'com.android.support:design:22.2.1'
+    compile 'com.android.support:recyclerview-v7:23.0.0'
+    compile 'com.android.support:cardview-v7:23.0.0'
+    compile 'com.android.support:design:23.0.0'
 
     compile 'com.jakewharton:butterknife:6.1.0'
     provided 'pl.mg6.hrisey:hrisey:0.3.1'
@@ -75,7 +75,7 @@ dependencies {
 
     androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2'
     androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2')
-    androidTestCompile 'com.android.support:support-annotations:22.2.1'
+    androidTestCompile 'com.android.support:support-annotations:23.0.0'
     androidTestCompile files('libs/robotium-solo-5.3.1.jar')
 
     testCompile 'junit:junit:4.12'
