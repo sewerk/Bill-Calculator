@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -14,7 +15,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/bill_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            tools:listitem="@layout/history_item" />
 
         <TextView
             android:id="@+id/tv_emptyHistory"
@@ -58,14 +60,6 @@
     </android.support.design.widget.AppBarLayout>
 
     <!-- FAB -->
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/add_new_bill"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/double_padding"
-        app:borderWidth="0dp"
-        app:backgroundTint="@color/primary"
-        app:rippleColor="@color/primaryDark"
-        app:layout_anchor="@id/coordinator_layout"
-        app:layout_anchorGravity="bottom|right|end" />
+    <include layout="@layout/fabs" />
+
 </android.support.design.widget.CoordinatorLayout>

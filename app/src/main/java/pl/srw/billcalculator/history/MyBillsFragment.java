@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.history;
 
+import android.animation.AnimatorSet;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,24 +18,24 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wnafee.vector.compat.ResourcesCompat;
-
-import java.util.Date;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import pl.srw.billcalculator.AnalyticsWrapper;
+import pl.srw.billcalculator.DrawerHandling;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.history.list.EmptyHistoryDataObserver;
 import pl.srw.billcalculator.history.list.HistoryAdapter;
 import pl.srw.billcalculator.history.list.item.ItemTouchCallback;
-import pl.srw.billcalculator.persistence.Database;
-import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.type.ContentType;
+import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.util.Animations;
 
 /**
  * Created by kseweryn on 09.07.15.
@@ -46,8 +47,14 @@ public class MyBillsFragment extends Fragment {
     @InjectView(R.id.toolbar) Toolbar toolbar;
     @InjectView(R.id.bill_list) RecyclerView rcList;
     @InjectView(R.id.tv_emptyHistory) TextView tvEmptyHistory;
-    @InjectView(R.id.add_new_bill) FloatingActionButton bNewBill;
+    @InjectView(R.id.dim_overlay) RelativeLayout dimLayout;
+    @InjectView(R.id.add_new_bill) FloatingActionButton fab;
+    @InjectView(R.id.new_bill_pge) FloatingActionButton fabPge;
+    @InjectView(R.id.new_bill_pgnig) FloatingActionButton fabPgnig;
+    @InjectView(R.id.new_bill_tauron) FloatingActionButton fabTauron;
     private HistoryAdapter adapter;
+    private AnimatorSet expandAnimation;
+    private AnimatorSet collapseAnimation;
 
     public static MyBillsFragment newInstance() {
         return new MyBillsFragment();
@@ -70,6 +77,13 @@ public class MyBillsFragment extends Fragment {
         setupFAB();
 
         AnalyticsWrapper.logContent(ContentType.HISTORY, "history size", String.valueOf(adapter.getItemCount()));
+    }
+
+    @Override
+    public void onDestroyView() {
+        expandAnimation = null;
+        collapseAnimation = null;
+        super.onDestroyView();
     }
 
     private void setupToolbar() {
@@ -96,15 +110,53 @@ public class MyBillsFragment extends Fragment {
 
     private void setupFAB() {
         Drawable plusDrawable = ResourcesCompat.getDrawable(getActivity(), R.drawable.ic_add_white_24px);
-        bNewBill.setImageDrawable(plusDrawable);
+        fab.setImageDrawable(plusDrawable);
+        fabPge.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        fabPgnig.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        fabTauron.setScaleType(ImageView.ScaleType.CENTER_CROP);
     }
 
     @OnClick(R.id.add_new_bill)
     public void onNewBillButtonClicked() {
-        final pl.srw.billcalculator.db.PgePrices prices = new PgePrices().convertToDb();//TODO: remove
-        Database.getSession().insert(prices);
-        Database.getSession().insert(new PgeG11Bill(null, 1, 2, new Date(), new Date(), 666.77, prices.getId()));
-        adapter.notifyDataSetChanged();
+        if (!dimLayout.isClickable()) expandFabs();
+        else collapseFabs();
+    }
+
+    @OnClick(R.id.new_bill_pge)
+    public void onFabPgeClicked() {
+        ((DrawerHandling) getActivity()).showForm(Provider.PGE);
+    }
+
+    @OnClick(R.id.new_bill_pgnig)
+    public void onFabPgnigClicked() {
+        ((DrawerHandling) getActivity()).showForm(Provider.PGNIG);
+    }
+
+    @OnClick(R.id.new_bill_tauron)
+    public void onFabTauronClicked() {
+        ((DrawerHandling) getActivity()).showForm(Provider.TAURON);
+    }
+
+    private void expandFabs() {
+        if (collapseAnimation != null && collapseAnimation.isRunning())
+            collapseAnimation.end();
+        if (expandAnimation == null)
+            expandAnimation = Animations.getExpandFabs(fab, fabTauron, fabPgnig, fabPge);
+
+        expandAnimation.start();
+        dimLayout.setBackgroundResource(R.color.dim_overlay);
+        dimLayout.setClickable(true);
+    }
+
+    private void collapseFabs() {
+        if (expandAnimation != null && expandAnimation.isRunning())
+            expandAnimation.end();
+        if (collapseAnimation == null)
+            collapseAnimation = Animations.getCollapseFabs(fab, fabTauron, fabPgnig, fabPge);
+
+        dimLayout.setBackgroundResource(0);
+        dimLayout.setClickable(false);
+        collapseAnimation.start();
     }
 
     public void makeUndoDeleteSnackbar(final int position) {

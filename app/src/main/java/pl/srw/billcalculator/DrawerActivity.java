@@ -95,7 +95,7 @@ public class DrawerActivity extends AppCompatActivity implements DrawerHandling 
             getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         getSupportFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.slide_in_right, R.anim.shrink_fade_out_center, R.anim.grow_fade_in_center, R.anim.slide_out_right)
+//TODO:cause exception on 4.0.4                .setCustomAnimations(R.anim.slide_in_right, R.anim.shrink_fade_out_center, R.anim.grow_fade_in_center, R.anim.slide_out_right)
                 .replace(R.id.container, fragment)
                 .addToBackStack(null)
                 .commit();
