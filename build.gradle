@@ -16,3 +16,8 @@ allprojects {
         jcenter()
     }
 }
+
+task hello << {
+    def currentJvm = org.gradle.internal.jvm.Jvm.current()
+    println currentJvm
+}
