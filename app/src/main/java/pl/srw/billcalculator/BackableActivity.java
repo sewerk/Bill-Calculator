@@ -16,9 +16,8 @@ public abstract class BackableActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Dart.inject(this);
 
-        if (getActionBar() != null)
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

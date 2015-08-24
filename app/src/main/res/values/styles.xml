@@ -14,6 +14,8 @@
         <item name="alertDialogTheme">@style/AppCompatAlertDialogTheme</item>
     </style>
 
+    <style name="BillTheme" parent="Theme.AppCompat.Light.DarkActionBar"></style>
+
     <style name="AppCompatAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <!--<item name="colorAccent">#FFCC00</item>-->
         <!--<item name="android:textColorPrimary">#FFFFFF</item>-->

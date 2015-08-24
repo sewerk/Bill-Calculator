@@ -32,11 +32,14 @@
         </activity>
 -->
 
-        <activity android:name=".bill.activity.PgeBillActivity" android:label="@string/energy_bill" />
+        <activity android:name=".bill.activity.PgeBillActivity" android:label="@string/energy_bill"
+            android:theme="@style/BillTheme"/>
 
-        <activity android:name=".bill.activity.PgnigBillActivity" android:label="@string/gas_bill" />
+        <activity android:name=".bill.activity.PgnigBillActivity" android:label="@string/gas_bill"
+            android:theme="@style/BillTheme"/>
 
-        <activity android:name=".bill.activity.TauronBillActivity" android:label="@string/energy_bill" />
+        <activity android:name=".bill.activity.TauronBillActivity" android:label="@string/energy_bill"
+            android:theme="@style/BillTheme"/>
 
         <activity android:name=".settings.activity.SettingsActivity" android:label="@string/settings_label" />
 

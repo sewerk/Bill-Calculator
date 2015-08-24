@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/action_zoom_out"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:visible="false"
         android:icon="@drawable/ic_page_view"
         android:title="@string/page_view_label"/>
     <item
         android:id="@+id/action_print"
         android:orderInCategory="101"
-        android:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"
         android:icon="@drawable/ic_print_grey_300_36dp"
         android:title="@string/action_print"/>
 
