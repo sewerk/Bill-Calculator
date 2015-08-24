@@ -102,10 +102,13 @@ public class DrawerActivity extends AppCompatActivity implements DrawerHandling 
         }
         if (getSupportFragmentManager().getBackStackEntryCount() > 0)
             getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        getSupportFragmentManager()
-                .beginTransaction()
-//TODO:cause exception on 4.0.4                .setCustomAnimations(R.anim.slide_in_right, R.anim.shrink_fade_out_center, R.anim.grow_fade_in_center, R.anim.slide_out_right)
-                .replace(R.id.container, fragment)
+
+        final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        if (Build.VERSION.SDK_INT > 15) {
+            //TODO:cause exception on 4.0.4
+            ft.setCustomAnimations(R.anim.slide_in_right, R.anim.shrink_fade_out_center, R.anim.grow_fade_in_center, R.anim.slide_out_right);
+        }
+        ft.replace(R.id.container, fragment)
                 .addToBackStack(null)
                 .commit();
         navigationView.getMenu().findItem(currentItem).setChecked(true);
