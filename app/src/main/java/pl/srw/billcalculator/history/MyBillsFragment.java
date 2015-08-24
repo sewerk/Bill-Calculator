@@ -93,7 +93,8 @@ public class MyBillsFragment extends Fragment {
 
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+            Drawable menuDrawable = ResourcesCompat.getDrawable(getActivity(), R.drawable.ic_menu_white_24px);
+            actionBar.setHomeAsUpIndicator(menuDrawable);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }

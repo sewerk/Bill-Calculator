@@ -1,15 +1,20 @@
 package pl.srw.billcalculator;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+
+import com.wnafee.vector.compat.ResourcesCompat;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -48,6 +53,10 @@ public class DrawerActivity extends AppCompatActivity implements DrawerHandling 
     }
 
     private void setupNavigationView() {
+        Drawable listDrawable = ResourcesCompat.getDrawable(this, R.drawable.ic_list_white_24px);
+        navigationView.getMenu().findItem(R.id.my_bills).setIcon(listDrawable);
+        Drawable infoDrawable = ResourcesCompat.getDrawable(this, R.drawable.ic_info_outline_white_24px);
+        navigationView.getMenu().findItem(R.id.about).setIcon(infoDrawable);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
