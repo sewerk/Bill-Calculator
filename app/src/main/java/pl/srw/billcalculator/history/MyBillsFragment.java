@@ -141,9 +141,15 @@ public class MyBillsFragment extends Fragment {
     private void expandFabs() {
         if (collapseAnimation != null && collapseAnimation.isRunning())
             collapseAnimation.end();
-        if (expandAnimation == null)
+        if (expandAnimation == null) {
             expandAnimation = Animations.getExpandFabs(fab, fabTauron, fabPgnig, fabPge);
-
+            dimLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    collapseFabs();
+                }
+            });
+        }
         expandAnimation.start();
         dimLayout.setBackgroundResource(R.color.dim_overlay);
         dimLayout.setClickable(true);
