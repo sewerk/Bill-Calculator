@@ -5,9 +5,9 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.RelativeLayout;
@@ -30,10 +30,8 @@ public final class Animations {
     }
 
     public static AnimatorSet getExpandFabs(final FloatingActionButton baseFab, final FloatingActionButton... fabs) {
-        final float margin = ((RelativeLayout.LayoutParams) baseFab.getLayoutParams()).bottomMargin;
-
         final ValueAnimator fabRotation = rotationAnimator(baseFab, 0f, 135f);
-        final ValueAnimator translationY = translationYAnimator(baseFab.getTop(), margin, 0, baseFab.getHeight(), fabs);
+        final ValueAnimator translationY = translationYAnimator(baseFab, true, fabs);
         final ValueAnimator alpha = alphaAnimator(0f, 1f, fabs);
 
         AnimatorSet animatorSet = new AnimatorSet();
@@ -51,10 +49,8 @@ public final class Animations {
     }
 
     public static AnimatorSet getCollapseFabs(final FloatingActionButton baseFab, final FloatingActionButton... fabs) {
-        final float margin = ((RelativeLayout.LayoutParams) baseFab.getLayoutParams()).bottomMargin;
-
         final ValueAnimator fabRotation = rotationAnimator(baseFab, 135f, 0f);
-        final ValueAnimator translationY = translationYAnimator(baseFab.getTop(), margin, baseFab.getHeight(), 0, fabs);
+        final ValueAnimator translationY = translationYAnimator(baseFab, false, fabs);
         final ValueAnimator alpha = alphaAnimator(1f, 0f, fabs);
 
         AnimatorSet animatorSet = new AnimatorSet();
@@ -84,15 +80,30 @@ public final class Animations {
     }
 
     @NonNull
-    private static ValueAnimator translationYAnimator(final int fromPosition, final float extraShift, int startY, int endY, final FloatingActionButton[] targets) {
-        final ValueAnimator translationY = ValueAnimator.ofInt(startY, endY);
+    private static ValueAnimator translationYAnimator(final FloatingActionButton source, final boolean topDirection, final FloatingActionButton[] targets) {
+
+        final int bottomMargin = ((RelativeLayout.LayoutParams) source.getLayoutParams()).bottomMargin;
+        int shift = source.getHeight() + bottomMargin;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+            shift -= source.getPaddingBottom()/2;
+
+        // check if targets are not off screen
+        final int targetMaxTop = source.getTop() - (targets.length * shift);
+        if (targetMaxTop < 0) {
+            int maxShiftForAllTargetFullyVisible = shift - Math.abs(targetMaxTop / targets.length);
+            int minShiftForAllTargetFullyVisible = source.getHeight() - source.getPaddingBottom();
+            shift = Math.max(maxShiftForAllTargetFullyVisible, minShiftForAllTargetFullyVisible);
+        }
+
+        final ValueAnimator translationY = topDirection
+                ? ValueAnimator.ofInt(0, shift)
+                : ValueAnimator.ofInt(shift, 0);
         translationY.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                final float dY = (Integer) animation.getAnimatedValue() + extraShift;
-                Log.d("ANIMATION", "dY="+ dY + ", shift=" + extraShift);
+                final int dY = (int) animation.getAnimatedValue();
                 for (int i = 0; i < targets.length; i++)
-                    targets[i].setTranslationY(fromPosition - (i + 1) * dY);
+                    targets[i].setTranslationY(source.getTop() - (i + 1) * dY);
             }
         });
         return translationY;
