@@ -4,17 +4,18 @@
 
     </style>
 
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
         <item name="colorAccent">@color/accent</item>
         <item name="colorControlHighlight">@color/primary</item>
-
-        <item name="android:actionModeCloseDrawable">@drawable/ic_action_previous_item</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogTheme</item>
     </style>
 
-    <style name="BillTheme" parent="Theme.AppCompat.Light.DarkActionBar"></style>
+    <style name="MyBillsTheme" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
     <style name="AppCompatAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <!--<item name="colorAccent">#FFCC00</item>-->
@@ -27,11 +28,23 @@
     <style name="Title" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@color/white</item>
     </style>
-    <style name="Title.expanded" parent="Title">
+    <style name="Title.expanded">
         <item name="android:textColor">@color/primary</item>
         <item name="android:textSize">32sp</item>
     </style>
-    <style name="Title.collapsed" parent="Title">
+    <style name="Title.collapsed">
         <!--<item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>-->
+    </style>
+
+    <style name="Label" parent="TextAppearance.AppCompat.Medium">
+
+    </style>
+
+    <style name="ReadingEntry">
+        <item name="android:ems">5</item>
+        <item name="android:maxLength">9</item>
+        <item name="android:inputType">number</item>
+        <item name="android:gravity">end</item>
+        <!--<item name="android:hint">@string/reading_hint_kWh</item>-->
     </style>
 </resources>
