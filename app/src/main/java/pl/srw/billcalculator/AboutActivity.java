@@ -1,36 +1,40 @@
 package pl.srw.billcalculator;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.Bind;
+import butterknife.BindString;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 
 /**
  * Created by Kamil Seweryn
  */
-public class AboutActivity extends Activity {
+public class AboutActivity extends AppCompatActivity {
 
     private static final String RECEIVER_EMAIL = "kalkulator.rachunkow@gmail.com";
     private static final String BETA_HTTP = "https://plus.google.com/communities/113263640175495853700";
 
-    @InjectView(R.id.tv_ver) TextView tvVersion;
-    @InjectView(R.id.tv_link_emailme) TextView tvLinkEmail;
-    @InjectView(R.id.tv_link_g_plus) TextView tvLinkGPlus;
+    @Bind(R.id.tv_ver) TextView tvVersion;
+    @Bind(R.id.tv_link_emailme) TextView tvLinkEmail;
+    @Bind(R.id.tv_link_g_plus) TextView tvLinkGPlus;
+    @BindString(R.string.app_name) String appName;
+    @BindString(R.string.emailme) String emailMeTitle;
+    @BindString(R.string.email_client_missing) String noEmailClientMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         setLinks();
     }
@@ -70,11 +74,11 @@ public class AboutActivity extends Activity {
     public void sendEmail() {
         Intent i = new Intent(Intent.ACTION_SENDTO);
         i.setData(Uri.parse("mailto:" + RECEIVER_EMAIL));
-        i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+        i.putExtra(Intent.EXTRA_SUBJECT, appName);
         try {
-            startActivity(Intent.createChooser(i, getString(R.string.emailme)));
+            startActivity(Intent.createChooser(i, emailMeTitle));
         } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(this, getString(R.string.email_client_missing), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, noEmailClientMsg, Toast.LENGTH_SHORT).show();
         }
     }
 

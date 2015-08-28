@@ -56,10 +56,16 @@
 # platform version.  We know about them, and they are safe.
 -dontwarn android.support.**
 
-# ButterKnife warnings
+# ButterKnife
+-keep class butterknife.** { *; }
 -dontwarn butterknife.internal.**
--keep class **$$ViewInjector { *; }
--keepnames class * { @butterknife.InjectView *;}
+-keep class **$$ViewBinder { *; }
+-keepclasseswithmembernames class * {
+    @butterknife.* <fields>;
+}
+-keepclasseswithmembernames class * {
+    @butterknife.* <methods>;
+}
 
 # Threeten backport
 -dontwarn java.util.spi.LocaleServiceProvider
@@ -81,12 +87,19 @@
     <init>(java.lang.Throwable);
 }
 
+# Dart
 -dontwarn com.f2prateek.dart.internal.**
 -keep class **$$ExtraInjector { *; }
--keepnames class * { @com.f2prateek.dart.InjectExtra *;}
+-keepclasseswithmembernames class * {
+    @com.f2prateek.dart.* <fields>;
+}
 
 # Crashlytics
 -keepattributes SourceFile,LineNumberTable
+
+# Stetho
+#-keep class com.facebook.stetho.** { *; }
+#-keep class org.apache.http.** { *; }
 
 #itextPDF
 -keep class org.spongycastle.** { *; }

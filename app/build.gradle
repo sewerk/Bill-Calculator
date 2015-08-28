@@ -65,13 +65,13 @@ dependencies {
     compile 'com.android.support:cardview-v7:23.0.0'
     compile 'com.android.support:design:23.0.0'
 
-    compile 'com.jakewharton:butterknife:6.1.0'
-    provided 'pl.mg6.hrisey:hrisey:0.3.1'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.f2prateek.dart:dart:1.1.0'
     compile 'org.threeten:threetenbp:1.2'
     compile 'de.greenrobot:eventbus:2.4.0'
-    compile 'com.f2prateek.dart:dart:1.1.0'
-    compile files('libs/itextg-5.5.4.jar')
     compile 'com.wnafee:vector-compat:1.0.5'
+    compile files('libs/itextg-5.5.4.jar')
+    provided 'pl.mg6.hrisey:hrisey:0.3.1'
 
     androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2'
     androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2')

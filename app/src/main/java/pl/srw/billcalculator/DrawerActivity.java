@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import com.wnafee.vector.compat.ResourcesCompat;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import hrisey.InstanceState;
 import pl.srw.billcalculator.form.fragment.PgeFormFragment;
 import pl.srw.billcalculator.form.fragment.PgnigFormFragment;
@@ -31,15 +31,15 @@ import pl.srw.billcalculator.type.Provider;
  */
 public class DrawerActivity extends AppCompatActivity implements DrawerHandling {
 
-    @InjectView(R.id.drawer_layout) DrawerLayout drawerLayout;
-    @InjectView(R.id.drawer_navigation) NavigationView navigationView;
+    @Bind(R.id.drawer_layout) DrawerLayout drawerLayout;
+    @Bind(R.id.drawer_navigation) NavigationView navigationView;
     @InstanceState @IdRes private int currentItem = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         setupContent(savedInstanceState);
         setupNavigationView();

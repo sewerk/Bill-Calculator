@@ -1,6 +1,7 @@
 - drawer is opened when rotate screen with about open
 - fragment animations are gone from backstack after rotation
 - snackbar cannot be dismissed
+- dim layout doesnt go back to bottom after snackbar is hidden
 
 TODO
 - empty history icon

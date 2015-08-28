@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
@@ -29,14 +29,14 @@ import static pl.srw.billcalculator.form.FormValueValidator.isValueOrderCorrect;
  */
 public abstract class DoubleReadingsFormFragment extends SingleReadingsFormFragment {
 
-    protected @InjectView(R.id.textView_tariff_change) TextView tvTariffChange;
-    protected @InjectView(R.id.textView_tariff) TextView tvTariff;
+    protected @Bind(R.id.textView_tariff_change) TextView tvTariffChange;
+    protected @Bind(R.id.textView_tariff) TextView tvTariff;
 
-    protected @InjectView(R.id.tl_readings_double) TableLayout tlReadingsG12;
-    protected @InjectView(R.id.editText_reading_day_from) AutoCompleteTextView etDayPreviousReading;
-    protected @InjectView(R.id.editText_reading_day_to) EditText etDayCurrentReading;
-    protected @InjectView(R.id.editText_reading_night_from) AutoCompleteTextView etNightPreviousReading;
-    protected @InjectView(R.id.editText_reading_night_to) EditText etNightCurrentReading;
+    protected @Bind(R.id.tl_readings_double) TableLayout tlReadingsG12;
+    protected @Bind(R.id.editText_reading_day_from) AutoCompleteTextView etDayPreviousReading;
+    protected @Bind(R.id.editText_reading_day_to) EditText etDayCurrentReading;
+    protected @Bind(R.id.editText_reading_night_from) AutoCompleteTextView etNightPreviousReading;
+    protected @Bind(R.id.editText_reading_night_to) EditText etNightCurrentReading;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

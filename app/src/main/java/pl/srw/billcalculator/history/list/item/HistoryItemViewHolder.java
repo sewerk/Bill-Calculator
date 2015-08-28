@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
@@ -19,16 +19,16 @@ import pl.srw.billcalculator.history.list.provider.HistoryItemValueProvider;
 */
 public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    @InjectView(R.id.iv_bill_type) ImageView imgLogo;
-    @InjectView(R.id.tv_for_period) TextView tvForPeriod;
-    @InjectView(R.id.tv_readings) TextView tvReadings;
-    @InjectView(R.id.tv_amount) TextView tvAmount;
+    @Bind(R.id.iv_bill_type) ImageView imgLogo;
+    @Bind(R.id.tv_for_period) TextView tvForPeriod;
+    @Bind(R.id.tv_readings) TextView tvReadings;
+    @Bind(R.id.tv_amount) TextView tvAmount;
     private HistoryItemValueProvider itemValuesProvider;
 
     public HistoryItemViewHolder(View v) {
         super(v);
         v.setOnClickListener(this);
-        ButterKnife.inject(this, v);
+        ButterKnife.bind(this, v);
     }
 
     @DebugLog

@@ -20,8 +20,8 @@ public class ConfirmRestoreSettingsDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setIcon(R.drawable.ic_warning)
-            .setTitle(getString(R.string.action_restore))
-            .setMessage(getString(R.string.confirm_restore_prices_message))
+            .setTitle(R.string.action_restore)
+            .setMessage(R.string.confirm_restore_prices_message)
             .setPositiveButton(R.string.restore_prices_confirm, onPositiveButton())
             .setNegativeButton(R.string.restore_prices_cancel, null);
         return builder.create();

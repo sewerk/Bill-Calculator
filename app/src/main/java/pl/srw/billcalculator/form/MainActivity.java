@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import pl.srw.billcalculator.form.adapter.FormPagerAdapter;
 import pl.srw.billcalculator.form.view.SlidingTabLayout;
 
@@ -26,14 +26,14 @@ public class MainActivity extends FragmentActivity {
 
     private static final String TAG_CHECK_PRICES_DIALOG = "CHECK_PRICES_DIALOG";
 
-    @InjectView(R.id.sliding_tabs) SlidingTabLayout slidingTabs;
-    @InjectView(R.id.form_pager) ViewPager formPager;
+    @Bind(R.id.sliding_tabs) SlidingTabLayout slidingTabs;
+    @Bind(R.id.form_pager) ViewPager formPager;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         initFormSwitching();
 

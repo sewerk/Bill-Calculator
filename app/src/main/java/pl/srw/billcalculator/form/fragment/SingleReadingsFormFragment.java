@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
@@ -38,14 +38,14 @@ import static pl.srw.billcalculator.form.FormValueValidator.isValueOrderCorrect;
  */
 public abstract class SingleReadingsFormFragment extends PreviousReadingsProvidingFormFragment {
 
-    protected @InjectView(R.id.iv_logo) ImageView ivLogo;
+    protected @Bind(R.id.iv_logo) ImageView ivLogo;
     
-    protected @InjectView(R.id.ll_readings_single) LinearLayout llReadingG11;
-    protected @InjectView(R.id.et_reading_from) AutoCompleteTextView etPreviousReading;
-    protected @InjectView(R.id.et_reading_to) EditText etCurrentReading;
+    protected @Bind(R.id.ll_readings_single) LinearLayout llReadingG11;
+    protected @Bind(R.id.et_reading_from) AutoCompleteTextView etPreviousReading;
+    protected @Bind(R.id.et_reading_to) EditText etCurrentReading;
 
-    protected @InjectView(R.id.button_date_from) DatePickingButton bFromDate;
-    protected @InjectView(R.id.button_date_to) ErrorShowingDatePickerButton bToDate;
+    protected @Bind(R.id.button_date_from) DatePickingButton bFromDate;
+    protected @Bind(R.id.button_date_to) ErrorShowingDatePickerButton bToDate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public abstract class SingleReadingsFormFragment extends PreviousReadingsProvidi
     @Override
     public void onViewCreated(final View view, final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
 
         ivLogo.setImageResource(getProvider().logoRes);
         cachePreviousReadings();
@@ -65,7 +65,7 @@ public abstract class SingleReadingsFormFragment extends PreviousReadingsProvidi
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.reset(this);
+        ButterKnife.unbind(this);
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnItemClick;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
@@ -19,7 +19,7 @@ import pl.srw.billcalculator.R;
  */
 public class SettingsActivity extends BackableActivity implements SettingsViewing {
 
-    @InjectView(R.id.list) ListView list;
+    @Bind(R.id.list) ListView list;
     private SettingsPresenting presenter;
 
     @Override
@@ -27,7 +27,6 @@ public class SettingsActivity extends BackableActivity implements SettingsViewin
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.preference_list);
-        ButterKnife.inject(this);
         presenter = new SettingsPresenter(this);
     }
 

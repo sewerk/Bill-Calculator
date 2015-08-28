@@ -20,10 +20,10 @@ import java.io.File;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import butterknife.BindString;
 import de.greenrobot.event.EventBus;
 import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.BackableActivity;
-import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.event.PdfGeneratedEvent;
 import pl.srw.billcalculator.task.PrintTask;
@@ -36,7 +36,7 @@ import pl.srw.billcalculator.util.ToWebView;
  */
 public abstract class BillActivity extends BackableActivity {
 
-    private static final String PRINT_TARGET_DIR = BillCalculator.context.getString(R.string.print_dir);
+    @BindString(R.string.print_dir) String PRINT_TARGET_DIR;
     public static final String MIME_APPLICATION_PDF = "application/pdf";
     public static final String MIME_IMAGE = "image/*";
     private Menu menu;
@@ -158,7 +158,11 @@ public abstract class BillActivity extends BackableActivity {
     }
 
     private boolean isPrintTaskRunning() {
-        final AsyncTask task = TaskManager.getInstance().findBy(getTargetFile("pdf").getAbsolutePath());
-        return task != null && task.getStatus() != AsyncTask.Status.FINISHED;
+        final File targetFile = getTargetFile("pdf");
+        if (targetFile != null) {
+            final AsyncTask task = TaskManager.getInstance().findBy(targetFile.getAbsolutePath());
+            return task != null && task.getStatus() != AsyncTask.Status.FINISHED;
+        }
+        return false;
     }
 }

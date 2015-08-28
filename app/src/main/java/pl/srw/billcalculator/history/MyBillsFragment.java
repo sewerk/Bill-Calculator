@@ -1,6 +1,6 @@
 package pl.srw.billcalculator.history;
 
-import android.animation.AnimatorSet;
+import android.animation.Animator;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,7 +25,7 @@ import android.widget.TextView;
 import com.wnafee.vector.compat.ResourcesCompat;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.DrawerHandling;
@@ -42,19 +42,19 @@ import pl.srw.billcalculator.util.Animations;
  */
 public class MyBillsFragment extends Fragment {
 
-    @InjectView(R.id.coordinator_layout) CoordinatorLayout coordinatorLayout;
-    @InjectView(R.id.toolbar_layout) CollapsingToolbarLayout toolbarLayout;
-    @InjectView(R.id.toolbar) Toolbar toolbar;
-    @InjectView(R.id.bill_list) RecyclerView rcList;
-    @InjectView(R.id.tv_emptyHistory) TextView tvEmptyHistory;
-    @InjectView(R.id.dim_overlay) RelativeLayout dimLayout;
-    @InjectView(R.id.add_new_bill) FloatingActionButton fab;
-    @InjectView(R.id.new_bill_pge) FloatingActionButton fabPge;
-    @InjectView(R.id.new_bill_pgnig) FloatingActionButton fabPgnig;
-    @InjectView(R.id.new_bill_tauron) FloatingActionButton fabTauron;
+    @Bind(R.id.coordinator_layout) CoordinatorLayout coordinatorLayout;
+    @Bind(R.id.toolbar_layout) CollapsingToolbarLayout toolbarLayout;
+    @Bind(R.id.toolbar) Toolbar toolbar;
+    @Bind(R.id.bill_list) RecyclerView rcList;
+    @Bind(R.id.tv_emptyHistory) TextView tvEmptyHistory;
+    @Bind(R.id.dim_overlay) RelativeLayout dimLayout;
+    @Bind(R.id.add_new_bill) FloatingActionButton fab;
+    @Bind(R.id.new_bill_pge) FloatingActionButton fabPge;
+    @Bind(R.id.new_bill_pgnig) FloatingActionButton fabPgnig;
+    @Bind(R.id.new_bill_tauron) FloatingActionButton fabTauron;
     private HistoryAdapter adapter;
-    private AnimatorSet expandAnimation;
-    private AnimatorSet collapseAnimation;
+    private Animator expandAnimation;
+    private Animator collapseAnimation;
 
     public static MyBillsFragment newInstance() {
         return new MyBillsFragment();
@@ -64,7 +64,7 @@ public class MyBillsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.my_bills, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 

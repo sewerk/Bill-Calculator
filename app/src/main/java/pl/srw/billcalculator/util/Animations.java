@@ -40,8 +40,8 @@ public final class Animations {
             @Override
             public void onAnimationStart(Animator animation) {
                 for (int i = 0; i < fabs.length; i++)
-                    fabs[i].setVisibility(View.VISIBLE);
-            }
+            fabs[i].setVisibility(View.VISIBLE);
+        }
         });
         animatorSet.setDuration(DURATION_SHORT);
         animatorSet.setInterpolator(new OvershootInterpolator());
@@ -82,6 +82,24 @@ public final class Animations {
     @NonNull
     private static ValueAnimator translationYAnimator(final FloatingActionButton source, final boolean topDirection, final FloatingActionButton[] targets) {
 
+        int shift = getShift(source, targets);
+
+        final ValueAnimator translationY = topDirection
+                ? ValueAnimator.ofInt(0, shift)
+                : ValueAnimator.ofInt(shift, 0);
+        translationY.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                final int dY = (int) animation.getAnimatedValue();
+                for (int i = 0; i < targets.length; i++) {
+                    targets[i].setTranslationY(source.getTop() - (i + 1) * dY);
+                }
+            }
+        });
+        return translationY;
+    }
+
+    private static int getShift(FloatingActionButton source, FloatingActionButton[] targets) {
         final int bottomMargin = ((RelativeLayout.LayoutParams) source.getLayoutParams()).bottomMargin;
         int shift = source.getHeight() + bottomMargin;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
@@ -94,19 +112,7 @@ public final class Animations {
             int minShiftForAllTargetFullyVisible = source.getHeight() - source.getPaddingBottom();
             shift = Math.max(maxShiftForAllTargetFullyVisible, minShiftForAllTargetFullyVisible);
         }
-
-        final ValueAnimator translationY = topDirection
-                ? ValueAnimator.ofInt(0, shift)
-                : ValueAnimator.ofInt(shift, 0);
-        translationY.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                final int dY = (int) animation.getAnimatedValue();
-                for (int i = 0; i < targets.length; i++)
-                    targets[i].setTranslationY(source.getTop() - (i + 1) * dY);
-            }
-        });
-        return translationY;
+        return shift;
     }
 
     @NonNull
