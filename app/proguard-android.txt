@@ -98,8 +98,10 @@
 -keepattributes SourceFile,LineNumberTable
 
 # Stetho
-#-keep class com.facebook.stetho.** { *; }
-#-keep class org.apache.http.** { *; }
+-dontwarn com.facebook.stetho.**
+
+# LeakCanary
+-dontwarn com.squareup.leakcanary.**
 
 #itextPDF
 -keep class org.spongycastle.** { *; }
