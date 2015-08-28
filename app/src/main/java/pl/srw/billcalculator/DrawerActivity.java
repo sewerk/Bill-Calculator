@@ -19,10 +19,12 @@ import com.wnafee.vector.compat.ResourcesCompat;
 import butterknife.ButterKnife;
 import butterknife.Bind;
 import hrisey.InstanceState;
+import pl.srw.billcalculator.dialog.CheckPricesDialogFragment;
 import pl.srw.billcalculator.form.fragment.PgeFormFragment;
 import pl.srw.billcalculator.form.fragment.PgnigFormFragment;
 import pl.srw.billcalculator.form.fragment.TauronFormFragment;
 import pl.srw.billcalculator.history.MyBillsFragment;
+import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 
@@ -30,6 +32,8 @@ import pl.srw.billcalculator.type.Provider;
  * Created by kseweryn on 07.07.15.
  */
 public class DrawerActivity extends AppCompatActivity implements DrawerHandling {
+
+    private static final String TAG_CHECK_PRICES_DIALOG = "CHECK_PRICES_DIALOG";
 
     @Bind(R.id.drawer_layout) DrawerLayout drawerLayout;
     @Bind(R.id.drawer_navigation) NavigationView navigationView;
@@ -49,6 +53,9 @@ public class DrawerActivity extends AppCompatActivity implements DrawerHandling 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().add(R.id.container, MyBillsFragment.newInstance()).commit();
             currentItem = R.id.my_bills;
+            if (GeneralPreferences.isFirstLaunch())
+                new CheckPricesDialogFragment()
+                        .show(getFragmentManager(), TAG_CHECK_PRICES_DIALOG);
         }
     }
 

@@ -27,6 +27,7 @@ public class SettingsActivity extends BackableActivity implements SettingsViewin
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.preference_list);
+        ButterKnife.bind(this);
         presenter = new SettingsPresenter(this);
     }
 

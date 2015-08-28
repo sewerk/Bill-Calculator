@@ -2,6 +2,7 @@ package pl.srw.billcalculator.bill.activity;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,11 +17,14 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.wnafee.vector.compat.ResourcesCompat;
+
 import java.io.File;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 import butterknife.BindString;
+import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.BackableActivity;
@@ -45,12 +49,15 @@ public abstract class BillActivity extends BackableActivity {
     @CallSuper
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
         EventBus.getDefault().register(this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.bill, menu);
+        final Drawable printIcon = ResourcesCompat.getDrawable(this, R.drawable.ic_print_white_32px);
+        menu.findItem(R.id.action_print).setIcon(printIcon);
         this.menu = menu;
         if (isPrintTaskRunning())
             setPrintInProgress();

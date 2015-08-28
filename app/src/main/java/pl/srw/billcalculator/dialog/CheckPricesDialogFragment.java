@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.dialog;
 
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -8,7 +9,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 
 import hugo.weaving.DebugLog;
-import pl.srw.billcalculator.form.MainActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
 import pl.srw.billcalculator.settings.GeneralPreferences;
@@ -37,7 +37,7 @@ public class CheckPricesDialogFragment extends DialogFragment {
         return new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                ((MainActivity)getActivity()).start(SettingsActivity.class);
+                getActivity().startActivity(new Intent(getActivity(), SettingsActivity.class));
                 markDialogProcessed();
             }
         };
