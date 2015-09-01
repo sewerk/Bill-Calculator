@@ -8,6 +8,7 @@ import android.support.annotation.LayoutRes;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.f2prateek.dart.Dart;
 import com.f2prateek.dart.InjectExtra;
 
 import pl.srw.billcalculator.AnalyticsWrapper;
@@ -41,6 +42,7 @@ public class ProviderSettingsActivity extends BackableActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Dart.inject(this);
         AnalyticsWrapper.logContent(ContentType.SETTINGS, "settings for", providerName);
 
         final ProviderSettingsFragment preferenceFragment;

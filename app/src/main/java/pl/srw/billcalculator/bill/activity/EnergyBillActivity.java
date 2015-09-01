@@ -1,5 +1,8 @@
 package pl.srw.billcalculator.bill.activity;
 
+import android.os.Bundle;
+
+import com.f2prateek.dart.Dart;
 import com.f2prateek.dart.InjectExtra;
 import com.f2prateek.dart.Optional;
 
@@ -19,6 +22,12 @@ public abstract class EnergyBillActivity extends BillActivity {
     protected @Optional @InjectExtra(IntentCreator.READING_DAY_TO) int readingDayTo;
     protected @Optional @InjectExtra(IntentCreator.READING_NIGHT_FROM) int readingNightFrom;
     protected @Optional @InjectExtra(IntentCreator.READING_NIGHT_TO) int readingNightTo;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        Dart.inject(this);
+        super.onCreate(savedInstanceState);
+    }
 
     protected boolean isTwoUnitTariff() {
         return readingDayTo > 0;

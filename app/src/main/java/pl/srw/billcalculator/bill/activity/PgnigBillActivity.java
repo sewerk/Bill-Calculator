@@ -6,6 +6,7 @@ import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TableLayout;
 
+import com.f2prateek.dart.Dart;
 import com.f2prateek.dart.InjectExtra;
 import com.f2prateek.dart.Optional;
 
@@ -44,8 +45,9 @@ public class PgnigBillActivity extends BillActivity {
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.pgnig_bill);
+        Dart.inject(this);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.pgnig_bill);
         AnalyticsWrapper.logContent(ContentType.PGNIG_BILL, "PGNIG new", String.valueOf(prices == null));
 
         if (prices == null)

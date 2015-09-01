@@ -11,6 +11,7 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.CheckResult;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringDef;
+import android.support.v4.view.ViewCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,9 +41,11 @@ import pl.srw.billcalculator.util.ToWebView;
  */
 public abstract class BillActivity extends BackableActivity {
 
-    @BindString(R.string.print_dir) String PRINT_TARGET_DIR;
+    public static final String VIEW_TRANSITION_NAME = "BillActivity:transition";
     public static final String MIME_APPLICATION_PDF = "application/pdf";
     public static final String MIME_IMAGE = "image/*";
+    @BindString(R.string.print_dir) String PRINT_TARGET_DIR;
+
     private Menu menu;
 
     @Override
@@ -51,6 +54,7 @@ public abstract class BillActivity extends BackableActivity {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
+        ViewCompat.setTransitionName(findViewById(R.id.decor_content_parent), VIEW_TRANSITION_NAME);
     }
 
     @Override

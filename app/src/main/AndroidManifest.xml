@@ -10,35 +10,45 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
 
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="a7369bc28192a2f175b7c8d7473f0e61a756366c" />
 
-        <activity android:name=".DrawerActivity" android:label="@string/app_name"
-            android:theme="@style/MyBillsTheme">
+        <activity android:name=".DrawerActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.MyBills">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".bill.activity.PgeBillActivity" android:label="@string/energy_bill" />
+        <activity android:name=".bill.activity.PgeBillActivity"
+            android:label="@string/energy_bill"
+            android:theme="@style/AppTheme.Pge" />
 
-        <activity android:name=".bill.activity.PgnigBillActivity" android:label="@string/gas_bill" />
+        <activity android:name=".bill.activity.PgnigBillActivity"
+            android:label="@string/gas_bill"
+            android:theme="@style/AppTheme.Pgnig" />
 
-        <activity android:name=".bill.activity.TauronBillActivity" android:label="@string/energy_bill" />
+        <activity android:name=".bill.activity.TauronBillActivity"
+            android:label="@string/energy_bill"
+            android:theme="@style/AppTheme.Tauron" />
 
-        <activity android:name=".settings.activity.SettingsActivity" android:label="@string/settings_label" />
+        <activity android:name=".settings.activity.SettingsActivity"
+            android:label="@string/settings_label" />
 
         <activity android:name=".settings.activity.ProviderSettingsActivity" />
 
-        <activity android:name=".settings.activity.ProviderSettingsHelpActivity" android:label="@string/action_help"
-                  android:theme="@style/DialogTheme" />
+        <activity android:name=".settings.activity.ProviderSettingsHelpActivity"
+            android:label="@string/action_help"
+            android:theme="@style/DialogTheme" />
 
-        <activity android:name=".AboutActivity" android:label="@string/about_label"
-                  android:theme="@style/DialogTheme" />
+        <activity android:name=".AboutActivity"
+            android:label="@string/about_label"
+            android:theme="@style/DialogTheme" />
 
         <service android:name=".bill.service.PgnigBillStoringService" />
 

@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.history.list.item;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.history.list.provider.HistoryItemValueProvider;
+import pl.srw.billcalculator.util.strategy.Transitions;
 
 /**
 * Created by Kamil Seweryn.
@@ -45,7 +47,7 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
 
     @Override
     public void onClick(View v) {
-        itemView.getContext().startActivity(itemValuesProvider.getIntent());
+        Transitions.getInstance().startActivity((Activity) itemView.getContext(), itemValuesProvider.getIntent(), v);
         SavedBillsRegistry.getInstance().register(itemValuesProvider.getBill());
     }
 

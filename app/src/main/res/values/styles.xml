@@ -12,9 +12,24 @@
         <item name="alertDialogTheme">@style/AppCompatAlertDialogTheme</item>
     </style>
 
-    <style name="MyBillsTheme" parent="AppTheme">
+    <style name="AppTheme.MyBills">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Pge">
+        <item name="colorPrimary">@color/pge</item>
+        <item name="colorPrimaryDark">@color/pgeDark</item>
+    </style>
+
+    <style name="AppTheme.Pgnig">
+        <item name="colorPrimary">@color/pgnig</item>
+        <item name="colorPrimaryDark">@color/pgnigDark</item>
+    </style>
+
+    <style name="AppTheme.Tauron">
+        <item name="colorPrimary">@color/tauron</item>
+        <item name="colorPrimaryDark">@color/tauronDark</item>
     </style>
 
     <style name="AppCompatAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -29,7 +44,7 @@
         <item name="android:textColor">@color/white</item>
     </style>
     <style name="Title.expanded">
-        <item name="android:textColor">@color/primary</item>
+        <!--<item name="android:textColor">@color/primary</item>-->
         <item name="android:textSize">32sp</item>
     </style>
     <style name="Title.collapsed">

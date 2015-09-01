@@ -13,4 +13,11 @@
     <color name="primaryDark">#B71C1C</color>
     <color name="accent">#EF9A9A</color>
     <color name="primaryTransparent">#80F44336</color>
+
+    <color name="pge">#ed7900</color>
+    <color name="pgeDark">#e50005</color>
+    <color name="pgnig">#0c3b70</color>
+    <color name="pgnigDark">#0f2845</color>
+    <color name="tauron">#cc0099</color>
+    <color name="tauronDark">#990066</color>
 </resources>
