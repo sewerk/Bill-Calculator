@@ -1,7 +1,6 @@
 <resources>
 
     <style name="AppTheme" parent="AppBaseTheme">
-
     </style>
 
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -43,16 +42,16 @@
     <style name="Title" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@color/white</item>
     </style>
+
     <style name="Title.expanded">
         <!--<item name="android:textColor">@color/primary</item>-->
         <item name="android:textSize">32sp</item>
     </style>
+
     <style name="Title.collapsed">
-        <!--<item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>-->
     </style>
 
     <style name="Label" parent="TextAppearance.AppCompat.Medium">
-
     </style>
 
     <style name="ReadingEntry">

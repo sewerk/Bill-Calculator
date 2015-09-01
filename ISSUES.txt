@@ -6,3 +6,6 @@
 TODO
 - empty history icon
 - update history item layout
+- update providers logo on FAB
+- scroll bill to amount/logo on start
+- switch preferences on tariff change

@@ -25,6 +25,7 @@ import pl.srw.billcalculator.form.fragment.PgnigFormFragment;
 import pl.srw.billcalculator.form.fragment.TauronFormFragment;
 import pl.srw.billcalculator.history.MyBillsFragment;
 import pl.srw.billcalculator.settings.GeneralPreferences;
+import pl.srw.billcalculator.settings.activity.SettingsActivity;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 
@@ -62,6 +63,8 @@ public class DrawerActivity extends AppCompatActivity implements DrawerHandling 
     private void setupNavigationView() {
         Drawable listDrawable = ResourcesCompat.getDrawable(this, R.drawable.ic_list_white_24px);
         navigationView.getMenu().findItem(R.id.my_bills).setIcon(listDrawable);
+        Drawable settingsDrawable = ResourcesCompat.getDrawable(this, R.drawable.ic_settings_white_24px);
+        navigationView.getMenu().findItem(R.id.settings).setIcon(settingsDrawable);
         Drawable infoDrawable = ResourcesCompat.getDrawable(this, R.drawable.ic_info_outline_white_24px);
         navigationView.getMenu().findItem(R.id.about).setIcon(infoDrawable);
         navigationView.setNavigationItemSelectedListener(
@@ -80,12 +83,16 @@ public class DrawerActivity extends AppCompatActivity implements DrawerHandling 
         if (currentItem == id) return;
         if (id == R.id.about)
             startActivity(new Intent(this, AboutActivity.class));
+        else if (id == R.id.settings)
+            startActivity(new Intent(this, SettingsActivity.class));
         else {
             if (id == R.id.my_bills) backToHome();
             else if (id == R.id.new_bill_pge) showForm(Provider.PGE);
             else if (id == R.id.new_bill_pgnig) showForm(Provider.PGNIG);
             else if (id == R.id.new_bill_tauron) showForm(Provider.TAURON);
+            else throw new RuntimeException("Unhandled " + menuItem);
         }
+        navigationView.getMenu().findItem(currentItem).setChecked(true);
     }
 
     @Override
@@ -119,7 +126,6 @@ public class DrawerActivity extends AppCompatActivity implements DrawerHandling 
         ft.replace(R.id.container, fragment)
                 .addToBackStack(null)
                 .commit();
-        navigationView.getMenu().findItem(currentItem).setChecked(true);
     }
 
     @Override
