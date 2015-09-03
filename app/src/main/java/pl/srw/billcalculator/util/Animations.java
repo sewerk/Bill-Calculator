@@ -39,9 +39,18 @@ public final class Animations {
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
-                for (int i = 0; i < fabs.length; i++)
-            fabs[i].setVisibility(View.VISIBLE);
-        }
+                for (FloatingActionButton fab : fabs) {
+                    fab.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+                    fab.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                for (FloatingActionButton fab : fabs) {
+                    fab.setLayerType(View.LAYER_TYPE_NONE, null);
+                }
+            }
         });
         animatorSet.setDuration(DURATION_SHORT);
         animatorSet.setInterpolator(new OvershootInterpolator());
@@ -57,9 +66,18 @@ public final class Animations {
         animatorSet.playTogether(fabRotation, translationY, alpha);
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
+            public void onAnimationStart(Animator animation) {
+                for (FloatingActionButton fab : fabs)
+                    fab.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+            }
+
+            @Override
             public void onAnimationEnd(Animator animation) {
-                for (int i = 0; i < fabs.length; i++)
-                    fabs[i].setVisibility(View.GONE);
+                for (int i = 0, fabsLength = fabs.length; i < fabsLength; i++) {
+                    FloatingActionButton fab = fabs[i];
+                    fab.setVisibility(View.GONE);
+                    fab.setLayerType(View.LAYER_TYPE_NONE, null);
+                }
             }
         });
         animatorSet.setDuration(DURATION_SHORT);
@@ -91,9 +109,8 @@ public final class Animations {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 final int dY = (int) animation.getAnimatedValue();
-                for (int i = 0; i < targets.length; i++) {
+                for (int i = 0; i < targets.length; i++)
                     targets[i].setTranslationY(source.getTop() - (i + 1) * dY);
-                }
             }
         });
         return translationY;
@@ -103,7 +120,7 @@ public final class Animations {
         final int bottomMargin = ((RelativeLayout.LayoutParams) source.getLayoutParams()).bottomMargin;
         int shift = source.getHeight() + bottomMargin;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
-            shift -= source.getPaddingBottom()/2;
+            shift -= source.getPaddingBottom() / 2;
 
         // check if targets are not off screen
         final int targetMaxTop = source.getTop() - (targets.length * shift);
@@ -123,8 +140,8 @@ public final class Animations {
             public void onAnimationUpdate(ValueAnimator animation) {
                 final float value = (float) animation.getAnimatedValue();
                 if (value >= 0.0f && value <= 1.0)
-                    for (int i = 0; i < targets.length; i++)
-                        targets[i].setAlpha(value);
+                    for (FloatingActionButton target : targets)
+                        target.setAlpha(value);
             }
         });
         return alpha;
