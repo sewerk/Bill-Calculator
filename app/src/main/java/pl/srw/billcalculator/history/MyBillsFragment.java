@@ -123,19 +123,10 @@ public class MyBillsFragment extends Fragment {
         else collapseFabs();
     }
 
-    @OnClick(R.id.new_bill_pge)
-    public void onFabPgeClicked() {
-        ((DrawerHandling) getActivity()).showForm(Provider.PGE);
-    }
-
-    @OnClick(R.id.new_bill_pgnig)
-    public void onFabPgnigClicked() {
-        ((DrawerHandling) getActivity()).showForm(Provider.PGNIG);
-    }
-
-    @OnClick(R.id.new_bill_tauron)
-    public void onFabTauronClicked() {
-        ((DrawerHandling) getActivity()).showForm(Provider.TAURON);
+    @OnClick({R.id.new_bill_pge, R.id.new_bill_pgnig, R.id.new_bill_tauron})
+    public void onFabPgeClicked(View view) {
+        hideDimLayout();
+        ((DrawerHandling) getActivity()).showForm(Provider.getByViewId(view.getId()));
     }
 
     private void expandFabs() {
@@ -161,9 +152,13 @@ public class MyBillsFragment extends Fragment {
         if (collapseAnimation == null)
             collapseAnimation = Animations.getCollapseFabs(fab, fabTauron, fabPgnig, fabPge);
 
+        hideDimLayout();
+        collapseAnimation.start();
+    }
+
+    private void hideDimLayout() {
         dimLayout.setBackgroundResource(0);
         dimLayout.setClickable(false);
-        collapseAnimation.start();
     }
 
     public void makeUndoDeleteSnackbar(final int position) {

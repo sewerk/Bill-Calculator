@@ -18,9 +18,7 @@
 */
 -->
 
-<set xmlns:android="http://schemas.android.com/apk/res/android">
-	<translate android:fromXDelta="50%p" android:toXDelta="0"
-            android:duration="@android:integer/config_mediumAnimTime"/>
-	<alpha android:fromAlpha="0.0" android:toAlpha="1.0"
-            android:duration="@android:integer/config_mediumAnimTime" />
-</set>
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:startOffset="@integer/fragment_anim_offset"
+    android:fromXDelta="100%p" android:toXDelta="0"
+    android:duration="@integer/fragment_anim_short"/>

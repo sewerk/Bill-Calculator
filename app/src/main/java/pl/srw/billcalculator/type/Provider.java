@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.type;
 
 import android.support.annotation.DrawableRes;
+import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 
 import pl.srw.billcalculator.R;
@@ -39,5 +40,16 @@ public enum Provider {
                 return TAURON;
         }
         throw new EnumVariantNotHandledException(persistenceType);
+    }
+
+    public static Provider getByViewId(@IdRes int id) {
+        if (id == R.id.new_bill_pge)
+            return Provider.PGE;
+        else if (id == R.id.new_bill_pgnig)
+            return Provider.PGNIG;
+        else if (id == R.id.new_bill_tauron)
+            return Provider.TAURON;
+        else
+            throw new RuntimeException("Unhandled view Id=" + id);
     }
 }
