@@ -2,13 +2,11 @@ package pl.srw.billcalculator;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -117,13 +115,9 @@ public class DrawerActivity extends AppCompatActivity implements DrawerHandling 
         if (getSupportFragmentManager().getBackStackEntryCount() > 0)
             getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
-        final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            //TODO check later
-            // cause exception on 4.0.4 and 4.4.2 emulator
-            ft.setCustomAnimations(R.anim.slide_in_right, R.anim.shrink_fade_out_center, R.anim.grow_fade_in_center, R.anim.slide_out_right);
-        }
-        ft.replace(R.id.container, fragment)
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_right, R.anim.shrink_fade_out_center, R.anim.grow_fade_in_center, R.anim.slide_out_right)
+                .replace(R.id.container, fragment)
                 .addToBackStack(null)
                 .commit();
     }
