@@ -1,10 +1,10 @@
 package pl.srw.billcalculator.history.list.provider;
 
 import android.content.Intent;
+import android.support.annotation.Size;
 
 import lombok.ToString;
 import pl.srw.billcalculator.BillCalculator;
-import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.db.TauronG12Bill;
@@ -40,10 +40,11 @@ public class TauronG12BillHistoryItemValueProvider extends HistoryItemValueProvi
     }
 
     @Override
-    public String getReadings() {
-        return BillCalculator.context.getString(R.string.history_readingsG12,
+    public @Size(value = 4) int[] getReadings() {
+        return new int[]{
                 bill.getReadingDayFrom(), bill.getReadingDayTo(),
-                bill.getReadingNightFrom(), bill.getReadingNightTo());
+                bill.getReadingNightFrom(), bill.getReadingNightTo()
+        };
     }
 
     @Override

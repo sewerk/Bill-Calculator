@@ -8,6 +8,7 @@
         <item name="colorPrimaryDark">@color/primaryDark</item>
         <item name="colorAccent">@color/accent</item>
         <item name="colorControlHighlight">@color/primary</item>
+
         <item name="alertDialogTheme">@style/AppCompatAlertDialogTheme</item>
     </style>
 
@@ -60,5 +61,22 @@
         <item name="android:inputType">number</item>
         <item name="android:gravity">end</item>
         <!--<item name="android:hint">@string/reading_hint_kWh</item>-->
+    </style>
+
+    <style name="TableCell" >
+        <item name="android:paddingTop">@dimen/smallest_padding</item>
+        <item name="android:paddingBottom">@dimen/smallest_padding</item>
+        <item name="android:paddingLeft">@dimen/padding</item>
+        <item name="android:paddingRight">@dimen/padding</item>
+        <item name="android:background">@drawable/history_item_border</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="TableCell.Header">
+        <item name="android:background">@drawable/history_item_header_border</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="TableCell.End">
+        <item name="android:gravity">end</item>
     </style>
 </resources>

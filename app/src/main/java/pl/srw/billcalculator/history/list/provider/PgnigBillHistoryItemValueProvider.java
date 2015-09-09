@@ -1,10 +1,10 @@
 package pl.srw.billcalculator.history.list.provider;
 
 import android.content.Intent;
+import android.support.annotation.Size;
 
 import lombok.ToString;
 import pl.srw.billcalculator.BillCalculator;
-import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.dao.HistoryDao;
@@ -39,8 +39,8 @@ public class PgnigBillHistoryItemValueProvider extends HistoryItemValueProvider 
     }
 
     @Override
-    public String getReadings() {
-        return BillCalculator.context.getString(R.string.histiry_readings, bill.getReadingFrom(), bill.getReadingTo());
+    public @Size(value = 2) int[] getReadings() {
+        return new int[]{bill.getReadingFrom(), bill.getReadingTo()};
     }
 
     @Override

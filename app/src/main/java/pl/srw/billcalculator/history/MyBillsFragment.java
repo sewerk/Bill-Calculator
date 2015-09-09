@@ -11,7 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.wnafee.vector.compat.ResourcesCompat;
 
+import butterknife.BindInt;
 import butterknife.ButterKnife;
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -52,6 +53,7 @@ public class MyBillsFragment extends Fragment {
     @Bind(R.id.new_bill_pge) FloatingActionButton fabPge;
     @Bind(R.id.new_bill_pgnig) FloatingActionButton fabPgnig;
     @Bind(R.id.new_bill_tauron) FloatingActionButton fabTauron;
+    @BindInt(R.integer.cardAmount) int cardAmount;
     private HistoryAdapter adapter;
     private Animator expandAnimation;
     private Animator collapseAnimation;
@@ -101,7 +103,7 @@ public class MyBillsFragment extends Fragment {
 
     private void setupList() {
         rcList.setHasFixedSize(true);
-        rcList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rcList.setLayoutManager(new GridLayoutManager(getActivity(), cardAmount));
         adapter = new HistoryAdapter(this, new EmptyHistoryDataObserver(tvEmptyHistory));
         rcList.setAdapter(adapter);
 

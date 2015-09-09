@@ -59,10 +59,14 @@
 <!-- history -->
     <string name="history_label">Historia</string>
     <string name="action_delete">Usuń</string>
-    <string name="history_readings_label">Wskazania:</string>
-    <string name="history_readingsG12">dzienna(%1$s - %2$s)\nnocna(%3$s - %4$s)</string>
+    <string name="history_readings_label">Wskazania</string>
     <string name="empty_history">Brak wyliczeń rachunków</string>
     <string name="my_bills">Moje rachunki</string>
     <string name="bill_deleted">Rachunek usunięty</string>
     <string name="action_undo_delete">COFNIJ</string>
+    <string name="history_item_readings_from">od</string>
+    <string name="history_item_readings_to">do</string>
+    <string name="history_item_amount_label">Należność:</string>
+    <string name="history_item_day_zone">st. dzienna</string>
+    <string name="history_item_night_zone">st. nocna</string>
 </resources>

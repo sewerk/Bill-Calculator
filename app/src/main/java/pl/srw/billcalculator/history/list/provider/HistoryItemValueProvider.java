@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.history.list.provider;
 
 import android.content.Intent;
+import android.support.annotation.Size;
 
 import java.math.BigDecimal;
 
@@ -44,7 +45,7 @@ public abstract class HistoryItemValueProvider {
 
     public abstract int getLogoId();
 
-    public abstract String getReadings();
+    public abstract @Size(min = 2, max = 4) int[] getReadings();
 
     public String getDatePeriod() {
         return BillCalculator.context.getString(R.string.history_period,
