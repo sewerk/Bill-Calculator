@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:showIn="@layout/form_entry">
+
+    <TableRow
+        android:id="@+id/readings_double_day"
+        android:gravity="center">
+
+        <com.wnafee.vector.MorphButton
+            style="@style/FormReadingIcon"
+            app:vc_startDrawable="@drawable/ic_brightness_5_black_24px" />
+
+        <pl.srw.billcalculator.form.view.ReadingsEntryView
+            android:id="@+id/reading_day_from_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:errorView="@+id/reading_day_from_error">
+
+            <pl.srw.billcalculator.form.view.InstantAutoCompleteTextView
+                android:id="@+id/reading_day_from"
+                style="@style/FormReadingEntry"
+                android:imeOptions="actionNext|flagNoExtractUi" />
+        </pl.srw.billcalculator.form.view.ReadingsEntryView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/small_padding"
+            android:paddingRight="@dimen/small_padding"
+            android:text="-"
+            android:textSize="16sp" />
+
+        <pl.srw.billcalculator.form.view.ReadingsEntryView
+            android:id="@+id/reading_day_to_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:errorView="@+id/reading_day_to_error">
+
+            <EditText
+                android:id="@+id/reading_day_to"
+                style="@style/FormReadingEntry"
+                android:imeOptions="actionDone|flagNoExtractUi" />
+
+        </pl.srw.billcalculator.form.view.ReadingsEntryView>
+    </TableRow>
+
+    <TableRow android:id="@+id/readings_double_day_errors">
+
+        <TextView
+            android:id="@+id/reading_day_from_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:textAppearance="@style/TextAppearance.Design.Error"
+            tools:text="@string/reading_missing" />
+
+        <TextView
+            android:id="@+id/reading_day_to_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="3"
+            android:textAppearance="@style/TextAppearance.Design.Error"
+            tools:text="@string/reading_order_error" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/readings_double_night"
+        android:gravity="center">
+
+        <com.wnafee.vector.MorphButton
+            style="@style/FormReadingIcon"
+            app:vc_startDrawable="@drawable/ic_brightness_3_black_24px" />
+
+        <pl.srw.billcalculator.form.view.ReadingsEntryView
+            android:id="@+id/reading_night_from_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:errorView="@+id/reading_night_from_error">
+
+            <pl.srw.billcalculator.form.view.InstantAutoCompleteTextView
+                android:id="@+id/reading_night_from"
+                style="@style/FormReadingEntry"
+                android:imeOptions="actionNext|flagNoExtractUi" />
+        </pl.srw.billcalculator.form.view.ReadingsEntryView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/small_padding"
+            android:paddingRight="@dimen/small_padding"
+            android:text="-"
+            android:textSize="16sp" />
+
+        <pl.srw.billcalculator.form.view.ReadingsEntryView
+            android:id="@+id/reading_night_to_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:errorView="@+id/reading_night_to_error">
+
+            <EditText
+                android:id="@+id/reading_night_to"
+                style="@style/FormReadingEntry"
+                android:imeOptions="actionDone|flagNoExtractUi" />
+
+        </pl.srw.billcalculator.form.view.ReadingsEntryView>
+    </TableRow>
+
+    <TableRow android:id="@+id/readings_double_night_errors">
+
+        <TextView
+            android:id="@+id/reading_night_from_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:textAppearance="@style/TextAppearance.Design.Error"
+            tools:text="@string/reading_missing" />
+
+        <TextView
+            android:id="@+id/reading_night_to_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="3"
+            android:textAppearance="@style/TextAppearance.Design.Error"
+            tools:text="@string/reading_order_error" />
+    </TableRow>
+</merge>

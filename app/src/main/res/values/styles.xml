@@ -17,6 +17,15 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="ToolBarWhiteTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- android:textColorPrimary is the  color of the title text in the Toolbar, in the Theme.AppCompat theme:  -->
+        <!-- android:textColorPrimaryInverse is the  color of the title text in the Toolbar, in the Theme.AppCompat.Light theme:  -->
+        <!-- android:actionMenuTextColor is the color of the text of action (menu) items in the Toolbar-->
+
+        <!-- android:textColorSecondary is the color of the menu overflow icon (three vertical dots) -->
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
     <style name="AppTheme.Pge">
         <item name="colorPrimary">@color/pge</item>
         <item name="colorPrimaryDark">@color/pgeDark</item>
@@ -55,12 +64,39 @@
     <style name="Label" parent="TextAppearance.AppCompat.Medium">
     </style>
 
-    <style name="ReadingEntry">
+    <style name="FormHeader">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/accent</item>
+        <item name="android:background">@drawable/undeline</item>
+        <item name="android:paddingLeft">@dimen/small_padding</item>
+        <item name="android:paddingRight">@dimen/small_padding</item>
+    </style>
+
+    <style name="FormReadingEntry">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:ems">5</item>
         <item name="android:maxLength">9</item>
         <item name="android:inputType">number</item>
-        <item name="android:gravity">end</item>
-        <!--<item name="android:hint">@string/reading_hint_kWh</item>-->
+        <!--<item name="android:background">@drawable/form_reading_bg</item>-->
+        <!--<item name="android:gravity">end</item>-->
+    </style>
+
+    <style name="FormReadingIcon">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+    </style>
+
+    <style name="FormReadingButton">
+        <item name="android:layout_width">match_parent</item>
+        <!--<item name="android:layout_weight">1</item>-->
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:freezesText">true</item>
     </style>
 
     <style name="TableCell" >
@@ -79,4 +115,5 @@
     <style name="TableCell.End">
         <item name="android:gravity">end</item>
     </style>
+
 </resources>

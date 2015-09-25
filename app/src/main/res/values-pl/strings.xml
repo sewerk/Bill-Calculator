@@ -13,9 +13,9 @@
     <string name="date_from">Za okres od:</string>
     <string name="date_to">Za okres do:</string>
     <string name="calculate">Oblicz</string>
-    <string name="reading_missing">Pole nie może być puste!</string>
-    <string name="reading_order_error">Wartość wskazania bieżącego musi być większa od poprzedniego!</string>
-    <string name="date_error">Data \"Za okres do\" musi być późniejsza niż \"Za okres od\"!</string>
+    <string name="reading_missing">Puste!</string>
+    <string name="reading_order_error">Za małe zużycie!</string>
+    <string name="date_error">Zbyt krótki okres!</string>
 <!-- bill -->
     <string name="page_view_label">Widok strony</string>
     <string name="action_print">Drukuj do PDF</string>
@@ -69,4 +69,11 @@
     <string name="history_item_amount_label">Należność:</string>
     <string name="history_item_day_zone">st. dzienna</string>
     <string name="history_item_night_zone">st. nocna</string>
+<!--form-->
+    <string name="form_reading_from_m3" >poprzednie [m\u00B3]</string>
+    <string name="form_reading_to_m3" >obecne [m\u00B3]</string>
+    <string name="form_reading_from_kWh_hint" >poprzednie</string>
+    <string name="form_reading_to_kWh_hint" >obecne</string>
+    <string name="form_title">Oblicz</string>
+    <string name="form_for_period">Za okres</string>
 </resources>

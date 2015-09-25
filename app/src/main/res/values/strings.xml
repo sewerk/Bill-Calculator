@@ -14,9 +14,9 @@
     <string name="date_from">From date:</string>
     <string name="date_to">To date:</string>
     <string name="calculate">Calculate</string>
-    <string name="reading_missing">This field cannot be empty</string>
-    <string name="reading_order_error">Current reading need to exceed previous reading</string>
-    <string name="date_error">\"To date\" need to be later then \"From date\"</string>
+    <string name="reading_missing">Empty!</string>
+    <string name="reading_order_error">Usage too low!</string>
+    <string name="date_error">Period too short!</string>
     <string name="reading_hint_m3" translatable="false">[m\u00B3]</string>
     <string name="reading_hint_kWh" translatable="false">[kWh]</string>
 
@@ -150,7 +150,7 @@
     <string name="settings_tauron_summary">Set tariff and prices</string>
     <string name="tauron_tariff_in_preferences" translatable="false">Grupa Taryfowa</string>
 
-    <!-- about -->
+<!-- about -->
     <string name="about_label">About</string>
     <string name="version_text">Version %1$s<![CDATA[<br/>under <a href="http://opensource.org/licenses/MIT">MIT license</a>]]></string>
     <string name="description">Calculate the cost of utility bill</string>
@@ -174,5 +174,12 @@
     <string name="history_item_amount_label">Charge:</string>
     <string name="history_item_day_zone">day unit</string>
     <string name="history_item_night_zone">night unit</string>
+<!-- form -->
+    <string name="form_reading_from_m3">Previous [m\u00B3]</string>
+    <string name="form_reading_to_m3">Current [m\u00B3]</string>
+    <string name="form_reading_from_kWh_hint">Previous</string>
+    <string name="form_reading_to_kWh_hint">Current</string>
+    <string name="form_title">Calculate</string>
+    <string name="form_for_period">For period</string>
 
 </resources>

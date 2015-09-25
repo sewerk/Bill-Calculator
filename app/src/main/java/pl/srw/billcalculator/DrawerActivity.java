@@ -147,7 +147,10 @@ public class DrawerActivity extends AppCompatActivity implements DrawerHandling 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            this.openDrawer();
+            if (currentItem != R.id.my_bills)
+                backToHome();
+            else
+                this.openDrawer();
             return true;
         }
         return super.onOptionsItemSelected(item);

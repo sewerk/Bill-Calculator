@@ -2,17 +2,17 @@ package pl.srw.billcalculator.form.view;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
 
 import hugo.weaving.DebugLog;
 
 /**
  * Created by Kamil Seweryn.
  */
-public class InstantAutoCompleteTextView extends AutoCompleteTextView {
+public class InstantAutoCompleteTextView extends AppCompatAutoCompleteTextView {
 
     public InstantAutoCompleteTextView(Context context) {
         super(context);

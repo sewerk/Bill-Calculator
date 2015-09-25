@@ -9,7 +9,7 @@ import org.threeten.bp.Month;
 
 import pl.srw.billcalculator.form.MainActivity;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.form.view.DatePickingButton;
+import pl.srw.billcalculator.form.view.DatePickingView;
 import pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.settings.GeneralPreferences;
@@ -76,7 +76,7 @@ public class MainActivityUITest extends ActivityInstrumentationTestCase2<MainAct
         runTestOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ((DatePickingButton) solo.getView(R.id.button_date_from)).setText(dateFromValue);
+                ((DatePickingView) solo.getView(R.id.button_date_from)).setText(dateFromValue);
                 ((ErrorShowingDatePickerButton) solo.getView(R.id.button_date_to)).setText(dateToValue);
             }
         });

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <pl.srw.billcalculator.form.view.RoundedLogoView
+        android:id="@+id/iv_logo"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        tools:src="@drawable/pgnig" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="@dimen/double_padding"
+        android:textSize="22sp"
+        android:textColor="@color/primary"
+        android:text="@string/form_title"
+        tools:showIn="@layout/form" />
+
+</merge>

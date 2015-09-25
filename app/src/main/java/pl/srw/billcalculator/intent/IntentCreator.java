@@ -2,8 +2,6 @@ package pl.srw.billcalculator.intent;
 
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import pl.srw.billcalculator.db.Bill;
@@ -12,7 +10,6 @@ import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.TauronG11Bill;
 import pl.srw.billcalculator.db.TauronG12Bill;
-import pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton;
 import pl.srw.billcalculator.util.Dates;
 
 /**
@@ -35,8 +32,8 @@ public final class IntentCreator {
         intent = new Intent(context, aClass);
     }
 
-    public Intent from(final EditText etReadingFrom, final EditText etReadingTo,
-                       final Button bDateFrom, final ErrorShowingDatePickerButton bDateTo) {
+    public Intent from(final TextView etReadingFrom, final TextView etReadingTo,
+                       final TextView bDateFrom, final TextView bDateTo) {
         return from(getIntText(etReadingFrom), getIntText(etReadingTo),
                 getStringText(bDateFrom), getStringText(bDateTo));
     }
@@ -47,9 +44,9 @@ public final class IntentCreator {
         return intent;
     }
 
-    public Intent from(final EditText etReadingDayFrom, final EditText etReadingDayTo,
-                       final EditText etReadingNightFrom, final EditText etReadingNightTo,
-                       final Button bDateFrom, final ErrorShowingDatePickerButton bDateTo) {
+    public Intent from(final TextView etReadingDayFrom, final TextView etReadingDayTo,
+                       final TextView etReadingNightFrom, final TextView etReadingNightTo,
+                       final TextView bDateFrom, final TextView bDateTo) {
         return from(getIntText(etReadingDayFrom), getIntText(etReadingDayTo),
                 getIntText(etReadingNightFrom), getIntText(etReadingNightTo),
                 getStringText(bDateFrom), getStringText(bDateTo));
@@ -125,9 +122,5 @@ public final class IntentCreator {
 
     private String getStringText(final TextView textView) {
         return textView.getText().toString();
-    }
-
-    private String getStringText(ErrorShowingDatePickerButton view) {
-        return view.getText().toString();
     }
 }

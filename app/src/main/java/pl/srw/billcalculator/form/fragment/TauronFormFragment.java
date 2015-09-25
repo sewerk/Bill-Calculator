@@ -8,7 +8,7 @@ import pl.srw.billcalculator.type.Provider;
 /**
  * Created by kseweryn on 29.05.15.
  */
-public class TauronFormFragment extends DoubleReadingsFormFragment {
+public class TauronFormFragment extends FormFragment {
     
     @Override
     public boolean isTariffG12() {
@@ -25,6 +25,7 @@ public class TauronFormFragment extends DoubleReadingsFormFragment {
         return new CurrentReadingType[]{CurrentReadingType.TAURON_TO, CurrentReadingType.TAURON_DAY_TO, CurrentReadingType.TAURON_NIGHT_TO};
     }
 
+    @Override
     public int getTitle() {
         return R.string.new_tauron_bill;
     }

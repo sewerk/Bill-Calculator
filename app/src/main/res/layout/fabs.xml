@@ -28,6 +28,7 @@
         android:layout_alignLeft="@id/add_new_bill"
         android:layout_alignStart="@id/add_new_bill"
         android:src="@drawable/tauron_small"
+        android:scaleType="centerCrop"
         app:backgroundTint="@color/white" />
 
     <android.support.design.widget.FloatingActionButton
@@ -39,6 +40,7 @@
         android:layout_alignLeft="@id/add_new_bill"
         android:layout_alignStart="@id/add_new_bill"
         android:src="@drawable/pgnig_small"
+        android:scaleType="centerCrop"
         app:backgroundTint="@color/white" />
 
     <android.support.design.widget.FloatingActionButton
@@ -50,6 +52,7 @@
         android:layout_alignLeft="@id/add_new_bill"
         android:layout_alignStart="@id/add_new_bill"
         android:src="@drawable/pge_small"
+        android:scaleType="centerCrop"
         app:backgroundTint="@color/white" />
 
 </RelativeLayout>

@@ -2,9 +2,9 @@ package pl.srw.billcalculator.form.view;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 
 import org.threeten.bp.LocalDate;
@@ -15,16 +15,23 @@ import pl.srw.billcalculator.util.Dates;
 /**
  * Created by kseweryn on 30.04.15.
  */
-public class DatePickingButton extends Button {
+public class DatePickingView extends AppCompatButton {
 
     private OnDatePickedListener onDatePickedListener;
+    private ErrorViewHandler errorHandler;
 
-    public DatePickingButton(Context context) {
+    public DatePickingView(Context context) {
         super(context);
     }
 
-    public DatePickingButton(Context context, AttributeSet attrs) {
+    public DatePickingView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        errorHandler = new ErrorViewHandler(this, attrs, 0);
+    }
+
+    public DatePickingView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        errorHandler = new ErrorViewHandler(this, attrs, 0);
     }
 
     @Override
@@ -36,6 +43,11 @@ public class DatePickingButton extends Button {
                 showDatePicker();
             }
         });
+    }
+
+    @Override
+    public void setError(CharSequence error) {
+        errorHandler.setError(error);
     }
 
     private void showDatePicker() {
@@ -51,9 +63,10 @@ public class DatePickingButton extends Button {
         return new DatePickerDialog.OnDateSetListener(){
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                DatePickingButton.this.setText(Dates.format(year, Month.of(month + 1), day));
+                DatePickingView.this.setText(Dates.format(year, Month.of(month + 1), day));
+                setError(null);
                 if (onDatePickedListener != null) {
-                    onDatePickedListener.onDatePicked(DatePickingButton.this);
+                    onDatePickedListener.onDatePicked(DatePickingView.this);
                 }
             }
         };
@@ -64,6 +77,6 @@ public class DatePickingButton extends Button {
     }
 
     public interface OnDatePickedListener {
-        void onDatePicked(DatePickingButton view);
+        void onDatePicked(DatePickingView view);
     }
 }

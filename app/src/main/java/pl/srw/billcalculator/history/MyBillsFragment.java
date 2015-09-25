@@ -18,7 +18,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -114,9 +113,6 @@ public class MyBillsFragment extends Fragment {
     private void setupFAB() {
         Drawable plusDrawable = ResourcesCompat.getDrawable(getActivity(), R.drawable.ic_add_white_24px);
         fab.setImageDrawable(plusDrawable);
-        fabPge.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        fabPgnig.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        fabTauron.setScaleType(ImageView.ScaleType.CENTER_CROP);
     }
 
     @OnClick(R.id.add_new_bill)
