@@ -5,6 +5,7 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
+apply from: 'signing.gradle'
 apply plugin: 'hugo'
 
 android {
@@ -31,6 +32,7 @@ android {
             proguardFile 'proguard-android.txt'
             zipAlignEnabled true
             debuggable false
+            signingConfig signingConfigs.release
         }
     }
 
