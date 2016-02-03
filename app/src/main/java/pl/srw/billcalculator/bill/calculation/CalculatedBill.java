@@ -23,7 +23,7 @@ public abstract class CalculatedBill {
 
     protected CalculatedBill(final boolean greedy, final String dateFrom, final String dateTo) {
         this.greedy = greedy;
-        monthCount = Dates.countMonth(dateFrom, dateTo);
+        monthCount = Dates.countWholeMonth(dateFrom, dateTo);
     }
 
     protected BigDecimal countNetAndAddToSum(final String price, final int count) {
@@ -34,7 +34,7 @@ public abstract class CalculatedBill {
         return countNetAndAddToSum(price, new BigDecimal(count));
     }
 
-    private BigDecimal countNetAndAddToSum(String price, BigDecimal count) {
+    protected BigDecimal countNetAndAddToSum(String price, BigDecimal count) {
         BigDecimal netCharge = new BigDecimal(price).multiply(count);
         netChargeSum = netChargeSum.add(round(netCharge));
         return netCharge;

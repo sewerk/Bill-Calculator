@@ -6,6 +6,7 @@ import java.math.RoundingMode;
 
 import lombok.Getter;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
+import pl.srw.billcalculator.util.Dates;
 
 /**
  * Created by Kamil Seweryn.
@@ -16,6 +17,7 @@ public class PgnigCalculatedBill extends CalculatedBill {
 
     private final int consumptionM3;
     private final BigInteger consumptionKWh;
+    private final BigDecimal monthCountExact;
 
     private final BigDecimal oplataAbonamentowaNetCharge;
     private final BigDecimal paliwoGazoweNetCharge;
@@ -32,10 +34,11 @@ public class PgnigCalculatedBill extends CalculatedBill {
         consumptionM3 = readingTo - readingFrom;
         consumptionKWh = new BigDecimal(consumptionM3).multiply(new BigDecimal(prices.getWspolczynnikKonwersji()))
                 .setScale(0, RoundingMode.HALF_UP).toBigInteger();
+        monthCountExact = Dates.countMonth(dateFrom, dateTo);
 
         oplataAbonamentowaNetCharge = countNetAndAddToSum(prices.getOplataAbonamentowa(), getMonthCount());
         paliwoGazoweNetCharge = countNetAndAddToSum(prices.getPaliwoGazowe(), consumptionKWh);
-        dystrybucyjnaStalaNetCharge = countNetAndAddToSum(prices.getDystrybucyjnaStala(), getMonthCount());
+        dystrybucyjnaStalaNetCharge = countNetAndAddToSum(prices.getDystrybucyjnaStala(), monthCountExact);
         dystrybucyjnaZmiennaNetCharge = countNetAndAddToSum(prices.getDystrybucyjnaZmienna(), consumptionKWh);
 
         oplataAbonamentowaVatCharge = countVatAndAddToSum(oplataAbonamentowaNetCharge);
