@@ -24,8 +24,10 @@ public class AnalyticsWrapper {
     public static final boolean ENABLED = !BuildConfig.DEVEL && !BuildConfig.DEBUG;
 
     public static void initialize(Context context) {
-        if (ENABLED)
+        if (ENABLED) {
             Fabric.with(context, new Crashlytics());
+            Fabric.with(context, new Answers());
+        }
     }
 
     /**

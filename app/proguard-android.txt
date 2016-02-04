@@ -81,6 +81,7 @@
     <init>(java.lang.Throwable);
 }
 
+# Dart
 -dontwarn com.f2prateek.dart.internal.**
 -keep class **$$ExtraInjector { *; }
 -keepnames class * { @com.f2prateek.dart.InjectExtra *;}
@@ -92,3 +93,9 @@
 -keep class org.spongycastle.** { *; }
 -dontwarn org.spongycastle.**
 -dontwarn com.itextpdf.testutils.ITextTest
+
+# stetho
+-dontwarn com.facebook.stetho.**
+
+# leak canary
+-dontwarn com.squareup.leakcanary.**
