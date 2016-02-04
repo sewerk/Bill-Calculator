@@ -61,11 +61,6 @@
 -keep class **$$ViewInjector { *; }
 -keepnames class * { @butterknife.InjectView *;}
 
-# Threeten backport
--dontwarn java.util.spi.LocaleServiceProvider
--dontwarn sun.util.calendar.*
--keep class org.threeten.bp.zone.*
-
 # GreenDao
 -keepclassmembers class * extends de.greenrobot.dao.AbstractDao {
     public static java.lang.String TABLENAME;

@@ -1,3 +1,6 @@
+v.1.4.1
+ - fix for PGNiG dystrybucja stała to count month decimal part
+ - fix NPE on missing Storage permission
 v.1.4
  - adding Tauron provider
  - print bill

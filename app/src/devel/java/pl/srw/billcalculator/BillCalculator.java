@@ -3,6 +3,7 @@ package pl.srw.billcalculator;
 import android.app.Application;
 import android.content.Context;
 
+import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -26,7 +27,7 @@ public class BillCalculator extends Application {
         context = getApplicationContext();
 
         initializeDevelTools();
-
+        AndroidThreeTen.init(this);
         Database.initialize(this);
 
         //PreferenceMigration.migrate(getApplicationContext());
