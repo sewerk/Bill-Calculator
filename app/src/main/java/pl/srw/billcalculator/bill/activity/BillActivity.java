@@ -89,6 +89,8 @@ public abstract class BillActivity extends BackableActivity {
                     final View contentView = findViewById(R.id.bill_content);
                     printTask.execute(contentView);
                 }
+            } else {
+                Toast.makeText(BillActivity.this, R.string.error_permission_storage_missing, Toast.LENGTH_SHORT).show();
             }
             return true;
         }
@@ -130,7 +132,7 @@ public abstract class BillActivity extends BackableActivity {
         File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + PRINT_TARGET_DIR);
         if (!direct.exists())
             if (!direct.mkdirs()) {
-                Toast.makeText(this, getString(R.string.print_io_problem), Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, getString(R.string.print_io_problem), Toast.LENGTH_LONG).show();
                 AnalyticsWrapper.warning("mkdir failed");
                 return null;
             }
@@ -158,7 +160,10 @@ public abstract class BillActivity extends BackableActivity {
     }
 
     private boolean isPrintTaskRunning() {
-        final AsyncTask task = TaskManager.getInstance().findBy(getTargetFile("pdf").getAbsolutePath());
+        File pdfFile = getTargetFile("pdf");
+        if (pdfFile == null)
+            return false;
+        final AsyncTask task = TaskManager.getInstance().findBy(pdfFile.getAbsolutePath());
         return task != null && task.getStatus() != AsyncTask.Status.FINISHED;
     }
 }
