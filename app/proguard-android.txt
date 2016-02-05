@@ -61,11 +61,6 @@
 -keep class **$$ViewInjector { *; }
 -keepnames class * { @butterknife.InjectView *;}
 
-# Threeten backport
--dontwarn java.util.spi.LocaleServiceProvider
--dontwarn sun.util.calendar.*
--keep class org.threeten.bp.zone.*
-
 # GreenDao
 -keepclassmembers class * extends de.greenrobot.dao.AbstractDao {
     public static java.lang.String TABLENAME;
@@ -81,6 +76,7 @@
     <init>(java.lang.Throwable);
 }
 
+# Dart
 -dontwarn com.f2prateek.dart.internal.**
 -keep class **$$ExtraInjector { *; }
 -keepnames class * { @com.f2prateek.dart.InjectExtra *;}
@@ -92,3 +88,9 @@
 -keep class org.spongycastle.** { *; }
 -dontwarn org.spongycastle.**
 -dontwarn com.itextpdf.testutils.ITextTest
+
+# stetho
+-dontwarn com.facebook.stetho.**
+
+# leak canary
+-dontwarn com.squareup.leakcanary.**

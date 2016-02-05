@@ -9,15 +9,14 @@ apply from: 'signing.gradle'
 apply plugin: 'hugo'
 
 android {
-
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         versionCode 18
-        versionName "1.4"
+        versionName "1.5"
         minSdkVersion 15
-        targetSdkVersion 22
+        targetSdkVersion 23
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -61,29 +60,36 @@ android {
 dependencies {
     compile project(':persistence')
 
-    compile 'com.android.support:recyclerview-v7:22.2.0'
-    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.1.1'
 
     compile 'com.jakewharton:butterknife:6.1.0'
     provided 'pl.mg6.hrisey:hrisey:0.3.1'
-    compile 'org.threeten:threetenbp:1.2'
+    compile 'com.jakewharton.threetenabp:threetenabp:1.0.3'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.f2prateek.dart:dart:1.1.0'
     compile files('libs/itextg-5.5.4.jar')
 
-    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2'
+    androidTestCompile ('com.android.support.test.espresso:espresso-intents:2.2') {
+        exclude module: 'support-annotations'
+    }
     androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2') {
         exclude module: 'support-annotations'
+        exclude module: 'recyclerview-v7'
     }
     androidTestCompile files('libs/robotium-solo-5.3.1.jar')
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
     testCompile 'pl.pragmatists:JUnitParams:1.0.4'
+    testCompile 'org.threeten:threetenbp:1.3.1'
 
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.0@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+        transitive = true;
+    }
+    compile('com.crashlytics.sdk.android:answers:1.3.6@aar') {
         transitive = true;
     }
     develCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
-    develCompile 'com.facebook.stetho:stetho:1.1.1'
+    develCompile 'com.facebook.stetho:stetho:1.3.0'
 }

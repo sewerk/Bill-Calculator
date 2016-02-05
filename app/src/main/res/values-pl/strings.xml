@@ -23,6 +23,11 @@
     <string name="print_io_problem">Wystąpił błąd z dostępem do pamięci</string>
     <string name="print_failed">Błąd: Zapis do PDF nieudany.</string>
     <string name="print_no_pdf_viewer">"Wydruk wygenerowany: "</string>
+    <string name="error_permission_storage_missing">Brak dostępu do Pamięci</string>
+    <string name="rationale_dialog_title">Wymagany dostęp</string>
+    <string name="rationale_dialog_msg">Drukowanie do PDF wymaga dostępu do Pamięci w celu utworzenia pliku PDF</string>
+    <string name="rationale_dialog_ok">Akceptuje</string>
+    <string name="rationale_dialog_cancel">Anuluj</string>
 <!-- energy_bill -->
     <string name="energy_bill">Rachunek za energię</string>
 <!-- gas_bill -->

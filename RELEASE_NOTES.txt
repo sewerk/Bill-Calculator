@@ -1,10 +1,15 @@
+v.1.5
+ - fix for PGNiG dystrybucja stała to count month decimal part
+ - fix NPE on missing Storage permission
+ - config for Android M auto-backup
+ - runtime permissions for printing feature
 v.1.4
  - adding Tauron provider
  - print bill
  -[EXPER] bill zooming
 v.1.3.2
  - bill align center
- - bill table backgroud fix
+ - bill table background fix
 v.1.3.1
  - history selection by swipe + animation
  - history item right arrow
