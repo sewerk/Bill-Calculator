@@ -4422,6 +4422,8 @@ com.itextpdf.xmp.options.SerializeOptions
 com.itextpdf.xmp.properties.XMPAliasInfo
 com.itextpdf.xmp.properties.XMPProperty
 com.itextpdf.xmp.properties.XMPPropertyInfo
+com.jakewharton.threetenabp.AndroidThreeTen
+com.jakewharton.threetenabp.BuildConfig
 de.greenrobot.dao.AbstractDao
 de.greenrobot.dao.AbstractDaoMaster
 de.greenrobot.dao.AbstractDaoSession
@@ -4933,11 +4935,6 @@ org.threeten.bp.temporal.WeekFields
 org.threeten.bp.temporal.WeekFields$ComputedDayOfField
 org.threeten.bp.zone.Ser
 org.threeten.bp.zone.StandardZoneRules
-org.threeten.bp.zone.TzdbZoneRulesCompiler
-org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule
-org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBMonthDayTime
-org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBRule
-org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBZone
 org.threeten.bp.zone.TzdbZoneRulesProvider
 org.threeten.bp.zone.TzdbZoneRulesProvider$Version
 org.threeten.bp.zone.ZoneOffsetTransition
@@ -5905,6 +5902,10 @@ pl.srw.billcalculator.R$string: int print_failed
 pl.srw.billcalculator.R$string: int print_io_problem
 pl.srw.billcalculator.R$string: int print_no_pdf_viewer
 pl.srw.billcalculator.R$string: int rachunek_rozliczeniowy
+pl.srw.billcalculator.R$string: int rationale_dialog_cancel
+pl.srw.billcalculator.R$string: int rationale_dialog_msg
+pl.srw.billcalculator.R$string: int rationale_dialog_ok
+pl.srw.billcalculator.R$string: int rationale_dialog_title
 pl.srw.billcalculator.R$string: int reading
 pl.srw.billcalculator.R$string: int reading_day_time
 pl.srw.billcalculator.R$string: int reading_hint_kWh
@@ -6595,6 +6596,7 @@ pl.srw.billcalculator.R$styleable: int ViewStubCompat_android_id
 pl.srw.billcalculator.R$styleable: int ViewStubCompat_android_inflatedId
 pl.srw.billcalculator.R$styleable: int ViewStubCompat_android_layout
 pl.srw.billcalculator.R$xml
+pl.srw.billcalculator.R$xml: int backup
 pl.srw.billcalculator.R$xml: int pge_preferences
 pl.srw.billcalculator.R$xml: int pgnig_preferences
 pl.srw.billcalculator.R$xml: int tauron_preferences
@@ -6602,7 +6604,7 @@ pl.srw.billcalculator.bill.SavedBillsRegistry
 pl.srw.billcalculator.bill.activity.BillActivity
 pl.srw.billcalculator.bill.activity.BillActivity: BillActivity()
 pl.srw.billcalculator.bill.activity.BillActivity: void onEventMainThread(pl.srw.billcalculator.event.PdfGeneratedEvent)
-pl.srw.billcalculator.bill.activity.BillActivity$FileExtention
+pl.srw.billcalculator.bill.activity.BillActivity$FileExtension
 pl.srw.billcalculator.bill.activity.BillActivity$FileType
 pl.srw.billcalculator.bill.activity.EnergyBillActivity
 pl.srw.billcalculator.bill.activity.EnergyBillActivity: java.lang.String dateFrom
@@ -6714,6 +6716,8 @@ pl.srw.billcalculator.dialog.CheckPricesDialogFragment$2
 pl.srw.billcalculator.dialog.CheckPricesDialogFragment$3
 pl.srw.billcalculator.dialog.ConfirmRestoreSettingsDialogFragment
 pl.srw.billcalculator.dialog.ConfirmRestoreSettingsDialogFragment$1
+pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment
+pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment$1
 pl.srw.billcalculator.event.HistoryChangedEvent
 pl.srw.billcalculator.event.PdfGeneratedEvent
 pl.srw.billcalculator.event.PreviousReadingsNeedsUpdateEvent

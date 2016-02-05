@@ -87,11 +87,7 @@ android.support.v4.app.ActivityCompat:
     247:250:public static void setExitSharedElementCallback(android.app.Activity,android.support.v4.app.SharedElementCallback)
     253:256:public static void postponeEnterTransition(android.app.Activity)
     259:262:public static void startPostponedEnterTransition(android.app.Activity)
-    315:338:public static void requestPermissions(android.app.Activity,java.lang.String[],int)
-    362:365:public static boolean shouldShowRequestPermissionRationale(android.app.Activity,java.lang.String)
     370:374:private static android.support.v4.app.ActivityCompat21$SharedElementCallback21 createCallback(android.support.v4.app.SharedElementCallback)
-android.support.v4.app.ActivityCompat$1
-android.support.v4.app.ActivityCompat$OnRequestPermissionsResultCallback
 android.support.v4.app.ActivityCompat$SharedElementCallback21Impl
 android.support.v4.app.ActivityCompat21:
     33:85:ActivityCompat21()
@@ -104,8 +100,8 @@ android.support.v4.app.ActivityCompat21:
 android.support.v4.app.ActivityCompat21$SharedElementCallback21
 android.support.v4.app.ActivityCompat21$SharedElementCallbackImpl
 android.support.v4.app.ActivityCompat22
-android.support.v4.app.ActivityCompatApi23
-android.support.v4.app.ActivityCompatApi23$RequestPermissionsRequestCodeValidator
+android.support.v4.app.ActivityCompatApi23:
+    21:22:ActivityCompatApi23()
 android.support.v4.app.ActivityCompatHoneycomb:
     27:27:ActivityCompatHoneycomb()
     34:35:static void dump(android.app.Activity,java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
@@ -220,7 +216,6 @@ android.support.v4.app.FragmentActivity:
     private static final int HONEYCOMB
     static final int MSG_REALLY_STOPPED
     static final int MSG_RESUME_PENDING
-    boolean mRequestedPermissionsFromFragment
     android.support.v4.media.session.MediaControllerCompat mMediaController
     190:194:public final void setSupportMediaController(android.support.v4.media.session.MediaControllerCompat)
     204:204:public final android.support.v4.media.session.MediaControllerCompat getSupportMediaController()
@@ -230,7 +225,6 @@ android.support.v4.app.FragmentActivity:
     258:259:public void supportStartPostponedEnterTransition()
     588:590:public java.lang.Object getLastCustomNonConfigurationInstance()
     772:772:public android.support.v4.app.LoaderManager getSupportLoaderManager()
-    796:801:public final void validateRequestPermissionsRequestCode(int)
     863:873:private void requestPermissionsFromFragment(android.support.v4.app.Fragment,java.lang.String[],int)
     79:79:static synthetic void access$000(android.support.v4.app.FragmentActivity,android.support.v4.app.Fragment,java.lang.String[],int)
 android.support.v4.app.FragmentActivity$HostCallbacks:
@@ -535,7 +529,6 @@ android.support.v4.content.ContextCompat:
     296:304:private static varargs java.io.File buildPath(java.io.File,java.lang.String[])
     342:346:public static final android.content.res.ColorStateList getColorStateList(android.content.Context,int)
     364:368:public static final int getColor(android.content.Context,int)
-    383:387:public static int checkSelfPermission(android.content.Context,java.lang.String)
     407:412:public final java.io.File getNoBackupFilesDir(android.content.Context)
     432:437:public final java.io.File getCodeCacheDir(android.content.Context)
     442:452:private static synchronized java.io.File createFilesDir(java.io.File)
@@ -8721,6 +8714,9 @@ com.itextpdf.xmp.properties.XMPAliasInfo:
     public abstract java.lang.String getPrefix()
 com.itextpdf.xmp.properties.XMPProperty
 com.itextpdf.xmp.properties.XMPPropertyInfo
+com.jakewharton.threetenabp.AndroidThreeTen:
+    30:31:private AndroidThreeTen()
+com.jakewharton.threetenabp.BuildConfig
 de.greenrobot.dao.AbstractDao:
     70:71:public AbstractDao(de.greenrobot.dao.internal.DaoConfig)
     87:87:public de.greenrobot.dao.AbstractDaoSession getSession()
@@ -10298,6 +10294,7 @@ org.threeten.bp.zone.Ser:
     static final byte SZR
     static final byte ZOT
     static final byte ZOTRULE
+    75:76:public Ser()
     84:87:Ser(byte,java.lang.Object)
     100:101:static void write(java.lang.Object,java.io.DataOutput)
     155:155:private java.lang.Object readResolve()
@@ -10308,92 +10305,13 @@ org.threeten.bp.zone.StandardZoneRules:
     207:207:private java.lang.Object writeReplace()
     309:313:public org.threeten.bp.ZoneOffset getOffset(org.threeten.bp.LocalDateTime)
     453:455:public org.threeten.bp.Duration getDaylightSavings(org.threeten.bp.Instant)
-    466:496:public org.threeten.bp.zone.ZoneOffsetTransition nextTransition(org.threeten.bp.Instant)
-    501:535:public org.threeten.bp.zone.ZoneOffsetTransition previousTransition(org.threeten.bp.Instant)
-    548:552:public java.util.List getTransitions()
-    557:557:public java.util.List getTransitionRules()
-org.threeten.bp.zone.TzdbZoneRulesCompiler:
-    private static final long MJD_1972_01_01
-    private final java.util.Map rules
-    private final java.util.Map zones
-    private final java.util.Map links
-    private final java.util.SortedMap builtZones
-    private java.util.Map deduplicateMap
-    private final java.util.SortedMap leapSeconds
-    private final java.lang.String version
-    private final java.util.List sourceFiles
-    private final java.io.File leapSecondsFile
-    private final boolean verbose
-    105:208:public static void main(java.lang.String[])
-    214:228:private static void outputHelp()
-    235:311:private static void process(java.util.List,java.util.List,java.io.File,boolean,boolean)
-    318:346:private static void outputFilesDat(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)
-    352:357:private static void outputFile(java.io.File,java.lang.String,java.util.SortedMap,java.util.SortedMap)
-    364:382:private static void outputFile(java.io.File,java.util.Map,java.util.Set,java.util.Set,java.util.SortedMap)
-    392:400:private static void outputTzdbEntry(java.util.jar.JarOutputStream,java.util.Map,java.util.Set,java.util.Set)
-    408:450:private static void outputTzdbDat(java.io.OutputStream,java.util.Map,java.util.Set,java.util.Set)
-    459:467:private static void outputLeapSecondEntry(java.util.jar.JarOutputStream,java.util.SortedMap)
-    471:487:private static void outputLeapSecondDat(java.io.OutputStream,java.util.SortedMap)
-    491:524:public TzdbZoneRulesCompiler(java.lang.String,java.util.List,java.io.File,boolean)
-    534:539:public void compile()
-    547:547:public java.util.SortedMap getZones()
-    556:556:public java.util.SortedMap getLeapSeconds()
-    565:565:private org.threeten.bp.LocalDate getMostRecentLeapSecond()
-    574:575:void setDeduplicateMap(java.util.Map)
-    584:588:private void parseFiles()
-    596:625:private void parseLeapSecondsFile()
-    642:679:private org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule parseLeapSecondRule(java.lang.String)
-    689:753:private void parseFile(java.io.File)
-    761:776:private void parseRuleLine(java.util.StringTokenizer)
-    785:809:private boolean parseZoneLine(java.util.StringTokenizer,java.util.List)
-    820:854:private void parseMonthDayTime(java.util.StringTokenizer,org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBMonthDayTime)
-    857:865:private int parseYear(java.lang.String,int)
-    869:875:private org.threeten.bp.Month parseMonth(java.lang.String)
-    879:885:private org.threeten.bp.DayOfWeek parseDayOfWeek(java.lang.String)
-    889:889:private boolean matches(java.lang.String,java.lang.String)
-    893:893:private java.lang.String parseOptional(java.lang.String)
-    897:916:private int parseSecs(java.lang.String)
-    920:921:private org.threeten.bp.ZoneOffset parseOffset(java.lang.String)
-    925:925:private int parsePeriod(java.lang.String)
-    929:946:private org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition parseTimeDefinition(char)
-    958:993:private void buildZoneRules()
-    1005:1008:java.lang.Object deduplicate(java.lang.Object)
-    1018:1021:private void printVerbose(java.lang.String)
-org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule:
-    final org.threeten.bp.LocalDate leapDate
-    byte secondAdjustment
-    1145:1148:public TzdbZoneRulesCompiler$LeapSecondRule(org.threeten.bp.LocalDate,byte)
-org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBMonthDayTime:
-    org.threeten.bp.Month month
-    int dayOfMonth
-    boolean adjustForwards
-    org.threeten.bp.DayOfWeek dayOfWeek
-    org.threeten.bp.LocalTime time
-    boolean endOfDay
-    org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition timeDefinition
-    final synthetic org.threeten.bp.zone.TzdbZoneRulesCompiler this$0
-    1027:1041:TzdbZoneRulesCompiler$TZDBMonthDayTime(org.threeten.bp.zone.TzdbZoneRulesCompiler)
-    1044:1050:void adjustToFowards(int)
-org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBRule:
-    int startYear
-    int endYear
-    int savingsAmount
-    java.lang.String text
-    final synthetic org.threeten.bp.zone.TzdbZoneRulesCompiler this$0
-    1057:1057:TzdbZoneRulesCompiler$TZDBRule(org.threeten.bp.zone.TzdbZoneRulesCompiler)
-    1068:1070:void addToBuilder(org.threeten.bp.zone.ZoneRulesBuilder)
-org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBZone:
-    org.threeten.bp.ZoneOffset standardOffset
-    java.lang.Integer fixedSavingsSecs
-    java.lang.String savingsRule
-    java.lang.String text
-    org.threeten.bp.Year year
-    final synthetic org.threeten.bp.zone.TzdbZoneRulesCompiler this$0
-    1077:1077:TzdbZoneRulesCompiler$TZDBZone(org.threeten.bp.zone.TzdbZoneRulesCompiler)
-    1090:1108:org.threeten.bp.zone.ZoneRulesBuilder addToBuilder(org.threeten.bp.zone.ZoneRulesBuilder,java.util.Map)
-    1112:1131:private org.threeten.bp.LocalDateTime toDateTime(int)
+    466:500:public org.threeten.bp.zone.ZoneOffsetTransition nextTransition(org.threeten.bp.Instant)
+    505:543:public org.threeten.bp.zone.ZoneOffsetTransition previousTransition(org.threeten.bp.Instant)
+    556:560:public java.util.List getTransitions()
+    565:565:public java.util.List getTransitionRules()
 org.threeten.bp.zone.TzdbZoneRulesProvider:
-    110:117:protected java.util.NavigableMap provideVersions(java.lang.String)
+    68:109:public TzdbZoneRulesProvider(java.net.URL)
+    146:153:protected java.util.NavigableMap provideVersions(java.lang.String)
 org.threeten.bp.zone.ZoneOffsetTransition:
     private static final long serialVersionUID
     102:111:public static org.threeten.bp.zone.ZoneOffsetTransition of(org.threeten.bp.LocalDateTime,org.threeten.bp.ZoneOffset,org.threeten.bp.ZoneOffset)
@@ -10432,62 +10350,16 @@ org.threeten.bp.zone.ZoneRules$Fixed:
     472:472:public org.threeten.bp.zone.ZoneOffsetTransition previousTransition(org.threeten.bp.Instant)
     477:477:public java.util.List getTransitions()
     482:482:public java.util.List getTransitionRules()
-org.threeten.bp.zone.ZoneRulesBuilder:
-    private java.util.Map deduplicateMap
-    120:129:public org.threeten.bp.zone.ZoneRulesBuilder addWindow(org.threeten.bp.ZoneOffset,org.threeten.bp.LocalDateTime,org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition)
-    149:149:public org.threeten.bp.zone.ZoneRulesBuilder addWindowForever(org.threeten.bp.ZoneOffset)
-    168:173:public org.threeten.bp.zone.ZoneRulesBuilder setFixedSavingsToWindow(int)
-    195:196:public org.threeten.bp.zone.ZoneRulesBuilder addRuleToWindow(org.threeten.bp.LocalDateTime,org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition,int)
-    230:230:public org.threeten.bp.zone.ZoneRulesBuilder addRuleToWindow(int,org.threeten.bp.Month,int,org.threeten.bp.LocalTime,boolean,org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition,int)
-    267:283:public org.threeten.bp.zone.ZoneRulesBuilder addRuleToWindow(int,int,org.threeten.bp.Month,int,org.threeten.bp.DayOfWeek,org.threeten.bp.LocalTime,boolean,org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition,int)
-    299:299:public org.threeten.bp.zone.ZoneRules toRules(java.lang.String)
-    315:400:org.threeten.bp.zone.ZoneRules toRules(java.lang.String,java.util.Map)
-    414:417:java.lang.Object deduplicate(java.lang.Object)
-org.threeten.bp.zone.ZoneRulesBuilder$TZRule:
-    private org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition timeDefinition
-    private int savingAmountSecs
-    final synthetic org.threeten.bp.zone.ZoneRulesBuilder this$0
-    654:664:ZoneRulesBuilder$TZRule(org.threeten.bp.zone.ZoneRulesBuilder,int,org.threeten.bp.Month,int,org.threeten.bp.DayOfWeek,org.threeten.bp.LocalTime,boolean,org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition,int)
-    675:681:org.threeten.bp.zone.ZoneOffsetTransition toTransition(org.threeten.bp.ZoneOffset,int)
-    693:710:org.threeten.bp.zone.ZoneOffsetTransitionRule toTransitionRule(org.threeten.bp.ZoneOffset,int)
-    621:621:static synthetic int access$300(org.threeten.bp.zone.ZoneRulesBuilder$TZRule)
-    621:621:static synthetic int access$500(org.threeten.bp.zone.ZoneRulesBuilder$TZRule)
-    621:621:static synthetic org.threeten.bp.Month access$600(org.threeten.bp.zone.ZoneRulesBuilder$TZRule)
-    621:621:static synthetic int access$700(org.threeten.bp.zone.ZoneRulesBuilder$TZRule)
-    621:621:static synthetic org.threeten.bp.DayOfWeek access$800(org.threeten.bp.zone.ZoneRulesBuilder$TZRule)
-    621:621:static synthetic org.threeten.bp.LocalTime access$900(org.threeten.bp.zone.ZoneRulesBuilder$TZRule)
-    621:621:static synthetic boolean access$1000(org.threeten.bp.zone.ZoneRulesBuilder$TZRule)
-    621:621:static synthetic org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition access$1100(org.threeten.bp.zone.ZoneRulesBuilder$TZRule)
-    621:621:static synthetic int access$502(org.threeten.bp.zone.ZoneRulesBuilder$TZRule,int)
-org.threeten.bp.zone.ZoneRulesBuilder$TZWindow:
-    private final org.threeten.bp.ZoneOffset standardOffset
-    private final org.threeten.bp.LocalDateTime windowEnd
-    private final org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition timeDefinition
-    private java.lang.Integer fixedSavingAmountSecs
-    private java.util.List ruleList
-    private int maxLastRuleStartYear
-    private java.util.List lastRuleList
-    final synthetic org.threeten.bp.zone.ZoneRulesBuilder this$0
-    437:458:ZoneRulesBuilder$TZWindow(org.threeten.bp.zone.ZoneRulesBuilder,org.threeten.bp.ZoneOffset,org.threeten.bp.LocalDateTime,org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition)
-    467:471:void setFixedSavings(int)
-    500:522:void addRule(int,int,org.threeten.bp.Month,int,org.threeten.bp.DayOfWeek,org.threeten.bp.LocalTime,boolean,org.threeten.bp.zone.ZoneOffsetTransitionRule$TimeDefinition,int)
-    531:535:void validateWindowOrder(org.threeten.bp.zone.ZoneRulesBuilder$TZWindow)
-    545:582:void tidy(int)
-    590:590:boolean isSingleWindowStandardOffset()
-    601:601:org.threeten.bp.ZoneOffset createWallOffset(int)
-    611:613:long createDateTimeEpochSecond(int)
-    426:426:static synthetic org.threeten.bp.ZoneOffset access$000(org.threeten.bp.zone.ZoneRulesBuilder$TZWindow)
-    426:426:static synthetic java.lang.Integer access$100(org.threeten.bp.zone.ZoneRulesBuilder$TZWindow)
-    426:426:static synthetic java.util.List access$200(org.threeten.bp.zone.ZoneRulesBuilder$TZWindow)
-    426:426:static synthetic java.util.List access$400(org.threeten.bp.zone.ZoneRulesBuilder$TZWindow)
+org.threeten.bp.zone.ZoneRulesBuilder
+org.threeten.bp.zone.ZoneRulesBuilder$TZRule
+org.threeten.bp.zone.ZoneRulesBuilder$TZWindow
 org.threeten.bp.zone.ZoneRulesException:
     private static final long serialVersionUID
 org.threeten.bp.zone.ZoneRulesProvider:
-    171:172:public static java.util.NavigableMap getVersions(java.lang.String)
-    210:213:public static void registerProvider(org.threeten.bp.zone.ZoneRulesProvider)
-    249:253:public static boolean refresh()
+    161:162:public static java.util.NavigableMap getVersions(java.lang.String)
+    239:243:public static boolean refresh()
     protected abstract java.util.NavigableMap provideVersions(java.lang.String)
-    329:329:protected boolean provideRefresh()
+    319:319:protected boolean provideRefresh()
 pl.srw.billcalculator.AboutActivity:
     private static final java.lang.String RECEIVER_EMAIL
     private static final java.lang.String BETA_HTTP
@@ -10517,9 +10389,12 @@ pl.srw.billcalculator.R$style
 pl.srw.billcalculator.R$styleable
 pl.srw.billcalculator.R$xml
 pl.srw.billcalculator.bill.activity.BillActivity:
+    private static final java.lang.String TAG
     public static final java.lang.String MIME_APPLICATION_PDF
     public static final java.lang.String MIME_IMAGE
-pl.srw.billcalculator.bill.activity.BillActivity$FileExtention
+    public static final java.lang.String PERMISSION_STORAGE
+    public static final int PERMISSION_REQUEST_CODE
+pl.srw.billcalculator.bill.activity.BillActivity$FileExtension
 pl.srw.billcalculator.bill.activity.BillActivity$FileType
 pl.srw.billcalculator.bill.activity.PgeBillActivity:
     private static final int PRICE_SCALE
@@ -10741,6 +10616,9 @@ pl.srw.billcalculator.db.dao.TauronPricesDao:
     185:185:protected boolean isEntityUpdateable()
     17:17:public bridge synthetic java.lang.Object getKey(java.lang.Object)
     17:17:public bridge synthetic void readEntity(android.database.Cursor,java.lang.Object,int)
+pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment:
+    private static final java.lang.String ARGS_PERMISSIONS
+    private static final java.lang.String ARGS_REQUEST_CODE
 pl.srw.billcalculator.form.FormValueValidator:
     13:15:public FormValueValidator()
 pl.srw.billcalculator.form.MainActivity:

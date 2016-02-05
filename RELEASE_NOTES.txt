@@ -1,6 +1,8 @@
-v.1.4.1
+v.1.5
  - fix for PGNiG dystrybucja stała to count month decimal part
  - fix NPE on missing Storage permission
+ - config for Android M auto-backup
+ - runtime permissions for printing feature
 v.1.4
  - adding Tauron provider
  - print bill
