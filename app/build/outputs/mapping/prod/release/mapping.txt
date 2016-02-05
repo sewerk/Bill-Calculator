@@ -13,8 +13,23 @@ android.support.v4.animation.HoneycombMr1AnimatorCompatProvider -> android.suppo
     130:134:void clearInterpolator(android.view.View) -> a
 android.support.v4.app.ActivityCompat -> android.support.v4.app.ActivityCompat:
     193:198:void finishAfterTransition(android.app.Activity) -> a
+    315:338:void requestPermissions(android.app.Activity,java.lang.String[],int) -> a
+    362:365:boolean shouldShowRequestPermissionRationale(android.app.Activity,java.lang.String) -> a
+android.support.v4.app.ActivityCompat$1 -> android.support.v4.app.ActivityCompat$1:
+    java.lang.String[] val$permissions -> a
+    android.app.Activity val$activity -> b
+    int val$requestCode -> c
+    319:319:void <init>(java.lang.String[],android.app.Activity,int) -> <init>
+    322:335:void run() -> run
+android.support.v4.app.ActivityCompat$OnRequestPermissionsResultCallback -> android.support.v4.app.ActivityCompat$OnRequestPermissionsResultCallback:
+    void onRequestPermissionsResult(int,java.lang.String[],int[]) -> onRequestPermissionsResult
 android.support.v4.app.ActivityCompat21 -> android.support.v4.app.ActivityCompat21:
     40:41:void finishAfterTransition(android.app.Activity) -> a
+android.support.v4.app.ActivityCompatApi23 -> android.support.v4.app.ActivityCompatApi23:
+    28:33:void requestPermissions(android.app.Activity,java.lang.String[],int) -> a
+    37:37:boolean shouldShowRequestPermissionRationale(android.app.Activity,java.lang.String) -> a
+android.support.v4.app.ActivityCompatApi23$RequestPermissionsRequestCodeValidator -> android.support.v4.app.ActivityCompatApi23$RequestPermissionsRequestCodeValidator:
+    void validateRequestPermissionsRequestCode(int) -> a
 android.support.v4.app.ActivityCompatHoneycomb -> android.support.v4.app.ActivityCompatHoneycomb:
     29:30:void invalidateOptionsMenu(android.app.Activity) -> a
 android.support.v4.app.BackStackRecord -> android.support.v4.app.BackStackRecord:
@@ -324,6 +339,7 @@ android.support.v4.app.FragmentActivity -> android.support.v4.app.FragmentActivi
     boolean mReallyStopped -> f
     boolean mRetaining -> g
     boolean mOptionsMenuInvalidated -> h
+    boolean mRequestedPermissionsFromFragment -> i
     79:875:void <init>() -> <init>
     139:162:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
     169:172:void onBackPressed() -> onBackPressed
@@ -359,6 +375,7 @@ android.support.v4.app.FragmentActivity -> android.support.v4.app.FragmentActivi
     761:761:void onAttachFragment(android.support.v4.app.Fragment) -> a
     768:768:android.support.v4.app.FragmentManager getSupportFragmentManager() -> f
     781:785:void startActivityForResult(android.content.Intent,int) -> startActivityForResult
+    796:801:void validateRequestPermissionsRequestCode(int) -> a
     822:841:void onRequestPermissionsResult(int,java.lang.String[],int[]) -> onRequestPermissionsResult
     848:856:void startActivityFromFragment(android.support.v4.app.Fragment,android.content.Intent,int) -> a
     79:79:android.view.View onCreateView(android.view.View,java.lang.String,android.content.Context,android.util.AttributeSet) -> onCreateView
@@ -852,6 +869,7 @@ android.support.v4.app.SuperNotCalledException -> android.support.v4.app.SuperNo
     23:24:void <init>(java.lang.String) -> <init>
 android.support.v4.content.ContextCompat -> android.support.v4.content.ContextCompat:
     319:323:android.graphics.drawable.Drawable getDrawable(android.content.Context,int) -> a
+    383:387:int checkSelfPermission(android.content.Context,java.lang.String) -> a
 android.support.v4.content.ContextCompatApi21 -> android.support.v4.content.ContextCompatApi21:
     26:26:android.graphics.drawable.Drawable getDrawable(android.content.Context,int) -> a
 android.support.v4.content.Loader -> android.support.v4.content.Loader:
@@ -17969,6 +17987,10 @@ com.itextpdf.xmp.properties.XMPAliasInfo -> com.itextpdf.xmp.properties.XMPAlias
     java.lang.String getNamespace() -> a
     java.lang.String getPropName() -> b
     com.itextpdf.xmp.options.AliasOptions getAliasForm() -> c
+com.jakewharton.threetenabp.AndroidThreeTen -> com.jakewharton.threetenabp.AndroidThreeTen:
+    java.util.concurrent.atomic.AtomicBoolean initialized -> a
+    15:28:void init(android.app.Application) -> a
+    12:12:void <clinit>() -> <clinit>
 de.greenrobot.dao.AbstractDao -> de.greenrobot.dao.AbstractDao:
     android.database.sqlite.SQLiteDatabase db -> a
     de.greenrobot.dao.internal.DaoConfig config -> b
@@ -21271,7 +21293,6 @@ org.threeten.bp.temporal.WeekFields$ComputedDayOfField -> org.threeten.bp.tempor
 org.threeten.bp.zone.Ser -> org.threeten.bp.zone.Ser:
     byte type -> a
     java.lang.Object object -> b
-    75:76:void <init>() -> <init>
     96:97:void writeExternal(java.io.ObjectOutput) -> writeExternal
     104:118:void writeInternal(byte,java.lang.Object,java.io.DataOutput) -> a
     127:129:void readExternal(java.io.ObjectInput) -> readExternal
@@ -21302,37 +21323,33 @@ org.threeten.bp.zone.StandardZoneRules -> org.threeten.bp.zone.StandardZoneRules
     423:436:org.threeten.bp.zone.ZoneOffsetTransition[] findTransitionArray(int) -> a
     442:448:org.threeten.bp.ZoneOffset getStandardOffset(org.threeten.bp.Instant) -> b
     460:460:boolean isDaylightSavings(org.threeten.bp.Instant) -> c
-    540:542:int findYear(long,org.threeten.bp.ZoneOffset) -> a
-    563:577:boolean equals(java.lang.Object) -> equals
-    582:582:int hashCode() -> hashCode
-    597:597:java.lang.String toString() -> toString
-org.threeten.bp.zone.TzdbZoneRulesCompiler -> org.threeten.bp.zone.TzdbZoneRulesCompiler:
-    org.threeten.bp.format.DateTimeFormatter TIME_PARSER -> a
-    88:93:void <clinit>() -> <clinit>
-org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule -> org.threeten.bp.zone.TzdbZoneRulesCompiler$LeapSecondRule:
-org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBMonthDayTime -> org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBMonthDayTime:
-org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBRule -> org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBRule:
-org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBZone -> org.threeten.bp.zone.TzdbZoneRulesCompiler$TZDBZone:
+    548:550:int findYear(long,org.threeten.bp.ZoneOffset) -> a
+    571:585:boolean equals(java.lang.Object) -> equals
+    590:590:int hashCode() -> hashCode
+    605:605:java.lang.String toString() -> toString
 org.threeten.bp.zone.TzdbZoneRulesProvider -> org.threeten.bp.zone.TzdbZoneRulesProvider:
     java.util.Set regionIds -> a
     java.util.concurrent.ConcurrentNavigableMap versions -> b
     java.util.Set loadedUrls -> c
     68:90:void <init>() -> <init>
-    95:95:java.util.Set provideZoneIds() -> a
-    100:105:org.threeten.bp.zone.ZoneRules provideRules(java.lang.String,boolean) -> a
-    129:148:boolean load(java.lang.ClassLoader) -> a
-    158:207:java.lang.Iterable load(java.net.URL) -> a
-    214:214:java.lang.String toString() -> toString
+    68:126:void <init>(java.io.InputStream) -> <init>
+    131:131:java.util.Set provideZoneIds() -> a
+    136:141:org.threeten.bp.zone.ZoneRules provideRules(java.lang.String,boolean) -> a
+    165:176:boolean load(java.lang.ClassLoader) -> a
+    189:201:boolean load(java.net.URL) -> a
+    211:222:boolean load(java.io.InputStream) -> a
+    232:275:java.lang.Iterable loadData(java.io.InputStream) -> b
+    280:280:java.lang.String toString() -> toString
 org.threeten.bp.zone.TzdbZoneRulesProvider$Version -> org.threeten.bp.zone.TzdbZoneRulesProvider$Version:
     java.lang.String versionId -> a
     java.lang.String[] regionArray -> b
     short[] ruleIndices -> c
     java.util.concurrent.atomic.AtomicReferenceArray ruleData -> d
-    227:232:void <init>(java.lang.String,java.lang.String[],short[],java.util.concurrent.atomic.AtomicReferenceArray) -> <init>
-    235:242:org.threeten.bp.zone.ZoneRules getRules(java.lang.String) -> a
-    247:254:org.threeten.bp.zone.ZoneRules createRule(short) -> a
-    259:259:java.lang.String toString() -> toString
-    221:221:java.lang.String access$000(org.threeten.bp.zone.TzdbZoneRulesProvider$Version) -> a
+    293:298:void <init>(java.lang.String,java.lang.String[],short[],java.util.concurrent.atomic.AtomicReferenceArray) -> <init>
+    301:308:org.threeten.bp.zone.ZoneRules getRules(java.lang.String) -> a
+    313:320:org.threeten.bp.zone.ZoneRules createRule(short) -> a
+    325:325:java.lang.String toString() -> toString
+    287:287:java.lang.String access$000(org.threeten.bp.zone.TzdbZoneRulesProvider$Version) -> a
 org.threeten.bp.zone.ZoneOffsetTransition -> org.threeten.bp.zone.ZoneOffsetTransition:
     org.threeten.bp.LocalDateTime transition -> a
     org.threeten.bp.ZoneOffset offsetBefore -> b
@@ -21408,47 +21425,33 @@ org.threeten.bp.zone.ZoneRules$Fixed -> org.threeten.bp.zone.ZoneRules$Fixed:
     488:498:boolean equals(java.lang.Object) -> equals
     503:503:int hashCode() -> hashCode
     512:512:java.lang.String toString() -> toString
-org.threeten.bp.zone.ZoneRulesBuilder -> org.threeten.bp.zone.ZoneRulesBuilder:
-    java.util.List windowList -> a
-    77:96:void <init>() -> <init>
-org.threeten.bp.zone.ZoneRulesBuilder$TZRule -> org.threeten.bp.zone.ZoneRulesBuilder$TZRule:
-    int year -> a
-    org.threeten.bp.Month month -> b
-    int dayOfMonthIndicator -> c
-    org.threeten.bp.DayOfWeek dayOfWeek -> d
-    org.threeten.bp.LocalTime time -> e
-    boolean timeEndOfDay -> f
-    716:725:int compareTo(org.threeten.bp.zone.ZoneRulesBuilder$TZRule) -> a
-    730:745:org.threeten.bp.LocalDate toLocalDate() -> a
-    621:621:int compareTo(java.lang.Object) -> compareTo
-org.threeten.bp.zone.ZoneRulesBuilder$TZWindow -> org.threeten.bp.zone.ZoneRulesBuilder$TZWindow:
 org.threeten.bp.zone.ZoneRulesException -> org.threeten.bp.zone.ZoneRulesException:
     58:59:void <init>(java.lang.String) -> <init>
     68:69:void <init>(java.lang.String,java.lang.Throwable) -> <init>
 org.threeten.bp.zone.ZoneRulesProvider -> org.threeten.bp.zone.ZoneRulesProvider:
     java.util.concurrent.CopyOnWriteArrayList PROVIDERS -> a
     java.util.concurrent.ConcurrentMap ZONES -> b
-    115:115:java.util.Set getAvailableZoneIds() -> b
-    142:143:org.threeten.bp.zone.ZoneRules getRules(java.lang.String,boolean) -> b
-    183:190:org.threeten.bp.zone.ZoneRulesProvider getProvider(java.lang.String) -> a
-    222:231:void registerProvider0(org.threeten.bp.zone.ZoneRulesProvider) -> a
-    260:261:void <init>() -> <init>
+    105:105:java.util.Set getAvailableZoneIds() -> b
+    132:133:org.threeten.bp.zone.ZoneRules getRules(java.lang.String,boolean) -> b
+    173:180:org.threeten.bp.zone.ZoneRulesProvider getProvider(java.lang.String) -> a
+    200:203:void registerProvider(org.threeten.bp.zone.ZoneRulesProvider) -> a
+    212:221:void registerProvider0(org.threeten.bp.zone.ZoneRulesProvider) -> b
+    250:251:void <init>() -> <init>
     java.util.Set provideZoneIds() -> a
     org.threeten.bp.zone.ZoneRules provideRules(java.lang.String,boolean) -> a
-    81:104:void <clinit>() -> <clinit>
+    78:94:void <clinit>() -> <clinit>
 pl.srw.billcalculator.AboutActivity -> pl.srw.billcalculator.AboutActivity:
     android.widget.TextView tvVersion -> a
     android.widget.TextView tvLinkEmail -> b
     android.widget.TextView tvLinkGPlus -> c
-    20:20:void <init>() -> <init>
-    31:36:void onCreate(android.os.Bundle) -> onCreate
-    39:42:void setLinks() -> c
-    45:47:void setEmailMeLink() -> d
-    50:53:void setGPlusLink() -> e
-    56:58:void setLicenseLink() -> f
-    62:66:java.lang.String getApkVersion() -> g
-    71:79:void sendEmail() -> a
-    83:84:void closeAboutDialog() -> b
+    19:19:void <init>() -> <init>
+    30:35:void onCreate(android.os.Bundle) -> onCreate
+    38:41:void setLinks() -> c
+    44:46:void setEmailMeLink() -> d
+    49:52:void setGPlusLink() -> e
+    55:57:void setLicenseLink() -> f
+    61:69:void sendEmail() -> a
+    73:74:void closeAboutDialog() -> b
 pl.srw.billcalculator.AboutActivity$$ViewInjector -> pl.srw.billcalculator.AboutActivity$$ViewInjector:
     8:8:void <init>() -> <init>
     11:34:void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.AboutActivity,java.lang.Object) -> inject
@@ -21478,8 +21481,8 @@ pl.srw.billcalculator.BackableActivity -> pl.srw.billcalculator.BackableActivity
     26:30:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
 pl.srw.billcalculator.BillCalculator -> pl.srw.billcalculator.BillCalculator:
     android.content.Context context -> a
-    15:15:void <init>() -> <init>
-    22:33:void onCreate() -> onCreate
+    17:17:void <init>() -> <init>
+    24:36:void onCreate() -> onCreate
 pl.srw.billcalculator.bill.SavedBillsRegistry -> pl.srw.billcalculator.bill.SavedBillsRegistry:
     pl.srw.billcalculator.bill.SavedBillsRegistry INSTANCE -> a
     android.support.v4.util.SimpleArrayMap registry -> b
@@ -21495,19 +21498,22 @@ pl.srw.billcalculator.bill.SavedBillsRegistry -> pl.srw.billcalculator.bill.Save
 pl.srw.billcalculator.bill.activity.BillActivity -> pl.srw.billcalculator.bill.activity.BillActivity:
     java.lang.String PRINT_TARGET_DIR -> a
     android.view.Menu menu -> b
-    37:126:void <init>() -> <init>
-    47:49:void onCreate(android.os.Bundle) -> onCreate
-    53:57:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
-    63:66:void onDestroy() -> onDestroy
-    72:97:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-    101:108:void onEventMainThread(pl.srw.billcalculator.event.PdfGeneratedEvent) -> onEventMainThread
-    115:124:void openFile(java.io.File,java.lang.String) -> a
-    132:139:java.io.File getTargetFile(java.lang.String) -> a
+    43:169:void <init>() -> <init>
+    56:58:void onCreate(android.os.Bundle) -> onCreate
+    62:66:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    72:75:void onDestroy() -> onDestroy
+    81:97:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    102:114:void onRequestPermissionsResult(int,java.lang.String[],int[]) -> onRequestPermissionsResult
+    117:120:void showExplanationForRequestPermission() -> b
+    123:141:void performPrint() -> c
+    144:151:void onEventMainThread(pl.srw.billcalculator.event.PdfGeneratedEvent) -> onEventMainThread
+    158:167:void openFile(java.io.File,java.lang.String) -> a
+    175:182:java.io.File getTargetFile(java.lang.String) -> a
     java.lang.String getBillIdentifier() -> a
-    145:150:void setPrintInProgress() -> b
-    153:160:void setPrintFinished() -> c
-    163:167:boolean isPrintTaskRunning() -> d
-    39:39:void <clinit>() -> <clinit>
+    188:193:void setPrintInProgress() -> d
+    196:203:void setPrintFinished() -> e
+    206:210:boolean isPrintTaskRunning() -> f
+    46:46:void <clinit>() -> <clinit>
 pl.srw.billcalculator.bill.activity.EnergyBillActivity -> pl.srw.billcalculator.bill.activity.EnergyBillActivity:
     pl.srw.billcalculator.bill.calculation.CalculatedEnergyBill bill -> a
     java.lang.String dateFrom -> b
@@ -22301,6 +22307,17 @@ pl.srw.billcalculator.dialog.ConfirmRestoreSettingsDialogFragment$1 -> pl.srw.bi
     pl.srw.billcalculator.dialog.ConfirmRestoreSettingsDialogFragment this$0 -> a
     31:31:void <init>(pl.srw.billcalculator.dialog.ConfirmRestoreSettingsDialogFragment) -> <init>
     34:37:void onClick(android.content.DialogInterface,int) -> onClick
+pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment -> pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment:
+    24:29:pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment newInstance(java.lang.String[],int) -> a
+    32:33:void <init>() -> <init>
+    37:37:android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
+    46:46:android.content.DialogInterface$OnClickListener onAccepted() -> a
+    63:68:void goToSettings(int) -> a
+    18:18:void access$000(pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment,int) -> a
+pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment$1 -> pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment$1:
+    pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment this$0 -> a
+    46:46:void <init>(pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment) -> <init>
+    49:58:void onClick(android.content.DialogInterface,int) -> onClick
 pl.srw.billcalculator.event.HistoryChangedEvent -> pl.srw.billcalculator.event.HistoryChangedEvent:
     pl.srw.billcalculator.type.Provider forProvider -> a
     14:14:pl.srw.billcalculator.type.Provider getForProvider() -> a
@@ -22329,8 +22346,8 @@ pl.srw.billcalculator.form.FormValueValidator -> pl.srw.billcalculator.form.Form
 pl.srw.billcalculator.form.FormValueValidator$OnErrorCallback -> pl.srw.billcalculator.form.FormValueValidator$OnErrorCallback:
     void onError(int) -> a
 pl.srw.billcalculator.form.MainActivity -> pl.srw.billcalculator.form.MainActivity:
-    pl.srw.billcalculator.form.view.SlidingTabLayout slidingTabs -> i
-    android.support.v4.view.ViewPager formPager -> j
+    pl.srw.billcalculator.form.view.SlidingTabLayout slidingTabs -> j
+    android.support.v4.view.ViewPager formPager -> k
     26:26:void <init>() -> <init>
     35:44:void onCreate(android.os.Bundle) -> onCreate
     47:50:void initFormSwitching() -> g
