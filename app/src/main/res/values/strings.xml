@@ -27,6 +27,11 @@
     <string name="print_failed">Saving to PDF failed</string>
     <string name="print_no_pdf_viewer">"Bill printed to file: "</string>
     <string name="error_permission_storage_missing">Missing Storage permission</string>
+    <string name="rationale_dialog_title">Required permission</string>
+    <string name="rationale_dialog_msg">Printing to PDF requires Storage permission to create actual PDF file.</string>
+    <string name="rationale_dialog_ok">Accept</string>
+    <string name="rationale_dialog_cancel">Cancel</string>
+
     <!-- energy_bill -->
     <string name="energy_bill">Energy bill</string>
     <string name="rachunek_rozliczeniowy" translatable="false">RACHUNEK ROZLICZENIOWY z dnia %1$s\nZA ENERGIĘ ELEKTRYCZNĄ I USŁUGI DYSTRYBUCJI</string>
