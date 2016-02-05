@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <include domain="database" path="pl.srw.billcalculator.db" />
+    <include domain="sharedpref" path="pl.srw.billcalculator_preferences.xml" />
+    <include domain="sharedpref" path="PreferencesFile.xml" />
+</full-backup-content>
