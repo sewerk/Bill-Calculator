@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.history;
 
+import android.app.backup.BackupManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -107,6 +108,7 @@ public class HistoryActivity extends BackableActivity {
                     for (Provider provider : Provider.values())//TODO: optimise to send if needed
                         EventBus.getDefault().post(new HistoryChangedEvent(provider));
                     dataObserver.onChanged();
+                    new BackupManager(HistoryActivity.this).dataChanged();
                     return true;
             }
             return false;

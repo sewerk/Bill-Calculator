@@ -28,8 +28,10 @@
     <string name="print_no_pdf_viewer">"Bill printed to file: "</string>
     <string name="error_permission_storage_missing">Missing Storage permission</string>
     <string name="rationale_dialog_title">Required permission</string>
-    <string name="rationale_dialog_msg">Printing to PDF requires Storage permission to create actual PDF file.</string>
+    <string name="rationale_dialog_msg">Printing the bill requires device Storage access to create file. Denying access disables the printing!</string>
     <string name="rationale_dialog_ok">Accept</string>
+    <string name="rationale_dialog_goto_settings_msg">Printing the bill requires device Storage access to create file. Access can be approved through:\nPermissions > Storage</string>
+    <string name="rationale_dialog_goto_settings">Go to Settings</string>
     <string name="rationale_dialog_cancel">Cancel</string>
 
     <!-- energy_bill -->

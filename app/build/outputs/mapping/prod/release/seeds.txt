@@ -5903,6 +5903,8 @@ pl.srw.billcalculator.R$string: int print_io_problem
 pl.srw.billcalculator.R$string: int print_no_pdf_viewer
 pl.srw.billcalculator.R$string: int rachunek_rozliczeniowy
 pl.srw.billcalculator.R$string: int rationale_dialog_cancel
+pl.srw.billcalculator.R$string: int rationale_dialog_goto_settings
+pl.srw.billcalculator.R$string: int rationale_dialog_goto_settings_msg
 pl.srw.billcalculator.R$string: int rationale_dialog_msg
 pl.srw.billcalculator.R$string: int rationale_dialog_ok
 pl.srw.billcalculator.R$string: int rationale_dialog_title
@@ -6600,6 +6602,9 @@ pl.srw.billcalculator.R$xml: int backup
 pl.srw.billcalculator.R$xml: int pge_preferences
 pl.srw.billcalculator.R$xml: int pgnig_preferences
 pl.srw.billcalculator.R$xml: int tauron_preferences
+pl.srw.billcalculator.backup.DbBackupHelper
+pl.srw.billcalculator.backup.PrefsAndDbBackupAgent
+pl.srw.billcalculator.backup.PrefsAndDbBackupAgent: PrefsAndDbBackupAgent()
 pl.srw.billcalculator.bill.SavedBillsRegistry
 pl.srw.billcalculator.bill.activity.BillActivity
 pl.srw.billcalculator.bill.activity.BillActivity: BillActivity()

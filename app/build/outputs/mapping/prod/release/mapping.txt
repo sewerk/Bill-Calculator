@@ -21483,6 +21483,14 @@ pl.srw.billcalculator.BillCalculator -> pl.srw.billcalculator.BillCalculator:
     android.content.Context context -> a
     17:17:void <init>() -> <init>
     24:36:void onCreate() -> onCreate
+pl.srw.billcalculator.backup.DbBackupHelper -> pl.srw.billcalculator.backup.DbBackupHelper:
+    12:13:void <init>(android.content.Context,java.lang.String) -> <init>
+pl.srw.billcalculator.backup.PrefsAndDbBackupAgent -> pl.srw.billcalculator.backup.PrefsAndDbBackupAgent:
+    java.util.concurrent.locks.Lock lock -> a
+    20:24:void <init>() -> <init>
+    28:32:void onCreate() -> onCreate
+    37:44:void onBackup(android.os.ParcelFileDescriptor,android.app.backup.BackupDataOutput,android.os.ParcelFileDescriptor) -> onBackup
+    49:58:void onRestore(android.app.backup.BackupDataInput,int,android.os.ParcelFileDescriptor) -> onRestore
 pl.srw.billcalculator.bill.SavedBillsRegistry -> pl.srw.billcalculator.bill.SavedBillsRegistry:
     pl.srw.billcalculator.bill.SavedBillsRegistry INSTANCE -> a
     android.support.v4.util.SimpleArrayMap registry -> b
@@ -21730,13 +21738,13 @@ pl.srw.billcalculator.bill.service.BillStoringService -> pl.srw.billcalculator.b
     int readingDayTo -> f
     int readingNightFrom -> g
     int readingNightTo -> h
-    33:34:void <init>(java.lang.String) -> <init>
-    39:46:void onHandleIntent(android.content.Intent) -> onHandleIntent
+    34:35:void <init>(java.lang.String) -> <init>
+    40:48:void onHandleIntent(android.content.Intent) -> onHandleIntent
     pl.srw.billcalculator.type.Provider getProvider() -> a
     void storeBill(pl.srw.billcalculator.bill.calculation.CalculatedBill,pl.srw.billcalculator.db.Prices) -> a
     pl.srw.billcalculator.bill.calculation.CalculatedBill calculateBill(pl.srw.billcalculator.db.Prices) -> a
     pl.srw.billcalculator.db.Prices storePrices() -> b
-    57:57:boolean isTwoUnitTariff() -> c
+    59:59:boolean isTwoUnitTariff() -> c
 pl.srw.billcalculator.bill.service.BillStoringService$$ExtraInjector -> pl.srw.billcalculator.bill.service.BillStoringService$$ExtraInjector:
     6:6:void <init>() -> <init>
     9:43:void inject(com.f2prateek.dart.Dart$Finder,pl.srw.billcalculator.bill.service.BillStoringService,java.lang.Object) -> inject
@@ -22310,14 +22318,16 @@ pl.srw.billcalculator.dialog.ConfirmRestoreSettingsDialogFragment$1 -> pl.srw.bi
 pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment -> pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment:
     24:29:pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment newInstance(java.lang.String[],int) -> a
     32:33:void <init>() -> <init>
-    37:37:android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
-    46:46:android.content.DialogInterface$OnClickListener onAccepted() -> a
-    63:68:void goToSettings(int) -> a
-    18:18:void access$000(pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment,int) -> a
+    37:45:android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
+    55:55:android.content.DialogInterface$OnClickListener onAccepted() -> a
+    70:71:boolean canSystemDialogStillShowUp() -> b
+    75:80:void goToSettings() -> c
+    18:18:boolean access$000(pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment) -> a
+    18:18:void access$100(pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment) -> b
 pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment$1 -> pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment$1:
     pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment this$0 -> a
-    46:46:void <init>(pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment) -> <init>
-    49:58:void onClick(android.content.DialogInterface,int) -> onClick
+    55:55:void <init>(pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment) -> <init>
+    58:65:void onClick(android.content.DialogInterface,int) -> onClick
 pl.srw.billcalculator.event.HistoryChangedEvent -> pl.srw.billcalculator.event.HistoryChangedEvent:
     pl.srw.billcalculator.type.Provider forProvider -> a
     14:14:pl.srw.billcalculator.type.Provider getForProvider() -> a
@@ -22637,18 +22647,18 @@ pl.srw.billcalculator.history.HistoryActivity -> pl.srw.billcalculator.history.H
     android.support.v7.widget.RecyclerView list -> a
     android.widget.TextView tvEmptyHistory -> b
     android.view.ActionMode$Callback deleteMode -> e
-    27:88:void <init>() -> <init>
-    38:49:void onCreate(android.os.Bundle) -> onCreate
-    53:55:void onStart() -> onStart
-    59:64:void onRestoreInstanceState(android.os.Bundle) -> onRestoreInstanceState
-    68:71:void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
-    75:77:void onStop() -> onStop
-    80:82:void enableDeleteMode() -> a
-    85:85:boolean isInDeleteMode() -> b
-    124:124:pl.srw.billcalculator.history.list.HistoryAdapter getAdapter() -> c
-    27:27:pl.srw.billcalculator.history.list.HistoryAdapter access$000(pl.srw.billcalculator.history.HistoryActivity) -> a
-    27:27:pl.srw.billcalculator.history.list.EmptyHistoryDataObserver access$100(pl.srw.billcalculator.history.HistoryActivity) -> b
-    27:27:android.view.ActionMode access$202(pl.srw.billcalculator.history.HistoryActivity,android.view.ActionMode) -> a
+    28:89:void <init>() -> <init>
+    39:50:void onCreate(android.os.Bundle) -> onCreate
+    54:56:void onStart() -> onStart
+    60:65:void onRestoreInstanceState(android.os.Bundle) -> onRestoreInstanceState
+    69:72:void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
+    76:78:void onStop() -> onStop
+    81:83:void enableDeleteMode() -> a
+    86:86:boolean isInDeleteMode() -> b
+    126:126:pl.srw.billcalculator.history.list.HistoryAdapter getAdapter() -> c
+    28:28:pl.srw.billcalculator.history.list.HistoryAdapter access$000(pl.srw.billcalculator.history.HistoryActivity) -> a
+    28:28:pl.srw.billcalculator.history.list.EmptyHistoryDataObserver access$100(pl.srw.billcalculator.history.HistoryActivity) -> b
+    28:28:android.view.ActionMode access$202(pl.srw.billcalculator.history.HistoryActivity,android.view.ActionMode) -> a
 pl.srw.billcalculator.history.HistoryActivity$$ViewInjector -> pl.srw.billcalculator.history.HistoryActivity$$ViewInjector:
     8:8:void <init>() -> <init>
     11:15:void inject(butterknife.ButterKnife$Finder,pl.srw.billcalculator.history.HistoryActivity,java.lang.Object) -> inject
@@ -22657,11 +22667,11 @@ pl.srw.billcalculator.history.HistoryActivity$$ViewInjector -> pl.srw.billcalcul
     8:8:void inject(butterknife.ButterKnife$Finder,java.lang.Object,java.lang.Object) -> inject
 pl.srw.billcalculator.history.HistoryActivity$1 -> pl.srw.billcalculator.history.HistoryActivity$1:
     pl.srw.billcalculator.history.HistoryActivity this$0 -> a
-    88:88:void <init>(pl.srw.billcalculator.history.HistoryActivity) -> <init>
-    92:93:boolean onCreateActionMode(android.view.ActionMode,android.view.Menu) -> onCreateActionMode
-    98:98:boolean onPrepareActionMode(android.view.ActionMode,android.view.Menu) -> onPrepareActionMode
-    103:112:boolean onActionItemClicked(android.view.ActionMode,android.view.MenuItem) -> onActionItemClicked
-    117:120:void onDestroyActionMode(android.view.ActionMode) -> onDestroyActionMode
+    89:89:void <init>(pl.srw.billcalculator.history.HistoryActivity) -> <init>
+    93:94:boolean onCreateActionMode(android.view.ActionMode,android.view.Menu) -> onCreateActionMode
+    99:99:boolean onPrepareActionMode(android.view.ActionMode,android.view.Menu) -> onPrepareActionMode
+    104:114:boolean onActionItemClicked(android.view.ActionMode,android.view.MenuItem) -> onActionItemClicked
+    119:122:void onDestroyActionMode(android.view.ActionMode) -> onDestroyActionMode
 pl.srw.billcalculator.history.list.EmptyHistoryDataObserver -> pl.srw.billcalculator.history.list.EmptyHistoryDataObserver:
     android.view.View view -> a
     android.support.v7.widget.RecyclerView$Adapter adapter -> b
@@ -22845,16 +22855,16 @@ pl.srw.billcalculator.persistence.DBMigration -> pl.srw.billcalculator.persisten
 pl.srw.billcalculator.persistence.Database -> pl.srw.billcalculator.persistence.Database:
     android.database.sqlite.SQLiteDatabase database -> a
     pl.srw.billcalculator.db.dao.DaoSession daoSession -> b
-    26:27:void initialize(android.content.Context) -> a
-    35:50:android.database.sqlite.SQLiteDatabase getDatabase(android.content.Context) -> b
-    54:54:pl.srw.billcalculator.db.dao.DaoSession getSession() -> a
-    58:66:int[] queryCurrentReadings(pl.srw.billcalculator.persistence.type.CurrentReadingType) -> a
-    70:70:de.greenrobot.dao.query.LazyList getHistory() -> b
-    75:77:void deleteBillWithPrices(pl.srw.billcalculator.persistence.type.BillType,java.lang.Long,java.lang.Long) -> a
+    27:28:void initialize(android.content.Context) -> a
+    36:51:android.database.sqlite.SQLiteDatabase getDatabase(android.content.Context) -> b
+    55:55:pl.srw.billcalculator.db.dao.DaoSession getSession() -> a
+    59:67:int[] queryCurrentReadings(pl.srw.billcalculator.persistence.type.CurrentReadingType) -> a
+    71:71:de.greenrobot.dao.query.LazyList getHistory() -> b
+    76:78:void deleteBillWithPrices(pl.srw.billcalculator.persistence.type.BillType,java.lang.Long,java.lang.Long) -> a
 pl.srw.billcalculator.persistence.Database$1 -> pl.srw.billcalculator.persistence.Database$1:
-    36:36:void <init>(android.content.Context,java.lang.String,android.database.sqlite.SQLiteDatabase$CursorFactory) -> <init>
-    40:42:void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
-    46:48:void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
+    37:37:void <init>(android.content.Context,java.lang.String,android.database.sqlite.SQLiteDatabase$CursorFactory) -> <init>
+    41:43:void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
+    47:49:void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
 pl.srw.billcalculator.persistence.SqlBuilder -> pl.srw.billcalculator.persistence.SqlBuilder:
     java.lang.StringBuilder sql -> a
     12:14:void <init>(java.lang.StringBuilder) -> <init>
