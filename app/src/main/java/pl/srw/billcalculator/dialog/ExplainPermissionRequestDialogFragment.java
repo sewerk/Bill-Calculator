@@ -34,36 +34,48 @@ public class ExplainPermissionRequestDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        return new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.rationale_dialog_title)
-                .setMessage(R.string.rationale_dialog_msg)
-                .setPositiveButton(R.string.rationale_dialog_ok, onAccepted())
-                .setNegativeButton(R.string.rationale_dialog_cancel, null)
-                .create();
+        if (canSystemDialogStillShowUp()) {
+            return new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.rationale_dialog_title)
+                    .setMessage(R.string.rationale_dialog_msg)
+                    .setPositiveButton(R.string.rationale_dialog_ok, onAccepted())
+                    .setNegativeButton(R.string.rationale_dialog_cancel, null)
+                    .create();
+        } else {
+            return new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.rationale_dialog_title)
+                    .setMessage(R.string.rationale_dialog_goto_settings_msg)
+                    .setPositiveButton(R.string.rationale_dialog_goto_settings, onAccepted())
+                    .setNegativeButton(R.string.rationale_dialog_cancel, null)
+                    .create();
+        }
     }
 
     private DialogInterface.OnClickListener onAccepted() {
         return new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                final int requestCode = getArguments().getInt(ARGS_REQUEST_CODE);
-                final String[] permissions = getArguments().getStringArray(ARGS_PERMISSIONS);
-                if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), permissions[0])) {
-                    // system dialog for request permission might still occur
+                if (canSystemDialogStillShowUp()) {
+                    final int requestCode = getArguments().getInt(ARGS_REQUEST_CODE);
+                    final String[] permissions = getArguments().getStringArray(ARGS_PERMISSIONS);
                     ActivityCompat.requestPermissions(getActivity(), permissions, requestCode);
                 } else {
-                    goToSettings(requestCode);
+                    goToSettings();
                 }
-
             }
         };
     }
 
-    private void goToSettings(int requestCode) {
+    private boolean canSystemDialogStillShowUp() {
+        final String[] permissions = getArguments().getStringArray(ARGS_PERMISSIONS);
+        return ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), permissions[0]);
+    }
+
+    private void goToSettings() {
         Intent myAppSettings = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                 Uri.parse("package:" + getActivity().getPackageName()));
         myAppSettings.addCategory(Intent.CATEGORY_DEFAULT);
         myAppSettings.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivityForResult(myAppSettings, requestCode);
+        startActivityForResult(myAppSettings, 201);
     }
 }
