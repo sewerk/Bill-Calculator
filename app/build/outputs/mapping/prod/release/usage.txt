@@ -10388,6 +10388,8 @@ pl.srw.billcalculator.R$string
 pl.srw.billcalculator.R$style
 pl.srw.billcalculator.R$styleable
 pl.srw.billcalculator.R$xml
+pl.srw.billcalculator.backup.PrefsAndDbBackupAgent:
+    private static final java.lang.String TAG
 pl.srw.billcalculator.bill.activity.BillActivity:
     private static final java.lang.String TAG
     public static final java.lang.String MIME_APPLICATION_PDF
@@ -10662,9 +10664,10 @@ pl.srw.billcalculator.persistence.DBMigration:
     public static final int CURRENT_VERSION
     14:14:DBMigration()
 pl.srw.billcalculator.persistence.Database:
+    public static final java.lang.String DB_NAME
     private static final java.lang.String QUERY_ROW_LIMIT
     19:19:public Database()
-    30:32:public static void enableDatabaseLogging()
+    31:33:public static void enableDatabaseLogging()
 pl.srw.billcalculator.persistence.Triggers:
     private static final java.lang.String DELETE
     private static final java.lang.String INSERT
