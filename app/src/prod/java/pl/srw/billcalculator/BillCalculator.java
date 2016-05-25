@@ -3,6 +3,8 @@ package pl.srw.billcalculator;
 import android.app.Application;
 import android.content.Context;
 
+import com.jakewharton.threetenabp.AndroidThreeTen;
+
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.settings.prices.PgePrices;
@@ -23,6 +25,7 @@ public class BillCalculator extends Application {
         context = getApplicationContext();
 
         AnalyticsWrapper.initialize(this);
+        AndroidThreeTen.init(this);
         Database.initialize(this);
 
         //PreferenceMigration.migrate(getApplicationContext());

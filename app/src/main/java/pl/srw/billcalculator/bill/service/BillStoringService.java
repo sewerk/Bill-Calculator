@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.bill.service;
 
 import android.app.IntentService;
+import android.app.backup.BackupManager;
 import android.content.Intent;
 
 import com.f2prateek.dart.Dart;
@@ -43,6 +44,7 @@ public abstract class BillStoringService<P extends Prices, C extends CalculatedB
         storeBill(calculatedBill, prices);
 
         EventBus.getDefault().post(new HistoryChangedEvent(getProvider()));
+        new BackupManager(this).dataChanged();
     }
 
     protected abstract Provider getProvider();

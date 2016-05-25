@@ -1,8 +1,10 @@
 package pl.srw.billcalculator.bill.activity;
 
+import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +14,9 @@ import android.support.annotation.CheckResult;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringDef;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +35,7 @@ import de.greenrobot.event.EventBus;
 import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment;
 import pl.srw.billcalculator.event.PdfGeneratedEvent;
 import pl.srw.billcalculator.task.PrintTask;
 import pl.srw.billcalculator.task.TaskManager;
@@ -42,8 +48,11 @@ import pl.srw.billcalculator.util.ToWebView;
 public abstract class BillActivity extends BackableActivity {
 
     public static final String VIEW_TRANSITION_NAME = "BillActivity:transition";
+    private static final String TAG = "BillActivity";
     public static final String MIME_APPLICATION_PDF = "application/pdf";
     public static final String MIME_IMAGE = "image/*";
+    public static final String PERMISSION_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+    public static final int PERMISSION_REQUEST_CODE = 101;
     @BindString(R.string.print_dir) String PRINT_TARGET_DIR;
 
     private Menu menu;
@@ -85,25 +94,61 @@ public abstract class BillActivity extends BackableActivity {
             setContentView(ToWebView.wrapByWebView(this, findViewById(R.id.bill_content)));
             return true;
         } else if (item.getItemId() == R.id.action_print) {
-            final File targetFile = getTargetFile("pdf");
-            if (targetFile != null) {
-                AnalyticsWrapper.logAction(ActionType.PRINT,
-                        "print file", targetFile.getName(),
-                        "print file exist", String.valueOf(targetFile.exists()));
-                if (targetFile.exists()) {
-                    openFile(targetFile, MIME_APPLICATION_PDF);
+            if (PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this, PERMISSION_STORAGE)) {
+                performPrint();
+            } else {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, PERMISSION_STORAGE)) {
+                    showExplanationForRequestPermission();
                 } else {
-                    setPrintInProgress();
-                    final PrintTask printTask = new PrintTask(targetFile.getAbsolutePath());
-                    TaskManager.getInstance().register(targetFile.getAbsolutePath(), printTask);
-
-                    final View contentView = findViewById(R.id.bill_content);
-                    printTask.execute(contentView);
+                    ActivityCompat.requestPermissions(this, new String[]{PERMISSION_STORAGE}, PERMISSION_REQUEST_CODE);
                 }
             }
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d(TAG, "onRequestPermissionsResult: GRANTED");
+                    performPrint();
+                } else {
+                    Log.d(TAG, "onRequestPermissionsResult: DENIED");
+                    showExplanationForRequestPermission();
+                }
+                return;
+            }
+        }
+    }
+
+    private void showExplanationForRequestPermission() {
+        final ExplainPermissionRequestDialogFragment dialog
+                = ExplainPermissionRequestDialogFragment.newInstance(new String[]{PERMISSION_STORAGE}, PERMISSION_REQUEST_CODE);
+        dialog.show(getFragmentManager(), "RequestPermissionRationaleDialog");
+    }
+
+    private void performPrint() {
+        final File targetFile = getTargetFile("pdf");
+        if (targetFile != null) {
+            AnalyticsWrapper.logAction(ActionType.PRINT,
+                    "print file", targetFile.getName(),
+                    "print file exist", String.valueOf(targetFile.exists()));
+            if (targetFile.exists()) {
+                openFile(targetFile, MIME_APPLICATION_PDF);
+            } else {
+                setPrintInProgress();
+                final PrintTask printTask = new PrintTask(targetFile.getAbsolutePath());
+                TaskManager.getInstance().register(targetFile.getAbsolutePath(), printTask);
+
+                final View contentView = findViewById(R.id.bill_content);
+                printTask.execute(contentView);
+            }
+        } else {
+            Toast.makeText(BillActivity.this, R.string.error_permission_storage_missing, Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void onEventMainThread(final PdfGeneratedEvent event) {
@@ -134,14 +179,14 @@ public abstract class BillActivity extends BackableActivity {
 
     @StringDef({"pdf", "jpg"})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface FileExtention {}
+    public @interface FileExtension {}
 
     @Nullable
-    private File getTargetFile(@FileExtention final String ext) {
+    private File getTargetFile(@FileExtension final String ext) {
         File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + PRINT_TARGET_DIR);
         if (!direct.exists())
             if (!direct.mkdirs()) {
-                Toast.makeText(this, getString(R.string.print_io_problem), Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, getString(R.string.print_io_problem), Toast.LENGTH_LONG).show();
                 AnalyticsWrapper.warning("mkdir failed");
                 return null;
             }
@@ -169,11 +214,10 @@ public abstract class BillActivity extends BackableActivity {
     }
 
     private boolean isPrintTaskRunning() {
-        final File targetFile = getTargetFile("pdf");
-        if (targetFile != null) {
-            final AsyncTask task = TaskManager.getInstance().findBy(targetFile.getAbsolutePath());
-            return task != null && task.getStatus() != AsyncTask.Status.FINISHED;
-        }
-        return false;
+        File pdfFile = getTargetFile("pdf");
+        if (pdfFile == null)
+            return false;
+        final AsyncTask task = TaskManager.getInstance().findBy(pdfFile.getAbsolutePath());
+        return task != null && task.getStatus() != AsyncTask.Status.FINISHED;
     }
 }

@@ -3,9 +3,8 @@
 
 Android app to calculate bill value for PGE, PGNiG and Tauron providers.
 
-<a href="https://play.google.com/store/apps/details?id=pl.srw.billcalculator">
-  <img alt="Get it on Google Play"
-       src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
+<a href="https://play.google.com/store/apps/details?id=pl.srw.billcalculator&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1">
+<img width="25%" height="25%" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" />
 </a>
 
 With help of
@@ -16,7 +15,7 @@ With help of
 - [GreenDao](http://greendao-orm.com/)
 - [Hrisay](https://github.com/mg6maciej/hrisey)
 - [ITEXTG](http://itextpdf.com/product/itextg)
-- [ThreeTen](https://github.com/ThreeTen/threetenbp)
+- [ThreeTenABP] (https://github.com/JakeWharton/ThreeTenABP)
 - [Vector-compat](https://github.com/wnafee/vector-compat)
 - [Hugo](https://github.com/jakewharton/hugo)
 - [LeakCanary](https://github.com/square/leakcanary)

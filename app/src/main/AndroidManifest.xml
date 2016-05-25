@@ -8,9 +8,18 @@
     <application
         android:name=".BillCalculator"
         android:allowBackup="true"
+        android:fullBackupContent="@xml/backup"
+
+        android:fullBackupOnly="true"
+        android:backupAgent=".backup.PrefsAndDbBackupAgent"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme" >
+
+        <meta-data
+            android:name="com.google.android.backup.api_key"
+            android:value="AEdPqrEAAAAI_tBtwSqlL01-gs3yoFWG0EL9-htLTXM3SqljZw" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

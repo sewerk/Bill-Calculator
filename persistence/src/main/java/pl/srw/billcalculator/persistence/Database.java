@@ -22,6 +22,7 @@ import pl.srw.billcalculator.persistence.type.CurrentReadingType;
  */
 public class Database {
 
+    public static final String DB_NAME = "pl.srw.billcalculator.db";
     private static final String QUERY_ROW_LIMIT = "100";
     private static SQLiteDatabase database;
     private static DaoSession daoSession;
@@ -40,7 +41,7 @@ public class Database {
 
     private static synchronized SQLiteDatabase getDatabase(Context context) {
         if (database == null)
-            database = new DaoMaster.DevOpenHelper(context, "pl.srw.billcalculator.db", null) {
+            database = new DaoMaster.DevOpenHelper(context, DB_NAME, null) {
 
                 @Override
                 public void onCreate(final SQLiteDatabase db) {

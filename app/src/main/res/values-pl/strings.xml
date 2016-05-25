@@ -26,6 +26,13 @@
     <string name="new_pge_bill">Nowy rachunek PGE</string>
     <string name="new_pgnig_bill">Nowy rachunek PGNiG</string>
     <string name="new_tauron_bill">Nowy rachunek TAURON</string>
+    <string name="error_permission_storage_missing">Brak dostępu do Pamięci</string>
+    <string name="rationale_dialog_title">Wymagany dostęp</string>
+    <string name="rationale_dialog_msg">Drukowanie rachunku wymaga dostępu do Pamięci urządzenia w celu utworzenia pliku. Brak akceptacji uniemożliwi drukowanie!</string>
+    <string name="rationale_dialog_ok">Akceptuje</string>
+    <string name="rationale_dialog_goto_settings_msg">Drukowanie rachunku wymaga dostępu do Pamięci urządzenia w celu utworzenia pliku. Ustawienia można zmienić w:\nZezwolenia > Pamięć</string>
+    <string name="rationale_dialog_goto_settings">Idz do Ustawień</string>
+    <string name="rationale_dialog_cancel">Anuluj</string>
 <!-- energy_bill -->
     <string name="energy_bill">Rachunek za energię</string>
 <!-- gas_bill -->

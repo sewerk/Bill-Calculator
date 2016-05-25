@@ -1,7 +1,6 @@
 package pl.srw.billcalculator;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -57,17 +56,8 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     private void setLicenseLink() {
-        tvVersion.setText(Html.fromHtml(getString(R.string.version_text, getApkVersion())));
+        tvVersion.setText(Html.fromHtml(getString(R.string.version_text, BuildConfig.VERSION_NAME)));
         tvVersion.setMovementMethod(LinkMovementMethod.getInstance());
-    }
-
-    private String getApkVersion() {
-        try {
-            return getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        return "";
     }
 
     @OnClick(R.id.tv_link_emailme)

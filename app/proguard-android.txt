@@ -67,11 +67,6 @@
     @butterknife.* <methods>;
 }
 
-# Threeten backport
--dontwarn java.util.spi.LocaleServiceProvider
--dontwarn sun.util.calendar.*
--keep class org.threeten.bp.zone.*
-
 # GreenDao
 -keepclassmembers class * extends de.greenrobot.dao.AbstractDao {
     public static java.lang.String TABLENAME;
@@ -110,3 +105,8 @@
 
 -keep class com.wnafee.vector.** { *; }
 
+# stetho
+-dontwarn com.facebook.stetho.**
+
+# leak canary
+-dontwarn com.squareup.leakcanary.**

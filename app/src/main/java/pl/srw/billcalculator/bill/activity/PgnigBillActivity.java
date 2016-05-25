@@ -87,11 +87,11 @@ public class PgnigBillActivity extends BillActivity {
     private void setChargeDetailsTable() {
         TableLayout chargeTable = (TableLayout) findViewById(R.id.t_charge_details);
 
-        setRow(chargeTable, R.id.row_abonamentowa, R.string.abonamentowa, ""+bill.getMonthCount(), R.string.mc,
+        setRow(chargeTable, R.id.row_abonamentowa, R.string.abonamentowa, ""+bill.getMonthCount()+".0000", R.string.mc,
                 new BigDecimal(prices.getOplataAbonamentowa()), bill.getOplataAbonamentowaNetCharge(), "");
         setRow(chargeTable, R.id.row_paliwo_gazowe, R.string.paliwo_gazowe, bill.getConsumptionKWh().toString(), R.string.kWh,
                 new BigDecimal(prices.getPaliwoGazowe()), bill.getPaliwoGazoweNetCharge(), "ZW");
-        setRow(chargeTable, R.id.row_dystrybucyjna_stala, R.string.dystrybucyjna_stala, ""+bill.getMonthCount(), R.string.mc,
+        setRow(chargeTable, R.id.row_dystrybucyjna_stala, R.string.dystrybucyjna_stala, ""+bill.getMonthCountExact(), R.string.mc,
                 new BigDecimal(prices.getDystrybucyjnaStala()), bill.getDystrybucyjnaStalaNetCharge(), "");
         setRow(chargeTable, R.id.row_dystrybucyjna_zmienna, R.string.dystrybucyjna_zmienna, bill.getConsumptionKWh().toString(), R.string.kWh,
                 new BigDecimal(prices.getDystrybucyjnaZmienna()), bill.getDystrybucyjnaZmiennaNetCharge(), "");
@@ -106,11 +106,7 @@ public class PgnigBillActivity extends BillActivity {
         Views.setTV(row, R.id.tv_date_from, Dates.changeSeparator(dateFrom, "."));
         Views.setTV(row, R.id.tv_date_to, Dates.changeSeparator(dateTo, "."));
         Views.setTV(row, R.id.tv_Jm, getString(jmId));
-        if (jmId == R.string.kWh) {
-            Views.setTV(row, R.id.tv_count, count);
-        } else {
-            Views.setTV(row, R.id.tv_count, count+".000");
-        }
+        Views.setTV(row, R.id.tv_count, count);
         Views.setTV(row, R.id.tv_net_price, Display.withScale(netPrice, PRICE_SCALE));
         Views.setTV(row, R.id.tv_excise, exciseAmount);
         Views.setTV(row, R.id.tv_net_charge, Display.toPay(netCharge));
