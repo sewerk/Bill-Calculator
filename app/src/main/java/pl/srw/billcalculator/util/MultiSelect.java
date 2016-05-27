@@ -8,15 +8,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import hrisey.Parcelable;
 import hugo.weaving.DebugLog;
 
-/**
- * Created by Kamil Seweryn.
- */
-@Parcelable
 @lombok.ToString(includeFieldNames = true)
-public class MultiSelect<P, I> implements android.os.Parcelable {
+public class MultiSelect<P, I> {
 
     private Map<P, I> selectedItems;
 

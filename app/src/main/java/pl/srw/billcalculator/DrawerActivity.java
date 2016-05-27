@@ -16,7 +16,6 @@ import com.wnafee.vector.compat.ResourcesCompat;
 
 import butterknife.ButterKnife;
 import butterknife.Bind;
-import hrisey.InstanceState;
 import pl.srw.billcalculator.dialog.CheckPricesDialogFragment;
 import pl.srw.billcalculator.form.fragment.PgeFormFragment;
 import pl.srw.billcalculator.form.fragment.PgnigFormFragment;
@@ -36,11 +35,14 @@ public class DrawerActivity extends AppCompatActivity implements DrawerHandling 
 
     @Bind(R.id.drawer_layout) DrawerLayout drawerLayout;
     @Bind(R.id.drawer_navigation) NavigationView navigationView;
-    @InstanceState @IdRes private int currentItem = -1;
+    @IdRes private int currentItem = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(savedInstanceState != null) {
+            this.currentItem = savedInstanceState.getInt("currentItem");
+        }
         setContentView(R.layout.drawer);
         ButterKnife.bind(this);
 
@@ -154,5 +156,11 @@ public class DrawerActivity extends AppCompatActivity implements DrawerHandling 
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt("currentItem", this.currentItem);
+        super.onSaveInstanceState(outState);
     }
 }

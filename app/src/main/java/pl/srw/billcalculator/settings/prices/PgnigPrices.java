@@ -1,71 +1,19 @@
 package pl.srw.billcalculator.settings.prices;
 
-import android.preference.PreferenceManager;
-
-import hrisey.Preferences;
-import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
 
-/**
- * Created by Kamil Seweryn.
- */
-public class PgnigPrices implements IPgnigPrices {
-    private final WrappedPgnigPrices wrappedPgnigPrices;
+public class PgnigPrices extends SharedPreferencesPrices implements IPgnigPrices {
+    private static final String ABONAMENTOWA = "abonamentowa";
+    private static final String PALIWO_GAZOWE = "paliwo_gazowe";
+    private static final String DYSTRYBUCYJNA_STALA = "dystrybucyjna_stala";
+    private static final String DYSTRYBUCYJNA_ZMIENNA = "dystrybucyjna_zmienna";
+    private static final String WSP_KONWERSJI = "wsp_konwersji";
 
-//    private String oplataAbonamentowa;
-//    private String paliwoGazowe;
-//    private String dystrybucyjnaStala;
-//    private String dystrybucyjnaZmienna;
-//    private String wspolczynnikKonwersji;
-
-    public PgnigPrices() {
-        wrappedPgnigPrices = new WrappedPgnigPrices(PreferenceManager.getDefaultSharedPreferences(BillCalculator.context));
-    }
-
-    @Override
-    public String getOplataAbonamentowa() {
-        return wrappedPgnigPrices.getAbonamentowa();
-    }
-
-    public void setOplataAbonamentowa(final String oplataAbonamentowa) {
-        this.wrappedPgnigPrices.setAbonamentowa(oplataAbonamentowa);
-    }
-
-    @Override
-    public String getPaliwoGazowe() {
-        return wrappedPgnigPrices.getPaliwo_gazowe();
-    }
-
-    public void setPaliwoGazowe(final String paliwoGazowe) {
-        this.wrappedPgnigPrices.setPaliwo_gazowe(paliwoGazowe);
-    }
-
-    @Override
-    public String getDystrybucyjnaStala() {
-        return wrappedPgnigPrices.getDystrybucyjna_stala();
-    }
-
-    public void setDystrybucyjnaStala(final String dystrybucyjnaStala) {
-        this.wrappedPgnigPrices.setDystrybucyjna_stala(dystrybucyjnaStala);
-    }
-
-    @Override
-    public String getDystrybucyjnaZmienna() {
-        return wrappedPgnigPrices.getDystrybucyjna_zmienna();
-    }
-
-    public void setDystrybucyjnaZmienna(final String dystrybucyjnaZmienna) {
-        this.wrappedPgnigPrices.setDystrybucyjna_zmienna(dystrybucyjnaZmienna);
-    }
-
-    @Override
-    public String getWspolczynnikKonwersji() {
-        return wrappedPgnigPrices.getWsp_konwersji();
-    }
-
-    public void setWspolczynnikKonwersji(final String wspolczynnikKonwersji) {
-        this.wrappedPgnigPrices.setWsp_konwersji(wspolczynnikKonwersji);
-    }
+    private final String abonamentowa = "8.67";
+    private final String paliwo_gazowe = "0.11616";
+    private final String dystrybucyjna_stala = "11.39";
+    private final String dystrybucyjna_zmienna = "0.02821";
+    private final String wsp_konwersji = "11.251";
 
     public pl.srw.billcalculator.db.PgnigPrices convertToDb() {
         pl.srw.billcalculator.db.PgnigPrices dbPrices = new pl.srw.billcalculator.db.PgnigPrices();
@@ -78,33 +26,104 @@ public class PgnigPrices implements IPgnigPrices {
     }
 
     public void clear() {
-        wrappedPgnigPrices.removeAbonamentowa();
-        wrappedPgnigPrices.removeDystrybucyjna_stala();
-        wrappedPgnigPrices.removeDystrybucyjna_zmienna();
-        wrappedPgnigPrices.removePaliwo_gazowe();
-        wrappedPgnigPrices.removeWsp_konwersji();
+        removeOplataAbonamentowa();
+        removeDystrybucyjnaStala();
+        removeDystrybucyjnaZmienna();
+        removePaliwoGazowe();
+        removeWspolczynnikKonwersji();
     }
 
     public void setDefault() {
         clear();
-        wrappedPgnigPrices.setAbonamentowa(wrappedPgnigPrices.getAbonamentowa());
-        wrappedPgnigPrices.setDystrybucyjna_stala(wrappedPgnigPrices.getDystrybucyjna_stala());
-        wrappedPgnigPrices.setDystrybucyjna_zmienna(wrappedPgnigPrices.getDystrybucyjna_zmienna());
-        wrappedPgnigPrices.setPaliwo_gazowe(wrappedPgnigPrices.getPaliwo_gazowe());
-        wrappedPgnigPrices.setWsp_konwersji(wrappedPgnigPrices.getWsp_konwersji());
+        setOplataAbonamentowa(getOplataAbonamentowa());
+        setDystrybucyjnaStala(getDystrybucyjnaStala());
+        setDystrybucyjnaZmienna(getDystrybucyjnaZmienna());
+        setPaliwoGazowe(getPaliwoGazowe());
+        setWspolczynnikKonwersji(getWspolczynnikKonwersji());
     }
 
     public void init() {
-        if (!wrappedPgnigPrices.containsAbonamentowa())
+        if (!containsOplataAbonamentowa())
             setDefault();
     }
 
-    @Preferences
-    private class WrappedPgnigPrices {
-        private String abonamentowa = "8.67";
-        private String paliwo_gazowe = "0.11616";
-        private String dystrybucyjna_stala = "11.39";
-        private String dystrybucyjna_zmienna = "0.02821";
-        private String wsp_konwersji = "11.251";
+    public String getOplataAbonamentowa() {
+        return getPref(ABONAMENTOWA, this.abonamentowa);
+    }
+
+    public void setOplataAbonamentowa(String abonamentowa) {
+        setPref(ABONAMENTOWA, abonamentowa);
+    }
+
+    public boolean containsOplataAbonamentowa() {
+        return containsPref(ABONAMENTOWA);
+    }
+
+    public void removeOplataAbonamentowa() {
+        removePref(ABONAMENTOWA);
+    }
+
+    public String getPaliwoGazowe() {
+        return getPref(PALIWO_GAZOWE, this.paliwo_gazowe);
+    }
+
+    public void setPaliwoGazowe(String paliwoGazowe) {
+        setPref(PALIWO_GAZOWE, paliwoGazowe);
+    }
+
+    public boolean containsPaliwoGazowe() {
+        return containsPref(PALIWO_GAZOWE);
+    }
+
+    public void removePaliwoGazowe() {
+        removePref(PALIWO_GAZOWE);
+    }
+
+    public String getDystrybucyjnaStala() {
+        return getPref(DYSTRYBUCYJNA_STALA, this.dystrybucyjna_stala);
+    }
+
+    public void setDystrybucyjnaStala(String dystrybucyjnaStala) {
+        setPref(DYSTRYBUCYJNA_STALA, dystrybucyjnaStala);
+    }
+
+    public boolean containsDystrybucyjnaStala() {
+        return containsPref(DYSTRYBUCYJNA_STALA);
+    }
+
+    public void removeDystrybucyjnaStala() {
+        removePref(DYSTRYBUCYJNA_STALA);
+    }
+
+    public String getDystrybucyjnaZmienna() {
+        return getPref(DYSTRYBUCYJNA_ZMIENNA, this.dystrybucyjna_zmienna);
+    }
+
+    public void setDystrybucyjnaZmienna(String dystrybucyjnaZmienna) {
+        setPref(DYSTRYBUCYJNA_ZMIENNA, dystrybucyjnaZmienna);
+    }
+
+    public boolean containsDystrybucyjnaZmienna() {
+        return containsPref(DYSTRYBUCYJNA_ZMIENNA);
+    }
+
+    public void removeDystrybucyjnaZmienna() {
+        removePref(DYSTRYBUCYJNA_ZMIENNA);
+    }
+
+    public String getWspolczynnikKonwersji() {
+        return getPref(WSP_KONWERSJI, this.wsp_konwersji);
+    }
+
+    public void setWspolczynnikKonwersji(String wspolczynnikKonwersji) {
+        setPref(WSP_KONWERSJI, wspolczynnikKonwersji);
+    }
+
+    public boolean containsWspolczynnikKonwersji() {
+        return containsPref(WSP_KONWERSJI);
+    }
+
+    public void removeWspolczynnikKonwersji() {
+        removePref(WSP_KONWERSJI);
     }
 }

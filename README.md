@@ -13,7 +13,7 @@ With help of
 - [Dart](https://github.com/f2prateek/dart)
 - [EventBus](https://github.com/greenrobot/EventBus)
 - [GreenDao](http://greendao-orm.com/)
-- [Hrisay](https://github.com/mg6maciej/hrisey)
+- [Lombok](https://projectlombok.org/)
 - [ITEXTG](http://itextpdf.com/product/itextg)
 - [ThreeTenABP] (https://github.com/JakeWharton/ThreeTenABP)
 - [Vector-compat](https://github.com/wnafee/vector-compat)
