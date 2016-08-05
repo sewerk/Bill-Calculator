@@ -1,119 +1,34 @@
 <resources>
 
-    <style name="AppTheme" parent="AppBaseTheme">
-    </style>
-
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
         <item name="colorAccent">@color/accent</item>
-        <item name="colorControlHighlight">@color/primary</item>
-
-        <item name="alertDialogTheme">@style/AppCompatAlertDialogTheme</item>
     </style>
 
-    <style name="AppTheme.MyBills">
+    <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="ToolBarWhiteTheme" parent="Theme.AppCompat.NoActionBar">
-        <!-- android:textColorPrimary is the  color of the title text in the Toolbar, in the Theme.AppCompat theme:  -->
-        <!-- android:textColorPrimaryInverse is the  color of the title text in the Toolbar, in the Theme.AppCompat.Light theme:  -->
-        <!-- android:actionMenuTextColor is the color of the text of action (menu) items in the Toolbar-->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-        <!-- android:textColorSecondary is the color of the menu overflow icon (three vertical dots) -->
-        <item name="android:textColorSecondary">@color/white</item>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless.Colored</item>
     </style>
-
-    <style name="AppTheme.Pge">
-        <item name="colorPrimary">@color/pge</item>
-        <item name="colorPrimaryDark">@color/pgeDark</item>
-    </style>
-
-    <style name="AppTheme.Pgnig">
-        <item name="colorPrimary">@color/pgnig</item>
-        <item name="colorPrimaryDark">@color/pgnigDark</item>
-    </style>
-
-    <style name="AppTheme.Tauron">
-        <item name="colorPrimary">@color/tauron</item>
-        <item name="colorPrimaryDark">@color/tauronDark</item>
-    </style>
-
-    <style name="AppCompatAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <!--<item name="colorAccent">#FFCC00</item>-->
-        <!--<item name="android:textColorPrimary">#FFFFFF</item>-->
-        <!--<item name="android:background">#5fa3d0</item>-->
-    </style>
-
-    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog" />
 
     <style name="Title" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="Title.expanded">
-        <!--<item name="android:textColor">@color/primary</item>-->
+        <item name="android:textColor">@color/gray_dark</item>
         <item name="android:textSize">32sp</item>
     </style>
 
     <style name="Title.collapsed">
-    </style>
-
-    <style name="Label" parent="TextAppearance.AppCompat.Medium">
-    </style>
-
-    <style name="FormHeader">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/accent</item>
-        <item name="android:background">@drawable/undeline</item>
-        <item name="android:paddingLeft">@dimen/small_padding</item>
-        <item name="android:paddingRight">@dimen/small_padding</item>
-    </style>
-
-    <style name="FormReadingEntry">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:ems">5</item>
-        <item name="android:maxLength">9</item>
-        <item name="android:inputType">number</item>
-        <!--<item name="android:background">@drawable/form_reading_bg</item>-->
-        <!--<item name="android:gravity">end</item>-->
-    </style>
-
-    <style name="FormReadingIcon">
-        <item name="android:layout_width">24dp</item>
-        <item name="android:layout_height">24dp</item>
-        <item name="android:layout_marginTop">16dp</item>
-        <item name="android:layout_marginBottom">16dp</item>
-        <item name="android:layout_marginLeft">8dp</item>
-        <item name="android:layout_marginRight">8dp</item>
-    </style>
-
-    <style name="FormReadingButton">
-        <item name="android:layout_width">match_parent</item>
-        <!--<item name="android:layout_weight">1</item>-->
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:freezesText">true</item>
-    </style>
-
-    <style name="TableCell" >
-        <item name="android:paddingTop">@dimen/smallest_padding</item>
-        <item name="android:paddingBottom">@dimen/smallest_padding</item>
-        <item name="android:paddingLeft">@dimen/padding</item>
-        <item name="android:paddingRight">@dimen/padding</item>
-        <item name="android:background">@drawable/history_item_border</item>
-        <item name="android:singleLine">true</item>
-    </style>
-
-    <style name="TableCell.Header">
-        <item name="android:background">@drawable/history_item_header_border</item>
-        <item name="android:gravity">center</item>
-    </style>
-    <style name="TableCell.End">
-        <item name="android:gravity">end</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
 </resources>

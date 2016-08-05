@@ -2,13 +2,15 @@ package pl.srw.billcalculator.type;
 
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.settings.fragment.PgeSettingsFragment;
+import pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment;
+import pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment;
+import pl.srw.billcalculator.settings.fragment.TauronSettingsFragment;
 
-/**
- * Created by kseweryn on 15.04.15.
- */
 public enum Provider {
     PGE(R.string.pge_prices, R.string.settings_pge_summary, R.drawable.pge, R.drawable.pge_small),
     PGNIG(R.string.pgnig_prices, R.string.settings_pgnig_summary, R.drawable.pgnig, R.drawable.pgnig_small),
@@ -18,7 +20,6 @@ public enum Provider {
     public final int settingsDescRes;
     public final int logoRes;
     public final int logoSmallRes;
-
 
     Provider(@StringRes final int titleRes, @StringRes final int descRes,
              @DrawableRes final int logoRes, @DrawableRes final int logoSmallRes) {
@@ -51,5 +52,22 @@ public enum Provider {
             return Provider.TAURON;
         else
             throw new RuntimeException("Unhandled view Id=" + id);
+    }
+
+    /**
+     * Lazy {@link ProviderSettingsFragment} creation by {@link Provider} type
+     * @return new instance of {@link ProviderSettingsFragment}
+     */
+    @NonNull
+    public ProviderSettingsFragment createProviderSettingsFragment() {
+        switch (this) {
+            case PGNIG:
+                return new PgnigSettingsFragment();
+            case PGE:
+                return new PgeSettingsFragment();
+            case TAURON:
+                return new TauronSettingsFragment();
+        }
+        throw new EnumVariantNotHandledException(this);
     }
 }

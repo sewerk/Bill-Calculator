@@ -1,7 +1,0 @@
-<resources>
-
-    <style name="Title" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-</resources>

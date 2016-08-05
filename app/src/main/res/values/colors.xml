@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="primary">@color/red</color>
+    <color name="primaryDark">#B71C1C</color>
+    <color name="accent">@color/blue_gray</color>
+    <color name="primaryTransparent">#80F44336</color>
+
     <color name="white">#FFFFFF</color>
     <color name="gray_light">#DDDDDD</color>
     <color name="gray">#AAAAAA</color>
@@ -8,12 +13,6 @@
     <color name="light">#efefef</color>
     <color name="light2">#e1e1e1</color>
     <color name="dim_overlay">#80000000</color>
-
-    <color name="primary">@color/red</color>
-    <color name="primaryDark">#B71C1C</color>
-    <color name="accent">@color/blue_gray</color>
-    <!--<color name="accent">#EF9A9A</color>-->
-    <color name="primaryTransparent">#80F44336</color>
 
     <color name="pge">#ed7900</color>
     <color name="pgeDark">#e50005</color>
@@ -31,5 +30,4 @@
     <color name="orange">#ff9800</color>
     <color name="deep_orange">#ff5722</color>
     <color name="blue_gray">#607d8b</color>
-
 </resources>

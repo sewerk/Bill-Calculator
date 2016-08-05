@@ -1,0 +1,20 @@
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <header
+        android:fragment="pl.srw.billcalculator.settings.fragment.PgeSettingsFragment"
+        android:icon="@drawable/pge_small"
+        android:summary="@string/settings_pge_summary"
+        android:title="@string/pge_prices"/>
+
+    <header
+        android:fragment="pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment"
+        android:icon="@drawable/pgnig_small"
+        android:summary="@string/settings_pgnig_summary"
+        android:title="@string/pgnig_prices"/>
+
+    <header
+        android:fragment="pl.srw.billcalculator.settings.fragment.TauronSettingsFragment"
+        android:icon="@drawable/tauron_small"
+        android:summary="@string/settings_tauron_summary"
+        android:title="@string/tauron_prices"/>
+</preference-headers>

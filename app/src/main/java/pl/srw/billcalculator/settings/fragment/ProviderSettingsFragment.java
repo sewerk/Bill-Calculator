@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.settings.fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
@@ -10,11 +11,18 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import java.util.Map;
 
 import hugo.weaving.DebugLog;
+import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.dialog.ConfirmRestoreSettingsDialogFragment;
+import pl.srw.billcalculator.settings.activity.ProviderSettingsHelpActivity;
+import pl.srw.billcalculator.type.ActionType;
 
 /**
  * Created by Kamil Seweryn.
@@ -22,14 +30,19 @@ import pl.srw.billcalculator.R;
 public abstract class ProviderSettingsFragment extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
+    private static final String TAG_CONFIRM_RESTORE = "RESTORE_DEFAULT_CONFIRM_DIALOG";
     private static final String EMPTY_VALUE_REPLACEMENT = "0.00";
 
     @DebugLog
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        injectDependencies();
         init();
+        setHasOptionsMenu(true);
     }
+
+    protected abstract void injectDependencies();
 
     protected void init() {
         addPreferencesFromResource(getPreferencesResource());
@@ -42,8 +55,6 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
 
     public abstract @DrawableRes int getHelpImageExampleResource();
 
-    public abstract int getTitleResource();
-
     @Override
     public void onResume() {
         super.onResume();
@@ -55,6 +66,30 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
     public void onPause() {
         super.onPause();
         getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.settings, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_help) {
+            showHelp();
+            return true;
+        } else if (item.getItemId() == R.id.action_default) {
+            new ConfirmRestoreSettingsDialogFragment().show(getFragmentManager(), TAG_CONFIRM_RESTORE);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showHelp() {
+        final Intent intent = ProviderSettingsHelpActivity.createIntent(
+                getActivity(), getHelpLayoutResource(), getHelpImageExampleResource());
+        startActivity(intent);
     }
 
     @Override
@@ -109,6 +144,7 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
         restoreSettings();
         setPreferenceScreen(null);
         init();
+        AnalyticsWrapper.logAction(ActionType.RESTORE_PRICES, "Default prices restored", this.getClass().getSimpleName());
     }
 
     protected abstract void restoreSettings();

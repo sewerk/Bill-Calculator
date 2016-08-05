@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/my_bills"
+            android:icon="@drawable/ic_view_list_black_24dp"
+            android:checked="true"
+            android:title="@string/my_bills"/>
+
+        <item
+            android:id="@+id/new_bill_pge"
+            android:icon="@drawable/ic_pge_mono_18dp"
+            android:title="@string/new_pge_bill"/>
+        <item
+            android:id="@+id/new_bill_pgnig"
+            android:icon="@drawable/ic_pgnig_mono_18dp"
+            android:title="@string/new_pgnig_bill"/>
+        <item
+            android:id="@+id/new_bill_tauron"
+            android:icon="@drawable/ic_tauron_mono_18dp"
+            android:title="@string/new_tauron_bill"/>
+    </group>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/settings"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="@string/settings_label"/>
+            <item
+                android:id="@+id/about"
+                android:icon="@drawable/ic_info_outline_black_24dp"
+                android:title="@string/about_label"/>
+        </menu>
+    </item>
+
+</menu>

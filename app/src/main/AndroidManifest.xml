@@ -1,70 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="pl.srw.billcalculator">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+          package="pl.srw.billcalculator">
 
     <application
         android:name=".BillCalculator"
         android:allowBackup="true"
-        android:fullBackupContent="@xml/backup"
-
-        android:fullBackupOnly="true"
-        android:backupAgent=".backup.PrefsAndDbBackupAgent"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="false"
-        android:theme="@style/AppTheme" >
-
-        <meta-data
-            android:name="com.google.android.backup.api_key"
-            android:value="AEdPqrEAAAAI_tBtwSqlL01-gs3yoFWG0EL9-htLTXM3SqljZw" />
-
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="a7369bc28192a2f175b7c8d7473f0e61a756366c" />
-
-        <activity android:name=".DrawerActivity"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".DrawerActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.MyBills">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".bill.activity.PgeBillActivity"
-            android:label="@string/energy_bill"
-            android:theme="@style/AppTheme.Pge" />
+        <activity
+            android:name=".settings.activity.SettingsActivity"
+            android:label="@string/settings_label">
+        </activity>
 
-        <activity android:name=".bill.activity.PgnigBillActivity"
-            android:label="@string/gas_bill"
-            android:theme="@style/AppTheme.Pgnig" />
-
-        <activity android:name=".bill.activity.TauronBillActivity"
-            android:label="@string/energy_bill"
-            android:theme="@style/AppTheme.Tauron" />
-
-        <activity android:name=".settings.activity.SettingsActivity"
-            android:label="@string/settings_label" />
-
-        <activity android:name=".settings.activity.ProviderSettingsActivity" />
+        <activity android:name=".settings.activity.ProviderSettingsActivity">
+        </activity>
 
         <activity android:name=".settings.activity.ProviderSettingsHelpActivity"
-            android:label="@string/action_help"
-            android:theme="@style/DialogTheme" />
-
-        <activity android:name=".AboutActivity"
-            android:label="@string/about_label"
-            android:theme="@style/DialogTheme" />
-
-        <service android:name=".bill.service.PgnigBillStoringService" />
-
-        <service android:name=".bill.service.PgeBillStoringService" />
-
-        <service android:name=".bill.service.TauronBillStoringService" />
-
+                  android:label="@string/action_help"
+                  android:theme="@style/DialogTheme" />
     </application>
 
 </manifest>

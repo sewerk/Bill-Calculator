@@ -1,96 +1,51 @@
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
-
-repositories {
-    maven { url 'https://maven.fabric.io/public' }
-}
-
-apply from: 'signing.gradle'
 apply plugin: 'hugo'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
-
+    buildToolsVersion "23.0.3"
     defaultConfig {
-        versionCode 20
-        versionName "1.5.1"
+        applicationId "pl.srw.billcalculator"
         minSdkVersion 15
         targetSdkVersion 23
-
+        versionCode 21
+        versionName "2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
-
     buildTypes {
-        debug {
-            ext.enableCrashlytics = false
-        }
-
         release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFile 'proguard-android.txt'
-            zipAlignEnabled true
-            debuggable false
-            signingConfig signingConfigs.release
-        }
-    }
-
-    packagingOptions {
-        pickFirst 'META-INF/services/javax.annotation.processing.Processor'
-        exclude 'LICENSE.txt'
-        exclude 'META-INF/LICENSE.txt'
-    }
-
-    lintOptions {
-        abortOnError false
-    }
-
-    productFlavors {
-        devel {
-            buildConfigField "boolean", "DEVEL", "true"
-        }
-
-        prod {
-            buildConfigField "boolean", "DEVEL", "false"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
 
+ext {
+    supportLibVer = '23.4.0'
+}
+
 dependencies {
+
+    apt 'com.google.dagger:dagger-compiler:2.0.1'
+
     compile project(':persistence')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile 'com.android.support:recyclerview-v7:23.1.1'
-    compile 'com.android.support:cardview-v7:23.1.1'
-    compile 'com.android.support:design:23.0.1'
+    compile "com.android.support:design:${supportLibVer}"
+    compile "com.android.support:cardview-v7:${supportLibVer}"
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha5'
 
+    compile 'com.github.sewerk:mfvp:1.0-alpha'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.f2prateek.dart:dart:1.1.0'
-    compile 'com.jakewharton.threetenabp:threetenabp:1.0.3'
-    compile 'de.greenrobot:eventbus:2.4.0'
-    compile 'com.wnafee:vector-compat:1.0.5'
-    compile files('libs/itextg-5.5.4.jar')
-    provided 'org.projectlombok:lombok:1.16.8'
 
-    androidTestCompile ('com.android.support.test.espresso:espresso-intents:2.2') {
-        exclude module: 'support-annotations'
-    }
-    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2') {
-        exclude module: 'support-annotations'
-        exclude module: 'recyclerview-v7'
-    }
-    androidTestCompile files('libs/robotium-solo-5.3.1.jar')
+    provided 'javax.annotation:jsr250-api:1.0'
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
-    testCompile 'pl.pragmatists:JUnitParams:1.0.4'
-
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
-        transitive = true;
-    }
-    compile('com.crashlytics.sdk.android:answers:1.3.6@aar') {
-        transitive = true;
-    }
-    develCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
-    develCompile 'com.facebook.stetho:stetho:1.3.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile "com.android.support:support-annotations:${supportLibVer}"
 }

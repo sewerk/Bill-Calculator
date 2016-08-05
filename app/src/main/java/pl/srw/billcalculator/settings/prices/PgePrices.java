@@ -1,7 +1,13 @@
 package pl.srw.billcalculator.settings.prices;
 
+import android.content.SharedPreferences;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import pl.srw.billcalculator.pojo.IPgePrices;
 
+@Singleton
 public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
 
     private static final String CENA_ZA_ENERGIE_CZYNNA = "cena_za_energie_czynna";
@@ -26,6 +32,11 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
     private final String cena_oplata_stala_za_przesyl = "1.95";
     private final String cena_oplata_abonamentowa = "5.20";
 
+    @Inject
+    public PgePrices(SharedPreferences prefs) {
+        super(prefs);
+    }
+
     public pl.srw.billcalculator.db.PgePrices convertToDb() {
         pl.srw.billcalculator.db.PgePrices dbPrices = new pl.srw.billcalculator.db.PgePrices();
         dbPrices.setOplataAbonamentowa(getOplataAbonamentowa());
@@ -42,6 +53,7 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
         return dbPrices;
     }
 
+    @Override
     public void clear() {
         removeZaEnergieCzynna();
         removeZaEnergieCzynnaDzien();
@@ -55,6 +67,7 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
         removeOplataAbonamentowa();
     }
 
+    @Override
     public void setDefault() {
         clear();
         setZaEnergieCzynna(getZaEnergieCzynna());
@@ -69,7 +82,8 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
         setOplataAbonamentowa(getOplataAbonamentowa());
     }
 
-    public void init() {
+    @Override
+    public void setDefaultIfNotSet() {
         if (!containsZaEnergieCzynna())
             setDefault();
     }

@@ -1,15 +1,13 @@
 package pl.srw.billcalculator.settings.prices;
 
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
-import pl.srw.billcalculator.BillCalculator;
+public abstract class SharedPreferencesPrices implements RestorablePrices {
 
-abstract class SharedPreferencesPrices {
     private final SharedPreferences __prefs;
 
-    protected SharedPreferencesPrices() {
-        this.__prefs = PreferenceManager.getDefaultSharedPreferences(BillCalculator.context);
+    protected SharedPreferencesPrices(SharedPreferences prefs) {
+        this.__prefs = prefs;
     }
 
     protected String getPref(String key, String defValue) {

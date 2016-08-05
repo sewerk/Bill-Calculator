@@ -1,7 +1,13 @@
 package pl.srw.billcalculator.settings.prices;
 
+import android.content.SharedPreferences;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import pl.srw.billcalculator.pojo.IPgnigPrices;
 
+@Singleton
 public class PgnigPrices extends SharedPreferencesPrices implements IPgnigPrices {
     private static final String ABONAMENTOWA = "abonamentowa";
     private static final String PALIWO_GAZOWE = "paliwo_gazowe";
@@ -15,6 +21,11 @@ public class PgnigPrices extends SharedPreferencesPrices implements IPgnigPrices
     private final String dystrybucyjna_zmienna = "0.02821";
     private final String wsp_konwersji = "11.251";
 
+    @Inject
+    public PgnigPrices(SharedPreferences prefs) {
+        super(prefs);
+    }
+
     public pl.srw.billcalculator.db.PgnigPrices convertToDb() {
         pl.srw.billcalculator.db.PgnigPrices dbPrices = new pl.srw.billcalculator.db.PgnigPrices();
         dbPrices.setDystrybucyjnaStala(getDystrybucyjnaStala());
@@ -25,6 +36,7 @@ public class PgnigPrices extends SharedPreferencesPrices implements IPgnigPrices
         return dbPrices;
     }
 
+    @Override
     public void clear() {
         removeOplataAbonamentowa();
         removeDystrybucyjnaStala();
@@ -33,6 +45,7 @@ public class PgnigPrices extends SharedPreferencesPrices implements IPgnigPrices
         removeWspolczynnikKonwersji();
     }
 
+    @Override
     public void setDefault() {
         clear();
         setOplataAbonamentowa(getOplataAbonamentowa());
@@ -42,7 +55,8 @@ public class PgnigPrices extends SharedPreferencesPrices implements IPgnigPrices
         setWspolczynnikKonwersji(getWspolczynnikKonwersji());
     }
 
-    public void init() {
+    @Override
+    public void setDefaultIfNotSet() {
         if (!containsOplataAbonamentowa())
             setDefault();
     }

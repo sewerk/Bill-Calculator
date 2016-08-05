@@ -11,7 +11,7 @@ import java.lang.annotation.RetentionPolicy;
 @StringDef({ActionType.PRINT, ActionType.RESTORE_PRICES, ActionType.WARNING})
 @Retention(RetentionPolicy.SOURCE)
 public @interface ActionType {
-    public static final String PRINT = "Print";
-    public static final String RESTORE_PRICES = "Restore default prices";
-    public static final String WARNING = "Warning";
+    String PRINT = "Print";
+    String RESTORE_PRICES = "Restore default prices";
+    String WARNING = "Warning";
 }

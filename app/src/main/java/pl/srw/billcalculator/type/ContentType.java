@@ -11,9 +11,9 @@ import java.lang.annotation.RetentionPolicy;
 @StringDef({ContentType.SETTINGS, ContentType.HISTORY, ContentType.PGE_BILL, ContentType.PGNIG_BILL, ContentType.TAURON_BILL})
 @Retention(RetentionPolicy.SOURCE)
 public @interface ContentType {
-    public static final String SETTINGS = "Settings";
-    public static final String HISTORY = "History";
-    public static final String TAURON_BILL = "TauronBill";
-    public static final String PGNIG_BILL = "PgnigBill";
-    public static final String PGE_BILL = "PgeBill";
+    String SETTINGS = "Settings";
+    String HISTORY = "History";
+    String TAURON_BILL = "TauronBill";
+    String PGNIG_BILL = "PgnigBill";
+    String PGE_BILL = "PgeBill";
 }

@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools"
-    tools:locale="en">
-<!-- activity_main -->
+    tools:locale="en" >
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- activity_main -->
     <string name="app_name">Bill Calculator</string>
     <string name="tariff_change"><![CDATA[<a href="prices/pge/tariff">change</a>]]></string>
     <string name="previous_reading">Previous reading:</string>
@@ -20,7 +22,7 @@
     <string name="reading_hint_m3" translatable="false">[m\u00B3]</string>
     <string name="reading_hint_kWh" translatable="false">[kWh]</string>
 
-<!-- bill -->
+    <!-- bill -->
     <string name="page_view_label">Page view</string>
     <string name="action_print">Print to PDF</string>
     <string name="print_dir">Bills</string>
@@ -41,7 +43,7 @@
     <string name="strefa_calodobowa" translatable="false">całodobowa</string>
     <string name="strefa_dzienna" translatable="false">dzienna</string>
     <string name="strefa_nocna" translatable="false">nocna</string>
-    <string name="strefa_pusta" translatable="false"></string>
+    <string name="strefa_pusta" translatable="false"/>
 
     <string name="new_pge_bill">New PGE bill</string>
     <string name="za_energie_czynna" translatable="false">za energię czynną</string>
@@ -105,7 +107,7 @@
     <string name="mc" translatable="false">mc</string>
     <string name="m3" translatable="false">m\u00B3</string>
 
-<!-- Preferences -->
+    <!-- Preferences -->
     <string name="settings_label">Settings</string>
     <string name="action_help">Help</string>
     <string name="action_restore">Restore default</string>
@@ -157,8 +159,7 @@
     <string name="tauron_prices">Tauron</string>
     <string name="settings_tauron_summary">Set tariff and prices</string>
     <string name="tauron_tariff_in_preferences" translatable="false">Grupa Taryfowa</string>
-
-<!-- about -->
+    <!-- about -->
     <string name="about_label">About</string>
     <string name="version_text">Version %1$s<![CDATA[<br/>under <a href="http://opensource.org/licenses/MIT">MIT license</a>]]></string>
     <string name="description">Calculate the cost of utility bill</string>
@@ -167,13 +168,13 @@
     <string name="link_gplus">or join early version testing</string>
     <string name="clause">The names, logos and trade marks are owned by distribution companies. Given calculations are just approximate value of the bill and cannot be used as ground for financial claiming.</string>
     <string name="email_client_missing">I could not find any e-mail client installed</string>
-<!-- history -->
+    <!-- history -->
     <string name="history_label">History</string>
     <string name="action_delete">Delete</string>
     <string name="history_period" translatable="false">%1$s - %2$s</string>
     <string name="history_readings_label">Readings</string>
     <string name="history_amount" translatable="false">%1$s zł</string>
-    <string name="empty_history">No bill calculated yet</string>
+    <string name="empty_history">Tap \"add\" to calculate bill</string>
     <string name="my_bills">My bills</string>
     <string name="bill_deleted">Bill deleted</string>
     <string name="action_undo_delete">UNDO</string>
@@ -182,7 +183,7 @@
     <string name="history_item_amount_label">Charge:</string>
     <string name="history_item_day_zone">day unit</string>
     <string name="history_item_night_zone">night unit</string>
-<!-- form -->
+    <!-- form -->
     <string name="form_reading_from_m3">Previous [m\u00B3]</string>
     <string name="form_reading_to_m3">Current [m\u00B3]</string>
     <string name="form_reading_from_kWh_hint">Previous</string>

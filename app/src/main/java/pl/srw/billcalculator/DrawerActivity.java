@@ -1,166 +1,124 @@
 package pl.srw.billcalculator;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
-import com.wnafee.vector.compat.ResourcesCompat;
-
-import butterknife.ButterKnife;
 import butterknife.Bind;
-import pl.srw.billcalculator.dialog.CheckPricesDialogFragment;
-import pl.srw.billcalculator.form.fragment.PgeFormFragment;
-import pl.srw.billcalculator.form.fragment.PgnigFormFragment;
-import pl.srw.billcalculator.form.fragment.TauronFormFragment;
-import pl.srw.billcalculator.history.MyBillsFragment;
-import pl.srw.billcalculator.settings.GeneralPreferences;
+import butterknife.ButterKnife;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
-import pl.srw.billcalculator.type.EnumVariantNotHandledException;
-import pl.srw.billcalculator.type.Provider;
 
-/**
- * Created by kseweryn on 07.07.15.
- */
-public class DrawerActivity extends AppCompatActivity implements DrawerHandling {
+public class DrawerActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG_CHECK_PRICES_DIALOG = "CHECK_PRICES_DIALOG";
-
-    @Bind(R.id.drawer_layout) DrawerLayout drawerLayout;
-    @Bind(R.id.drawer_navigation) NavigationView navigationView;
-    @IdRes private int currentItem = -1;
+    @Bind(R.id.drawer_layout) DrawerLayout drawer;
+    @Bind(R.id.nav_view) NavigationView navigationView;
+    @Bind(R.id.toolbar_layout) CollapsingToolbarLayout collapsingToolbarLayout;
+    @Bind(R.id.toolbar) Toolbar toolbar;
+    @Bind(R.id.bill_list) RecyclerView recyclerView;
+    @Bind(R.id.fab) FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState != null) {
-            this.currentItem = savedInstanceState.getInt("currentItem");
-        }
-        setContentView(R.layout.drawer);
+        setContentView(R.layout.activity_drawer);
         ButterKnife.bind(this);
 
-        setupContent(savedInstanceState);
-        setupNavigationView();
-    }
-
-    private void setupContent(Bundle savedInstanceState) {
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.container, MyBillsFragment.newInstance()).commit();
-            currentItem = R.id.my_bills;
-            if (GeneralPreferences.isFirstLaunch())
-                new CheckPricesDialogFragment()
-                        .show(getFragmentManager(), TAG_CHECK_PRICES_DIALOG);
-        }
-    }
-
-    private void setupNavigationView() {
-        Drawable listDrawable = ResourcesCompat.getDrawable(this, R.drawable.ic_list_white_24px);
-        navigationView.getMenu().findItem(R.id.my_bills).setIcon(listDrawable);
-        Drawable settingsDrawable = ResourcesCompat.getDrawable(this, R.drawable.ic_settings_white_24px);
-        navigationView.getMenu().findItem(R.id.settings).setIcon(settingsDrawable);
-        Drawable infoDrawable = ResourcesCompat.getDrawable(this, R.drawable.ic_info_outline_white_24px);
-        navigationView.getMenu().findItem(R.id.about).setIcon(infoDrawable);
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        drawerLayout.closeDrawers();
-                        onDrawerItemClicked(menuItem);
-                        return true;
-                    }
-                });
-    }
-
-    private void onDrawerItemClicked(final MenuItem menuItem) {
-        final int id = menuItem.getItemId();
-        if (currentItem == id) return;
-        if (id == R.id.about)
-            startActivity(new Intent(this, AboutActivity.class));
-        else if (id == R.id.settings)
-            startActivity(new Intent(this, SettingsActivity.class));
-        else {
-            if (id == R.id.my_bills) backToHome();
-            else if (id == R.id.new_bill_pge) showForm(Provider.PGE);
-            else if (id == R.id.new_bill_pgnig) showForm(Provider.PGNIG);
-            else if (id == R.id.new_bill_tauron) showForm(Provider.TAURON);
-            else throw new RuntimeException("Unhandled " + menuItem);
-        }
-        navigationView.getMenu().findItem(currentItem).setChecked(true);
-    }
-
-    @Override
-    public void showForm(Provider provider) {
-        Fragment fragment;
-        switch (provider) {
-            case PGE:
-                fragment = new PgeFormFragment();
-                currentItem = R.id.new_bill_pge;
-                break;
-            case PGNIG:
-                fragment = new PgnigFormFragment();
-                currentItem = R.id.new_bill_pgnig;
-                break;
-            case TAURON:
-                fragment = new TauronFormFragment();
-                currentItem = R.id.new_bill_tauron;
-                break;
-            default:
-                throw new EnumVariantNotHandledException(provider);
-        }
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0)
-            getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-
-        getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(R.anim.slide_in_right, R.anim.shrink_fade_out_center, R.anim.grow_fade_in_center, R.anim.slide_out_right)
-                .replace(R.id.container, fragment)
-                .addToBackStack(null)
-                .commit();
-    }
-
-    @Override
-    public void openDrawer() {
-        drawerLayout.openDrawer(GravityCompat.START);
-    }
-
-    @Override
-    public void backToHome() {
-        getSupportFragmentManager().popBackStack();
-        currentItem = R.id.my_bills;
-        navigationView.getMenu().findItem(currentItem).setChecked(true);
+        setupToolbar();
+        setupDrawer();
+        setupList();
+        setupFAB();
     }
 
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START))
-            drawerLayout.closeDrawers();
-        else if (currentItem != R.id.my_bills)
-            backToHome();
-        else
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.drawer_activity, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            if (currentItem != R.id.my_bills)
-                backToHome();
-            else
-                this.openDrawer();
+        int id = item.getItemId();
+
+        if (id == R.id.action_help) {
+            // TODO: show help
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt("currentItem", this.currentItem);
-        super.onSaveInstanceState(outState);
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.my_bills) {
+            // TODO: handle drawer menu actions
+        } else if (id == R.id.new_bill_pge) {
+
+        } else if (id == R.id.new_bill_pgnig) {
+
+        } else if (id == R.id.new_bill_tauron) {
+
+        } else if (id == R.id.settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
+        } else if (id == R.id.about) {
+
+        }
+
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    private void setupList() {
+
+    }
+
+    private void setupFAB() {
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO:
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+    }
+
+    private void setupToolbar() {
+        toolbar.setTitle(R.string.my_bills);
+        collapsingToolbarLayout.setTitle(toolbar.getTitle());
+        setSupportActionBar(toolbar);
+    }
+
+    private void setupDrawer() {
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(this);
     }
 }

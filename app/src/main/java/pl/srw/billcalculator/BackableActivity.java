@@ -1,13 +1,15 @@
 package pl.srw.billcalculator;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+
+import pl.srw.mfvp.MvpActivity;
+import pl.srw.mfvp.di.component.MvpActivityScopeComponent;
 
 /**
  * Created by Kamil Seweryn.
  */
-public abstract class BackableActivity extends AppCompatActivity {
+public abstract class BackableActivity<T extends MvpActivityScopeComponent> extends MvpActivity<T> {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

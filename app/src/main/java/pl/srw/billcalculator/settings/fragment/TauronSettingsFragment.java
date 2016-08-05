@@ -1,5 +1,8 @@
 package pl.srw.billcalculator.settings.fragment;
 
+import javax.inject.Inject;
+
+import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
 
@@ -8,19 +11,21 @@ import pl.srw.billcalculator.settings.prices.TauronPrices;
  */
 public class TauronSettingsFragment extends EnergyProviderSettingsFragment {
 
+    @Inject TauronPrices tauronPrices;
+
     @Override
-    protected int getPreferencesResource() {
-        return R.xml.tauron_preferences;
+    protected int getPreferencesG11Resource() {
+        return R.xml.tauron_g11_preferences;
+    }
+
+    @Override
+    protected int getPreferencesG12Resource() {
+        return R.xml.tauron_g12_preferences;
     }
 
     @Override
     public int getHelpImageExampleResource() {
         return R.drawable.tauron_example;
-    }
-
-    @Override
-    public int getTitleResource() {
-        return R.string.tauron_prices;
     }
 
     @Override
@@ -36,6 +41,11 @@ public class TauronSettingsFragment extends EnergyProviderSettingsFragment {
     @Override
     public void restoreSettings() {
         super.restoreSettings();
-        new TauronPrices().setDefault();
+        tauronPrices.setDefault();
+    }
+
+    @Override
+    protected void injectDependencies() {
+        BillCalculator.get(getActivity()).getApplicationComponent().getSettingsComponent().inject(this);
     }
 }

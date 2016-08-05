@@ -1,1 +1,1 @@
-include ':app', ':database-generator', ':persistence'
+include ':app', ':persistence'

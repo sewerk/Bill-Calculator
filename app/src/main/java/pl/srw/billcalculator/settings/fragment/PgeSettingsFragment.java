@@ -1,5 +1,8 @@
 package pl.srw.billcalculator.settings.fragment;
 
+import javax.inject.Inject;
+
+import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 
@@ -8,19 +11,21 @@ import pl.srw.billcalculator.settings.prices.PgePrices;
  */
 public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
 
+    @Inject PgePrices pgePrices;
+
     @Override
-    protected int getPreferencesResource() {
-        return R.xml.pge_preferences;
+    protected int getPreferencesG11Resource() {
+        return R.xml.pge_g11_preferences;
+    }
+
+    @Override
+    protected int getPreferencesG12Resource() {
+        return R.xml.pge_g12_preferences;
     }
 
     @Override
     public int getHelpImageExampleResource() {
         return R.drawable.pge_example;
-    }
-
-    @Override
-    public int getTitleResource() {
-        return R.string.pge_prices;
     }
 
     @Override
@@ -38,6 +43,11 @@ public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
     @Override
     public void restoreSettings() {
         super.restoreSettings();
-        new PgePrices().setDefault();
+        pgePrices.setDefault();
+    }
+
+    @Override
+    protected void injectDependencies() {
+        BillCalculator.get(getActivity()).getApplicationComponent().getSettingsComponent().inject(this);
     }
 }
