@@ -1,6 +1,7 @@
 - new launcher icon
 - drawer menu layout space
 - rework on images
+- settings list desc is cut off on tablets
 
 - drawer is opened when rotate screen with about open
 - fragment animations are gone from backstack after rotation
