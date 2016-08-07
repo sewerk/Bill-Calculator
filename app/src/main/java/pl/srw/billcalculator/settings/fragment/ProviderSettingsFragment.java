@@ -21,7 +21,7 @@ import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.dialog.ConfirmRestoreSettingsDialogFragment;
-import pl.srw.billcalculator.settings.activity.ProviderSettingsHelpActivity;
+import pl.srw.billcalculator.settings.help.ProviderSettingsHelpActivity;
 import pl.srw.billcalculator.type.ActionType;
 
 /**

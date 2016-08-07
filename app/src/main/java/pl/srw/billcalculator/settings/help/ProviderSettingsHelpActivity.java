@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.settings.activity;
+package pl.srw.billcalculator.settings.help;
 
 import android.app.Activity;
 import android.content.Context;
