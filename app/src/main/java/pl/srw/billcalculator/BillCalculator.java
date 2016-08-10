@@ -15,6 +15,7 @@ import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
+import timber.log.Timber;
 
 /**
  * Created by Kamil Seweryn.
@@ -31,6 +32,11 @@ public class BillCalculator extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
+
         applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(getApplicationContext()))
                 .build();

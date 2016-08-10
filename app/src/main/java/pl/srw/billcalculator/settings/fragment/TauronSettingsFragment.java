@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
+import pl.srw.billcalculator.type.Provider;
 
 /**
  * Created by Kamil Seweryn.
@@ -39,13 +40,13 @@ public class TauronSettingsFragment extends EnergyProviderSettingsFragment {
     }
 
     @Override
-    protected String getMonthMeasurePrefKeys() {
-        return "oplataDystrybucyjnaStala" + "oplataPrzejsciowa" + "oplataAbonamentowa";
+    protected Provider getProvider() {
+        return Provider.TAURON;
     }
 
     @Override
-    public void restoreSettings() {
-        tauronPrices.setDefault();
+    protected String getMonthMeasurePrefKeys() {
+        return "oplataDystrybucyjnaStala" + "oplataPrzejsciowa" + "oplataAbonamentowa";
     }
 
     @Override

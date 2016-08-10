@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.prices.PgePrices;
+import pl.srw.billcalculator.type.Provider;
 
 /**
  * Created by Kamil Seweryn.
@@ -39,15 +40,15 @@ public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
     }
 
     @Override
+    protected Provider getProvider() {
+        return Provider.PGE;
+    }
+
+    @Override
     protected String getMonthMeasurePrefKeys() {
         return getStringFor(R.string.preferences_pge_oplata_przejsciowa,
                 R.string.preferences_pge_oplata_stala_za_przesyl,
                 R.string.preferences_pge_oplata_abonamentowa);
-    }
-
-    @Override
-    public void restoreSettings() {
-        pgePrices.setDefault();
     }
 
     @Override

@@ -2,16 +2,12 @@ package pl.srw.billcalculator.settings.fragment;
 
 import android.content.SharedPreferences;
 
-import javax.inject.Inject;
-
 import pl.srw.billcalculator.R;
 
 /**
  * Created by Kamil Seweryn.
  */
 abstract class EnergyProviderSettingsFragment extends ProviderSettingsFragment {
-
-    @Inject SharedPreferences prefs;
 
     private int preferencesSchemaResId;
 
@@ -38,8 +34,7 @@ abstract class EnergyProviderSettingsFragment extends ProviderSettingsFragment {
         super.onSharedPreferenceChanged(sharedPreferences, key);
 
         if (key.equals(getTariffKey())) {
-            setPreferenceScreen(null);
-            init();
+            refreshScreen();
         }
     }
 

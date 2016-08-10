@@ -18,11 +18,11 @@ import android.view.MenuItem;
 import java.util.Map;
 
 import hugo.weaving.DebugLog;
-import pl.srw.billcalculator.AnalyticsWrapper;
+import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.dialog.ConfirmRestoreSettingsDialogFragment;
 import pl.srw.billcalculator.settings.help.ProviderSettingsHelpActivity;
-import pl.srw.billcalculator.type.ActionType;
+import pl.srw.billcalculator.settings.restore.ConfirmRestoreSettingsDialogFragment;
+import pl.srw.billcalculator.type.Provider;
 
 /**
  * Created by Kamil Seweryn.
@@ -48,6 +48,8 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
         addPreferencesFromResource(getPreferencesResource());
         setSummary();
     }
+
+    protected abstract Provider getProvider();
 
     protected abstract int getPreferencesResource();
 
@@ -80,22 +82,28 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
             showHelp();
             return true;
         } else if (item.getItemId() == R.id.action_default) {
-            new ConfirmRestoreSettingsDialogFragment().show(getFragmentManager(), TAG_CONFIRM_RESTORE);
+            ConfirmRestoreSettingsDialogFragment.newInstance(getProvider())
+                    .show(((BackableActivity) getActivity()).getSupportFragmentManager(), TAG_CONFIRM_RESTORE);
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void showHelp() {
-        final Intent intent = ProviderSettingsHelpActivity.createIntent(
-                getActivity(), getHelpLayoutResource(), getHelpImageExampleResource());
-        startActivity(intent);
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         replaceEmptyValue(sharedPreferences, key);
         updateSummary(sharedPreferences, key);
+    }
+
+    public void refreshScreen() {
+        setPreferenceScreen(null);
+        init();
+    }
+
+    private void showHelp() {
+        final Intent intent = ProviderSettingsHelpActivity.createIntent(
+                getActivity(), getHelpLayoutResource(), getHelpImageExampleResource());
+        startActivity(intent);
     }
 
     private void replaceEmptyValue(final SharedPreferences sharedPreferences, final String key) {
@@ -139,13 +147,4 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
         }
         return sb.toString();
     }
-
-    public final void restoreDefault() {
-        restoreSettings();
-        setPreferenceScreen(null);
-        init();
-        AnalyticsWrapper.logAction(ActionType.RESTORE_PRICES, "Default prices restored", this.getClass().getSimpleName());
-    }
-
-    protected abstract void restoreSettings();
 }

@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
+import pl.srw.billcalculator.type.Provider;
 
 /**
  * Created by Kamil Seweryn.
@@ -41,6 +42,11 @@ public class PgnigSettingsFragment extends ProviderSettingsFragment {
         return R.drawable.pgnig_example;
     }
 
+    @Override
+    protected Provider getProvider() {
+        return Provider.PGNIG;
+    }
+
     private void setWspKonwersjiDescription() {
         EditTextPreference wspKonwersjiPreference = (EditTextPreference) findPreference(getString(R.string.preferences_pgnig_wsp_konwersji));
         wspKonwersjiPreference.setDialogMessage(Html.fromHtml(getString(R.string.wsp_konwersji_desc)));
@@ -67,11 +73,6 @@ public class PgnigSettingsFragment extends ProviderSettingsFragment {
     protected String getMonthMeasurePrefKeys() {
         return getStringFor(R.string.preferences_pgnig_abonamentowa,
                 R.string.preferences_pgnig_dystrybucyjna_stala);
-    }
-
-    @Override
-    public void restoreSettings() {
-        pgnigPrices.setDefault();
     }
 
     @Override
