@@ -8,8 +8,9 @@ import javax.inject.Singleton;
 import pl.srw.billcalculator.pojo.IPgePrices;
 
 @Singleton
-public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
+public class PgePrices extends SharedPreferencesEnergyPrices implements IPgePrices {
 
+    public static final String KEY_TARIFF = "pge_tariff";
     private static final String CENA_ZA_ENERGIE_CZYNNA = "cena_za_energie_czynna";
     private static final String CENA_ZA_ENERGIE_CZYNNA_G_12_DZIEN = "cena_za_energie_czynna_G12dzien";
     private static final String CENA_ZA_ENERGIE_CZYNNA_G_12_NOC = "cena_za_energie_czynna_G12noc";
@@ -21,6 +22,7 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
     private static final String CENA_OPLATA_STALA_ZA_PRZESYL = "cena_oplata_stala_za_przesyl";
     private static final String CENA_OPLATA_ABONAMENTOWA = "cena_oplata_abonamentowa";
 
+    private final String pge_tariff = TARIFF_G11;
     private final String cena_za_energie_czynna = "0.2553";
     private final String cena_za_energie_czynna_G12dzien = "0.2861";
     private final String cena_za_energie_czynna_G12noc = "0.1917";
@@ -55,6 +57,7 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
 
     @Override
     public void clear() {
+        removeTariff();
         removeZaEnergieCzynna();
         removeZaEnergieCzynnaDzien();
         removeZaEnergieCzynnaNoc();
@@ -70,6 +73,7 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
     @Override
     public void setDefault() {
         clear();
+        setTariff(getTariff());
         setZaEnergieCzynna(getZaEnergieCzynna());
         setZaEnergieCzynnaDzien(getZaEnergieCzynnaDzien());
         setZaEnergieCzynnaNoc(getZaEnergieCzynnaNoc());
@@ -86,6 +90,24 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
     public void setDefaultIfNotSet() {
         if (!containsZaEnergieCzynna())
             setDefault();
+    }
+
+    @Override
+    public @TariffOption String getTariff() {
+        //noinspection WrongConstant
+        return getPref(KEY_TARIFF, this.pge_tariff);
+    }
+
+    public void setTariff(@TariffOption String tariff) {
+        setPref(KEY_TARIFF, tariff);
+    }
+
+    public boolean containsTariff() {
+        return containsPref(KEY_TARIFF);
+    }
+
+    public void removeTariff() {
+        removePref(KEY_TARIFF);
     }
 
     public String getZaEnergieCzynna() {

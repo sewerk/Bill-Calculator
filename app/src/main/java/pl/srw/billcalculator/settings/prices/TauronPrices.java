@@ -8,7 +8,9 @@ import javax.inject.Singleton;
 import pl.srw.billcalculator.pojo.ITauronPrices;
 
 @Singleton
-public class TauronPrices extends SharedPreferencesPrices implements ITauronPrices {
+public class TauronPrices extends SharedPreferencesEnergyPrices implements ITauronPrices {
+
+    public static final String KEY_TARIFF = "preferences_tauron_tariff";
     private static final String ENERGIA_ELEKTRYCZNA_CZYNNA = "energiaElektrycznaCzynna";
     private static final String OPLATA_DYSTRYBUCYJNA_ZMIENNA = "oplataDystrybucyjnaZmienna";
     private static final String OPLATA_DYSTRYBUCYJNA_STALA = "oplataDystrybucyjnaStala";
@@ -19,6 +21,7 @@ public class TauronPrices extends SharedPreferencesPrices implements ITauronPric
     private static final String OPLATA_DYSTRYBUCYJNA_ZMIENNA_NOC = "oplataDystrybucyjnaZmiennaNoc";
     private static final String ENERGIA_ELEKTRYCZNA_CZYNNA_NOC = "energiaElektrycznaCzynnaNoc";
 
+    private final String tauron_tariff = TARIFF_G11;
     private final String energiaElektrycznaCzynna = "0.2547";
     private final String oplataDystrybucyjnaZmienna = "0.1913";
     private final String oplataDystrybucyjnaStala = "1.55";
@@ -52,6 +55,7 @@ public class TauronPrices extends SharedPreferencesPrices implements ITauronPric
 
     @Override
     public void clear() {
+        removeTariff();
         removeEnergiaElektrycznaCzynna();
         removeOplataDystrybucyjnaZmienna();
         removeOplataDystrybucyjnaStala();
@@ -66,6 +70,7 @@ public class TauronPrices extends SharedPreferencesPrices implements ITauronPric
     @Override
     public void setDefault() {
         clear();
+        setTariff(getTariff());
         setEnergiaElektrycznaCzynna(getEnergiaElektrycznaCzynna());
         setOplataDystrybucyjnaZmienna(getOplataDystrybucyjnaZmienna());
         setOplataDystrybucyjnaStala(getOplataDystrybucyjnaStala());
@@ -81,6 +86,24 @@ public class TauronPrices extends SharedPreferencesPrices implements ITauronPric
     public void setDefaultIfNotSet() {
         if (!containsEnergiaElektrycznaCzynna())
             setDefault();
+    }
+
+    @Override
+    public @TariffOption String getTariff() {
+        //noinspection WrongConstant
+        return getPref(KEY_TARIFF, this.tauron_tariff);
+    }
+
+    public void setTariff(@TariffOption String tariff) {
+        setPref(KEY_TARIFF, tariff);
+    }
+
+    public boolean containsTariff() {
+        return containsPref(KEY_TARIFF);
+    }
+
+    public void removeTariff() {
+        removePref(KEY_TARIFF);
     }
 
     public String getEnergiaElektrycznaCzynna() {

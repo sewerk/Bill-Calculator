@@ -30,7 +30,12 @@ public class TauronSettingsFragment extends EnergyProviderSettingsFragment {
 
     @Override
     protected String getTariffKey() {
-        return "preferences_tauron_tariff";
+        return TauronPrices.KEY_TARIFF;
+    }
+
+    @Override
+    protected boolean isTariffG12() {
+        return tauronPrices.isTariffG12();
     }
 
     @Override
@@ -40,7 +45,6 @@ public class TauronSettingsFragment extends EnergyProviderSettingsFragment {
 
     @Override
     public void restoreSettings() {
-        super.restoreSettings();
         tauronPrices.setDefault();
     }
 

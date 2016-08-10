@@ -1,11 +1,6 @@
 package pl.srw.billcalculator.settings.fragment;
 
 import android.content.SharedPreferences;
-import android.support.annotation.CallSuper;
-import android.support.annotation.StringDef;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
 import javax.inject.Inject;
 
@@ -16,18 +11,13 @@ import pl.srw.billcalculator.R;
  */
 abstract class EnergyProviderSettingsFragment extends ProviderSettingsFragment {
 
-    protected static final String TARIFF_G11 = "G11";
-    protected static final String TARIFF_G12 = "G12";
-
-    @StringDef({TARIFF_G11, TARIFF_G12})
-    @Retention(RetentionPolicy.SOURCE)
-    protected @interface TariffOption {}
-
     @Inject SharedPreferences prefs;
 
     private int preferencesSchemaResId;
 
     protected abstract String getTariffKey();
+
+    protected abstract boolean isTariffG12();
 
     protected abstract int getPreferencesG11Resource();
 
@@ -65,17 +55,5 @@ abstract class EnergyProviderSettingsFragment extends ProviderSettingsFragment {
         } else {
             preferencesSchemaResId = getPreferencesG11Resource();
         }
-    }
-
-    @Override
-    @CallSuper
-    protected void restoreSettings() {
-        prefs.edit()
-                .putString(getTariffKey(), TARIFF_G11)
-                .apply();
-    }
-
-    private boolean isTariffG12() {
-        return prefs.getString(getTariffKey(), TARIFF_G11).equals(TARIFF_G12);
     }
 }

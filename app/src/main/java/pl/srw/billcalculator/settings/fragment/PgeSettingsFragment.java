@@ -30,7 +30,12 @@ public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
 
     @Override
     protected String getTariffKey() {
-        return getString(R.string.preferences_pge_tariff);
+        return PgePrices.KEY_TARIFF;
+    }
+
+    @Override
+    protected boolean isTariffG12() {
+        return pgePrices.isTariffG12();
     }
 
     @Override
@@ -42,7 +47,6 @@ public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
 
     @Override
     public void restoreSettings() {
-        super.restoreSettings();
         pgePrices.setDefault();
     }
 
