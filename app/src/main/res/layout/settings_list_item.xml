@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              xmlns:tools="http://schemas.android.com/tools"
-                                             android:id="@+id/constraintLayout"
+                                             android:id="@+id/settings_list_item"
                                              android:layout_width="match_parent"
                                              android:layout_height="wrap_content"
                                              android:background="@drawable/prefs_item_bg"
@@ -17,9 +17,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:contentDescription="provider icon"
-        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_list_item"
+        app:layout_constraintLeft_toLeftOf="@+id/settings_list_item"
+        app:layout_constraintTop_toTopOf="@+id/settings_list_item"
         tools:src="@drawable/pge_small"/>
 
     <TextView
@@ -33,7 +33,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toTopOf="@+id/summary"
         app:layout_constraintLeft_toRightOf="@+id/icon"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+        app:layout_constraintTop_toTopOf="@+id/settings_list_item"
         app:layout_constraintVertical_bias="0.75"
         tools:text="PGE prices"/>
 
@@ -45,7 +45,7 @@
         android:ellipsize="marquee"
         android:maxLines="4"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_list_item"
         app:layout_constraintLeft_toLeftOf="@+id/title"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintVertical_bias="0.25"

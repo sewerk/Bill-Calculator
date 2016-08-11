@@ -18,6 +18,7 @@ import android.view.MenuItem;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
 
 public class DrawerActivity extends AppCompatActivity
@@ -30,6 +31,7 @@ public class DrawerActivity extends AppCompatActivity
     @Bind(R.id.bill_list) RecyclerView recyclerView;
     @Bind(R.id.fab) FloatingActionButton fab;
 
+    @DebugLog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
