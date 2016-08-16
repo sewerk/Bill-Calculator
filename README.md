@@ -25,5 +25,5 @@ With help of
 - [Mockito](http://mockito.org)
 - [JUnitParams](https://github.com/Pragmatists/junitparams)
 - [Robotium] (https://code.google.com/p/robotium)
-``
+
 [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=57a501adecce840100848f7c&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/57a501adecce840100848f7c/build/latest)
