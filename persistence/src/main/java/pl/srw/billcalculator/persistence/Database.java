@@ -50,7 +50,7 @@ public class Database {
                 }
 
                 @Override
-                public void onUpgrade(final SQLiteDatabase db, final int oldVersion, final int newVersion) {
+                public void onUpgrade(org.greenrobot.greendao.database.Database db, int oldVersion, int newVersion) {
                     DBMigration.migrate(db, oldVersion, newVersion);
                     Triggers.update(db, oldVersion, newVersion);
                 }

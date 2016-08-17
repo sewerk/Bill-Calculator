@@ -1,6 +1,5 @@
 package pl.srw.billcalculator.persistence;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import pl.srw.billcalculator.db.dao.DaoMaster;
@@ -15,7 +14,7 @@ class DBMigration {
 
     public static final int CURRENT_VERSION = DaoMaster.SCHEMA_VERSION;
 
-    public static void migrate(final SQLiteDatabase db, final int oldVersion, final int newVersion) {
+    public static void migrate(final org.greenrobot.greendao.database.Database db, final int oldVersion, final int newVersion) {
         Log.i("DBMigration", "Upgrading schema from version " + oldVersion + " to " + newVersion);
         switch (oldVersion) {
             case 1: migrate_1_2(db);
@@ -23,7 +22,7 @@ class DBMigration {
         }
     }
 
-    private static void migrate_1_2(final SQLiteDatabase db) {
+    private static void migrate_1_2(final org.greenrobot.greendao.database.Database db) {
         TauronPricesDao.createTable(db, true);
         TauronG11BillDao.createTable(db, true);
         TauronG12BillDao.createTable(db, true);
