@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="pl.srw.billcalculator.DrawerActivity"
-    tools:showIn="@layout/activity_drawer_app_bar">
+    tools:showIn="@layout/activity_drawer_content">
 
     <TextView
         android:id="@+id/empty_history"
@@ -25,6 +25,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        tools:listitem="@layout/bill_item" />
+        tools:listitem="@layout/activity_drawer_my_bills_item" />
 
 </android.support.constraint.ConstraintLayout>

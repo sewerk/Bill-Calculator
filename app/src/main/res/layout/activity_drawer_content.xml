@@ -43,10 +43,20 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/my_bills"/>
+    <include layout="@layout/activity_drawer_my_bills"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@color/primary"
+        app:rippleColor="@color/primaryDark"
+        app:srcCompat="@drawable/ic_add_white_24dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_new_pge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

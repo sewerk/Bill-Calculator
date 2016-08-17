@@ -6,13 +6,13 @@
         android:id="@+id/action_default"
         android:orderInCategory="100"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_undo_black_24dp"
+        android:icon="@drawable/ic_undo_white_24dp"
         android:title="@string/action_restore"/>
 
     <item
         android:id="@+id/action_help"
         android:orderInCategory="101"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_help_outline_black_24dp"
+        android:icon="@drawable/ic_help_outline_white_24dp"
         android:title="@string/action_help"/>
 </menu>
