@@ -178,4 +178,22 @@ public class PgeG12Bill implements Bill {
         myDao.refresh(this);
     }
 
+    @Override
+    public String toString() {
+        return "PgeG12Bill{" +
+                "id=" + id +
+                ", readingDayFrom=" + readingDayFrom +
+                ", readingDayTo=" + readingDayTo +
+                ", readingNightFrom=" + readingNightFrom +
+                ", readingNightTo=" + readingNightTo +
+                ", dateFrom=" + dateFrom +
+                ", dateTo=" + dateTo +
+                ", amountToPay=" + amountToPay +
+                ", pricesId=" + pricesId +
+                ", daoSession=" + daoSession +
+                ", myDao=" + myDao +
+                ", pgePrices=" + pgePrices +
+                ", pgePrices__resolvedKey=" + pgePrices__resolvedKey +
+                '}';
+    }
 }

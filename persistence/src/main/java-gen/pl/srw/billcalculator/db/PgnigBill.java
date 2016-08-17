@@ -158,4 +158,20 @@ public class PgnigBill implements Bill {
         myDao.refresh(this);
     }
 
+    @Override
+    public String toString() {
+        return "PgnigBill{" +
+                "id=" + id +
+                ", readingFrom=" + readingFrom +
+                ", readingTo=" + readingTo +
+                ", dateFrom=" + dateFrom +
+                ", dateTo=" + dateTo +
+                ", amountToPay=" + amountToPay +
+                ", pricesId=" + pricesId +
+                ", daoSession=" + daoSession +
+                ", myDao=" + myDao +
+                ", pgnigPrices=" + pgnigPrices +
+                ", pgnigPrices__resolvedKey=" + pgnigPrices__resolvedKey +
+                '}';
+    }
 }

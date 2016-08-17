@@ -57,4 +57,13 @@ public class History {
         this.billId = billId;
     }
 
+    @Override
+    public String toString() {
+        return "History{" +
+                "id=" + id +
+                ", dateFrom=" + dateFrom +
+                ", billType='" + billType + '\'' +
+                ", billId=" + billId +
+                '}';
+    }
 }

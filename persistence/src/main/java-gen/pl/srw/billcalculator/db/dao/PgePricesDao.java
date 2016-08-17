@@ -14,6 +14,7 @@ import pl.srw.billcalculator.db.PgePrices;
 /** 
  * DAO for table PGE_PRICES.
 */
+@SuppressWarnings("ALL")
 public class PgePricesDao extends AbstractDao<PgePrices, Long> {
 
     public static final String TABLENAME = "PGE_PRICES";

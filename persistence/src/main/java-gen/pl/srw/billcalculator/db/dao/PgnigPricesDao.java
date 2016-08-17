@@ -14,6 +14,7 @@ import pl.srw.billcalculator.db.PgnigPrices;
 /** 
  * DAO for table PGNIG_PRICES.
 */
+@SuppressWarnings("ALL")
 public class PgnigPricesDao extends AbstractDao<PgnigPrices, Long> {
 
     public static final String TABLENAME = "PGNIG_PRICES";

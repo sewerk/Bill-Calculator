@@ -14,6 +14,7 @@ import pl.srw.billcalculator.db.History;
 /** 
  * DAO for table HISTORY.
 */
+@SuppressWarnings("ALL")
 public class HistoryDao extends AbstractDao<History, Long> {
 
     public static final String TABLENAME = "HISTORY";

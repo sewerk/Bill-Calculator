@@ -19,6 +19,7 @@ import pl.srw.billcalculator.db.TauronG12Bill;
 /** 
  * DAO for table TAURON_G12_BILL.
 */
+@SuppressWarnings("ALL")
 public class TauronG12BillDao extends AbstractDao<TauronG12Bill, Long> {
 
     public static final String TABLENAME = "TAURON_G12_BILL";

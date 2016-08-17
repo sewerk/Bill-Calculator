@@ -178,4 +178,22 @@ public class TauronG12Bill implements Bill {
         myDao.refresh(this);
     }
 
+    @Override
+    public String toString() {
+        return "TauronG12Bill{" +
+                "id=" + id +
+                ", readingDayFrom=" + readingDayFrom +
+                ", readingDayTo=" + readingDayTo +
+                ", readingNightFrom=" + readingNightFrom +
+                ", readingNightTo=" + readingNightTo +
+                ", dateFrom=" + dateFrom +
+                ", dateTo=" + dateTo +
+                ", amountToPay=" + amountToPay +
+                ", pricesId=" + pricesId +
+                ", daoSession=" + daoSession +
+                ", myDao=" + myDao +
+                ", tauronPrices=" + tauronPrices +
+                ", tauronPrices__resolvedKey=" + tauronPrices__resolvedKey +
+                '}';
+    }
 }
