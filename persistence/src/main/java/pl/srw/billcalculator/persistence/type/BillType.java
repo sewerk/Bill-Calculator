@@ -1,6 +1,6 @@
 package pl.srw.billcalculator.persistence.type;
 
-import de.greenrobot.dao.AbstractDao;
+import org.greenrobot.greendao.AbstractDao;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.db.PgeG12Bill;

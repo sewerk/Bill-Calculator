@@ -1,13 +1,12 @@
 package pl.srw.billcalculator.db.dao;
 
-import android.database.sqlite.SQLiteDatabase;
-
 import java.util.Map;
 
-import de.greenrobot.dao.AbstractDao;
-import de.greenrobot.dao.AbstractDaoSession;
-import de.greenrobot.dao.identityscope.IdentityScopeType;
-import de.greenrobot.dao.internal.DaoConfig;
+import org.greenrobot.greendao.AbstractDao;
+import org.greenrobot.greendao.AbstractDaoSession;
+import org.greenrobot.greendao.database.Database;
+import org.greenrobot.greendao.identityscope.IdentityScopeType;
+import org.greenrobot.greendao.internal.DaoConfig;
 
 import pl.srw.billcalculator.db.PgePrices;
 import pl.srw.billcalculator.db.PgeG11Bill;
@@ -34,9 +33,8 @@ import pl.srw.billcalculator.db.dao.HistoryDao;
 /**
  * {@inheritDoc}
  * 
- * @see de.greenrobot.dao.AbstractDaoSession
+ * @see org.greenrobot.greendao.AbstractDaoSession
  */
-@SuppressWarnings("ALL")
 public class DaoSession extends AbstractDaoSession {
 
     private final DaoConfig pgePricesDaoConfig;
@@ -59,7 +57,7 @@ public class DaoSession extends AbstractDaoSession {
     private final TauronG12BillDao tauronG12BillDao;
     private final HistoryDao historyDao;
 
-    public DaoSession(SQLiteDatabase db, IdentityScopeType type, Map<Class<? extends AbstractDao<?, ?>>, DaoConfig>
+    public DaoSession(Database db, IdentityScopeType type, Map<Class<? extends AbstractDao<?, ?>>, DaoConfig>
             daoConfigMap) {
         super(db);
 
@@ -112,15 +110,15 @@ public class DaoSession extends AbstractDaoSession {
     }
     
     public void clear() {
-        pgePricesDaoConfig.getIdentityScope().clear();
-        pgeG11BillDaoConfig.getIdentityScope().clear();
-        pgeG12BillDaoConfig.getIdentityScope().clear();
-        pgnigPricesDaoConfig.getIdentityScope().clear();
-        pgnigBillDaoConfig.getIdentityScope().clear();
-        tauronPricesDaoConfig.getIdentityScope().clear();
-        tauronG11BillDaoConfig.getIdentityScope().clear();
-        tauronG12BillDaoConfig.getIdentityScope().clear();
-        historyDaoConfig.getIdentityScope().clear();
+        pgePricesDaoConfig.clearIdentityScope();
+        pgeG11BillDaoConfig.clearIdentityScope();
+        pgeG12BillDaoConfig.clearIdentityScope();
+        pgnigPricesDaoConfig.clearIdentityScope();
+        pgnigBillDaoConfig.clearIdentityScope();
+        tauronPricesDaoConfig.clearIdentityScope();
+        tauronG11BillDaoConfig.clearIdentityScope();
+        tauronG12BillDaoConfig.clearIdentityScope();
+        historyDaoConfig.clearIdentityScope();
     }
 
     public PgePricesDao getPgePricesDao() {

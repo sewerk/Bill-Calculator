@@ -4,10 +4,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import de.greenrobot.dao.AbstractDao;
-import de.greenrobot.dao.query.LazyList;
-import de.greenrobot.dao.query.Query;
-import de.greenrobot.dao.query.QueryBuilder;
+import org.greenrobot.greendao.AbstractDao;
+import org.greenrobot.greendao.query.LazyList;
+import org.greenrobot.greendao.query.Query;
+import org.greenrobot.greendao.query.QueryBuilder;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.db.Prices;
@@ -22,7 +22,7 @@ import pl.srw.billcalculator.persistence.type.CurrentReadingType;
  */
 public class Database {
 
-    public static final String DB_NAME = "pl.srw.billcalculator.db";
+    private static final String DB_NAME = "pl.srw.billcalculator.db";
     private static final String QUERY_ROW_LIMIT = "100";
     private static SQLiteDatabase database;
     private static DaoSession daoSession;

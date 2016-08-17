@@ -1,11 +1,12 @@
 package pl.srw.billcalculator.persistence;
 
-import de.greenrobot.dao.Property;
+import org.greenrobot.greendao.Property;
 
 /**
 * Created by Kamil Seweryn.
 */
-public class SqlBuilder {
+@SuppressWarnings("SameParameterValue")
+class SqlBuilder {
 
     private final StringBuilder sql;
 
@@ -13,12 +14,12 @@ public class SqlBuilder {
         this.sql = sql;
     }
 
-    public static SqlBuilder createTrigger(final String triggerName) {
+    static SqlBuilder createTrigger(final String triggerName) {
         final StringBuilder sql = new StringBuilder("CREATE TRIGGER " + triggerName);
         return new SqlBuilder(sql);
     }
 
-    public SqlBuilder after(final String afterOp) {
+    SqlBuilder after(final String afterOp) {
         sql.append(" AFTER ").append(afterOp);
         return this;
     }
@@ -28,16 +29,16 @@ public class SqlBuilder {
         return this;
     }
 
-    public String execute(final String innerSql) {
+    String execute(final String innerSql) {
         return sql.append(" BEGIN ").append(innerSql).append(" END;").toString();
     }
 
-    public static SqlBuilder insertInto(final String tablename) {
+    static SqlBuilder insertInto(final String tablename) {
         final StringBuilder sql = new StringBuilder("INSERT INTO " + tablename);
         return new SqlBuilder(sql);
     }
 
-    public SqlBuilder cols(final Property... cols) {
+    SqlBuilder cols(final Property... cols) {
         sql.append("(");
         for (Property col : cols) {
             sql.append(col.columnName);
@@ -48,7 +49,7 @@ public class SqlBuilder {
         return this;
     }
 
-    public String vals(final String... vals) {
+    String vals(final String... vals) {
         sql.append(" VALUES(");
         for (String val : vals) {
             sql.append(val);
@@ -59,26 +60,26 @@ public class SqlBuilder {
         return sql.toString();
     }
 
-    public static SqlBuilder deleteFrom(final String tablename) {
+    static SqlBuilder deleteFrom(final String tablename) {
         final StringBuilder sql = new StringBuilder("DELETE FROM " + tablename);
         return new SqlBuilder(sql);
     }
 
-    public SqlBuilder whereEq(final Property col, final String val) {
+    SqlBuilder whereEq(final Property col, final String val) {
         sql.append(" WHERE ").append(col.columnName).append(" = ").append(val);
         return this;
     }
 
-    public String andEq(final Property col, final String val) {
+    String andEq(final Property col, final String val) {
         sql.append(" AND ").append(col.columnName).append(" = ").append(val).append(";");
         return sql.toString();
     }
 
-    public static String getNew(final Property col) {
+    static String getNew(final Property col) {
         return "new." + col.columnName;
     }
 
-    public static String getOld(final Property col) {
+    static String getOld(final Property col) {
         return "old." + col.columnName;
     }
 }
