@@ -4,25 +4,33 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import hugo.weaving.DebugLog;
+import pl.srw.billcalculator.history.di.HistoryComponent;
+import pl.srw.billcalculator.history.HistoryPresenter;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
+import pl.srw.mfvp.MvpActivity;
+import pl.srw.mfvp.view.delegate.presenter.PresenterHandlingDelegate;
+import pl.srw.mfvp.view.delegate.presenter.PresenterOwner;
+import pl.srw.mfvp.view.delegate.presenter.SinglePresenterHandlingDelegate;
 
-public class DrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class DrawerActivity extends MvpActivity<HistoryComponent>
+        implements HistoryPresenter.HistoryView,
+        PresenterOwner,
+        NavigationView.OnNavigationItemSelectedListener {
 
     @Bind(R.id.drawer_layout) DrawerLayout drawer;
     @Bind(R.id.nav_view) NavigationView navigationView;
@@ -31,11 +39,12 @@ public class DrawerActivity extends AppCompatActivity
     @Bind(R.id.bill_list) RecyclerView recyclerView;
     @Bind(R.id.fab) FloatingActionButton fab;
 
+    @Inject HistoryPresenter presenter;
+
     @DebugLog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drawer);
         ButterKnife.bind(this);
 
         setupToolbar();
@@ -45,17 +54,12 @@ public class DrawerActivity extends AppCompatActivity
     }
 
     @Override
-    public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+    protected int getContentLayoutId() {
+        return R.layout.activity_drawer;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.drawer_activity, menu);
         return true;
     }
@@ -65,7 +69,7 @@ public class DrawerActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.action_help) {
-            // TODO: show help
+            presenter.helpMenuClicked();
             return true;
         }
 
@@ -77,34 +81,79 @@ public class DrawerActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.my_bills) {
-            // TODO: handle drawer menu actions
+            presenter.myBillsClicked();
         } else if (id == R.id.new_bill_pge) {
-
+            presenter.newPgeBillClicked();
         } else if (id == R.id.new_bill_pgnig) {
-
+            presenter.newPgnigButtonClicked();
         } else if (id == R.id.new_bill_tauron) {
-
+            presenter.newTauronBillClicked();
         } else if (id == R.id.settings) {
-            startActivity(new Intent(this, SettingsActivity.class));
+            presenter.settingsClicked();
         } else if (id == R.id.about) {
-
+            presenter.aboutClicked();
         }
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private void setupList() {
+    @Override
+    public void onBackPressed() {
+        if (!presenter.handleBackPressed()) {
+            super.onBackPressed();
+        }
+    }
 
+    @Override
+    public PresenterHandlingDelegate createPresenterDelegate() {
+        return new SinglePresenterHandlingDelegate(this, presenter);
+    }
+
+    @Override
+    public HistoryComponent prepareComponent() {
+        return BillCalculator.get(this).getApplicationComponent().getHistoryComponent();
+    }
+
+    @Override
+    public boolean isDrawerOpen() {
+        return drawer.isDrawerOpen(GravityCompat.START);
+    }
+
+    @Override
+    public void closeDrawer() {
+        drawer.closeDrawer(GravityCompat.START);
+    }
+
+    @Override
+    public void openSettings() {
+        startActivity(new Intent(this, SettingsActivity.class));
+    }
+
+    @Override
+    public void showAbout() {
+        startActivity(new Intent(this, AboutActivity.class));
+    }
+
+    @Override
+    public void showHelp() {
+        // TODO: impl overlaying help
+    }
+
+    @Override
+    public void showMoreButtons() {
+        // TODO
+    }
+
+    private void setupList() {
+        // TODO
     }
 
     private void setupFAB() {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO:
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                presenter.addButtonClicked();
             }
         });
     }

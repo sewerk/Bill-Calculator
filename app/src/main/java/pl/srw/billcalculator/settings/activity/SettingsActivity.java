@@ -49,7 +49,6 @@ public class SettingsActivity extends BackableActivity<SettingsComponent>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
         presenter.setup(isDualPane());
     }
 

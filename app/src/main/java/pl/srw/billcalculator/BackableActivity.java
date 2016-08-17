@@ -3,6 +3,7 @@ package pl.srw.billcalculator;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import butterknife.ButterKnife;
 import pl.srw.mfvp.MvpActivity;
 import pl.srw.mfvp.di.component.MvpActivityScopeComponent;
 
@@ -14,6 +15,7 @@ public abstract class BackableActivity<T extends MvpActivityScopeComponent> exte
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
 
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
