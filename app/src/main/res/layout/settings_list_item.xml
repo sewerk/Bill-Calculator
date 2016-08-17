@@ -5,7 +5,7 @@
                                              android:id="@+id/settings_list_item"
                                              android:layout_width="match_parent"
                                              android:layout_height="wrap_content"
-                                             android:background="@drawable/prefs_item_bg"
+                                             android:background="@drawable/settings_list_item_bg_selector"
                                              android:minHeight="?android:attr/listPreferredItemHeight">
 
     <ImageView
