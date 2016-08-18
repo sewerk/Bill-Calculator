@@ -30,15 +30,6 @@ public class HistoryPresenterTest {
     }
 
     @Test
-    public void addButtonShowsMoreAddButtons() throws Exception {
-        // WHEN
-        sut.addButtonClicked();
-
-        // THEN
-        verify(view).showMoreButtons();
-    }
-
-    @Test
     public void settingsMenuOpensSettings() throws Exception {
         // WHEN
         sut.settingsClicked();

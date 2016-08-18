@@ -3,9 +3,7 @@ package pl.srw.billcalculator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,6 +17,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import hugo.weaving.DebugLog;
+import pl.srw.billcalculator.history.FabsMenuHandler;
 import pl.srw.billcalculator.history.di.HistoryComponent;
 import pl.srw.billcalculator.history.HistoryPresenter;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
@@ -37,9 +36,9 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Bind(R.id.toolbar_layout) CollapsingToolbarLayout collapsingToolbarLayout;
     @Bind(R.id.toolbar) Toolbar toolbar;
     @Bind(R.id.bill_list) RecyclerView recyclerView;
-    @Bind(R.id.fab) FloatingActionButton fab;
 
     @Inject HistoryPresenter presenter;
+    @Inject FabsMenuHandler fabsMenuHandler;
 
     @DebugLog
     @Override
@@ -47,10 +46,10 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
 
+        fabsMenuHandler.setup(this);
         setupToolbar();
         setupDrawer();
         setupList();
-        setupFAB();
     }
 
     @Override
@@ -140,22 +139,8 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         // TODO: impl overlaying help
     }
 
-    @Override
-    public void showMoreButtons() {
-        // TODO
-    }
-
     private void setupList() {
         // TODO
-    }
-
-    private void setupFAB() {
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.addButtonClicked();
-            }
-        });
     }
 
     private void setupToolbar() {

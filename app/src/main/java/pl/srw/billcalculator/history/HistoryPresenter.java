@@ -21,15 +21,6 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         });
     }
 
-    public void addButtonClicked() {
-        present(new UIChange<HistoryView>() {
-            @Override
-            public void change(HistoryView view) {
-                view.showMoreButtons();
-            }
-        });
-    }
-
     public void settingsClicked() {
         present(new UIChange<HistoryView>() {
             @Override
@@ -81,8 +72,6 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     public interface HistoryView {
 
         void showHelp();
-
-        void showMoreButtons();
 
         void openSettings();
 
