@@ -14,7 +14,7 @@ import android.view.MenuItem;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.history.FabsMenuHandler;
@@ -31,11 +31,11 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         PresenterOwner,
         NavigationView.OnNavigationItemSelectedListener {
 
-    @Bind(R.id.drawer_layout) DrawerLayout drawer;
-    @Bind(R.id.nav_view) NavigationView navigationView;
-    @Bind(R.id.toolbar_layout) CollapsingToolbarLayout collapsingToolbarLayout;
-    @Bind(R.id.toolbar) Toolbar toolbar;
-    @Bind(R.id.bill_list) RecyclerView recyclerView;
+    @BindView(R.id.drawer_layout) DrawerLayout drawer;
+    @BindView(R.id.nav_view) NavigationView navigationView;
+    @BindView(R.id.toolbar_layout) CollapsingToolbarLayout collapsingToolbarLayout;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.bill_list) RecyclerView recyclerView;
 
     @Inject HistoryPresenter presenter;
     @Inject FabsMenuHandler fabsMenuHandler;

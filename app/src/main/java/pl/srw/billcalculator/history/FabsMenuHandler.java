@@ -7,7 +7,7 @@ import android.view.View;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.util.Animations;
@@ -17,10 +17,10 @@ import pl.srw.billcalculator.util.Animations;
  */
 public class FabsMenuHandler {
 
-    @Bind(R.id.fab) FloatingActionButton fab;
-    @Bind(R.id.fab_new_pge) FloatingActionButton fabPge;
-    @Bind(R.id.fab_new_pgnig) FloatingActionButton fabPgnig;
-    @Bind(R.id.fab_new_tauron) FloatingActionButton fabTauron;
+    @BindView(R.id.fab) FloatingActionButton fab;
+    @BindView(R.id.fab_new_pge) FloatingActionButton fabPge;
+    @BindView(R.id.fab_new_pgnig) FloatingActionButton fabPgnig;
+    @BindView(R.id.fab_new_tauron) FloatingActionButton fabTauron;
     private AnimatorSet expandAnimator;
     private AnimatorSet collapseAnimator;
 

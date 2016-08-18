@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'hugo'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 24
     buildToolsVersion "24.0.1"
     defaultConfig {
         applicationId "pl.srw.billcalculator"
@@ -23,12 +23,13 @@ android {
 }
 
 ext {
-    supportLibVer = '23.4.0'
+    supportLibVer = '24.1.1'
 }
 
 dependencies {
 
     annotationProcessor 'com.google.dagger:dagger-compiler:2.0.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.2.1'
 
     compile project(':persistence')
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -38,7 +39,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha5'
 
     compile 'com.github.sewerk:mfvp:1.0-alpha2'
-    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.jakewharton:butterknife:8.2.1'
     compile 'com.f2prateek.dart:dart:1.1.0'
 
     provided 'javax.annotation:jsr250-api:1.0'

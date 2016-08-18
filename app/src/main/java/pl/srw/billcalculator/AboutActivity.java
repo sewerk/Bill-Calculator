@@ -9,7 +9,7 @@ import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -19,9 +19,9 @@ public class AboutActivity extends AppCompatActivity {
     private static final String RECEIVER_EMAIL = "kalkulator.rachunkow@gmail.com";
     private static final String BETA_HTTP = "https://plus.google.com/communities/113263640175495853700";
 
-    @Bind(R.id.tv_ver) TextView tvVersion;
-    @Bind(R.id.tv_link_emailme) TextView tvLinkEmail;
-    @Bind(R.id.tv_link_g_plus) TextView tvLinkGPlus;
+    @BindView(R.id.tv_ver) TextView tvVersion;
+    @BindView(R.id.tv_link_emailme) TextView tvLinkEmail;
+    @BindView(R.id.tv_link_g_plus) TextView tvLinkGPlus;
     @BindString(R.string.app_name) String appName;
     @BindString(R.string.emailme) String emailMeTitle;
     @BindString(R.string.email_client_missing) String noEmailClientMsg;

@@ -12,7 +12,7 @@ import com.f2prateek.dart.Dart;
 import com.f2prateek.dart.InjectExtra;
 
 import butterknife.ButterKnife;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import pl.srw.billcalculator.R;
 
@@ -25,7 +25,7 @@ public class ProviderSettingsHelpActivity extends Activity {
     private static final String EXTRA_IMAGE_RESOURCE = "EXTRA_IMAGE_RESOURCE";
     @InjectExtra(EXTRA_LAYOUT_RESOURCE) int layoutResource;
     @InjectExtra(EXTRA_IMAGE_RESOURCE) int imageResource;
-    @Bind(R.id.iv_example) ImageView ivExample;
+    @BindView(R.id.iv_example) ImageView ivExample;
 
     public static Intent createIntent(final Context context,
             @LayoutRes final int layoutResource, @DrawableRes final int imageResource) {

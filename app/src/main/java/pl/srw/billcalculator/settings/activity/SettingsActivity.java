@@ -17,7 +17,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 import pl.srw.billcalculator.BackableActivity;
@@ -41,8 +41,8 @@ public class SettingsActivity extends BackableActivity<SettingsComponent>
     private static final String DESCRIPTION = "DESCRIPTION";
     private static final String[] COLUMNS = {ICON, TITLE, DESCRIPTION};
 
-    @Bind(R.id.list) ListView list;
-    @Nullable @Bind(R.id.prefs_frame) FrameLayout frameView;
+    @BindView(R.id.list) ListView list;
+    @Nullable @BindView(R.id.prefs_frame) FrameLayout frameView;
 
     @Inject SettingsPresenter presenter;
 
