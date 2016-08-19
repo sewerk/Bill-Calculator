@@ -7,13 +7,13 @@ import pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment;
 import pl.srw.billcalculator.settings.fragment.TauronSettingsFragment;
 import pl.srw.billcalculator.settings.restore.ConfirmRestoreSettingsDialogFragment;
 import pl.srw.mfvp.di.component.MvpActivityScopeComponent;
-import pl.srw.mfvp.di.component.MvpFragmentInActivityScopeComponent;
 import pl.srw.mfvp.di.scope.RetainActivityScope;
 
 @RetainActivityScope
 @Subcomponent
-public interface SettingsComponent extends MvpActivityScopeComponent<SettingsActivity>,
-        MvpFragmentInActivityScopeComponent<ConfirmRestoreSettingsDialogFragment> {
+public interface SettingsComponent extends MvpActivityScopeComponent<SettingsActivity> {
+
+    void inject(ConfirmRestoreSettingsDialogFragment fragment);
 
     void inject(PgeSettingsFragment pgeSettingsFragment);
 

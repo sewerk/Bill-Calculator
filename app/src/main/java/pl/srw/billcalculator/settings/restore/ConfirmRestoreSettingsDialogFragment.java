@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.activity.ProviderSettingsFragmentOwner;
+import pl.srw.billcalculator.settings.di.SettingsComponent;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.mfvp.MvpFragment;
 import pl.srw.mfvp.view.delegate.presenter.PresenterHandlingDelegate;
@@ -17,7 +18,8 @@ import pl.srw.mfvp.view.delegate.presenter.SinglePresenterHandlingDelegate;
 import pl.srw.mfvp.view.fragment.MvpActivityScopedFragment;
 
 public class ConfirmRestoreSettingsDialogFragment extends MvpFragment
-        implements MvpActivityScopedFragment, PresenterOwner, ConfirmRestoreSettingsPresenter.ConfirmRestoreSettingsView {
+        implements MvpActivityScopedFragment<SettingsComponent>,
+        PresenterOwner, ConfirmRestoreSettingsPresenter.ConfirmRestoreSettingsView {
 
     private static final String EXTRA_PROVIDER = "EXTRA_PROVIDER";
     @Inject ConfirmRestoreSettingsPresenter presenter;
@@ -47,6 +49,11 @@ public class ConfirmRestoreSettingsDialogFragment extends MvpFragment
             .setPositiveButton(R.string.restore_prices_confirm, onPositiveButton())
             .setNegativeButton(R.string.restore_prices_cancel, null);
         return builder.create();
+    }
+
+    @Override
+    public void injectDependencies(SettingsComponent settingsComponent) {
+        settingsComponent.inject(this);
     }
 
     @Override

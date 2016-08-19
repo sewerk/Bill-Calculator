@@ -13,7 +13,7 @@ public class SettingsPresenter extends MvpPresenter<SettingsPresenter.SettingsVi
     private Provider[] providers;
 
     @Inject
-    protected SettingsPresenter(Provider[] providers) {
+    SettingsPresenter(Provider[] providers) {
         this.providers = providers;
     }
 
