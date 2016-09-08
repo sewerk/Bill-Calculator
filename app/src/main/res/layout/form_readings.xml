@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:app="http://schemas.android.com/apk/res-auto"
+       xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools"
+       tools:showIn="@layout/form">
+
+    <TextView
+        android:id="@+id/form_entry_readings"
+        style="@style/FormHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:text="@string/form_readings_header"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/form_entry_tariff"/>
+
+    <TextView
+        android:id="@+id/form_entry_tariff"
+        style="@style/FormHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="G11"/>
+
+    <ImageView
+        android:id="@+id/form_entry_reading_icon"
+        style="@style/FormEntryIcon"
+        android:contentDescription="@string/form_entry_reading_icon_content_desc"
+        app:layout_constraintBottom_toBottomOf="@+id/form_entry_reading_from"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/form_entry_reading_from"
+        app:srcCompat="@drawable/ic_history_black_24dp"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/form_entry_reading_from"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/form_reading_from_hint"
+        app:layout_constraintLeft_toRightOf="@+id/form_entry_reading_icon"
+        app:layout_constraintRight_toLeftOf="@+id/form_entry_reading_separator"
+        app:layout_constraintTop_toBottomOf="@+id/form_entry_readings">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/form_entry_reading_from_input"
+            style="@style/FormReadingEntry"
+            android:nextFocusForward="@+id/form_entry_reading_to_input"
+            android:nextFocusRight="@+id/form_entry_reading_to_input"
+            android:nextFocusDown="@+id/form_entry_reading_to_input"
+            tools:text="123"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/form_entry_reading_separator"
+        style="@style/FormEntrySeparator"
+        android:text="-"
+        app:layout_constraintBottom_toBottomOf="@+id/form_entry_reading_from"
+        app:layout_constraintTop_toTopOf="@+id/form_entry_reading_from"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="HardcodedText"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/form_entry_reading_to"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/form_reading_to_hint"
+        app:layout_constraintLeft_toRightOf="@+id/form_entry_reading_separator"
+        app:layout_constraintRight_toLeftOf="@+id/form_entry_reading_unit"
+        app:layout_constraintTop_toTopOf="@+id/form_entry_reading_from">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/form_entry_reading_to_input"
+            style="@style/FormReadingEntry"
+            android:nextFocusLeft="@+id/form_entry_reading_from_input"
+            android:nextFocusUp="@+id/form_entry_reading_from_input"
+            tools:text="234"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/form_entry_reading_unit"
+        style="@style/FormEntryUnit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/form_entry_reading_separator"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="@string/form_reading_unit_kWh"/>
+
+</merge>

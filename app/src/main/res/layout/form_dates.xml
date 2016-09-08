@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:app="http://schemas.android.com/apk/res-auto"
+       xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools"
+       tools:showIn="@layout/form">
+
+    <TextView
+        android:id="@+id/form_entry_dates"
+        style="@style/FormHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/form_dates_header"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/form_entry_reading_unit"/>
+
+    <ImageView
+        android:id="@+id/form_entry_dates_icon"
+        style="@style/FormEntryIcon"
+        android:contentDescription="@string/form_entry_dates_icon_content_desc"
+        app:layout_constraintBottom_toBottomOf="@+id/form_entry_dates_from"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/form_entry_dates_from"
+        app:srcCompat="@drawable/ic_history_black_24dp"/>
+
+    <!--TODO: apply style of slider-->
+    <pl.srw.billcalculator.form.view.DatePickingView
+        android:id="@+id/form_entry_dates_from"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/form_entry_dates_icon"
+        app:layout_constraintRight_toLeftOf="@+id/form_entry_dates_separator"
+        app:layout_constraintTop_toBottomOf="@+id/form_entry_dates"
+        android:freezesText="true"
+        tools:text="11/12/2014"
+        app:errorView="@+id/date_to_error"/>
+
+    <TextView
+        android:id="@+id/form_entry_dates_separator"
+        android:text="-"
+        app:layout_constraintBottom_toBottomOf="@+id/form_entry_dates_from"
+        app:layout_constraintTop_toTopOf="@+id/form_entry_dates_from"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        style="@style/FormEntrySeparator"/>
+
+    <!--TODO: apply style of slider-->
+    <pl.srw.billcalculator.form.view.DatePickingView
+        android:id="@+id/form_entry_dates_to"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/form_entry_dates_separator"
+        app:layout_constraintRight_toLeftOf="@+id/form_entry_dates_unit"
+        app:layout_constraintTop_toTopOf="@+id/form_entry_dates_from"
+        android:freezesText="true"
+        tools:text="31/12/2014"
+        app:errorView="@+id/date_to_error"/>
+
+    <!--this is only to be in line with readings field-->
+    <TextView
+        android:id="@+id/form_entry_dates_unit"
+        style="@style/FormEntryUnit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/form_entry_dates_separator"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/date_to_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/form_entry_dates_to"
+        app:layout_constraintRight_toRightOf="@+id/form_entry_dates_to"
+        android:textAppearance="@style/TextAppearance.Design.Error"
+        tools:text="@string/date_error"/>
+</merge>

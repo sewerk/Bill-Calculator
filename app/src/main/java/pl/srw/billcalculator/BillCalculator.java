@@ -3,7 +3,7 @@ package pl.srw.billcalculator;
 import android.app.Application;
 import android.content.Context;
 
-//import com.jakewharton.threetenabp.AndroidThreeTen;
+import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import javax.inject.Inject;
 
@@ -17,9 +17,6 @@ import pl.srw.billcalculator.settings.prices.PgnigPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
 import timber.log.Timber;
 
-/**
- * Created by Kamil Seweryn.
- */
 public class BillCalculator extends Application {
 
     private ApplicationComponent applicationComponent;
@@ -42,7 +39,7 @@ public class BillCalculator extends Application {
                 .build();
         applicationComponent.inject(this);
 //        AnalyticsWrapper.initialize(this);
-//        AndroidThreeTen.init(this);
+        AndroidThreeTen.init(this);
         Database.initialize(this);
 
         //PreferenceMigration.migrate(getApplicationContext());

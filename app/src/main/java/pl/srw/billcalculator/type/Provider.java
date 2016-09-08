@@ -43,12 +43,12 @@ public enum Provider {
         throw new EnumVariantNotHandledException(persistenceType);
     }
 
-    public static Provider getByViewId(@IdRes int id) {
-        if (id == R.id.new_bill_pge)
+    public static Provider getByViewId(@IdRes int id) { // TODO: move to mapping class
+        if (id == R.id.fab_new_pge)
             return Provider.PGE;
-        else if (id == R.id.new_bill_pgnig)
+        else if (id == R.id.fab_new_pgnig)
             return Provider.PGNIG;
-        else if (id == R.id.new_bill_tauron)
+        else if (id == R.id.fab_new_tauron)
             return Provider.TAURON;
         else
             throw new RuntimeException("Unhandled view Id=" + id);
@@ -59,7 +59,7 @@ public enum Provider {
      * @return new instance of {@link ProviderSettingsFragment}
      */
     @NonNull
-    public ProviderSettingsFragment createProviderSettingsFragment() {
+    public ProviderSettingsFragment createProviderSettingsFragment() { // TODO: move to mapping class
         switch (this) {
             case PGNIG:
                 return new PgnigSettingsFragment();

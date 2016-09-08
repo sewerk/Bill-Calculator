@@ -2,15 +2,11 @@ package pl.srw.billcalculator.settings.restore;
 
 import javax.inject.Inject;
 
-import dagger.Lazy;
 import pl.srw.billcalculator.AnalyticsWrapper;
-import pl.srw.billcalculator.settings.prices.PgePrices;
-import pl.srw.billcalculator.settings.prices.PgnigPrices;
 import pl.srw.billcalculator.settings.prices.RestorablePrices;
-import pl.srw.billcalculator.settings.prices.TauronPrices;
 import pl.srw.billcalculator.type.ActionType;
-import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.util.ProviderMapper;
 import pl.srw.mfvp.di.scope.RetainActivityScope;
 import pl.srw.mfvp.presenter.MvpPresenter;
 
@@ -18,33 +14,15 @@ import pl.srw.mfvp.presenter.MvpPresenter;
 public class ConfirmRestoreSettingsPresenter extends MvpPresenter<ConfirmRestoreSettingsPresenter.ConfirmRestoreSettingsView> {
 
     private RestorablePrices prices;
-
-    private final Lazy<PgePrices> pgePricesLazy;
-    private final Lazy<PgnigPrices> pgnigPricesLazy;
-    private final Lazy<TauronPrices> tauronPricesLazy;
+    private ProviderMapper providerMapper;
 
     @Inject
-    public ConfirmRestoreSettingsPresenter(Lazy<PgePrices> pgePricesLazy, Lazy<PgnigPrices> pgnigPricesLazy,
-                                           Lazy<TauronPrices> tauronPricesLazy) {
-        this.pgePricesLazy = pgePricesLazy;
-        this.pgnigPricesLazy = pgnigPricesLazy;
-        this.tauronPricesLazy = tauronPricesLazy;
+    public ConfirmRestoreSettingsPresenter(ProviderMapper providerMapper) {
+        this.providerMapper = providerMapper;
     }
 
     public void setup(Provider provider) {
-        switch (provider) {
-            case PGE:
-                prices = pgePricesLazy.get();
-                break;
-            case PGNIG:
-                prices = pgnigPricesLazy.get();
-                break;
-            case TAURON:
-                prices = tauronPricesLazy.get();
-                break;
-            default:
-                throw new EnumVariantNotHandledException(provider);
-        }
+        prices = providerMapper.getPrices(provider);
     }
 
     public void onConfirmedClicked() {

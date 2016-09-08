@@ -1,7 +1,6 @@
 package pl.srw.billcalculator.history;
 
 import android.animation.AnimatorSet;
-import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
@@ -9,7 +8,9 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Animations;
 
 /**
@@ -23,12 +24,13 @@ public class FabsMenuHandler {
     @BindView(R.id.fab_new_tauron) FloatingActionButton fabTauron;
     private AnimatorSet expandAnimator;
     private AnimatorSet collapseAnimator;
+    private HistoryPresenter activityPresenter;
 
     @Inject
     public FabsMenuHandler() {
     }
 
-    public void setup(Activity activity) {
+    public void setup(DrawerActivity activity) {
         ButterKnife.bind(this, activity);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +41,14 @@ public class FabsMenuHandler {
                     collapse();
             }
         });
+        activityPresenter = activity.presenter;
+    }
+
+    @OnClick({R.id.fab_new_pge, R.id.fab_new_pgnig, R.id.fab_new_tauron})
+    public void onNewBillButtonClicked(View view) {
+        final Provider provider = Provider.getByViewId(view.getId());
+        activityPresenter.newBillClicked(provider);
+        collapse();
     }
 
     private void expand() {

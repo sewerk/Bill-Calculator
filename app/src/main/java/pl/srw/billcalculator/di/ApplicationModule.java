@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -33,23 +32,23 @@ public class ApplicationModule {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    @Provides
+    @Provides(type = Provides.Type.MAP)
     @Singleton
-    @Named(value = PRICES_PGE)
+    @DependencyMapProviderKey(Provider.PGE)
     protected RestorablePrices providePgeSharedPreferencesPrices(SharedPreferences prefs) {
         return new PgePrices(prefs);
     }
 
-    @Provides
+    @Provides(type = Provides.Type.MAP)
     @Singleton
-    @Named(value = PRICES_PGNIG)
+    @DependencyMapProviderKey(Provider.PGNIG)
     protected RestorablePrices providePgnigSharedPreferencesPrices(SharedPreferences prefs) {
         return new PgnigPrices(prefs);
     }
 
-    @Provides
+    @Provides(type = Provides.Type.MAP)
     @Singleton
-    @Named(value = PRICES_TAURON)
+    @DependencyMapProviderKey(Provider.TAURON)
     protected RestorablePrices provideTauronSharedPreferencesPrices(SharedPreferences prefs) {
         return new TauronPrices(prefs);
     }

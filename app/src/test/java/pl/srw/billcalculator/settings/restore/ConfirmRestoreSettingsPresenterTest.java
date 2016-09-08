@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import pl.srw.billcalculator.settings.prices.RestorablePrices;
+import pl.srw.billcalculator.util.ProviderMapper;
 
 import static org.mockito.Mockito.verify;
 
@@ -14,10 +15,11 @@ public class ConfirmRestoreSettingsPresenterTest {
     @InjectMocks private ConfirmRestoreSettingsPresenter sut;
     @Mock private RestorablePrices prices;
     @Mock private ConfirmRestoreSettingsPresenter.ConfirmRestoreSettingsView view;
+    @Mock private ProviderMapper providerMapper;
 
     @Before
     public void setUp() throws Exception {
-        sut = new ConfirmRestoreSettingsPresenter(null, null, null);
+        sut = new ConfirmRestoreSettingsPresenter(providerMapper);
         MockitoAnnotations.initMocks(this);
     }
 

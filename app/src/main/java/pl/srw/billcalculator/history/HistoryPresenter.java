@@ -2,6 +2,7 @@ package pl.srw.billcalculator.history;
 
 import javax.inject.Inject;
 
+import pl.srw.billcalculator.type.Provider;
 import pl.srw.mfvp.di.scope.RetainActivityScope;
 import pl.srw.mfvp.presenter.MvpPresenter;
 
@@ -48,16 +49,13 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         //TODO
     }
 
-    public void newPgeBillClicked() {
-        // TODO
-    }
-
-    public void newPgnigButtonClicked() {
-        // TODO
-    }
-
-    public void newTauronBillClicked() {
-        // TODO
+    public void newBillClicked(final Provider provider) {
+        present(new UIChange<HistoryView>() {
+            @Override
+            public void change(HistoryView historyView) {
+                historyView.showNewBillForm(provider);
+            }
+        });
     }
 
     public void aboutClicked() {
@@ -80,5 +78,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         void closeDrawer();
 
         void showAbout();
+
+        void showNewBillForm(Provider provider);
     }
 }

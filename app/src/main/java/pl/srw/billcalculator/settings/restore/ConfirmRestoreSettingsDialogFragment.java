@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.activity.ProviderSettingsFragmentOwner;
-import pl.srw.billcalculator.settings.di.SettingsComponent;
+import pl.srw.billcalculator.settings.di.ConfirmRestoreSettingsComponentInjectable;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.mfvp.MvpFragment;
 import pl.srw.mfvp.view.delegate.presenter.PresenterHandlingDelegate;
@@ -18,7 +18,7 @@ import pl.srw.mfvp.view.delegate.presenter.SinglePresenterHandlingDelegate;
 import pl.srw.mfvp.view.fragment.MvpActivityScopedFragment;
 
 public class ConfirmRestoreSettingsDialogFragment extends MvpFragment
-        implements MvpActivityScopedFragment<SettingsComponent>,
+        implements MvpActivityScopedFragment<ConfirmRestoreSettingsComponentInjectable>,
         PresenterOwner, ConfirmRestoreSettingsPresenter.ConfirmRestoreSettingsView {
 
     private static final String EXTRA_PROVIDER = "EXTRA_PROVIDER";
@@ -52,7 +52,7 @@ public class ConfirmRestoreSettingsDialogFragment extends MvpFragment
     }
 
     @Override
-    public void injectDependencies(SettingsComponent settingsComponent) {
+    public void injectDependencies(ConfirmRestoreSettingsComponentInjectable settingsComponent) {
         settingsComponent.inject(this);
     }
 

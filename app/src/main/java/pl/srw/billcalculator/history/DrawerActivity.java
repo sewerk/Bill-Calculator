@@ -1,4 +1,4 @@
-package pl.srw.billcalculator;
+package pl.srw.billcalculator.history;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,11 +16,13 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hugo.weaving.DebugLog;
-import pl.srw.billcalculator.history.FabsMenuHandler;
+import pl.srw.billcalculator.AboutActivity;
+import pl.srw.billcalculator.BillCalculator;
+import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.form.fragment.FormFragment;
 import pl.srw.billcalculator.history.di.HistoryComponent;
-import pl.srw.billcalculator.history.HistoryPresenter;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
+import pl.srw.billcalculator.type.Provider;
 import pl.srw.mfvp.MvpActivity;
 import pl.srw.mfvp.view.delegate.presenter.PresenterHandlingDelegate;
 import pl.srw.mfvp.view.delegate.presenter.PresenterOwner;
@@ -40,7 +42,6 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Inject HistoryPresenter presenter;
     @Inject FabsMenuHandler fabsMenuHandler;
 
-    @DebugLog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,11 +83,11 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         if (id == R.id.my_bills) {
             presenter.myBillsClicked();
         } else if (id == R.id.new_bill_pge) {
-            presenter.newPgeBillClicked();
+            presenter.newBillClicked(Provider.PGE);
         } else if (id == R.id.new_bill_pgnig) {
-            presenter.newPgnigButtonClicked();
+            presenter.newBillClicked(Provider.PGNIG);
         } else if (id == R.id.new_bill_tauron) {
-            presenter.newTauronBillClicked();
+            presenter.newBillClicked(Provider.TAURON);
         } else if (id == R.id.settings) {
             presenter.settingsClicked();
         } else if (id == R.id.about) {
@@ -122,6 +123,11 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Override
     public void closeDrawer() {
         drawer.closeDrawer(GravityCompat.START);
+    }
+
+    @Override
+    public void showNewBillForm(Provider provider) {
+        FormFragment.newInstance(provider).show(getSupportFragmentManager(), "FORM");
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.tester.SettingsTester;
 
 @LargeTest
