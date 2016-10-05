@@ -79,7 +79,7 @@ public abstract class BillActivity extends BackableActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_zoom_out) {
-            //TODO: consider loading icon, hide after done
+            //FIXME: consider loading icon, hide after done
             setContentView(ToWebView.wrapByWebView(this, findViewById(R.id.bill_content)));
             return true;
         } else if (item.getItemId() == R.id.action_print) {
