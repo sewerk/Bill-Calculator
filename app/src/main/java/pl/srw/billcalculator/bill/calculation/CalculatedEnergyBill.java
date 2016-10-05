@@ -13,7 +13,6 @@ import pl.srw.billcalculator.util.Dates;
 public abstract class CalculatedEnergyBill extends CalculatedBill {
 
     private static final BigDecimal EXCISE = new BigDecimal("0.02");
-    public static final String OZE_NET_PRICE = "0.00251";
 
     private final int totalConsumption;
 
@@ -28,14 +27,14 @@ public abstract class CalculatedEnergyBill extends CalculatedBill {
     private final BigDecimal oplataOzeVatCharge;
 
     protected CalculatedEnergyBill(final String dateFrom, final String dateTo, int totalConsumption,
-                                   String oplataAbonamentowa, String oplataPrzejsciowa, String oplataStalaZaPrzesyl) {
+                                   String oplataAbonamentowa, String oplataPrzejsciowa, String oplataStalaZaPrzesyl, String oplataOze) {
         super(false, dateFrom, dateTo);
         this.totalConsumption = totalConsumption;
 
         oplataAbonamentowaNetCharge = countNetAndAddToSum(oplataAbonamentowa, getMonthCount());
         oplataPrzejsciowaNetCharge = countNetAndAddToSum(oplataPrzejsciowa, getMonthCount());
         oplataDystrybucyjnaStalaNetCharge = countNetAndAddToSum(oplataStalaZaPrzesyl, getMonthCount());
-        oplataOzeNetCharge = countNetAndAddToSum(OZE_NET_PRICE, getConsumptionFromJuly16(dateFrom, dateTo));
+        oplataOzeNetCharge = countNetAndAddToSum(oplataOze, getConsumptionFromJuly16(dateFrom, dateTo));
 
         oplataAbonamentowaVatCharge = countVatAndAddToSum(oplataAbonamentowaNetCharge);
         oplataPrzejsciowaVatCharge = countVatAndAddToSum(oplataPrzejsciowaNetCharge);

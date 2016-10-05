@@ -29,7 +29,7 @@ public class TauronG12CalculatedBill extends TauronCalculatedBill {
                                    final int readingNightFrom, final int readingNightTo,
                                    final String dateFrom, final String dateTo, final ITauronPrices prices) {
         super(dateFrom, dateTo, readingDayTo - readingDayFrom + readingNightTo - readingNightFrom,
-                prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataDystrybucyjnaStala());
+                prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataDystrybucyjnaStala(), prices.getOplataOze());
         dayConsumption = readingDayTo - readingDayFrom;
         nightConsumption = readingNightTo - readingNightFrom;
 

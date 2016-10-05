@@ -1,0 +1,6 @@
+OZE:
+- db migration
+- add to settings
+- show in bill
+- hide for < july 16
+- fix test, add test for calculated bills

@@ -17,7 +17,7 @@ public class TauronG12CalculatedBillTest {
     @Test
     public void expectsProperCalculation() {
         // prepare
-        final TauronPrices prices = new TauronPrices(1L, null, null, "4.04", "5.05", "6.06", "7.07", "8.08", "9.09", "11.11");
+        final TauronPrices prices = new TauronPrices(1L, null, null, "4.04", "5.05", "6.06", "7.07", "8.08", "9.09", "11.11", "0.00");
 
         // calculate
         final TauronG12CalculatedBill sut = new TauronG12CalculatedBill(11, 21, 25, 45, "01/01/2015", "30/10/2015", prices);

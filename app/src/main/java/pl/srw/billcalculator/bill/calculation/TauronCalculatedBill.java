@@ -8,8 +8,8 @@ import java.math.BigDecimal;
 public abstract class TauronCalculatedBill extends CalculatedEnergyBill {
 
     protected TauronCalculatedBill(String dateFrom, String dateTo, int totalConsumption,
-                                   String oplataAbonamentowaPrice, String oplataPrzejsciowaPrice, String oplataStalaZaPrzesylPrice) {
-        super(dateFrom, dateTo, totalConsumption, oplataAbonamentowaPrice, oplataPrzejsciowaPrice, oplataStalaZaPrzesylPrice);
+                                   String oplataAbonamentowaPrice, String oplataPrzejsciowaPrice, String oplataStalaZaPrzesylPrice, String oplataOze) {
+        super(dateFrom, dateTo, totalConsumption, oplataAbonamentowaPrice, oplataPrzejsciowaPrice, oplataStalaZaPrzesylPrice, oplataOze);
     }
 
     public abstract BigDecimal getSellNetCharge();

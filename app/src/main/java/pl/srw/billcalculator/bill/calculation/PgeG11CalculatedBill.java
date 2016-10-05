@@ -24,7 +24,7 @@ public class PgeG11CalculatedBill extends CalculatedEnergyBill {
 
     public PgeG11CalculatedBill(final int readingFrom, final int readingTo, final String dateFrom, final String dateTo, final IPgePrices prices) {
         super(dateFrom, dateTo, readingTo - readingFrom,
-                prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataStalaZaPrzesyl());
+                prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataStalaZaPrzesyl(), prices.getOplataOze());
         consumption = readingTo - readingFrom;
 
         zaEnergieCzynnaNetCharge = countNetAndAddToSum(prices.getZaEnergieCzynna(), consumption);

@@ -34,7 +34,7 @@ public class PgeG12CalculatedBill extends CalculatedEnergyBill {
                                 final int readingNightFrom, final int readingNightTo,
                                 final String dateFrom, final String dateTo, final IPgePrices prices) {
         super(dateFrom, dateTo, readingDayTo - readingDayFrom + readingNightTo - readingNightFrom,
-                prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataStalaZaPrzesyl());
+                prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataStalaZaPrzesyl(), prices.getOplataOze());
         dayConsumption = readingDayTo - readingDayFrom;
         nightConsumption = readingNightTo - readingNightFrom;
 

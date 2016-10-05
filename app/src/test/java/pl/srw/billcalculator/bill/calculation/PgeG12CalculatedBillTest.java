@@ -17,7 +17,7 @@ public class PgeG12CalculatedBillTest {
     @Test
     public void expectProperCalculations() {
         // prepare
-        final PgePrices prices = new PgePrices(1L, null, "2.02", null, "4.04", "5.05", "6.06", "7.07", "8.08", "9.09", "11.11");
+        final PgePrices prices = new PgePrices(1L, null, "2.02", null, "4.04", "5.05", "6.06", "7.07", "8.08", "9.09", "11.11", "0.00");
 
         // calculate
         final PgeG12CalculatedBill sut = new PgeG12CalculatedBill(20, 30, 35, 55, "01/01/2015", "30/10/2015", prices);

@@ -17,7 +17,7 @@ public class PgeG11CalculatedBillTest {
     @Test
     public void expectProperCalculations() {
         // prepare
-        final PgePrices prices = new PgePrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", "6.06", null, null, null, null);
+        final PgePrices prices = new PgePrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", "6.06", null, null, null, null, "0.00");
 
         // calculate
         final PgeG11CalculatedBill sut = new PgeG11CalculatedBill(20, 30, "01/03/2015", "30/04/2015", prices);
@@ -50,7 +50,7 @@ public class PgeG11CalculatedBillTest {
     @Test
     public void whenAfterJuly16IncludeOplataOze() throws Exception {
         // GIVEN
-        final PgePrices prices = new PgePrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", "6.06", null, null, null, null);
+        final PgePrices prices = new PgePrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", "6.06", null, null, null, null, "0.00251");
 
         // WHEN
         final PgeG11CalculatedBill sut = new PgeG11CalculatedBill(20, 30, "01/07/2016", "30/08/2016", prices);

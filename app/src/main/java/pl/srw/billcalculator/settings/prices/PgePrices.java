@@ -14,6 +14,7 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
     private static final String CENA_OPLATA_PRZEJSCIOWA = "cena_oplata_przejsciowa";
     private static final String CENA_OPLATA_STALA_ZA_PRZESYL = "cena_oplata_stala_za_przesyl";
     private static final String CENA_OPLATA_ABONAMENTOWA = "cena_oplata_abonamentowa";
+    private static final String CENA_OPLATA_OZE = "cena_oplata_oze";
 
     private final String cena_za_energie_czynna = "0.2553";
     private final String cena_za_energie_czynna_G12dzien = "0.2861";
@@ -25,6 +26,7 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
     private final String cena_oplata_przejsciowa = "1.04";
     private final String cena_oplata_stala_za_przesyl = "1.95";
     private final String cena_oplata_abonamentowa = "5.20";
+    private final String cena_oplata_oze = "0.00251"; // TODO: check if proper value
 
     public pl.srw.billcalculator.db.PgePrices convertToDb() {
         pl.srw.billcalculator.db.PgePrices dbPrices = new pl.srw.billcalculator.db.PgePrices();
@@ -34,6 +36,7 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
         dbPrices.setOplataStalaZaPrzesyl(getOplataStalaZaPrzesyl());
         dbPrices.setSkladnikJakosciowy(getSkladnikJakosciowy());
         dbPrices.setZaEnergieCzynna(getZaEnergieCzynna());
+        dbPrices.setOplataOze(getOplataOze());
 
         dbPrices.setOplataSieciowaDzien(getOplataSieciowaDzien());
         dbPrices.setOplataSieciowaNoc(getOplataSieciowaNoc());
@@ -53,6 +56,7 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
         removeOplataPrzejsciowa();
         removeOplataStalaZaPrzesyl();
         removeOplataAbonamentowa();
+        removeOplataOze();
     }
 
     public void setDefault() {
@@ -67,6 +71,7 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
         setOplataPrzejsciowa(getOplataPrzejsciowa());
         setOplataStalaZaPrzesyl(getOplataStalaZaPrzesyl());
         setOplataAbonamentowa(getOplataAbonamentowa());
+        setOplataOze(getOplataOze());
     }
 
     public void init() {
@@ -232,5 +237,21 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
 
     public void removeOplataAbonamentowa() {
         removePref(CENA_OPLATA_ABONAMENTOWA);
+    }
+
+    public String getOplataOze() {
+        return getPref(CENA_OPLATA_OZE, this.cena_oplata_oze);
+    }
+
+    public void setOplataOze(String cenaOplataOze) {
+        setPref(CENA_OPLATA_OZE, cenaOplataOze);
+    }
+
+    public boolean containsOplataOze() {
+        return containsPref(CENA_OPLATA_OZE);
+    }
+
+    public void removeOplataOze() {
+        removePref(CENA_OPLATA_OZE);
     }
 }
