@@ -5,6 +5,7 @@ import org.threeten.bp.LocalDate;
 import org.threeten.bp.Month;
 import org.threeten.bp.Period;
 import org.threeten.bp.format.DateTimeFormatter;
+import org.threeten.bp.temporal.ChronoUnit;
 import org.threeten.bp.temporal.TemporalAdjusters;
 
 import java.math.BigDecimal;
@@ -90,5 +91,24 @@ public class Dates {
 
     public static LocalDate lastDayOfThisMonth() {
         return LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());
+    }
+
+    public static int countDaysFromJuly16(String from, String to) {
+        final LocalDate julyFirst = LocalDate.of(2016, Month.JULY, 1);
+        final LocalDate endDate = parse(to);
+        if (endDate.isBefore(julyFirst)) {
+            return 0;
+        }
+        final LocalDate startDate = parse(from);
+        if (startDate.isBefore(julyFirst)) {
+            return countDays(format(2016, Month.JULY, 1), to);
+        } else
+            return countDays(from, to);
+    }
+
+    public static int countDays(String from, String to) {
+        final LocalDate startDate = parse(from);
+        final LocalDate endDate = parse(to);
+        return (int) ChronoUnit.DAYS.between(startDate, endDate);
     }
 }

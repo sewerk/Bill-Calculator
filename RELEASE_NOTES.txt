@@ -1,3 +1,5 @@
+v.1.6
+ - opłata OZE
 v.1.5.1
  - auto-backup for pre-M
  - better explanation for request permission rationale dialog

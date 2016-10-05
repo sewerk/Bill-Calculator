@@ -28,7 +28,8 @@ public class TauronG12CalculatedBill extends TauronCalculatedBill {
     public TauronG12CalculatedBill(final int readingDayFrom, final int readingDayTo,
                                    final int readingNightFrom, final int readingNightTo,
                                    final String dateFrom, final String dateTo, final ITauronPrices prices) {
-        super(dateFrom, dateTo, prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataDystrybucyjnaStala());
+        super(dateFrom, dateTo, readingDayTo - readingDayFrom + readingNightTo - readingNightFrom,
+                prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataDystrybucyjnaStala());
         dayConsumption = readingDayTo - readingDayFrom;
         nightConsumption = readingNightTo - readingNightFrom;
 
@@ -41,11 +42,6 @@ public class TauronG12CalculatedBill extends TauronCalculatedBill {
         oplataDystrybucyjnaZmiennaDayVatCharge = countVatAndAddToSum(oplataDystrybucyjnaZmiennaDayNetCharge);
         energiaElektrycznaNightVatCharge = countVatAndAddToSum(energiaElektrycznaNightNetCharge);
         oplataDystrybucyjnaZmiennaNightVatCharge = countVatAndAddToSum(oplataDystrybucyjnaZmiennaNightNetCharge);
-    }
-
-    @Override
-    public int getTotalConsumption() {
-        return dayConsumption + nightConsumption;
     }
 
     @Override

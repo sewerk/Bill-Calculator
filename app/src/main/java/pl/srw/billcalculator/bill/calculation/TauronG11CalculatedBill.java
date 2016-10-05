@@ -21,7 +21,7 @@ public class TauronG11CalculatedBill extends TauronCalculatedBill {
     private final BigDecimal oplataDystrybucyjnaZmiennaVatCharge;
 
     public TauronG11CalculatedBill(final int readingFrom, final int readingTo, final String dateFrom, final String dateTo, final ITauronPrices prices) {
-        super(dateFrom, dateTo, prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataDystrybucyjnaStala());
+        super(dateFrom, dateTo, readingTo - readingFrom, prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataDystrybucyjnaStala());
         consumption = readingTo - readingFrom;
 
         energiaElektrycznaNetCharge = countNetAndAddToSum(prices.getEnergiaElektrycznaCzynna(), consumption);
@@ -29,11 +29,6 @@ public class TauronG11CalculatedBill extends TauronCalculatedBill {
 
         energiaElektrycznaVatCharge = countVatAndAddToSum(energiaElektrycznaNetCharge);
         oplataDystrybucyjnaZmiennaVatCharge = countVatAndAddToSum(oplataDystrybucyjnaZmiennaNetCharge);
-    }
-
-    @Override
-    public int getTotalConsumption() {
-        return consumption;
     }
 
     @Override

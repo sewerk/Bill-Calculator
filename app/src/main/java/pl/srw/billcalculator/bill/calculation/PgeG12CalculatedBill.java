@@ -33,7 +33,8 @@ public class PgeG12CalculatedBill extends CalculatedEnergyBill {
     public PgeG12CalculatedBill(final int readingDayFrom, final int readingDayTo,
                                 final int readingNightFrom, final int readingNightTo,
                                 final String dateFrom, final String dateTo, final IPgePrices prices) {
-        super(dateFrom, dateTo, prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataStalaZaPrzesyl());
+        super(dateFrom, dateTo, readingDayTo - readingDayFrom + readingNightTo - readingNightFrom,
+                prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataStalaZaPrzesyl());
         dayConsumption = readingDayTo - readingDayFrom;
         nightConsumption = readingNightTo - readingNightFrom;
 
@@ -50,10 +51,5 @@ public class PgeG12CalculatedBill extends CalculatedEnergyBill {
         zaEnergieCzynnaNightVatCharge = countVatAndAddToSum(zaEnergieCzynnaNightNetCharge);
         skladnikJakosciowyNightVatCharge = countVatAndAddToSum(skladnikJakosciowyNightNetCharge);
         oplataSieciowaNightVatCharge = countVatAndAddToSum(oplataSieciowaNightNetCharge);
-    }
-
-    @Override
-    public int getTotalConsumption() {
-        return dayConsumption + nightConsumption;
     }
 }

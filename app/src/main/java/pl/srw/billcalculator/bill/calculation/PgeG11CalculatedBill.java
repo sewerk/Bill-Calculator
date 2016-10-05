@@ -23,7 +23,8 @@ public class PgeG11CalculatedBill extends CalculatedEnergyBill {
     private final BigDecimal oplataSieciowaVatCharge;
 
     public PgeG11CalculatedBill(final int readingFrom, final int readingTo, final String dateFrom, final String dateTo, final IPgePrices prices) {
-        super(dateFrom, dateTo, prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataStalaZaPrzesyl());
+        super(dateFrom, dateTo, readingTo - readingFrom,
+                prices.getOplataAbonamentowa(), prices.getOplataPrzejsciowa(), prices.getOplataStalaZaPrzesyl());
         consumption = readingTo - readingFrom;
 
         zaEnergieCzynnaNetCharge = countNetAndAddToSum(prices.getZaEnergieCzynna(), consumption);
@@ -33,10 +34,5 @@ public class PgeG11CalculatedBill extends CalculatedEnergyBill {
         zaEnergieCzynnaVatCharge = countVatAndAddToSum(zaEnergieCzynnaNetCharge);
         skladnikJakosciowyVatCharge = countVatAndAddToSum(skladnikJakosciowyNetCharge);
         oplataSieciowaVatCharge = countVatAndAddToSum(oplataSieciowaNetCharge);
-    }
-
-    @Override
-    public int getTotalConsumption() {
-        return consumption;
     }
 }
