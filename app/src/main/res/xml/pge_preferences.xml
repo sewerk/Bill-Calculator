@@ -33,6 +33,12 @@
         android:dialogMessage="@string/skladnik_jakosciowy_desc"
         android:title="@string/skladnik_jakosciowy" />
 
+    <EditTextPreference
+        android:key="@string/preferences_pge_oplata_oze"
+        android:inputType="numberDecimal"
+        android:dialogMessage="@string/oplata_oze_desc"
+        android:title="@string/oplata_oze" />
+
     <!-- G11 ============================================================ -->
     <PreferenceCategory
         android:key="@string/preferences_category_G11"

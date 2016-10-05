@@ -77,6 +77,8 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
     public void init() {
         if (!containsZaEnergieCzynna())
             setDefault();
+        else if (!containsOplataOze())
+            setOplataOze(getOplataOze());
     }
 
     public String getZaEnergieCzynna() {

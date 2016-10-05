@@ -72,6 +72,8 @@ public class TauronPrices extends SharedPreferencesPrices implements ITauronPric
     public void init() {
         if (!containsEnergiaElektrycznaCzynna())
             setDefault();
+        else if (!containsOplataOze())
+            setOplataOze(getOplataOze());
     }
 
     public String getEnergiaElektrycznaCzynna() {

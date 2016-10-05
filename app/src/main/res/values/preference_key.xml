@@ -17,6 +17,7 @@
     <string name="preferences_pge_oplata_sieciowa_G12dzien" translatable="false">cena_oplata_sieciowa_G12dzien</string>
     <string name="preferences_pge_oplata_sieciowa_G12noc" translatable="false">cena_oplata_sieciowa_G12noc</string>
     <string name="preferences_pge_skladnik_jakosciowy" translatable="false">cena_skladnik_jakosciowy</string>
+    <string name="preferences_pge_oplata_oze" translatable="false">cena_oplata_oze</string>
     <!-- [mc] -->
     <string name="preferences_pge_oplata_przejsciowa" translatable="false">cena_oplata_przejsciowa</string>
     <string name="preferences_pge_oplata_stala_za_przesyl" translatable="false">cena_oplata_stala_za_przesyl</string>
