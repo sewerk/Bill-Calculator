@@ -76,6 +76,8 @@
     <string name="tauron_energia_elektryczna_G12noc" translatable="false">Energia elektryczna czynna nocna</string>
     <string name="tauron_oplata_dyst_zmienna_G12dzien" translatable="false">Opłata dystr. zm. dzienna</string>
     <string name="tauron_oplata_dyst_zmienna_G12noc" translatable="false">Opłata dystr. zm. nocna</string>
+    <string name="tauron_oplata_oze_G12dzien" translatable="false">Opłata OZE dzienna</string>
+    <string name="tauron_oplata_oze_G12noc" translatable="false">Opłata OZE nocna</string>
 
     <string name="data_wystawienia" translatable="false">Data wystawienia %1$s</string>
     <string name="grupa_taryfowa" translatable="false">Grupa taryfowa Sprzedawcy: %1$s\nGrupa taryfowa OSD(dystrybucja): %1$s</string>

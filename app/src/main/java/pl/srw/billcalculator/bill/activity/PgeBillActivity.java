@@ -32,7 +32,7 @@ import pl.srw.billcalculator.util.Views;
  */
 public class PgeBillActivity extends EnergyBillActivity {
 
-    private static final int PRICE_SCALE = 4;
+    private static final int PRICE_SCALE = 4; // TODO: check if not changed
 
     @Optional @InjectExtra(IntentCreator.PRICES) IPgePrices prices;
 
@@ -100,6 +100,11 @@ public class PgeBillActivity extends EnergyBillActivity {
                 new BigDecimal(prices.getSkladnikJakosciowy()), bill.getSkladnikJakosciowyNetCharge());
         setRow(chargeDetailsTable, R.id.row_oplata_sieciowa, R.string.strefa_calodobowa, R.string.oplata_sieciowa, consumption, R.string.kWh,
                 new BigDecimal(prices.getOplataSieciowa()), bill.getOplataSieciowaNetCharge());
+
+        if (bill.getConsumptionFromJuly16() > 0) {
+            setRow(chargeDetailsTable, R.id.row_oplata_oze, R.string.strefa_calodobowa, R.string.oplata_oze, bill.getConsumptionFromJuly16(), R.string.kWh,
+                    new BigDecimal(prices.getOplataOze()), bill.getOplataOzeNetCharge());
+        }
     }
 
     private void setG12Rows(TableLayout chargeDetailsTable, int dayConsumption, int nightConsumption) {
@@ -117,6 +122,13 @@ public class PgeBillActivity extends EnergyBillActivity {
                 new BigDecimal(prices.getSkladnikJakosciowy()), bill.getSkladnikJakosciowyNightNetCharge());
         setRow(chargeDetailsTable, R.id.row_oplata_sieciowa2, R.string.strefa_nocna, R.string.oplata_sieciowa, nightConsumption, R.string.kWh,
                 new BigDecimal(prices.getOplataSieciowaNoc()), bill.getOplataSieciowaNightNetCharge());
+
+        if (bill.getDayConsumptionFromJuly16() > 0 || bill.getNightConsumptionFromJuly16() > 0) {
+            setRow(chargeDetailsTable, R.id.row_oplata_oze, R.string.strefa_dzienna, R.string.oplata_oze, bill.getDayConsumptionFromJuly16(), R.string.kWh,
+                    new BigDecimal(prices.getOplataOze()), bill.getOplataOzeDayNetCharge());
+            setRow(chargeDetailsTable, R.id.row_oplata_oze2, R.string.strefa_nocna, R.string.oplata_oze, bill.getNightConsumptionFromJuly16(), R.string.kWh,
+                    new BigDecimal(prices.getOplataOze()), bill.getOplataOzeNightNetCharge());
+        }
     }
 
     private void setRow(View componentsTable, @IdRes int rowId, @StringRes int zoneId, @StringRes int descriptionId, int count, @StringRes int jmId,
@@ -128,7 +140,7 @@ public class PgeBillActivity extends EnergyBillActivity {
         Views.setTVInRow(row, R.id.tv_description, descriptionId);
         Views.setTVInRow(row, R.id.tv_Jm, jmId);
         if (jmId == R.string.kWh) {
-            setReadingsInRow(row, zoneId);
+            setReadingsInRow(row, zoneId, count);
             Views.setTVInRow(row, R.id.tv_count, Integer.toString(count));
         } else {
             Views.setTVInRow(row, R.id.tv_month_count, Integer.toString(count) + ".00");
@@ -137,16 +149,25 @@ public class PgeBillActivity extends EnergyBillActivity {
         Views.setTVInRow(row, R.id.tv_price, Display.withScale(netPrice, PRICE_SCALE));
     }
 
-    private void setReadingsInRow(View row, @StringRes int zoneId) {
+    private void setReadingsInRow(View row, @StringRes int zoneId, int count) {
         if (zoneId == R.string.strefa_dzienna) {
             Views.setTVInRow(row, R.id.tv_current_reading, Integer.toString(readingDayTo));
-            Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingDayFrom));
+            if (row.getId() == R.id.row_oplata_oze)
+                Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingDayTo - count));
+            else
+                Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingDayFrom));
         } else if (zoneId == R.string.strefa_nocna) {
             Views.setTVInRow(row, R.id.tv_current_reading, Integer.toString(readingNightTo));
-            Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingNightFrom));
+            if (row.getId() == R.id.row_oplata_oze2)
+                Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingNightTo - count));
+            else
+                Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingNightFrom));
         } else {
             Views.setTVInRow(row, R.id.tv_current_reading, Integer.toString(readingTo));
-            Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingFrom));
+            if (row.getId() == R.id.row_oplata_oze)
+                Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingTo - count));
+            else
+                Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingFrom));
         }
     }
 
