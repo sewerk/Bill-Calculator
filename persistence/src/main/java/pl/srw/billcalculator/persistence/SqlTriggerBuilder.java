@@ -2,28 +2,25 @@ package pl.srw.billcalculator.persistence;
 
 import de.greenrobot.dao.Property;
 
-/**
-* Created by Kamil Seweryn.
-*/
-public class SqlBuilder {
+public class SqlTriggerBuilder {
 
     private final StringBuilder sql;
 
-    private SqlBuilder(final StringBuilder sql) {
+    private SqlTriggerBuilder(final StringBuilder sql) {
         this.sql = sql;
     }
 
-    public static SqlBuilder createTrigger(final String triggerName) {
+    public static SqlTriggerBuilder createTrigger(final String triggerName) {
         final StringBuilder sql = new StringBuilder("CREATE TRIGGER " + triggerName);
-        return new SqlBuilder(sql);
+        return new SqlTriggerBuilder(sql);
     }
 
-    public SqlBuilder after(final String afterOp) {
+    public SqlTriggerBuilder after(final String afterOp) {
         sql.append(" AFTER ").append(afterOp);
         return this;
     }
 
-    public SqlBuilder on(final String onTable) {
+    public SqlTriggerBuilder on(final String onTable) {
         sql.append(" ON ").append(onTable);
         return this;
     }
@@ -32,12 +29,12 @@ public class SqlBuilder {
         return sql.append(" BEGIN ").append(innerSql).append(" END;").toString();
     }
 
-    public static SqlBuilder insertInto(final String tablename) {
+    public static SqlTriggerBuilder insertInto(final String tablename) {
         final StringBuilder sql = new StringBuilder("INSERT INTO " + tablename);
-        return new SqlBuilder(sql);
+        return new SqlTriggerBuilder(sql);
     }
 
-    public SqlBuilder cols(final Property... cols) {
+    public SqlTriggerBuilder cols(final Property... cols) {
         sql.append("(");
         for (Property col : cols) {
             sql.append(col.columnName);
@@ -59,12 +56,12 @@ public class SqlBuilder {
         return sql.toString();
     }
 
-    public static SqlBuilder deleteFrom(final String tablename) {
+    public static SqlTriggerBuilder deleteFrom(final String tablename) {
         final StringBuilder sql = new StringBuilder("DELETE FROM " + tablename);
-        return new SqlBuilder(sql);
+        return new SqlTriggerBuilder(sql);
     }
 
-    public SqlBuilder whereEq(final Property col, final String val) {
+    public SqlTriggerBuilder whereEq(final Property col, final String val) {
         sql.append(" WHERE ").append(col.columnName).append(" = ").append(val);
         return this;
     }
