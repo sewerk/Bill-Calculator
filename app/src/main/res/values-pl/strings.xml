@@ -30,6 +30,10 @@
     <string name="rationale_dialog_goto_settings_msg">Drukowanie rachunku wymaga dostępu do Pamięci urządzenia w celu utworzenia pliku. Ustawienia można zmienić w:\nZezwolenia > Pamięć</string>
     <string name="rationale_dialog_goto_settings">Idz do Ustawień</string>
     <string name="rationale_dialog_cancel">Anuluj</string>
+    <string name="dialog_bill_without_oze_title">Informacja</string>
+    <string name="dialog_bill_without_oze_message">Niniejszy rachunek nie uwzględnia opłaty OZE, która według ustawy, obowiązuje od lipca 2016 r. Zalecam przeliczyć ten rachunek ponownie.</string>
+    <string name="dialog_bill_without_oze_positive">Rozumiem</string>
+    <string name="dialog_bill_without_oze_cancel">Nie trzeba</string>
 <!-- energy_bill -->
     <string name="energy_bill">Rachunek za energię</string>
 <!-- gas_bill -->

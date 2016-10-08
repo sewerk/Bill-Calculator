@@ -20,6 +20,7 @@ import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.TauronCalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG12CalculatedBill;
+import pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.ITauronPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
@@ -46,6 +47,12 @@ public class TauronBillActivity extends EnergyBillActivity {
 
         if (prices == null)
             prices = new TauronPrices();
+        else if (savedInstanceState == null
+                && "0.00".equals(prices.getOplataOze())
+                && Dates.parse(dateTo).isAfter(LocalDate.of(2016, Month.JULY, 1))) {
+            new BillCalculatedBeforeOZEChangeDialogFragment()
+                    .show(getFragmentManager(), null);
+        }
 
         bill = isTwoUnitTariff() ?
                 new TauronG12CalculatedBill(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices)

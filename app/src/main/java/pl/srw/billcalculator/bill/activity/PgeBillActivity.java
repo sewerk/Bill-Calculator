@@ -10,6 +10,7 @@ import com.f2prateek.dart.InjectExtra;
 import com.f2prateek.dart.Optional;
 
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.Month;
 
 import java.math.BigDecimal;
 
@@ -18,6 +19,7 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.PgeG12CalculatedBill;
+import pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgePrices;
 import pl.srw.billcalculator.settings.prices.PgePrices;
@@ -46,6 +48,12 @@ public class PgeBillActivity extends EnergyBillActivity {
 
         if (prices == null)
             prices = new PgePrices();
+        else if (savedInstanceState == null
+                && "0.00".equals(prices.getOplataOze())
+                && Dates.parse(dateTo).isAfter(LocalDate.of(2016, Month.JULY, 1))) {
+            new BillCalculatedBeforeOZEChangeDialogFragment()
+                    .show(getFragmentManager(), null);
+        }
 
         bill = isTwoUnitTariff() ?
                 new PgeG12CalculatedBill(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices)
