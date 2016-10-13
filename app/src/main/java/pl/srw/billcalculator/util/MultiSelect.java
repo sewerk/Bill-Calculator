@@ -1,6 +1,5 @@
 package pl.srw.billcalculator.util;
 
-import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.SparseArray;
@@ -11,10 +10,9 @@ import java.util.Collection;
 
 import hugo.weaving.DebugLog;
 
-@lombok.ToString(includeFieldNames = true)
+@lombok.ToString
 public class MultiSelect<I extends Parcelable> implements Parcelable {
 
-    private static final String BUNDLE_KEY = "value";
     private SparseArray<I> selectedItems;
 
     public MultiSelect() {
@@ -61,19 +59,17 @@ public class MultiSelect<I extends Parcelable> implements Parcelable {
     }
 
     protected MultiSelect(Parcel in) {
-        selectedItems = in.readBundle(getClass().getClassLoader()).getSparseParcelableArray(BUNDLE_KEY);
+        this.selectedItems = in.readSparseArray(getClass().getClassLoader());
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        final Bundle bundle = new Bundle();
-        bundle.putSparseParcelableArray(BUNDLE_KEY, selectedItems);
-        dest.writeBundle(bundle);
+        dest.writeSparseArray((SparseArray) this.selectedItems);
     }
 
     @Override
     public int describeContents() {
-        return 1;// TODO: check if 0 is ok
+        return 0;
     }
 
     public static final Creator<MultiSelect> CREATOR = new Creator<MultiSelect>() {
