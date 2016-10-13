@@ -36,6 +36,11 @@ public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
     }
 
     @Override
+    protected String getMWhMeasurePrefKeys() {
+        return getStringFor(R.string.preferences_pge_oplata_oze);
+    }
+
+    @Override
     public void restoreSettings() {
         super.restoreSettings();
         new PgePrices().setDefault();

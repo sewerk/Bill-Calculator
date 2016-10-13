@@ -63,6 +63,7 @@
     <string name="tariff_G12_on_bill" translatable="false">Taryfa: G12</string>
 
     <string name="kWh" translatable="false">kWh</string>
+    <string name="MWh" translatable="false">MWh</string>
     <string name="m_c" translatable="false">m-c</string>
     <string name="akcyza" translatable="false">Od %1$s kWh energii elektrycznej [ KOD CN 2716 00 00] naliczono akcyzę w kwocie %2$s zł.</string>
     <string name="to_pay" translatable="false">DO ZAPŁATY : %s zł</string>

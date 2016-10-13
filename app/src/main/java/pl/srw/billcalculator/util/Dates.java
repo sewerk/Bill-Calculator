@@ -11,12 +11,14 @@ import org.threeten.bp.temporal.TemporalAdjusters;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by Kamil Seweryn.
  */
 public class Dates {
 
+    public static final Locale PL_LOCALE = new Locale("pl", "PL");
     private static final String DATE_PATTERN = "dd/MM/yyyy";
 
     public static LocalDate parse(String text) {

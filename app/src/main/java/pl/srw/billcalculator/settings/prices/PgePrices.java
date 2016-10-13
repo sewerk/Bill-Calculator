@@ -26,7 +26,7 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
     private final String cena_oplata_przejsciowa = "1.04";
     private final String cena_oplata_stala_za_przesyl = "1.95";
     private final String cena_oplata_abonamentowa = "5.20";
-    private final String cena_oplata_oze = "0.00251"; // TODO: check if proper value
+    private final String cena_oplata_oze = "2.51";
 
     public pl.srw.billcalculator.db.PgePrices convertToDb() {
         pl.srw.billcalculator.db.PgePrices dbPrices = new pl.srw.billcalculator.db.PgePrices();

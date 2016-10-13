@@ -34,8 +34,11 @@ public abstract class CalculatedEnergyBill extends CalculatedBill {
     protected int countConsumptionPartFromJuly16(String dateFrom, String dateTo, int consumption) {
         int daysFromJuly16 = Dates.countDaysFromJuly16(dateFrom, dateTo);
         int periodInDays = Dates.countDays(dateFrom, dateTo);
-        return new BigDecimal(consumption * daysFromJuly16)
-                .divideToIntegralValue(BigDecimal.valueOf(periodInDays))
+        if (daysFromJuly16 == periodInDays) {
+            return consumption;
+        }
+        return new BigDecimal(consumption)
+                .multiply(BigDecimal.valueOf(daysFromJuly16 / (double) periodInDays))
                 .intValue();
     }
 

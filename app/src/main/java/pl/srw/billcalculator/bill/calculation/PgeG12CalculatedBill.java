@@ -50,8 +50,8 @@ public class PgeG12CalculatedBill extends CalculatedEnergyBill {
         zaEnergieCzynnaNightNetCharge = countNetAndAddToSum(prices.getZaEnergieCzynnaNoc(), nightConsumption);
         skladnikJakosciowyNightNetCharge = countNetAndAddToSum(prices.getSkladnikJakosciowy(), nightConsumption);
         oplataSieciowaNightNetCharge = countNetAndAddToSum(prices.getOplataSieciowaNoc(), nightConsumption);
-        oplataOzeDayNetCharge = countNetAndAddToSum(prices.getOplataOze(), dayConsumptionFromJuly16);
-        oplataOzeNightNetCharge = countNetAndAddToSum(prices.getOplataOze(), nightConsumptionFromJuly16);
+        oplataOzeDayNetCharge = countNetAndAddToSum(prices.getOplataOze(), new BigDecimal(dayConsumptionFromJuly16 * 0.001));
+        oplataOzeNightNetCharge = countNetAndAddToSum(prices.getOplataOze(), new BigDecimal(nightConsumptionFromJuly16 * 0.001));
 
         zaEnergieCzynnaDayVatCharge = countVatAndAddToSum(zaEnergieCzynnaDayNetCharge);
         skladnikJakosciowyDayVatCharge = countVatAndAddToSum(skladnikJakosciowyDayNetCharge);
