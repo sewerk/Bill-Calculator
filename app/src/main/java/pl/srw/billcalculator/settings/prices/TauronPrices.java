@@ -14,17 +14,17 @@ public class TauronPrices extends SharedPreferencesPrices implements ITauronPric
     private static final String OPLATA_DYSTRYBUCYJNA_ZMIENNA_NOC = "oplataDystrybucyjnaZmiennaNoc";
     private static final String ENERGIA_ELEKTRYCZNA_CZYNNA_NOC = "energiaElektrycznaCzynnaNoc";
 
-    private final String energiaElektrycznaCzynna = "0.2547";
-    private final String oplataDystrybucyjnaZmienna = "0.1913";
-    private final String oplataDystrybucyjnaStala = "1.55";
+    private final String energiaElektrycznaCzynna = "0.2529";
+    private final String oplataDystrybucyjnaZmienna = "0.1783";
+    private final String oplataDystrybucyjnaStala = "1.57";
     private final String oplataPrzejsciowa = "1.00";
     private final String oplataAbonamentowa = "4.80";
     private final String oplataOze = "0.00251";
 
-    private final String energiaElektrycznaCzynnaDzien = "0.3134";
-    private final String oplataDystrybucyjnaZmiennaDzien = "0.1990";
-    private final String energiaElektrycznaCzynnaNoc = "0.1628";
-    private final String oplataDystrybucyjnaZmiennaNoc = "0.0745";
+    private final String energiaElektrycznaCzynnaDzien = "0.3119";
+    private final String oplataDystrybucyjnaZmiennaDzien = "0.1873";
+    private final String energiaElektrycznaCzynnaNoc = "0.1615";
+    private final String oplataDystrybucyjnaZmiennaNoc = "0.0714";
 
     public pl.srw.billcalculator.db.TauronPrices convertToDb() {
         pl.srw.billcalculator.db.TauronPrices dbPrices = new pl.srw.billcalculator.db.TauronPrices();
