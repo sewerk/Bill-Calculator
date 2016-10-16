@@ -16,16 +16,16 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
     private static final String CENA_OPLATA_ABONAMENTOWA = "cena_oplata_abonamentowa";
     private static final String CENA_OPLATA_OZE = "cena_oplata_oze";
 
-    private final String cena_za_energie_czynna = "0.2553";
-    private final String cena_za_energie_czynna_G12dzien = "0.2861";
-    private final String cena_za_energie_czynna_G12noc = "0.1917";
-    private final String cena_oplata_sieciowa = "0.2170";
-    private final String cena_oplata_sieciowa_G12dzien = "0.2417";
-    private final String cena_oplata_sieciowa_G12noc = "0.0836";
-    private final String cena_skladnik_jakosciowy = "0.0115";
+    private final String cena_za_energie_czynna = "0.2530";
+    private final String cena_za_energie_czynna_G12dzien = "0.2835";
+    private final String cena_za_energie_czynna_G12noc = "0.1900";
+    private final String cena_oplata_sieciowa = "0.2057";
+    private final String cena_oplata_sieciowa_G12dzien = "0.2340";
+    private final String cena_oplata_sieciowa_G12noc = "0.0706";
+    private final String cena_skladnik_jakosciowy = "0.0129";
     private final String cena_oplata_przejsciowa = "1.00";
     private final String cena_oplata_stala_za_przesyl = "1.95";
-    private final String cena_oplata_abonamentowa = "5.20";
+    private final String cena_oplata_abonamentowa = "5.10";
     private final String cena_oplata_oze = "2.51";
 
     public pl.srw.billcalculator.db.PgePrices convertToDb() {
