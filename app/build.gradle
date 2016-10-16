@@ -70,13 +70,9 @@ dependencies {
     compile files('libs/itextg-5.5.4.jar')
     provided 'org.projectlombok:lombok:1.16.8'
 
-    androidTestCompile ('com.android.support.test.espresso:espresso-intents:2.2') {
-        exclude module: 'support-annotations'
-    }
-    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2') {
-        exclude module: 'support-annotations'
-        exclude module: 'recyclerview-v7'
-    }
+    androidTestCompile ('com.android.support.test.espresso:espresso-intents:2.2')
+    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2')
+    androidTestCompile 'com.android.support:support-v4:23.1.1'
     androidTestCompile files('libs/robotium-solo-5.3.1.jar')
 
     testCompile 'junit:junit:4.12'

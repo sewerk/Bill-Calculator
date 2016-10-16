@@ -23,7 +23,7 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
     private final String cena_oplata_sieciowa_G12dzien = "0.2417";
     private final String cena_oplata_sieciowa_G12noc = "0.0836";
     private final String cena_skladnik_jakosciowy = "0.0115";
-    private final String cena_oplata_przejsciowa = "1.04";
+    private final String cena_oplata_przejsciowa = "1.00";
     private final String cena_oplata_stala_za_przesyl = "1.95";
     private final String cena_oplata_abonamentowa = "5.20";
     private final String cena_oplata_oze = "2.51";

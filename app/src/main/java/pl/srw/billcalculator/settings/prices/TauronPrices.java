@@ -17,7 +17,7 @@ public class TauronPrices extends SharedPreferencesPrices implements ITauronPric
     private final String energiaElektrycznaCzynna = "0.2547";
     private final String oplataDystrybucyjnaZmienna = "0.1913";
     private final String oplataDystrybucyjnaStala = "1.55";
-    private final String oplataPrzejsciowa = "1.04";
+    private final String oplataPrzejsciowa = "1.00";
     private final String oplataAbonamentowa = "4.80";
     private final String oplataOze = "0.00251";
 
