@@ -1,4 +1,4 @@
 OZE:
 - fix test, add test for calculated bills
 - message for user: if history of energy bill not empty: bills from July might be re-calculated (auto recalculate)
-- sprawdź cenę opłaty przejściowej
+- check key/value backup between devices, vs db. update

@@ -3661,7 +3661,7 @@ android.support.v7.app.WindowDecorActionBar$ActionModeImpl:
 android.support.v7.app.WindowDecorActionBar$TabImpl
 android.support.v7.appcompat.BuildConfig
 android.support.v7.appcompat.R:
-    9:933:public R()
+    9:9:public R()
 android.support.v7.appcompat.R$anim
 android.support.v7.appcompat.R$attr:
     22:22:public R$attr()
@@ -3693,7 +3693,7 @@ android.support.v7.graphics.drawable.DrawerArrowDrawable
 android.support.v7.graphics.drawable.DrawerArrowDrawable$ArrowDirection
 android.support.v7.recyclerview.BuildConfig
 android.support.v7.recyclerview.R:
-    9:22:public R()
+    9:9:public R()
 android.support.v7.recyclerview.R$attr
 android.support.v7.recyclerview.R$dimen
 android.support.v7.recyclerview.R$id
@@ -9653,9 +9653,6 @@ org.threeten.bp.Instant:
     822:825:public org.threeten.bp.Instant minusSeconds(long)
     839:842:public org.threeten.bp.Instant minusMillis(long)
     856:859:public org.threeten.bp.Instant minusNanos(long)
-    969:984:public long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit)
-    988:990:private long nanosUntil(org.threeten.bp.Instant)
-    994:1001:private long secondsUntil(org.threeten.bp.Instant)
     1019:1019:public org.threeten.bp.OffsetDateTime atOffset(org.threeten.bp.ZoneOffset)
     1037:1037:public org.threeten.bp.ZonedDateTime atZone(org.threeten.bp.ZoneId)
     1090:1090:public boolean isAfter(org.threeten.bp.Instant)
@@ -9675,17 +9672,12 @@ org.threeten.bp.LocalDate:
     1204:1204:public org.threeten.bp.LocalDate minus(org.threeten.bp.temporal.TemporalAmount)
     1273:1273:public org.threeten.bp.LocalDate minusMonths(long)
     1292:1292:public org.threeten.bp.LocalDate minusWeeks(long)
-    1311:1311:public org.threeten.bp.LocalDate minusDays(long)
-    1416:1430:public long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit)
-    1434:1434:long daysUntil(org.threeten.bp.LocalDate)
-    1438:1440:private long monthsUntil(org.threeten.bp.LocalDate)
     1525:1525:public org.threeten.bp.LocalDateTime atTime(int,int)
     1544:1544:public org.threeten.bp.LocalDateTime atTime(int,int,int)
     1563:1563:public org.threeten.bp.LocalDateTime atTime(int,int,int,int)
     1576:1576:public org.threeten.bp.OffsetDateTime atTime(org.threeten.bp.OffsetTime)
     1589:1589:public org.threeten.bp.LocalDateTime atStartOfDay()
     1617:1628:public org.threeten.bp.ZonedDateTime atStartOfDay(org.threeten.bp.ZoneId)
-    1711:1714:public boolean isAfter(org.threeten.bp.chrono.ChronoLocalDate)
     1769:1772:public boolean isEqual(org.threeten.bp.chrono.ChronoLocalDate)
     1863:1863:private java.lang.Object writeReplace()
     1872:1872:private java.lang.Object readResolve()
@@ -9736,8 +9728,6 @@ org.threeten.bp.LocalDateTime:
     1349:1349:public org.threeten.bp.LocalDateTime minusMinutes(long)
     1362:1362:public org.threeten.bp.LocalDateTime minusSeconds(long)
     1375:1375:public org.threeten.bp.LocalDateTime minusNanos(long)
-    1519:1566:public long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit)
-    1580:1580:public org.threeten.bp.OffsetDateTime atOffset(org.threeten.bp.ZoneOffset)
     1756:1759:public boolean isEqual(org.threeten.bp.chrono.ChronoLocalDateTime)
     1828:1828:public java.lang.String format(org.threeten.bp.format.DateTimeFormatter)
     1833:1833:private java.lang.Object writeReplace()
@@ -9774,11 +9764,8 @@ org.threeten.bp.LocalTime:
     1148:1148:public org.threeten.bp.LocalTime minusMinutes(long)
     1163:1163:public org.threeten.bp.LocalTime minusSeconds(long)
     1178:1178:public org.threeten.bp.LocalTime minusNanos(long)
-    1291:1305:public long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit)
     1319:1319:public org.threeten.bp.LocalDateTime atDate(org.threeten.bp.LocalDate)
     1332:1332:public org.threeten.bp.OffsetTime atOffset(org.threeten.bp.ZoneOffset)
-    1399:1399:public boolean isAfter(org.threeten.bp.LocalTime)
-    1412:1412:public boolean isBefore(org.threeten.bp.LocalTime)
     1505:1506:public java.lang.String format(org.threeten.bp.format.DateTimeFormatter)
     1511:1511:private java.lang.Object writeReplace()
     1520:1520:private java.lang.Object readResolve()
@@ -9795,10 +9782,67 @@ org.threeten.bp.Month:
 org.threeten.bp.MonthDay
 org.threeten.bp.MonthDay$1
 org.threeten.bp.MonthDay$2
-org.threeten.bp.OffsetDateTime
-org.threeten.bp.OffsetDateTime$1
-org.threeten.bp.OffsetDateTime$2
-org.threeten.bp.OffsetDateTime$3
+org.threeten.bp.OffsetDateTime:
+    private static final long serialVersionUID
+    134:134:public static java.util.Comparator timeLineOrder()
+    175:175:public static org.threeten.bp.OffsetDateTime now()
+    192:192:public static org.threeten.bp.OffsetDateTime now(org.threeten.bp.ZoneId)
+    208:210:public static org.threeten.bp.OffsetDateTime now(org.threeten.bp.Clock)
+    225:226:public static org.threeten.bp.OffsetDateTime of(org.threeten.bp.LocalDate,org.threeten.bp.LocalTime,org.threeten.bp.ZoneOffset)
+    269:270:public static org.threeten.bp.OffsetDateTime of(int,int,int,int,int,int,int,org.threeten.bp.ZoneOffset)
+    344:344:public static org.threeten.bp.OffsetDateTime parse(java.lang.CharSequence)
+    358:359:public static org.threeten.bp.OffsetDateTime parse(java.lang.CharSequence,org.threeten.bp.format.DateTimeFormatter)
+    446:449:public boolean isSupported(org.threeten.bp.temporal.TemporalUnit)
+    586:586:public org.threeten.bp.OffsetDateTime withOffsetSameLocal(org.threeten.bp.ZoneOffset)
+    629:629:public int getYear()
+    643:643:public int getMonthValue()
+    658:658:public org.threeten.bp.Month getMonth()
+    669:669:public int getDayOfMonth()
+    680:680:public int getDayOfYear()
+    697:697:public org.threeten.bp.DayOfWeek getDayOfWeek()
+    707:707:public int getHour()
+    716:716:public int getMinute()
+    725:725:public int getSecond()
+    867:867:public org.threeten.bp.OffsetDateTime withYear(int)
+    882:882:public org.threeten.bp.OffsetDateTime withMonth(int)
+    898:898:public org.threeten.bp.OffsetDateTime withDayOfMonth(int)
+    913:913:public org.threeten.bp.OffsetDateTime withDayOfYear(int)
+    929:929:public org.threeten.bp.OffsetDateTime withHour(int)
+    944:944:public org.threeten.bp.OffsetDateTime withMinute(int)
+    959:959:public org.threeten.bp.OffsetDateTime withSecond(int)
+    974:974:public org.threeten.bp.OffsetDateTime withNano(int)
+    1000:1000:public org.threeten.bp.OffsetDateTime truncatedTo(org.threeten.bp.temporal.TemporalUnit)
+    1072:1072:public org.threeten.bp.OffsetDateTime plusYears(long)
+    1096:1096:public org.threeten.bp.OffsetDateTime plusMonths(long)
+    1115:1115:public org.threeten.bp.OffsetDateTime plusWeeks(long)
+    1134:1134:public org.threeten.bp.OffsetDateTime plusDays(long)
+    1147:1147:public org.threeten.bp.OffsetDateTime plusHours(long)
+    1160:1160:public org.threeten.bp.OffsetDateTime plusMinutes(long)
+    1173:1173:public org.threeten.bp.OffsetDateTime plusSeconds(long)
+    1186:1186:public org.threeten.bp.OffsetDateTime plusNanos(long)
+    1209:1209:public org.threeten.bp.OffsetDateTime minus(org.threeten.bp.temporal.TemporalAmount)
+    1254:1254:public org.threeten.bp.OffsetDateTime minusYears(long)
+    1278:1278:public org.threeten.bp.OffsetDateTime minusMonths(long)
+    1297:1297:public org.threeten.bp.OffsetDateTime minusWeeks(long)
+    1316:1316:public org.threeten.bp.OffsetDateTime minusDays(long)
+    1329:1329:public org.threeten.bp.OffsetDateTime minusHours(long)
+    1342:1342:public org.threeten.bp.OffsetDateTime minusMinutes(long)
+    1355:1355:public org.threeten.bp.OffsetDateTime minusSeconds(long)
+    1368:1368:public org.threeten.bp.OffsetDateTime minusNanos(long)
+    1518:1518:public org.threeten.bp.ZonedDateTime atZoneSameInstant(org.threeten.bp.ZoneId)
+    1546:1546:public org.threeten.bp.ZonedDateTime atZoneSimilarLocal(org.threeten.bp.ZoneId)
+    1595:1595:public org.threeten.bp.OffsetTime toOffsetTime()
+    1610:1610:public org.threeten.bp.ZonedDateTime toZonedDateTime()
+    1619:1619:public org.threeten.bp.Instant toInstant()
+    1686:1688:public boolean isAfter(org.threeten.bp.OffsetDateTime)
+    1703:1705:public boolean isBefore(org.threeten.bp.OffsetDateTime)
+    1720:1720:public boolean isEqual(org.threeten.bp.OffsetDateTime)
+    1790:1791:public java.lang.String format(org.threeten.bp.format.DateTimeFormatter)
+    1796:1796:private java.lang.Object writeReplace()
+    1805:1805:private java.lang.Object readResolve()
+    1809:1811:void writeExternal(java.io.DataOutput)
+    1814:1816:static org.threeten.bp.OffsetDateTime readExternal(java.io.DataInput)
+    90:90:public bridge synthetic org.threeten.bp.temporal.Temporal minus(org.threeten.bp.temporal.TemporalAmount)
 org.threeten.bp.OffsetTime
 org.threeten.bp.OffsetTime$1
 org.threeten.bp.OffsetTime$2
@@ -9851,7 +9895,6 @@ org.threeten.bp.Year:
     591:591:public org.threeten.bp.Year plus(org.threeten.bp.temporal.TemporalAmount)
     649:649:public org.threeten.bp.Year minus(org.threeten.bp.temporal.TemporalAmount)
     672:672:public org.threeten.bp.Year minusYears(long)
-    787:799:public long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit)
     816:816:public org.threeten.bp.LocalDate atDay(int)
     834:834:public org.threeten.bp.YearMonth atMonth(org.threeten.bp.Month)
     853:853:public org.threeten.bp.YearMonth atMonth(int)
@@ -9909,7 +9952,6 @@ org.threeten.bp.ZonedDateTime:
     814:821:public org.threeten.bp.ZonedDateTime withEarlierOffsetAtOverlap()
     842:849:public org.threeten.bp.ZonedDateTime withLaterOffsetAtOverlap()
     890:891:public org.threeten.bp.ZonedDateTime withZoneSameLocal(org.threeten.bp.ZoneId)
-    913:914:public org.threeten.bp.ZonedDateTime withZoneSameInstant(org.threeten.bp.ZoneId)
     936:936:public org.threeten.bp.ZonedDateTime withFixedOffsetZone()
     951:951:public int getYear()
     965:965:public int getMonthValue()
@@ -9946,15 +9988,12 @@ org.threeten.bp.ZonedDateTime:
     1835:1835:public org.threeten.bp.ZonedDateTime minusMinutes(long)
     1853:1853:public org.threeten.bp.ZonedDateTime minusSeconds(long)
     1871:1871:public org.threeten.bp.ZonedDateTime minusNanos(long)
-    1966:1975:public long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit)
-    2027:2027:public org.threeten.bp.OffsetDateTime toOffsetDateTime()
     2096:2096:public java.lang.String format(org.threeten.bp.format.DateTimeFormatter)
     2101:2101:private java.lang.Object writeReplace()
     2110:2110:private java.lang.Object readResolve()
     2114:2117:void writeExternal(java.io.DataOutput)
     2120:2123:static org.threeten.bp.ZonedDateTime readExternal(java.io.DataInput)
     122:122:public bridge synthetic org.threeten.bp.chrono.ChronoZonedDateTime minus(org.threeten.bp.temporal.TemporalAmount)
-    122:122:public bridge synthetic org.threeten.bp.chrono.ChronoZonedDateTime withZoneSameInstant(org.threeten.bp.ZoneId)
     122:122:public bridge synthetic org.threeten.bp.chrono.ChronoZonedDateTime withZoneSameLocal(org.threeten.bp.ZoneId)
     122:122:public bridge synthetic org.threeten.bp.chrono.ChronoZonedDateTime withLaterOffsetAtOverlap()
     122:122:public bridge synthetic org.threeten.bp.chrono.ChronoZonedDateTime withEarlierOffsetAtOverlap()
@@ -9969,7 +10008,6 @@ org.threeten.bp.chrono.ChronoLocalDate:
     361:364:public boolean isSupported(org.threeten.bp.temporal.TemporalUnit)
     387:387:public org.threeten.bp.chrono.ChronoLocalDate minus(org.threeten.bp.temporal.TemporalAmount)
     public abstract org.threeten.bp.chrono.ChronoPeriod until(org.threeten.bp.chrono.ChronoLocalDate)
-    538:538:public boolean isAfter(org.threeten.bp.chrono.ChronoLocalDate)
     570:570:public boolean isEqual(org.threeten.bp.chrono.ChronoLocalDate)
     221:221:public bridge synthetic org.threeten.bp.temporal.Temporal minus(org.threeten.bp.temporal.TemporalAmount)
 org.threeten.bp.chrono.ChronoLocalDateTime:
@@ -9994,7 +10032,6 @@ org.threeten.bp.chrono.ChronoLocalDateTimeImpl:
     private static final long NANOS_PER_HOUR
     private static final long NANOS_PER_DAY
     198:201:public boolean isSupported(org.threeten.bp.temporal.TemporalUnit)
-    325:347:public long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit)
     352:352:private java.lang.Object writeReplace()
     356:358:void writeExternal(java.io.ObjectOutput)
     361:363:static org.threeten.bp.chrono.ChronoLocalDateTime readExternal(java.io.ObjectInput)
@@ -10020,7 +10057,6 @@ org.threeten.bp.chrono.ChronoZonedDateTime:
     public abstract org.threeten.bp.chrono.ChronoZonedDateTime withEarlierOffsetAtOverlap()
     public abstract org.threeten.bp.chrono.ChronoZonedDateTime withLaterOffsetAtOverlap()
     public abstract org.threeten.bp.chrono.ChronoZonedDateTime withZoneSameLocal(org.threeten.bp.ZoneId)
-    public abstract org.threeten.bp.chrono.ChronoZonedDateTime withZoneSameInstant(org.threeten.bp.ZoneId)
     360:360:public org.threeten.bp.chrono.ChronoZonedDateTime minus(org.threeten.bp.temporal.TemporalAmount)
     396:397:public java.lang.String format(org.threeten.bp.format.DateTimeFormatter)
     412:412:public org.threeten.bp.Instant toInstant()
@@ -10034,8 +10070,6 @@ org.threeten.bp.chrono.ChronoZonedDateTimeImpl:
     190:197:public org.threeten.bp.chrono.ChronoZonedDateTime withEarlierOffsetAtOverlap()
     202:209:public org.threeten.bp.chrono.ChronoZonedDateTime withLaterOffsetAtOverlap()
     223:223:public org.threeten.bp.chrono.ChronoZonedDateTime withZoneSameLocal(org.threeten.bp.ZoneId)
-    228:229:public org.threeten.bp.chrono.ChronoZonedDateTime withZoneSameInstant(org.threeten.bp.ZoneId)
-    268:273:public long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit)
     278:278:private java.lang.Object writeReplace()
     287:287:private java.lang.Object readResolve()
     291:294:void writeExternal(java.io.ObjectOutput)
@@ -10054,7 +10088,6 @@ org.threeten.bp.chrono.Chronology:
     525:525:public org.threeten.bp.chrono.ChronoLocalDate dateNow()
     542:542:public org.threeten.bp.chrono.ChronoLocalDate dateNow(org.threeten.bp.ZoneId)
     557:558:public org.threeten.bp.chrono.ChronoLocalDate dateNow(org.threeten.bp.Clock)
-    601:612:public org.threeten.bp.chrono.ChronoZonedDateTime zonedDateTime(org.threeten.bp.temporal.TemporalAccessor)
     659:659:public org.threeten.bp.chrono.ChronoPeriod period(int,int,int)
     public abstract int prolepticYear(org.threeten.bp.chrono.Era,int)
     public abstract java.util.List eras()
@@ -10081,7 +10114,6 @@ org.threeten.bp.chrono.IsoChronology:
     202:202:public org.threeten.bp.LocalDate dateYearDay(org.threeten.bp.chrono.Era,int,int)
     217:217:public org.threeten.bp.LocalDate dateYearDay(int,int)
     222:222:public org.threeten.bp.LocalDate dateEpochDay(long)
-    265:265:public org.threeten.bp.ZonedDateTime zonedDateTime(org.threeten.bp.temporal.TemporalAccessor)
     298:298:public org.threeten.bp.LocalDate dateNow()
     315:315:public org.threeten.bp.LocalDate dateNow(org.threeten.bp.ZoneId)
     331:332:public org.threeten.bp.LocalDate dateNow(org.threeten.bp.Clock)
@@ -10089,7 +10121,6 @@ org.threeten.bp.chrono.IsoChronology:
     375:375:public java.util.List eras()
     381:381:public org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.ChronoField)
     98:98:public bridge synthetic org.threeten.bp.chrono.ChronoLocalDate resolveDate(java.util.Map,org.threeten.bp.format.ResolverStyle)
-    98:98:public bridge synthetic org.threeten.bp.chrono.ChronoZonedDateTime zonedDateTime(org.threeten.bp.temporal.TemporalAccessor)
     98:98:public bridge synthetic org.threeten.bp.chrono.ChronoLocalDate dateNow(org.threeten.bp.Clock)
     98:98:public bridge synthetic org.threeten.bp.chrono.ChronoLocalDate dateNow(org.threeten.bp.ZoneId)
     98:98:public bridge synthetic org.threeten.bp.chrono.ChronoLocalDate dateNow()
@@ -10207,9 +10238,7 @@ org.threeten.bp.temporal.ChronoField:
 org.threeten.bp.temporal.ChronoUnit:
     187:187:public org.threeten.bp.Duration getDuration()
     203:203:public boolean isDurationEstimated()
-    222:222:public boolean isTimeBased()
     228:245:public boolean isSupportedBy(org.threeten.bp.temporal.Temporal)
-    259:259:public long between(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.Temporal)
 org.threeten.bp.temporal.IsoFields:
     197:198:private IsoFields()
 org.threeten.bp.temporal.IsoFields$Field:
@@ -10232,14 +10261,12 @@ org.threeten.bp.temporal.IsoFields$Unit:
     583:583:public boolean isDurationEstimated()
     593:593:public boolean isTimeBased()
     598:598:public boolean isSupportedBy(org.threeten.bp.temporal.Temporal)
-    618:624:public long between(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.Temporal)
 org.threeten.bp.temporal.JulianFields
 org.threeten.bp.temporal.JulianFields$Field
 org.threeten.bp.temporal.Temporal:
     public abstract boolean isSupported(org.threeten.bp.temporal.TemporalUnit)
     public abstract org.threeten.bp.temporal.Temporal plus(org.threeten.bp.temporal.TemporalAmount)
     public abstract org.threeten.bp.temporal.Temporal minus(org.threeten.bp.temporal.TemporalAmount)
-    public abstract long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit)
 org.threeten.bp.temporal.TemporalAdjusters:
     80:81:private TemporalAdjusters()
     144:144:public static org.threeten.bp.temporal.TemporalAdjuster firstDayOfNextMonth()
@@ -10272,7 +10299,6 @@ org.threeten.bp.temporal.TemporalUnit:
     public abstract boolean isDurationEstimated()
     public abstract boolean isTimeBased()
     public abstract boolean isSupportedBy(org.threeten.bp.temporal.Temporal)
-    public abstract long between(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.Temporal)
     public abstract java.lang.String toString()
 org.threeten.bp.temporal.UnsupportedTemporalTypeException:
     private static final long serialVersionUID
@@ -10407,33 +10433,39 @@ pl.srw.billcalculator.bill.activity.TauronBillActivity:
     private static final java.lang.String DATE_PATTERN
     private static final int PRICE_SCALE
 pl.srw.billcalculator.bill.calculation.CalculatedEnergyBill:
-    20:20:public java.math.BigDecimal getOplataAbonamentowaVatCharge()
-    21:21:public java.math.BigDecimal getOplataPrzejsciowaVatCharge()
-    22:22:public java.math.BigDecimal getOplataDystrybucyjnaStalaVatCharge()
+    18:18:public java.math.BigDecimal getOplataAbonamentowaVatCharge()
+    19:19:public java.math.BigDecimal getOplataPrzejsciowaVatCharge()
+    20:20:public java.math.BigDecimal getOplataDystrybucyjnaStalaVatCharge()
 pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill:
-    21:21:public java.math.BigDecimal getZaEnergieCzynnaVatCharge()
-    22:22:public java.math.BigDecimal getSkladnikJakosciowyVatCharge()
-    23:23:public java.math.BigDecimal getOplataSieciowaVatCharge()
+    23:23:public java.math.BigDecimal getZaEnergieCzynnaVatCharge()
+    24:24:public java.math.BigDecimal getSkladnikJakosciowyVatCharge()
+    25:25:public java.math.BigDecimal getOplataSieciowaVatCharge()
+    26:26:public java.math.BigDecimal getOplataOzeVatCharge()
 pl.srw.billcalculator.bill.calculation.PgeG12CalculatedBill:
-    25:25:public java.math.BigDecimal getZaEnergieCzynnaDayVatCharge()
-    26:26:public java.math.BigDecimal getSkladnikJakosciowyDayVatCharge()
-    27:27:public java.math.BigDecimal getOplataSieciowaDayVatCharge()
-    28:28:public java.math.BigDecimal getZaEnergieCzynnaNightVatCharge()
-    29:29:public java.math.BigDecimal getSkladnikJakosciowyNightVatCharge()
-    30:30:public java.math.BigDecimal getOplataSieciowaNightVatCharge()
+    29:29:public java.math.BigDecimal getZaEnergieCzynnaDayVatCharge()
+    30:30:public java.math.BigDecimal getSkladnikJakosciowyDayVatCharge()
+    31:31:public java.math.BigDecimal getOplataSieciowaDayVatCharge()
+    32:32:public java.math.BigDecimal getZaEnergieCzynnaNightVatCharge()
+    33:33:public java.math.BigDecimal getSkladnikJakosciowyNightVatCharge()
+    34:34:public java.math.BigDecimal getOplataSieciowaNightVatCharge()
+    35:35:public java.math.BigDecimal getOplataOzeDayVatCharge()
+    36:36:public java.math.BigDecimal getOplataOzeNightVatCharge()
 pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill:
     27:27:public java.math.BigDecimal getOplataAbonamentowaVatCharge()
     28:28:public java.math.BigDecimal getPaliwoGazoweVatCharge()
     29:29:public java.math.BigDecimal getDystrybucyjnaStalaVatCharge()
     30:30:public java.math.BigDecimal getDystrybucyjnaZmiennaVatCharge()
 pl.srw.billcalculator.bill.calculation.TauronG11CalculatedBill:
-    20:20:public java.math.BigDecimal getEnergiaElektrycznaVatCharge()
-    21:21:public java.math.BigDecimal getOplataDystrybucyjnaZmiennaVatCharge()
+    19:19:public java.math.BigDecimal getEnergiaElektrycznaVatCharge()
+    20:20:public java.math.BigDecimal getOplataDystrybucyjnaZmiennaVatCharge()
+    21:21:public java.math.BigDecimal getOplataOzeVatCharge()
 pl.srw.billcalculator.bill.calculation.TauronG12CalculatedBill:
-    23:23:public java.math.BigDecimal getEnergiaElektrycznaDayVatCharge()
-    24:24:public java.math.BigDecimal getOplataDystrybucyjnaZmiennaDayVatCharge()
-    25:25:public java.math.BigDecimal getEnergiaElektrycznaNightVatCharge()
-    26:26:public java.math.BigDecimal getOplataDystrybucyjnaZmiennaNightVatCharge()
+    24:24:public java.math.BigDecimal getEnergiaElektrycznaDayVatCharge()
+    25:25:public java.math.BigDecimal getOplataDystrybucyjnaZmiennaDayVatCharge()
+    26:26:public java.math.BigDecimal getEnergiaElektrycznaNightVatCharge()
+    27:27:public java.math.BigDecimal getOplataDystrybucyjnaZmiennaNightVatCharge()
+    28:28:public java.math.BigDecimal getOplataOzeDayVatCharge()
+    29:29:public java.math.BigDecimal getOplataOzeNightVatCharge()
 pl.srw.billcalculator.db.Bill:
     public abstract void setDateFrom(java.util.Date)
     public abstract void setDateTo(java.util.Date)
@@ -10470,7 +10502,7 @@ pl.srw.billcalculator.db.PgeG12Bill:
     167:171:public void update()
     175:179:public void refresh()
 pl.srw.billcalculator.db.PgePrices:
-    24:26:public PgePrices(java.lang.Long)
+    25:27:public PgePrices(java.lang.Long)
 pl.srw.billcalculator.db.PgnigBill:
     36:38:public PgnigBill(java.lang.Long)
     69:70:public void setReadingFrom(java.lang.Integer)
@@ -10512,7 +10544,7 @@ pl.srw.billcalculator.db.TauronG12Bill:
     167:171:public void update()
     175:179:public void refresh()
 pl.srw.billcalculator.db.TauronPrices:
-    23:25:public TauronPrices(java.lang.Long)
+    24:26:public TauronPrices(java.lang.Long)
 pl.srw.billcalculator.db.dao.DaoMaster:
     public static final int SCHEMA_VERSION
     100:100:public pl.srw.billcalculator.db.dao.DaoSession newSession(de.greenrobot.dao.identityscope.IdentityScopeType)
@@ -10556,10 +10588,10 @@ pl.srw.billcalculator.db.dao.PgeG12BillDao:
     22:22:public bridge synthetic java.lang.Object getKey(java.lang.Object)
     22:22:public bridge synthetic void readEntity(android.database.Cursor,java.lang.Object,int)
 pl.srw.billcalculator.db.dao.PgePricesDao:
-    42:43:public PgePricesDao(de.greenrobot.dao.internal.DaoConfig)
-    161:172:public void readEntity(android.database.Cursor,pl.srw.billcalculator.db.PgePrices,int)
-    184:187:public java.lang.Long getKey(pl.srw.billcalculator.db.PgePrices)
-    194:194:protected boolean isEntityUpdateable()
+    43:44:public PgePricesDao(de.greenrobot.dao.internal.DaoConfig)
+    169:181:public void readEntity(android.database.Cursor,pl.srw.billcalculator.db.PgePrices,int)
+    193:196:public java.lang.Long getKey(pl.srw.billcalculator.db.PgePrices)
+    203:203:protected boolean isEntityUpdateable()
     17:17:public bridge synthetic java.lang.Object getKey(java.lang.Object)
     17:17:public bridge synthetic void readEntity(android.database.Cursor,java.lang.Object,int)
 pl.srw.billcalculator.db.dao.PgnigBillDao:
@@ -10612,17 +10644,17 @@ pl.srw.billcalculator.db.dao.TauronG12BillDao:
     22:22:public bridge synthetic java.lang.Object getKey(java.lang.Object)
     22:22:public bridge synthetic void readEntity(android.database.Cursor,java.lang.Object,int)
 pl.srw.billcalculator.db.dao.TauronPricesDao:
-    41:42:public TauronPricesDao(de.greenrobot.dao.internal.DaoConfig)
-    153:163:public void readEntity(android.database.Cursor,pl.srw.billcalculator.db.TauronPrices,int)
-    175:178:public java.lang.Long getKey(pl.srw.billcalculator.db.TauronPrices)
-    185:185:protected boolean isEntityUpdateable()
+    42:43:public TauronPricesDao(de.greenrobot.dao.internal.DaoConfig)
+    161:172:public void readEntity(android.database.Cursor,pl.srw.billcalculator.db.TauronPrices,int)
+    184:187:public java.lang.Long getKey(pl.srw.billcalculator.db.TauronPrices)
+    194:194:protected boolean isEntityUpdateable()
     17:17:public bridge synthetic java.lang.Object getKey(java.lang.Object)
     17:17:public bridge synthetic void readEntity(android.database.Cursor,java.lang.Object,int)
 pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment:
     private static final java.lang.String ARGS_PERMISSIONS
     private static final java.lang.String ARGS_REQUEST_CODE
 pl.srw.billcalculator.form.FormValueValidator:
-    13:15:public FormValueValidator()
+    13:13:public FormValueValidator()
 pl.srw.billcalculator.form.MainActivity:
     private static final java.lang.String TAG_CHECK_PRICES_DIALOG
 pl.srw.billcalculator.form.view.SlidingTabLayout:
@@ -10649,7 +10681,7 @@ pl.srw.billcalculator.history.list.item.SwipeDetectionTouchListener$GestureListe
 pl.srw.billcalculator.intent.BillActivityIntentFactory:
     16:16:private BillActivityIntentFactory()
 pl.srw.billcalculator.intent.BillStoringServiceIntentFactory:
-    14:23:public BillStoringServiceIntentFactory()
+    14:14:public BillStoringServiceIntentFactory()
 pl.srw.billcalculator.intent.IntentCreator:
     public static final java.lang.String READING_FROM
     public static final java.lang.String READING_TO
@@ -10661,8 +10693,7 @@ pl.srw.billcalculator.intent.IntentCreator:
     public static final java.lang.String DATE_TO
     public static final java.lang.String PRICES
 pl.srw.billcalculator.persistence.DBMigration:
-    public static final int CURRENT_VERSION
-    14:14:DBMigration()
+    16:16:DBMigration()
 pl.srw.billcalculator.persistence.Database:
     public static final java.lang.String DB_NAME
     private static final java.lang.String QUERY_ROW_LIMIT
@@ -10671,8 +10702,8 @@ pl.srw.billcalculator.persistence.Database:
 pl.srw.billcalculator.persistence.Triggers:
     private static final java.lang.String DELETE
     private static final java.lang.String INSERT
-    public static final int DB_VER_2_FROM_TRIGGER
-    public static final int DB_VER_2_TO_TRIGGER
+    private static final int DB_VER_2_FROM_TRIGGER
+    private static final int DB_VER_2_TO_TRIGGER
     18:18:public Triggers()
 pl.srw.billcalculator.settings.GeneralPreferences:
     public static final java.lang.String SHARED_PREFERENCES_FILE
@@ -10697,46 +10728,55 @@ pl.srw.billcalculator.settings.fragment.EnergyProviderSettingsFragment$TariffOpt
 pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment:
     private static final java.lang.String EMPTY_VALUE_REPLACEMENT
 pl.srw.billcalculator.settings.prices.PgePrices:
-    38:39:public void setZaEnergieCzynna(java.lang.String)
-    47:48:public void setSkladnikJakosciowy(java.lang.String)
-    56:57:public void setOplataSieciowa(java.lang.String)
-    65:66:public void setOplataPrzejsciowa(java.lang.String)
-    74:75:public void setOplataStalaZaPrzesyl(java.lang.String)
-    83:84:public void setOplataAbonamentowa(java.lang.String)
-    92:93:public void setZaEnergieCzynnaDzien(java.lang.String)
-    101:102:public void setZaEnergieCzynnaNoc(java.lang.String)
-    110:111:public void setOplataSieciowaDzien(java.lang.String)
-    119:120:public void setOplataSieciowaNoc(java.lang.String)
-pl.srw.billcalculator.settings.prices.PgePrices$WrappedPgePrices:
-    public boolean containsCena_za_energie_czynna_G12dzien()
-    public boolean containsCena_za_energie_czynna_G12noc()
-    public boolean containsCena_oplata_sieciowa()
-    public boolean containsCena_oplata_sieciowa_G12dzien()
-    public boolean containsCena_oplata_sieciowa_G12noc()
-    public boolean containsCena_skladnik_jakosciowy()
-    public boolean containsCena_oplata_przejsciowa()
-    public boolean containsCena_oplata_stala_za_przesyl()
-    public boolean containsCena_oplata_abonamentowa()
+    private static final java.lang.String CENA_ZA_ENERGIE_CZYNNA
+    private static final java.lang.String CENA_ZA_ENERGIE_CZYNNA_G_12_DZIEN
+    private static final java.lang.String CENA_ZA_ENERGIE_CZYNNA_G_12_NOC
+    private static final java.lang.String CENA_OPLATA_SIECIOWA
+    private static final java.lang.String CENA_OPLATA_SIECIOWA_G_12_DZIEN
+    private static final java.lang.String CENA_OPLATA_SIECIOWA_G_12_NOC
+    private static final java.lang.String CENA_SKLADNIK_JAKOSCIOWY
+    private static final java.lang.String CENA_OPLATA_PRZEJSCIOWA
+    private static final java.lang.String CENA_OPLATA_STALA_ZA_PRZESYL
+    private static final java.lang.String CENA_OPLATA_ABONAMENTOWA
+    private static final java.lang.String CENA_OPLATA_OZE
+    109:109:public boolean containsZaEnergieCzynnaDzien()
+    125:125:public boolean containsZaEnergieCzynnaNoc()
+    141:141:public boolean containsOplataSieciowa()
+    157:157:public boolean containsOplataSieciowaDzien()
+    173:173:public boolean containsOplataSieciowaNoc()
+    189:189:public boolean containsSkladnikJakosciowy()
+    205:205:public boolean containsOplataPrzejsciowa()
+    221:221:public boolean containsOplataStalaZaPrzesyl()
+    237:237:public boolean containsOplataAbonamentowa()
 pl.srw.billcalculator.settings.prices.PgnigPrices:
-    31:32:public void setOplataAbonamentowa(java.lang.String)
-    40:41:public void setPaliwoGazowe(java.lang.String)
-    49:50:public void setDystrybucyjnaStala(java.lang.String)
-    58:59:public void setDystrybucyjnaZmienna(java.lang.String)
-    67:68:public void setWspolczynnikKonwersji(java.lang.String)
-pl.srw.billcalculator.settings.prices.PgnigPrices$WrappedPgnigPrices:
-    public boolean containsPaliwo_gazowe()
-    public boolean containsDystrybucyjna_stala()
-    public boolean containsDystrybucyjna_zmienna()
-    public boolean containsWsp_konwersji()
+    private static final java.lang.String ABONAMENTOWA
+    private static final java.lang.String PALIWO_GAZOWE
+    private static final java.lang.String DYSTRYBUCYJNA_STALA
+    private static final java.lang.String DYSTRYBUCYJNA_ZMIENNA
+    private static final java.lang.String WSP_KONWERSJI
+    75:75:public boolean containsPaliwoGazowe()
+    91:91:public boolean containsDystrybucyjnaStala()
+    107:107:public boolean containsDystrybucyjnaZmienna()
+    123:123:public boolean containsWspolczynnikKonwersji()
 pl.srw.billcalculator.settings.prices.TauronPrices:
-    public boolean containsOplataDystrybucyjnaZmienna()
-    public boolean containsOplataDystrybucyjnaStala()
-    public boolean containsOplataPrzejsciowa()
-    public boolean containsOplataAbonamentowa()
-    public boolean containsEnergiaElektrycznaCzynnaDzien()
-    public boolean containsOplataDystrybucyjnaZmiennaDzien()
-    public boolean containsEnergiaElektrycznaCzynnaNoc()
-    public boolean containsOplataDystrybucyjnaZmiennaNoc()
+    private static final java.lang.String ENERGIA_ELEKTRYCZNA_CZYNNA
+    private static final java.lang.String OPLATA_DYSTRYBUCYJNA_ZMIENNA
+    private static final java.lang.String OPLATA_DYSTRYBUCYJNA_STALA
+    private static final java.lang.String OPLATA_PRZEJSCIOWA
+    private static final java.lang.String OPLATA_ABONAMENTOWA
+    private static final java.lang.String OPLATA_OZE
+    private static final java.lang.String ENERGIA_ELEKTRYCZNA_CZYNNA_DZIEN
+    private static final java.lang.String OPLATA_DYSTRYBUCYJNA_ZMIENNA_DZIEN
+    private static final java.lang.String OPLATA_DYSTRYBUCYJNA_ZMIENNA_NOC
+    private static final java.lang.String ENERGIA_ELEKTRYCZNA_CZYNNA_NOC
+    104:104:public boolean containsOplataDystrybucyjnaZmienna()
+    120:120:public boolean containsOplataDystrybucyjnaStala()
+    136:136:public boolean containsOplataPrzejsciowa()
+    152:152:public boolean containsOplataAbonamentowa()
+    184:184:public boolean containsEnergiaElektrycznaCzynnaDzien()
+    200:200:public boolean containsOplataDystrybucyjnaZmiennaDzien()
+    216:216:public boolean containsEnergiaElektrycznaCzynnaNoc()
+    232:232:public boolean containsOplataDystrybucyjnaZmiennaNoc()
 pl.srw.billcalculator.type.ActionType
 pl.srw.billcalculator.type.ContentType
 pl.srw.billcalculator.type.Provider:
@@ -10749,11 +10789,13 @@ pl.srw.billcalculator.util.BillExporter:
     20:20:public BillExporter()
 pl.srw.billcalculator.util.Dates:
     private static final java.lang.String DATE_PATTERN
-    17:17:public Dates()
+    19:19:public Dates()
 pl.srw.billcalculator.util.Display:
     private static final int PAY_VALUE_SCALE
     9:9:public Display()
 pl.srw.billcalculator.util.Preconditions
+pl.srw.billcalculator.util.Sorter:
+    3:3:public Sorter()
 pl.srw.billcalculator.util.Strings:
     10:10:private Strings()
     13:17:public static java.lang.String[] toArray(java.util.Collection)
