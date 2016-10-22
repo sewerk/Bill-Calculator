@@ -7,7 +7,7 @@
         android:showAsAction="ifRoom"
         android:icon="@drawable/ic_page_view"
         android:title="@string/page_view_label"/>
-    <!-- TODO -->
+    <!-- FIXME: remember this is experimental -->
     <item
         android:id="@+id/action_print"
         android:orderInCategory="101"

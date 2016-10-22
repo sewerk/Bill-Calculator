@@ -15,7 +15,7 @@ public class GreenDaoGenerator {
     private static final String OUTPUT_DIR = "persistence/src/main/java-gen";
 
     public static void main(String[] args) throws Exception {
-        Schema schema = new Schema(1, "pl.srw.billcalculator.db");
+        Schema schema = new Schema(3, "pl.srw.billcalculator.db");
         schema.setDefaultJavaPackageDao("pl.srw.billcalculator.db.dao");
 
         Entity pgePrices = addPgePrices(schema);
@@ -98,6 +98,7 @@ public class GreenDaoGenerator {
         pgePrices.addStringProperty("oplataSieciowaDzien");
         pgePrices.addStringProperty("oplataSieciowaNoc");
 
+        pgePrices.addStringProperty("oplataOze");
         return pgePrices;
     }
 
@@ -186,6 +187,7 @@ public class GreenDaoGenerator {
         prices.addStringProperty("oplataDystrybucyjnaZmiennaDzien");
         prices.addStringProperty("oplataDystrybucyjnaZmiennaNoc");
 
+        prices.addStringProperty("oplataOze");
         return prices;
     }
 

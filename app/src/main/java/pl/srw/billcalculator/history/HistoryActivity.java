@@ -105,7 +105,7 @@ public class HistoryActivity extends BackableActivity {
                 case R.id.action_delete:
                     getAdapter().deleteSelected();
                     actionMode.finish();
-                    for (Provider provider : Provider.values())//TODO: optimise to send if needed
+                    for (Provider provider : Provider.values())//FIXME: optimise to send if needed
                         EventBus.getDefault().post(new HistoryChangedEvent(provider));
                     dataObserver.onChanged();
                     new BackupManager(HistoryActivity.this).dataChanged();

@@ -5,6 +5,9 @@ dependencies {
     compile('com.google.android:android:4.0.1.2')
 }
 
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
 sourceSets {
     main {
         java.srcDirs = ['src/main/java', 'src/main/java-gen']

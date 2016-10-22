@@ -24,7 +24,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryItemViewHolder> 
     private static final String STATE_SELECTION = "SELECTION";
     private final HistoryActivity activity;
     private LazyList<History> lazyList;
-    private MultiSelect<Integer, SelectedBill> selection = new MultiSelect<>();
+    private MultiSelect<SelectedBill> selection = new MultiSelect<>();
 
     public HistoryAdapter(HistoryActivity activity) {
         this.activity = activity;

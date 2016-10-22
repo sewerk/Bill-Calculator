@@ -70,6 +70,11 @@ public class PgnigSettingsFragment extends ProviderSettingsFragment {
     }
 
     @Override
+    protected String getMWhMeasurePrefKeys() {
+        return "";
+    }
+
+    @Override
     public void restoreSettings() {
         new PgnigPrices().setDefault();
     }

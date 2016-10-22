@@ -3,10 +3,8 @@ package pl.srw.billcalculator.bill.calculation;
 import java.math.BigDecimal;
 
 import lombok.Getter;
+import pl.srw.billcalculator.util.Dates;
 
-/**
- * Created by Kamil Seweryn.
- */
 @SuppressWarnings("FieldCanBeLocal")
 @Getter
 public abstract class CalculatedEnergyBill extends CalculatedBill {
@@ -31,6 +29,17 @@ public abstract class CalculatedEnergyBill extends CalculatedBill {
         oplataAbonamentowaVatCharge = countVatAndAddToSum(oplataAbonamentowaNetCharge);
         oplataPrzejsciowaVatCharge = countVatAndAddToSum(oplataPrzejsciowaNetCharge);
         oplataDystrybucyjnaStalaVatCharge = countVatAndAddToSum(oplataDystrybucyjnaStalaNetCharge);
+    }
+
+    protected int countConsumptionPartFromJuly16(String dateFrom, String dateTo, int consumption) {
+        int daysFromJuly16 = Dates.countDaysFromJuly16(dateFrom, dateTo);
+        int periodInDays = Dates.countDays(dateFrom, dateTo);
+        if (daysFromJuly16 == periodInDays) {
+            return consumption;
+        }
+        return new BigDecimal(consumption)
+                .multiply(BigDecimal.valueOf(daysFromJuly16 / (double) periodInDays))
+                .intValue();
     }
 
     public BigDecimal getExcise() {

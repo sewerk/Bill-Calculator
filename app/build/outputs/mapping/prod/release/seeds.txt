@@ -5564,6 +5564,8 @@ pl.srw.billcalculator.R$id: int row_oplata_abonamentowa
 pl.srw.billcalculator.R$id: int row_oplata_dyst_stala
 pl.srw.billcalculator.R$id: int row_oplata_dyst_zm
 pl.srw.billcalculator.R$id: int row_oplata_dyst_zm2
+pl.srw.billcalculator.R$id: int row_oplata_oze
+pl.srw.billcalculator.R$id: int row_oplata_oze2
 pl.srw.billcalculator.R$id: int row_oplata_przejsciowa
 pl.srw.billcalculator.R$id: int row_oplata_sieciowa
 pl.srw.billcalculator.R$id: int row_oplata_sieciowa2
@@ -5784,6 +5786,7 @@ pl.srw.billcalculator.R$menu: int settings
 pl.srw.billcalculator.R$mipmap
 pl.srw.billcalculator.R$mipmap: int ic_launcher
 pl.srw.billcalculator.R$string
+pl.srw.billcalculator.R$string: int MWh
 pl.srw.billcalculator.R$string: int abc_action_bar_home_description
 pl.srw.billcalculator.R$string: int abc_action_bar_home_description_format
 pl.srw.billcalculator.R$string: int abc_action_bar_home_subtitle_description_format
@@ -5829,6 +5832,10 @@ pl.srw.billcalculator.R$string: int date_error
 pl.srw.billcalculator.R$string: int date_from
 pl.srw.billcalculator.R$string: int date_to
 pl.srw.billcalculator.R$string: int description
+pl.srw.billcalculator.R$string: int dialog_bill_without_oze_cancel
+pl.srw.billcalculator.R$string: int dialog_bill_without_oze_message
+pl.srw.billcalculator.R$string: int dialog_bill_without_oze_positive
+pl.srw.billcalculator.R$string: int dialog_bill_without_oze_title
 pl.srw.billcalculator.R$string: int dystrybucyjna_stala
 pl.srw.billcalculator.R$string: int dystrybucyjna_stala_desc
 pl.srw.billcalculator.R$string: int dystrybucyjna_zmienna
@@ -5859,6 +5866,8 @@ pl.srw.billcalculator.R$string: int odczyt_na_dzien
 pl.srw.billcalculator.R$string: int okres_rozliczeniowy
 pl.srw.billcalculator.R$string: int oplata_abonamentowa
 pl.srw.billcalculator.R$string: int oplata_abonamentowa_desc
+pl.srw.billcalculator.R$string: int oplata_oze
+pl.srw.billcalculator.R$string: int oplata_oze_desc
 pl.srw.billcalculator.R$string: int oplata_przejsciowa
 pl.srw.billcalculator.R$string: int oplata_przejsciowa_desc
 pl.srw.billcalculator.R$string: int oplata_sieciowa
@@ -5878,6 +5887,7 @@ pl.srw.billcalculator.R$string: int pgnig_prices
 pl.srw.billcalculator.R$string: int preferences_category_G11
 pl.srw.billcalculator.R$string: int preferences_energy_category_G12
 pl.srw.billcalculator.R$string: int preferences_pge_oplata_abonamentowa
+pl.srw.billcalculator.R$string: int preferences_pge_oplata_oze
 pl.srw.billcalculator.R$string: int preferences_pge_oplata_przejsciowa
 pl.srw.billcalculator.R$string: int preferences_pge_oplata_sieciowa
 pl.srw.billcalculator.R$string: int preferences_pge_oplata_sieciowa_G12dzien
@@ -5941,6 +5951,9 @@ pl.srw.billcalculator.R$string: int tauron_oplata_dyst_stala
 pl.srw.billcalculator.R$string: int tauron_oplata_dyst_zmienna
 pl.srw.billcalculator.R$string: int tauron_oplata_dyst_zmienna_G12dzien
 pl.srw.billcalculator.R$string: int tauron_oplata_dyst_zmienna_G12noc
+pl.srw.billcalculator.R$string: int tauron_oplata_oze
+pl.srw.billcalculator.R$string: int tauron_oplata_oze_G12dzien
+pl.srw.billcalculator.R$string: int tauron_oplata_oze_G12noc
 pl.srw.billcalculator.R$string: int tauron_oplata_przejsciowa
 pl.srw.billcalculator.R$string: int tauron_prices
 pl.srw.billcalculator.R$string: int tauron_tariff_in_preferences
@@ -6715,6 +6728,7 @@ pl.srw.billcalculator.db.dao.TauronG12BillDao$Properties
 pl.srw.billcalculator.db.dao.TauronPricesDao
 pl.srw.billcalculator.db.dao.TauronPricesDao: java.lang.String TABLENAME
 pl.srw.billcalculator.db.dao.TauronPricesDao$Properties
+pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment
 pl.srw.billcalculator.dialog.CheckPricesDialogFragment
 pl.srw.billcalculator.dialog.CheckPricesDialogFragment$1
 pl.srw.billcalculator.dialog.CheckPricesDialogFragment$2
@@ -6843,7 +6857,6 @@ pl.srw.billcalculator.history.list.HistoryAdapter
 pl.srw.billcalculator.history.list.SelectedBill
 pl.srw.billcalculator.history.list.SelectedBill: android.os.Parcelable$Creator CREATOR
 pl.srw.billcalculator.history.list.SelectedBill$1
-pl.srw.billcalculator.history.list.SelectedBill$CreatorImpl
 pl.srw.billcalculator.history.list.item.HistoryItemViewHolder
 pl.srw.billcalculator.history.list.item.HistoryItemViewHolder: android.widget.ImageView imgLogo
 pl.srw.billcalculator.history.list.item.HistoryItemViewHolder: android.widget.TextView tvForPeriod
@@ -6877,7 +6890,7 @@ pl.srw.billcalculator.intent.IntentCreator
 pl.srw.billcalculator.persistence.DBMigration
 pl.srw.billcalculator.persistence.Database
 pl.srw.billcalculator.persistence.Database$1
-pl.srw.billcalculator.persistence.SqlBuilder
+pl.srw.billcalculator.persistence.SqlTriggerBuilder
 pl.srw.billcalculator.persistence.Triggers
 pl.srw.billcalculator.persistence.exception.DbNotInitializedYetException
 pl.srw.billcalculator.persistence.exception.DbRelationMissingException
@@ -6936,9 +6949,8 @@ pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment$1
 pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment
 pl.srw.billcalculator.settings.fragment.TauronSettingsFragment
 pl.srw.billcalculator.settings.prices.PgePrices
-pl.srw.billcalculator.settings.prices.PgePrices$WrappedPgePrices
 pl.srw.billcalculator.settings.prices.PgnigPrices
-pl.srw.billcalculator.settings.prices.PgnigPrices$WrappedPgnigPrices
+pl.srw.billcalculator.settings.prices.SharedPreferencesPrices
 pl.srw.billcalculator.settings.prices.TauronPrices
 pl.srw.billcalculator.task.PrintTask
 pl.srw.billcalculator.task.TaskManager
@@ -6956,8 +6968,8 @@ pl.srw.billcalculator.util.Display
 pl.srw.billcalculator.util.MultiSelect
 pl.srw.billcalculator.util.MultiSelect: android.os.Parcelable$Creator CREATOR
 pl.srw.billcalculator.util.MultiSelect$1
-pl.srw.billcalculator.util.MultiSelect$CreatorImpl
 pl.srw.billcalculator.util.Preconditions
+pl.srw.billcalculator.util.Sorter
 pl.srw.billcalculator.util.Strings
 pl.srw.billcalculator.util.ToWebView
 pl.srw.billcalculator.util.Views

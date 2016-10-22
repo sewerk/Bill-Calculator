@@ -12,6 +12,7 @@ public interface ITauronPrices extends Prices {
     String getOplataDystrybucyjnaStala();
     String getOplataPrzejsciowa();
     String getOplataAbonamentowa();
+    String getOplataOze();
 
     String getOplataDystrybucyjnaZmiennaNoc();
     String getOplataDystrybucyjnaZmiennaDzien();

@@ -13,8 +13,8 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        versionCode 20
-        versionName "1.5.1"
+        versionCode 22
+        versionName "1.6"
         minSdkVersion 15
         targetSdkVersion 23
 
@@ -64,19 +64,16 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
 
     compile 'com.jakewharton:butterknife:6.1.0'
-    provided 'pl.mg6.hrisey:hrisey:0.3.1'
     compile 'com.jakewharton.threetenabp:threetenabp:1.0.3'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.f2prateek.dart:dart:1.1.0'
     compile files('libs/itextg-5.5.4.jar')
+    provided 'org.projectlombok:lombok:1.16.8'
 
-    androidTestCompile ('com.android.support.test.espresso:espresso-intents:2.2') {
-        exclude module: 'support-annotations'
-    }
-    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2') {
-        exclude module: 'support-annotations'
-        exclude module: 'recyclerview-v7'
-    }
+    androidTestCompile ('com.android.support.test.espresso:espresso-intents:2.2')
+    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2')
+    androidTestCompile 'com.android.support:support-v4:23.1.1'
+    androidTestCompile 'com.android.support:recyclerview-v7:23.1.1'
     androidTestCompile files('libs/robotium-solo-5.3.1.jar')
 
     testCompile 'junit:junit:4.12'

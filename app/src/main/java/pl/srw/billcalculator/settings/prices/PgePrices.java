@@ -1,123 +1,32 @@
 package pl.srw.billcalculator.settings.prices;
 
-import android.preference.PreferenceManager;
-
-import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.pojo.IPgePrices;
 
+public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
 
-/**
- * Created by Kamil Seweryn.
- */
-public class PgePrices implements IPgePrices {
+    private static final String CENA_ZA_ENERGIE_CZYNNA = "cena_za_energie_czynna";
+    private static final String CENA_ZA_ENERGIE_CZYNNA_G_12_DZIEN = "cena_za_energie_czynna_G12dzien";
+    private static final String CENA_ZA_ENERGIE_CZYNNA_G_12_NOC = "cena_za_energie_czynna_G12noc";
+    private static final String CENA_OPLATA_SIECIOWA = "cena_oplata_sieciowa";
+    private static final String CENA_OPLATA_SIECIOWA_G_12_DZIEN = "cena_oplata_sieciowa_G12dzien";
+    private static final String CENA_OPLATA_SIECIOWA_G_12_NOC = "cena_oplata_sieciowa_G12noc";
+    private static final String CENA_SKLADNIK_JAKOSCIOWY = "cena_skladnik_jakosciowy";
+    private static final String CENA_OPLATA_PRZEJSCIOWA = "cena_oplata_przejsciowa";
+    private static final String CENA_OPLATA_STALA_ZA_PRZESYL = "cena_oplata_stala_za_przesyl";
+    private static final String CENA_OPLATA_ABONAMENTOWA = "cena_oplata_abonamentowa";
+    private static final String CENA_OPLATA_OZE = "cena_oplata_oze";
 
-//    private String zaEnergieCzynna;
-//    private String skladnikJakosciowy;
-//    private String oplataSieciowa;
-//    private String oplataPrzejsciowa;
-//    private String oplataStalaZaPrzesyl;
-//    private String oplataAbonamentowa;
-//
-//    private String zaEnergieCzynnaDzien;
-//    private String zaEnergieCzynnaNoc;
-//    private String oplataSieciowaDzien;
-//    private String oplataSieciowaNoc;
-
-    private final WrappedPgePrices wrappedPgePrices;
-
-    public PgePrices() {
-        wrappedPgePrices = new WrappedPgePrices(PreferenceManager.getDefaultSharedPreferences(BillCalculator.context));
-    }
-
-    @Override
-    public String getZaEnergieCzynna() {
-        return wrappedPgePrices.getCena_za_energie_czynna();
-    }
-
-    public void setZaEnergieCzynna(final String zaEnergieCzynna) {
-        this.wrappedPgePrices.setCena_za_energie_czynna(zaEnergieCzynna);
-    }
-
-    @Override
-    public String getSkladnikJakosciowy() {
-        return wrappedPgePrices.getCena_skladnik_jakosciowy();
-    }
-
-    public void setSkladnikJakosciowy(final String skladnikJakosciowy) {
-        this.wrappedPgePrices.setCena_skladnik_jakosciowy(skladnikJakosciowy);
-    }
-
-    @Override
-    public String getOplataSieciowa() {
-        return wrappedPgePrices.getCena_oplata_sieciowa();
-    }
-
-    public void setOplataSieciowa(final String oplataSieciowa) {
-        this.wrappedPgePrices.setCena_oplata_sieciowa(oplataSieciowa);
-    }
-
-    @Override
-    public String getOplataPrzejsciowa() {
-        return wrappedPgePrices.getCena_oplata_przejsciowa();
-    }
-
-    public void setOplataPrzejsciowa(final String oplataPrzejsciowa) {
-        this.wrappedPgePrices.setCena_oplata_przejsciowa(oplataPrzejsciowa);
-    }
-
-    @Override
-    public String getOplataStalaZaPrzesyl() {
-        return wrappedPgePrices.getCena_oplata_stala_za_przesyl();
-    }
-
-    public void setOplataStalaZaPrzesyl(final String oplataStalaZaPrzesyl) {
-        this.wrappedPgePrices.setCena_oplata_stala_za_przesyl(oplataStalaZaPrzesyl);
-    }
-
-    @Override
-    public String getOplataAbonamentowa() {
-        return wrappedPgePrices.getCena_oplata_abonamentowa();
-    }
-
-    public void setOplataAbonamentowa(final String oplataAbonamentowa) {
-        this.wrappedPgePrices.setCena_oplata_abonamentowa(oplataAbonamentowa);
-    }
-
-    @Override
-    public String getZaEnergieCzynnaDzien() {
-        return wrappedPgePrices.getCena_za_energie_czynna_G12dzien();
-    }
-
-    public void setZaEnergieCzynnaDzien(final String zaEnergieCzynnaDzien) {
-        this.wrappedPgePrices.setCena_za_energie_czynna_G12dzien(zaEnergieCzynnaDzien);
-    }
-
-    @Override
-    public String getZaEnergieCzynnaNoc() {
-        return wrappedPgePrices.getCena_za_energie_czynna_G12noc();
-    }
-
-    public void setZaEnergieCzynnaNoc(final String zaEnergieCzynnaNoc) {
-        this.wrappedPgePrices.setCena_za_energie_czynna_G12noc(zaEnergieCzynnaNoc);
-    }
-
-    @Override
-    public String getOplataSieciowaDzien() {
-        return wrappedPgePrices.getCena_oplata_sieciowa_G12dzien();
-    }
-
-    public void setOplataSieciowaDzien(final String oplataSieciowaDzien) {
-        this.wrappedPgePrices.setCena_oplata_sieciowa_G12dzien(oplataSieciowaDzien);
-    }
-
-    @Override
-    public String getOplataSieciowaNoc() {
-        return wrappedPgePrices.getCena_oplata_sieciowa_G12noc();
-    }
-
-    public void setOplataSieciowaNoc(final String oplataSieciowaNoc) {
-        this.wrappedPgePrices.setCena_oplata_sieciowa_G12noc(oplataSieciowaNoc);
-    }
+    private final String cena_za_energie_czynna = "0.2530";
+    private final String cena_za_energie_czynna_G12dzien = "0.2835";
+    private final String cena_za_energie_czynna_G12noc = "0.1900";
+    private final String cena_oplata_sieciowa = "0.2057";
+    private final String cena_oplata_sieciowa_G12dzien = "0.2340";
+    private final String cena_oplata_sieciowa_G12noc = "0.0706";
+    private final String cena_skladnik_jakosciowy = "0.0129";
+    private final String cena_oplata_przejsciowa = "1.00";
+    private final String cena_oplata_stala_za_przesyl = "1.95";
+    private final String cena_oplata_abonamentowa = "5.10";
+    private final String cena_oplata_oze = "2.51";
 
     public pl.srw.billcalculator.db.PgePrices convertToDb() {
         pl.srw.billcalculator.db.PgePrices dbPrices = new pl.srw.billcalculator.db.PgePrices();
@@ -127,6 +36,7 @@ public class PgePrices implements IPgePrices {
         dbPrices.setOplataStalaZaPrzesyl(getOplataStalaZaPrzesyl());
         dbPrices.setSkladnikJakosciowy(getSkladnikJakosciowy());
         dbPrices.setZaEnergieCzynna(getZaEnergieCzynna());
+        dbPrices.setOplataOze(getOplataOze());
 
         dbPrices.setOplataSieciowaDzien(getOplataSieciowaDzien());
         dbPrices.setOplataSieciowaNoc(getOplataSieciowaNoc());
@@ -136,48 +46,214 @@ public class PgePrices implements IPgePrices {
     }
 
     public void clear() {
-        wrappedPgePrices.removeCena_za_energie_czynna();
-        wrappedPgePrices.removeCena_za_energie_czynna_G12dzien();
-        wrappedPgePrices.removeCena_za_energie_czynna_G12noc();
-        wrappedPgePrices.removeCena_oplata_sieciowa();
-        wrappedPgePrices.removeCena_oplata_sieciowa_G12dzien();
-        wrappedPgePrices.removeCena_oplata_sieciowa_G12noc();
-        wrappedPgePrices.removeCena_skladnik_jakosciowy();
-        wrappedPgePrices.removeCena_oplata_przejsciowa();
-        wrappedPgePrices.removeCena_oplata_stala_za_przesyl();
-        wrappedPgePrices.removeCena_oplata_abonamentowa();
+        removeZaEnergieCzynna();
+        removeZaEnergieCzynnaDzien();
+        removeZaEnergieCzynnaNoc();
+        removeOplataSieciowa();
+        removeOplataSieciowaDzien();
+        removeOplataSieciowaNoc();
+        removeSkladnikJakosciowy();
+        removeOplataPrzejsciowa();
+        removeOplataStalaZaPrzesyl();
+        removeOplataAbonamentowa();
+        removeOplataOze();
     }
 
     public void setDefault() {
         clear();
-        wrappedPgePrices.setCena_za_energie_czynna(wrappedPgePrices.getCena_za_energie_czynna());
-        wrappedPgePrices.setCena_za_energie_czynna_G12dzien(wrappedPgePrices.getCena_za_energie_czynna_G12dzien());
-        wrappedPgePrices.setCena_za_energie_czynna_G12noc(wrappedPgePrices.getCena_za_energie_czynna_G12noc());
-        wrappedPgePrices.setCena_oplata_sieciowa(wrappedPgePrices.getCena_oplata_sieciowa());
-        wrappedPgePrices.setCena_oplata_sieciowa_G12dzien(wrappedPgePrices.getCena_oplata_sieciowa_G12dzien());
-        wrappedPgePrices.setCena_oplata_sieciowa_G12noc(wrappedPgePrices.getCena_oplata_sieciowa_G12noc());
-        wrappedPgePrices.setCena_skladnik_jakosciowy(wrappedPgePrices.getCena_skladnik_jakosciowy());
-        wrappedPgePrices.setCena_oplata_przejsciowa(wrappedPgePrices.getCena_oplata_przejsciowa());
-        wrappedPgePrices.setCena_oplata_stala_za_przesyl(wrappedPgePrices.getCena_oplata_stala_za_przesyl());
-        wrappedPgePrices.setCena_oplata_abonamentowa(wrappedPgePrices.getCena_oplata_abonamentowa());
+        setZaEnergieCzynna(getZaEnergieCzynna());
+        setZaEnergieCzynnaDzien(getZaEnergieCzynnaDzien());
+        setZaEnergieCzynnaNoc(getZaEnergieCzynnaNoc());
+        setOplataSieciowa(getOplataSieciowa());
+        setOplataSieciowaDzien(getOplataSieciowaDzien());
+        setOplataSieciowaNoc(getOplataSieciowaNoc());
+        setSkladnikJakosciowy(getSkladnikJakosciowy());
+        setOplataPrzejsciowa(getOplataPrzejsciowa());
+        setOplataStalaZaPrzesyl(getOplataStalaZaPrzesyl());
+        setOplataAbonamentowa(getOplataAbonamentowa());
+        setOplataOze(getOplataOze());
     }
 
     public void init() {
-        if (!wrappedPgePrices.containsCena_za_energie_czynna())
+        if (!containsZaEnergieCzynna())
             setDefault();
+        else if (!containsOplataOze())
+            setOplataOze(getOplataOze());
     }
 
-    @hrisey.Preferences
-    private class WrappedPgePrices {
-        private String cena_za_energie_czynna = "0.2553";
-        private String cena_za_energie_czynna_G12dzien = "0.2861";
-        private String cena_za_energie_czynna_G12noc = "0.1917";
-        private String cena_oplata_sieciowa = "0.2170";
-        private String cena_oplata_sieciowa_G12dzien = "0.2417";
-        private String cena_oplata_sieciowa_G12noc = "0.0836";
-        private String cena_skladnik_jakosciowy = "0.0115";
-        private String cena_oplata_przejsciowa = "1.04";
-        private String cena_oplata_stala_za_przesyl = "1.95";
-        private String cena_oplata_abonamentowa = "5.20";
+    public String getZaEnergieCzynna() {
+        return getPref(CENA_ZA_ENERGIE_CZYNNA, this.cena_za_energie_czynna);
+    }
+
+    public void setZaEnergieCzynna(String cenaZaEnergieCzynna) {
+        setPref(CENA_ZA_ENERGIE_CZYNNA, cenaZaEnergieCzynna);
+    }
+
+    public boolean containsZaEnergieCzynna() {
+        return containsPref(CENA_ZA_ENERGIE_CZYNNA);
+    }
+
+    public void removeZaEnergieCzynna() {
+        removePref(CENA_ZA_ENERGIE_CZYNNA);
+    }
+
+    public String getZaEnergieCzynnaDzien() {
+        return getPref(CENA_ZA_ENERGIE_CZYNNA_G_12_DZIEN, this.cena_za_energie_czynna_G12dzien);
+    }
+
+    public void setZaEnergieCzynnaDzien(String cenaZaEnergieCzynnaG12Dzien) {
+        setPref(CENA_ZA_ENERGIE_CZYNNA_G_12_DZIEN, cenaZaEnergieCzynnaG12Dzien);
+    }
+
+    public boolean containsZaEnergieCzynnaDzien() {
+        return containsPref(CENA_ZA_ENERGIE_CZYNNA_G_12_DZIEN);
+    }
+
+    public void removeZaEnergieCzynnaDzien() {
+        removePref(CENA_ZA_ENERGIE_CZYNNA_G_12_DZIEN);
+    }
+
+    public String getZaEnergieCzynnaNoc() {
+        return getPref(CENA_ZA_ENERGIE_CZYNNA_G_12_NOC, this.cena_za_energie_czynna_G12noc);
+    }
+
+    public void setZaEnergieCzynnaNoc(String cenaZaEnergieCzynnaG12Noc) {
+        setPref(CENA_ZA_ENERGIE_CZYNNA_G_12_NOC, cenaZaEnergieCzynnaG12Noc);
+    }
+
+    public boolean containsZaEnergieCzynnaNoc() {
+        return containsPref(CENA_ZA_ENERGIE_CZYNNA_G_12_NOC);
+    }
+
+    public void removeZaEnergieCzynnaNoc() {
+        removePref(CENA_ZA_ENERGIE_CZYNNA_G_12_NOC);
+    }
+
+    public String getOplataSieciowa() {
+        return getPref(CENA_OPLATA_SIECIOWA, this.cena_oplata_sieciowa);
+    }
+
+    public void setOplataSieciowa(String cenaOplataSieciowa) {
+        setPref(CENA_OPLATA_SIECIOWA, cenaOplataSieciowa);
+    }
+
+    public boolean containsOplataSieciowa() {
+        return containsPref(CENA_OPLATA_SIECIOWA);
+    }
+
+    public void removeOplataSieciowa() {
+        removePref(CENA_OPLATA_SIECIOWA);
+    }
+
+    public String getOplataSieciowaDzien() {
+        return getPref(CENA_OPLATA_SIECIOWA_G_12_DZIEN, this.cena_oplata_sieciowa_G12dzien);
+    }
+
+    public void setOplataSieciowaDzien(String cenaOplataSieciowaG12Dzien) {
+        setPref(CENA_OPLATA_SIECIOWA_G_12_DZIEN, cenaOplataSieciowaG12Dzien);
+    }
+
+    public boolean containsOplataSieciowaDzien() {
+        return containsPref(CENA_OPLATA_SIECIOWA_G_12_DZIEN);
+    }
+
+    public void removeOplataSieciowaDzien() {
+        removePref(CENA_OPLATA_SIECIOWA_G_12_DZIEN);
+    }
+
+    public String getOplataSieciowaNoc() {
+        return getPref(CENA_OPLATA_SIECIOWA_G_12_NOC, this.cena_oplata_sieciowa_G12noc);
+    }
+
+    public void setOplataSieciowaNoc(String cenaOplataSieciowaG12Noc) {
+        setPref(CENA_OPLATA_SIECIOWA_G_12_NOC, cenaOplataSieciowaG12Noc);
+    }
+
+    public boolean containsOplataSieciowaNoc() {
+        return containsPref(CENA_OPLATA_SIECIOWA_G_12_NOC);
+    }
+
+    public void removeOplataSieciowaNoc() {
+        removePref(CENA_OPLATA_SIECIOWA_G_12_NOC);
+    }
+
+    public String getSkladnikJakosciowy() {
+        return getPref(CENA_SKLADNIK_JAKOSCIOWY, this.cena_skladnik_jakosciowy);
+    }
+
+    public void setSkladnikJakosciowy(String cenaSkladnikJakosciowy) {
+        setPref(CENA_SKLADNIK_JAKOSCIOWY, cenaSkladnikJakosciowy);
+    }
+
+    public boolean containsSkladnikJakosciowy() {
+        return containsPref(CENA_SKLADNIK_JAKOSCIOWY);
+    }
+
+    public void removeSkladnikJakosciowy() {
+        removePref(CENA_SKLADNIK_JAKOSCIOWY);
+    }
+
+    public String getOplataPrzejsciowa() {
+        return getPref(CENA_OPLATA_PRZEJSCIOWA, this.cena_oplata_przejsciowa);
+    }
+
+    public void setOplataPrzejsciowa(String cenaOplataPrzejsciowa) {
+        setPref(CENA_OPLATA_PRZEJSCIOWA, cenaOplataPrzejsciowa);
+    }
+
+    public boolean containsOplataPrzejsciowa() {
+        return containsPref(CENA_OPLATA_PRZEJSCIOWA);
+    }
+
+    public void removeOplataPrzejsciowa() {
+        removePref(CENA_OPLATA_PRZEJSCIOWA);
+    }
+
+    public String getOplataStalaZaPrzesyl() {
+        return getPref(CENA_OPLATA_STALA_ZA_PRZESYL, this.cena_oplata_stala_za_przesyl);
+    }
+
+    public void setOplataStalaZaPrzesyl(String cenaOplataStalaZaPrzesyl) {
+        setPref(CENA_OPLATA_STALA_ZA_PRZESYL, cenaOplataStalaZaPrzesyl);
+    }
+
+    public boolean containsOplataStalaZaPrzesyl() {
+        return containsPref(CENA_OPLATA_STALA_ZA_PRZESYL);
+    }
+
+    public void removeOplataStalaZaPrzesyl() {
+        removePref(CENA_OPLATA_STALA_ZA_PRZESYL);
+    }
+
+    public String getOplataAbonamentowa() {
+        return getPref(CENA_OPLATA_ABONAMENTOWA, this.cena_oplata_abonamentowa);
+    }
+
+    public void setOplataAbonamentowa(String cenaOplataAbonamentowa) {
+        setPref(CENA_OPLATA_ABONAMENTOWA, cenaOplataAbonamentowa);
+    }
+
+    public boolean containsOplataAbonamentowa() {
+        return containsPref(CENA_OPLATA_ABONAMENTOWA);
+    }
+
+    public void removeOplataAbonamentowa() {
+        removePref(CENA_OPLATA_ABONAMENTOWA);
+    }
+
+    public String getOplataOze() {
+        return getPref(CENA_OPLATA_OZE, this.cena_oplata_oze);
+    }
+
+    public void setOplataOze(String cenaOplataOze) {
+        setPref(CENA_OPLATA_OZE, cenaOplataOze);
+    }
+
+    public boolean containsOplataOze() {
+        return containsPref(CENA_OPLATA_OZE);
+    }
+
+    public void removeOplataOze() {
+        removePref(CENA_OPLATA_OZE);
     }
 }
