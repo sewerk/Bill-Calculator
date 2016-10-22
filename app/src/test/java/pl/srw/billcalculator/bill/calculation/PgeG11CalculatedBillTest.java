@@ -50,14 +50,15 @@ public class PgeG11CalculatedBillTest {
     @Test
     public void whenAfterJuly16IncludeOplataOze() throws Exception {
         // GIVEN
-        final PgePrices prices = new PgePrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", "6.06", null, null, null, null, "0.00251");
+        final PgePrices prices = new PgePrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", "6.06", null, null, null, null, "2.51");
 
         // WHEN
         final PgeG11CalculatedBill sut = new PgeG11CalculatedBill(20, 30, "01/07/2016", "30/08/2016", prices);
 
         // THEN
-        assertThat(sut.getOplataOzeNetCharge(), is(new BigDecimal("0.02510")));
-        assertThat(sut.getOplataOzeVatCharge(), is(new BigDecimal("0.0058")));
+        assertThat(sut.getConsumptionFromJuly16(), is(10));
+        assertThat(sut.getOplataOzeNetCharge(), is(new BigDecimal("0.0251")));
+        assertThat(sut.getOplataOzeVatCharge(), is(new BigDecimal("0.005773")));
         assertThat(sut.getNetChargeSum(), is(new BigDecimal("91.93")));
         assertThat(sut.getVatChargeSum(), is(new BigDecimal("21.14")));
         assertThat(sut.getGrossChargeSum(), is(new BigDecimal("113.07")));

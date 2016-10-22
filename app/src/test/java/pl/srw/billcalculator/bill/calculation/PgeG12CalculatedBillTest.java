@@ -53,4 +53,27 @@ public class PgeG12CalculatedBillTest {
         assertThat(sut.getGrossChargeSum(), is(new BigDecimal("931.73")));
         assertThat(sut.getExcise(), is(new BigDecimal("0.60")));
     }
+
+    @Test
+    public void whenAfterJuly16IncludeOplataOze() throws Exception {
+        // prepare
+        final PgePrices prices = new PgePrices(1L, null, "2.02", null, "4.04", "5.05", "6.06", "7.07", "8.08", "9.09", "11.11", "2.51");
+
+        // calculate
+        final PgeG12CalculatedBill sut = new PgeG12CalculatedBill(20, 30, 35, 55, "01/07/2016", "30/04/2017", prices);
+
+        // verify
+        assertThat(sut.getDayConsumptionFromJuly16(), is(10));
+        assertThat(sut.getNightConsumptionFromJuly16(), is(20));
+
+        assertThat(sut.getOplataOzeDayNetCharge(), is(new BigDecimal("0.0251")));
+        assertThat(sut.getOplataOzeNightNetCharge(), is(new BigDecimal("0.0502")));
+        assertThat(sut.getOplataOzeDayVatCharge(), is(new BigDecimal("0.005773")));
+        assertThat(sut.getOplataOzeNightVatCharge(), is(new BigDecimal("0.011546")));
+
+        assertThat(sut.getNetChargeSum(), is(new BigDecimal("757.58")));
+        assertThat(sut.getVatChargeSum(), is(new BigDecimal("174.24")));
+        assertThat(sut.getGrossChargeSum(), is(new BigDecimal("931.82")));
+        assertThat(sut.getExcise(), is(new BigDecimal("0.60")));
+    }
 }

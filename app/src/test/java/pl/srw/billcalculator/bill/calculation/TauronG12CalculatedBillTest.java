@@ -56,4 +56,34 @@ public class TauronG12CalculatedBillTest {
         assertThat(sut.getDistributeVatCharge(), is(new BigDecimal("106.86")));
         assertThat(sut.getDistributeGrossCharge(), is(new BigDecimal("571.46")));
     }
+
+    @Test
+    public void whenAfterJuly16IncludeOplataOze() throws Exception {
+        // prepare
+        final TauronPrices prices = new TauronPrices(1L, null, null, "4.04", "5.05", "6.06", "7.07", "8.08", "9.09", "11.11", "0.00251");
+
+        // calculate
+        final TauronG12CalculatedBill sut = new TauronG12CalculatedBill(11, 21, 25, 45, "01/07/2016", "30/04/2017", prices);
+
+        // verify
+        assertThat(sut.getDayConsumptionFromJuly16(), is(10));
+        assertThat(sut.getNightConsumptionFromJuly16(), is(20));
+
+        assertThat(sut.getOplataOzeDayNetCharge(), is(new BigDecimal("0.02510")));
+        assertThat(sut.getOplataOzeNightNetCharge(), is(new BigDecimal("0.05020")));
+        assertThat(sut.getOplataOzeDayVatCharge(), is(new BigDecimal("0.0057730")));
+        assertThat(sut.getOplataOzeNightVatCharge(), is(new BigDecimal("0.0115460")));
+
+        assertThat(sut.getNetChargeSum(), is(new BigDecimal("696.98")));
+        assertThat(sut.getVatChargeSum(), is(new BigDecimal("160.30")));
+        assertThat(sut.getGrossChargeSum(), is(new BigDecimal("857.28")));
+        assertThat(sut.getExcise(), is(new BigDecimal("0.60")));
+
+        assertThat(sut.getSellNetCharge(), is(new BigDecimal("232.30")));
+        assertThat(sut.getSellVatCharge(), is(new BigDecimal("53.43")));
+        assertThat(sut.getSellGrossCharge(), is(new BigDecimal("285.73")));
+        assertThat(sut.getDistributeNetCharge(), is(new BigDecimal("464.68")));
+        assertThat(sut.getDistributeVatCharge(), is(new BigDecimal("106.87")));
+        assertThat(sut.getDistributeGrossCharge(), is(new BigDecimal("571.55")));
+    }
 }

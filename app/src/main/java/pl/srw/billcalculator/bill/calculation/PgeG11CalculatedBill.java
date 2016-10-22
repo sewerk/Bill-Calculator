@@ -33,7 +33,7 @@ public class PgeG11CalculatedBill extends CalculatedEnergyBill {
         zaEnergieCzynnaNetCharge = countNetAndAddToSum(prices.getZaEnergieCzynna(), consumption);
         skladnikJakosciowyNetCharge = countNetAndAddToSum(prices.getSkladnikJakosciowy(), consumption);
         oplataSieciowaNetCharge = countNetAndAddToSum(prices.getOplataSieciowa(), consumption);
-        oplataOzeNetCharge = countNetAndAddToSum(prices.getOplataOze(), new BigDecimal(consumptionFromJuly16 * 0.001));
+        oplataOzeNetCharge = countNetAndAddToSum(prices.getOplataOze(), Double.toString(consumptionFromJuly16 * 0.001));
 
         zaEnergieCzynnaVatCharge = countVatAndAddToSum(zaEnergieCzynnaNetCharge);
         skladnikJakosciowyVatCharge = countVatAndAddToSum(skladnikJakosciowyNetCharge);

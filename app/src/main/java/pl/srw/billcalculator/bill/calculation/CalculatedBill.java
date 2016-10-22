@@ -33,6 +33,10 @@ public abstract class CalculatedBill {
         return countNetAndAddToSum(price, new BigDecimal(count));
     }
 
+    protected BigDecimal countNetAndAddToSum(final String price, final String count) {
+        return countNetAndAddToSum(price, new BigDecimal(count));
+    }
+
     protected BigDecimal countNetAndAddToSum(final String price, final BigInteger count) {
         return countNetAndAddToSum(price, new BigDecimal(count));
     }
