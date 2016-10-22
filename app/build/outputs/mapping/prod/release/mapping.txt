@@ -21689,12 +21689,13 @@ pl.srw.billcalculator.bill.calculation.CalculatedBill -> pl.srw.billcalculator.b
     int monthCount -> e
     22:30:void <init>(boolean,java.lang.String,java.lang.String) -> <init>
     33:33:java.math.BigDecimal countNetAndAddToSum(java.lang.String,int) -> a
-    37:37:java.math.BigDecimal countNetAndAddToSum(java.lang.String,java.math.BigInteger) -> a
-    41:43:java.math.BigDecimal countNetAndAddToSum(java.lang.String,java.math.BigDecimal) -> a
-    47:52:java.math.BigDecimal countVatAndAddToSum(java.math.BigDecimal) -> a
-    56:56:java.math.BigDecimal getVatChargeSum() -> a
-    60:60:java.math.BigDecimal getGrossChargeSum() -> b
-    67:67:java.math.BigDecimal round(java.math.BigDecimal) -> b
+    37:37:java.math.BigDecimal countNetAndAddToSum(java.lang.String,java.lang.String) -> a
+    41:41:java.math.BigDecimal countNetAndAddToSum(java.lang.String,java.math.BigInteger) -> a
+    45:47:java.math.BigDecimal countNetAndAddToSum(java.lang.String,java.math.BigDecimal) -> a
+    51:56:java.math.BigDecimal countVatAndAddToSum(java.math.BigDecimal) -> a
+    60:60:java.math.BigDecimal getVatChargeSum() -> a
+    64:64:java.math.BigDecimal getGrossChargeSum() -> b
+    71:71:java.math.BigDecimal round(java.math.BigDecimal) -> b
     22:22:java.math.BigDecimal getNetChargeSum() -> c
     25:25:int getMonthCount() -> d
     18:18:void <clinit>() -> <clinit>
@@ -22412,13 +22413,8 @@ pl.srw.billcalculator.db.dao.TauronPricesDao$Properties -> pl.srw.billcalculator
     26:26:void <init>() -> <init>
     27:37:void <clinit>() -> <clinit>
 pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment -> pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment:
-    13:13:void <init>() -> <init>
-    17:22:android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
-    26:26:android.content.DialogInterface$OnClickListener onPositiveButton() -> a
-pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment$1 -> pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment$1:
-    pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment this$0 -> a
-    26:26:void <init>(pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment) -> <init>
-    31:31:void onClick(android.content.DialogInterface,int) -> onClick
+    10:10:void <init>() -> <init>
+    14:18:android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
 pl.srw.billcalculator.dialog.CheckPricesDialogFragment -> pl.srw.billcalculator.dialog.CheckPricesDialogFragment:
     22:22:void <init>() -> <init>
     26:33:android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
