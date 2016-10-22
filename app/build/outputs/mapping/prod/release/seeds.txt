@@ -6729,7 +6729,6 @@ pl.srw.billcalculator.db.dao.TauronPricesDao
 pl.srw.billcalculator.db.dao.TauronPricesDao: java.lang.String TABLENAME
 pl.srw.billcalculator.db.dao.TauronPricesDao$Properties
 pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment
-pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment$1
 pl.srw.billcalculator.dialog.CheckPricesDialogFragment
 pl.srw.billcalculator.dialog.CheckPricesDialogFragment$1
 pl.srw.billcalculator.dialog.CheckPricesDialogFragment$2
