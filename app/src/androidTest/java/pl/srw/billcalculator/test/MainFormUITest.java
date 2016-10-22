@@ -29,7 +29,7 @@ public class MainFormUITest {
     @Rule
     public final IntentsTestRule<MainActivity> intentsRule = new IntentsTestRule<>(MainActivity.class, true);
 
-    //TODO    @Test
+    //FIXME    @Test
     public void shouldStartServiceOnCalculateClicked() {
         onView(allOf(withId(R.id.et_reading_from), isDisplayed())).perform(typeText("123"));
         onView(allOf(withId(R.id.et_reading_to), isDisplayed())).perform(typeText("124"), closeSoftKeyboard());

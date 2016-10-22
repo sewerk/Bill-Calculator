@@ -27,6 +27,12 @@
         android:dialogMessage="@string/oplata_abonamentowa_desc"
         android:title="@string/tauron_oplata_abonamentowa" />
 
+    <EditTextPreference
+        android:key="oplataOze"
+        android:inputType="numberDecimal"
+        android:dialogMessage="@string/oplata_oze_desc"
+        android:title="@string/oplata_oze" />
+
     <!-- G11 ============================================================ -->
     <PreferenceCategory
         android:key="@string/preferences_category_G11"

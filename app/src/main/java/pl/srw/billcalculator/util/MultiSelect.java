@@ -1,41 +1,36 @@
 package pl.srw.billcalculator.util;
 
-import android.support.v4.util.ArrayMap;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.util.SparseArray;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
-import hrisey.Parcelable;
 import hugo.weaving.DebugLog;
 
-/**
- * Created by Kamil Seweryn.
- */
-@Parcelable
-@lombok.ToString(includeFieldNames = true)
-public class MultiSelect<P, I> implements android.os.Parcelable {
+@lombok.ToString
+public class MultiSelect<I extends Parcelable> implements Parcelable {
 
-    private Map<P, I> selectedItems;
+    private SparseArray<I> selectedItems;
 
     public MultiSelect() {
-        selectedItems = new ArrayMap<>();
+        selectedItems = new SparseArray<>();
     }
 
     @DebugLog
-    public void select(final P p, final I o) {
+    public void select(final int p, final I o) {
         selectedItems.put(p, o);
     }
 
     @DebugLog
-    public void deselect(final P p) {
+    public void deselect(final int p) {
         selectedItems.remove(p);
     }
 
-    public boolean isSelected(final P p) {
-        return selectedItems.containsKey(p);
+    public boolean isSelected(final int p) {
+        return selectedItems.indexOfKey(p) >= 0;
     }
 
     public boolean isAnySelected() {
@@ -47,12 +42,45 @@ public class MultiSelect<P, I> implements android.os.Parcelable {
     }
 
     public Collection<I> getItems() {
-        return selectedItems.values();
+        final ArrayList<I> values = new ArrayList<>(selectedItems.size());
+        for (int i = 0; i < selectedItems.size(); i++) {
+            values.add(selectedItems.valueAt(i));
+        }
+        return values;
     }
 
-    public Collection<P> getPositionsReverseOrder() {
-        final List<P> keys = new LinkedList<>(selectedItems.keySet());
-        Collections.sort(keys, Collections.reverseOrder());
-        return keys;
+    public int[] getPositionsReverseOrder() {
+        int[] keys = new int[selectedItems.size()];
+        for (int i = 0; i < selectedItems.size(); i++) {
+            keys[i] = selectedItems.keyAt(i);
+        }
+        Arrays.sort(keys);
+        return Sorter.revert(keys);
     }
+
+    protected MultiSelect(Parcel in) {
+        this.selectedItems = in.readSparseArray(getClass().getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeSparseArray((SparseArray) this.selectedItems);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<MultiSelect> CREATOR = new Creator<MultiSelect>() {
+        @Override
+        public MultiSelect createFromParcel(Parcel in) {
+            return new MultiSelect(in);
+        }
+
+        @Override
+        public MultiSelect[] newArray(int size) {
+            return new MultiSelect[size];
+        }
+    };
 }

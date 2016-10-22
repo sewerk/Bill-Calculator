@@ -52,6 +52,14 @@
             layout="@layout/tauron_components_table_row" />
 
         <include
+            android:id="@+id/row_oplata_oze"
+            layout="@layout/tauron_components_table_row" />
+
+        <include
+            android:id="@+id/row_oplata_oze2"
+            layout="@layout/tauron_components_table_row" />
+
+        <include
             android:id="@+id/row_oplata_dyst_stala"
             layout="@layout/tauron_components_table_row" />
 

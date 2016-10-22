@@ -34,6 +34,11 @@ public class TauronSettingsFragment extends EnergyProviderSettingsFragment {
     }
 
     @Override
+    protected String getMWhMeasurePrefKeys() {
+        return "";
+    }
+
+    @Override
     public void restoreSettings() {
         super.restoreSettings();
         new TauronPrices().setDefault();

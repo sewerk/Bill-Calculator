@@ -33,7 +33,7 @@ public final class ToWebView {
 
     private static String generateHtml(View billView) {
         return "<!DOCTYPE html><html><body><img width='100%' height='100%' src='" + bitmapToString(Views.buildBitmapFrom(billView)) + "' /></body></html>";
-//TODO: reafactor/optimize
+//FIXME: reafactor/optimize
     }
 
     private static String bitmapToString(Bitmap bitmap) {

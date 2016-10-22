@@ -8,7 +8,10 @@ import lombok.Getter;
 import pl.srw.billcalculator.util.Dates;
 
 /**
- * Created by Kamil Seweryn.
+ * Calculates and represent each bill position value.
+ * <br/>
+ * Net value precision is not modified.<br/>
+ * Vat value precision is Net.precision+2
  */
 public abstract class CalculatedBill {
 
@@ -27,6 +30,10 @@ public abstract class CalculatedBill {
     }
 
     protected BigDecimal countNetAndAddToSum(final String price, final int count) {
+        return countNetAndAddToSum(price, new BigDecimal(count));
+    }
+
+    protected BigDecimal countNetAndAddToSum(final String price, final String count) {
         return countNetAndAddToSum(price, new BigDecimal(count));
     }
 
@@ -57,6 +64,9 @@ public abstract class CalculatedBill {
         return getNetChargeSum().add(getVatChargeSum());
     }
 
+    /**
+     * Round value for scale=2
+     */
     protected BigDecimal round(BigDecimal value) {
         return value.setScale(2, RoundingMode.HALF_UP);
     }

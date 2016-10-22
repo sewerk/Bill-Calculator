@@ -91,11 +91,15 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
     protected String getMeasure(final String key) {
         if (getMonthMeasurePrefKeys().contains(key)) {
             return "[zł/m-c]";
+        } else if (getMWhMeasurePrefKeys().contains(key)) {
+            return "[zł/MWh]";
         }
         return "[zł/kWh]";
     }
 
     protected abstract String getMonthMeasurePrefKeys();
+
+    protected abstract String getMWhMeasurePrefKeys();
 
     protected String getStringFor(@StringRes final int... keys) {
         StringBuilder sb = new StringBuilder();

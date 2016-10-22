@@ -24,6 +24,10 @@
             layout="@layout/pge_components_table_row" />
 
         <include
+            android:id="@+id/row_oplata_oze"
+            layout="@layout/pge_components_table_row" />
+
+        <include
             android:id="@+id/row_oplata_sieciowa"
             layout="@layout/pge_components_table_row" />
 
@@ -33,6 +37,10 @@
 
         <include
             android:id="@+id/row_skladnik_jakosciowy2"
+            layout="@layout/pge_components_table_row" />
+
+        <include
+            android:id="@+id/row_oplata_oze2"
             layout="@layout/pge_components_table_row" />
 
         <include

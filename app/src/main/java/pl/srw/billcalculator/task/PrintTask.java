@@ -29,7 +29,7 @@ public class PrintTask extends AsyncTask<View, Void, String> {
     @Override
     protected String doInBackground(View... params) {
         final View contentView = params[0];
-        final Bitmap bitmap = Views.buildBitmapFrom(contentView);//TODO: do in UIThread
+        final Bitmap bitmap = Views.buildBitmapFrom(contentView);//FIXME: do in UIThread
         final File targetFile = new File(path);
         File tmpImg = null;
         try {

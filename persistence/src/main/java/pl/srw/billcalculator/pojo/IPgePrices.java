@@ -13,6 +13,7 @@ public interface IPgePrices extends Prices {
     String getOplataPrzejsciowa();
     String getOplataStalaZaPrzesyl();
     String getOplataAbonamentowa();
+    String getOplataOze();
 
     String getZaEnergieCzynnaDzien();
     String getZaEnergieCzynnaNoc();

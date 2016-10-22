@@ -21,7 +21,7 @@ public class TauronBillStoringServiceTest {
 
     @Test
     public void shouldStoreBillInHistory() {
-        //TODO
+        //FIXME: implement
         //serviceTestRule.startService(new Intent(InstrumentationRegistry.getTargetContext(), TauronBillStoringService.class));
     }
 }

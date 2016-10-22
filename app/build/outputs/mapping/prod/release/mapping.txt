@@ -19784,6 +19784,9 @@ org.threeten.bp.Instant -> org.threeten.bp.Instant:
     807:807:org.threeten.bp.Instant minus(long,org.threeten.bp.temporal.TemporalUnit) -> b
     884:893:java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
     923:923:org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+    969:984:long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit) -> a
+    988:990:long nanosUntil(org.threeten.bp.Instant) -> b
+    994:1001:long secondsUntil(org.threeten.bp.Instant) -> c
     1056:1057:long toEpochMilli() -> c
     1073:1077:int compareTo(org.threeten.bp.Instant) -> a
     1117:1125:boolean equals(java.lang.Object) -> equals
@@ -19852,14 +19855,19 @@ org.threeten.bp.LocalDate -> org.threeten.bp.LocalDate:
     1178:1182:org.threeten.bp.LocalDate plusDays(long) -> e
     1224:1224:org.threeten.bp.LocalDate minus(long,org.threeten.bp.temporal.TemporalUnit) -> b
     1249:1249:org.threeten.bp.LocalDate minusYears(long) -> f
+    1311:1311:org.threeten.bp.LocalDate minusDays(long) -> g
     1336:1339:java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
     1368:1368:org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+    1416:1430:long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit) -> a
+    1434:1434:long daysUntil(org.threeten.bp.LocalDate) -> a
+    1438:1440:long monthsUntil(org.threeten.bp.LocalDate) -> c
     1479:1492:org.threeten.bp.Period until(org.threeten.bp.chrono.ChronoLocalDate) -> a
     1507:1507:org.threeten.bp.LocalDateTime atTime(org.threeten.bp.LocalTime) -> a
     1634:1651:long toEpochDay() -> m
     1671:1674:int compareTo(org.threeten.bp.chrono.ChronoLocalDate) -> b
-    1678:1685:int compareTo0(org.threeten.bp.LocalDate) -> a
-    1740:1743:boolean isBefore(org.threeten.bp.chrono.ChronoLocalDate) -> c
+    1678:1685:int compareTo0(org.threeten.bp.LocalDate) -> b
+    1711:1714:boolean isAfter(org.threeten.bp.chrono.ChronoLocalDate) -> c
+    1740:1743:boolean isBefore(org.threeten.bp.chrono.ChronoLocalDate) -> d
     1790:1796:boolean equals(java.lang.Object) -> equals
     1806:1809:int hashCode() -> hashCode
     1822:1839:java.lang.String toString() -> toString
@@ -19918,6 +19926,8 @@ org.threeten.bp.LocalDateTime -> org.threeten.bp.LocalDateTime:
     1394:1411:org.threeten.bp.LocalDateTime plusWithOverflow(org.threeten.bp.LocalDate,long,long,long,long,int) -> a
     1436:1439:java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
     1469:1469:org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+    1519:1566:long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit) -> a
+    1580:1580:org.threeten.bp.OffsetDateTime atOffset(org.threeten.bp.ZoneOffset) -> a
     1614:1614:org.threeten.bp.ZonedDateTime atZone(org.threeten.bp.ZoneId) -> a
     1628:1628:org.threeten.bp.LocalDate toLocalDate() -> d
     1641:1641:org.threeten.bp.LocalTime toLocalTime() -> e
@@ -19991,9 +20001,12 @@ org.threeten.bp.LocalTime -> org.threeten.bp.LocalTime:
     1117:1117:org.threeten.bp.LocalTime minus(long,org.threeten.bp.temporal.TemporalUnit) -> b
     1203:1214:java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
     1243:1243:org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+    1291:1305:long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit) -> a
     1343:1346:int toSecondOfDay() -> d
     1356:1360:long toNanoOfDay() -> e
     1376:1386:int compareTo(org.threeten.bp.LocalTime) -> a
+    1399:1399:boolean isAfter(org.threeten.bp.LocalTime) -> b
+    1412:1412:boolean isBefore(org.threeten.bp.LocalTime) -> c
     1430:1438:boolean equals(java.lang.Object) -> equals
     1448:1449:int hashCode() -> hashCode
     1471:1491:java.lang.String toString() -> toString
@@ -20050,6 +20063,59 @@ org.threeten.bp.Month$1 -> org.threeten.bp.Month$1:
 org.threeten.bp.Month$2 -> org.threeten.bp.Month$2:
     int[] $SwitchMap$org$threeten$bp$Month -> a
     401:401:void <clinit>() -> <clinit>
+org.threeten.bp.OffsetDateTime -> org.threeten.bp.OffsetDateTime:
+    org.threeten.bp.OffsetDateTime MIN -> a
+    org.threeten.bp.OffsetDateTime MAX -> b
+    org.threeten.bp.temporal.TemporalQuery FROM -> c
+    java.util.Comparator INSTANT_COMPARATOR -> d
+    org.threeten.bp.LocalDateTime dateTime -> e
+    org.threeten.bp.ZoneOffset offset -> f
+    239:239:org.threeten.bp.OffsetDateTime of(org.threeten.bp.LocalDateTime,org.threeten.bp.ZoneOffset) -> a
+    287:292:org.threeten.bp.OffsetDateTime ofInstant(org.threeten.bp.Instant,org.threeten.bp.ZoneId) -> a
+    313:326:org.threeten.bp.OffsetDateTime from(org.threeten.bp.temporal.TemporalAccessor) -> a
+    369:372:void <init>(org.threeten.bp.LocalDateTime,org.threeten.bp.ZoneOffset) -> <init>
+    381:384:org.threeten.bp.OffsetDateTime with(org.threeten.bp.LocalDateTime,org.threeten.bp.ZoneOffset) -> b
+    441:441:boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
+    476:482:org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
+    512:519:int get(org.threeten.bp.temporal.TemporalField) -> c
+    546:553:long getLong(org.threeten.bp.temporal.TemporalField) -> d
+    565:565:org.threeten.bp.ZoneOffset getOffset() -> a
+    609:614:org.threeten.bp.OffsetDateTime withOffsetSameInstant(org.threeten.bp.ZoneOffset) -> a
+    734:734:int getNano() -> b
+    784:793:org.threeten.bp.OffsetDateTime with(org.threeten.bp.temporal.TemporalAdjuster) -> a
+    841:851:org.threeten.bp.OffsetDateTime with(org.threeten.bp.temporal.TemporalField,long) -> a
+    1023:1023:org.threeten.bp.OffsetDateTime plus(org.threeten.bp.temporal.TemporalAmount) -> a
+    1044:1047:org.threeten.bp.OffsetDateTime plus(long,org.threeten.bp.temporal.TemporalUnit) -> a
+    1229:1229:org.threeten.bp.OffsetDateTime minus(long,org.threeten.bp.temporal.TemporalUnit) -> b
+    1393:1406:java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+    1437:1437:org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+    1493:1498:long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit) -> a
+    1559:1559:org.threeten.bp.LocalDateTime toLocalDateTime() -> c
+    1571:1571:org.threeten.bp.LocalDate toLocalDate() -> d
+    1583:1583:org.threeten.bp.LocalTime toLocalTime() -> e
+    1632:1632:long toEpochSecond() -> f
+    1661:1671:int compareTo(org.threeten.bp.OffsetDateTime) -> a
+    1737:1744:boolean equals(java.lang.Object) -> equals
+    1754:1754:int hashCode() -> hashCode
+    1776:1776:java.lang.String toString() -> toString
+    90:90:org.threeten.bp.temporal.Temporal minus(long,org.threeten.bp.temporal.TemporalUnit) -> c
+    90:90:org.threeten.bp.temporal.Temporal plus(org.threeten.bp.temporal.TemporalAmount) -> c
+    90:90:org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalAdjuster) -> b
+    90:90:org.threeten.bp.temporal.Temporal plus(long,org.threeten.bp.temporal.TemporalUnit) -> d
+    90:90:org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalField,long) -> b
+    90:90:int compareTo(java.lang.Object) -> compareTo
+    101:136:void <clinit>() -> <clinit>
+org.threeten.bp.OffsetDateTime$1 -> org.threeten.bp.OffsetDateTime$1:
+    113:113:void <init>() -> <init>
+    116:116:org.threeten.bp.OffsetDateTime queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> a
+    113:113:java.lang.Object queryFrom(org.threeten.bp.temporal.TemporalAccessor) -> b
+org.threeten.bp.OffsetDateTime$2 -> org.threeten.bp.OffsetDateTime$2:
+    136:136:void <init>() -> <init>
+    139:143:int compare(org.threeten.bp.OffsetDateTime,org.threeten.bp.OffsetDateTime) -> a
+    136:136:int compare(java.lang.Object,java.lang.Object) -> compare
+org.threeten.bp.OffsetDateTime$3 -> org.threeten.bp.OffsetDateTime$3:
+    int[] $SwitchMap$org$threeten$bp$temporal$ChronoField -> a
+    513:513:void <clinit>() -> <clinit>
 org.threeten.bp.Period -> org.threeten.bp.Period:
     org.threeten.bp.Period ZERO -> a
     java.util.regex.Pattern PATTERN -> b
@@ -20092,6 +20158,7 @@ org.threeten.bp.Year -> org.threeten.bp.Year:
     659:659:org.threeten.bp.Year minus(long,org.threeten.bp.temporal.TemporalUnit) -> b
     697:705:java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
     736:739:org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
+    787:799:long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit) -> a
     882:882:int compareTo(org.threeten.bp.Year) -> a
     916:922:boolean equals(java.lang.Object) -> equals
     932:932:int hashCode() -> hashCode
@@ -20198,6 +20265,7 @@ org.threeten.bp.ZonedDateTime -> org.threeten.bp.ZonedDateTime:
     773:780:long getLong(org.threeten.bp.temporal.TemporalField) -> d
     793:793:org.threeten.bp.ZoneOffset getOffset() -> a
     868:868:org.threeten.bp.ZoneId getZone() -> b
+    913:914:org.threeten.bp.ZonedDateTime withZoneSameInstant(org.threeten.bp.ZoneId) -> a
     1056:1056:int getNano() -> c
     1115:1127:org.threeten.bp.ZonedDateTime with(org.threeten.bp.temporal.TemporalAdjuster) -> a
     1184:1195:org.threeten.bp.ZonedDateTime with(org.threeten.bp.temporal.TemporalField,long) -> a
@@ -20205,9 +20273,11 @@ org.threeten.bp.ZonedDateTime -> org.threeten.bp.ZonedDateTime:
     1464:1471:org.threeten.bp.ZonedDateTime plus(long,org.threeten.bp.temporal.TemporalUnit) -> a
     1699:1699:org.threeten.bp.ZonedDateTime minus(long,org.threeten.bp.temporal.TemporalUnit) -> b
     1896:1899:java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
+    1966:1975:long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit) -> a
     1989:1989:org.threeten.bp.LocalDateTime toLocalDateTime() -> d
     2002:2002:org.threeten.bp.LocalDate toLocalDate() -> e
     2015:2015:org.threeten.bp.LocalTime toLocalTime() -> f
+    2027:2027:org.threeten.bp.OffsetDateTime toOffsetDateTime() -> g
     2042:2051:boolean equals(java.lang.Object) -> equals
     2061:2061:int hashCode() -> hashCode
     2077:2081:java.lang.String toString() -> toString
@@ -20216,8 +20286,9 @@ org.threeten.bp.ZonedDateTime -> org.threeten.bp.ZonedDateTime:
     122:122:org.threeten.bp.chrono.ChronoZonedDateTime plus(org.threeten.bp.temporal.TemporalAmount) -> b
     122:122:org.threeten.bp.chrono.ChronoZonedDateTime with(org.threeten.bp.temporal.TemporalField,long) -> c
     122:122:org.threeten.bp.chrono.ChronoZonedDateTime with(org.threeten.bp.temporal.TemporalAdjuster) -> c
-    122:122:org.threeten.bp.chrono.ChronoLocalDateTime toLocalDateTime() -> g
-    122:122:org.threeten.bp.chrono.ChronoLocalDate toLocalDate() -> h
+    122:122:org.threeten.bp.chrono.ChronoZonedDateTime withZoneSameInstant(org.threeten.bp.ZoneId) -> b
+    122:122:org.threeten.bp.chrono.ChronoLocalDateTime toLocalDateTime() -> h
+    122:122:org.threeten.bp.chrono.ChronoLocalDate toLocalDate() -> i
     122:122:org.threeten.bp.temporal.Temporal minus(long,org.threeten.bp.temporal.TemporalUnit) -> c
     122:122:org.threeten.bp.temporal.Temporal plus(long,org.threeten.bp.temporal.TemporalUnit) -> d
     122:122:org.threeten.bp.temporal.Temporal plus(org.threeten.bp.temporal.TemporalAmount) -> c
@@ -20250,7 +20321,8 @@ org.threeten.bp.chrono.ChronoLocalDate -> org.threeten.bp.chrono.ChronoLocalDate
     471:471:org.threeten.bp.chrono.ChronoLocalDateTime atTime(org.threeten.bp.LocalTime) -> b
     485:485:long toEpochDay() -> m
     517:521:int compareTo(org.threeten.bp.chrono.ChronoLocalDate) -> b
-    554:554:boolean isBefore(org.threeten.bp.chrono.ChronoLocalDate) -> c
+    538:538:boolean isAfter(org.threeten.bp.chrono.ChronoLocalDate) -> c
+    554:554:boolean isBefore(org.threeten.bp.chrono.ChronoLocalDate) -> d
     587:593:boolean equals(java.lang.Object) -> equals
     603:604:int hashCode() -> hashCode
     618:629:java.lang.String toString() -> toString
@@ -20279,8 +20351,8 @@ org.threeten.bp.chrono.ChronoLocalDateTime -> org.threeten.bp.chrono.ChronoLocal
     226:237:java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
     242:242:org.threeten.bp.temporal.Temporal adjustInto(org.threeten.bp.temporal.Temporal) -> a
     org.threeten.bp.chrono.ChronoZonedDateTime atZone(org.threeten.bp.ZoneId) -> b
-    307:307:org.threeten.bp.Instant toInstant(org.threeten.bp.ZoneOffset) -> a
-    322:326:long toEpochSecond(org.threeten.bp.ZoneOffset) -> b
+    307:307:org.threeten.bp.Instant toInstant(org.threeten.bp.ZoneOffset) -> b
+    322:326:long toEpochSecond(org.threeten.bp.ZoneOffset) -> c
     356:363:int compareTo(org.threeten.bp.chrono.ChronoLocalDateTime) -> a
     378:380:boolean isAfter(org.threeten.bp.chrono.ChronoLocalDateTime) -> b
     396:398:boolean isBefore(org.threeten.bp.chrono.ChronoLocalDateTime) -> c
@@ -20320,6 +20392,7 @@ org.threeten.bp.chrono.ChronoLocalDateTimeImpl -> org.threeten.bp.chrono.ChronoL
     290:290:org.threeten.bp.chrono.ChronoLocalDateTimeImpl plusNanos(long) -> e
     296:312:org.threeten.bp.chrono.ChronoLocalDateTimeImpl plusWithOverflow(org.threeten.bp.chrono.ChronoLocalDate,long,long,long,long) -> a
     318:318:org.threeten.bp.chrono.ChronoZonedDateTime atZone(org.threeten.bp.ZoneId) -> b
+    325:347:long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit) -> a
     68:68:org.threeten.bp.chrono.ChronoLocalDateTime plus(long,org.threeten.bp.temporal.TemporalUnit) -> f
     68:68:org.threeten.bp.chrono.ChronoLocalDateTime with(org.threeten.bp.temporal.TemporalField,long) -> c
     68:68:org.threeten.bp.chrono.ChronoLocalDateTime with(org.threeten.bp.temporal.TemporalAdjuster) -> c
@@ -20340,18 +20413,19 @@ org.threeten.bp.chrono.ChronoZonedDateTime -> org.threeten.bp.chrono.ChronoZoned
     164:170:org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
     175:182:int get(org.threeten.bp.temporal.TemporalField) -> c
     187:194:long getLong(org.threeten.bp.temporal.TemporalField) -> d
-    207:207:org.threeten.bp.chrono.ChronoLocalDate toLocalDate() -> h
+    207:207:org.threeten.bp.chrono.ChronoLocalDate toLocalDate() -> i
     219:219:org.threeten.bp.LocalTime toLocalTime() -> f
-    org.threeten.bp.chrono.ChronoLocalDateTime toLocalDateTime() -> g
+    org.threeten.bp.chrono.ChronoLocalDateTime toLocalDateTime() -> h
     org.threeten.bp.ZoneOffset getOffset() -> a
     org.threeten.bp.ZoneId getZone() -> b
+    org.threeten.bp.chrono.ChronoZonedDateTime withZoneSameInstant(org.threeten.bp.ZoneId) -> b
     344:344:org.threeten.bp.chrono.ChronoZonedDateTime with(org.threeten.bp.temporal.TemporalAdjuster) -> c
     org.threeten.bp.chrono.ChronoZonedDateTime with(org.threeten.bp.temporal.TemporalField,long) -> c
     352:352:org.threeten.bp.chrono.ChronoZonedDateTime plus(org.threeten.bp.temporal.TemporalAmount) -> b
     org.threeten.bp.chrono.ChronoZonedDateTime plus(long,org.threeten.bp.temporal.TemporalUnit) -> f
     365:365:org.threeten.bp.chrono.ChronoZonedDateTime minus(long,org.threeten.bp.temporal.TemporalUnit) -> e
     372:385:java.lang.Object query(org.threeten.bp.temporal.TemporalQuery) -> a
-    427:430:long toEpochSecond() -> i
+    427:430:long toEpochSecond() -> j
     449:462:int compareTo(org.threeten.bp.chrono.ChronoZonedDateTime) -> a
     528:534:boolean equals(java.lang.Object) -> equals
     544:544:int hashCode() -> hashCode
@@ -20379,11 +20453,13 @@ org.threeten.bp.chrono.ChronoZonedDateTimeImpl -> org.threeten.bp.chrono.ChronoZ
     158:158:org.threeten.bp.chrono.ChronoZonedDateTimeImpl create(org.threeten.bp.Instant,org.threeten.bp.ZoneId) -> a
     169:173:void <init>(org.threeten.bp.chrono.ChronoLocalDateTimeImpl,org.threeten.bp.ZoneOffset,org.threeten.bp.ZoneId) -> <init>
     185:185:org.threeten.bp.ZoneOffset getOffset() -> a
-    215:215:org.threeten.bp.chrono.ChronoLocalDateTime toLocalDateTime() -> g
+    215:215:org.threeten.bp.chrono.ChronoLocalDateTime toLocalDateTime() -> h
     219:219:org.threeten.bp.ZoneId getZone() -> b
+    228:229:org.threeten.bp.chrono.ChronoZonedDateTime withZoneSameInstant(org.threeten.bp.ZoneId) -> b
     235:235:boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
     241:252:org.threeten.bp.chrono.ChronoZonedDateTime with(org.threeten.bp.temporal.TemporalField,long) -> c
     258:261:org.threeten.bp.chrono.ChronoZonedDateTime plus(long,org.threeten.bp.temporal.TemporalUnit) -> f
+    268:273:long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit) -> a
     307:313:boolean equals(java.lang.Object) -> equals
     318:318:int hashCode() -> hashCode
     323:327:java.lang.String toString() -> toString
@@ -20406,6 +20482,7 @@ org.threeten.bp.chrono.Chronology -> org.threeten.bp.chrono.Chronology:
     org.threeten.bp.chrono.ChronoLocalDate date(int,int,int) -> a
     org.threeten.bp.chrono.ChronoLocalDate date(org.threeten.bp.temporal.TemporalAccessor) -> b
     578:581:org.threeten.bp.chrono.ChronoLocalDateTime localDateTime(org.threeten.bp.temporal.TemporalAccessor) -> c
+    601:612:org.threeten.bp.chrono.ChronoZonedDateTime zonedDateTime(org.threeten.bp.temporal.TemporalAccessor) -> d
     627:628:org.threeten.bp.chrono.ChronoZonedDateTime zonedDateTime(org.threeten.bp.Instant,org.threeten.bp.ZoneId) -> a
     boolean isLeapYear(long) -> a
     org.threeten.bp.chrono.Era eraOf(int) -> a
@@ -20426,14 +20503,16 @@ org.threeten.bp.chrono.IsoChronology -> org.threeten.bp.chrono.IsoChronology:
     113:114:void <init>() -> <init>
     137:137:java.lang.String getId() -> a
     188:188:org.threeten.bp.LocalDate date(int,int,int) -> b
-    237:237:org.threeten.bp.LocalDate date(org.threeten.bp.temporal.TemporalAccessor) -> d
-    251:251:org.threeten.bp.LocalDateTime localDateTime(org.threeten.bp.temporal.TemporalAccessor) -> e
+    237:237:org.threeten.bp.LocalDate date(org.threeten.bp.temporal.TemporalAccessor) -> e
+    251:251:org.threeten.bp.LocalDateTime localDateTime(org.threeten.bp.temporal.TemporalAccessor) -> f
+    265:265:org.threeten.bp.ZonedDateTime zonedDateTime(org.threeten.bp.temporal.TemporalAccessor) -> g
     280:280:org.threeten.bp.ZonedDateTime zonedDateTime(org.threeten.bp.Instant,org.threeten.bp.ZoneId) -> b
     357:357:boolean isLeapYear(long) -> a
     370:370:org.threeten.bp.chrono.IsoEra eraOf(int) -> b
     386:534:org.threeten.bp.LocalDate resolveDate(java.util.Map,org.threeten.bp.format.ResolverStyle) -> a
     98:98:org.threeten.bp.chrono.Era eraOf(int) -> a
     98:98:org.threeten.bp.chrono.ChronoZonedDateTime zonedDateTime(org.threeten.bp.Instant,org.threeten.bp.ZoneId) -> a
+    98:98:org.threeten.bp.chrono.ChronoZonedDateTime zonedDateTime(org.threeten.bp.temporal.TemporalAccessor) -> d
     98:98:org.threeten.bp.chrono.ChronoLocalDateTime localDateTime(org.threeten.bp.temporal.TemporalAccessor) -> c
     98:98:org.threeten.bp.chrono.ChronoLocalDate date(org.threeten.bp.temporal.TemporalAccessor) -> b
     98:98:org.threeten.bp.chrono.ChronoLocalDate date(int,int,int) -> a
@@ -21023,7 +21102,9 @@ org.threeten.bp.temporal.ChronoUnit -> org.threeten.bp.temporal.ChronoUnit:
     53:53:org.threeten.bp.temporal.ChronoUnit valueOf(java.lang.String) -> valueOf
     171:174:void <init>(java.lang.String,int,java.lang.String,org.threeten.bp.Duration) -> <init>
     213:213:boolean isDateBased() -> a
+    222:222:boolean isTimeBased() -> b
     253:253:org.threeten.bp.temporal.Temporal addTo(org.threeten.bp.temporal.Temporal,long) -> a
+    259:259:long between(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.Temporal) -> a
     265:265:java.lang.String toString() -> toString
     53:166:void <clinit>() -> <clinit>
 org.threeten.bp.temporal.IsoFields -> org.threeten.bp.temporal.IsoFields:
@@ -21108,6 +21189,7 @@ org.threeten.bp.temporal.IsoFields$Unit -> org.threeten.bp.temporal.IsoFields$Un
     571:574:void <init>(java.lang.String,int,java.lang.String,org.threeten.bp.Duration) -> <init>
     588:588:boolean isDateBased() -> a
     604:612:org.threeten.bp.temporal.Temporal addTo(org.threeten.bp.temporal.Temporal,long) -> a
+    618:624:long between(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.Temporal) -> a
     630:630:java.lang.String toString() -> toString
     564:566:void <clinit>() -> <clinit>
 org.threeten.bp.temporal.Temporal -> org.threeten.bp.temporal.Temporal:
@@ -21115,6 +21197,7 @@ org.threeten.bp.temporal.Temporal -> org.threeten.bp.temporal.Temporal:
     org.threeten.bp.temporal.Temporal with(org.threeten.bp.temporal.TemporalField,long) -> b
     org.threeten.bp.temporal.Temporal plus(long,org.threeten.bp.temporal.TemporalUnit) -> d
     org.threeten.bp.temporal.Temporal minus(long,org.threeten.bp.temporal.TemporalUnit) -> c
+    long until(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.TemporalUnit) -> a
 org.threeten.bp.temporal.TemporalAccessor -> org.threeten.bp.temporal.TemporalAccessor:
     boolean isSupported(org.threeten.bp.temporal.TemporalField) -> a
     org.threeten.bp.temporal.ValueRange range(org.threeten.bp.temporal.TemporalField) -> b
@@ -21208,6 +21291,7 @@ org.threeten.bp.temporal.TemporalQuery -> org.threeten.bp.temporal.TemporalQuery
 org.threeten.bp.temporal.TemporalUnit -> org.threeten.bp.temporal.TemporalUnit:
     boolean isDateBased() -> a
     org.threeten.bp.temporal.Temporal addTo(org.threeten.bp.temporal.Temporal,long) -> a
+    long between(org.threeten.bp.temporal.Temporal,org.threeten.bp.temporal.Temporal) -> a
 org.threeten.bp.temporal.UnsupportedTemporalTypeException -> org.threeten.bp.temporal.UnsupportedTemporalTypeException:
     55:56:void <init>(java.lang.String) -> <init>
 org.threeten.bp.temporal.ValueRange -> org.threeten.bp.temporal.ValueRange:
@@ -21500,13 +21584,13 @@ pl.srw.billcalculator.bill.SavedBillsRegistry -> pl.srw.billcalculator.bill.Save
     65:65:java.lang.String getIdentifier(pl.srw.billcalculator.type.Provider,int,int,java.lang.String,java.lang.String,pl.srw.billcalculator.db.Prices) -> a
     70:73:java.lang.String getIdentifier(pl.srw.billcalculator.type.Provider,int,int,int,int,java.lang.String,java.lang.String,pl.srw.billcalculator.db.Prices) -> a
     77:84:java.lang.Long getId(pl.srw.billcalculator.type.Provider,int,int,int,int,java.lang.String,java.lang.String,pl.srw.billcalculator.db.Prices) -> b
-    88:88:java.lang.String getKey(pl.srw.billcalculator.type.Provider,int,int,int,int,java.lang.String,java.lang.String,pl.srw.billcalculator.db.Prices) -> c
+    88:97:java.lang.String getKey(pl.srw.billcalculator.type.Provider,int,int,int,int,java.lang.String,java.lang.String,pl.srw.billcalculator.db.Prices) -> c
     101:135:java.lang.String getKey(pl.srw.billcalculator.db.Prices) -> a
     28:28:void <clinit>() -> <clinit>
 pl.srw.billcalculator.bill.activity.BillActivity -> pl.srw.billcalculator.bill.activity.BillActivity:
     java.lang.String PRINT_TARGET_DIR -> a
     android.view.Menu menu -> b
-    43:169:void <init>() -> <init>
+    43:43:void <init>() -> <init>
     56:58:void onCreate(android.os.Bundle) -> onCreate
     62:66:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
     72:75:void onDestroy() -> onDestroy
@@ -21539,22 +21623,22 @@ pl.srw.billcalculator.bill.activity.EnergyBillActivity$$ExtraInjector -> pl.srw.
     9:43:void inject(com.f2prateek.dart.Dart$Finder,pl.srw.billcalculator.bill.activity.EnergyBillActivity,java.lang.Object) -> inject
 pl.srw.billcalculator.bill.activity.PgeBillActivity -> pl.srw.billcalculator.bill.activity.PgeBillActivity:
     pl.srw.billcalculator.pojo.IPgePrices prices -> j
-    33:33:void <init>() -> <init>
-    41:59:void onCreate(android.os.Bundle) -> onCreate
-    63:66:java.lang.String getBillIdentifier() -> a
-    70:72:void setDates() -> c
-    75:93:void setChargeDetailsTable() -> d
-    96:103:void setG11Rows(android.widget.TableLayout,int) -> a
-    106:120:void setG12Rows(android.widget.TableLayout,int,int) -> a
-    124:138:void setRow(android.view.View,int,int,int,int,int,java.math.BigDecimal,java.math.BigDecimal) -> a
-    141:151:void setReadingsInRow(android.view.View,int) -> a
-    154:154:int countConsumption() -> e
-    158:158:int countDayConsumption() -> f
-    162:162:int countNightConsumption() -> g
-    166:168:void setChargeSummary(android.view.View) -> a
-    171:172:void setExcise() -> h
-    175:179:void setSummaryTable() -> i
-    182:183:void setToPayTV() -> j
+    35:35:void <init>() -> <init>
+    43:67:void onCreate(android.os.Bundle) -> onCreate
+    71:74:java.lang.String getBillIdentifier() -> a
+    78:80:void setDates() -> c
+    83:101:void setChargeDetailsTable() -> d
+    104:116:void setG11Rows(android.widget.TableLayout,int) -> a
+    119:140:void setG12Rows(android.widget.TableLayout,int,int) -> a
+    144:161:void setRow(android.view.View,int,int,int,int,int,java.math.BigDecimal,java.math.BigDecimal) -> a
+    164:174:void setReadingsInRow(android.view.View,int,int) -> a
+    177:177:int countConsumption() -> e
+    181:181:int countDayConsumption() -> f
+    185:185:int countNightConsumption() -> g
+    189:191:void setChargeSummary(android.view.View) -> a
+    194:195:void setExcise() -> h
+    198:202:void setSummaryTable() -> i
+    205:206:void setToPayTV() -> j
 pl.srw.billcalculator.bill.activity.PgeBillActivity$$ExtraInjector -> pl.srw.billcalculator.bill.activity.PgeBillActivity$$ExtraInjector:
     6:6:void <init>() -> <init>
     8:15:void inject(com.f2prateek.dart.Dart$Finder,pl.srw.billcalculator.bill.activity.PgeBillActivity,java.lang.Object) -> inject
@@ -21580,19 +21664,20 @@ pl.srw.billcalculator.bill.activity.PgnigBillActivity$$ExtraInjector -> pl.srw.b
     9:33:void inject(com.f2prateek.dart.Dart$Finder,pl.srw.billcalculator.bill.activity.PgnigBillActivity,java.lang.Object) -> inject
 pl.srw.billcalculator.bill.activity.TauronBillActivity -> pl.srw.billcalculator.bill.activity.TauronBillActivity:
     pl.srw.billcalculator.pojo.ITauronPrices prices -> j
-    34:34:void <init>() -> <init>
-    43:60:void onCreate(android.os.Bundle) -> onCreate
-    64:67:java.lang.String getBillIdentifier() -> a
-    71:74:void setDates() -> c
-    77:78:void setTariff() -> d
-    81:82:void setExcise() -> e
-    85:94:void setTable() -> f
-    97:103:void setG12Rows() -> g
-    106:115:void setG11Rows() -> h
-    118:129:void setRow(int,int,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.math.BigDecimal,java.math.BigDecimal) -> a
-    132:136:void setSummary() -> i
-    139:150:void setSummaryDetails() -> j
-    154:156:java.lang.String getTariff() -> k
+    33:33:void <init>() -> <init>
+    42:65:void onCreate(android.os.Bundle) -> onCreate
+    69:72:java.lang.String getBillIdentifier() -> a
+    76:79:void setDates() -> c
+    82:83:void setTariff() -> d
+    86:87:void setExcise() -> e
+    90:99:void setTable() -> f
+    102:117:void setG12Rows() -> g
+    120:136:void setG11Rows() -> h
+    139:150:void setRow(int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.math.BigDecimal,java.math.BigDecimal) -> a
+    153:157:void setSummary() -> i
+    160:171:void setSummaryDetails() -> j
+    175:177:java.lang.String getTariff() -> k
+    181:185:java.lang.String getDateStringFor(int,java.lang.String) -> a
 pl.srw.billcalculator.bill.activity.TauronBillActivity$$ExtraInjector -> pl.srw.billcalculator.bill.activity.TauronBillActivity$$ExtraInjector:
     6:6:void <init>() -> <init>
     8:15:void inject(com.f2prateek.dart.Dart$Finder,pl.srw.billcalculator.bill.activity.TauronBillActivity,java.lang.Object) -> inject
@@ -21602,17 +21687,17 @@ pl.srw.billcalculator.bill.calculation.CalculatedBill -> pl.srw.billcalculator.b
     java.math.BigDecimal netChargeSum -> c
     java.math.BigDecimal vatChargeSum -> d
     int monthCount -> e
-    19:27:void <init>(boolean,java.lang.String,java.lang.String) -> <init>
-    30:30:java.math.BigDecimal countNetAndAddToSum(java.lang.String,int) -> a
-    34:34:java.math.BigDecimal countNetAndAddToSum(java.lang.String,java.math.BigInteger) -> a
-    38:40:java.math.BigDecimal countNetAndAddToSum(java.lang.String,java.math.BigDecimal) -> a
-    44:49:java.math.BigDecimal countVatAndAddToSum(java.math.BigDecimal) -> a
-    53:53:java.math.BigDecimal getVatChargeSum() -> a
-    57:57:java.math.BigDecimal getGrossChargeSum() -> b
-    61:61:java.math.BigDecimal round(java.math.BigDecimal) -> b
-    19:19:java.math.BigDecimal getNetChargeSum() -> c
-    22:22:int getMonthCount() -> d
-    15:15:void <clinit>() -> <clinit>
+    22:30:void <init>(boolean,java.lang.String,java.lang.String) -> <init>
+    33:33:java.math.BigDecimal countNetAndAddToSum(java.lang.String,int) -> a
+    37:37:java.math.BigDecimal countNetAndAddToSum(java.lang.String,java.math.BigInteger) -> a
+    41:43:java.math.BigDecimal countNetAndAddToSum(java.lang.String,java.math.BigDecimal) -> a
+    47:52:java.math.BigDecimal countVatAndAddToSum(java.math.BigDecimal) -> a
+    56:56:java.math.BigDecimal getVatChargeSum() -> a
+    60:60:java.math.BigDecimal getGrossChargeSum() -> b
+    67:67:java.math.BigDecimal round(java.math.BigDecimal) -> b
+    22:22:java.math.BigDecimal getNetChargeSum() -> c
+    25:25:int getMonthCount() -> d
+    18:18:void <clinit>() -> <clinit>
 pl.srw.billcalculator.bill.calculation.CalculatedEnergyBill -> pl.srw.billcalculator.bill.calculation.CalculatedEnergyBill:
     java.math.BigDecimal EXCISE -> a
     java.math.BigDecimal oplataAbonamentowaNetCharge -> b
@@ -21621,52 +21706,68 @@ pl.srw.billcalculator.bill.calculation.CalculatedEnergyBill -> pl.srw.billcalcul
     java.math.BigDecimal oplataAbonamentowaVatCharge -> e
     java.math.BigDecimal oplataPrzejsciowaVatCharge -> f
     java.math.BigDecimal oplataDystrybucyjnaStalaVatCharge -> g
-    25:34:void <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> <init>
-    37:37:java.math.BigDecimal getExcise() -> e
+    23:32:void <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> <init>
+    35:42:int countConsumptionPartFromJuly16(java.lang.String,java.lang.String,int) -> a
+    46:46:java.math.BigDecimal getExcise() -> e
     int getTotalConsumption() -> f
-    16:16:java.math.BigDecimal getOplataAbonamentowaNetCharge() -> g
-    17:17:java.math.BigDecimal getOplataPrzejsciowaNetCharge() -> h
-    18:18:java.math.BigDecimal getOplataDystrybucyjnaStalaNetCharge() -> i
-    14:14:void <clinit>() -> <clinit>
+    14:14:java.math.BigDecimal getOplataAbonamentowaNetCharge() -> g
+    15:15:java.math.BigDecimal getOplataPrzejsciowaNetCharge() -> h
+    16:16:java.math.BigDecimal getOplataDystrybucyjnaStalaNetCharge() -> i
+    12:12:void <clinit>() -> <clinit>
 pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill -> pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill:
     int consumption -> a
-    java.math.BigDecimal zaEnergieCzynnaNetCharge -> b
-    java.math.BigDecimal skladnikJakosciowyNetCharge -> c
-    java.math.BigDecimal oplataSieciowaNetCharge -> d
-    java.math.BigDecimal zaEnergieCzynnaVatCharge -> e
-    java.math.BigDecimal skladnikJakosciowyVatCharge -> f
-    java.math.BigDecimal oplataSieciowaVatCharge -> g
-    26:36:void <init>(int,int,java.lang.String,java.lang.String,pl.srw.billcalculator.pojo.IPgePrices) -> <init>
-    40:40:int getTotalConsumption() -> f
+    int consumptionFromJuly16 -> b
+    java.math.BigDecimal zaEnergieCzynnaNetCharge -> c
+    java.math.BigDecimal skladnikJakosciowyNetCharge -> d
+    java.math.BigDecimal oplataSieciowaNetCharge -> e
+    java.math.BigDecimal oplataOzeNetCharge -> f
+    java.math.BigDecimal zaEnergieCzynnaVatCharge -> g
+    java.math.BigDecimal skladnikJakosciowyVatCharge -> h
+    java.math.BigDecimal oplataSieciowaVatCharge -> i
+    java.math.BigDecimal oplataOzeVatCharge -> j
+    29:42:void <init>(int,int,java.lang.String,java.lang.String,pl.srw.billcalculator.pojo.IPgePrices) -> <init>
+    46:46:int getTotalConsumption() -> f
     15:15:int getConsumption() -> j
-    17:17:java.math.BigDecimal getZaEnergieCzynnaNetCharge() -> k
-    18:18:java.math.BigDecimal getSkladnikJakosciowyNetCharge() -> l
-    19:19:java.math.BigDecimal getOplataSieciowaNetCharge() -> m
+    16:16:int getConsumptionFromJuly16() -> k
+    18:18:java.math.BigDecimal getZaEnergieCzynnaNetCharge() -> l
+    19:19:java.math.BigDecimal getSkladnikJakosciowyNetCharge() -> m
+    20:20:java.math.BigDecimal getOplataSieciowaNetCharge() -> n
+    21:21:java.math.BigDecimal getOplataOzeNetCharge() -> o
 pl.srw.billcalculator.bill.calculation.PgeG12CalculatedBill -> pl.srw.billcalculator.bill.calculation.PgeG12CalculatedBill:
     int dayConsumption -> a
     int nightConsumption -> b
-    java.math.BigDecimal zaEnergieCzynnaDayNetCharge -> c
-    java.math.BigDecimal skladnikJakosciowyDayNetCharge -> d
-    java.math.BigDecimal oplataSieciowaDayNetCharge -> e
-    java.math.BigDecimal zaEnergieCzynnaNightNetCharge -> f
-    java.math.BigDecimal skladnikJakosciowyNightNetCharge -> g
-    java.math.BigDecimal oplataSieciowaNightNetCharge -> h
-    java.math.BigDecimal zaEnergieCzynnaDayVatCharge -> i
-    java.math.BigDecimal skladnikJakosciowyDayVatCharge -> j
-    java.math.BigDecimal oplataSieciowaDayVatCharge -> k
-    java.math.BigDecimal zaEnergieCzynnaNightVatCharge -> l
-    java.math.BigDecimal skladnikJakosciowyNightVatCharge -> m
-    java.math.BigDecimal oplataSieciowaNightVatCharge -> n
-    36:53:void <init>(int,int,int,int,java.lang.String,java.lang.String,pl.srw.billcalculator.pojo.IPgePrices) -> <init>
-    57:57:int getTotalConsumption() -> f
+    int dayConsumptionFromJuly16 -> c
+    int nightConsumptionFromJuly16 -> d
+    java.math.BigDecimal zaEnergieCzynnaDayNetCharge -> e
+    java.math.BigDecimal skladnikJakosciowyDayNetCharge -> f
+    java.math.BigDecimal oplataSieciowaDayNetCharge -> g
+    java.math.BigDecimal zaEnergieCzynnaNightNetCharge -> h
+    java.math.BigDecimal skladnikJakosciowyNightNetCharge -> i
+    java.math.BigDecimal oplataSieciowaNightNetCharge -> j
+    java.math.BigDecimal oplataOzeDayNetCharge -> k
+    java.math.BigDecimal oplataOzeNightNetCharge -> l
+    java.math.BigDecimal zaEnergieCzynnaDayVatCharge -> m
+    java.math.BigDecimal skladnikJakosciowyDayVatCharge -> n
+    java.math.BigDecimal oplataSieciowaDayVatCharge -> o
+    java.math.BigDecimal zaEnergieCzynnaNightVatCharge -> p
+    java.math.BigDecimal skladnikJakosciowyNightVatCharge -> q
+    java.math.BigDecimal oplataSieciowaNightVatCharge -> r
+    java.math.BigDecimal oplataOzeDayVatCharge -> s
+    java.math.BigDecimal oplataOzeNightVatCharge -> t
+    41:64:void <init>(int,int,int,int,java.lang.String,java.lang.String,pl.srw.billcalculator.pojo.IPgePrices) -> <init>
+    68:68:int getTotalConsumption() -> f
     15:15:int getDayConsumption() -> j
     16:16:int getNightConsumption() -> k
-    18:18:java.math.BigDecimal getZaEnergieCzynnaDayNetCharge() -> l
-    19:19:java.math.BigDecimal getSkladnikJakosciowyDayNetCharge() -> m
-    20:20:java.math.BigDecimal getOplataSieciowaDayNetCharge() -> n
-    21:21:java.math.BigDecimal getZaEnergieCzynnaNightNetCharge() -> o
-    22:22:java.math.BigDecimal getSkladnikJakosciowyNightNetCharge() -> p
-    23:23:java.math.BigDecimal getOplataSieciowaNightNetCharge() -> q
+    17:17:int getDayConsumptionFromJuly16() -> l
+    18:18:int getNightConsumptionFromJuly16() -> m
+    20:20:java.math.BigDecimal getZaEnergieCzynnaDayNetCharge() -> n
+    21:21:java.math.BigDecimal getSkladnikJakosciowyDayNetCharge() -> o
+    22:22:java.math.BigDecimal getOplataSieciowaDayNetCharge() -> p
+    23:23:java.math.BigDecimal getZaEnergieCzynnaNightNetCharge() -> q
+    24:24:java.math.BigDecimal getSkladnikJakosciowyNightNetCharge() -> r
+    25:25:java.math.BigDecimal getOplataSieciowaNightNetCharge() -> s
+    26:26:java.math.BigDecimal getOplataOzeDayNetCharge() -> t
+    27:27:java.math.BigDecimal getOplataOzeNightNetCharge() -> u
 pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill -> pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill:
     int consumptionM3 -> a
     java.math.BigInteger consumptionKWh -> b
@@ -21697,38 +21798,53 @@ pl.srw.billcalculator.bill.calculation.TauronCalculatedBill -> pl.srw.billcalcul
     31:31:java.math.BigDecimal getDistributeGrossCharge() -> o
 pl.srw.billcalculator.bill.calculation.TauronG11CalculatedBill -> pl.srw.billcalculator.bill.calculation.TauronG11CalculatedBill:
     int consumption -> a
-    java.math.BigDecimal energiaElektrycznaNetCharge -> b
-    java.math.BigDecimal oplataDystrybucyjnaZmiennaNetCharge -> c
-    java.math.BigDecimal energiaElektrycznaVatCharge -> d
-    java.math.BigDecimal oplataDystrybucyjnaZmiennaVatCharge -> e
-    24:32:void <init>(int,int,java.lang.String,java.lang.String,pl.srw.billcalculator.pojo.ITauronPrices) -> <init>
-    36:36:int getTotalConsumption() -> f
-    41:41:java.math.BigDecimal getSellNetCharge() -> j
-    46:46:java.math.BigDecimal getSellVatCharge() -> k
-    15:15:int getConsumption() -> p
-    17:17:java.math.BigDecimal getEnergiaElektrycznaNetCharge() -> q
-    18:18:java.math.BigDecimal getOplataDystrybucyjnaZmiennaNetCharge() -> r
+    int consumptionFromJuly16 -> b
+    java.math.BigDecimal energiaElektrycznaNetCharge -> c
+    java.math.BigDecimal oplataDystrybucyjnaZmiennaNetCharge -> d
+    java.math.BigDecimal oplataOzeNetCharge -> e
+    java.math.BigDecimal energiaElektrycznaVatCharge -> f
+    java.math.BigDecimal oplataDystrybucyjnaZmiennaVatCharge -> g
+    java.math.BigDecimal oplataOzeVatCharge -> h
+    24:35:void <init>(int,int,java.lang.String,java.lang.String,pl.srw.billcalculator.pojo.ITauronPrices) -> <init>
+    39:39:int getTotalConsumption() -> f
+    44:44:java.math.BigDecimal getSellNetCharge() -> j
+    49:49:java.math.BigDecimal getSellVatCharge() -> k
+    12:12:int getConsumption() -> p
+    13:13:int getConsumptionFromJuly16() -> q
+    15:15:java.math.BigDecimal getEnergiaElektrycznaNetCharge() -> r
+    16:16:java.math.BigDecimal getOplataDystrybucyjnaZmiennaNetCharge() -> s
+    17:17:java.math.BigDecimal getOplataOzeNetCharge() -> t
 pl.srw.billcalculator.bill.calculation.TauronG12CalculatedBill -> pl.srw.billcalculator.bill.calculation.TauronG12CalculatedBill:
     int dayConsumption -> a
     int nightConsumption -> b
-    java.math.BigDecimal energiaElektrycznaDayNetCharge -> c
-    java.math.BigDecimal oplataDystrybucyjnaZmiennaDayNetCharge -> d
-    java.math.BigDecimal energiaElektrycznaNightNetCharge -> e
-    java.math.BigDecimal oplataDystrybucyjnaZmiennaNightNetCharge -> f
-    java.math.BigDecimal energiaElektrycznaDayVatCharge -> g
-    java.math.BigDecimal oplataDystrybucyjnaZmiennaDayVatCharge -> h
-    java.math.BigDecimal energiaElektrycznaNightVatCharge -> i
-    java.math.BigDecimal oplataDystrybucyjnaZmiennaNightVatCharge -> j
-    31:44:void <init>(int,int,int,int,java.lang.String,java.lang.String,pl.srw.billcalculator.pojo.ITauronPrices) -> <init>
-    48:48:int getTotalConsumption() -> f
-    53:53:java.math.BigDecimal getSellNetCharge() -> j
-    58:58:java.math.BigDecimal getSellVatCharge() -> k
-    15:15:int getDayConsumption() -> p
-    16:16:int getNightConsumption() -> q
-    18:18:java.math.BigDecimal getEnergiaElektrycznaDayNetCharge() -> r
-    19:19:java.math.BigDecimal getOplataDystrybucyjnaZmiennaDayNetCharge() -> s
-    20:20:java.math.BigDecimal getEnergiaElektrycznaNightNetCharge() -> t
-    21:21:java.math.BigDecimal getOplataDystrybucyjnaZmiennaNightNetCharge() -> u
+    int dayConsumptionFromJuly16 -> c
+    int nightConsumptionFromJuly16 -> d
+    java.math.BigDecimal energiaElektrycznaDayNetCharge -> e
+    java.math.BigDecimal oplataDystrybucyjnaZmiennaDayNetCharge -> f
+    java.math.BigDecimal energiaElektrycznaNightNetCharge -> g
+    java.math.BigDecimal oplataDystrybucyjnaZmiennaNightNetCharge -> h
+    java.math.BigDecimal oplataOzeDayNetCharge -> i
+    java.math.BigDecimal oplataOzeNightNetCharge -> j
+    java.math.BigDecimal energiaElektrycznaDayVatCharge -> k
+    java.math.BigDecimal oplataDystrybucyjnaZmiennaDayVatCharge -> l
+    java.math.BigDecimal energiaElektrycznaNightVatCharge -> m
+    java.math.BigDecimal oplataDystrybucyjnaZmiennaNightVatCharge -> n
+    java.math.BigDecimal oplataOzeDayVatCharge -> o
+    java.math.BigDecimal oplataOzeNightVatCharge -> p
+    34:53:void <init>(int,int,int,int,java.lang.String,java.lang.String,pl.srw.billcalculator.pojo.ITauronPrices) -> <init>
+    57:57:int getTotalConsumption() -> f
+    62:62:java.math.BigDecimal getSellNetCharge() -> j
+    67:67:java.math.BigDecimal getSellVatCharge() -> k
+    12:12:int getDayConsumption() -> p
+    13:13:int getNightConsumption() -> q
+    14:14:int getDayConsumptionFromJuly16() -> r
+    15:15:int getNightConsumptionFromJuly16() -> s
+    17:17:java.math.BigDecimal getEnergiaElektrycznaDayNetCharge() -> t
+    18:18:java.math.BigDecimal getOplataDystrybucyjnaZmiennaDayNetCharge() -> u
+    19:19:java.math.BigDecimal getEnergiaElektrycznaNightNetCharge() -> v
+    20:20:java.math.BigDecimal getOplataDystrybucyjnaZmiennaNightNetCharge() -> w
+    21:21:java.math.BigDecimal getOplataOzeDayNetCharge() -> x
+    22:22:java.math.BigDecimal getOplataOzeNightNetCharge() -> y
 pl.srw.billcalculator.bill.service.BillStoringService -> pl.srw.billcalculator.bill.service.BillStoringService:
     java.lang.String dateFrom -> a
     java.lang.String dateTo -> b
@@ -21860,30 +21976,33 @@ pl.srw.billcalculator.db.PgePrices -> pl.srw.billcalculator.db.PgePrices:
     java.lang.String zaEnergieCzynnaNoc -> i
     java.lang.String oplataSieciowaDzien -> j
     java.lang.String oplataSieciowaNoc -> k
-    21:22:void <init>() -> <init>
-    28:40:void <init>(java.lang.Long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> <init>
-    43:43:java.lang.Long getId() -> a
-    47:48:void setId(java.lang.Long) -> a
-    51:51:java.lang.String getZaEnergieCzynna() -> b
-    55:56:void setZaEnergieCzynna(java.lang.String) -> a
-    59:59:java.lang.String getSkladnikJakosciowy() -> c
-    63:64:void setSkladnikJakosciowy(java.lang.String) -> b
-    67:67:java.lang.String getOplataSieciowa() -> d
-    71:72:void setOplataSieciowa(java.lang.String) -> c
-    75:75:java.lang.String getOplataPrzejsciowa() -> e
-    79:80:void setOplataPrzejsciowa(java.lang.String) -> d
-    83:83:java.lang.String getOplataStalaZaPrzesyl() -> f
-    87:88:void setOplataStalaZaPrzesyl(java.lang.String) -> e
-    91:91:java.lang.String getOplataAbonamentowa() -> g
-    95:96:void setOplataAbonamentowa(java.lang.String) -> f
-    99:99:java.lang.String getZaEnergieCzynnaDzien() -> h
-    103:104:void setZaEnergieCzynnaDzien(java.lang.String) -> g
-    107:107:java.lang.String getZaEnergieCzynnaNoc() -> i
-    111:112:void setZaEnergieCzynnaNoc(java.lang.String) -> h
-    115:115:java.lang.String getOplataSieciowaDzien() -> j
-    119:120:void setOplataSieciowaDzien(java.lang.String) -> i
-    123:123:java.lang.String getOplataSieciowaNoc() -> k
-    127:128:void setOplataSieciowaNoc(java.lang.String) -> j
+    java.lang.String oplataOze -> l
+    22:23:void <init>() -> <init>
+    29:42:void <init>(java.lang.Long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> <init>
+    45:45:java.lang.Long getId() -> a
+    49:50:void setId(java.lang.Long) -> a
+    53:53:java.lang.String getZaEnergieCzynna() -> b
+    57:58:void setZaEnergieCzynna(java.lang.String) -> a
+    61:61:java.lang.String getSkladnikJakosciowy() -> c
+    65:66:void setSkladnikJakosciowy(java.lang.String) -> b
+    69:69:java.lang.String getOplataSieciowa() -> d
+    73:74:void setOplataSieciowa(java.lang.String) -> c
+    77:77:java.lang.String getOplataPrzejsciowa() -> e
+    81:82:void setOplataPrzejsciowa(java.lang.String) -> d
+    85:85:java.lang.String getOplataStalaZaPrzesyl() -> f
+    89:90:void setOplataStalaZaPrzesyl(java.lang.String) -> e
+    93:93:java.lang.String getOplataAbonamentowa() -> g
+    97:98:void setOplataAbonamentowa(java.lang.String) -> f
+    101:101:java.lang.String getZaEnergieCzynnaDzien() -> h
+    105:106:void setZaEnergieCzynnaDzien(java.lang.String) -> g
+    109:109:java.lang.String getZaEnergieCzynnaNoc() -> i
+    113:114:void setZaEnergieCzynnaNoc(java.lang.String) -> h
+    117:117:java.lang.String getOplataSieciowaDzien() -> j
+    121:122:void setOplataSieciowaDzien(java.lang.String) -> i
+    125:125:java.lang.String getOplataSieciowaNoc() -> k
+    129:130:void setOplataSieciowaNoc(java.lang.String) -> j
+    133:133:java.lang.String getOplataOze() -> l
+    137:138:void setOplataOze(java.lang.String) -> k
 pl.srw.billcalculator.db.PgnigBill -> pl.srw.billcalculator.db.PgnigBill:
     java.lang.Long id -> a
     java.lang.Integer readingFrom -> b
@@ -21996,28 +22115,31 @@ pl.srw.billcalculator.db.TauronPrices -> pl.srw.billcalculator.db.TauronPrices:
     java.lang.String energiaElektrycznaCzynnaNoc -> h
     java.lang.String oplataDystrybucyjnaZmiennaDzien -> i
     java.lang.String oplataDystrybucyjnaZmiennaNoc -> j
-    20:21:void <init>() -> <init>
-    27:38:void <init>(java.lang.Long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> <init>
-    41:41:java.lang.Long getId() -> a
-    45:46:void setId(java.lang.Long) -> a
-    49:49:java.lang.String getEnergiaElektrycznaCzynna() -> b
-    53:54:void setEnergiaElektrycznaCzynna(java.lang.String) -> a
-    57:57:java.lang.String getOplataDystrybucyjnaZmienna() -> c
-    61:62:void setOplataDystrybucyjnaZmienna(java.lang.String) -> b
-    65:65:java.lang.String getOplataDystrybucyjnaStala() -> d
-    69:70:void setOplataDystrybucyjnaStala(java.lang.String) -> c
-    73:73:java.lang.String getOplataPrzejsciowa() -> e
-    77:78:void setOplataPrzejsciowa(java.lang.String) -> d
-    81:81:java.lang.String getOplataAbonamentowa() -> f
-    85:86:void setOplataAbonamentowa(java.lang.String) -> e
-    89:89:java.lang.String getEnergiaElektrycznaCzynnaDzien() -> g
-    93:94:void setEnergiaElektrycznaCzynnaDzien(java.lang.String) -> f
-    97:97:java.lang.String getEnergiaElektrycznaCzynnaNoc() -> h
-    101:102:void setEnergiaElektrycznaCzynnaNoc(java.lang.String) -> g
-    105:105:java.lang.String getOplataDystrybucyjnaZmiennaDzien() -> i
-    109:110:void setOplataDystrybucyjnaZmiennaDzien(java.lang.String) -> h
-    113:113:java.lang.String getOplataDystrybucyjnaZmiennaNoc() -> j
-    117:118:void setOplataDystrybucyjnaZmiennaNoc(java.lang.String) -> i
+    java.lang.String oplataOze -> k
+    21:22:void <init>() -> <init>
+    28:40:void <init>(java.lang.Long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> <init>
+    43:43:java.lang.Long getId() -> a
+    47:48:void setId(java.lang.Long) -> a
+    51:51:java.lang.String getEnergiaElektrycznaCzynna() -> b
+    55:56:void setEnergiaElektrycznaCzynna(java.lang.String) -> a
+    59:59:java.lang.String getOplataDystrybucyjnaZmienna() -> c
+    63:64:void setOplataDystrybucyjnaZmienna(java.lang.String) -> b
+    67:67:java.lang.String getOplataDystrybucyjnaStala() -> d
+    71:72:void setOplataDystrybucyjnaStala(java.lang.String) -> c
+    75:75:java.lang.String getOplataPrzejsciowa() -> e
+    79:80:void setOplataPrzejsciowa(java.lang.String) -> d
+    83:83:java.lang.String getOplataAbonamentowa() -> f
+    87:88:void setOplataAbonamentowa(java.lang.String) -> e
+    91:91:java.lang.String getEnergiaElektrycznaCzynnaDzien() -> g
+    95:96:void setEnergiaElektrycznaCzynnaDzien(java.lang.String) -> f
+    99:99:java.lang.String getEnergiaElektrycznaCzynnaNoc() -> h
+    103:104:void setEnergiaElektrycznaCzynnaNoc(java.lang.String) -> g
+    107:107:java.lang.String getOplataDystrybucyjnaZmiennaDzien() -> i
+    111:112:void setOplataDystrybucyjnaZmiennaDzien(java.lang.String) -> h
+    115:115:java.lang.String getOplataDystrybucyjnaZmiennaNoc() -> j
+    119:120:void setOplataDystrybucyjnaZmiennaNoc(java.lang.String) -> i
+    123:123:java.lang.String getOplataOze() -> k
+    127:128:void setOplataOze(java.lang.String) -> j
 pl.srw.billcalculator.db.dao.DaoMaster -> pl.srw.billcalculator.db.dao.DaoMaster:
     31:40:void createAllTables(android.database.sqlite.SQLiteDatabase,boolean) -> a
     44:53:void dropAllTables(android.database.sqlite.SQLiteDatabase,boolean) -> b
@@ -22134,13 +22256,13 @@ pl.srw.billcalculator.db.dao.PgeG12BillDao$Properties -> pl.srw.billcalculator.d
     32:40:void <clinit>() -> <clinit>
 pl.srw.billcalculator.db.dao.PgePricesDao -> pl.srw.billcalculator.db.dao.PgePricesDao:
     java.lang.String TABLENAME -> TABLENAME
-    46:47:void <init>(de.greenrobot.dao.internal.DaoConfig,pl.srw.billcalculator.db.dao.DaoSession) -> <init>
-    51:64:void createTable(android.database.sqlite.SQLiteDatabase,boolean) -> a
-    68:70:void dropTable(android.database.sqlite.SQLiteDatabase,boolean) -> b
-    75:131:void bindValues(android.database.sqlite.SQLiteStatement,pl.srw.billcalculator.db.PgePrices) -> a
-    136:136:java.lang.Long readKey(android.database.Cursor,int) -> c
-    142:155:pl.srw.billcalculator.db.PgePrices readEntity(android.database.Cursor,int) -> d
-    177:178:java.lang.Long updateKeyAfterInsert(pl.srw.billcalculator.db.PgePrices,long) -> a
+    47:48:void <init>(de.greenrobot.dao.internal.DaoConfig,pl.srw.billcalculator.db.dao.DaoSession) -> <init>
+    52:66:void createTable(android.database.sqlite.SQLiteDatabase,boolean) -> a
+    70:72:void dropTable(android.database.sqlite.SQLiteDatabase,boolean) -> b
+    77:138:void bindValues(android.database.sqlite.SQLiteStatement,pl.srw.billcalculator.db.PgePrices) -> a
+    143:143:java.lang.Long readKey(android.database.Cursor,int) -> c
+    149:163:pl.srw.billcalculator.db.PgePrices readEntity(android.database.Cursor,int) -> d
+    186:187:java.lang.Long updateKeyAfterInsert(pl.srw.billcalculator.db.PgePrices,long) -> a
     17:17:java.lang.Object updateKeyAfterInsert(java.lang.Object,long) -> a
     17:17:void bindValues(android.database.sqlite.SQLiteStatement,java.lang.Object) -> a
     17:17:java.lang.Object readKey(android.database.Cursor,int) -> b
@@ -22157,8 +22279,9 @@ pl.srw.billcalculator.db.dao.PgePricesDao$Properties -> pl.srw.billcalculator.db
     de.greenrobot.dao.Property ZaEnergieCzynnaNoc -> i
     de.greenrobot.dao.Property OplataSieciowaDzien -> j
     de.greenrobot.dao.Property OplataSieciowaNoc -> k
+    de.greenrobot.dao.Property OplataOze -> l
     26:26:void <init>() -> <init>
-    27:37:void <clinit>() -> <clinit>
+    27:38:void <clinit>() -> <clinit>
 pl.srw.billcalculator.db.dao.PgnigBillDao -> pl.srw.billcalculator.db.dao.PgnigBillDao:
     java.lang.String TABLENAME -> TABLENAME
     pl.srw.billcalculator.db.dao.DaoSession daoSession -> h
@@ -22263,13 +22386,13 @@ pl.srw.billcalculator.db.dao.TauronG12BillDao$Properties -> pl.srw.billcalculato
     32:40:void <clinit>() -> <clinit>
 pl.srw.billcalculator.db.dao.TauronPricesDao -> pl.srw.billcalculator.db.dao.TauronPricesDao:
     java.lang.String TABLENAME -> TABLENAME
-    45:46:void <init>(de.greenrobot.dao.internal.DaoConfig,pl.srw.billcalculator.db.dao.DaoSession) -> <init>
-    50:62:void createTable(android.database.sqlite.SQLiteDatabase,boolean) -> a
-    66:68:void dropTable(android.database.sqlite.SQLiteDatabase,boolean) -> b
-    73:124:void bindValues(android.database.sqlite.SQLiteStatement,pl.srw.billcalculator.db.TauronPrices) -> a
-    129:129:java.lang.Long readKey(android.database.Cursor,int) -> c
-    135:147:pl.srw.billcalculator.db.TauronPrices readEntity(android.database.Cursor,int) -> d
-    168:169:java.lang.Long updateKeyAfterInsert(pl.srw.billcalculator.db.TauronPrices,long) -> a
+    46:47:void <init>(de.greenrobot.dao.internal.DaoConfig,pl.srw.billcalculator.db.dao.DaoSession) -> <init>
+    51:64:void createTable(android.database.sqlite.SQLiteDatabase,boolean) -> a
+    68:70:void dropTable(android.database.sqlite.SQLiteDatabase,boolean) -> b
+    75:131:void bindValues(android.database.sqlite.SQLiteStatement,pl.srw.billcalculator.db.TauronPrices) -> a
+    136:136:java.lang.Long readKey(android.database.Cursor,int) -> c
+    142:155:pl.srw.billcalculator.db.TauronPrices readEntity(android.database.Cursor,int) -> d
+    177:178:java.lang.Long updateKeyAfterInsert(pl.srw.billcalculator.db.TauronPrices,long) -> a
     17:17:java.lang.Object updateKeyAfterInsert(java.lang.Object,long) -> a
     17:17:void bindValues(android.database.sqlite.SQLiteStatement,java.lang.Object) -> a
     17:17:java.lang.Object readKey(android.database.Cursor,int) -> b
@@ -22285,8 +22408,17 @@ pl.srw.billcalculator.db.dao.TauronPricesDao$Properties -> pl.srw.billcalculator
     de.greenrobot.dao.Property EnergiaElektrycznaCzynnaNoc -> h
     de.greenrobot.dao.Property OplataDystrybucyjnaZmiennaDzien -> i
     de.greenrobot.dao.Property OplataDystrybucyjnaZmiennaNoc -> j
+    de.greenrobot.dao.Property OplataOze -> k
     26:26:void <init>() -> <init>
-    27:36:void <clinit>() -> <clinit>
+    27:37:void <clinit>() -> <clinit>
+pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment -> pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment:
+    13:13:void <init>() -> <init>
+    17:22:android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
+    26:26:android.content.DialogInterface$OnClickListener onPositiveButton() -> a
+pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment$1 -> pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment$1:
+    pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment this$0 -> a
+    26:26:void <init>(pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment) -> <init>
+    31:31:void onClick(android.content.DialogInterface,int) -> onClick
 pl.srw.billcalculator.dialog.CheckPricesDialogFragment -> pl.srw.billcalculator.dialog.CheckPricesDialogFragment:
     22:22:void <init>() -> <init>
     26:33:android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
@@ -22318,7 +22450,7 @@ pl.srw.billcalculator.dialog.ConfirmRestoreSettingsDialogFragment$1 -> pl.srw.bi
 pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment -> pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment:
     24:29:pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment newInstance(java.lang.String[],int) -> a
     32:33:void <init>() -> <init>
-    37:45:android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
+    37:50:android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
     55:55:android.content.DialogInterface$OnClickListener onAccepted() -> a
     70:71:boolean canSystemDialogStillShowUp() -> b
     75:80:void goToSettings() -> c
@@ -22694,26 +22826,24 @@ pl.srw.billcalculator.history.list.HistoryAdapter -> pl.srw.billcalculator.histo
     22:22:void onBindViewHolder(android.support.v7.widget.RecyclerView$ViewHolder,int) -> a
     22:22:android.support.v7.widget.RecyclerView$ViewHolder onCreateViewHolder(android.view.ViewGroup,int) -> a
 pl.srw.billcalculator.history.list.SelectedBill -> pl.srw.billcalculator.history.list.SelectedBill:
-    android.os.Parcelable$Creator CREATOR -> CREATOR
     pl.srw.billcalculator.persistence.type.BillType type -> a
     java.lang.Long billId -> b
     java.lang.Long pricesId -> c
-    17:21:void <init>(pl.srw.billcalculator.db.Bill) -> <init>
-    24:24:pl.srw.billcalculator.persistence.type.BillType getType() -> a
-    28:28:java.lang.Long getBillId() -> b
-    32:32:java.lang.Long getPricesId() -> c
-    int describeContents() -> describeContents
-    void writeToParcel(android.os.Parcel,int) -> writeToParcel
-    void <init>(android.os.Parcel) -> <init>
-    void <clinit>() -> <clinit>
+    android.os.Parcelable$Creator CREATOR -> CREATOR
+    18:22:void <init>(pl.srw.billcalculator.db.Bill) -> <init>
+    25:25:pl.srw.billcalculator.persistence.type.BillType getType() -> a
+    29:29:java.lang.Long getBillId() -> b
+    33:33:java.lang.Long getPricesId() -> c
+    36:41:void <init>(android.os.Parcel) -> <init>
+    45:48:void writeToParcel(android.os.Parcel,int) -> writeToParcel
+    52:52:int describeContents() -> describeContents
+    55:55:void <clinit>() -> <clinit>
 pl.srw.billcalculator.history.list.SelectedBill$1 -> pl.srw.billcalculator.history.list.SelectedBill$1:
-pl.srw.billcalculator.history.list.SelectedBill$CreatorImpl -> pl.srw.billcalculator.history.list.SelectedBill$CreatorImpl:
-    void <init>() -> <init>
-    pl.srw.billcalculator.history.list.SelectedBill createFromParcel(android.os.Parcel) -> a
-    pl.srw.billcalculator.history.list.SelectedBill[] newArray(int) -> a
-    java.lang.Object[] newArray(int) -> newArray
-    java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
-    void <init>(pl.srw.billcalculator.history.list.SelectedBill$1) -> <init>
+    55:55:void <init>() -> <init>
+    58:58:pl.srw.billcalculator.history.list.SelectedBill createFromParcel(android.os.Parcel) -> a
+    63:63:pl.srw.billcalculator.history.list.SelectedBill[] newArray(int) -> a
+    55:55:java.lang.Object[] newArray(int) -> newArray
+    55:55:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
 pl.srw.billcalculator.history.list.item.HistoryItemViewHolder -> pl.srw.billcalculator.history.list.item.HistoryItemViewHolder:
     android.widget.ImageView imgLogo -> l
     android.widget.TextView tvForPeriod -> m
@@ -22772,7 +22902,7 @@ pl.srw.billcalculator.history.list.provider.HistoryItemValueProvider -> pl.srw.b
     pl.srw.billcalculator.db.Bill getBill() -> a
     int getLogoId() -> b
     java.lang.String getReadings() -> c
-    50:50:java.lang.String getDatePeriod() -> d
+    50:52:java.lang.String getDatePeriod() -> d
     56:57:java.lang.String getAmount() -> e
     android.content.Intent getIntent() -> f
     63:64:java.lang.String getAmount(java.lang.Double) -> a
@@ -22792,7 +22922,7 @@ pl.srw.billcalculator.history.list.provider.PgeG12BillHistoryItemValueProvider -
     26:30:void <init>(pl.srw.billcalculator.db.History) -> <init>
     34:34:pl.srw.billcalculator.db.Bill getBill() -> a
     39:39:int getLogoId() -> b
-    44:44:java.lang.String getReadings() -> c
+    44:46:java.lang.String getReadings() -> c
     51:51:android.content.Intent getIntent() -> f
     21:21:java.lang.String toString() -> toString
 pl.srw.billcalculator.history.list.provider.PgnigBillHistoryItemValueProvider -> pl.srw.billcalculator.history.list.provider.PgnigBillHistoryItemValueProvider:
@@ -22817,7 +22947,7 @@ pl.srw.billcalculator.history.list.provider.TauronG12BillHistoryItemValueProvide
     26:30:void <init>(pl.srw.billcalculator.db.History) -> <init>
     34:34:pl.srw.billcalculator.db.Bill getBill() -> a
     39:39:int getLogoId() -> b
-    44:44:java.lang.String getReadings() -> c
+    44:46:java.lang.String getReadings() -> c
     51:51:android.content.Intent getIntent() -> f
     21:21:java.lang.String toString() -> toString
 pl.srw.billcalculator.intent.BillActivityIntentFactory -> pl.srw.billcalculator.intent.BillActivityIntentFactory:
@@ -22833,9 +22963,9 @@ pl.srw.billcalculator.intent.BillStoringServiceIntentFactory$1 -> pl.srw.billcal
 pl.srw.billcalculator.intent.IntentCreator -> pl.srw.billcalculator.intent.IntentCreator:
     android.content.Intent intent -> a
     34:36:void <init>(android.content.Context,java.lang.Class) -> <init>
-    40:40:android.content.Intent from(android.widget.EditText,android.widget.EditText,android.widget.Button,pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton) -> a
+    40:41:android.content.Intent from(android.widget.EditText,android.widget.EditText,android.widget.Button,pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton) -> a
     45:47:android.content.Intent from(int,int,java.lang.String,java.lang.String) -> a
-    53:53:android.content.Intent from(android.widget.EditText,android.widget.EditText,android.widget.EditText,android.widget.EditText,android.widget.Button,pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton) -> a
+    53:55:android.content.Intent from(android.widget.EditText,android.widget.EditText,android.widget.EditText,android.widget.EditText,android.widget.Button,pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton) -> a
     59:61:android.content.Intent from(int,int,int,int,java.lang.String,java.lang.String) -> a
     65:68:android.content.Intent from(pl.srw.billcalculator.db.PgeG11Bill) -> a
     72:75:android.content.Intent from(pl.srw.billcalculator.db.PgeG12Bill) -> a
@@ -22850,8 +22980,10 @@ pl.srw.billcalculator.intent.IntentCreator -> pl.srw.billcalculator.intent.Inten
     127:127:java.lang.String getStringText(android.widget.TextView) -> b
     131:131:java.lang.String getStringText(pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton) -> a
 pl.srw.billcalculator.persistence.DBMigration -> pl.srw.billcalculator.persistence.DBMigration:
-    19:24:void migrate(android.database.sqlite.SQLiteDatabase,int,int) -> a
-    27:30:void migrate_1_2(android.database.sqlite.SQLiteDatabase) -> a
+    19:28:void migrate(android.database.sqlite.SQLiteDatabase,int,int) -> a
+    31:37:void migrate_1_3(android.database.sqlite.SQLiteDatabase) -> a
+    40:42:void migrate_2_3(android.database.sqlite.SQLiteDatabase) -> b
+    45:46:void addOplataOzeColumnTo(android.database.sqlite.SQLiteDatabase,java.lang.String) -> a
 pl.srw.billcalculator.persistence.Database -> pl.srw.billcalculator.persistence.Database:
     android.database.sqlite.SQLiteDatabase database -> a
     pl.srw.billcalculator.db.dao.DaoSession daoSession -> b
@@ -22859,36 +22991,36 @@ pl.srw.billcalculator.persistence.Database -> pl.srw.billcalculator.persistence.
     36:51:android.database.sqlite.SQLiteDatabase getDatabase(android.content.Context) -> b
     55:55:pl.srw.billcalculator.db.dao.DaoSession getSession() -> a
     59:67:int[] queryCurrentReadings(pl.srw.billcalculator.persistence.type.CurrentReadingType) -> a
-    71:71:de.greenrobot.dao.query.LazyList getHistory() -> b
+    71:72:de.greenrobot.dao.query.LazyList getHistory() -> b
     76:78:void deleteBillWithPrices(pl.srw.billcalculator.persistence.type.BillType,java.lang.Long,java.lang.Long) -> a
 pl.srw.billcalculator.persistence.Database$1 -> pl.srw.billcalculator.persistence.Database$1:
     37:37:void <init>(android.content.Context,java.lang.String,android.database.sqlite.SQLiteDatabase$CursorFactory) -> <init>
     41:43:void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
     47:49:void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
-pl.srw.billcalculator.persistence.SqlBuilder -> pl.srw.billcalculator.persistence.SqlBuilder:
+pl.srw.billcalculator.persistence.SqlTriggerBuilder -> pl.srw.billcalculator.persistence.SqlTriggerBuilder:
     java.lang.StringBuilder sql -> a
-    12:14:void <init>(java.lang.StringBuilder) -> <init>
-    17:18:pl.srw.billcalculator.persistence.SqlBuilder createTrigger(java.lang.String) -> a
-    22:23:pl.srw.billcalculator.persistence.SqlBuilder after(java.lang.String) -> b
-    27:28:pl.srw.billcalculator.persistence.SqlBuilder on(java.lang.String) -> c
-    32:32:java.lang.String execute(java.lang.String) -> d
-    36:37:pl.srw.billcalculator.persistence.SqlBuilder insertInto(java.lang.String) -> e
-    41:48:pl.srw.billcalculator.persistence.SqlBuilder cols(de.greenrobot.dao.Property[]) -> a
-    52:59:java.lang.String vals(java.lang.String[]) -> a
-    63:64:pl.srw.billcalculator.persistence.SqlBuilder deleteFrom(java.lang.String) -> f
-    68:69:pl.srw.billcalculator.persistence.SqlBuilder whereEq(de.greenrobot.dao.Property,java.lang.String) -> a
-    73:74:java.lang.String andEq(de.greenrobot.dao.Property,java.lang.String) -> b
-    78:78:java.lang.String getNew(de.greenrobot.dao.Property) -> a
-    82:82:java.lang.String getOld(de.greenrobot.dao.Property) -> b
+    9:11:void <init>(java.lang.StringBuilder) -> <init>
+    14:15:pl.srw.billcalculator.persistence.SqlTriggerBuilder createTrigger(java.lang.String) -> a
+    19:20:pl.srw.billcalculator.persistence.SqlTriggerBuilder after(java.lang.String) -> b
+    24:25:pl.srw.billcalculator.persistence.SqlTriggerBuilder on(java.lang.String) -> c
+    29:29:java.lang.String execute(java.lang.String) -> d
+    33:34:pl.srw.billcalculator.persistence.SqlTriggerBuilder insertInto(java.lang.String) -> e
+    38:45:pl.srw.billcalculator.persistence.SqlTriggerBuilder cols(de.greenrobot.dao.Property[]) -> a
+    49:56:java.lang.String vals(java.lang.String[]) -> a
+    60:61:pl.srw.billcalculator.persistence.SqlTriggerBuilder deleteFrom(java.lang.String) -> f
+    65:66:pl.srw.billcalculator.persistence.SqlTriggerBuilder whereEq(de.greenrobot.dao.Property,java.lang.String) -> a
+    70:71:java.lang.String andEq(de.greenrobot.dao.Property,java.lang.String) -> b
+    75:75:java.lang.String getNew(de.greenrobot.dao.Property) -> a
+    79:79:java.lang.String getOld(de.greenrobot.dao.Property) -> b
 pl.srw.billcalculator.persistence.Triggers -> pl.srw.billcalculator.persistence.Triggers:
     java.lang.String[] BILL_INSERT_TRIGGERS -> a
     java.lang.String[] BILL_DELETE_TRIGGERS -> b
     41:45:void create(android.database.sqlite.SQLiteDatabase) -> a
     48:51:void update(android.database.sqlite.SQLiteDatabase,int,int) -> a
     54:58:void addTriggers(android.database.sqlite.SQLiteDatabase,int,int) -> b
-    61:61:java.lang.String insertHistoryTrigger(java.lang.String,java.lang.String,java.lang.String) -> a
-    70:70:java.lang.String deleteHistoryTrigger(java.lang.String,java.lang.String,java.lang.String) -> b
-    23:30:void <clinit>() -> <clinit>
+    61:66:java.lang.String insertHistoryTrigger(java.lang.String,java.lang.String,java.lang.String) -> a
+    70:75:java.lang.String deleteHistoryTrigger(java.lang.String,java.lang.String,java.lang.String) -> b
+    23:35:void <clinit>() -> <clinit>
 pl.srw.billcalculator.persistence.exception.DbNotInitializedYetException -> pl.srw.billcalculator.persistence.exception.DbNotInitializedYetException:
     9:10:void <init>() -> <init>
 pl.srw.billcalculator.persistence.exception.DbRelationMissingException -> pl.srw.billcalculator.persistence.exception.DbRelationMissingException:
@@ -22902,7 +23034,7 @@ pl.srw.billcalculator.persistence.type.BillType -> pl.srw.billcalculator.persist
     pl.srw.billcalculator.persistence.type.BillType[] $VALUES -> f
     18:18:pl.srw.billcalculator.persistence.type.BillType[] values() -> values
     18:18:pl.srw.billcalculator.persistence.type.BillType valueOf(java.lang.String) -> valueOf
-    18:38:void <init>(java.lang.String,int) -> <init>
+    18:18:void <init>(java.lang.String,int) -> <init>
     27:40:de.greenrobot.dao.AbstractDao getDao() -> a
     44:55:de.greenrobot.dao.AbstractDao getPricesDao() -> b
     59:64:pl.srw.billcalculator.persistence.type.BillType valueOf(pl.srw.billcalculator.db.Bill) -> a
@@ -22935,6 +23067,7 @@ pl.srw.billcalculator.pojo.IPgePrices -> pl.srw.billcalculator.pojo.IPgePrices:
     java.lang.String getOplataPrzejsciowa() -> e
     java.lang.String getOplataStalaZaPrzesyl() -> f
     java.lang.String getOplataAbonamentowa() -> g
+    java.lang.String getOplataOze() -> l
     java.lang.String getZaEnergieCzynnaDzien() -> h
     java.lang.String getZaEnergieCzynnaNoc() -> i
     java.lang.String getOplataSieciowaDzien() -> j
@@ -22951,21 +23084,22 @@ pl.srw.billcalculator.pojo.ITauronPrices -> pl.srw.billcalculator.pojo.ITauronPr
     java.lang.String getOplataDystrybucyjnaStala() -> d
     java.lang.String getOplataPrzejsciowa() -> e
     java.lang.String getOplataAbonamentowa() -> f
+    java.lang.String getOplataOze() -> k
     java.lang.String getOplataDystrybucyjnaZmiennaNoc() -> j
     java.lang.String getOplataDystrybucyjnaZmiennaDzien() -> i
     java.lang.String getEnergiaElektrycznaCzynnaNoc() -> h
     java.lang.String getEnergiaElektrycznaCzynnaDzien() -> g
 pl.srw.billcalculator.settings.GeneralPreferences -> pl.srw.billcalculator.settings.GeneralPreferences:
     android.content.Context context -> a
-    30:30:boolean isPgeTariffG12() -> a
-    36:36:boolean isTauronTariffG12() -> b
-    42:42:boolean isFirstLaunch() -> c
+    30:31:boolean isPgeTariffG12() -> a
+    36:37:boolean isTauronTariffG12() -> b
+    42:43:boolean isFirstLaunch() -> c
     47:49:void markFirstLaunch() -> d
     52:52:android.content.SharedPreferences getSharedPreferences() -> e
     24:24:void <clinit>() -> <clinit>
 pl.srw.billcalculator.settings.activity.ProviderSettingsActivity -> pl.srw.billcalculator.settings.activity.ProviderSettingsActivity:
     java.lang.String providerName -> a
-    28:70:void <init>() -> <init>
+    28:28:void <init>() -> <init>
     36:38:android.content.Intent createIntent(android.content.Context,pl.srw.billcalculator.type.Provider) -> a
     43:60:void onCreate(android.os.Bundle) -> onCreate
     63:72:pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment newProviderSettingsFragment() -> c
@@ -23038,12 +23172,12 @@ pl.srw.billcalculator.settings.activity.SettingsViewing -> pl.srw.billcalculator
     void fillList(java.util.List,java.lang.String[]) -> a
     java.lang.String getString(int) -> getString
 pl.srw.billcalculator.settings.fragment.EnergyProviderSettingsFragment -> pl.srw.billcalculator.settings.fragment.EnergyProviderSettingsFragment:
-    16:21:void <init>() -> <init>
+    16:16:void <init>() -> <init>
     27:27:int getHelpLayoutResource() -> a
     java.lang.String getTariffKey() -> b
     34:36:void init() -> c
     40:45:void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String) -> onSharedPreferenceChanged
-    48:56:void changePreferenceVisibilityDependingOnTaryfa() -> j
+    48:56:void changePreferenceVisibilityDependingOnTaryfa() -> k
     59:59:boolean isPickedValue(android.preference.ListPreference,java.lang.String) -> a
     64:67:void restoreSettings() -> d
 pl.srw.billcalculator.settings.fragment.PgeSettingsFragment -> pl.srw.billcalculator.settings.fragment.PgeSettingsFragment:
@@ -23053,7 +23187,8 @@ pl.srw.billcalculator.settings.fragment.PgeSettingsFragment -> pl.srw.billcalcul
     23:23:int getTitleResource() -> g
     28:28:java.lang.String getTariffKey() -> b
     33:33:java.lang.String getMonthMeasurePrefKeys() -> h
-    40:42:void restoreSettings() -> d
+    40:40:java.lang.String getMWhMeasurePrefKeys() -> i
+    45:47:void restoreSettings() -> d
 pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment -> pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment:
     16:16:void <init>() -> <init>
     20:22:void init() -> c
@@ -23064,7 +23199,8 @@ pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment -> pl.srw.billcalc
     45:56:void setWspKonwersjiDescription() -> b
     60:63:java.lang.String getMeasure(java.lang.String) -> a
     68:68:java.lang.String getMonthMeasurePrefKeys() -> h
-    74:75:void restoreSettings() -> d
+    74:74:java.lang.String getMWhMeasurePrefKeys() -> i
+    79:80:void restoreSettings() -> d
 pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment$1 -> pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment$1:
     pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment this$0 -> a
     47:47:void <init>(pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment) -> <init>
@@ -23083,10 +23219,11 @@ pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment -> pl.srw.billc
     67:69:void replaceEmptyValue(android.content.SharedPreferences,java.lang.String) -> a
     72:77:void setSummary() -> b
     80:89:void updateSummary(android.content.SharedPreferences,java.lang.String) -> b
-    92:95:java.lang.String getMeasure(java.lang.String) -> a
+    92:97:java.lang.String getMeasure(java.lang.String) -> a
     java.lang.String getMonthMeasurePrefKeys() -> h
-    101:105:java.lang.String getStringFor(int[]) -> a
-    109:112:void restoreDefault() -> i
+    java.lang.String getMWhMeasurePrefKeys() -> i
+    105:109:java.lang.String getStringFor(int[]) -> a
+    113:116:void restoreDefault() -> j
     void restoreSettings() -> d
 pl.srw.billcalculator.settings.fragment.TauronSettingsFragment -> pl.srw.billcalculator.settings.fragment.TauronSettingsFragment:
     9:9:void <init>() -> <init>
@@ -23095,151 +23232,142 @@ pl.srw.billcalculator.settings.fragment.TauronSettingsFragment -> pl.srw.billcal
     23:23:int getTitleResource() -> g
     28:28:java.lang.String getTariffKey() -> b
     33:33:java.lang.String getMonthMeasurePrefKeys() -> h
-    38:40:void restoreSettings() -> d
+    38:38:java.lang.String getMWhMeasurePrefKeys() -> i
+    43:45:void restoreSettings() -> d
 pl.srw.billcalculator.settings.prices.PgePrices -> pl.srw.billcalculator.settings.prices.PgePrices:
-    pl.srw.billcalculator.settings.prices.PgePrices$WrappedPgePrices wrappedPgePrices -> a
-    28:30:void <init>() -> <init>
-    34:34:java.lang.String getZaEnergieCzynna() -> b
-    43:43:java.lang.String getSkladnikJakosciowy() -> c
-    52:52:java.lang.String getOplataSieciowa() -> d
-    61:61:java.lang.String getOplataPrzejsciowa() -> e
-    70:70:java.lang.String getOplataStalaZaPrzesyl() -> f
-    79:79:java.lang.String getOplataAbonamentowa() -> g
-    88:88:java.lang.String getZaEnergieCzynnaDzien() -> h
-    97:97:java.lang.String getZaEnergieCzynnaNoc() -> i
-    106:106:java.lang.String getOplataSieciowaDzien() -> j
-    115:115:java.lang.String getOplataSieciowaNoc() -> k
-    123:135:pl.srw.billcalculator.db.PgePrices convertToDb() -> a
-    139:149:void clear() -> l
-    152:163:void setDefault() -> m
-    166:168:void init() -> n
-pl.srw.billcalculator.settings.prices.PgePrices$WrappedPgePrices -> pl.srw.billcalculator.settings.prices.PgePrices$WrappedPgePrices:
-    android.content.SharedPreferences __prefs -> b
-    java.lang.String cena_za_energie_czynna -> c
-    java.lang.String cena_za_energie_czynna_G12dzien -> d
-    java.lang.String cena_za_energie_czynna_G12noc -> e
-    java.lang.String cena_oplata_sieciowa -> f
-    java.lang.String cena_oplata_sieciowa_G12dzien -> g
-    java.lang.String cena_oplata_sieciowa_G12noc -> h
-    java.lang.String cena_skladnik_jakosciowy -> i
-    java.lang.String cena_oplata_przejsciowa -> j
-    java.lang.String cena_oplata_stala_za_przesyl -> k
-    java.lang.String cena_oplata_abonamentowa -> l
-    pl.srw.billcalculator.settings.prices.PgePrices this$0 -> a
-    172:181:void <init>(pl.srw.billcalculator.settings.prices.PgePrices,android.content.SharedPreferences) -> <init>
-    java.lang.String getCena_za_energie_czynna() -> a
-    void setCena_za_energie_czynna(java.lang.String) -> a
-    boolean containsCena_za_energie_czynna() -> b
-    void removeCena_za_energie_czynna() -> c
-    java.lang.String getCena_za_energie_czynna_G12dzien() -> d
-    void setCena_za_energie_czynna_G12dzien(java.lang.String) -> b
-    void removeCena_za_energie_czynna_G12dzien() -> e
-    java.lang.String getCena_za_energie_czynna_G12noc() -> f
-    void setCena_za_energie_czynna_G12noc(java.lang.String) -> c
-    void removeCena_za_energie_czynna_G12noc() -> g
-    java.lang.String getCena_oplata_sieciowa() -> h
-    void setCena_oplata_sieciowa(java.lang.String) -> d
-    void removeCena_oplata_sieciowa() -> i
-    java.lang.String getCena_oplata_sieciowa_G12dzien() -> j
-    void setCena_oplata_sieciowa_G12dzien(java.lang.String) -> e
-    void removeCena_oplata_sieciowa_G12dzien() -> k
-    java.lang.String getCena_oplata_sieciowa_G12noc() -> l
-    void setCena_oplata_sieciowa_G12noc(java.lang.String) -> f
-    void removeCena_oplata_sieciowa_G12noc() -> m
-    java.lang.String getCena_skladnik_jakosciowy() -> n
-    void setCena_skladnik_jakosciowy(java.lang.String) -> g
-    void removeCena_skladnik_jakosciowy() -> o
-    java.lang.String getCena_oplata_przejsciowa() -> p
-    void setCena_oplata_przejsciowa(java.lang.String) -> h
-    void removeCena_oplata_przejsciowa() -> q
-    java.lang.String getCena_oplata_stala_za_przesyl() -> r
-    void setCena_oplata_stala_za_przesyl(java.lang.String) -> i
-    void removeCena_oplata_stala_za_przesyl() -> s
-    java.lang.String getCena_oplata_abonamentowa() -> t
-    void setCena_oplata_abonamentowa(java.lang.String) -> j
-    void removeCena_oplata_abonamentowa() -> u
+    java.lang.String cena_za_energie_czynna -> a
+    java.lang.String cena_za_energie_czynna_G12dzien -> b
+    java.lang.String cena_za_energie_czynna_G12noc -> c
+    java.lang.String cena_oplata_sieciowa -> d
+    java.lang.String cena_oplata_sieciowa_G12dzien -> e
+    java.lang.String cena_oplata_sieciowa_G12noc -> f
+    java.lang.String cena_skladnik_jakosciowy -> g
+    java.lang.String cena_oplata_przejsciowa -> h
+    java.lang.String cena_oplata_stala_za_przesyl -> i
+    java.lang.String cena_oplata_abonamentowa -> j
+    java.lang.String cena_oplata_oze -> k
+    5:29:void <init>() -> <init>
+    32:45:pl.srw.billcalculator.db.PgePrices convertToDb() -> a
+    49:60:void clear() -> m
+    63:75:void setDefault() -> n
+    78:82:void init() -> o
+    85:85:java.lang.String getZaEnergieCzynna() -> b
+    89:90:void setZaEnergieCzynna(java.lang.String) -> a
+    93:93:boolean containsZaEnergieCzynna() -> p
+    97:98:void removeZaEnergieCzynna() -> q
+    101:101:java.lang.String getZaEnergieCzynnaDzien() -> h
+    105:106:void setZaEnergieCzynnaDzien(java.lang.String) -> b
+    113:114:void removeZaEnergieCzynnaDzien() -> r
+    117:117:java.lang.String getZaEnergieCzynnaNoc() -> i
+    121:122:void setZaEnergieCzynnaNoc(java.lang.String) -> c
+    129:130:void removeZaEnergieCzynnaNoc() -> s
+    133:133:java.lang.String getOplataSieciowa() -> d
+    137:138:void setOplataSieciowa(java.lang.String) -> d
+    145:146:void removeOplataSieciowa() -> t
+    149:149:java.lang.String getOplataSieciowaDzien() -> j
+    153:154:void setOplataSieciowaDzien(java.lang.String) -> e
+    161:162:void removeOplataSieciowaDzien() -> u
+    165:165:java.lang.String getOplataSieciowaNoc() -> k
+    169:170:void setOplataSieciowaNoc(java.lang.String) -> f
+    177:178:void removeOplataSieciowaNoc() -> v
+    181:181:java.lang.String getSkladnikJakosciowy() -> c
+    185:186:void setSkladnikJakosciowy(java.lang.String) -> g
+    193:194:void removeSkladnikJakosciowy() -> w
+    197:197:java.lang.String getOplataPrzejsciowa() -> e
+    201:202:void setOplataPrzejsciowa(java.lang.String) -> h
+    209:210:void removeOplataPrzejsciowa() -> x
+    213:213:java.lang.String getOplataStalaZaPrzesyl() -> f
+    217:218:void setOplataStalaZaPrzesyl(java.lang.String) -> i
+    225:226:void removeOplataStalaZaPrzesyl() -> y
+    229:229:java.lang.String getOplataAbonamentowa() -> g
+    233:234:void setOplataAbonamentowa(java.lang.String) -> j
+    241:242:void removeOplataAbonamentowa() -> z
+    245:245:java.lang.String getOplataOze() -> l
+    249:250:void setOplataOze(java.lang.String) -> k
+    253:253:boolean containsOplataOze() -> A
+    257:258:void removeOplataOze() -> B
 pl.srw.billcalculator.settings.prices.PgnigPrices -> pl.srw.billcalculator.settings.prices.PgnigPrices:
-    pl.srw.billcalculator.settings.prices.PgnigPrices$WrappedPgnigPrices wrappedPgnigPrices -> a
-    21:23:void <init>() -> <init>
-    27:27:java.lang.String getOplataAbonamentowa() -> b
-    36:36:java.lang.String getPaliwoGazowe() -> c
-    45:45:java.lang.String getDystrybucyjnaStala() -> d
-    54:54:java.lang.String getDystrybucyjnaZmienna() -> e
-    63:63:java.lang.String getWspolczynnikKonwersji() -> f
-    71:77:pl.srw.billcalculator.db.PgnigPrices convertToDb() -> a
-    81:86:void clear() -> g
-    89:95:void setDefault() -> h
-    98:100:void init() -> i
-pl.srw.billcalculator.settings.prices.PgnigPrices$WrappedPgnigPrices -> pl.srw.billcalculator.settings.prices.PgnigPrices$WrappedPgnigPrices:
-    android.content.SharedPreferences __prefs -> b
-    java.lang.String abonamentowa -> c
-    java.lang.String paliwo_gazowe -> d
-    java.lang.String dystrybucyjna_stala -> e
-    java.lang.String dystrybucyjna_zmienna -> f
-    java.lang.String wsp_konwersji -> g
-    pl.srw.billcalculator.settings.prices.PgnigPrices this$0 -> a
-    104:108:void <init>(pl.srw.billcalculator.settings.prices.PgnigPrices,android.content.SharedPreferences) -> <init>
-    java.lang.String getAbonamentowa() -> a
-    void setAbonamentowa(java.lang.String) -> a
-    boolean containsAbonamentowa() -> b
-    void removeAbonamentowa() -> c
-    java.lang.String getPaliwo_gazowe() -> d
-    void setPaliwo_gazowe(java.lang.String) -> b
-    void removePaliwo_gazowe() -> e
-    java.lang.String getDystrybucyjna_stala() -> f
-    void setDystrybucyjna_stala(java.lang.String) -> c
-    void removeDystrybucyjna_stala() -> g
-    java.lang.String getDystrybucyjna_zmienna() -> h
-    void setDystrybucyjna_zmienna(java.lang.String) -> d
-    void removeDystrybucyjna_zmienna() -> i
-    java.lang.String getWsp_konwersji() -> j
-    void setWsp_konwersji(java.lang.String) -> e
-    void removeWsp_konwersji() -> k
-pl.srw.billcalculator.settings.prices.TauronPrices -> pl.srw.billcalculator.settings.prices.TauronPrices:
+    java.lang.String abonamentowa -> a
+    java.lang.String paliwo_gazowe -> b
+    java.lang.String dystrybucyjna_stala -> c
+    java.lang.String dystrybucyjna_zmienna -> d
+    java.lang.String wsp_konwersji -> e
+    5:16:void <init>() -> <init>
+    19:25:pl.srw.billcalculator.db.PgnigPrices convertToDb() -> a
+    29:34:void clear() -> g
+    37:43:void setDefault() -> h
+    46:48:void init() -> i
+    51:51:java.lang.String getOplataAbonamentowa() -> b
+    55:56:void setOplataAbonamentowa(java.lang.String) -> a
+    59:59:boolean containsOplataAbonamentowa() -> j
+    63:64:void removeOplataAbonamentowa() -> k
+    67:67:java.lang.String getPaliwoGazowe() -> c
+    71:72:void setPaliwoGazowe(java.lang.String) -> b
+    79:80:void removePaliwoGazowe() -> l
+    83:83:java.lang.String getDystrybucyjnaStala() -> d
+    87:88:void setDystrybucyjnaStala(java.lang.String) -> c
+    95:96:void removeDystrybucyjnaStala() -> m
+    99:99:java.lang.String getDystrybucyjnaZmienna() -> e
+    103:104:void setDystrybucyjnaZmienna(java.lang.String) -> d
+    111:112:void removeDystrybucyjnaZmienna() -> n
+    115:115:java.lang.String getWspolczynnikKonwersji() -> f
+    119:120:void setWspolczynnikKonwersji(java.lang.String) -> e
+    127:128:void removeWspolczynnikKonwersji() -> o
+pl.srw.billcalculator.settings.prices.SharedPreferencesPrices -> pl.srw.billcalculator.settings.prices.SharedPreferencesPrices:
     android.content.SharedPreferences __prefs -> a
-    java.lang.String energiaElektrycznaCzynna -> b
-    java.lang.String oplataDystrybucyjnaZmienna -> c
-    java.lang.String oplataDystrybucyjnaStala -> d
-    java.lang.String oplataPrzejsciowa -> e
-    java.lang.String oplataAbonamentowa -> f
+    11:13:void <init>() -> <init>
+    16:16:java.lang.String getPref(java.lang.String,java.lang.String) -> a
+    20:21:void setPref(java.lang.String,java.lang.String) -> b
+    24:24:boolean containsPref(java.lang.String) -> l
+    28:29:void removePref(java.lang.String) -> m
+pl.srw.billcalculator.settings.prices.TauronPrices -> pl.srw.billcalculator.settings.prices.TauronPrices:
+    java.lang.String energiaElektrycznaCzynna -> a
+    java.lang.String oplataDystrybucyjnaZmienna -> b
+    java.lang.String oplataDystrybucyjnaStala -> c
+    java.lang.String oplataPrzejsciowa -> d
+    java.lang.String oplataAbonamentowa -> e
+    java.lang.String oplataOze -> f
     java.lang.String energiaElektrycznaCzynnaDzien -> g
     java.lang.String oplataDystrybucyjnaZmiennaDzien -> h
     java.lang.String energiaElektrycznaCzynnaNoc -> i
     java.lang.String oplataDystrybucyjnaZmiennaNoc -> j
-    27:28:void <init>() -> <init>
-    31:42:pl.srw.billcalculator.db.TauronPrices convertToDb() -> a
-    46:55:void clear() -> k
-    58:68:void setDefault() -> l
-    71:73:void init() -> m
-    15:24:void <init>(android.content.SharedPreferences) -> <init>
-    java.lang.String getEnergiaElektrycznaCzynna() -> b
-    void setEnergiaElektrycznaCzynna(java.lang.String) -> a
-    boolean containsEnergiaElektrycznaCzynna() -> n
-    void removeEnergiaElektrycznaCzynna() -> o
-    java.lang.String getOplataDystrybucyjnaZmienna() -> c
-    void setOplataDystrybucyjnaZmienna(java.lang.String) -> b
-    void removeOplataDystrybucyjnaZmienna() -> p
-    java.lang.String getOplataDystrybucyjnaStala() -> d
-    void setOplataDystrybucyjnaStala(java.lang.String) -> c
-    void removeOplataDystrybucyjnaStala() -> q
-    java.lang.String getOplataPrzejsciowa() -> e
-    void setOplataPrzejsciowa(java.lang.String) -> d
-    void removeOplataPrzejsciowa() -> r
-    java.lang.String getOplataAbonamentowa() -> f
-    void setOplataAbonamentowa(java.lang.String) -> e
-    void removeOplataAbonamentowa() -> s
-    java.lang.String getEnergiaElektrycznaCzynnaDzien() -> g
-    void setEnergiaElektrycznaCzynnaDzien(java.lang.String) -> f
-    void removeEnergiaElektrycznaCzynnaDzien() -> t
-    java.lang.String getOplataDystrybucyjnaZmiennaDzien() -> i
-    void setOplataDystrybucyjnaZmiennaDzien(java.lang.String) -> g
-    void removeOplataDystrybucyjnaZmiennaDzien() -> u
-    java.lang.String getEnergiaElektrycznaCzynnaNoc() -> h
-    void setEnergiaElektrycznaCzynnaNoc(java.lang.String) -> h
-    void removeEnergiaElektrycznaCzynnaNoc() -> v
-    java.lang.String getOplataDystrybucyjnaZmiennaNoc() -> j
-    void setOplataDystrybucyjnaZmiennaNoc(java.lang.String) -> i
-    void removeOplataDystrybucyjnaZmiennaNoc() -> w
+    5:27:void <init>() -> <init>
+    30:42:pl.srw.billcalculator.db.TauronPrices convertToDb() -> a
+    46:56:void clear() -> l
+    59:70:void setDefault() -> m
+    73:77:void init() -> n
+    80:80:java.lang.String getEnergiaElektrycznaCzynna() -> b
+    84:85:void setEnergiaElektrycznaCzynna(java.lang.String) -> a
+    88:88:boolean containsEnergiaElektrycznaCzynna() -> o
+    92:93:void removeEnergiaElektrycznaCzynna() -> p
+    96:96:java.lang.String getOplataDystrybucyjnaZmienna() -> c
+    100:101:void setOplataDystrybucyjnaZmienna(java.lang.String) -> b
+    108:109:void removeOplataDystrybucyjnaZmienna() -> q
+    112:112:java.lang.String getOplataDystrybucyjnaStala() -> d
+    116:117:void setOplataDystrybucyjnaStala(java.lang.String) -> c
+    124:125:void removeOplataDystrybucyjnaStala() -> r
+    128:128:java.lang.String getOplataPrzejsciowa() -> e
+    132:133:void setOplataPrzejsciowa(java.lang.String) -> d
+    140:141:void removeOplataPrzejsciowa() -> s
+    144:144:java.lang.String getOplataAbonamentowa() -> f
+    148:149:void setOplataAbonamentowa(java.lang.String) -> e
+    156:157:void removeOplataAbonamentowa() -> t
+    160:160:java.lang.String getOplataOze() -> k
+    164:165:void setOplataOze(java.lang.String) -> f
+    168:168:boolean containsOplataOze() -> u
+    172:173:void removeOplataOze() -> v
+    176:176:java.lang.String getEnergiaElektrycznaCzynnaDzien() -> g
+    180:181:void setEnergiaElektrycznaCzynnaDzien(java.lang.String) -> g
+    188:189:void removeEnergiaElektrycznaCzynnaDzien() -> w
+    192:192:java.lang.String getOplataDystrybucyjnaZmiennaDzien() -> i
+    196:197:void setOplataDystrybucyjnaZmiennaDzien(java.lang.String) -> h
+    204:205:void removeOplataDystrybucyjnaZmiennaDzien() -> x
+    208:208:java.lang.String getEnergiaElektrycznaCzynnaNoc() -> h
+    212:213:void setEnergiaElektrycznaCzynnaNoc(java.lang.String) -> i
+    220:221:void removeEnergiaElektrycznaCzynnaNoc() -> y
+    224:224:java.lang.String getOplataDystrybucyjnaZmiennaNoc() -> j
+    228:229:void setOplataDystrybucyjnaZmiennaNoc(java.lang.String) -> j
+    236:237:void removeOplataDystrybucyjnaZmiennaNoc() -> z
 pl.srw.billcalculator.task.PrintTask -> pl.srw.billcalculator.task.PrintTask:
     java.lang.String path -> a
     25:27:void <init>(java.lang.String) -> <init>
@@ -23280,46 +23408,50 @@ pl.srw.billcalculator.util.BillExporter -> pl.srw.billcalculator.util.BillExport
     39:48:java.io.File printToPdf(java.io.File,java.lang.String) -> a
     53:56:void scaleToFit(com.itextpdf.text.Document,com.itextpdf.text.Image) -> a
 pl.srw.billcalculator.util.Dates -> pl.srw.billcalculator.util.Dates:
-    22:22:org.threeten.bp.LocalDate parse(java.lang.String) -> a
-    26:27:java.lang.String format(int,org.threeten.bp.Month,int) -> a
-    31:31:java.lang.String format(org.threeten.bp.LocalDate) -> a
-    35:35:java.lang.String format(org.threeten.bp.LocalDate,java.lang.String) -> a
-    39:39:java.lang.String changeSeparator(java.lang.String,java.lang.String) -> a
-    43:43:org.threeten.bp.LocalDate toLocalDate(java.util.Date) -> a
-    47:47:java.util.Date toDate(org.threeten.bp.LocalDate) -> b
-    51:53:int countWholeMonth(java.lang.String,java.lang.String) -> b
-    58:59:java.math.BigDecimal countMonth(java.lang.String,java.lang.String) -> c
-    63:82:double getMonthCount(java.lang.String,java.lang.String) -> d
-    88:88:org.threeten.bp.LocalDate firstDayOfThisMonth() -> a
-    92:92:org.threeten.bp.LocalDate lastDayOfThisMonth() -> b
+    java.util.Locale PL_LOCALE -> a
+    25:25:org.threeten.bp.LocalDate parse(java.lang.String) -> a
+    29:30:java.lang.String format(int,org.threeten.bp.Month,int) -> a
+    34:34:java.lang.String format(org.threeten.bp.LocalDate) -> a
+    38:38:java.lang.String format(org.threeten.bp.LocalDate,java.lang.String) -> a
+    42:42:java.lang.String changeSeparator(java.lang.String,java.lang.String) -> a
+    46:46:org.threeten.bp.LocalDate toLocalDate(java.util.Date) -> a
+    50:50:java.util.Date toDate(org.threeten.bp.LocalDate) -> b
+    54:56:int countWholeMonth(java.lang.String,java.lang.String) -> b
+    61:62:java.math.BigDecimal countMonth(java.lang.String,java.lang.String) -> c
+    66:87:double getMonthCount(java.lang.String,java.lang.String) -> f
+    91:91:org.threeten.bp.LocalDate firstDayOfThisMonth() -> a
+    95:95:org.threeten.bp.LocalDate lastDayOfThisMonth() -> b
+    99:108:int countDaysFromJuly16(java.lang.String,java.lang.String) -> d
+    112:114:int countDays(java.lang.String,java.lang.String) -> e
+    21:21:void <clinit>() -> <clinit>
 pl.srw.billcalculator.util.Display -> pl.srw.billcalculator.util.Display:
     14:14:java.lang.String withScale(java.math.BigDecimal,int) -> a
     18:18:java.lang.String toPay(java.math.BigDecimal) -> a
     22:29:java.lang.String formatPay(java.lang.String) -> a
 pl.srw.billcalculator.util.MultiSelect -> pl.srw.billcalculator.util.MultiSelect:
+    android.util.SparseArray selectedItems -> a
     android.os.Parcelable$Creator CREATOR -> CREATOR
-    java.util.Map selectedItems -> a
-    23:25:void <init>() -> <init>
-    29:30:void select(java.lang.Object,java.lang.Object) -> a
-    34:35:void deselect(java.lang.Object) -> a
-    38:38:boolean isSelected(java.lang.Object) -> b
-    42:42:boolean isAnySelected() -> a
-    46:47:void deselectAll() -> b
-    50:50:java.util.Collection getItems() -> c
-    54:56:java.util.Collection getPositionsReverseOrder() -> d
-    int describeContents() -> describeContents
-    void writeToParcel(android.os.Parcel,int) -> writeToParcel
-    void <init>(android.os.Parcel) -> <init>
-    18:18:java.lang.String toString() -> toString
-    void <clinit>() -> <clinit>
+    18:20:void <init>() -> <init>
+    24:25:void select(int,android.os.Parcelable) -> a
+    29:30:void deselect(int) -> a
+    33:33:boolean isSelected(int) -> b
+    37:37:boolean isAnySelected() -> a
+    41:42:void deselectAll() -> b
+    45:49:java.util.Collection getItems() -> c
+    53:58:int[] getPositionsReverseOrder() -> d
+    61:63:void <init>(android.os.Parcel) -> <init>
+    67:68:void writeToParcel(android.os.Parcel,int) -> writeToParcel
+    72:72:int describeContents() -> describeContents
+    13:13:java.lang.String toString() -> toString
+    75:75:void <clinit>() -> <clinit>
 pl.srw.billcalculator.util.MultiSelect$1 -> pl.srw.billcalculator.util.MultiSelect$1:
-pl.srw.billcalculator.util.MultiSelect$CreatorImpl -> pl.srw.billcalculator.util.MultiSelect$CreatorImpl:
-    void <init>() -> <init>
-    pl.srw.billcalculator.util.MultiSelect createFromParcel(android.os.Parcel) -> a
-    pl.srw.billcalculator.util.MultiSelect[] newArray(int) -> a
-    java.lang.Object[] newArray(int) -> newArray
-    java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
-    void <init>(pl.srw.billcalculator.util.MultiSelect$1) -> <init>
+    75:75:void <init>() -> <init>
+    78:78:pl.srw.billcalculator.util.MultiSelect createFromParcel(android.os.Parcel) -> a
+    83:83:pl.srw.billcalculator.util.MultiSelect[] newArray(int) -> a
+    75:75:java.lang.Object[] newArray(int) -> newArray
+    75:75:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+pl.srw.billcalculator.util.Sorter -> pl.srw.billcalculator.util.Sorter:
+    9:17:int[] revert(int[]) -> a
 pl.srw.billcalculator.util.Strings -> pl.srw.billcalculator.util.Strings:
     21:24:java.lang.String[] toArray(int[]) -> a
 pl.srw.billcalculator.util.ToWebView -> pl.srw.billcalculator.util.ToWebView:
