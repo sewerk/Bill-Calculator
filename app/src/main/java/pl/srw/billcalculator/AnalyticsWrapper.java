@@ -20,8 +20,8 @@ import pl.srw.billcalculator.type.ContentType;
  */
 public class AnalyticsWrapper {
 
-    public static final String TAG = "AnalyticsLogger";
-    public static final boolean ENABLED = !BuildConfig.DEVEL && !BuildConfig.DEBUG;
+    private static final String TAG = "AnalyticsLogger";
+    private static final boolean ENABLED = !BuildConfig.DEVEL && !BuildConfig.DEBUG;
 
     public static void initialize(Context context) {
         if (ENABLED) {
@@ -31,7 +31,7 @@ public class AnalyticsWrapper {
     }
 
     /**
-     * Logs key-value pair to help verify critical error. Plese note this
+     * Logs key-value pair to help verify critical error. Please note this
      * won't be visible until critical error occur.
      * @param key
      * @param val
@@ -42,7 +42,7 @@ public class AnalyticsWrapper {
     }
 
     /**
-     * Logs key-value pair to help verify critical error. Plese note this
+     * Logs key-value pair to help verify critical error. Please note this
      * won't be visible until critical error occur.
      * @param key
      * @param val

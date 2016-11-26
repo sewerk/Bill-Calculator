@@ -27,6 +27,13 @@ public class Database {
         daoSession = new DaoMaster(getDatabase(context)).newSession();
     }
 
+    public static void close() {
+        if (database != null) {
+            database.close();
+            database = null;
+        }
+    }
+
     public static void enableDatabaseLogging() {
         QueryBuilder.LOG_SQL = true;
         QueryBuilder.LOG_VALUES = true;
