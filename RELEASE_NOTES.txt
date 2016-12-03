@@ -1,3 +1,5 @@
+v.1.6.1
+ - fix key/value backup by adding db migration
 v.1.6
  - opłata OZE
 v.1.5.1
