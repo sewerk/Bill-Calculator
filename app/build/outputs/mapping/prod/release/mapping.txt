@@ -21571,10 +21571,10 @@ pl.srw.billcalculator.backup.DbBackupHelper -> pl.srw.billcalculator.backup.DbBa
     12:13:void <init>(android.content.Context,java.lang.String) -> <init>
 pl.srw.billcalculator.backup.PrefsAndDbBackupAgent -> pl.srw.billcalculator.backup.PrefsAndDbBackupAgent:
     java.util.concurrent.locks.Lock lock -> a
-    20:24:void <init>() -> <init>
-    28:32:void onCreate() -> onCreate
-    37:44:void onBackup(android.os.ParcelFileDescriptor,android.app.backup.BackupDataOutput,android.os.ParcelFileDescriptor) -> onBackup
-    49:58:void onRestore(android.app.backup.BackupDataInput,int,android.os.ParcelFileDescriptor) -> onRestore
+    24:28:void <init>() -> <init>
+    32:36:void onCreate() -> onCreate
+    41:48:void onBackup(android.os.ParcelFileDescriptor,android.app.backup.BackupDataOutput,android.os.ParcelFileDescriptor) -> onBackup
+    53:68:void onRestore(android.app.backup.BackupDataInput,int,android.os.ParcelFileDescriptor) -> onRestore
 pl.srw.billcalculator.bill.SavedBillsRegistry -> pl.srw.billcalculator.bill.SavedBillsRegistry:
     pl.srw.billcalculator.bill.SavedBillsRegistry INSTANCE -> a
     android.support.v4.util.SimpleArrayMap registry -> b
@@ -22984,15 +22984,16 @@ pl.srw.billcalculator.persistence.Database -> pl.srw.billcalculator.persistence.
     android.database.sqlite.SQLiteDatabase database -> a
     pl.srw.billcalculator.db.dao.DaoSession daoSession -> b
     27:28:void initialize(android.content.Context) -> a
-    36:51:android.database.sqlite.SQLiteDatabase getDatabase(android.content.Context) -> b
-    55:55:pl.srw.billcalculator.db.dao.DaoSession getSession() -> a
-    59:67:int[] queryCurrentReadings(pl.srw.billcalculator.persistence.type.CurrentReadingType) -> a
-    71:72:de.greenrobot.dao.query.LazyList getHistory() -> b
-    76:78:void deleteBillWithPrices(pl.srw.billcalculator.persistence.type.BillType,java.lang.Long,java.lang.Long) -> a
+    31:35:void close() -> a
+    43:58:android.database.sqlite.SQLiteDatabase getDatabase(android.content.Context) -> b
+    62:62:pl.srw.billcalculator.db.dao.DaoSession getSession() -> b
+    66:74:int[] queryCurrentReadings(pl.srw.billcalculator.persistence.type.CurrentReadingType) -> a
+    78:79:de.greenrobot.dao.query.LazyList getHistory() -> c
+    83:85:void deleteBillWithPrices(pl.srw.billcalculator.persistence.type.BillType,java.lang.Long,java.lang.Long) -> a
 pl.srw.billcalculator.persistence.Database$1 -> pl.srw.billcalculator.persistence.Database$1:
-    37:37:void <init>(android.content.Context,java.lang.String,android.database.sqlite.SQLiteDatabase$CursorFactory) -> <init>
-    41:43:void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
-    47:49:void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
+    44:44:void <init>(android.content.Context,java.lang.String,android.database.sqlite.SQLiteDatabase$CursorFactory) -> <init>
+    48:50:void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
+    54:56:void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
 pl.srw.billcalculator.persistence.SqlTriggerBuilder -> pl.srw.billcalculator.persistence.SqlTriggerBuilder:
     java.lang.StringBuilder sql -> a
     9:11:void <init>(java.lang.StringBuilder) -> <init>

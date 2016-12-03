@@ -1,3 +1,0 @@
-OZE:
-- auto re-calculate bill from July 16 through dialog
-- check key/value backup between devices, vs db. update
