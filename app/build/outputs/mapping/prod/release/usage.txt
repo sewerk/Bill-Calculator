@@ -10390,8 +10390,8 @@ pl.srw.billcalculator.AboutActivity:
     private static final java.lang.String RECEIVER_EMAIL
     private static final java.lang.String BETA_HTTP
 pl.srw.billcalculator.AnalyticsWrapper:
-    public static final java.lang.String TAG
-    public static final boolean ENABLED
+    private static final java.lang.String TAG
+    private static final boolean ENABLED
     21:21:public AnalyticsWrapper()
     41:42:public static void setInt(java.lang.String,int)
     52:53:public static void setString(java.lang.String,java.lang.String)
@@ -10698,7 +10698,7 @@ pl.srw.billcalculator.persistence.Database:
     public static final java.lang.String DB_NAME
     private static final java.lang.String QUERY_ROW_LIMIT
     19:19:public Database()
-    31:33:public static void enableDatabaseLogging()
+    38:40:public static void enableDatabaseLogging()
 pl.srw.billcalculator.persistence.Triggers:
     private static final java.lang.String DELETE
     private static final java.lang.String INSERT
