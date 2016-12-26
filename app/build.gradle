@@ -37,7 +37,7 @@ dependencies {
 
     compile "com.android.support:design:${supportLibVer}"
     compile "com.android.support:cardview-v7:${supportLibVer}"
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
 
     compile 'com.github.sewerk:mfvp:b57c722'
     compile "com.jakewharton:butterknife:${butterKnifeVer}"
@@ -50,7 +50,7 @@ dependencies {
     testCompile 'org.mockito:mockito-core:1.10.19'
     testCompile 'pl.pragmatists:JUnitParams:1.0.4'
     testCompile 'org.threeten:threetenbp:1.3.1'
-    
+
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile "com.android.support:support-annotations:${supportLibVer}"
