@@ -63,6 +63,15 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
         });
     }
 
+    public void closeButtonClicked() {
+        present(new UIChange<FormView>() {
+            @Override
+            public void change(FormView view) {
+                view.hideForm();
+            }
+        });
+    }
+
     @LayoutRes
     public int getFormLayout() {
         if (provider == PGNIG
@@ -101,5 +110,7 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
         void setDates(String fromDate, String toDate);
 
         void setReadingUnit(@StringRes int unitResId);
+
+        void hideForm();
     }
 }

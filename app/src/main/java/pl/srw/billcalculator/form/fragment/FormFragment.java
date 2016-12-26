@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AlertDialog;
@@ -65,6 +66,7 @@ public class FormFragment extends MvpFragment
         presenter.setup(provider);
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = View.inflate(getContext(), presenter.getFormLayout(), null);
@@ -110,7 +112,7 @@ public class FormFragment extends MvpFragment
 
     @OnClick(R.id.close_button)
     void closeButtonClicked() {
-        dismiss(); // TODO: use presenter
+        presenter.closeButtonClicked();
     }
 
     @Override
@@ -137,5 +139,10 @@ public class FormFragment extends MvpFragment
     public void setDates(String fromDate, String toDate) {
         dateFromView.setText(fromDate);
         dateToView.setText(toDate);
+    }
+
+    @Override
+    public void hideForm() {
+        dismiss();
     }
 }

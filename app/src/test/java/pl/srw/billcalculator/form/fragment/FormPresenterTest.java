@@ -96,6 +96,15 @@ public class FormPresenterTest {
         verify(view).showProviderSettings(provider);
     }
 
+    @Test
+    public void whenCloseButtonClicked_dismissForm() throws Exception {
+        // WHEN
+        sut.closeButtonClicked();
+
+        // THEN
+        verify(view).hideForm();
+    }
+
     private Object parametersForWhenSettingsLinkClicked_showProviderSettings() {
         return new Provider[] {Provider.PGE, Provider.PGNIG, Provider.TAURON};
     }
