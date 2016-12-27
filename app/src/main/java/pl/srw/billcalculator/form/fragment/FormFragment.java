@@ -12,11 +12,13 @@ import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.style.UnderlineSpan;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
@@ -45,6 +47,8 @@ public class FormFragment extends MvpFragment
     @BindView(R.id.form_settings_link) TextView settingsLink;
     @BindView(R.id.form_entry_tariff) TextView tariffView;
     @BindView(R.id.form_entry_reading_unit) TextView unitView;
+    @BindView(R.id.form_entry_readings_single) ViewGroup singleReadingsGroup;
+    @BindViews({R.id.form_entry_readings_day, R.id.form_entry_readings_night}) ViewGroup[] doubleReadingsGroups;
     @BindView(R.id.form_entry_dates_from) TextView dateFromView;
     @BindView(R.id.form_entry_dates_to) TextView dateToView;
 
@@ -69,7 +73,7 @@ public class FormFragment extends MvpFragment
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = View.inflate(getContext(), presenter.getFormLayout(), null);
+        View view = View.inflate(getContext(), R.layout.form, null);
         final AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setView(view)
                 .create();
@@ -139,6 +143,21 @@ public class FormFragment extends MvpFragment
     public void setDates(String fromDate, String toDate) {
         dateFromView.setText(fromDate);
         dateToView.setText(toDate);
+    }
+
+    @Override
+    public void setSingleReadingsVisibility(int visibility) {
+        singleReadingsGroup.setVisibility(visibility);
+    }
+
+    @Override
+    public void setDoubleReadingsVisibility(final int visibility) {
+        ButterKnife.apply(doubleReadingsGroups, new ButterKnife.Action<ViewGroup>() {
+            @Override
+            public void apply(@NonNull ViewGroup view, int index) {
+                view.setVisibility(visibility);
+            }
+        });
     }
 
     @Override

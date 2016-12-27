@@ -1,7 +1,7 @@
 package pl.srw.billcalculator.form.fragment;
 
-import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
+import android.view.View;
 
 import javax.inject.Inject;
 
@@ -13,9 +13,7 @@ import pl.srw.billcalculator.util.ProviderMapper;
 import pl.srw.mfvp.di.scope.RetainFragmentScope;
 import pl.srw.mfvp.presenter.MvpPresenter;
 
-import static pl.srw.billcalculator.type.Provider.PGE;
 import static pl.srw.billcalculator.type.Provider.PGNIG;
-import static pl.srw.billcalculator.type.Provider.TAURON;
 
 @RetainFragmentScope
 public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
@@ -72,27 +70,32 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
         });
     }
 
-    @LayoutRes
-    public int getFormLayout() {
-        if (provider == PGNIG
-                || SharedPreferencesEnergyPrices.TARIFF_G11.equals(getTariff())) {
-            return R.layout.form;
-        } else {
-            return R.layout.form_g12;
-        }
-    }
-
     private void setFormValues(FormView view) {
+        @SharedPreferencesEnergyPrices.TariffOption String tariff = null;
         view.setLogo(provider);
-        if (provider == PGE || provider == TAURON) {
-            final String tariff = getTariff();
+        if (provider == PGNIG) {
+            view.setReadingUnit(R.string.form_reading_unit_m3);
+        } else {
+            tariff = getTariff();
             view.setTariffText(tariff);
             view.setReadingUnit(R.string.form_reading_unit_kWh);
+        }
+        setReadingsVisibility(view, tariff);
+    }
+
+    private void setReadingsVisibility(FormView view, String tariff) {
+        if (provider == PGNIG) {
+            view.setDoubleReadingsVisibility(View.GONE);
+        } else if (SharedPreferencesEnergyPrices.TARIFF_G11.equals(tariff)) {
+            view.setSingleReadingsVisibility(View.VISIBLE);
+            view.setDoubleReadingsVisibility(View.GONE);
         } else {
-            view.setReadingUnit(R.string.form_reading_unit_m3);
+            view.setDoubleReadingsVisibility(View.VISIBLE);
+            view.setSingleReadingsVisibility(View.GONE);
         }
     }
 
+    @SharedPreferencesEnergyPrices.TariffOption
     private String getTariff() {
         return ((SharedPreferencesEnergyPrices)providerMapper.getPrices(provider)).getTariff();
     }
@@ -112,5 +115,9 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
         void setReadingUnit(@StringRes int unitResId);
 
         void hideForm();
+
+        void setSingleReadingsVisibility(int visibility);
+
+        void setDoubleReadingsVisibility(final int visibility);
     }
 }

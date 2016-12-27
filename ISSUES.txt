@@ -2,7 +2,9 @@ RETHINK
 - select mode on history list, delete by swipe animation
 - new launcher icon/ round icon
 - new restore default prices icon
-- drawer menu layout space
+- form icons - counter for g11
+- my bills collapsable toolbar + image
+- drawer menu
 - rework on images
 - settings list desc is cut off on tablets
 - empty history icon

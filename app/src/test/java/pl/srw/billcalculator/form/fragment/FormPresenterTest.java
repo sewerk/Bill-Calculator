@@ -2,6 +2,7 @@ package pl.srw.billcalculator.form.fragment;
 
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.view.View;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,14 +13,12 @@ import org.mockito.MockitoAnnotations;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import junitparams.naming.TestCaseName;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.ProviderMapper;
 
 import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
 
 @RunWith(JUnitParamsRunner.class)
 public class FormPresenterTest {
@@ -96,6 +95,10 @@ public class FormPresenterTest {
         verify(view).showProviderSettings(provider);
     }
 
+    private Object parametersForWhenSettingsLinkClicked_showProviderSettings() {
+        return new Provider[] {Provider.PGE, Provider.PGNIG, Provider.TAURON};
+    }
+
     @Test
     public void whenCloseButtonClicked_dismissForm() throws Exception {
         // WHEN
@@ -105,33 +108,66 @@ public class FormPresenterTest {
         verify(view).hideForm();
     }
 
-    private Object parametersForWhenSettingsLinkClicked_showProviderSettings() {
-        return new Provider[] {Provider.PGE, Provider.PGNIG, Provider.TAURON};
+    @Test
+    public void onFirstBind_forPGNIG_hidesDoubleReadingsVisibility() throws Exception {
+        // GIVEN
+        sut.setup(Provider.PGNIG);
+
+        // WHEN
+        sut.onFirstBind();
+
+        // THEN
+        verify(view).setDoubleReadingsVisibility(View.GONE);
     }
 
     @Test
-    @Parameters
-    @TestCaseName("getFormLayout for {0} and tariff {1} should return form or form_g12")
-    public void getFormLayout_forEnergy_returnProperForm(Provider provider, String tariff, int expected) throws Exception {
+    public void onNewViewRestoreState_forPGNIG_hidesDoubleReadingsVisibility() throws Exception {
+        // GIVEN
+        sut.setup(Provider.PGNIG);
+
+        // WHEN
+        sut.onNewViewRestoreState();
+
+        // THEN
+        verify(view).setDoubleReadingsVisibility(View.GONE);
+    }
+
+    @Test
+    @Parameters(method = "paramsForReadinngVisibilityTest")
+    public void onFirstBind_hidesReadingsVisibility(Provider provider, String tariff, int singleVisibility, int doubleVisibility) throws Exception {
         // GIVEN
         sut.setup(provider);
-        when(providerMapper.getPrices(any(Provider.class))).thenReturn(prices);
         when(prices.getTariff()).thenReturn(tariff);
 
         // WHEN
-        final int result = sut.getFormLayout();
+        sut.onFirstBind();
 
         // THEN
-        assertEquals(expected, result);
+        verify(view).setSingleReadingsVisibility(singleVisibility);
+        verify(view).setDoubleReadingsVisibility(doubleVisibility);
     }
 
-    private Object parametersForGetFormLayout_forEnergy_returnProperForm() {
-        return new Object[]{
-                new Object[]{Provider.PGNIG, null, R.layout.form},
-                new Object[]{Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G11, R.layout.form},
-                new Object[]{Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G12, R.layout.form_g12},
-                new Object[]{Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G11, R.layout.form},
-                new Object[]{Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G12, R.layout.form_g12},
+    private Object[] paramsForReadinngVisibilityTest() {
+        return new Object[] {
+                new Object[] {Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G11, View.VISIBLE, View.GONE},
+                new Object[] {Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G11, View.VISIBLE, View.GONE},
+                new Object[] {Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G12, View.GONE, View.VISIBLE},
+                new Object[] {Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G12, View.GONE, View.VISIBLE},
         };
+    }
+
+    @Test
+    @Parameters(method = "paramsForReadinngVisibilityTest")
+    public void onNewViewRestoreState_hidesReadingsVisibility(Provider provider, String tariff, int singleVisibility, int doubleVisibility) throws Exception {
+        // GIVEN
+        sut.setup(provider);
+        when(prices.getTariff()).thenReturn(tariff);
+
+        // WHEN
+        sut.onNewViewRestoreState();
+
+        // THEN
+        verify(view).setSingleReadingsVisibility(singleVisibility);
+        verify(view).setDoubleReadingsVisibility(doubleVisibility);
     }
 }

@@ -49,23 +49,20 @@
     <style name="FormEntryIcon">
         <item name="android:layout_width">24dp</item>
         <item name="android:layout_height">24dp</item>
-        <item name="android:layout_marginLeft">4dp</item>
-        <item name="android:layout_marginRight">4dp</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 
     <style name="FormEntryUnit">
-        <item name="android:layout_width">32dp</item>
-        <item name="android:layout_height">32dp</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 
     <style name="FormEntrySeparator">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingLeft">8dp</item>
         <item name="android:paddingRight">8dp</item>
         <item name="android:textSize">24sp</item>
+        <item name="android:text">-</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 
 </resources>
