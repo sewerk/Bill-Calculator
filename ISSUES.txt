@@ -1,31 +1,17 @@
-- new launcher icon
+RETHINK
+- select mode on history list, delete by swipe animation
+- new launcher icon/ round icon
+- new restore default prices icon
 - drawer menu layout space
 - rework on images
 - settings list desc is cut off on tablets
-
-- drawer is opened when rotate screen with about open
-- fragment animations are gone from backstack after rotation
-- snackbar cannot be dismissed
-- dim layout doesnt go back to bottom after snackbar is hidden
-
-TODO
 - empty history icon
 - update providers logo on FAB
 - scroll bill to amount/logo on start
-- switch preferences on tariff change
 - rethink preferences names (consider optional properties)
-- select mode on history list, delete by swipe animation
-- design new icon
-- make form a floating card
 - za okres: from < to ? error
-
-PLAN
-1. rearrange form screen
-2. reveal on FAB clicked
-3. Wizard
-4. transition logo to form
-
+- reveal on FAB clicked
+- transition logo to form
 
 UX GUIDE
 settings - polacz ustawienia w grupy - dystrybucja, konsumpcja
-card - 8dp padding, space between cards 8dp, card elevation 2dp

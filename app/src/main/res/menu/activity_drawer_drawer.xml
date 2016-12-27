@@ -7,22 +7,26 @@
             android:icon="@drawable/ic_view_list_black_24dp"
             android:checked="true"
             android:title="@string/my_bills"/>
-
-        <item
-            android:id="@+id/new_bill_pge"
-            android:icon="@drawable/ic_pge_mono_18dp"
-            android:title="@string/new_pge_bill"/>
-        <item
-            android:id="@+id/new_bill_pgnig"
-            android:icon="@drawable/ic_pgnig_mono_18dp"
-            android:title="@string/new_pgnig_bill"/>
-        <item
-            android:id="@+id/new_bill_tauron"
-            android:icon="@drawable/ic_tauron_mono_18dp"
-            android:title="@string/new_tauron_bill"/>
     </group>
 
-    <item android:title="">
+    <item android:title="@string/drawer_group_new_bill">
+        <menu>
+            <item
+                android:id="@+id/new_bill_pge"
+                android:icon="@drawable/ic_pge_mono_18dp"
+                android:title="@string/new_pge_bill"/>
+            <item
+                android:id="@+id/new_bill_pgnig"
+                android:icon="@drawable/ic_pgnig_mono_18dp"
+                android:title="@string/new_pgnig_bill"/>
+            <item
+                android:id="@+id/new_bill_tauron"
+                android:icon="@drawable/ic_tauron_mono_18dp"
+                android:title="@string/new_tauron_bill"/>
+        </menu>
+    </item>
+
+    <item android:title="@string/drawer_group_more">
         <menu>
             <item
                 android:id="@+id/settings"
