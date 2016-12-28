@@ -1,11 +1,10 @@
-package pl.srw.billcalculator.calculation;
+package pl.srw.billcalculator.bill.calculation;
 
 import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.db.PgnigPrices;
 
 import static org.hamcrest.CoreMatchers.is;

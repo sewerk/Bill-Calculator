@@ -1,10 +1,9 @@
-package pl.srw.billcalculator.calculation;
+package pl.srw.billcalculator.bill.calculation;
 
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill;
 import pl.srw.billcalculator.db.PgePrices;
 
 import static org.hamcrest.CoreMatchers.is;

@@ -1,11 +1,10 @@
-package pl.srw.billcalculator.calculation;
+package pl.srw.billcalculator.bill.calculation;
 
 import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import pl.srw.billcalculator.bill.calculation.TauronG11CalculatedBill;
 import pl.srw.billcalculator.db.TauronPrices;
 
 import static org.hamcrest.CoreMatchers.is;
