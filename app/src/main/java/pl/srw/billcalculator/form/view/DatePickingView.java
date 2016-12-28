@@ -2,6 +2,7 @@ package pl.srw.billcalculator.form.view;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.support.annotation.StringRes;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 import android.widget.DatePicker;
@@ -40,6 +41,10 @@ public class DatePickingView extends AppCompatButton {
     @Override
     public void setError(CharSequence error) {
         errorHandler.setError(error);
+    }
+
+    public void setError(@StringRes int errorId) {
+        errorHandler.setError(errorId);
     }
 
     @OnClick

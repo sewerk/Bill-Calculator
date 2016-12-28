@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import pl.srw.billcalculator.R;
 
-class ErrorViewHandler { // TODO: check if all needed
+class ErrorViewHandler {
 
     private final View handlingView;
     private TextView errorView;
@@ -49,7 +49,6 @@ class ErrorViewHandler { // TODO: check if all needed
     }
 
     public void setError(CharSequence errorMsg) {
-//        if (errorMsg == null && errorView == null) return;
         obtainView(handlingView).setText(errorMsg);
     }
 }

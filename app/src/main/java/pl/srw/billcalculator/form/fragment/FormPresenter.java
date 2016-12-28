@@ -6,6 +6,7 @@ import android.view.View;
 import javax.inject.Inject;
 
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.form.FormValueValidator;
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
@@ -13,6 +14,9 @@ import pl.srw.billcalculator.util.ProviderMapper;
 import pl.srw.mfvp.di.scope.RetainFragmentScope;
 import pl.srw.mfvp.presenter.MvpPresenter;
 
+import static pl.srw.billcalculator.form.FormValueValidator.isDatesOrderCorrect;
+import static pl.srw.billcalculator.form.FormValueValidator.isValueFilled;
+import static pl.srw.billcalculator.form.FormValueValidator.isValueOrderCorrect;
 import static pl.srw.billcalculator.type.Provider.PGNIG;
 
 @RetainFragmentScope
@@ -70,6 +74,76 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
         });
     }
 
+    public void calculateButtonClicked(String readingFrom, String readingTo,
+                                       String dateFrom, String dateTo,
+                                       String readingDayFrom, String readingDayTo,
+                                       String readingNightFrom, String readingNightTo) {
+        present(new UIChange<FormView>() {
+            @Override
+            public void change(FormView view) {
+                view.cleanErrorsOnFields();
+            }
+        });
+
+        if (provider == PGNIG || SharedPreferencesEnergyPrices.TARIFF_G11.equals(getTariff())) {
+            if (isSingleReadingsFormValid(readingFrom, readingTo, dateFrom, dateTo)) {
+                // TODO: save and open
+            }
+        } else if (isDoubleReadingsFormValid(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo)) {
+            // TODO: save and open
+        }
+    }
+
+    private boolean isSingleReadingsFormValid(String readingFrom, String readingTo,
+                                              String dateFrom, String dateTo) {
+        return isValueFilled(readingFrom, onErrorCallback(FormView.Field.READING_FROM))
+                && isValueFilled(readingTo, onErrorCallback(FormView.Field.READING_TO))
+                && isValueOrderCorrect(readingFrom, readingTo, onErrorCallback(FormView.Field.READING_TO))
+                && isDatesOrderCorrect(dateFrom, dateTo, onDateErrorCallback());
+
+    }
+
+    private boolean isDoubleReadingsFormValid(String readingDayFrom, String readingDayTo,
+                                              String readingNightFrom, String readingNightTo,
+                                              String dateFrom, String dateTo) {
+        return isValueFilled(readingDayFrom, onErrorCallback(FormView.Field.READING_DAY_FROM))
+                && isValueFilled(readingDayTo, onErrorCallback(FormView.Field.READING_DAY_TO))
+                && isValueFilled(readingNightFrom, onErrorCallback(FormView.Field.READING_NIGHT_FROM))
+                && isValueFilled(readingNightTo, onErrorCallback(FormView.Field.READING_NIGHT_TO))
+                && isValueOrderCorrect(readingDayFrom, readingDayTo, onErrorCallback(FormView.Field.READING_DAY_TO))
+                && isValueOrderCorrect(readingNightFrom, readingNightTo, onErrorCallback(FormView.Field.READING_NIGHT_TO))
+                && isDatesOrderCorrect(dateFrom, dateTo, onDateErrorCallback());
+
+    }
+
+    private FormValueValidator.OnErrorCallback onErrorCallback(final FormView.Field field) {
+        return new FormValueValidator.OnErrorCallback() {
+            @Override
+            public void onError(@StringRes final int errorMsgRes) {
+                present(new UIChange<FormView>() {
+                    @Override
+                    public void change(FormView view) {
+                        view.showReadingFieldError(field, errorMsgRes);
+                    }
+                });
+            }
+        };
+    }
+
+    private FormValueValidator.OnErrorCallback onDateErrorCallback() {
+        return new FormValueValidator.OnErrorCallback() {
+            @Override
+            public void onError(@StringRes final int errorMsgRes) {
+                present(new UIChange<FormView>() {
+                    @Override
+                    public void change(FormView view) {
+                        view.showDateFieldError(errorMsgRes);
+                    }
+                });
+            }
+        };
+    }
+
     private void setFormValues(FormView view) {
         @SharedPreferencesEnergyPrices.TariffOption String tariff = null;
         view.setLogo(provider);
@@ -119,5 +193,17 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
         void setSingleReadingsVisibility(int visibility);
 
         void setDoubleReadingsVisibility(final int visibility);
+
+        void showReadingFieldError(Field field, int errorMsgRes);
+
+        void showDateFieldError(int errorMsgRes);
+
+        void cleanErrorsOnFields();
+
+        enum Field {
+            READING_FROM, READING_TO,
+            READING_DAY_FROM, READING_DAY_TO,
+            READING_NIGHT_FROM, READING_NIGHT_TO,
+        }
     }
 }
