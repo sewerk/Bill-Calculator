@@ -83,7 +83,7 @@ public class FormPresenterTest {
     }
 
     @Test
-    @Parameters
+    @Parameters(value = {"PGE", "PGNIG", "TAURON"})
     public void whenSettingsLinkClicked_showProviderSettings(Provider provider) throws Exception {
         // GIVEN
         sut.setup(provider);
@@ -93,10 +93,6 @@ public class FormPresenterTest {
 
         // THEN
         verify(view).showProviderSettings(provider);
-    }
-
-    private Object parametersForWhenSettingsLinkClicked_showProviderSettings() {
-        return new Provider[] {Provider.PGE, Provider.PGNIG, Provider.TAURON};
     }
 
     @Test
@@ -143,7 +139,7 @@ public class FormPresenterTest {
         sut.onFirstBind();
 
         // THEN
-        verify(view).setSingleReadingsVisibility(singleVisibility);// TODO: refactor to showSingleReadings()
+        verify(view).setSingleReadingsVisibility(singleVisibility);
         verify(view).setDoubleReadingsVisibility(doubleVisibility);
     }
 
@@ -172,38 +168,39 @@ public class FormPresenterTest {
     }
 
     @Test
-    public void calculateButtonClicked_forPGNIG_whenValuesCorrect_saveAndOpenBill() throws Exception {
+    @Parameters(value = {"PGE", "PGNIG", "TAURON"})
+    public void calculateButtonClicked_forTariffG11_whenValuesCorrect_saveAndOpenBillForSingleReadings(
+            Provider provider) throws Exception {
         // GIVEN
-// TODO
+        sut.setup(provider);
+        given_tariff(SharedPreferencesEnergyPrices.TARIFF_G11);
+
         // WHEN
+        sut.calculateButtonClicked("1", "2", "28/12/2016" , "31/12/2016", "11", "12", "22", "23");
 
         // THEN
+        verify(view).startStoringServiceForSingleReadings(provider);
+        verify(view).startBillActivityForSingleReadings(provider);
     }
 
     @Test
-    @Parameters(method = "paramsEnergyProviderWithTariff")
-    public void calculateButtonClicked_forEnergyProvider_whenValuesCorrect_saveAndOpenBill(
-            Provider provider, String tariff) throws Exception {
+    @Parameters(value = {"PGE", "TAURON"})
+    public void calculateButtonClicked_forEnergyProvider_andTariffG12_whenValuesCorrect_saveAndOpenBillForDoubleReadings(
+            Provider provider) throws Exception {
         // GIVEN
-// TODO
+        sut.setup(provider);
+        given_tariff(SharedPreferencesEnergyPrices.TARIFF_G12);
+
         // WHEN
+        sut.calculateButtonClicked("1", "2", "28/12/2016" , "31/12/2016", "11", "12", "22", "23");
 
         // THEN
-    }
-
-    private Object[] paramsEnergyProviderWithTariff() {
-        return new Object[] {
-                new Object[] {Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G11},
-                new Object[] {Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G11},
-                new Object[] {Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G12},
-                new Object[] {Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G12},
-        };
+        verify(view).startStoringServiceForDoubleReadings(provider);
+        verify(view).startBillActivityForDoubleReadings(provider);
     }
 
     @Test
     public void calculateButtonClicked_cleansErrorsOnFields() throws Exception {
-        // GIVEN
-
         // WHEN
         sut.calculateButtonClicked("", "", "", "", "", "", "", "");
 
@@ -236,6 +233,15 @@ public class FormPresenterTest {
 
         // THEN
         verify(view).showReadingFieldError(any(FormPresenter.FormView.Field.class), anyInt());
+    }
+
+    private Object[] paramsEnergyProviderWithTariff() {
+        return new Object[] {
+                new Object[] {Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G11},
+                new Object[] {Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G11},
+                new Object[] {Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G12},
+                new Object[] {Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G12},
+        };
     }
 
     @Test

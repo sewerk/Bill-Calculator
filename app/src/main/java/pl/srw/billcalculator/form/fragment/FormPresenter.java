@@ -87,10 +87,22 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
 
         if (provider == PGNIG || SharedPreferencesEnergyPrices.TARIFF_G11.equals(getTariff())) {
             if (isSingleReadingsFormValid(readingFrom, readingTo, dateFrom, dateTo)) {
-                // TODO: save and open
+                present(new UIChange<FormView>() {
+                    @Override
+                    public void change(FormView view) {
+                        view.startStoringServiceForSingleReadings(provider);
+                        view.startBillActivityForSingleReadings(provider);
+                    }
+                });
             }
         } else if (isDoubleReadingsFormValid(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo)) {
-            // TODO: save and open
+            present(new UIChange<FormView>() {
+                @Override
+                public void change(FormView view) {
+                    view.startStoringServiceForDoubleReadings(provider);
+                    view.startBillActivityForDoubleReadings(provider);
+                }
+            });
         }
     }
 
@@ -199,6 +211,14 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
         void showDateFieldError(int errorMsgRes);
 
         void cleanErrorsOnFields();
+
+        void startStoringServiceForSingleReadings(Provider provider);
+
+        void startBillActivityForSingleReadings(Provider provider);
+
+        void startStoringServiceForDoubleReadings(Provider provider);
+
+        void startBillActivityForDoubleReadings(Provider provider);
 
         enum Field {
             READING_FROM, READING_TO,

@@ -2,6 +2,7 @@ package pl.srw.billcalculator.form.fragment;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import pl.srw.billcalculator.form.di.FormComponent;
 import pl.srw.billcalculator.form.view.DatePickingView;
 import pl.srw.billcalculator.form.view.RoundedLogoView;
 import pl.srw.billcalculator.history.di.HistoryComponent;
+import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
 import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
@@ -210,6 +212,42 @@ public class FormFragment extends MvpFragment
         readingNightFrom.setError(null);
         readingNightTo.setError(null);
         dateToView.setError(null);
+    }
+
+    @Override
+    public void startStoringServiceForSingleReadings(Provider provider) {
+        final Intent intent = BillStoringServiceIntentFactory
+                .of(getContext(), provider)
+                .from(readingFrom.getEditText(), readingTo.getEditText(), dateFromView, dateToView);
+        getActivity().startService(intent);
+    }
+
+    @Override
+    public void startBillActivityForSingleReadings(Provider provider) {
+        final Intent intent = null;
+        // TODO: BillActivityIntentFactory.of(getActivity(), getProvider())
+//        .from(readingFrom.getEditText(), readingTo.getEditText(), dateFromView, dateToView);
+        getActivity().startActivity(intent);
+    }
+
+    @Override
+    public void startStoringServiceForDoubleReadings(Provider provider) {
+        final Intent intent = BillStoringServiceIntentFactory
+                .of(getContext(), provider)
+                .from(readingDayFrom.getEditText(), readingDayTo.getEditText(),
+                        readingNightFrom.getEditText(), readingNightTo.getEditText(),
+                        dateFromView, dateToView);
+        getActivity().startService(intent);
+    }
+
+    @Override
+    public void startBillActivityForDoubleReadings(Provider provider) {
+        final Intent intent = null;
+        // TODO: BillActivityIntentFactory.of(getActivity(), getProvider())
+//        .from(readingDayFrom.getEditText(), readingDayTo.getEditText(),
+//                readingNightFrom.getEditText(), readingNightTo.getEditText(),
+//                dateFromView, dateToView);
+        getActivity().startActivity(intent);
     }
 
     private TextInputLayout getViewFor(Field field) {
