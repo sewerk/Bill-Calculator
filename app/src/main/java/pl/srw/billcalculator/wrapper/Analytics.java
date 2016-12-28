@@ -1,4 +1,4 @@
-package pl.srw.billcalculator;
+package pl.srw.billcalculator.wrapper;
 
 import android.content.Context;
 import android.util.Log;
@@ -18,7 +18,7 @@ import android.util.Log;
  * Wrapper class for logging errors to on-line analytics tool.
  * Created by kseweryn on 17.06.15.
  */
-public class AnalyticsWrapper {
+public class Analytics {
 
     public static final String TAG = "AnalyticsLogger";
 //    public static final boolean ENABLED = !BuildConfig.DEVEL && !BuildConfig.DEBUG;
@@ -69,7 +69,7 @@ public class AnalyticsWrapper {
      */
     public static void warning(String message) {
         Log.w(TAG, message);
-//        AnalyticsWrapper.logAction(ActionType.WARNING, "warning", message);
+//        Analytics.logAction(ActionType.WARNING, "warning", message);
     }
 
     /**

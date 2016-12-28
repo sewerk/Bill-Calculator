@@ -38,7 +38,7 @@ public class BillCalculator extends Application {
                 .applicationModule(new ApplicationModule(getApplicationContext()))
                 .build();
         applicationComponent.inject(this);
-//        AnalyticsWrapper.initialize(this);
+//        Analytics.initialize(this);
         AndroidThreeTen.init(this);
         Database.initialize(this);
 

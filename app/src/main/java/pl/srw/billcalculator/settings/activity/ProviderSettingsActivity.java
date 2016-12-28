@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.f2prateek.dart.Dart;
 import com.f2prateek.dart.InjectExtra;
 
-import pl.srw.billcalculator.AnalyticsWrapper;
+import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
@@ -36,7 +36,7 @@ public class ProviderSettingsActivity extends BackableActivity<ProviderSettingsC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Dart.inject(this);
-        AnalyticsWrapper.logContent(ContentType.SETTINGS, "settings for", provider.toString());
+        Analytics.logContent(ContentType.SETTINGS, "settings for", provider.toString());
 
         if (savedInstanceState == null) {
             getFragmentManager()

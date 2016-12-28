@@ -2,7 +2,7 @@ package pl.srw.billcalculator.settings.restore;
 
 import javax.inject.Inject;
 
-import pl.srw.billcalculator.AnalyticsWrapper;
+import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.settings.prices.RestorablePrices;
 import pl.srw.billcalculator.type.ActionType;
 import pl.srw.billcalculator.type.Provider;
@@ -27,7 +27,7 @@ public class ConfirmRestoreSettingsPresenter extends MvpPresenter<ConfirmRestore
 
     public void onConfirmedClicked() {
         prices.setDefault();
-        AnalyticsWrapper.logAction(ActionType.RESTORE_PRICES, "Default prices restored", prices.getClass().getSimpleName());
+        Analytics.logAction(ActionType.RESTORE_PRICES, "Default prices restored", prices.getClass().getSimpleName());
         present(new UIChange<ConfirmRestoreSettingsView>() {
             @Override
             public void change(ConfirmRestoreSettingsView view) {

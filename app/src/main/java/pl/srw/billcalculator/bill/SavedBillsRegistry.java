@@ -5,7 +5,7 @@ import android.support.v4.util.SimpleArrayMap;
 import java.util.Random;
 
 import hugo.weaving.DebugLog;
-import pl.srw.billcalculator.AnalyticsWrapper;
+import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.db.PgeG12Bill;
@@ -77,8 +77,8 @@ public class SavedBillsRegistry {
         String key = getKey(provider, readingFrom, readingTo, readingFrom2, readingTo2, dateFrom, dateTo, prices);
         Long foundId = registry.get(key);
         if (foundId == null) {
-            AnalyticsWrapper.warning("SavedBillsRegistry is missing ID for key " + key);
-            AnalyticsWrapper.log("SavedBillsRegistry is missing ID for key " + key);
+            Analytics.warning("SavedBillsRegistry is missing ID for key " + key);
+            Analytics.log("SavedBillsRegistry is missing ID for key " + key);
             foundId = (long) (1000 + new Random().nextInt(9000));//1000-9999
         }
         return foundId;
