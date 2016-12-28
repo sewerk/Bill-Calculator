@@ -35,6 +35,12 @@
                   android:label="@string/about_label"
                   android:theme="@style/DialogTheme" />
 
+        <service android:name=".bill.service.PgnigBillStoringService" />
+
+        <service android:name=".bill.service.PgeBillStoringService" />
+
+        <service android:name=".bill.service.TauronBillStoringService" />
+
     </application>
 
 </manifest>
