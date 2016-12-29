@@ -9,10 +9,10 @@ import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import butterknife.BindView;
 import butterknife.BindString;
-import butterknife.ButterKnife;
+import butterknife.BindView;
 import butterknife.OnClick;
+import pl.srw.billcalculator.wrapper.Dependencies;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -30,7 +30,7 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about);
-        ButterKnife.bind(this);
+        Dependencies.inject(this);
 
         setLinks();
     }

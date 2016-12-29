@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import pl.srw.billcalculator.AboutActivity;
 import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
@@ -23,6 +22,7 @@ import pl.srw.billcalculator.form.fragment.FormFragment;
 import pl.srw.billcalculator.history.di.HistoryComponent;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.wrapper.Dependencies;
 import pl.srw.mfvp.MvpActivity;
 import pl.srw.mfvp.view.delegate.presenter.PresenterHandlingDelegate;
 import pl.srw.mfvp.view.delegate.presenter.PresenterOwner;
@@ -45,7 +45,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
+        Dependencies.inject(this);
 
         fabsMenuHandler.setup(this);
         setupToolbar();

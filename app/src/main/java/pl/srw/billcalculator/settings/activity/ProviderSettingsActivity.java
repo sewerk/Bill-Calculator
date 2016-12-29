@@ -15,6 +15,7 @@ import pl.srw.billcalculator.settings.di.ProviderSettingsComponent;
 import pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment;
 import pl.srw.billcalculator.type.ContentType;
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.wrapper.Dependencies;
 
 /**
  * Created by Kamil Seweryn.
@@ -35,7 +36,7 @@ public class ProviderSettingsActivity extends BackableActivity<ProviderSettingsC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Dart.inject(this);
+        Dependencies.inject(this);
         Analytics.logContent(ContentType.SETTINGS, "settings for", provider.toString());
 
         if (savedInstanceState == null) {

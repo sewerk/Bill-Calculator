@@ -27,6 +27,7 @@ import pl.srw.billcalculator.settings.SettingsPresenter;
 import pl.srw.billcalculator.settings.di.SettingsComponent;
 import pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment;
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.wrapper.Dependencies;
 import pl.srw.mfvp.view.delegate.presenter.PresenterHandlingDelegate;
 import pl.srw.mfvp.view.delegate.presenter.PresenterOwner;
 import pl.srw.mfvp.view.delegate.presenter.SinglePresenterHandlingDelegate;
@@ -49,6 +50,7 @@ public class SettingsActivity extends BackableActivity<SettingsComponent>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Dependencies.inject(this);
         presenter.setup(isDualPane());
     }
 

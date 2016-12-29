@@ -1,8 +1,6 @@
 RETHINK
-- select mode on history list, delete by swipe animation
-- analytics rewrite to Timber
-- storing service to Rx (+ SaveBillRegistry)
-- move injection to Dependencies
+- select mode on history list, delete by swipe animation + fade out
+- move injection to Dependencies (conflict with mvfp lib)
 - new launcher icon/ round icon
 - new restore default prices icon
 - form icons - counter for g11
