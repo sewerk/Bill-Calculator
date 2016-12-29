@@ -18,6 +18,7 @@ import butterknife.BindView;
 import pl.srw.billcalculator.AboutActivity;
 import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.dialog.CheckPricesDialogFragment;
 import pl.srw.billcalculator.form.fragment.FormFragment;
 import pl.srw.billcalculator.history.di.HistoryComponent;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
@@ -143,6 +144,11 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Override
     public void showHelp() {
         // TODO: impl overlaying help
+    }
+
+    @Override
+    public void showWelcomeDialog() {
+        new CheckPricesDialogFragment().show(getSupportFragmentManager(), null);
     }
 
     private void setupList() {

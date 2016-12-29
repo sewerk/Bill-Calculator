@@ -2,6 +2,7 @@ package pl.srw.billcalculator.history;
 
 import javax.inject.Inject;
 
+import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.mfvp.di.scope.RetainActivityScope;
 import pl.srw.mfvp.presenter.MvpPresenter;
@@ -9,8 +10,23 @@ import pl.srw.mfvp.presenter.MvpPresenter;
 @RetainActivityScope
 public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView> {
 
+    private final SettingsRepo settings;
+
     @Inject
-    public HistoryPresenter() {
+    public HistoryPresenter(SettingsRepo settings) {
+        this.settings = settings;
+    }
+
+    @Override
+    protected void onFirstBind() {
+        if (settings.isFirstLaunch()) {
+            present(new UIChange<HistoryView>() {
+                @Override
+                public void change(HistoryView view) {
+                    view.showWelcomeDialog();
+                }
+            });
+        }
     }
 
     public void helpMenuClicked() {
@@ -80,5 +96,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         void showAbout();
 
         void showNewBillForm(Provider provider);
+
+        void showWelcomeDialog();
     }
 }

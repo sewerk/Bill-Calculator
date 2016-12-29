@@ -3,13 +3,14 @@ package pl.srw.billcalculator.history;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.internal.util.reflection.Whitebox;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.type.Provider;
 
 import static org.mockito.Mockito.*;
@@ -19,11 +20,24 @@ public class HistoryPresenterTest {
 
     @InjectMocks private HistoryPresenter sut;
     
-    @Mock private HistoryPresenter.HistoryView view;
+    @Mock HistoryPresenter.HistoryView view;
+    @Mock SettingsRepo settings;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
+        Whitebox.setInternalState(sut, "view", view);
+    }
+
+    @Test
+    public void onFirstBind_whenFirstLaunch_showsWelcomeDialog() throws Exception {
+        when(settings.isFirstLaunch()).thenReturn(true);
+
+        // WHEN
+        sut.onFirstBind();
+
+        // THEN
+        verify(view).showWelcomeDialog();
     }
 
     @Test
