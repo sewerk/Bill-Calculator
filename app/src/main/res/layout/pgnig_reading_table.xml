@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/pgnig_bill">
+
+    <TableLayout
+        android:id="@+id/t_readings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingRight="40dp"
+                android:text="Numer gazomierza: 00000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Odczyt poprzedni:" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:text="na dzień:" />
+
+            <TextView
+                android:id="@+id/tv_prev_reading_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textStyle="bold"
+                android:paddingRight="30dp"
+                tools:text="01/01/2014" />
+
+            <TextView
+                android:id="@+id/tv_previous_reading"
+                android:layout_width="wrap_content"
+                android:minWidth="120dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textStyle="bold"
+                android:text="@string/odczyt_na_dzien"
+                tools:text="249 [m\u00B3]"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:paddingRight="10dp"
+                android:text="Odczyt bieżący: Rzeczywisty" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:text="na dzień:" />
+
+            <TextView
+                android:id="@+id/tv_curr_reading_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textStyle="bold"
+                android:paddingRight="30dp"
+                tools:text="31/12/2014" />
+
+            <TextView
+                android:id="@+id/tv_current_reading"
+                android:layout_width="wrap_content"
+                android:minWidth="90dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textStyle="bold"
+                android:text="@string/odczyt_na_dzien"
+                tools:text="290 [m\u00B3]"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:textStyle="bold"
+                android:text="Zużycie:"/>
+
+            <TextView
+                android:id="@+id/tv_consumption"
+                android:layout_width="wrap_content"
+                android:minWidth="160dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textStyle="bold"
+                android:text="@string/zuzycie"
+                tools:text=" 50 [m\u00B3]" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:background="@drawable/border">
+
+            <TextView
+                android:id="@+id/tv_total_consumption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_span="2"
+                android:gravity="center"
+                android:text="@string/zuzycie_razem"
+                tools:text="Zużycie razem 50 [m\u00B3]" />
+
+            <TextView
+                android:id="@+id/tv_conversion_factor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:layout_gravity="center"
+                android:text="@string/wsp_konwersji"
+                tools:text="Wsp. konwersji: 11.204"/>
+
+            <TextView
+                android:id="@+id/tv_total_consumption_kWh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:textStyle="bold"
+                android:gravity="end"
+                android:text="@string/zuzycie_razem_kWh"
+                tools:text="Zużycie razem: 555 kWh" />
+        </TableRow>
+    </TableLayout>
+
+</merge>

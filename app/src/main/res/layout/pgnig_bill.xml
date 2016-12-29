@@ -1,0 +1,102 @@
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    android:padding="2dp"
+    android:background="@color/white"
+    tools:context=".bill.activity.PgnigBillActivity">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:id="@+id/bill_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/white"
+            android:padding="4dp" >
+
+            <TextView
+                android:id="@+id/tv_invoice_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:textStyle="bold"
+                android:text="@string/rozliczenie_dnia"/>
+
+            <ImageView
+                android:id="@+id/image_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pgnig"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/double_padding"
+                android:contentDescription="Provider bill logo"/>
+
+            <TextView
+                android:id="@+id/tv_charge_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_logo"
+                android:layout_alignParentLeft="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Rozliczenie punktu poboru:"
+                android:paddingTop="24dp"/>
+
+            <TextView
+                android:id="@+id/tv_charge_place_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/tv_charge_place"
+                android:layout_alignRight="@+id/tables"
+                android:text="Numer punktu poboru: 0000000000" />
+
+            <TextView
+                android:id="@+id/tv_tariff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_charge_place"
+                android:layout_marginTop="24dp"
+                android:layout_alignParentLeft="true"
+                android:text="Grupa taryfowa PGNiG: W-x.x"/>
+
+            <LinearLayout
+                android:id="@+id/tables"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/tv_tariff" >
+
+                <include
+                    layout="@layout/pgnig_reading_table" />
+
+                <include
+                    layout="@layout/pgnig_components_table" />
+
+                <include
+                    layout="@layout/pgnig_sum_table" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_invoice_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tables"
+                android:layout_alignRight="@id/tables"
+                android:layout_marginTop="8dp"
+                android:textStyle="bold"
+                android:text="@string/wartosc_faktury"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+</HorizontalScrollView>

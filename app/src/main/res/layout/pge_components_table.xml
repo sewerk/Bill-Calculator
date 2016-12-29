@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools"
+   tools:showIn="@layout/pge_bill">
+
+    <TableLayout
+        android:id="@+id/t_charge_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_power"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/border" >
+
+        <include
+            android:id="@+id/t_header"
+            layout="@layout/pge_components_table_header" />
+
+        <include
+            android:id="@+id/row_za_energie_czynna"
+            layout="@layout/pge_components_table_row" />
+
+        <include
+            android:id="@+id/row_skladnik_jakosciowy"
+            layout="@layout/pge_components_table_row" />
+
+        <include
+            android:id="@+id/row_oplata_sieciowa"
+            layout="@layout/pge_components_table_row" />
+
+        <include
+            android:id="@+id/row_za_energie_czynna2"
+            layout="@layout/pge_components_table_row" />
+
+        <include
+            android:id="@+id/row_skladnik_jakosciowy2"
+            layout="@layout/pge_components_table_row" />
+
+        <include
+            android:id="@+id/row_oplata_sieciowa2"
+            layout="@layout/pge_components_table_row" />
+
+        <include
+            android:id="@+id/row_oplata_przejsciowa"
+            layout="@layout/pge_components_table_row" />
+
+        <include
+            android:id="@+id/row_oplata_stala_za_przesyl"
+            layout="@layout/pge_components_table_row" />
+
+        <include
+            android:id="@+id/row_oplata_abonamentowa"
+            layout="@layout/pge_components_table_row" />
+
+        <include
+            android:id="@+id/row_sum"
+            layout="@layout/pge_components_table_sum" />
+    </TableLayout>
+
+</merge>

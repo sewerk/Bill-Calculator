@@ -19,6 +19,18 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".bill.activity.PgeBillActivity"
+                  android:label="@string/energy_bill"
+                  android:theme="@style/AppTheme.Pge" />
+
+        <activity android:name=".bill.activity.PgnigBillActivity"
+                  android:label="@string/gas_bill"
+                  android:theme="@style/AppTheme.Pgnig" />
+
+        <activity android:name=".bill.activity.TauronBillActivity"
+                  android:label="@string/energy_bill"
+                  android:theme="@style/AppTheme.Tauron" />
+
         <activity
             android:name=".settings.activity.SettingsActivity"
             android:label="@string/settings_label">

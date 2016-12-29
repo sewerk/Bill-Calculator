@@ -200,6 +200,15 @@ public class FormPresenterTest {
     }
 
     @Test
+    public void calculateButtonClicked_whenValuesCorrect_dismissForm() throws Exception {
+        // WHEN
+        sut.calculateButtonClicked("1", "2", "28/12/2016" , "31/12/2016", "11", "12", "22", "23");
+
+        // THEN
+        verify(view).hideForm();
+    }
+
+    @Test
     public void calculateButtonClicked_cleansErrorsOnFields() throws Exception {
         // WHEN
         sut.calculateButtonClicked("", "", "", "", "", "", "", "");

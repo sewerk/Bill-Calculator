@@ -31,11 +31,13 @@ import pl.srw.billcalculator.form.di.FormComponent;
 import pl.srw.billcalculator.form.view.DatePickingView;
 import pl.srw.billcalculator.form.view.RoundedLogoView;
 import pl.srw.billcalculator.history.di.HistoryComponent;
+import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
 import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Animations;
+import pl.srw.billcalculator.util.Views;
 import pl.srw.mfvp.MvpFragment;
 import pl.srw.mfvp.view.delegate.presenter.PresenterHandlingDelegate;
 import pl.srw.mfvp.view.delegate.presenter.PresenterOwner;
@@ -136,10 +138,10 @@ public class FormFragment extends MvpFragment
 
     @OnClick(R.id.calculate_button)
     void calculateButtonClicked() {
-        presenter.calculateButtonClicked(getText(readingFrom), getText(readingTo),
-                getText(dateFromView), getText(dateToView),
-                getText(readingDayFrom), getText(readingDayTo),
-                getText(readingNightFrom), getText(readingNightTo));
+        presenter.calculateButtonClicked(Views.getText(readingFrom), Views.getText(readingTo),
+                Views.getText(dateFromView), Views.getText(dateToView),
+                Views.getText(readingDayFrom), Views.getText(readingDayTo),
+                Views.getText(readingNightFrom), Views.getText(readingNightTo));
     }
 
     @Override
@@ -224,9 +226,9 @@ public class FormFragment extends MvpFragment
 
     @Override
     public void startBillActivityForSingleReadings(Provider provider) {
-        final Intent intent = null;
-        // TODO: BillActivityIntentFactory.of(getActivity(), getProvider())
-//        .from(readingFrom.getEditText(), readingTo.getEditText(), dateFromView, dateToView);
+        final Intent intent = BillActivityIntentFactory
+                .of(getActivity(), provider)
+                .from(readingFrom.getEditText(), readingTo.getEditText(), dateFromView, dateToView);
         getActivity().startActivity(intent);
     }
 
@@ -242,11 +244,11 @@ public class FormFragment extends MvpFragment
 
     @Override
     public void startBillActivityForDoubleReadings(Provider provider) {
-        final Intent intent = null;
-        // TODO: BillActivityIntentFactory.of(getActivity(), getProvider())
-//        .from(readingDayFrom.getEditText(), readingDayTo.getEditText(),
-//                readingNightFrom.getEditText(), readingNightTo.getEditText(),
-//                dateFromView, dateToView);
+        final Intent intent = BillActivityIntentFactory
+                .of(getActivity(), provider)
+                .from(readingDayFrom.getEditText(), readingDayTo.getEditText(),
+                        readingNightFrom.getEditText(), readingNightTo.getEditText(),
+                        dateFromView, dateToView);
         getActivity().startActivity(intent);
     }
 
@@ -270,11 +272,4 @@ public class FormFragment extends MvpFragment
         }
     }
 
-    private static String getText(TextInputLayout view) {
-        return view.getEditText().getText().toString();
-    }
-
-    private static String getText(TextView view) {
-        return view.getText().toString();
-    }
 }

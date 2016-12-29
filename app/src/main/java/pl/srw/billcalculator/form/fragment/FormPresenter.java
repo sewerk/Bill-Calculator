@@ -92,6 +92,7 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
                     public void change(FormView view) {
                         view.startStoringServiceForSingleReadings(provider);
                         view.startBillActivityForSingleReadings(provider);
+                        view.hideForm();
                     }
                 });
             }
@@ -101,6 +102,7 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
                 public void change(FormView view) {
                     view.startStoringServiceForDoubleReadings(provider);
                     view.startBillActivityForDoubleReadings(provider);
+                    view.hideForm();
                 }
             });
         }

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/pgnig_components_table">
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_gray_bg"
+        android:padding="2dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_span="2"
+            android:gravity="end"
+            android:textStyle="bold"
+            android:paddingRight="20dp"
+            android:lines="1"
+            android:text="wartość akcyzy [zł]" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:gravity="end"
+            android:textStyle="bold"
+            android:paddingRight="20dp"
+            android:lines="1"
+            android:text="stawka VAT [%]" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:gravity="end"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:lines="1"
+            android:text="kwota VAT [zł]" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:gravity="end"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:lines="1"
+            android:text="wartość netto [zł]" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textStyle="bold"
+            android:lines="1"
+            android:text="wartość brutto [zł]" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/row_sum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:padding="2dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:text="[I] Razem sprzedaż" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:layout_column="2"
+            android:text="0.00"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:layout_column="4"
+            android:text="23"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_vat_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:layout_gravity="end"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            tools:text="26,25" />
+
+        <TextView
+            android:id="@+id/tv_net_charge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:paddingRight="20dp"
+            android:textStyle="bold"
+            android:layout_column="6"
+            android:layout_span="2"
+            tools:text="114,11" />
+
+        <TextView
+            android:id="@+id/tv_gross_charge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textStyle="bold"
+            android:layout_column="9"
+            tools:text="140,36" />
+
+    </TableRow>
+
+</merge>

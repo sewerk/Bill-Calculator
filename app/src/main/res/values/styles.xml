@@ -19,6 +19,21 @@
         <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless.Colored</item>
     </style>
 
+    <style name="AppTheme.Pge">
+        <item name="colorPrimary">@color/pge</item>
+        <item name="colorPrimaryDark">@color/pgeDark</item>
+    </style>
+
+    <style name="AppTheme.Pgnig">
+        <item name="colorPrimary">@color/pgnig</item>
+        <item name="colorPrimaryDark">@color/pgnigDark</item>
+    </style>
+
+    <style name="AppTheme.Tauron">
+        <item name="colorPrimary">@color/tauron</item>
+        <item name="colorPrimaryDark">@color/tauronDark</item>
+    </style>
+
     <style name="Title" parent="TextAppearance.AppCompat.Title">
     </style>
 

@@ -67,8 +67,8 @@
 
     <string name="kWh" translatable="false">kWh</string>
     <string name="m_c" translatable="false">m-c</string>
-    <string name="akcyza" translatable="false">Od %1$s kWh energii elektrycznej [ KOD CN 2716 00 00] naliczono akcyzę w kwocie %2$s zł.</string>
-    <string name="to_pay" translatable="false">DO ZAPŁATY : %$1s zł</string>
+    <string name="akcyza" translatable="false">Od %d kWh energii elektrycznej [ KOD CN 2716 00 00] naliczono akcyzę w kwocie %2$s zł.</string>
+    <string name="to_pay" translatable="false">DO ZAPŁATY : %s zł</string>
     <string name="for_period" translatable="false">Za okres od %1$s do %2$s</string>
 
     <!--tauron-->
@@ -93,9 +93,9 @@
     <string name="gas_bill">Gas bill</string>
     <string name="rozliczenie_dnia" translatable="false">Rozliczenie z dnia %1$s</string>
     <string name="wartosc_faktury" translatable="false">Wartość faktury brutto: %1$s zł</string>
-    <string name="odczyt_na_dzien" translatable="false">%1$s [m\u00B3]</string>
-    <string name="zuzycie" translatable="false">%1$s [m\u00B3]</string>
-    <string name="zuzycie_razem" translatable="false">Zużycie razem: %1$s [m\u00B3]</string>
+    <string name="odczyt_na_dzien" translatable="false">%d [m\u00B3]</string>
+    <string name="zuzycie" translatable="false">%d [m\u00B3]</string>
+    <string name="zuzycie_razem" translatable="false">Zużycie razem: %d [m\u00B3]</string>
     <string name="wsp_konwersji" translatable="false">Wsp. konwersji: %1$s</string>
     <string name="zuzycie_razem_kWh" translatable="false">Zużycie razem: %1$s [kWh]</string>
 

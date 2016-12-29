@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <TableLayout
+        android:id="@+id/t_charge_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/border" >
+
+        <include
+            android:id="@+id/t_header"
+            layout="@layout/pgnig_components_table_header" />
+
+
+
+        <include
+            android:id="@+id/row_abonamentowa"
+            layout="@layout/pgnig_components_table_row" />
+
+        <include
+            android:id="@+id/row_paliwo_gazowe"
+            layout="@layout/pgnig_components_table_row" />
+
+        <include
+            android:id="@+id/row_dystrybucyjna_stala"
+            layout="@layout/pgnig_components_table_row" />
+
+        <include
+            android:id="@+id/row_dystrybucyjna_zmienna"
+            layout="@layout/pgnig_components_table_row" />
+
+
+
+        <include
+            layout="@layout/pgnig_components_table_sum" />
+    </TableLayout>
+
+</merge>
