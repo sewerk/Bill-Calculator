@@ -27,6 +27,7 @@ public class PgnigCalculatedBillTest {
         assertThat(sut.getConsumptionM3(), is(100));
         assertThat(sut.getConsumptionKWh(), is(BigInteger.valueOf(505)));
         assertThat(sut.getMonthCount(), is(2));
+        assertThat(sut.getMonthCountExact(), is(new BigDecimal("1.8000")));
 
         assertThat(sut.getOplataAbonamentowaNetCharge(), is(new BigDecimal("2.02")));
         assertThat(sut.getPaliwoGazoweNetCharge(), is(new BigDecimal("1020.10")));

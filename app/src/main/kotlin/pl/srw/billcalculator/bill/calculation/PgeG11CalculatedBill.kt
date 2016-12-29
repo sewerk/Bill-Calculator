@@ -5,15 +5,13 @@ import pl.srw.billcalculator.pojo.IPgePrices
 class PgeG11CalculatedBill(readingFrom: Int, readingTo: Int, dateFrom: String, dateTo: String, prices: IPgePrices)
     : CalculatedEnergyBill(dateFrom, dateTo, prices.oplataAbonamentowa, prices.oplataPrzejsciowa, prices.oplataStalaZaPrzesyl) {
 
-    val consumption = readingTo - readingFrom
+    override val totalConsumption = readingTo - readingFrom
 
-    val zaEnergieCzynnaNetCharge = countNetAndAddToSum(prices.zaEnergieCzynna, consumption)
-    val skladnikJakosciowyNetCharge = countNetAndAddToSum(prices.skladnikJakosciowy, consumption)
-    val oplataSieciowaNetCharge = countNetAndAddToSum(prices.oplataSieciowa, consumption)
+    val zaEnergieCzynnaNetCharge = countNetAndAddToSum(prices.zaEnergieCzynna, totalConsumption)
+    val skladnikJakosciowyNetCharge = countNetAndAddToSum(prices.skladnikJakosciowy, totalConsumption)
+    val oplataSieciowaNetCharge = countNetAndAddToSum(prices.oplataSieciowa, totalConsumption)
 
     val zaEnergieCzynnaVatCharge = countVatAndAddToSum(zaEnergieCzynnaNetCharge)
     val skladnikJakosciowyVatCharge = countVatAndAddToSum(skladnikJakosciowyNetCharge)
     val oplataSieciowaVatCharge = countVatAndAddToSum(oplataSieciowaNetCharge)
-
-    override val totalConsumption = consumption
 }

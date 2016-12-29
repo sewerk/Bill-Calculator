@@ -23,7 +23,6 @@ public class PgeG11CalculatedBillTest {
         final PgeG11CalculatedBill sut = new PgeG11CalculatedBill(20, 30, "01/03/2015", "30/04/2015", prices);
 
         // verify
-        assertThat(sut.getConsumption(), is(10));
         assertThat(sut.getTotalConsumption(), is(10));
         assertThat(sut.getMonthCount(), is(2));
 

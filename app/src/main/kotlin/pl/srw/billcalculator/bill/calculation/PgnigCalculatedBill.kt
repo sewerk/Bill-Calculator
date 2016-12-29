@@ -8,7 +8,7 @@ import java.math.RoundingMode
 class PgnigCalculatedBill(readingFrom: Int, readingTo: Int, dateFrom: String, dateTo: String, prices: IPgnigPrices)
     : CalculatedBill(true, dateFrom, dateTo) {
 
-    private val monthCountExact = Dates.countMonth(dateFrom, dateTo)
+    val monthCountExact = Dates.countMonth(dateFrom, dateTo)
 
     val consumptionM3 = readingTo - readingFrom
     val consumptionKWh = BigDecimal(consumptionM3).multiply(BigDecimal(prices.wspolczynnikKonwersji))
