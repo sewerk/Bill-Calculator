@@ -2,25 +2,40 @@ package pl.srw.billcalculator.history;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v7.widget.RecyclerView;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import org.greenrobot.greendao.query.LazyList;
 
 import javax.inject.Inject;
 
+import butterknife.BindInt;
 import butterknife.BindView;
 import pl.srw.billcalculator.AboutActivity;
 import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.db.Bill;
+import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.dialog.CheckPricesDialogFragment;
 import pl.srw.billcalculator.form.fragment.FormFragment;
 import pl.srw.billcalculator.history.di.HistoryComponent;
+import pl.srw.billcalculator.history.list.ShowViewOnEmptyDataObserver;
+import pl.srw.billcalculator.history.list.HistoryAdapter;
+import pl.srw.billcalculator.history.list.item.HistoryItemTouchCallback;
+import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.wrapper.Dependencies;
@@ -34,13 +49,18 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         PresenterOwner,
         NavigationView.OnNavigationItemSelectedListener {
 
+    @BindView(R.id.coordinator_layout) CoordinatorLayout coordinatorLayout;
     @BindView(R.id.drawer_layout) DrawerLayout drawer;
     @BindView(R.id.nav_view) NavigationView navigationView;
     @BindView(R.id.toolbar_layout) CollapsingToolbarLayout collapsingToolbarLayout;
     @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.bill_list) RecyclerView recyclerView;
+    @BindView(R.id.bill_list) RecyclerView listView;
+    @BindView(R.id.empty_history) View emptyHistoryView;
+    @BindInt(R.integer.cardAmount) int cardAmount;
+    private HistoryAdapter adapter;
 
     @Inject HistoryPresenter presenter;
+//TODO    @Inject DrawerPresenter drawerPresenter;
     @Inject FabsMenuHandler fabsMenuHandler;
 
     @Override
@@ -78,7 +98,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.my_bills) {
@@ -94,8 +114,6 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         } else if (id == R.id.about) {
             presenter.aboutClicked();
         }
-
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -151,8 +169,51 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         new CheckPricesDialogFragment().show(getSupportFragmentManager(), null);
     }
 
+        @Override
+    public void openBill(Bill bill) {
+        final Intent intent = BillActivityIntentFactory.create(this, bill);
+        startActivity(intent);
+    }
+
+    @Override
+    public void showUndoDeleteMessage(final int position) {
+        Snackbar.make(coordinatorLayout, R.string.bill_deleted, Snackbar.LENGTH_LONG)
+                .setAction(R.string.action_undo_delete, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        presenter.undoDeleteClicked(position);
+                    }
+                })
+                .show();
+    }
+
+    @Override
+    public void setListData(LazyList<History> data) {
+        adapter.setData(data);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void itemRemovedFromList(int position, LazyList<History> newData) {
+        adapter.setData(newData);
+        adapter.notifyItemRemoved(position);
+    }
+
+    @Override
+    public void itemAddedToList(int position, LazyList<History> newData) {
+        adapter.setData(newData);
+        adapter.notifyItemInserted(position);
+        listView.smoothScrollToPosition(position);
+    }
+
     private void setupList() {
-        // TODO
+        listView.setHasFixedSize(true);
+        listView.setLayoutManager(new GridLayoutManager(this, cardAmount));
+        adapter = new HistoryAdapter(new ShowViewOnEmptyDataObserver(emptyHistoryView), presenter);
+        listView.setAdapter(adapter);
+
+        ItemTouchHelper helper = new ItemTouchHelper(new HistoryItemTouchCallback(presenter));
+        helper.attachToRecyclerView(listView);
     }
 
     private void setupToolbar() {

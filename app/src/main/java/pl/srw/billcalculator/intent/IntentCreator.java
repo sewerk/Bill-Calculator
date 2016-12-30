@@ -12,9 +12,9 @@ import pl.srw.billcalculator.db.TauronG11Bill;
 import pl.srw.billcalculator.db.TauronG12Bill;
 import pl.srw.billcalculator.util.Dates;
 
-/**
-* Created by Kamil Seweryn.
-*/
+import static pl.srw.billcalculator.util.Views.getIntText;
+import static pl.srw.billcalculator.util.Views.getText;
+
 public final class IntentCreator {
 
     public static final String READING_FROM = "READING_FROM";
@@ -35,7 +35,7 @@ public final class IntentCreator {
     public Intent from(final TextView etReadingFrom, final TextView etReadingTo,
                        final TextView bDateFrom, final TextView bDateTo) {
         return from(getIntText(etReadingFrom), getIntText(etReadingTo),
-                getStringText(bDateFrom), getStringText(bDateTo));
+                getText(bDateFrom), getText(bDateTo));
     }
 
     private Intent from(int readingFrom, int readingTo, String dateFrom, String dateTo) {
@@ -49,7 +49,7 @@ public final class IntentCreator {
                        final TextView bDateFrom, final TextView bDateTo) {
         return from(getIntText(etReadingDayFrom), getIntText(etReadingDayTo),
                 getIntText(etReadingNightFrom), getIntText(etReadingNightTo),
-                getStringText(bDateFrom), getStringText(bDateTo));
+                getText(bDateFrom), getText(bDateTo));
     }
 
     private Intent from(int readingDayFrom, int readingDayTo, int readingNightFrom, int readingNightTo, String dateFrom, String dateTo) {
@@ -114,13 +114,5 @@ public final class IntentCreator {
     private void putDatesExtra(final String dateFrom, final String dateTo) {
         intent.putExtra(DATE_FROM, dateFrom);
         intent.putExtra(DATE_TO, dateTo);
-    }
-
-    private int getIntText(final TextView textView) {
-        return Integer.parseInt(getStringText(textView));
-    }
-
-    private String getStringText(final TextView textView) {
-        return textView.getText().toString();
     }
 }

@@ -5,121 +5,92 @@
                                      android:layout_width="match_parent"
                                      android:layout_height="wrap_content">
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                 xmlns:tools="http://schemas.android.com/tools"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="wrap_content"
-                                                 android:id="@+id/bill_item"
-                                                 tools:layout_editor_absoluteX="0dp"
-                                                 tools:layout_editor_absoluteY="81dp">
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/bill_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="81dp">
 
         <TextView
+            android:id="@+id/my_bills_item_date_period"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/date_period"
-            tools:layout_editor_absoluteX="243dp"
-            tools:layout_editor_absoluteY="16dp"
             tools:text="01/02 - 31/03/2016"
-            android:contentDescription="bill date"
-            app:layout_constraintTop_toTopOf="@+id/bill_item"
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="16dp"
-            tools:layout_constraintTop_creator="0"
-            app:layout_constraintRight_toRightOf="@+id/bill_item"
+            app:layout_constraintRight_toRightOf="parent"
             android:layout_marginRight="16dp"
             android:layout_marginEnd="16dp"
-            tools:layout_constraintRight_creator="0"/>
+            />
 
         <ImageView
+            android:id="@+id/my_bills_item_logo"
             tools:src="@drawable/pge_small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="160dp"
-            tools:layout_editor_absoluteY="32dp"
-            android:id="@+id/logo"
-            android:contentDescription="bill logo"
-            app:layout_constraintLeft_toLeftOf="@+id/bill_item"
+            android:contentDescription="@string/history_item_logo_desc"
+            app:layout_constraintLeft_toLeftOf="parent"
             tools:layout_constraintLeft_creator="1"
-            app:layout_constraintTop_toBottomOf="@+id/date_period"
-            tools:layout_constraintTop_creator="0"
-            app:layout_constraintRight_toRightOf="@+id/bill_item"
+            app:layout_constraintTop_toBottomOf="@+id/my_bills_item_date_period"
+            app:layout_constraintRight_toRightOf="parent"
             tools:layout_constraintRight_creator="1"/>
 
         <TextView
-            android:text="Readings"
+            android:id="@+id/my_bills_item_readings"
+            android:text="@string/history_readings_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="67dp"
-            android:id="@+id/readings"
-            android:contentDescription="bill readings"
-            app:layout_constraintLeft_toLeftOf="@+id/bill_item"
+            app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            tools:layout_constraintLeft_creator="0"
-            app:layout_constraintTop_toBottomOf="@+id/logo"
+            app:layout_constraintTop_toBottomOf="@+id/my_bills_item_logo"
             android:layout_marginTop="8dp"
-            tools:layout_constraintTop_creator="0"/>
+            />
 
         <TextView
+            android:id="@+id/my_bills_item_day_readings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="81dp"
-            tools:layout_editor_absoluteY="67dp"
-            android:id="@+id/day_readings"
             tools:text="day unit: 1234-5678"
-            android:contentDescription="day readings"
-            app:layout_constraintLeft_toRightOf="@+id/readings"
+            app:layout_constraintLeft_toRightOf="@+id/my_bills_item_readings"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            tools:layout_constraintLeft_creator="0"
-            app:layout_constraintBottom_toBottomOf="@+id/readings"
-            tools:layout_constraintBottom_creator="0"/>
+            app:layout_constraintBottom_toBottomOf="@+id/my_bills_item_readings"
+            />
 
         <TextView
+            android:id="@+id/my_bills_item_night_readings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="81dp"
-            tools:layout_editor_absoluteY="91dp"
-            android:id="@+id/night_readings"
             tools:text="night unit: 123456789-234567891"
-            android:contentDescription="night readings"
-            app:layout_constraintLeft_toLeftOf="@+id/day_readings"
-            tools:layout_constraintLeft_creator="0"
-            app:layout_constraintTop_toBottomOf="@+id/day_readings"
+            app:layout_constraintLeft_toLeftOf="@+id/my_bills_item_day_readings"
+            app:layout_constraintTop_toBottomOf="@+id/my_bills_item_day_readings"
             android:layout_marginTop="8dp"
-            tools:layout_constraintTop_creator="0"/>
+            />
 
         <TextView
+            android:id="@+id/my_bills_item_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="270dp"
-            tools:layout_editor_absoluteY="115dp"
-            android:id="@+id/amount"
             tools:text="43 456.83 zł"
-            android:contentDescription="bill amount"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintTop_toBottomOf="@+id/night_readings"
+            app:layout_constraintTop_toBottomOf="@+id/my_bills_item_night_readings"
             android:layout_marginTop="8dp"
-            tools:layout_constraintTop_creator="0"
-            app:layout_constraintRight_toRightOf="@+id/bill_item"
+            app:layout_constraintRight_toRightOf="parent"
             android:layout_marginRight="16dp"
             android:layout_marginEnd="16dp"
-            tools:layout_constraintRight_creator="0"/>
+            />
 
         <TextView
-            android:text="Charge:"
+            android:id="@+id/charge"
+            android:text="@string/history_item_amount_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="215dp"
-            tools:layout_editor_absoluteY="119dp"
-            android:id="@+id/charge"
-            android:contentDescription="bill charge"
-            app:layout_constraintRight_toLeftOf="@+id/amount"
+            app:layout_constraintRight_toLeftOf="@id/my_bills_item_amount"
             android:layout_marginRight="8dp"
             android:layout_marginEnd="8dp"
-            tools:layout_constraintRight_creator="0"
-            app:layout_constraintBaseline_toBaselineOf="@+id/amount"
-            tools:layout_constraintBaseline_creator="0"/>
+            app:layout_constraintBaseline_toBaselineOf="@id/my_bills_item_amount"
+            />
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

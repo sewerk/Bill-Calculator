@@ -48,7 +48,7 @@ public class FabsMenuHandler {
     public void onNewBillButtonClicked(View view) {
         final Provider provider = Provider.getByViewId(view.getId());
         activityPresenter.newBillClicked(provider);
-        collapse();
+        collapse();// TODO: move to presenter
     }
 
     private void expand() {

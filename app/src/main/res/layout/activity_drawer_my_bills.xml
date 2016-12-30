@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -15,16 +15,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/empty_history"
-        app:layout_constraintBottom_toBottomOf="@+id/content_drawer"
-        app:layout_constraintLeft_toLeftOf="@+id/content_drawer"
-        app:layout_constraintRight_toRightOf="@+id/content_drawer"
-        app:layout_constraintTop_toTopOf="@+id/content_drawer"/>
+        android:layout_gravity="center"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/bill_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        tools:listitem="@layout/activity_drawer_my_bills_item" />
+        tools:listitem="@layout/activity_drawer_my_bills_item"/>
 
-</android.support.constraint.ConstraintLayout>
+</FrameLayout>

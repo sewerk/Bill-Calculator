@@ -61,4 +61,8 @@ public final class Views {
     public static String getText(TextView view) {
         return view.getText().toString();
     }
+
+    public static int getIntText(final TextView textView) {
+        return Integer.parseInt(getText(textView));
+    }
 }
