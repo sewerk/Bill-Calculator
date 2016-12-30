@@ -20,6 +20,7 @@ import pl.srw.billcalculator.util.Dates;
 public class TauronBillStoringService extends BillStoringService<TauronPrices, CalculatedEnergyBill> {
 
     @Inject pl.srw.billcalculator.settings.prices.TauronPrices prices;
+    @Inject SavedBillsRegistry savedBillsRegistry;
 
     public TauronBillStoringService() {
         super("TauronBillStoringService");
@@ -43,13 +44,13 @@ public class TauronBillStoringService extends BillStoringService<TauronPrices, C
                     Dates.toDate(Dates.parse(dateFrom)), Dates.toDate(Dates.parse(dateTo)),
                     calculatedBill.getGrossChargeSum().doubleValue(), prices.getId());
             Database.getSession().insert(bill);
-            SavedBillsRegistry.getInstance().register(bill);
+            savedBillsRegistry.register(bill);
         } else {
             final TauronG11Bill bill = new TauronG11Bill(null, readingFrom, readingTo,
                     Dates.toDate(Dates.parse(dateFrom)), Dates.toDate(Dates.parse(dateTo)),
                     calculatedBill.getGrossChargeSum().doubleValue(), prices.getId());
             Database.getSession().insert(bill);
-            SavedBillsRegistry.getInstance().register(bill);
+            savedBillsRegistry.register(bill);
         }
     }
 

@@ -20,6 +20,7 @@ import pl.srw.billcalculator.util.Dates;
 public class PgeBillStoringService extends BillStoringService<PgePrices, CalculatedEnergyBill> {
 
     @Inject pl.srw.billcalculator.settings.prices.PgePrices prices;
+    @Inject SavedBillsRegistry savedBillsRegistry;
 
     public PgeBillStoringService() {
         super("PgeBillStoringService");
@@ -43,13 +44,13 @@ public class PgeBillStoringService extends BillStoringService<PgePrices, Calcula
                     Dates.toDate(Dates.parse(dateFrom)), Dates.toDate(Dates.parse(dateTo)),
                     calculatedBill.getGrossChargeSum().doubleValue(), prices.getId());
             Database.getSession().insert(bill);
-            SavedBillsRegistry.getInstance().register(bill);
+            savedBillsRegistry.register(bill);
         } else {
             final PgeG11Bill bill = new PgeG11Bill(null, readingFrom, readingTo,
                     Dates.toDate(Dates.parse(dateFrom)), Dates.toDate(Dates.parse(dateTo)),
                     calculatedBill.getGrossChargeSum().doubleValue(), prices.getId());
             Database.getSession().insert(bill);
-            SavedBillsRegistry.getInstance().register(bill);
+            savedBillsRegistry.register(bill);
         }
     }
 

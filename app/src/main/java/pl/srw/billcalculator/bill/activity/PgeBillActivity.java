@@ -39,6 +39,7 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
     @Optional @InjectExtra(IntentCreator.PRICES) IPgePrices prices;
 
     @Inject PgePrices prefsPrices;
+    @Inject SavedBillsRegistry savedBillsRegistry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +77,9 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
     @Override
     protected String getBillIdentifier() {
         if (isTwoUnitTariff())
-            return SavedBillsRegistry.getInstance().getIdentifier(Provider.PGE, readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices);
+            return savedBillsRegistry.getIdentifier(Provider.PGE, readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices);
         else
-            return SavedBillsRegistry.getInstance().getIdentifier(Provider.PGE, readingFrom, readingTo, dateFrom, dateTo, prices);
+            return savedBillsRegistry.getIdentifier(Provider.PGE, readingFrom, readingTo, dateFrom, dateTo, prices);
     }
 
     private void setDates() {

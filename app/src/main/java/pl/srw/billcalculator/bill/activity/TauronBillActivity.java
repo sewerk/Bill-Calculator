@@ -40,6 +40,7 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
 
     @Optional @InjectExtra(IntentCreator.PRICES) ITauronPrices prices;
     @Inject TauronPrices prefsPrices;
+    @Inject SavedBillsRegistry savedBillsRegistry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +76,9 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
     @Override
     protected String getBillIdentifier() {
         if (isTwoUnitTariff())
-            return SavedBillsRegistry.getInstance().getIdentifier(Provider.TAURON, readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices);
+            return savedBillsRegistry.getIdentifier(Provider.TAURON, readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices);
         else
-            return SavedBillsRegistry.getInstance().getIdentifier(Provider.TAURON, readingFrom, readingTo, dateFrom, dateTo, prices);
+            return savedBillsRegistry.getIdentifier(Provider.TAURON, readingFrom, readingTo, dateFrom, dateTo, prices);
     }
 
     private void setDates() {

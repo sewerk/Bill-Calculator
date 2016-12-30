@@ -4,6 +4,9 @@ import android.support.v4.util.SimpleArrayMap;
 
 import java.util.Random;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.db.Bill;
@@ -19,21 +22,14 @@ import pl.srw.billcalculator.pojo.ITauronPrices;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 
-/**
- * Created by kseweryn on 02.07.15.
- */
-@SuppressWarnings("StringBufferReplaceableByString")
+@Singleton
 public class SavedBillsRegistry {
 
-    private static final SavedBillsRegistry INSTANCE = new SavedBillsRegistry();
     private final SimpleArrayMap<String, Long> registry;
 
-    private SavedBillsRegistry() {
+    @Inject
+    SavedBillsRegistry() {
         registry = new SimpleArrayMap<>();
-    }
-
-    public static SavedBillsRegistry getInstance() {
-        return INSTANCE;
     }
 
     @DebugLog

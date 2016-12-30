@@ -43,6 +43,7 @@ public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
 
     @Optional @InjectExtra(IntentCreator.PRICES) IPgnigPrices prices;
     @Inject PgnigPrices prefsPrices;
+    @Inject SavedBillsRegistry savedBillsRegistry;
 
     private PgnigCalculatedBill bill;
 
@@ -75,7 +76,7 @@ public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
 
     @Override
     protected String getBillIdentifier() {
-        return SavedBillsRegistry.getInstance().getIdentifier(Provider.PGNIG, readingFrom, readingTo, dateFrom, dateTo, prices);
+        return savedBillsRegistry.getIdentifier(Provider.PGNIG, readingFrom, readingTo, dateFrom, dateTo, prices);
     }
 
     private void setDate() {

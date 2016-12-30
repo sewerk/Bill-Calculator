@@ -17,6 +17,7 @@ import pl.srw.billcalculator.util.Dates;
 public class PgnigBillStoringService extends BillStoringService<PgnigPrices, PgnigCalculatedBill> {
 
     @Inject pl.srw.billcalculator.settings.prices.PgnigPrices prices;
+    @Inject SavedBillsRegistry savedBillsRegistry;
 
     public PgnigBillStoringService() {
         super("BillStoringService");
@@ -39,7 +40,7 @@ public class PgnigBillStoringService extends BillStoringService<PgnigPrices, Pgn
                 Dates.toDate(Dates.parse(dateFrom)), Dates.toDate(Dates.parse(dateTo)),
                 calculatedBill.getGrossChargeSum().doubleValue(), prices.getId());
         Database.getSession().insert(bill);
-        SavedBillsRegistry.getInstance().register(bill);
+        savedBillsRegistry.register(bill);
     }
 
     @Override
