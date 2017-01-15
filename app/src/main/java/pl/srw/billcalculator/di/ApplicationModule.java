@@ -2,13 +2,17 @@ package pl.srw.billcalculator.di;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Environment;
 import android.preference.PreferenceManager;
+
+import java.io.File;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
 import pl.srw.billcalculator.settings.prices.RestorablePrices;
@@ -67,5 +71,11 @@ public class ApplicationModule {
     @Singleton
     protected Provider[] providerProviders() {
         return Provider.values();
+    }
+
+    @Provides
+    @Singleton
+    protected String getPrintPathDir() {
+        return Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + context.getString(R.string.print_dir);
     }
 }

@@ -1,0 +1,5 @@
+ext {
+    kotlinVer = '1.0.6'
+    supportLibVer = '24.2.0'
+    butterKnifeVer = '8.3.0'
+}

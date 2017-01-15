@@ -33,7 +33,7 @@
     <string name="print_dir">Bills</string>
     <string name="print_io_problem">Error: cannot access external storage</string>
     <string name="print_failed">Saving to PDF failed</string>
-    <string name="print_no_pdf_viewer">"Bill printed to file: "</string>
+    <string name="print_no_pdf_viewer">"Bill printed to file: %s"</string>
     <string name="error_permission_storage_missing">Missing Storage permission</string>
     <string name="rationale_dialog_title">Required permission</string>
     <string name="rationale_dialog_msg">Printing the bill requires device Storage access to create file. Denying access disables the printing!</string>

@@ -1,18 +1,19 @@
 package pl.srw.billcalculator.wrapper;
 
 import android.content.Context;
-import android.util.Log;
+
+import timber.log.Timber;
 
 //import com.crashlytics.android.Crashlytics;
 //import com.crashlytics.android.answers.Answers;
 //import com.crashlytics.android.answers.ContentViewEvent;
 //import com.crashlytics.android.answers.CustomEvent;
-//
-//import java.util.Arrays;
-//
+
+import java.util.Arrays;
+
 //import io.fabric.sdk.android.Fabric;
-//import pl.srw.billcalculator.type.ActionType;
-//import pl.srw.billcalculator.type.ContentType;
+import pl.srw.billcalculator.type.ActionType;
+import pl.srw.billcalculator.type.ContentType;
 
 /**
  * Wrapper class for logging errors to on-line analytics tool.
@@ -20,7 +21,6 @@ import android.util.Log;
  */
 public class Analytics {
 
-    public static final String TAG = "AnalyticsLogger";
 //    public static final boolean ENABLED = !BuildConfig.DEVEL && !BuildConfig.DEBUG;
 
     public static void initialize(Context context) {
@@ -58,7 +58,7 @@ public class Analytics {
      * @param message debug log
      */
     public static void log(String message) {
-        Log.d(TAG, message);
+        Timber.d(message);
 //        if (ENABLED)
 //            Crashlytics.log(message);
     }
@@ -68,7 +68,7 @@ public class Analytics {
      * @param message warning
      */
     public static void warning(String message) {
-        Log.w(TAG, message);
+        Timber.w(message);
 //        Analytics.logAction(ActionType.WARNING, "warning", message);
     }
 
@@ -77,7 +77,7 @@ public class Analytics {
      * @param exception
      */
     public static void error(Throwable exception) {
-        Log.e(TAG, exception.getMessage(), exception);
+        Timber.e(exception.getMessage(), exception);
 //        if (ENABLED)
 //            Crashlytics.logException(exception);
     }
@@ -87,8 +87,8 @@ public class Analytics {
      * @param contentId
      * @param args
      */
-    public static void logContent(String contentId, String... args) {
-//        Log.d(TAG, contentId + " " + Arrays.toString(args));
+    public static void logContent(@ContentType String contentId, String... args) {
+        Timber.d(contentId + " " + Arrays.toString(args));
 //        if (!ENABLED || args.length % 2 != 0) return;
 //
 //        ContentViewEvent event = new ContentViewEvent();
@@ -104,8 +104,8 @@ public class Analytics {
      * @param action
      * @param args
      */
-    public static void logAction(String action, String... args) {
-//        Log.d(TAG, action + " " + Arrays.toString(args));
+    public static void logAction(@ActionType String action, String... args) {
+        Timber.d(action + " " + Arrays.toString(args));
 //        if (!ENABLED || args.length % 2 != 0) return;
 //
 //        CustomEvent customEvent = new CustomEvent(action);

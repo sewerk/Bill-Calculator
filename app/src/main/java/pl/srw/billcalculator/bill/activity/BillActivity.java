@@ -1,51 +1,51 @@
 package pl.srw.billcalculator.bill.activity;
 
-import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.CallSuper;
 import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.annotation.StringDef;
+import android.support.annotation.StringRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import butterknife.BindString;
+import javax.inject.Inject;
+
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.bill.task.PrintTask;
-import pl.srw.billcalculator.bill.task.TaskManager;
 import pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment;
-import pl.srw.billcalculator.type.ActionType;
-import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.mfvp.di.component.MvpActivityScopeComponent;
+import pl.srw.mfvp.view.delegate.presenter.PresenterHandlingDelegate;
+import pl.srw.mfvp.view.delegate.presenter.PresenterOwner;
+import pl.srw.mfvp.view.delegate.presenter.SinglePresenterHandlingDelegate;
 
-public abstract class BillActivity<T extends MvpActivityScopeComponent> extends BackableActivity<T> {
+abstract class BillActivity<T extends MvpActivityScopeComponent>
+        extends BackableActivity<T>
+        implements PresenterOwner, BillPresenter.BillView {
 
-    public static final String VIEW_TRANSITION_NAME = "BillActivity:transition";
-    private static final String TAG = "BillActivity";
     public static final String MIME_APPLICATION_PDF = "application/pdf";
     public static final String MIME_IMAGE = "image/*";
-    public static final String PERMISSION_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
-    public static final int PERMISSION_REQUEST_CODE = 101;
-    @BindString(R.string.print_dir) String PRINT_TARGET_DIR;
+
+    private static final String VIEW_TRANSITION_NAME = "BillActivity:transition";
+    private static final int PERMISSION_REQUEST_CODE = 101;
+
+    @Inject BillPresenter presenter;
 
     private Menu menu;
 
@@ -53,25 +53,20 @@ public abstract class BillActivity<T extends MvpActivityScopeComponent> extends 
     @CallSuper
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//TODO        EventBus.getDefault().register(this);
-        ViewCompat.setTransitionName(findViewById(R.id.decor_content_parent), VIEW_TRANSITION_NAME);
+        ViewCompat.setTransitionName(findViewById(R.id.decor_content_parent), VIEW_TRANSITION_NAME);//TODO
+    }
+
+    @Override
+    protected void onStart() {
+        presenter.setup(getBillIdentifier());
+        super.onStart();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.bill, menu);
         this.menu = menu;
-        if (isPrintTaskRunning())
-            setPrintInProgress();
         return true;
-    }
-
-    @Override
-    @CallSuper
-    protected void onDestroy() {
-//TODO        EventBus.getDefault().unregister(this);
-        setPrintFinished();
-        super.onDestroy();
     }
 
     @CallSuper
@@ -79,109 +74,28 @@ public abstract class BillActivity<T extends MvpActivityScopeComponent> extends 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_print) {
-            if (PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this, PERMISSION_STORAGE)) {
-                performPrint();
-            } else {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this, PERMISSION_STORAGE)) {
-                    showExplanationForRequestPermission();
-                } else {
-                    ActivityCompat.requestPermissions(this, new String[]{PERMISSION_STORAGE}, PERMISSION_REQUEST_CODE);
-                }
-            }
+            presenter.onPrintClicked();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSION_REQUEST_CODE: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Log.d(TAG, "onRequestPermissionsResult: GRANTED");
-                    performPrint();
-                } else {
-                    Log.d(TAG, "onRequestPermissionsResult: DENIED");
-                    showExplanationForRequestPermission();
-                }
-                return;
-            }
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    public PresenterHandlingDelegate createPresenterDelegate() {
+        return new SinglePresenterHandlingDelegate(this, presenter);
     }
 
-    private void showExplanationForRequestPermission() {
-        final ExplainPermissionRequestDialogFragment dialog
-                = ExplainPermissionRequestDialogFragment.newInstance(new String[]{PERMISSION_STORAGE}, PERMISSION_REQUEST_CODE);
-        dialog.show(getFragmentManager(), "RequestPermissionRationaleDialog");
-    }
-
-    private void performPrint() {
-        final File targetFile = getTargetFile("pdf");
-        if (targetFile != null) {
-            Analytics.logAction(ActionType.PRINT,
-                    "print file", targetFile.getName(),
-                    "print file exist", String.valueOf(targetFile.exists()));
-            if (targetFile.exists()) {
-                openFile(targetFile, MIME_APPLICATION_PDF);
-            } else {
-                setPrintInProgress();
-                final PrintTask printTask = new PrintTask(targetFile.getAbsolutePath());
-                TaskManager.getInstance().register(targetFile.getAbsolutePath(), printTask);
-
-                final View contentView = findViewById(R.id.bill_content);
-                printTask.execute(contentView);
-            }
-        } else {
-            Toast.makeText(BillActivity.this, R.string.error_permission_storage_missing, Toast.LENGTH_SHORT).show();
+    @Override
+    public void setPrintReadyIcon() {
+        if (menu != null) {
+            MenuItem printMenuItem = menu.findItem(R.id.action_print);
+            printMenuItem.setActionView(null);
+            printMenuItem.setEnabled(true);
         }
     }
 
-//TODO    public void onEventMainThread(final PdfGeneratedEvent event) {
-//        final String filePath = event.getPath();
-//        if (filePath == null) {
-//            Toast.makeText(this, getString(R.string.print_failed), Toast.LENGTH_SHORT).show();
-//            Analytics.warning("Saving PDF failed");
-//        } else
-//            openFile(new File(filePath), MIME_APPLICATION_PDF);
-//        setPrintFinished();
-//    }
-
-    @StringDef({MIME_APPLICATION_PDF, MIME_IMAGE})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface FileType {}
-
-    private void openFile(final File file, @FileType final String type) {
-        final Uri uri = Uri.fromFile(file);
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(uri, type);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        try {
-            startActivity(intent);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(this, getString(R.string.print_no_pdf_viewer) + file.getAbsolutePath(), Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @StringDef({"pdf", "jpg"})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface FileExtension {}
-
-    @Nullable
-    private File getTargetFile(@FileExtension final String ext) {
-        File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + PRINT_TARGET_DIR);
-        if (!direct.exists())
-            if (!direct.mkdirs()) {
-//                Toast.makeText(this, getString(R.string.print_io_problem), Toast.LENGTH_LONG).show();
-                Analytics.warning("mkdir failed");
-                return null;
-            }
-        return new File(direct.getAbsolutePath(), getBillIdentifier() + "." + ext);
-    }
-
-    protected abstract String getBillIdentifier();
-
-    private void setPrintInProgress() {
+    @Override
+    public void setPrintInProgressIcon() {
         if (menu != null) {
             MenuItem printMenuItem = menu.findItem(R.id.action_print);
             printMenuItem.setEnabled(false);
@@ -189,21 +103,66 @@ public abstract class BillActivity<T extends MvpActivityScopeComponent> extends 
         }
     }
 
-    private void setPrintFinished() {
-        if (menu != null) {
-            MenuItem printMenuItem = menu.findItem(R.id.action_print);
-            if (printMenuItem.getActionView() != null) {
-                printMenuItem.setActionView(null);
-                printMenuItem.setEnabled(true);
+    @Override
+    public boolean hasPermission(@NotNull String permission) {
+        return PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this, permission);
+    }
+
+    @Override
+    public void requestPermission(@NonNull String permission) {
+        ActivityCompat.requestPermissions(this, new String[]{permission}, PERMISSION_REQUEST_CODE);
+    }
+
+    @Override
+    public boolean shouldShowExplanation(@NotNull String permission) {
+        return ActivityCompat.shouldShowRequestPermissionRationale(this, permission);
+    }
+
+    @Override
+    public void showExplanationForRequestPermission(@NonNull String permission) {
+        final ExplainPermissionRequestDialogFragment dialog
+                = ExplainPermissionRequestDialogFragment.newInstance(new String[]{permission}, PERMISSION_REQUEST_CODE);
+        dialog.show(getFragmentManager(), "RequestPermissionRationaleDialog");
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE: {
+                presenter.processRequestPermissionResponse(grantResults);
+                return;
             }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @StringDef({MIME_APPLICATION_PDF, MIME_IMAGE})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface FileType {}
+
+    @Override
+    public void openFile(@NonNull File file, @NonNull @FileType String type) {
+        final Uri uri = Uri.fromFile(file);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(uri, type);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, getString(R.string.print_no_pdf_viewer, file.getAbsolutePath()), Toast.LENGTH_LONG).show();
         }
     }
 
-    private boolean isPrintTaskRunning() {
-        File pdfFile = getTargetFile("pdf");
-        if (pdfFile == null)
-            return false;
-        final AsyncTask task = TaskManager.getInstance().findBy(pdfFile.getAbsolutePath());
-        return task != null && task.getStatus() != AsyncTask.Status.FINISHED;
+    @Override
+    public void showMessage(@StringRes int textResIdRes) {
+        Toast.makeText(this, textResIdRes, Toast.LENGTH_SHORT).show();
     }
+
+    @NotNull
+    @Override
+    public View getContentView() {
+        return findViewById(R.id.bill_content);
+    }
+
+    protected abstract String getBillIdentifier();
 }

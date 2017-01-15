@@ -65,7 +65,6 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
 
     @Override
     public PgeBillComponent prepareComponent() {
-        // FIXME: change to application scope component
         return BillCalculator.get(this).getApplicationComponent().getPgeBillComponent();
     }
 
