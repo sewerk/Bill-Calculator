@@ -1,4 +1,9 @@
+BUGS
+- history list not refreshed after new bill created
+- settings list desc is cut off on tablets
+
 RETHINK
+- transition logo to form
 - select mode on history list, delete by swipe animation + fade out
 - move injection to Dependencies (conflict with mvfp lib)
 - new launcher icon/ round icon
@@ -7,14 +12,12 @@ RETHINK
 - my bills collapsable toolbar + image
 - drawer menu
 - rework on images
-- settings list desc is cut off on tablets
 - empty history icon
 - update providers logo on FAB
 - scroll bill to amount/logo on start
 - rethink preferences names (consider optional properties)
 - za okres: from < to ? error
 - reveal on FAB clicked
-- transition logo to form
 
 UX GUIDE
 settings - polacz ustawienia w grupy - dystrybucja, konsumpcja

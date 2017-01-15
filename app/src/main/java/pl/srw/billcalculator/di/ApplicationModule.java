@@ -35,47 +35,47 @@ public class ApplicationModule {
     @Provides
     @Singleton
 //    @Named(DEFAULT_SHARED_PREFS) does not work (with map dependency?)
-    protected SharedPreferences provideDefaultSharedPreferences() {
+    SharedPreferences provideDefaultSharedPreferences() {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     @Provides(type = Provides.Type.MAP)
     @Singleton
     @DependencyMapProviderKey(Provider.PGE)
-    protected RestorablePrices providePgeSharedPreferencesPrices(SharedPreferences prefs) {
+    RestorablePrices providePgeSharedPreferencesPrices(SharedPreferences prefs) {
         return new PgePrices(prefs);
     }
 
     @Provides(type = Provides.Type.MAP)
     @Singleton
     @DependencyMapProviderKey(Provider.PGNIG)
-    protected RestorablePrices providePgnigSharedPreferencesPrices(SharedPreferences prefs) {
+    RestorablePrices providePgnigSharedPreferencesPrices(SharedPreferences prefs) {
         return new PgnigPrices(prefs);
     }
 
     @Provides(type = Provides.Type.MAP)
     @Singleton
     @DependencyMapProviderKey(Provider.TAURON)
-    protected RestorablePrices provideTauronSharedPreferencesPrices(SharedPreferences prefs) {
+    RestorablePrices provideTauronSharedPreferencesPrices(SharedPreferences prefs) {
         return new TauronPrices(prefs);
     }
 
     @Provides
     @Singleton
     @Named(GLOBAL_SHARED_PREFS)
-    protected SharedPreferences provideSharedPreferences() {
+    SharedPreferences provideSharedPreferences() {
         return context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
     }
 
     @Provides
     @Singleton
-    protected Provider[] providerProviders() {
+    Provider[] providerProviders() {
         return Provider.values();
     }
 
     @Provides
     @Singleton
-    protected String getPrintPathDir() {
+    String getPrintPathDir() {
         return Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + context.getString(R.string.print_dir);
     }
 }
