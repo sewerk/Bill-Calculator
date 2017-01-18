@@ -25,6 +25,6 @@ public class HistoryRepo {
     }
 
     public LazyList<History> getAll() {
-        return Database.getHistory();
+        return Database.getHistory(); // TODO: Rewrite to Rx
     }
 }

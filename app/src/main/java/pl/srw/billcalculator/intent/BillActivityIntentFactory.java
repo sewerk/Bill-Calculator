@@ -22,7 +22,7 @@ public final class BillActivityIntentFactory {
 
     public static IntentCreator of(final Context context, final Provider billType) {
         switch (billType) {
-            case PGE: // TODO: move to mapper?
+            case PGE:
                 return new IntentCreator(context, PgeBillActivity.class);
             case PGNIG:
                 return new IntentCreator(context, PgnigBillActivity.class);

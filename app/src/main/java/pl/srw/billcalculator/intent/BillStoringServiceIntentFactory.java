@@ -15,7 +15,7 @@ public class BillStoringServiceIntentFactory {
 
     public static IntentCreator of(final Context context, final Provider billType) {
         switch (billType) {
-            case PGE: // TODO: move to mapper?
+            case PGE:
                 return new IntentCreator(context, PgeBillStoringService.class);
             case PGNIG:
                 return new IntentCreator(context, PgnigBillStoringService.class);
