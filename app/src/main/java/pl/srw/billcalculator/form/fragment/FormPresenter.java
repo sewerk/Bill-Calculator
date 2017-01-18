@@ -168,8 +168,8 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
 
     private void setFormValues(FormView view) {
         view.setLogo(provider);
+        view.setReadingUnit(provider.formReadingUnit);
         if (provider == PGNIG) {
-            view.setReadingUnit(R.string.form_reading_unit_m3);// TODO move mapping to Provider
             view.setDoubleReadingsVisibility(View.GONE);
             getPreviousReadings(CurrentReadingType.PGNIG_TO, new Consumer<int[]>() {
                 @Override
@@ -225,7 +225,6 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
                 });
             }
             view.setTariffText(tariff);
-            view.setReadingUnit(R.string.form_reading_unit_kWh);
         }
     }
 
