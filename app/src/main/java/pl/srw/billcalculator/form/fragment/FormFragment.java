@@ -26,9 +26,12 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.form.autocomplete.PreviousReadingsAdapter;
 import pl.srw.billcalculator.form.di.FormComponent;
 import pl.srw.billcalculator.form.view.DatePickingView;
+import pl.srw.billcalculator.form.view.InstantAutoCompleteTextInputEditText;
 import pl.srw.billcalculator.form.view.RoundedLogoView;
 import pl.srw.billcalculator.history.di.HistoryComponent;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
@@ -63,10 +66,13 @@ public class FormFragment extends MvpFragment
     @BindView(R.id.form_entry_dates_to) DatePickingView dateToView;
 
     @BindView(R.id.form_entry_reading_from) TextInputLayout readingFrom;
+    @BindView(R.id.form_entry_reading_from_input) InstantAutoCompleteTextInputEditText readingFromInput;
     @BindView(R.id.form_entry_reading_to) TextInputLayout readingTo;
     @BindView(R.id.form_entry_reading_day_from) TextInputLayout readingDayFrom;
+    @BindView(R.id.form_entry_reading_day_from_input) InstantAutoCompleteTextInputEditText readingDayFromInput;
     @BindView(R.id.form_entry_reading_day_to) TextInputLayout readingDayTo;
     @BindView(R.id.form_entry_reading_night_from) TextInputLayout readingNightFrom;
+    @BindView(R.id.form_entry_reading_night_from_input) InstantAutoCompleteTextInputEditText readingNightFromInput;
     @BindView(R.id.form_entry_reading_night_to) TextInputLayout readingNightTo;
 
     private Unbinder unbinder;
@@ -157,6 +163,22 @@ public class FormFragment extends MvpFragment
     @Override
     public void setTariffText(String tariff) {
         tariffView.setText(tariff);
+    }
+
+    @DebugLog
+    @Override
+    public void setAutoCompleteDataForReadingFrom(int[] readings) {
+        readingFromInput.setAdapter(new PreviousReadingsAdapter(getContext(), readings));
+    }
+
+    @Override
+    public void setAutoCompleteDataForReadingDayFrom(int[] readings) {
+        readingDayFromInput.setAdapter(new PreviousReadingsAdapter(getContext(), readings));
+    }
+
+    @Override
+    public void setAutoCompleteDataForReadingNightFrom(int[] readings) {
+        readingNightFromInput.setAdapter(new PreviousReadingsAdapter(getContext(), readings));
     }
 
     @Override

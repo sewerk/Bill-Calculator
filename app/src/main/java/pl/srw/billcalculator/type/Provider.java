@@ -6,27 +6,38 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 import pl.srw.billcalculator.settings.fragment.PgeSettingsFragment;
 import pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment;
 import pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment;
 import pl.srw.billcalculator.settings.fragment.TauronSettingsFragment;
 
+import static pl.srw.billcalculator.persistence.type.CurrentReadingType.*;
+
 public enum Provider {
-    PGE(R.string.pge_prices, R.string.settings_pge_summary, R.drawable.pge, R.drawable.pge_small),
-    PGNIG(R.string.pgnig_prices, R.string.settings_pgnig_summary, R.drawable.pgnig, R.drawable.pgnig_small),
-    TAURON(R.string.tauron_prices, R.string.settings_tauron_summary, R.drawable.tauron, R.drawable.tauron_small);
+    PGE(R.string.pge_prices, R.string.settings_pge_summary, R.drawable.pge, R.drawable.pge_small,
+            PGE_TO, PGE_DAY_TO, PGE_NIGHT_TO),
+    PGNIG(R.string.pgnig_prices, R.string.settings_pgnig_summary, R.drawable.pgnig, R.drawable.pgnig_small,
+            PGNIG_TO),
+    TAURON(R.string.tauron_prices, R.string.settings_tauron_summary, R.drawable.tauron, R.drawable.tauron_small,
+            TAURON_TO, TAURON_DAY_TO, TAURON_NIGHT_TO);
 
     public final int titleRes;
     public final int settingsDescRes;
     public final int logoRes;
     public final int logoSmallRes;
+    public final CurrentReadingType singleReadingType;
+    public final CurrentReadingType[] doubleReadingTypes;
 
     Provider(@StringRes final int titleRes, @StringRes final int descRes,
-             @DrawableRes final int logoRes, @DrawableRes final int logoSmallRes) {
+             @DrawableRes final int logoRes, @DrawableRes final int logoSmallRes,
+             CurrentReadingType singleReadingType, CurrentReadingType... doubleReadingTypes) {
         this.titleRes = titleRes;
         this.settingsDescRes = descRes;
         this.logoRes = logoRes;
         this.logoSmallRes = logoSmallRes;
+        this.singleReadingType = singleReadingType;
+        this.doubleReadingTypes = doubleReadingTypes;
     }
 
     public static Provider mapFrom(pl.srw.billcalculator.persistence.type.BillType persistenceType) {
@@ -59,7 +70,7 @@ public enum Provider {
      * @return new instance of {@link ProviderSettingsFragment}
      */
     @NonNull
-    public ProviderSettingsFragment createProviderSettingsFragment() { // TODO: move to mapping class
+    public ProviderSettingsFragment createProviderSettingsFragment() { // TODO: move to factory class
         switch (this) {
             case PGNIG:
                 return new PgnigSettingsFragment();

@@ -5,12 +5,17 @@ import android.view.View;
 
 import javax.inject.Inject;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.form.FormValueValidator;
+import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.ProviderMapper;
+import pl.srw.billcalculator.wrapper.ReadingsRepo;
 import pl.srw.mfvp.di.scope.RetainFragmentScope;
 import pl.srw.mfvp.presenter.MvpPresenter;
 
@@ -22,11 +27,14 @@ import static pl.srw.billcalculator.type.Provider.PGNIG;
 @RetainFragmentScope
 public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
 
+    private final ReadingsRepo readingsRepo;
+    private final ProviderMapper providerMapper;
+
     private Provider provider;
-    private ProviderMapper providerMapper;
 
     @Inject
-    public FormPresenter(ProviderMapper providerMapper) {
+    public FormPresenter(ReadingsRepo readingsRepo, ProviderMapper providerMapper) {
+        this.readingsRepo = readingsRepo;
         this.providerMapper = providerMapper;
     }
 
@@ -159,28 +167,73 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
     }
 
     private void setFormValues(FormView view) {
-        @SharedPreferencesEnergyPrices.TariffOption String tariff = null;
         view.setLogo(provider);
         if (provider == PGNIG) {
-            view.setReadingUnit(R.string.form_reading_unit_m3);
+            view.setReadingUnit(R.string.form_reading_unit_m3);// TODO move mapping to Provider
+            view.setDoubleReadingsVisibility(View.GONE);
+            getPreviousReadings(CurrentReadingType.PGNIG_TO, new Consumer<int[]>() {
+                @Override
+                public void accept(final int[] readings) throws Exception {
+                    present(new UIChange<FormView>() {
+                        @Override
+                        public void change(FormView view) {
+                            view.setAutoCompleteDataForReadingFrom(readings);
+                        }
+                    });
+                }
+            });
         } else {
-            tariff = getTariff();
+            String tariff = getTariff();
+            if (SharedPreferencesEnergyPrices.TARIFF_G11.equals(tariff)) {
+                view.setSingleReadingsVisibility(View.VISIBLE);
+                view.setDoubleReadingsVisibility(View.GONE);
+                getPreviousReadings(provider.singleReadingType, new Consumer<int[]>() {
+                    @Override
+                    public void accept(final int[] readings) throws Exception {
+                        present(new UIChange<FormView>() {
+                            @Override
+                            public void change(FormView view) {
+                                view.setAutoCompleteDataForReadingFrom(readings);
+                            }
+                        });
+                    }
+                });
+            } else {
+                view.setDoubleReadingsVisibility(View.VISIBLE);
+                view.setSingleReadingsVisibility(View.GONE);
+                getPreviousReadings(provider.doubleReadingTypes[0], new Consumer<int[]>() {
+                    @Override
+                    public void accept(final int[] readings) throws Exception {
+                        present(new UIChange<FormView>() {
+                            @Override
+                            public void change(FormView view) {
+                                view.setAutoCompleteDataForReadingDayFrom(readings);
+                            }
+                        });
+                    }
+                });
+                getPreviousReadings(provider.doubleReadingTypes[1], new Consumer<int[]>() {
+                    @Override
+                    public void accept(final int[] readings) throws Exception {
+                        present(new UIChange<FormView>() {
+                            @Override
+                            public void change(FormView view) {
+                                view.setAutoCompleteDataForReadingNightFrom(readings);
+                            }
+                        });
+                    }
+                });
+            }
             view.setTariffText(tariff);
             view.setReadingUnit(R.string.form_reading_unit_kWh);
         }
-        setReadingsVisibility(view, tariff);
     }
 
-    private void setReadingsVisibility(FormView view, String tariff) {
-        if (provider == PGNIG) {
-            view.setDoubleReadingsVisibility(View.GONE);
-        } else if (SharedPreferencesEnergyPrices.TARIFF_G11.equals(tariff)) {
-            view.setSingleReadingsVisibility(View.VISIBLE);
-            view.setDoubleReadingsVisibility(View.GONE);
-        } else {
-            view.setDoubleReadingsVisibility(View.VISIBLE);
-            view.setSingleReadingsVisibility(View.GONE);
-        }
+    private void getPreviousReadings(CurrentReadingType type, Consumer<int[]> onSuccess) {
+        readingsRepo.getPreviousReadingsFor(type)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(onSuccess);
     }
 
     @SharedPreferencesEnergyPrices.TariffOption
@@ -199,6 +252,12 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
         void setTariffText(String tariff);
 
         void setDates(String fromDate, String toDate);
+
+        void setAutoCompleteDataForReadingFrom(int[] readings);
+
+        void setAutoCompleteDataForReadingDayFrom(int[] readings);
+
+        void setAutoCompleteDataForReadingNightFrom(int[] readings);
 
         void setReadingUnit(@StringRes int unitResId);
 

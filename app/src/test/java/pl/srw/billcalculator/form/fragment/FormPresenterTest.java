@@ -10,30 +10,45 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.internal.util.reflection.Whitebox;
+import org.mockito.verification.VerificationMode;
 
+import io.reactivex.Single;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.RxJavaBaseTest;
+import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.ProviderMapper;
+import pl.srw.billcalculator.wrapper.ReadingsRepo;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(JUnitParamsRunner.class)
-public class FormPresenterTest {
+public class FormPresenterTest extends RxJavaBaseTest {
 
     @InjectMocks private FormPresenter sut;
 
-    @Mock private FormPresenter.FormView view;
-    @Mock private ProviderMapper providerMapper;
-    @Mock private SharedPreferencesEnergyPrices prices;
+    @Mock FormPresenter.FormView view;
+    @Mock ProviderMapper providerMapper;
+    @Mock ReadingsRepo readingsRepo;
+    @Mock SharedPreferencesEnergyPrices prices;
 
     @Before
     public void setUp() throws Exception {
-        sut = new FormPresenter(providerMapper);
         MockitoAnnotations.initMocks(this);
+        Whitebox.setInternalState(sut, "view", view);
         when(providerMapper.getPrices(any(Provider.class))).thenReturn(prices);
+        doReturn(Single.never()).when(readingsRepo).getPreviousReadingsFor(any(CurrentReadingType.class));
     }
 
     @Test
@@ -129,7 +144,7 @@ public class FormPresenterTest {
     }
 
     @Test
-    @Parameters(method = "paramsForReadinngVisibilityTest")
+    @Parameters(method = "paramsForReadingVisibility")
     public void onFirstBind_hidesReadingsVisibility(Provider provider, String tariff, int singleVisibility, int doubleVisibility) throws Exception {
         // GIVEN
         sut.setup(provider);
@@ -143,7 +158,7 @@ public class FormPresenterTest {
         verify(view).setDoubleReadingsVisibility(doubleVisibility);
     }
 
-    private Object[] paramsForReadinngVisibilityTest() {
+    private Object[] paramsForReadingVisibility() {
         return new Object[] {
                 new Object[] {Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G11, View.VISIBLE, View.GONE},
                 new Object[] {Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G11, View.VISIBLE, View.GONE},
@@ -153,7 +168,7 @@ public class FormPresenterTest {
     }
 
     @Test
-    @Parameters(method = "paramsForReadinngVisibilityTest")
+    @Parameters(method = "paramsForReadingVisibility")
     public void onNewViewRestoreState_hidesReadingsVisibility(Provider provider, String tariff, int singleVisibility, int doubleVisibility) throws Exception {
         // GIVEN
         sut.setup(provider);
@@ -280,7 +295,90 @@ public class FormPresenterTest {
         verify(view).showDateFieldError(anyInt());
     }
 
+    @Test
+    @Parameters(method = "paramsForAutoComplete")
+    public void onFirstBind_setsAutoCompletionDataForReadingFrom(
+            Provider provider, String tariff, VerificationMode singleVerificationMode, VerificationMode doubleVerificationMode) throws Exception {
+        // GIVEN
+        int[] readings = {1, 2, 3};
+        given_databaseReturnPreviousReadings(readings);
+        sut.setup(provider);
+        given_tariff(tariff);
+
+        // WHEN
+        sut.onFirstBind();
+        waitToFinish();
+
+        // THEN
+        verify(view, singleVerificationMode).setAutoCompleteDataForReadingFrom(readings);
+        verify(view, doubleVerificationMode).setAutoCompleteDataForReadingDayFrom(readings);
+        verify(view, doubleVerificationMode).setAutoCompleteDataForReadingNightFrom(readings);
+    }
+
+    private Object[] paramsForAutoComplete() {
+        return new Object[] {
+                new Object[] {Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G11, times(1), never()},
+                new Object[] {Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G11, times(1), never()},
+                new Object[] {Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G12, never(), times(1)},
+                new Object[] {Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G12, never(), times(1)},
+        };
+    }
+
+    @Test
+    @Parameters(method = "paramsForAutoComplete")
+    public void onNewViewRestoreState_setsAutoCompletionDataForReadingFrom(
+            Provider provider, String tariff, VerificationMode singleVerificationMode, VerificationMode doubleVerificationMode) throws Exception {
+        // GIVEN
+        int[] readings = {1, 2, 3};
+        given_databaseReturnPreviousReadings(readings);
+        sut.setup(provider);
+        given_tariff(tariff);
+
+        // WHEN
+        sut.onNewViewRestoreState();
+        waitToFinish();
+
+        // THEN
+        verify(view, singleVerificationMode).setAutoCompleteDataForReadingFrom(readings);
+        verify(view, doubleVerificationMode).setAutoCompleteDataForReadingDayFrom(readings);
+        verify(view, doubleVerificationMode).setAutoCompleteDataForReadingNightFrom(readings);
+    }
+
+    @Test
+    public void onFirstBind_forPGNIG_setsAutoCompletionDataForReadingFrom() throws Exception {
+        // GIVEN
+        int[] readings = {1, 2, 3};
+        given_databaseReturnPreviousReadings(readings);
+        sut.setup(Provider.PGNIG);
+
+        // WHEN
+        sut.onFirstBind();
+        waitToFinish();
+
+        // THEN
+        verify(view).setAutoCompleteDataForReadingFrom(readings);
+    }
+
+    @Test
+    public void onNewViewRestoreState_forPGNIG_setsAutoCompletionDataForReadingFrom() throws Exception {
+        // GIVEN
+        int[] readings = {1, 2, 3};
+        given_databaseReturnPreviousReadings(readings);
+        sut.setup(Provider.PGNIG);
+
+        // WHEN
+        sut.onNewViewRestoreState();
+        waitToFinish();
+
+        // THEN
+        verify(view).setAutoCompleteDataForReadingFrom(readings);
+    }
+
     private void given_tariff(String tariff) {
         when(prices.getTariff()).thenReturn(tariff);
+    }
+
+    private void given_databaseReturnPreviousReadings(int[] readings) {
+        doReturn(Single.just(readings)).when(readingsRepo).getPreviousReadingsFor(any(CurrentReadingType.class));
     }
 }

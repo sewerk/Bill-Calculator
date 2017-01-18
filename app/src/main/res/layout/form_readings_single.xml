@@ -14,12 +14,13 @@
         android:id="@+id/form_entry_reading_from"
         android:hint="@string/form_reading_from_hint">
 
-        <android.support.design.widget.TextInputEditText
+        <pl.srw.billcalculator.form.view.InstantAutoCompleteTextInputEditText
             android:id="@+id/form_entry_reading_from_input"
             style="@style/FormReadingEntry"
             android:nextFocusForward="@+id/form_entry_reading_to_input"
             android:nextFocusRight="@+id/form_entry_reading_to_input"
             android:nextFocusDown="@+id/form_entry_reading_to_input"
+            android:imeOptions="actionNext"
             tools:text="123"/>
     </android.support.design.widget.TextInputLayout>
 
