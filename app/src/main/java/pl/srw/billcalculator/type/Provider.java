@@ -17,7 +17,7 @@ public enum Provider {
     TAURON(R.string.tauron_prices, R.string.settings_tauron_summary, R.drawable.tauron, R.drawable.tauron_small,
             R.string.form_reading_unit_kWh, TAURON_TO, TAURON_DAY_TO, TAURON_NIGHT_TO);
 
-    public final int titleRes;
+    public final int settingsTitleRes;
     public final int settingsDescRes;
     public final int logoRes;
     public final int logoSmallRes;
@@ -25,11 +25,11 @@ public enum Provider {
     public final CurrentReadingType singleReadingType;
     public final CurrentReadingType[] doubleReadingTypes;
 
-    Provider(@StringRes final int titleRes, @StringRes final int descRes,
+    Provider(@StringRes final int settingsTitleRes, @StringRes final int descRes,
              @DrawableRes final int logoRes, @DrawableRes final int logoSmallRes,
              @StringRes int formReadingUnit,
              CurrentReadingType singleReadingType, CurrentReadingType... doubleReadingTypes) {
-        this.titleRes = titleRes;
+        this.settingsTitleRes = settingsTitleRes;
         this.settingsDescRes = descRes;
         this.logoRes = logoRes;
         this.logoSmallRes = logoSmallRes;

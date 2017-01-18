@@ -115,7 +115,7 @@ public class SettingsActivity extends BackableActivity<SettingsComponent>
     private List<Map<String, Object>> getProviderEntries(Provider[] providers) {
         List<Map<String, Object>> entries = new ArrayList<>();
         for (Provider provider : providers) {
-            final ArrayMap<String, Object> entry = addEntry(provider.logoSmallRes, provider.titleRes, provider.settingsDescRes);
+            final ArrayMap<String, Object> entry = addEntry(provider.logoSmallRes, provider.settingsTitleRes, provider.settingsDescRes);
             entries.add(entry);
         }
         return entries;

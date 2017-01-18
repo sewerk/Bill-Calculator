@@ -46,7 +46,7 @@ public class ProviderSettingsActivity extends BackableActivity<ProviderSettingsC
         }
 
         if (getSupportActionBar() != null)
-            getSupportActionBar().setTitle(provider.titleRes);
+            getSupportActionBar().setTitle(provider.settingsTitleRes);
     }
 
     @Override
