@@ -22,6 +22,7 @@ import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.help.ProviderSettingsHelpActivity;
 import pl.srw.billcalculator.settings.restore.ConfirmRestoreSettingsDialogFragment;
+import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 
 /**
@@ -32,6 +33,23 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
 
     private static final String TAG_CONFIRM_RESTORE = "RESTORE_DEFAULT_CONFIRM_DIALOG";
     private static final String EMPTY_VALUE_REPLACEMENT = "0.00";
+
+    /**
+     * Creates new provider settings fragment
+     * @param provider  provider type
+     * @return new instance of {@link ProviderSettingsFragment}
+     */
+    public static ProviderSettingsFragment newInstance(Provider provider) {
+        switch (provider) {
+            case PGNIG:
+                return new PgnigSettingsFragment();
+            case PGE:
+                return new PgeSettingsFragment();
+            case TAURON:
+                return new TauronSettingsFragment();
+        }
+        throw new EnumVariantNotHandledException(provider);
+    }
 
     @DebugLog
     @Override

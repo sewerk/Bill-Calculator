@@ -2,15 +2,10 @@ package pl.srw.billcalculator.type;
 
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
-import pl.srw.billcalculator.settings.fragment.PgeSettingsFragment;
-import pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment;
-import pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment;
-import pl.srw.billcalculator.settings.fragment.TauronSettingsFragment;
 
 import static pl.srw.billcalculator.persistence.type.CurrentReadingType.*;
 
@@ -65,20 +60,4 @@ public enum Provider {
             throw new RuntimeException("Unhandled view Id=" + id);
     }
 
-    /**
-     * Lazy {@link ProviderSettingsFragment} creation by {@link Provider} type
-     * @return new instance of {@link ProviderSettingsFragment}
-     */
-    @NonNull
-    public ProviderSettingsFragment createProviderSettingsFragment() { // TODO: move to factory class
-        switch (this) {
-            case PGNIG:
-                return new PgnigSettingsFragment();
-            case PGE:
-                return new PgeSettingsFragment();
-            case TAURON:
-                return new TauronSettingsFragment();
-        }
-        throw new EnumVariantNotHandledException(this);
-    }
 }

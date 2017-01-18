@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.f2prateek.dart.Dart;
 import com.f2prateek.dart.InjectExtra;
 
 import pl.srw.billcalculator.wrapper.Analytics;
@@ -42,7 +41,7 @@ public class ProviderSettingsActivity extends BackableActivity<ProviderSettingsC
         if (savedInstanceState == null) {
             getFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment, provider.createProviderSettingsFragment(), FRAGMENT_TAG)
+                    .replace(R.id.fragment, ProviderSettingsFragment.newInstance(provider), FRAGMENT_TAG)
                     .commit();
         }
 

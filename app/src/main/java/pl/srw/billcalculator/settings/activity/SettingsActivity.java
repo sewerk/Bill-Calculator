@@ -18,7 +18,6 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.BillCalculator;
@@ -87,7 +86,7 @@ public class SettingsActivity extends BackableActivity<SettingsComponent>
 
     @Override
     public void showSettingsFor(Provider provider) {
-        final ProviderSettingsFragment fragment = provider.createProviderSettingsFragment();
+        final ProviderSettingsFragment fragment = ProviderSettingsFragment.newInstance(provider);
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.prefs_frame, fragment, FRAGMENT_TAG)
