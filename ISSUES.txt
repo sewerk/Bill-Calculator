@@ -2,6 +2,10 @@ BUGS
 - history list not refreshed after new bill created
 - settings list desc is cut off on tablets
 
+TEST
+- print with screen rotation and openning different bill, which icon will appear
+- undo deletion on list with order being possible changed due to order in db
+
 RETHINK
 - transition logo to form
 - select mode on history list, delete by swipe animation + fade out

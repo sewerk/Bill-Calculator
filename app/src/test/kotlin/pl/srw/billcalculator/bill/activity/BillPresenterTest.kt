@@ -3,14 +3,20 @@ package pl.srw.billcalculator.bill.activity
 import android.content.pm.PackageManager
 import android.view.View
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.TemporaryFolder
 import org.mockito.Matchers.anyInt
 import org.mockito.Mockito.*
-import org.mockito.internal.util.reflection.Whitebox
 import pl.srw.billcalculator.bill.activity.print.Printer
+import pl.srw.billcalculator.invokeHiddenMethod
+import pl.srw.billcalculator.setState
 import java.io.File
 
 class BillPresenterTest {
+
+    val temporaryDir = TemporaryFolder()
+        @Rule get
 
     val printer = mock(Printer::class.java)
     val view = mock(BillPresenter.BillView::class.java)
@@ -19,7 +25,8 @@ class BillPresenterTest {
 
     @Before
     fun setUp() {
-        Whitebox.setInternalState(sut, "view", view)
+        sut.setState("view", view)
+        sut.setState("printDir", temporaryDir.newFolder())
         sut.setup("id")
     }
 
@@ -179,7 +186,7 @@ class BillPresenterTest {
     @Test
     fun `show message when print icon clicked and has storage permission but file cannot be created for printout`() {
         `when`(view.hasPermission(STORAGE_PERMISSION)).thenReturn(true)
-        Whitebox.setInternalState(sut, "printDir", mock(File::class.java))
+        sut.setState("printDir", mock(File::class.java))
 
         sut.onPrintClicked()
 
@@ -187,16 +194,11 @@ class BillPresenterTest {
     }
 
     private fun sut_onFirstBind() {
-        invokeHiddenMethod("onFirstBind")
+        sut.invokeHiddenMethod("onFirstBind")
     }
 
     private fun sut_onNewViewRestoreState() {
-        invokeHiddenMethod("onNewViewRestoreState")
-    }
-
-    private fun invokeHiddenMethod(name: String) {
-        val method = sut.javaClass.getDeclaredMethod(name)
-        method.isAccessible = true
-        method.invoke(sut)
+        sut.invokeHiddenMethod("onNewViewRestoreState")
     }
 }
+
