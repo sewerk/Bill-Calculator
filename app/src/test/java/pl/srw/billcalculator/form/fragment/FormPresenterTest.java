@@ -10,12 +10,12 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.util.reflection.Whitebox;
 import org.mockito.verification.VerificationMode;
 
 import io.reactivex.Single;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import pl.srw.billcalculator.Whitebox;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.RxJavaBaseTest;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
@@ -24,6 +24,7 @@ import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.ProviderMapper;
 import pl.srw.billcalculator.wrapper.ReadingsRepo;
 
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.anyString;
@@ -47,7 +48,7 @@ public class FormPresenterTest extends RxJavaBaseTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         Whitebox.setInternalState(sut, "view", view);
-        when(providerMapper.getPrices(any(Provider.class))).thenReturn(prices);
+        when(providerMapper.getPrices(nullable(Provider.class))).thenReturn(prices);
         doReturn(Single.never()).when(readingsRepo).getPreviousReadingsFor(any(CurrentReadingType.class));
     }
 

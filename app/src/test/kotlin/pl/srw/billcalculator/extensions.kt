@@ -1,3 +1,5 @@
+@file:JvmName("Whitebox")
+
 package pl.srw.billcalculator
 
 import java.lang.reflect.Field
@@ -16,6 +18,7 @@ fun Any.setState(name: String, value: Any) {
     setInternalState(this, name, value)
 }
 
+@Suppress("UNCHECKED_CAST")
 fun <T> getInternalState(target: Any, field: String): T {
     val c = target.javaClass
     try {
@@ -41,16 +44,16 @@ fun setInternalState(target: Any, field: String, value: Any) {
 }
 
 private fun getFieldFromHierarchy(clazz: Class<*>, field: String): Field {
-    var clazz = clazz
-    var f = getField(clazz, field)
-    while (f == null && clazz != Any::class.java) {
-        clazz = clazz.superclass
-        f = getField(clazz, field)
+    var vClazz = clazz
+    var f = getField(vClazz, field)
+    while (f == null && vClazz != Any::class.java) {
+        vClazz = vClazz.superclass
+        f = getField(vClazz, field)
     }
     if (f == null) {
         throw RuntimeException(
                 "You want me to get this field: '" + field +
-                        "' on this class: '" + clazz.simpleName +
+                        "' on this class: '" + vClazz.simpleName +
                         "' but this field is not declared withing hierarchy of this class!")
     }
     return f

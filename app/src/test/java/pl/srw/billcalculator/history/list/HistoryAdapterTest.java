@@ -1,21 +1,22 @@
 package pl.srw.billcalculator.history.list;
 
-import android.view.ViewGroup;
-
 import org.greenrobot.greendao.query.LazyList;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.util.reflection.Whitebox;
 
+import pl.srw.billcalculator.Whitebox;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.history.list.item.HistoryItemClickListener;
 import pl.srw.billcalculator.history.list.item.HistoryItemViewHolder;
 
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class HistoryAdapterTest {
 

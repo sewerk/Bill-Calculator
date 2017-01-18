@@ -6,7 +6,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
-import org.mockito.Matchers.anyInt
+import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.Mockito.*
 import pl.srw.billcalculator.bill.activity.print.Printer
 import pl.srw.billcalculator.invokeHiddenMethod
@@ -28,6 +28,7 @@ class BillPresenterTest {
         sut.setState("view", view)
         sut.setState("printDir", temporaryDir.newFolder())
         sut.setup("id")
+        `when`(view.getContentView()).thenReturn(mock(View::class.java))
     }
 
     @Test

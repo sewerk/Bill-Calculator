@@ -7,10 +7,10 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.util.reflection.Whitebox;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import pl.srw.billcalculator.Whitebox;
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
@@ -43,12 +43,12 @@ public class HistoryPresenterTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         Whitebox.setInternalState(sut, "view", view);
+        when(history.getAll()).thenReturn(mock(LazyList.class));
     }
 
     @Test
     public void onFirstBind_whenFirstLaunch_showsWelcomeDialog() throws Exception {
         // GIVEN
-        when(history.getAll()).thenReturn(mock(LazyList.class));
         when(settings.isFirstLaunch()).thenReturn(true);
 
         // WHEN
@@ -61,7 +61,6 @@ public class HistoryPresenterTest {
     @Test
     public void onFirstBind_whenNotFirstLaunch_dontShowsWelcomeDialog() throws Exception {
         // GIVEN
-        when(history.getAll()).thenReturn(mock(LazyList.class));
         when(settings.isFirstLaunch()).thenReturn(false);
 
         // WHEN
@@ -73,9 +72,6 @@ public class HistoryPresenterTest {
 
     @Test
     public void onFirstBind_fetchAllHistory() throws Exception {
-        // GIVEN
-        when(history.getAll()).thenReturn(mock(LazyList.class));
-
         // WHEN
         sut.onFirstBind();
 
