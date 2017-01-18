@@ -7,8 +7,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-open class ReadingsRepo @Inject constructor() { // TODO make non-open class and fun
+class ReadingsRepo @Inject constructor() {
 
-    open fun getPreviousReadingsFor(type: CurrentReadingType): Single<IntArray> = Single.just(type)
+    fun getPreviousReadingsFor(type: CurrentReadingType): Single<IntArray> = Single.just(type)
             .map { Database.queryCurrentReadings(it) }
 }
