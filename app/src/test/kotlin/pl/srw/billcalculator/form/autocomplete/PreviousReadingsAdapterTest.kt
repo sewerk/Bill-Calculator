@@ -1,20 +1,20 @@
 package pl.srw.billcalculator.form.autocomplete
 
 import android.content.Context
+import com.nhaarman.mockito_kotlin.mock
 import org.junit.Assert.*
 import org.junit.Test
-import org.mockito.Mockito
 import pl.srw.billcalculator.getState
 
 class PreviousReadingsAdapterTest {
 
     @Test
     fun `have empty String array data when constructing with empty data`() {
-        val context = Mockito.mock(Context::class.java)
+        val context: Context = mock()
 
         val sut: PreviousReadingsAdapter = PreviousReadingsAdapter(context, IntArray(0))
 
-        val allData = sut.getState<Array<String>>("allData")
+        val allData: Array<String> = sut.getState("allData")
         assertTrue(allData.isEmpty())
     }
 

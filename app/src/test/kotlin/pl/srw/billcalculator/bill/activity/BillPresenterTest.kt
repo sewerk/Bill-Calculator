@@ -1,13 +1,12 @@
 package pl.srw.billcalculator.bill.activity
 
 import android.content.pm.PackageManager
-import android.view.View
+import com.nhaarman.mockito_kotlin.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
 import org.mockito.ArgumentMatchers.anyInt
-import org.mockito.Mockito.*
 import pl.srw.billcalculator.bill.activity.print.Printer
 import pl.srw.billcalculator.invokeHiddenMethod
 import pl.srw.billcalculator.setState
@@ -18,8 +17,10 @@ class BillPresenterTest {
     val temporaryDir = TemporaryFolder()
         @Rule get
 
-    val printer = mock(Printer::class.java)
-    val view = mock(BillPresenter.BillView::class.java)
+    val printer: Printer = mock()
+    val view: BillPresenter.BillView = mock {
+        on { getContentView() }.thenReturn(mock())
+    }
 
     val sut = BillPresenter(printer, "/path")
 
@@ -28,7 +29,6 @@ class BillPresenterTest {
         sut.setState("view", view)
         sut.setState("printDir", temporaryDir.newFolder())
         sut.setup("id")
-        `when`(view.getContentView()).thenReturn(mock(View::class.java))
     }
 
     @Test
@@ -40,8 +40,8 @@ class BillPresenterTest {
 
     @Test
     fun `request storage permission when print icon clicked and permission not approved and should not show explanation`() {
-        `when`(view.hasPermission(STORAGE_PERMISSION)).thenReturn(false)
-        `when`(view.shouldShowExplanation(STORAGE_PERMISSION)).thenReturn(false)
+        whenever(view.hasPermission(STORAGE_PERMISSION)).thenReturn(false)
+        whenever(view.shouldShowExplanation(STORAGE_PERMISSION)).thenReturn(false)
 
         sut.onPrintClicked()
 
@@ -50,7 +50,7 @@ class BillPresenterTest {
 
     @Test
     fun `check should show explanation when print icon clicked and permission not approved`() {
-        `when`(view.hasPermission(STORAGE_PERMISSION)).thenReturn(false)
+        whenever(view.hasPermission(STORAGE_PERMISSION)).thenReturn(false)
 
         sut.onPrintClicked()
 
@@ -59,8 +59,8 @@ class BillPresenterTest {
 
     @Test
     fun `show explanation when print icon clicked and permission not approved and should show explanation`() {
-        `when`(view.hasPermission(STORAGE_PERMISSION)).thenReturn(false)
-        `when`(view.shouldShowExplanation(STORAGE_PERMISSION)).thenReturn(true)
+        whenever(view.hasPermission(STORAGE_PERMISSION)).thenReturn(false)
+        whenever(view.shouldShowExplanation(STORAGE_PERMISSION)).thenReturn(true)
 
         sut.onPrintClicked()
 
@@ -69,18 +69,18 @@ class BillPresenterTest {
 
     @Test
     fun `perform print when print icon clicked and permission approved`() {
-        `when`(view.hasPermission(STORAGE_PERMISSION)).thenReturn(true)
+        whenever(view.hasPermission(STORAGE_PERMISSION)).thenReturn(true)
 
         sut.onPrintClicked()
 
-        verify(printer).printToPdf(any(View::class.java), any(File::class.java))
+        verify(printer).printToPdf(any(), any())
     }
 
     @Test
     fun `perform print when requested permission granted`() {
         sut.processRequestPermissionResponse(intArrayOf(PackageManager.PERMISSION_GRANTED))
 
-        verify(printer).printToPdf(any(View::class.java), any(File::class.java))
+        verify(printer).printToPdf(any(), any())
     }
 
     @Test
@@ -92,7 +92,7 @@ class BillPresenterTest {
 
     @Test
     fun `show print in progress icon on first view bind when printing is in progress`() {
-        `when`(printer.isPrintInProgress(any(File::class.java))).thenReturn(true)
+        whenever(printer.isPrintInProgress(any())).thenReturn(true)
 
         sut_onFirstBind()
 
@@ -101,7 +101,7 @@ class BillPresenterTest {
 
     @Test
     fun `show print in progress icon on view rebind when printing is in progress`() {
-        `when`(printer.isPrintInProgress(any(File::class.java))).thenReturn(true)
+        whenever(printer.isPrintInProgress(any())).thenReturn(true)
 
         sut_onNewViewRestoreState()
 
@@ -110,7 +110,7 @@ class BillPresenterTest {
 
     @Test
     fun `dont show print in progress icon on first view bind when printing not in progress`() {
-        `when`(printer.isPrintInProgress(any(File::class.java))).thenReturn(false)
+        whenever(printer.isPrintInProgress(any())).thenReturn(false)
 
         sut_onFirstBind()
 
@@ -119,7 +119,7 @@ class BillPresenterTest {
 
     @Test
     fun `dont show print in progress icon on view rebind when printing not in progress`() {
-        `when`(printer.isPrintInProgress(any(File::class.java))).thenReturn(false)
+        whenever(printer.isPrintInProgress(any())).thenReturn(false)
 
         sut_onNewViewRestoreState()
 
@@ -128,28 +128,28 @@ class BillPresenterTest {
 
     @Test
     fun `show print in progress icon when printing started`() {
-        sut.onPrintStarted(mock(File::class.java))
+        sut.onPrintStarted(mock())
 
         verify(view).setPrintInProgressIcon()
     }
 
     @Test
     fun `show print ready icon when printing finished`() {
-        sut.onPrintoutReady(mock(File::class.java))
+        sut.onPrintoutReady(mock())
 
         verify(view).setPrintReadyIcon()
     }
 
     @Test
     fun `show print ready icon when print failed`() {
-        sut.onPrintFailed(mock(Throwable::class.java))
+        sut.onPrintFailed(mock())
 
         verify(view).setPrintReadyIcon()
     }
 
     @Test
     fun `open file when printing finished`() {
-        val file = mock(File::class.java)
+        val file: File = mock()
 
         sut.onPrintoutReady(file)
 
@@ -158,7 +158,7 @@ class BillPresenterTest {
 
     @Test
     fun `show message when printing failed`() {
-        sut.onPrintFailed(mock(Throwable::class.java))
+        sut.onPrintFailed(mock())
 
         verify(view).showMessage(anyInt())
     }
@@ -186,8 +186,8 @@ class BillPresenterTest {
 
     @Test
     fun `show message when print icon clicked and has storage permission but file cannot be created for printout`() {
-        `when`(view.hasPermission(STORAGE_PERMISSION)).thenReturn(true)
-        sut.setState("printDir", mock(File::class.java))
+        whenever(view.hasPermission(STORAGE_PERMISSION)).thenReturn(true)
+        sut.setState("printDir", mock<File>())
 
         sut.onPrintClicked()
 
