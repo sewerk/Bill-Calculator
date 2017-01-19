@@ -42,6 +42,7 @@ public class FormPresenterTest extends RxJavaBaseTest {
     @Mock FormPresenter.FormView view;
     @Mock ProviderMapper providerMapper;
     @Mock ReadingsRepo readingsRepo;
+    @Mock FormPresenter.HistoryUpdating historyUpdater;
     @Mock SharedPreferencesEnergyPrices prices;
 
     @Before
@@ -216,7 +217,11 @@ public class FormPresenterTest extends RxJavaBaseTest {
     }
 
     @Test
-    public void calculateButtonClicked_whenValuesCorrect_dismissForm() throws Exception {
+    @Parameters(method = "paramsEnergyProviderWithTariff")
+    public void calculateButtonClicked_whenValuesCorrect_dismissForm(Provider provider, String tariff) throws Exception {
+        sut.setup(provider);
+        given_tariff(tariff);
+
         // WHEN
         sut.calculateButtonClicked("1", "2", "28/12/2016" , "31/12/2016", "11", "12", "22", "23");
 

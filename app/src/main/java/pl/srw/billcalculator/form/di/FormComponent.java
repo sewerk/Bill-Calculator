@@ -6,6 +6,6 @@ import pl.srw.mfvp.di.component.MvpFragmentScopeComponent;
 import pl.srw.mfvp.di.scope.RetainFragmentScope;
 
 @RetainFragmentScope
-@Subcomponent
+@Subcomponent(modules = FormModule.class)
 public interface FormComponent extends MvpFragmentScopeComponent<FormFragment> {
 }

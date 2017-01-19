@@ -29,13 +29,15 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
 
     private final ReadingsRepo readingsRepo;
     private final ProviderMapper providerMapper;
+    private final HistoryUpdating historyUpdater;
 
     private Provider provider;
 
     @Inject
-    public FormPresenter(ReadingsRepo readingsRepo, ProviderMapper providerMapper) {
+    public FormPresenter(ReadingsRepo readingsRepo, ProviderMapper providerMapper, HistoryUpdating historyUpdater) {
         this.readingsRepo = readingsRepo;
         this.providerMapper = providerMapper;
+        this.historyUpdater = historyUpdater;
     }
 
     public void setup(Provider provider) {
@@ -94,17 +96,21 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
         });
 
         if (provider == PGNIG || SharedPreferencesEnergyPrices.TARIFF_G11.equals(getTariff())) {
-            if (isSingleReadingsFormValid(readingFrom, readingTo, dateFrom, dateTo)) {
-                present(new UIChange<FormView>() {
-                    @Override
-                    public void change(FormView view) {
-                        view.startStoringServiceForSingleReadings(provider);
-                        view.startBillActivityForSingleReadings(provider);
-                        view.hideForm();
-                    }
-                });
+            if (!isSingleReadingsFormValid(readingFrom, readingTo, dateFrom, dateTo)) {
+                return;
             }
-        } else if (isDoubleReadingsFormValid(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo)) {
+            present(new UIChange<FormView>() {
+                @Override
+                public void change(FormView view) {
+                    view.startStoringServiceForSingleReadings(provider);
+                    view.startBillActivityForSingleReadings(provider);
+                    view.hideForm();
+                }
+            });
+        } else {
+            if (!isDoubleReadingsFormValid(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo)) {
+                return;
+            }
             present(new UIChange<FormView>() {
                 @Override
                 public void change(FormView view) {
@@ -114,6 +120,7 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
                 }
             });
         }
+        historyUpdater.onHistoryChanged();
     }
 
     private boolean isSingleReadingsFormValid(String readingFrom, String readingTo,
@@ -285,5 +292,9 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
             READING_DAY_FROM, READING_DAY_TO,
             READING_NIGHT_FROM, READING_NIGHT_TO,
         }
+    }
+
+    public interface HistoryUpdating {
+        void onHistoryChanged();
     }
 }

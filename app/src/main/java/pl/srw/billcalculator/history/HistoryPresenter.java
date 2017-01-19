@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
+import pl.srw.billcalculator.form.fragment.FormPresenter;
 import pl.srw.billcalculator.history.list.item.HistoryItemClickListener;
 import pl.srw.billcalculator.history.list.item.HistoryItemDismissHandling;
 import pl.srw.billcalculator.persistence.type.BillType;
@@ -19,13 +20,14 @@ import pl.srw.mfvp.di.scope.RetainActivityScope;
 import pl.srw.mfvp.presenter.MvpPresenter;
 
 @RetainActivityScope
-public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView> implements HistoryItemDismissHandling, HistoryItemClickListener {
+public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
+        implements HistoryItemDismissHandling, HistoryItemClickListener, FormPresenter.HistoryUpdating {
 
     private final SettingsRepo settings;
     private final HistoryRepo history;
     private final SavedBillsRegistry savedBillsRegistry;
     private LazyList<History> historyData; // TODO: remove state from presenter?
-    private boolean needRefresh;// TODO: set after new bill created
+    private boolean needRefresh;
 
     @Inject
     public HistoryPresenter(SettingsRepo settings, HistoryRepo history, SavedBillsRegistry savedBillsRegistry) {
@@ -61,6 +63,11 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
                 view.setListData(historyData);
             }
         });
+    }
+
+    @Override
+    public void onHistoryChanged() {
+        needRefresh = true;
     }
 
     public void helpMenuClicked() {
