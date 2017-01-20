@@ -32,7 +32,7 @@ public final class Animations {
 
     public static AnimatorSet getExpandFabs(final FloatingActionButton baseFab, final FloatingActionButton... fabs) {
         final ValueAnimator fabRotation = rotationAnimator(baseFab, 0f, ROTATION_TO_ANGLE);
-        final ValueAnimator translationY = translationYAnimator(true, fabs);
+        final ValueAnimator translationY = translationYAnimator(fabs, true, getShift(baseFab, fabs.length));
         final ValueAnimator alpha = alphaAnimator(0f, 1f, fabs);
 
         AnimatorSet animatorSet = new AnimatorSet();
@@ -61,7 +61,7 @@ public final class Animations {
 
     public static AnimatorSet getCollapseFabs(final FloatingActionButton baseFab, final FloatingActionButton... fabs) {
         final ValueAnimator fabRotation = rotationAnimator(baseFab, ROTATION_TO_ANGLE, 0f);
-        final ValueAnimator translationY = translationYAnimator(false, fabs);
+        final ValueAnimator translationY = translationYAnimator(fabs, false, getShift(baseFab, fabs.length));
         final ValueAnimator alpha = alphaAnimator(1f, 0f, fabs);
 
         AnimatorSet animatorSet = new AnimatorSet();
@@ -103,10 +103,7 @@ public final class Animations {
     }
 
     @NonNull
-    private static ValueAnimator translationYAnimator(final boolean topDirection, final FloatingActionButton[] targets) {
-
-        int shift = getShift(targets);
-
+    private static ValueAnimator translationYAnimator(final FloatingActionButton[] targets, final boolean topDirection, int shift) {
         final ValueAnimator translationY = topDirection
                 ? ValueAnimator.ofInt(0, shift)
                 : ValueAnimator.ofInt(shift, 0);
@@ -121,17 +118,16 @@ public final class Animations {
         return translationY;
     }
 
-    private static int getShift(FloatingActionButton[] targets) {
-        FloatingActionButton source = targets[0];
+    private static int getShift(FloatingActionButton source, int count) {
         final int bottomMargin = ((CoordinatorLayout.LayoutParams) source.getLayoutParams()).bottomMargin;
         int shift = source.getHeight() + bottomMargin;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
             shift -= source.getPaddingBottom() / 2;
 
         // check if targets are not off screen
-        final int targetMaxTop = source.getTop() - (targets.length * shift);
+        final int targetMaxTop = source.getTop() - (count * shift);
         if (targetMaxTop < 0) {
-            int maxShiftForAllTargetFullyVisible = shift - Math.abs(targetMaxTop / targets.length);
+            int maxShiftForAllTargetFullyVisible = shift - Math.abs(targetMaxTop / count);
             int minShiftForAllTargetFullyVisible = source.getHeight() - source.getPaddingBottom();
             shift = Math.max(maxShiftForAllTargetFullyVisible, minShiftForAllTargetFullyVisible);
         }
