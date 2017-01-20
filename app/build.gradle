@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'hugo'
 
 android {
-    compileSdkVersion 24
+    compileSdkVersion 25
     buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "pl.srw.billcalculator"
@@ -42,7 +42,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVer"
     compile "com.android.support:design:$supportLibVer"
     compile "com.android.support:cardview-v7:$supportLibVer"
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
 
     compile 'com.github.sewerk:mfvp:b57c722'
     compile "com.jakewharton:butterknife:$butterKnifeVer"
