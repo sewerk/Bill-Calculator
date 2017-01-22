@@ -61,4 +61,8 @@ dependencies {
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile "com.android.support:support-annotations:$supportLibVer"
+
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$leakcanaryVer"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanaryVer"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanaryVer"
 }
