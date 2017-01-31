@@ -5,9 +5,9 @@ import com.f2prateek.dart.Optional;
 
 import pl.srw.billcalculator.bill.calculation.CalculatedEnergyBill;
 import pl.srw.billcalculator.intent.IntentCreator;
-import pl.srw.mfvp.di.component.MvpActivityScopeComponent;
+import pl.srw.mfvp.di.component.MvpComponent;
 
-public abstract class EnergyBillActivity<T extends MvpActivityScopeComponent> extends BillActivity<T> {
+public abstract class EnergyBillActivity<T extends MvpComponent> extends BillActivity<T> {
     protected CalculatedEnergyBill bill;
     protected @InjectExtra(IntentCreator.DATE_FROM) String dateFrom;
     protected @InjectExtra(IntentCreator.DATE_TO) String dateTo;

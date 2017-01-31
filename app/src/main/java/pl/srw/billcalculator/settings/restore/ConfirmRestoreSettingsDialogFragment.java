@@ -12,9 +12,9 @@ import pl.srw.billcalculator.settings.activity.ProviderSettingsFragmentOwner;
 import pl.srw.billcalculator.settings.di.ConfirmRestoreSettingsComponentInjectable;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.mfvp.MvpFragment;
-import pl.srw.mfvp.view.delegate.presenter.PresenterHandlingDelegate;
-import pl.srw.mfvp.view.delegate.presenter.PresenterOwner;
-import pl.srw.mfvp.view.delegate.presenter.SinglePresenterHandlingDelegate;
+import pl.srw.mfvp.presenter.PresenterHandlingDelegate;
+import pl.srw.mfvp.presenter.PresenterOwner;
+import pl.srw.mfvp.presenter.SinglePresenterHandlingDelegate;
 import pl.srw.mfvp.view.fragment.MvpActivityScopedFragment;
 
 public class ConfirmRestoreSettingsDialogFragment extends MvpFragment

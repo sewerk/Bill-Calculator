@@ -40,9 +40,9 @@ import pl.srw.billcalculator.settings.activity.SettingsActivity;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.wrapper.Dependencies;
 import pl.srw.mfvp.MvpActivity;
-import pl.srw.mfvp.view.delegate.presenter.PresenterHandlingDelegate;
-import pl.srw.mfvp.view.delegate.presenter.PresenterOwner;
-import pl.srw.mfvp.view.delegate.presenter.SinglePresenterHandlingDelegate;
+import pl.srw.mfvp.presenter.PresenterHandlingDelegate;
+import pl.srw.mfvp.presenter.PresenterOwner;
+import pl.srw.mfvp.presenter.SinglePresenterHandlingDelegate;
 
 public class DrawerActivity extends MvpActivity<HistoryComponent>
         implements HistoryPresenter.HistoryView,

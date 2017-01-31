@@ -30,12 +30,12 @@ import javax.inject.Inject;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment;
-import pl.srw.mfvp.di.component.MvpActivityScopeComponent;
-import pl.srw.mfvp.view.delegate.presenter.PresenterHandlingDelegate;
-import pl.srw.mfvp.view.delegate.presenter.PresenterOwner;
-import pl.srw.mfvp.view.delegate.presenter.SinglePresenterHandlingDelegate;
+import pl.srw.mfvp.di.component.MvpComponent;
+import pl.srw.mfvp.presenter.PresenterHandlingDelegate;
+import pl.srw.mfvp.presenter.PresenterOwner;
+import pl.srw.mfvp.presenter.SinglePresenterHandlingDelegate;
 
-abstract class BillActivity<T extends MvpActivityScopeComponent>
+abstract class BillActivity<T extends MvpComponent>
         extends BackableActivity<T>
         implements PresenterOwner, BillPresenter.BillView {
 

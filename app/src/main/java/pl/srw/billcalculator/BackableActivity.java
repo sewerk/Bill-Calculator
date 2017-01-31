@@ -3,14 +3,13 @@ package pl.srw.billcalculator;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import butterknife.ButterKnife;
 import pl.srw.mfvp.MvpActivity;
-import pl.srw.mfvp.di.component.MvpActivityScopeComponent;
+import pl.srw.mfvp.di.component.MvpComponent;
 
 /**
  * Created by Kamil Seweryn.
  */
-public abstract class BackableActivity<T extends MvpActivityScopeComponent> extends MvpActivity<T> {
+public abstract class BackableActivity<T extends MvpComponent> extends MvpActivity<T> {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

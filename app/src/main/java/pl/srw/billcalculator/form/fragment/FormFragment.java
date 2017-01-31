@@ -42,9 +42,9 @@ import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Animations;
 import pl.srw.billcalculator.util.Views;
 import pl.srw.mfvp.MvpFragment;
-import pl.srw.mfvp.view.delegate.presenter.PresenterHandlingDelegate;
-import pl.srw.mfvp.view.delegate.presenter.PresenterOwner;
-import pl.srw.mfvp.view.delegate.presenter.SinglePresenterHandlingDelegate;
+import pl.srw.mfvp.presenter.PresenterHandlingDelegate;
+import pl.srw.mfvp.presenter.PresenterOwner;
+import pl.srw.mfvp.presenter.SinglePresenterHandlingDelegate;
 import pl.srw.mfvp.view.fragment.MvpFragmentScopedFragment;
 
 public class FormFragment extends MvpFragment
@@ -114,7 +114,7 @@ public class FormFragment extends MvpFragment
     }
 
     @Override
-    public FormComponent getFragmentComponent(HistoryComponent historyComponent) {
+    public FormComponent prepareComponent(HistoryComponent historyComponent) {
         return historyComponent.getFormComponent();
     }
 
