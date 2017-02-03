@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.tester;
 
+import android.support.annotation.IdRes;
 import android.support.design.widget.NavigationView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,9 @@ import pl.srw.billcalculator.R;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.swipeUp;
+import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -36,8 +39,16 @@ abstract class Tester {
         onView(withText(text)).perform(click());
     }
 
+    protected void typeInto(int viewId, String text) {
+        onView(allOf(withId(viewId), isDisplayed())).perform(typeText(text));
+    }
+
     protected void clickIcon(String description) {
         onView(withContentDescription(description)).perform(click());
+    }
+
+    protected void clickView(@IdRes int id) {
+        onView(withId(id)).perform(click());
     }
 
     protected static Matcher<View> childAtPosition(

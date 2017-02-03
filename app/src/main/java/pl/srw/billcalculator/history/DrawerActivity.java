@@ -3,6 +3,7 @@ package pl.srw.billcalculator.history;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
@@ -59,7 +60,8 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @BindInt(R.integer.cardAmount) int cardAmount;
     private HistoryAdapter adapter;
 
-    @Inject HistoryPresenter presenter;
+    @VisibleForTesting(otherwise = VisibleForTesting.PACKAGE_PRIVATE)
+    @Inject public HistoryPresenter presenter;
 //TODO    @Inject DrawerPresenter drawerPresenter;
     @Inject FabsMenuHandler fabsMenuHandler;
 
