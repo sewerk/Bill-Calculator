@@ -11,7 +11,8 @@ import pl.srw.billcalculator.persistence.exception.DbRelationMissingException;
 import pl.srw.billcalculator.persistence.type.BillType;
 import pl.srw.billcalculator.type.Provider;
 
-class TauronG12BillHistoryItemValueProvider extends HistoryItemValueProvider {
+class TauronG12BillHistoryItemValueProvider extends HistoryItemValueProvider
+        implements DoubleReadingsBillHistoryItemValueProviding {
 
     private final TauronG12Bill bill;
 
@@ -30,11 +31,6 @@ class TauronG12BillHistoryItemValueProvider extends HistoryItemValueProvider {
     @Override
     public int getLogoId() {
         return Provider.TAURON.logoSmallRes;
-    }
-
-    @Override
-    public boolean hasDoubleReadings() {
-        return true;
     }
 
     @Override

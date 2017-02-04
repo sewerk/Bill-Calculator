@@ -43,15 +43,7 @@ public abstract class HistoryItemValueProvider {
 
     public abstract int getLogoId();
 
-    public boolean hasDoubleReadings() {
-        return false;
-    }
-
     public abstract String getDayReadings();
-
-    public String getNightReadings() {
-        throw new UnsupportedOperationException("Not implemented");
-    }
 
     public String getDatePeriod() {
         return createPeriodString(

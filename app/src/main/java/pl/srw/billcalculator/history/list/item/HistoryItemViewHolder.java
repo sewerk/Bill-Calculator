@@ -11,6 +11,7 @@ import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
+import pl.srw.billcalculator.history.list.provider.DoubleReadingsBillHistoryItemValueProviding;
 import pl.srw.billcalculator.history.list.provider.HistoryItemValueProvider;
 
 public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -42,14 +43,17 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
         amountView.setText(itemValuesProvider.getAmount());
 
         dayReadings.setText(itemValuesProvider.getDayReadings());
-        if (itemValuesProvider.hasDoubleReadings()) {
-            nightReadings.setText(itemValuesProvider.getNightReadings());
+        if (itemValuesProvider instanceof DoubleReadingsBillHistoryItemValueProviding) {
+            DoubleReadingsBillHistoryItemValueProviding doubleItemValuesProvider
+                    = (DoubleReadingsBillHistoryItemValueProviding) this.itemValuesProvider;
+            nightReadings.setText(doubleItemValuesProvider.getNightReadings());
         }
     }
 
     @Override
     public void onClick(View v) {
         clickListener.onListItemClicked(getBill());
+        // TODO: transition logo to open bill (move to activity)?
     }
 
     public Bill getBill() {

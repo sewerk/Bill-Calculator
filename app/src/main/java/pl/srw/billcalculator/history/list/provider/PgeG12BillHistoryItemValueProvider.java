@@ -11,7 +11,8 @@ import pl.srw.billcalculator.persistence.exception.DbRelationMissingException;
 import pl.srw.billcalculator.persistence.type.BillType;
 import pl.srw.billcalculator.type.Provider;
 
-class PgeG12BillHistoryItemValueProvider extends HistoryItemValueProvider {
+class PgeG12BillHistoryItemValueProvider extends HistoryItemValueProvider
+        implements DoubleReadingsBillHistoryItemValueProviding {
 
     private final PgeG12Bill bill;
 
@@ -30,11 +31,6 @@ class PgeG12BillHistoryItemValueProvider extends HistoryItemValueProvider {
     @Override
     public int getLogoId() {
         return Provider.PGE.logoSmallRes;
-    }
-
-    @Override
-    public boolean hasDoubleReadings() {
-        return true;
     }
 
     @Override
