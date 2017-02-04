@@ -22,7 +22,7 @@ import pl.srw.billcalculator.persistence.type.CurrentReadingType;
  */
 public class Database {
 
-    private static final String DB_NAME = "pl.srw.billcalculator.db";
+    public static final String DB_NAME = "pl.srw.billcalculator.db";
     private static final String QUERY_ROW_LIMIT = "100";
     private static SQLiteDatabase database;
     private static DaoSession daoSession;

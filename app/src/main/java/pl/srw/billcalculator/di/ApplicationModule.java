@@ -23,8 +23,8 @@ import pl.srw.billcalculator.type.Provider;
 public class ApplicationModule {
 
     public static final String GLOBAL_SHARED_PREFS = "global";
-//    private static final String DEFAULT_SHARED_PREFS = "default";
-    private static final String SHARED_PREFERENCES_FILE = "PreferencesFile";
+    public static final String SHARED_PREFERENCES_FILE = "PreferencesFile";
+    //    private static final String DEFAULT_SHARED_PREFS = "default";
 
     private final Context context;
 
