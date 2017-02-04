@@ -51,8 +51,6 @@ public class BillCalculator extends Application {
         AndroidThreeTen.init(this);
         Database.initialize(this);
 
-        //PreferenceMigration.migrate(getApplicationContext());
-
         pgePrices.setDefaultIfNotSet();
         pgnigPrices.setDefaultIfNotSet();
         tauronPrices.setDefaultIfNotSet();

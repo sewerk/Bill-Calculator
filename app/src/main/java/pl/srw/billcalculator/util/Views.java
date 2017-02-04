@@ -18,30 +18,21 @@ public final class Views {
 
     public static void setTVInRow(View row, @IdRes int textViewId, @StringRes int stringId) {
         TextView tv = (TextView) row.findViewById(textViewId);
-        setTV(tv, stringId);
+        tv.setText(stringId);
     }
 
     public static void setTVInRow(View row, @IdRes int textViewId, String string) {
-        TextView tv = (TextView) row.findViewById(textViewId);
-        setTV(tv, string);
+        setTV(row, textViewId, string);
     }
 
     public static void setTV(Activity activity, @IdRes int textViewId, String string) {
         TextView tv = (TextView) activity.findViewById(textViewId);
-        setTV(tv, string);
+        tv.setText(string);
     }
 
     public static void setTV(View parent, @IdRes int textViewId, String string) {
         TextView tv = (TextView) parent.findViewById(textViewId);
-        setTV(tv, string);
-    }
-    
-    public static void setTV(TextView tv, String string) {
         tv.setText(string);
-    }
-
-    public static void setTV(TextView tv, @StringRes int stringId) {
-        tv.setText(tv.getContext().getString(stringId));
     }
 
     @UiThread
