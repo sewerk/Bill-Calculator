@@ -179,7 +179,7 @@ class BillPresenterTest {
 
     @Test
     fun `stop listening to printer events on destroy`() {
-        sut.onFinish()
+        sut_onFinish()
 
         verify(printer).unregister(sut)
     }
@@ -200,6 +200,10 @@ class BillPresenterTest {
 
     private fun sut_onNewViewRestoreState() {
         sut.invokeHiddenMethod("onNewViewRestoreState")
+    }
+
+    private fun sut_onFinish() {
+        sut.invokeHiddenMethod("onFinish")
     }
 }
 
