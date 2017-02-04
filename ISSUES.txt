@@ -1,5 +1,5 @@
 BUGS
-- history list not refreshed after new bill created
+- history list refreshed after coming back from Settings (rebind is doing extra work)
 - settings list desc is cut off on tablets
 
 TEST

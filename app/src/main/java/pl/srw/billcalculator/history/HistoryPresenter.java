@@ -170,6 +170,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
 
     private void loadHistoryData() {
         historyData = history.getAll();
+        needRefresh = false;
     }
 
     public interface HistoryView {
