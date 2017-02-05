@@ -11,6 +11,7 @@ import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.TauronG11Bill;
 import pl.srw.billcalculator.db.TauronG12Bill;
 import pl.srw.billcalculator.util.Dates;
+import pl.srw.billcalculator.wrapper.Analytics;
 
 import static pl.srw.billcalculator.util.Views.getIntText;
 import static pl.srw.billcalculator.util.Views.getText;
@@ -102,6 +103,8 @@ public final class IntentCreator {
     private void putReadingsExtra(final int readingFrom, final int readingTo) {
         intent.putExtra(READING_FROM, readingFrom);
         intent.putExtra(READING_TO, readingTo);
+        Analytics.setInt(READING_FROM, readingFrom);
+        Analytics.setInt(READING_TO, readingTo);
     }
 
     private void putReadingsG12Extra(final int readingDayFrom, final int readingDayTo, final int readingNightFrom, final int readingNightTo) {
@@ -109,10 +112,16 @@ public final class IntentCreator {
         intent.putExtra(READING_DAY_TO, readingDayTo);
         intent.putExtra(READING_NIGHT_FROM, readingNightFrom);
         intent.putExtra(READING_NIGHT_TO, readingNightTo);
+        Analytics.setInt(READING_DAY_FROM, readingDayFrom);
+        Analytics.setInt(READING_DAY_TO, readingDayTo);
+        Analytics.setInt(READING_NIGHT_FROM, readingNightFrom);
+        Analytics.setInt(READING_NIGHT_TO, readingNightTo);
     }
 
     private void putDatesExtra(final String dateFrom, final String dateTo) {
         intent.putExtra(DATE_FROM, dateFrom);
         intent.putExtra(DATE_TO, dateTo);
+        Analytics.setString(DATE_FROM, dateFrom);
+        Analytics.setString(DATE_TO, dateTo);
     }
 }

@@ -16,6 +16,7 @@ import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
+import pl.srw.billcalculator.wrapper.Analytics;
 import timber.log.Timber;
 
 public class BillCalculator extends Application {
@@ -47,7 +48,7 @@ public class BillCalculator extends Application {
                 .applicationModule(new ApplicationModule(getApplicationContext()))
                 .build();
         applicationComponent.inject(this);
-//        Analytics.initialize(this);
+        Analytics.initialize(this);
         AndroidThreeTen.init(this);
         Database.initialize(this);
 

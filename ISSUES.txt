@@ -8,6 +8,7 @@ TEST
 
 RETHINK
 - transition logo to form
+- add labels to fabs
 - select mode on history list, delete by swipe animation + fade out
 - move injection to Dependencies (conflict with mvfp lib)
 - new launcher icon/ round icon

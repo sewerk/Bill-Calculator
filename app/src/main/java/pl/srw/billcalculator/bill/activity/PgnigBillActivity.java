@@ -50,8 +50,8 @@ public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Dependencies.inject(this);
         Analytics.logContent(ContentType.PGNIG_BILL, "PGNIG new", String.valueOf(prices == null));
+        Dependencies.inject(this);
 
         if (prices == null)
             prices = prefsPrices;

@@ -74,7 +74,6 @@ public class SavedBillsRegistry {
         Long foundId = registry.get(key);
         if (foundId == null) {
             Analytics.warning("SavedBillsRegistry is missing ID for key " + key);
-            Analytics.log("SavedBillsRegistry is missing ID for key " + key);
             foundId = (long) (1000 + new Random().nextInt(9000));//1000-9999
         }
         return foundId;
