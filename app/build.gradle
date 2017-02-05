@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 apply plugin: 'kotlin-android'
+apply from: 'signing.gradle'
 apply plugin: 'hugo'
 
 android {
@@ -10,7 +11,7 @@ android {
         applicationId "pl.srw.billcalculator"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 21
+        versionCode 24
         versionName "2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -26,6 +27,7 @@ android {
             minifyEnabled false
             shrinkResources false // FIXME: not working in gradle plugin beta version
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
