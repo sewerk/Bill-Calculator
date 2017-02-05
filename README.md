@@ -22,13 +22,11 @@ With help of
 - [RxJava 2](https://github.com/ReactiveX/RxJava)
 - [Support Library](https://developer.android.com/topic/libraries/support-library/index.html)
 - [ThreeTenABP](https://github.com/JakeWharton/ThreeTenABP)
-
------
+---------
 - [Crashlytics](https://fabric.io)
 - [Hugo](https://github.com/jakewharton/hugo)
 - [LeakCanary](https://github.com/square/leakcanary)
-
------
+---------
 - [Espresso](https://code.google.com/p/android-test-kit/wiki/Espresso)
 - [JUnit](http://junit.org/junit4/)
 - [JUnitParams](https://github.com/Pragmatists/junitparams)
