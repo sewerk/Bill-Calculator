@@ -21,12 +21,12 @@ import pl.srw.billcalculator.type.ContentType;
  */
 public class Analytics {
 
-    private static final boolean ENABLED = !BuildConfig.DEBUG;
+    private static boolean ENABLED = false;
 
     public static void initialize(Context context) {
+        ENABLED = !BuildConfig.DEBUG;
         if (ENABLED) {
-            Fabric.with(context, new Crashlytics());
-            Fabric.with(context, new Answers());
+            Fabric.with(context, new Crashlytics(), new Answers());
         }
     }
 
