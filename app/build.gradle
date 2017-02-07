@@ -36,6 +36,10 @@ android {
         test.java.srcDirs += 'src/test/kotlin'
     }
 
+    dexOptions {
+        jumboMode = true
+    }
+
     lintOptions {
         warning 'InvalidPackage'
     }
