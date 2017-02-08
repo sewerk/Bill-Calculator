@@ -3,6 +3,7 @@ package pl.srw.billcalculator.di;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import pl.srw.billcalculator.ProviderSettingsAndroidTest;
 import pl.srw.billcalculator.form.view.InstantAutoCompleteTextInputEditTextAndroidTest;
 
 @Singleton
@@ -10,4 +11,6 @@ import pl.srw.billcalculator.form.view.InstantAutoCompleteTextInputEditTextAndro
 public interface TestApplicationComponent extends ApplicationComponent {
 
     void inject(InstantAutoCompleteTextInputEditTextAndroidTest test);
+
+    void inject(ProviderSettingsAndroidTest providerSettingsAndroidTest);
 }

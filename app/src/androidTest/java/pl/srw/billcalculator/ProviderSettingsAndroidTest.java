@@ -1,20 +1,45 @@
 package pl.srw.billcalculator;
 
+import android.content.Context;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.inject.Inject;
+
+import pl.srw.billcalculator.di.ApplicationModule;
+import pl.srw.billcalculator.di.DaggerTestApplicationComponent;
+import pl.srw.billcalculator.di.TestApplicationComponent;
 import pl.srw.billcalculator.history.DrawerActivity;
+import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.tester.SettingsTester;
 
 @RunWith(AndroidJUnit4.class)
 public class ProviderSettingsAndroidTest {
 
+    @Inject SettingsRepo settingsRepo;
+
     @Rule
-    public ActivityTestRule<DrawerActivity> mActivityTestRule = new ActivityTestRule<>(DrawerActivity.class);
+    public ActivityTestRule<DrawerActivity> mActivityTestRule = new ActivityTestRule<>(DrawerActivity.class, false, false);
+
+    @Before
+    public void setUp() throws Exception {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+
+        TestApplicationComponent component = DaggerTestApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(context))
+                .build();
+        component.inject(this);
+
+        settingsRepo.markFirstLaunch();
+
+        mActivityTestRule.launchActivity(null);
+    }
 
     @Test
     public void providerSettingsTariffChangeCauseScreenChangeDisplayedValues() {
