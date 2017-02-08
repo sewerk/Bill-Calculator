@@ -35,13 +35,12 @@ public abstract class BillStoringService<P extends Prices, C extends CalculatedB
     @DebugLog
     @Override
     protected void onHandleIntent(final Intent intent) {
-        Dart.inject(this, intent.getExtras());
+        Dart.inject(this, intent.getExtras()); // TODO: remove since release crashes after Proguard
 
         final P prices = storePrices();
         final C calculatedBill = calculateBill(prices);
         storeBill(calculatedBill, prices);
 
-// TODO        EventBus.getDefault().post(new HistoryChangedEvent(getProvider()));
         new BackupManager(this).dataChanged();
     }
 

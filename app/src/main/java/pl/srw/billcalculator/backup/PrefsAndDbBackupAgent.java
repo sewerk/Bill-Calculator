@@ -5,6 +5,7 @@ import android.app.backup.BackupDataInput;
 import android.app.backup.BackupDataOutput;
 import android.app.backup.SharedPreferencesBackupHelper;
 import android.os.ParcelFileDescriptor;
+import android.support.annotation.Keep;
 import android.util.Log;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ import pl.srw.billcalculator.persistence.Database;
 /**
  * Created by Kamil Seweryn on 07.02.2016.
  */
+@Keep
 public class PrefsAndDbBackupAgent extends BackupAgentHelper {
 
     private static final String TAG = "PrefsAndDbBackupAgent";
