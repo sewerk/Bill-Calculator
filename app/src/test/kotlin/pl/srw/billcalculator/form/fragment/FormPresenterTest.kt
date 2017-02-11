@@ -12,6 +12,7 @@ import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.ArgumentMatchers.anyString
 import org.mockito.verification.VerificationMode
+import org.threeten.bp.LocalDate
 import pl.srw.billcalculator.R
 import pl.srw.billcalculator.RxJavaBaseTest
 import pl.srw.billcalculator.setState
@@ -44,6 +45,8 @@ class FormPresenterTest : RxJavaBaseTest() {
     @Parameters(method = "paramsForSetFormValues")
     fun onFirstBind_setFormValues(provider: Provider, tariff: String?, @StringRes readingUnitResId: Int) {
         // GIVEN
+        val dateFrom = calculateDateFrom()
+        val dateTo = calculateDateTo()
         sut.setup(provider)
         if (tariff != null) given_tariff(tariff)
 
@@ -55,7 +58,7 @@ class FormPresenterTest : RxJavaBaseTest() {
         verify(view).setupSettingsLink()
         verify(view, times(if (tariff != null) 1 else 0)).setTariffText(tariff)
         verify(view).setReadingUnit(readingUnitResId)
-        verify(view).setDates(anyString(), anyString())
+        verify(view).setDates(dateFrom, dateTo)
     }
 
     private fun paramsForSetFormValues() = arrayOf(
@@ -330,5 +333,20 @@ class FormPresenterTest : RxJavaBaseTest() {
 
     private fun given_databaseReturnPreviousReadings(readings: IntArray) {
         whenever(readingsRepo.getPreviousReadingsFor(any())).thenReturn(Single.just(readings))
+    }
+
+    private fun calculateDateFrom(): String {
+        return "01/" + currentMonthString() + "/" + LocalDate.now().year
+    }
+
+    private fun calculateDateTo(): String {
+        val now = LocalDate.now()
+        return "" + now.lengthOfMonth() + "/" + currentMonthString() + "/" + now.year
+    }
+
+    private fun currentMonthString() : String {
+        val monthValue = LocalDate.now().monthValue
+        if (monthValue < 10) return "0" + monthValue
+        else return "" + monthValue
     }
 }
