@@ -4,7 +4,6 @@ import org.greenrobot.greendao.query.LazyList;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -26,24 +25,28 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(JUnitParamsRunner.class)
 public class HistoryPresenterTest {
 
-    @InjectMocks private HistoryPresenter sut;
+    private HistoryPresenter sut;
     
     @Mock HistoryPresenter.HistoryView view;
     @Mock SettingsRepo settings;
     @Mock HistoryRepo history;
     @Mock SavedBillsRegistry savedBillsRegistry;
+    @Mock LazyList<History> listData;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
+        when(history.getAll()).thenReturn(listData);
+
+        sut = new HistoryPresenter(settings, history, savedBillsRegistry);
         Whitebox.setInternalState(sut, "view", view);
-        when(history.getAll()).thenReturn(mock(LazyList.class));
     }
 
     @Test
@@ -81,15 +84,11 @@ public class HistoryPresenterTest {
 
     @Test
     public void onFirstBind_setsHistoryDataOnList() throws Exception {
-        // GIVEN
-        final LazyList<History> list = mock(LazyList.class);
-        when(history.getAll()).thenReturn(list);
-
         // WHEN
         sut.onFirstBind();
 
         // THEN
-        verify(view).setListData(list);
+        verify(view).setListData(listData);
     }
 
     @Test
@@ -101,7 +100,7 @@ public class HistoryPresenterTest {
         sut.onNewViewRestoreState();
 
         // THEN
-        verify(history).getAll();
+        verify(history, times(2)).getAll();
     }
 
     @Test
@@ -242,7 +241,7 @@ public class HistoryPresenterTest {
         sut.onListItemDismissed(0, bill);
 
         // THEN
-        verify(history).getAll();
+        verify(history, times(2)).getAll();
     }
 
     @Test
@@ -296,7 +295,7 @@ public class HistoryPresenterTest {
         sut.undoDeleteClicked(0);
 
         // THEN
-        verify(history).getAll();
+        verify(history, times(2)).getAll();
     }
 
     @Test
