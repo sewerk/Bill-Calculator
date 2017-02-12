@@ -22,10 +22,12 @@ import pl.srw.billcalculator.tester.SettingsTester;
 @RunWith(AndroidJUnit4.class)
 public class ProviderSettingsAndroidTest {
 
-    @Inject SettingsRepo settingsRepo;
-
     @Rule
     public ActivityTestRule<DrawerActivity> mActivityTestRule = new ActivityTestRule<>(DrawerActivity.class, false, false);
+
+    @Inject SettingsRepo settingsRepo;
+
+    SettingsTester tester = new SettingsTester();
 
     @Before
     public void setUp() throws Exception {
@@ -43,7 +45,6 @@ public class ProviderSettingsAndroidTest {
 
     @Test
     public void providerSettingsTariffChangeCauseScreenChangeDisplayedValues() {
-        final SettingsTester tester = new SettingsTester();
         tester
                 .openSettings()
                 .pickProvider(SettingsTester.PGE)
@@ -62,7 +63,6 @@ public class ProviderSettingsAndroidTest {
 
     @Test
     public void settingPreferenceValueUpdatedSummary() {
-        final SettingsTester tester = new SettingsTester();
         tester
                 .openSettings()
                 .pickProvider(SettingsTester.PGNIG)
@@ -74,8 +74,19 @@ public class ProviderSettingsAndroidTest {
     }
 
     @Test
+    public void settingPreferenceEmptyValueFillZeroSummary() {
+        tester
+                .openSettings()
+                .pickProvider(SettingsTester.PGNIG)
+                .getPreferenceLineAt(0)
+                .changeValueTo("");
+
+        tester.getPreferenceLineAt(0)
+                .hasSummary("0.00");
+    }
+
+    @Test
     public void restoreSettingsSetDefaultValues() {
-        final SettingsTester tester = new SettingsTester();
         tester
                 .openSettings()
                 .pickProvider(SettingsTester.TAURON)
