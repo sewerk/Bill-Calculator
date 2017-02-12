@@ -34,13 +34,13 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         this.settings = settings;
         this.history = history;
         this.savedBillsRegistry = savedBillsRegistry;
+
+        loadHistoryData();
+        Analytics.logContent(ContentType.HISTORY, "history size", String.valueOf(historyData.size()));
     }
 
     @Override
     protected void onFirstBind() {
-        loadHistoryData();
-        Analytics.logContent(ContentType.HISTORY, "history size", String.valueOf(historyData.size()));
-
         present(new UIChange<HistoryView>() {
             @Override
             public void change(HistoryView view) {
