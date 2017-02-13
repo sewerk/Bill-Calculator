@@ -1,6 +1,5 @@
 package pl.srw.billcalculator.tester;
 
-import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.contrib.PickerActions;
 import android.widget.DatePicker;
@@ -60,15 +59,6 @@ public class FormTester extends Tester {
 
     public FormTester putIntoReadingTo(String text) {
         typeInto(R.id.form_entry_reading_to_input, text);
-        return this;
-    }
-
-    public FormTester skipCheckPricesDialogIfVisible() {
-        try {
-            clickText(R.string.check_prices_info_cancel);
-        } catch (NoMatchingViewException ex) {
-            // ignore
-        }
         return this;
     }
 

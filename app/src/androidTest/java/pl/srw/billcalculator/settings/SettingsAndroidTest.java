@@ -1,4 +1,4 @@
-package pl.srw.billcalculator;
+package pl.srw.billcalculator.settings;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -20,10 +20,10 @@ import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.tester.SettingsTester;
 
 @RunWith(AndroidJUnit4.class)
-public class ProviderSettingsAndroidTest {
+public class SettingsAndroidTest {
 
     @Rule
-    public ActivityTestRule<DrawerActivity> mActivityTestRule = new ActivityTestRule<>(DrawerActivity.class, false, false);
+    public ActivityTestRule<DrawerActivity> testRule = new ActivityTestRule<>(DrawerActivity.class, false, false);
 
     @Inject SettingsRepo settingsRepo;
 
@@ -40,7 +40,7 @@ public class ProviderSettingsAndroidTest {
 
         settingsRepo.markFirstLaunch();
 
-        mActivityTestRule.launchActivity(null);
+        testRule.launchActivity(null);
     }
 
     @Test
