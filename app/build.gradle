@@ -40,6 +40,13 @@ android {
         jumboMode = true
     }
 
+    packagingOptions {
+        pickFirst 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/LICENSE'
+    }
+
     lintOptions {
         warning 'InvalidPackage'
     }

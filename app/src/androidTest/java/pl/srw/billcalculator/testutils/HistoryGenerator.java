@@ -1,7 +1,5 @@
 package pl.srw.billcalculator.testutils;
 
-import android.util.Log;
-
 import org.threeten.bp.LocalDate;
 
 import java.util.ArrayList;
@@ -31,7 +29,7 @@ public final class HistoryGenerator {
     public void generatePgeG11Bills(final int count) {
         final PgeG11BillDao dao = Database.getSession().getPgeG11BillDao();
         final PgePrices pgePrices = prefsPrices.convertToDb();
-        Log.d("", "insert " + count);
+
         Database.getSession().insert(pgePrices);
         List<PgeG11Bill> pgeBills = new ArrayList<>(count);
         for (int i = 1; i <= count; i++) {
@@ -45,7 +43,6 @@ public final class HistoryGenerator {
     }
 
     public void clear() {
-Log.d("", "clean");
         final DaoSession session = Database.getSession();
         //bills
         session.getPgnigBillDao().deleteAll();
@@ -62,7 +59,7 @@ Log.d("", "clean");
     public void generatePgeG11Bill(int readingTo) {
         final PgeG11BillDao dao = Database.getSession().getPgeG11BillDao();
         final PgePrices pgePrices = prefsPrices.convertToDb();
-System.out.println("insert " + pgePrices);
+
         Database.getSession().insert(pgePrices);
         final int day = (readingTo%335 == 0) ? 1 : readingTo%335 ;
         final Date fromDate = Dates.toDate(LocalDate.ofYearDay(2014, day));

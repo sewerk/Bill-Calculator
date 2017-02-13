@@ -17,7 +17,6 @@ import pl.srw.billcalculator.di.ApplicationModule;
 import pl.srw.billcalculator.di.DaggerTestApplicationComponent;
 import pl.srw.billcalculator.di.TestApplicationComponent;
 import pl.srw.billcalculator.history.DrawerActivity;
-import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.tester.FormTester;
@@ -28,11 +27,10 @@ import pl.srw.billcalculator.type.Provider;
 public class InstantAutoCompleteTextInputEditTextAndroidTest {
 
     @Rule
-    public ActivityTestRule<DrawerActivity> testRule = new ActivityTestRule<>(DrawerActivity.class, false, false);
+    public ActivityTestRule<DrawerActivity> testRule = new ActivityTestRule<>(DrawerActivity.class);
 
     @Inject HistoryGenerator historyGenerator;
     @Inject PgePrices pgePrices;
-    @Inject SettingsRepo settingsRepo;
 
     private FormTester tester = new FormTester();
 
@@ -46,22 +44,21 @@ public class InstantAutoCompleteTextInputEditTextAndroidTest {
         component.inject(this);
 
         historyGenerator.clear();
-        settingsRepo.markFirstLaunch();
         pgePrices.setTariff(SharedPreferencesEnergyPrices.TARIFF_G11);
     }
 
     @After
     public void tearDown() throws Exception {
-        // prepare for next bind to refresh list due to manual history changes
-        testRule.getActivity().presenter.onHistoryChanged();
+        historyGenerator.clear();
     }
 
     @Test
     public void formOpened_whenEntryInHistoryExist_autoCompleteShowUp() {
         historyGenerator.generatePgeG11Bill(11);
 
-        testRule.launchActivity(null);
-        tester.openForm(Provider.PGE);
+        tester
+                .skipCheckPricesDialogIfVisible()
+                .openForm(Provider.PGE);
 
         tester.autoCompleteContains("11");
     }
@@ -71,8 +68,9 @@ public class InstantAutoCompleteTextInputEditTextAndroidTest {
         historyGenerator.generatePgeG11Bill(25);
         historyGenerator.generatePgeG11Bill(25);
 
-        testRule.launchActivity(null);
-        tester.openForm(Provider.PGE);
+        tester
+                .skipCheckPricesDialogIfVisible()
+                .openForm(Provider.PGE);
 
         tester.autoCompleteContains("25");
     }
@@ -81,8 +79,9 @@ public class InstantAutoCompleteTextInputEditTextAndroidTest {
     public void formOpened_whenManyEntriesInHistory_showsOnlyHighestValue() {
         historyGenerator.generatePgeG11Bills(20);
 
-        testRule.launchActivity(null);
-        tester.openForm(Provider.PGE);
+        tester
+                .skipCheckPricesDialogIfVisible()
+                .openForm(Provider.PGE);
 
         tester.autoCompleteContains("30");
     }
@@ -95,8 +94,8 @@ public class InstantAutoCompleteTextInputEditTextAndroidTest {
         historyGenerator.generatePgeG11Bill(199);
         historyGenerator.generatePgeG11Bill(230);
 
-        testRule.launchActivity(null);
         tester
+                .skipCheckPricesDialogIfVisible()
                 .openForm(Provider.PGE)
                 .putIntoReadingFrom("1");
 
