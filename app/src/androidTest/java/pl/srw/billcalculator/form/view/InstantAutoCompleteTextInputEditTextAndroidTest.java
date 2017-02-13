@@ -27,7 +27,7 @@ import pl.srw.billcalculator.type.Provider;
 public class InstantAutoCompleteTextInputEditTextAndroidTest {
 
     @Rule
-    public ActivityTestRule<DrawerActivity> testRule = new ActivityTestRule<>(DrawerActivity.class);
+    public ActivityTestRule<DrawerActivity> testRule = new ActivityTestRule<>(DrawerActivity.class, false, false);
 
     @Inject HistoryGenerator historyGenerator;
     @Inject PgePrices pgePrices;
@@ -45,6 +45,8 @@ public class InstantAutoCompleteTextInputEditTextAndroidTest {
 
         historyGenerator.clear();
         pgePrices.setTariff(SharedPreferencesEnergyPrices.TARIFF_G11);
+
+        testRule.launchActivity(null);
     }
 
     @After
