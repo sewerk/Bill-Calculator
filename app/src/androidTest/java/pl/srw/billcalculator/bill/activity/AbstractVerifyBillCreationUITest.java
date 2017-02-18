@@ -57,9 +57,8 @@ public abstract class AbstractVerifyBillCreationUITest {
 
     @Test
     public void checkCalculatedBillValuesAndPrices() throws Exception {
-        Provider provider = getProvider();
         FormTester formTester = tester.skipCheckPricesDialogIfVisible()
-                .openForm(provider);
+                .openForm(getProvider());
 
         ProviderSettingsTester<FormTester> settingsTester = formTester.openProviderSettings();
         changePrices(settingsTester);
@@ -69,7 +68,7 @@ public abstract class AbstractVerifyBillCreationUITest {
         verifyCalculatedValues(billTester);
         billTester.close();
 
-        revertPricesToDefault(provider.ordinal());
+        revertPricesToDefault();
 
         verifyAndOpenBillInHistory(tester.onHistory());
         verifyCalculatedValues(billTester);
@@ -85,9 +84,9 @@ public abstract class AbstractVerifyBillCreationUITest {
 
     protected abstract void verifyCalculatedValues(BillTester billTester);
 
-    private void revertPricesToDefault(int provider) {
+    private void revertPricesToDefault() {
         tester.openSettings()
-                .pickProvider(provider)
+                .pickProvider(getProvider())
                 .restoreDefault()
                 .close()
                 .close();

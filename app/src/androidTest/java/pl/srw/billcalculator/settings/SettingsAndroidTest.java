@@ -18,7 +18,7 @@ import pl.srw.billcalculator.di.TestApplicationComponent;
 import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.tester.AppTester;
-import pl.srw.billcalculator.tester.SettingsTester;
+import pl.srw.billcalculator.type.Provider;
 
 @RunWith(AndroidJUnit4.class)
 public class SettingsAndroidTest {
@@ -47,7 +47,7 @@ public class SettingsAndroidTest {
     @Test
     public void providerSettingsTariffChangeCauseScreenChangeDisplayedValues() {
         tester.openSettings()
-                .pickProvider(SettingsTester.PGE)
+                .pickProvider(Provider.PGE)
 
                 .getPreferenceAtLine(0)
                 .pickOption("Taryfa dwustrefowa (G12)")
@@ -65,7 +65,7 @@ public class SettingsAndroidTest {
     @Test
     public void settingPreferenceValueUpdatedSummary() {
         tester.openSettings()
-                .pickProvider(SettingsTester.PGNIG)
+                .pickProvider(Provider.PGNIG)
                 .getPreferenceAtLine(0)
                 .changeValueTo("1.234")
 
@@ -76,7 +76,7 @@ public class SettingsAndroidTest {
     @Test
     public void settingPreferenceEmptyValueFillZeroSummary() {
         tester.openSettings()
-                .pickProvider(SettingsTester.PGNIG)
+                .pickProvider(Provider.PGNIG)
                 .getPreferenceAtLine(0)
                 .changeValueTo("")
 
@@ -87,7 +87,7 @@ public class SettingsAndroidTest {
     @Test
     public void restoreSettingsSetDefaultValues() {
         tester.openSettings()
-                .pickProvider(SettingsTester.TAURON)
+                .pickProvider(Provider.TAURON)
                 .getPreferenceAtLine(0)
                 .pickOption("Taryfa dwustrefowa (G12)")
 
