@@ -38,6 +38,26 @@ public class FormTester extends Tester {
         return this;
     }
 
+    public FormTester putIntoReadingDayFrom(String value) {
+        typeInto(R.id.form_entry_reading_day_from_input, value);
+        return this;
+    }
+
+    public FormTester putIntoReadingDayTo(String value) {
+        typeInto(R.id.form_entry_reading_day_to_input, value);
+        return this;
+    }
+
+    public FormTester putIntoReadingNightFrom(String value) {
+        typeInto(R.id.form_entry_reading_night_from_input, value);
+        return this;
+    }
+
+    public FormTester putIntoReadingNightTo(String value) {
+        typeInto(R.id.form_entry_reading_night_to_input, value);
+        return this;
+    }
+
     public DatePickerTester openDateFromPicker() {
         clickView(R.id.form_entry_dates_from);
         return new DatePickerTester();

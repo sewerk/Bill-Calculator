@@ -16,8 +16,6 @@ import pl.srw.billcalculator.di.ApplicationModule;
 import pl.srw.billcalculator.di.DaggerTestApplicationComponent;
 import pl.srw.billcalculator.di.TestApplicationComponent;
 import pl.srw.billcalculator.history.DrawerActivity;
-import pl.srw.billcalculator.settings.prices.PgePrices;
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.tester.BillTester;
 import pl.srw.billcalculator.tester.FormTester;
@@ -36,7 +34,6 @@ public abstract class AbstractVerifyBillCreationUITest {
     public final ActivityTestRule<DrawerActivity> testRule = new ActivityTestRule<>(DrawerActivity.class, false, false);
 
     @Inject HistoryGenerator historyGenerator;
-    @Inject PgePrices pgePrices;
 
     private AppTester tester = new AppTester();
 
@@ -47,10 +44,9 @@ public abstract class AbstractVerifyBillCreationUITest {
         TestApplicationComponent component = DaggerTestApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(context))
                 .build();
-        inject(component);
+        component.inject(this);
 
         historyGenerator.clear();
-        pgePrices.setTariff(SharedPreferencesEnergyPrices.TARIFF_G11);
 
         testRule.launchActivity(null);
     }
@@ -75,8 +71,6 @@ public abstract class AbstractVerifyBillCreationUITest {
     }
 
     protected abstract Provider getProvider();
-
-    protected abstract void inject(TestApplicationComponent component);
 
     protected abstract void changePrices(ProviderSettingsTester<FormTester> settingsTester);
 

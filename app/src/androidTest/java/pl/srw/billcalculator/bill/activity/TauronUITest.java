@@ -3,7 +3,6 @@ package pl.srw.billcalculator.bill.activity;
 import org.threeten.bp.Month;
 
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.di.TestApplicationComponent;
 import pl.srw.billcalculator.tester.BillTester;
 import pl.srw.billcalculator.tester.FormTester;
 import pl.srw.billcalculator.tester.HistoryTester;
@@ -15,7 +14,6 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.endsWith;
 
 /**
  * Created by kseweryn on 17.04.15.
@@ -26,22 +24,18 @@ public class TauronUITest extends AbstractVerifyBillCreationUITest {
     private static final String READING_TO = "8681";
 
     @Override
-    protected void inject(TestApplicationComponent component) {
-        component.inject(this);
-    }
-
-    @Override
     protected Provider getProvider() {
         return Provider.TAURON;
     }
 
     @Override
     protected void changePrices(ProviderSettingsTester<FormTester> settingsTester) {
-        settingsTester.getPreference(R.string.tauron_energia_elektryczna).changeValueTo("0.25470");
-        settingsTester.getPreference(R.string.tauron_oplata_dyst_zmienna).changeValueTo("0.1867");
-        settingsTester.getPreference(R.string.tauron_oplata_dyst_stala).changeValueTo("1.46");
-        settingsTester.getPreference(R.string.tauron_oplata_przejsciowa).changeValueTo("2.44");
-        settingsTester.getPreference(R.string.tauron_oplata_abonamentowa).changeValueTo("0.80");
+        settingsTester.getPreferenceAtLine(0).pickOption("Taryfa całodobowa (G11)");
+        settingsTester.getPreferenceWithTitle(R.string.tauron_energia_elektryczna).changeValueTo("0.25470");
+        settingsTester.getPreferenceWithTitle(R.string.tauron_oplata_dyst_zmienna).changeValueTo("0.1867");
+        settingsTester.getPreferenceWithTitle(R.string.tauron_oplata_dyst_stala).changeValueTo("1.46");
+        settingsTester.getPreferenceWithTitle(R.string.tauron_oplata_przejsciowa).changeValueTo("2.44");
+        settingsTester.getPreferenceWithTitle(R.string.tauron_oplata_abonamentowa).changeValueTo("0.80");
     }
 
     @Override
@@ -107,7 +101,7 @@ public class TauronUITest extends AbstractVerifyBillCreationUITest {
         // verify należność
         billTester.checkTvMatch(R.id.tv_total_amount, "469.76");
         // verify akcyza
-        onView(withId(R.id.tv_excise)).check(matches(withText(endsWith("16.24 zł."))));
+        billTester.checkTvEndsWith(R.id.tv_excise, "16.24 zł.");
     }
 
     @Override

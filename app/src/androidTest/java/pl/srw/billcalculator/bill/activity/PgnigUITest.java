@@ -3,7 +3,6 @@ package pl.srw.billcalculator.bill.activity;
 import org.threeten.bp.Month;
 
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.di.TestApplicationComponent;
 import pl.srw.billcalculator.tester.BillTester;
 import pl.srw.billcalculator.tester.FormTester;
 import pl.srw.billcalculator.tester.HistoryTester;
@@ -16,22 +15,17 @@ import pl.srw.billcalculator.type.Provider;
 public class PgnigUITest extends AbstractVerifyBillCreationUITest {
 
     @Override
-    protected void inject(TestApplicationComponent component) {
-        component.inject(this);
-    }
-
-    @Override
     protected Provider getProvider() {
         return Provider.PGNIG;
     }
 
     @Override
     protected void changePrices(ProviderSettingsTester settingsTester) {
-        settingsTester.getPreference(R.string.wspolczynnik_konwersji).changeValueTo("11.094");
-        settingsTester.getPreference(R.string.paliwo_gazowe).changeValueTo("0.11815");
-        settingsTester.getPreference(R.string.settings_oplata_abonamentowa).changeValueTo("6.97");
-        settingsTester.getPreference(R.string.dystrybucyjna_stala).changeValueTo("22.62");
-        settingsTester.getPreference(R.string.dystrybucyjna_zmienna).changeValueTo("0.03823");
+        settingsTester.getPreferenceWithTitle(R.string.wspolczynnik_konwersji).changeValueTo("11.094");
+        settingsTester.getPreferenceWithTitle(R.string.paliwo_gazowe).changeValueTo("0.11815");
+        settingsTester.getPreferenceWithTitle(R.string.settings_oplata_abonamentowa).changeValueTo("6.97");
+        settingsTester.getPreferenceWithTitle(R.string.dystrybucyjna_stala).changeValueTo("22.62");
+        settingsTester.getPreferenceWithTitle(R.string.dystrybucyjna_zmienna).changeValueTo("0.03823");
     }
 
     @Override
