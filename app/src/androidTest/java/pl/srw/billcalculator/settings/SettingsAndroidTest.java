@@ -17,6 +17,7 @@ import pl.srw.billcalculator.di.DaggerTestApplicationComponent;
 import pl.srw.billcalculator.di.TestApplicationComponent;
 import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.settings.global.SettingsRepo;
+import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.tester.SettingsTester;
 
 @RunWith(AndroidJUnit4.class)
@@ -27,7 +28,7 @@ public class SettingsAndroidTest {
 
     @Inject SettingsRepo settingsRepo;
 
-    SettingsTester tester = new SettingsTester();
+    AppTester tester = new AppTester();
 
     @Before
     public void setUp() throws Exception {
@@ -45,56 +46,53 @@ public class SettingsAndroidTest {
 
     @Test
     public void providerSettingsTariffChangeCauseScreenChangeDisplayedValues() {
-        tester
-                .openSettings()
+        tester.openSettings()
                 .pickProvider(SettingsTester.PGE)
-                .getPreferenceLineAt(0)
-                .pickOption("Taryfa dwustrefowa (G12)");
-        tester
-                .getPreferenceLineAt(1)
-                .hasTitle("za energię czynną (strefa dzienna)");
-        tester
-                .getPreferenceLineAt(0)
-                .pickOption("Taryfa całodobowa (G11)");
-        tester
-                .getPreferenceLineAt(1)
+
+                .getPreferenceAtLine(0)
+                .pickOption("Taryfa dwustrefowa (G12)")
+
+                .getPreferenceAtLine(1)
+                .hasTitle("za energię czynną (strefa dzienna)")
+
+                .getPreferenceAtLine(0)
+                .pickOption("Taryfa całodobowa (G11)")
+
+                .getPreferenceAtLine(1)
                 .hasTitle("za energię czynną");
     }
 
     @Test
     public void settingPreferenceValueUpdatedSummary() {
-        tester
-                .openSettings()
+        tester.openSettings()
                 .pickProvider(SettingsTester.PGNIG)
-                .getPreferenceLineAt(0)
-                .changeValueTo("1.234");
+                .getPreferenceAtLine(0)
+                .changeValueTo("1.234")
 
-        tester.getPreferenceLineAt(0)
+                .getPreferenceAtLine(0)
                 .hasSummary("1.234");
     }
 
     @Test
     public void settingPreferenceEmptyValueFillZeroSummary() {
-        tester
-                .openSettings()
+        tester.openSettings()
                 .pickProvider(SettingsTester.PGNIG)
-                .getPreferenceLineAt(0)
-                .changeValueTo("");
+                .getPreferenceAtLine(0)
+                .changeValueTo("")
 
-        tester.getPreferenceLineAt(0)
+                .getPreferenceAtLine(0)
                 .hasSummary("0.00");
     }
 
     @Test
     public void restoreSettingsSetDefaultValues() {
-        tester
-                .openSettings()
+        tester.openSettings()
                 .pickProvider(SettingsTester.TAURON)
-                .getPreferenceLineAt(0)
-                .pickOption("Taryfa dwustrefowa (G12)");
-        tester
+                .getPreferenceAtLine(0)
+                .pickOption("Taryfa dwustrefowa (G12)")
+
                 .restoreDefault()
-                .getPreferenceLineAt(0)
+                .getPreferenceAtLine(0)
                 .hasSummary("Taryfa całodobowa (G11)");
     }
 }

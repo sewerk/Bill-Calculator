@@ -19,7 +19,7 @@ import pl.srw.billcalculator.di.TestApplicationComponent;
 import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
-import pl.srw.billcalculator.tester.FormTester;
+import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.testutils.HistoryGenerator;
 import pl.srw.billcalculator.type.Provider;
 
@@ -32,7 +32,7 @@ public class InstantAutoCompleteTextInputEditTextAndroidTest {
     @Inject HistoryGenerator historyGenerator;
     @Inject PgePrices pgePrices;
 
-    private FormTester tester = new FormTester();
+    private AppTester tester = new AppTester();
 
     @Before
     public void setUp() throws Exception {
@@ -60,9 +60,9 @@ public class InstantAutoCompleteTextInputEditTextAndroidTest {
 
         tester
                 .skipCheckPricesDialogIfVisible()
-                .openForm(Provider.PGE);
+                .openForm(Provider.PGE)
 
-        tester.autoCompleteContains("11");
+                .autoCompleteContains("11");
     }
 
     @Test
@@ -72,9 +72,9 @@ public class InstantAutoCompleteTextInputEditTextAndroidTest {
 
         tester
                 .skipCheckPricesDialogIfVisible()
-                .openForm(Provider.PGE);
+                .openForm(Provider.PGE)
 
-        tester.autoCompleteContains("25");
+                .autoCompleteContains("25");
     }
 
     @Test
@@ -83,9 +83,9 @@ public class InstantAutoCompleteTextInputEditTextAndroidTest {
 
         tester
                 .skipCheckPricesDialogIfVisible()
-                .openForm(Provider.PGE);
+                .openForm(Provider.PGE)
 
-        tester.autoCompleteContains("30");
+                .autoCompleteContains("30");
     }
 
     @Test
@@ -99,8 +99,8 @@ public class InstantAutoCompleteTextInputEditTextAndroidTest {
         tester
                 .skipCheckPricesDialogIfVisible()
                 .openForm(Provider.PGE)
-                .putIntoReadingFrom("1");
+                .putIntoReadingFrom("1")
 
-        tester.autoCompleteDisplaysInOrder("199", "115", "19");
+                .autoCompleteDisplaysInOrder("199", "115", "19");
     }
 }

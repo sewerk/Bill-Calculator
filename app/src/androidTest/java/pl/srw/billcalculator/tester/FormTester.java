@@ -1,6 +1,5 @@
 package pl.srw.billcalculator.tester;
 
-import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.contrib.PickerActions;
 import android.widget.DatePicker;
 
@@ -8,7 +7,6 @@ import org.hamcrest.Matchers;
 import org.threeten.bp.Month;
 
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.type.Provider;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
@@ -22,34 +20,12 @@ import static org.hamcrest.CoreMatchers.not;
 
 public class FormTester extends Tester {
 
-    public FormTester openForm(Provider provider) {
-        clickView(R.id.fab);
-        switch (provider) {
-            case PGE:
-                clickView(R.id.fab_new_pge);
-                break;
-            case PGNIG:
-                clickView(R.id.fab_new_pgnig);
-                break;
-            case TAURON:
-                clickView(R.id.fab_new_tauron);
-                break;
-        }
-        return this;
-    }
+    private AppTester parent;
+    private BillTester billTester = new BillTester(parent);
+    private ProviderSettingsTester<FormTester> settingsTester = new ProviderSettingsTester<>(this);
 
-    public ViewInteraction autoCompleteContains(String text) {
-        return onView(withId(R.id.autocomplete_text))
-                .inRoot(not(isDialog()))//withDecorView(not(is(testRule.getActivity().getWindow().getDecorView())))
-                .check(matches(withText(text)));
-    }
-
-    public void autoCompleteDisplaysInOrder(String... text) {
-        for (int i = 0, textLength = text.length; i < textLength; i++) {
-            onData(anything()).atPosition(i)
-                    .inRoot(not(isDialog()))
-                    .check(matches(withText(text[i])));
-        }
+    public FormTester(AppTester parent) {
+        this.parent = parent;
     }
 
     public FormTester putIntoReadingFrom(String text) {
@@ -72,13 +48,23 @@ public class FormTester extends Tester {
         return new DatePickerTester();
     }
 
-    public void calculate() {
+    public BillTester calculate() {
         clickView(R.id.calculate_button);
+        return billTester;
     }
 
-    public FormTester closeForm() {
-        clickView(R.id.close_button);
-        return this;
+    public void autoCompleteContains(String text) {
+        onView(withId(R.id.autocomplete_text))
+                .inRoot(not(isDialog()))//withDecorView(not(is(testRule.getActivity().getWindow().getDecorView())))
+                .check(matches(withText(text)));
+    }
+
+    public void autoCompleteDisplaysInOrder(String... text) {
+        for (int i = 0, textLength = text.length; i < textLength; i++) {
+            onData(anything()).atPosition(i)
+                    .inRoot(not(isDialog()))
+                    .check(matches(withText(text[i])));
+        }
     }
 
     public void hasDateFromText(String date) {
@@ -89,6 +75,16 @@ public class FormTester extends Tester {
     public void hasDateToError() {
         onView(withId(R.id.date_to_error))
                 .check(matches(withText(R.string.date_error)));
+    }
+
+    public ProviderSettingsTester<FormTester> openProviderSettings() {
+        clickView(R.id.form_settings_link);
+        return settingsTester;
+    }
+
+    public AppTester close() {
+        clickView(R.id.close_button);
+        return parent;
     }
 
     public class DatePickerTester {

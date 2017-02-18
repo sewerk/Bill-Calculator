@@ -1,17 +1,16 @@
 package pl.srw.billcalculator.tester;
 
-import android.support.test.espresso.NoMatchingViewException;
-
-import pl.srw.billcalculator.R;
-
 public class HistoryTester extends Tester {
 
-    public HistoryTester skipCheckPricesDialogIfVisible() {
-        try {
-            clickText(R.string.check_prices_info_cancel);
-        } catch (NoMatchingViewException ex) {
-            // ignore
-        }
-        return this;
+    private AppTester parent;
+    private BillTester billTester = new BillTester(parent);
+
+    public HistoryTester(AppTester parent) {
+        this.parent = parent;
+    }
+
+    public BillTester openBillWithReadings(String from, String to) {
+        clickText(from + " - " + to);
+        return billTester;
     }
 }

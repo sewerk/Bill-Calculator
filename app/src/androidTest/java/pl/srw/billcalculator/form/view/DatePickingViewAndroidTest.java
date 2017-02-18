@@ -10,6 +10,7 @@ import org.threeten.bp.LocalDate;
 import org.threeten.bp.Month;
 
 import pl.srw.billcalculator.history.DrawerActivity;
+import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.tester.FormTester;
 import pl.srw.billcalculator.type.Provider;
 
@@ -19,7 +20,7 @@ public class DatePickingViewAndroidTest {
     @Rule
     public ActivityTestRule<DrawerActivity> mActivityTestRule = new ActivityTestRule<>(DrawerActivity.class);
 
-    private FormTester tester = new FormTester();
+    private AppTester tester = new AppTester();
 
     @Test
     public void clickingOnDatePickingViewOpensDialogWithPresetDate() throws Exception {
@@ -30,9 +31,9 @@ public class DatePickingViewAndroidTest {
                 .skipCheckPricesDialogIfVisible()
                 .openForm(Provider.PGNIG)
                 .openDateFromPicker()
-                .acceptDate();
+                .acceptDate()
 
-        tester.hasDateFromText("01/" + monthPrefix + now.getMonthValue() + "/" + now.getYear());
+                .hasDateFromText("01/" + monthPrefix + now.getMonthValue() + "/" + now.getYear());
     }
 
     @Test
@@ -42,16 +43,18 @@ public class DatePickingViewAndroidTest {
                 .openForm(Provider.PGNIG)
                 .openDateFromPicker()
                 .pickDate(15, Month.JANUARY, 2017)
-                .acceptDate();
+                .acceptDate()
 
-        tester.hasDateFromText("15/01/2017");
+                .hasDateFromText("15/01/2017");
     }
 
     @Test
     public void pickingOlderDateInToDateViewShowsError() throws Exception {
-        tester
+        FormTester formTester = tester
                 .skipCheckPricesDialogIfVisible()
-                .openForm(Provider.PGNIG)
+                .openForm(Provider.PGNIG);
+
+        formTester
                 .putIntoReadingFrom("1")
                 .putIntoReadingTo("2")
                 .openDateFromPicker()
@@ -62,6 +65,6 @@ public class DatePickingViewAndroidTest {
                 .acceptDate()
                 .calculate();
 
-        tester.hasDateToError();
+        formTester.hasDateToError();
     }
 }
