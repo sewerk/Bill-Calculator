@@ -1,8 +1,10 @@
 package pl.srw.billcalculator.tester;
 
+import android.content.pm.ActivityInfo;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.support.design.widget.NavigationView;
+import android.support.test.rule.ActivityTestRule;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -12,6 +14,7 @@ import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.history.DrawerActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -74,5 +77,20 @@ abstract class Tester {
                         && view.equals(((ViewGroup) parent).getChildAt(position));
             }
         };
+    }
+
+    public void changeOrientation(ActivityTestRule<DrawerActivity> testRule) {
+        int current = testRule.getActivity().getRequestedOrientation();
+        int change;
+        if (current == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+            change = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+        } else if (current == ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
+            change = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+            testRule.getActivity().setRequestedOrientation(change);
+            change = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+        } else {
+            change = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+        }
+        testRule.getActivity().setRequestedOrientation(change);
     }
 }

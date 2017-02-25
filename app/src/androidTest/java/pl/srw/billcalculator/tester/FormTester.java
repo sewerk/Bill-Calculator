@@ -1,7 +1,12 @@
 package pl.srw.billcalculator.tester;
 
+import android.support.annotation.StringRes;
+import android.support.test.espresso.ViewInteraction;
+import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.contrib.PickerActions;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.widget.DatePicker;
+import android.widget.EditText;
 
 import org.hamcrest.Matchers;
 import org.threeten.bp.Month;
@@ -12,9 +17,13 @@ import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.RootMatchers.isDialog;
+import static android.support.test.espresso.matcher.ViewMatchers.hasFocus;
+import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.anything;
 import static org.hamcrest.CoreMatchers.not;
 
@@ -68,6 +77,11 @@ public class FormTester extends Tester {
         return new DatePickerTester();
     }
 
+    public FormTester pressImeActionButton() {
+        onView(allOf(hasFocus(), isAssignableFrom(EditText.class))).perform(ViewActions.pressImeActionButton());
+        return this;
+    }
+
     public BillTester calculate() {
         clickView(R.id.calculate_button);
         return billTester;
@@ -87,14 +101,68 @@ public class FormTester extends Tester {
         }
     }
 
-    public void hasDateFromText(String date) {
-        onView(withId(R.id.form_entry_dates_from))
-                .check(matches(withText(date)));
+    public FieldView readingFromView() {
+        return new FieldView(R.id.form_entry_reading_from_input);
     }
 
-    public void hasDateToError() {
-        onView(withId(R.id.date_to_error))
-                .check(matches(withText(R.string.date_error)));
+    public FieldView readingFromErrorView() {
+        return errorFieldViewForReading(R.id.form_entry_reading_from);
+    }
+
+    public FieldView readingToView() {
+        return new FieldView(R.id.form_entry_reading_to_input);
+    }
+
+    public FieldView readingToErrorView() {
+        return errorFieldViewForReading(R.id.form_entry_reading_to);
+    }
+
+    public FieldView readingDayFromView() {
+        return new FieldView(R.id.form_entry_reading_day_from_input);
+    }
+
+    public FieldView readingDayFromErrorView() {
+        return errorFieldViewForReading(R.id.form_entry_reading_day_from);
+    }
+
+    public FieldView readingDayToView() {
+        return new FieldView(R.id.form_entry_reading_day_to_input);
+    }
+
+    public FieldView readingDayToErrorView() {
+        return errorFieldViewForReading(R.id.form_entry_reading_day_to);
+    }
+
+    public FieldView readingNightFromView() {
+        return new FieldView(R.id.form_entry_reading_night_from_input);
+    }
+
+    public FieldView readingNightFromErrorView() {
+        return errorFieldViewForReading(R.id.form_entry_reading_night_from);
+    }
+
+    public FieldView readingNightToView() {
+        return new FieldView(R.id.form_entry_reading_night_to_input);
+    }
+
+    public FieldView readingNightToErrorView() {
+        return errorFieldViewForReading(R.id.form_entry_reading_night_to);
+    }
+
+    public FieldView readingUnitView() {
+        return new FieldView(R.id.form_entry_reading_unit);
+    }
+
+    public FieldView tariffView() {
+        return new FieldView(R.id.form_entry_tariff);
+    }
+
+    public FieldView dateFromView() {
+        return new FieldView(R.id.form_entry_dates_from);
+    }
+
+    public FieldView dateToErrorView() {
+        return new FieldView(R.id.date_to_error);
     }
 
     public ProviderSettingsTester<FormTester> openProviderSettings() {
@@ -105,6 +173,11 @@ public class FormTester extends Tester {
     public AppTester close() {
         clickView(R.id.close_button);
         return parent;
+    }
+
+    private FieldView errorFieldViewForReading(int id) {
+        return new FieldView(
+                onView(allOf(withParent(withParent(withId(id))), withId(R.id.textinput_error))));
     }
 
     public class DatePickerTester {
@@ -119,6 +192,34 @@ public class FormTester extends Tester {
 
         public FormTester acceptDate() {
             clickView(android.R.id.button1);
+            return FormTester.this;
+        }
+    }
+
+    public class FieldView {
+
+        private ViewInteraction onView;
+
+        private FieldView(ViewInteraction onView) {
+            this.onView = onView;
+        }
+
+        private FieldView(int id) {
+            onView = onView(withId(id));
+        }
+
+        public FormTester hasText(String text) {
+            onView.check(matches(withText(text)));
+            return FormTester.this;
+        }
+
+        public FormTester hasFocus() {
+            onView.check(matches(ViewMatchers.hasFocus()));
+            return FormTester.this;
+        }
+
+        public FormTester hasText(@StringRes int id) {
+            onView.check(matches(withText(id)));
             return FormTester.this;
         }
     }

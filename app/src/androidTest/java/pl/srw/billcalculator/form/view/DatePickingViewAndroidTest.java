@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.Month;
 
+import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.tester.FormTester;
@@ -33,7 +34,7 @@ public class DatePickingViewAndroidTest {
                 .openDateFromPicker()
                 .acceptDate()
 
-                .hasDateFromText("01/" + monthPrefix + now.getMonthValue() + "/" + now.getYear());
+                .dateFromView().hasText("01/" + monthPrefix + now.getMonthValue() + "/" + now.getYear());
     }
 
     @Test
@@ -45,7 +46,7 @@ public class DatePickingViewAndroidTest {
                 .pickDate(15, Month.JANUARY, 2017)
                 .acceptDate()
 
-                .hasDateFromText("15/01/2017");
+                .dateFromView().hasText("15/01/2017");
     }
 
     @Test
@@ -65,6 +66,6 @@ public class DatePickingViewAndroidTest {
                 .acceptDate()
                 .calculate();
 
-        formTester.hasDateToError();
+        formTester.dateToErrorView().hasText(R.string.date_error);
     }
 }
