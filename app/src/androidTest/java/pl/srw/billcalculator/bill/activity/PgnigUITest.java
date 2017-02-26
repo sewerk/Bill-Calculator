@@ -14,6 +14,9 @@ import pl.srw.billcalculator.type.Provider;
  */
 public class PgnigUITest extends AbstractVerifyBillCreationUITest {
 
+    private static final String READING_FROM = "6696";
+    private static final String READING_TO = "7101";
+
     @Override
     protected Provider getProvider() {
         return Provider.PGNIG;
@@ -31,8 +34,8 @@ public class PgnigUITest extends AbstractVerifyBillCreationUITest {
     @Override
     protected BillTester inputFormValuesAndCalculate(FormTester formTester) {
         return formTester
-                .putIntoReadingFrom("6696")
-                .putIntoReadingTo("7101")
+                .putIntoReadingFrom(READING_FROM)
+                .putIntoReadingTo(READING_TO)
                 .openDateFromPicker()
                 .pickDate(10, Month.OCTOBER, 2014)
                 .acceptDate()
@@ -47,8 +50,8 @@ public class PgnigUITest extends AbstractVerifyBillCreationUITest {
         billTester.checkTvMatch(R.id.tv_prev_reading_date, "10.10.2014");
         billTester.checkTvMatch(R.id.tv_curr_reading_date, "15.12.2014");
         // verify odczyty
-        billTester.checkTvMatch(R.id.tv_previous_reading, "6696 [m³]");
-        billTester.checkTvMatch(R.id.tv_current_reading, "7101 [m³]");
+        billTester.checkTvMatch(R.id.tv_previous_reading, READING_FROM + " [m³]");
+        billTester.checkTvMatch(R.id.tv_current_reading, READING_TO + " [m³]");
         // verify zużycie 405 m3
         billTester.checkTvMatch(R.id.tv_consumption, "405 [m³]");
         billTester.checkTvMatch(R.id.tv_total_consumption, "Zużycie razem: 405 [m³]");
@@ -84,7 +87,12 @@ public class PgnigUITest extends AbstractVerifyBillCreationUITest {
     }
 
     @Override
-    protected void verifyAndOpenBillInHistory(HistoryTester historyTester) {
-        historyTester.openBillWithReadings("6696", "7101");
+    protected void verifyAndOpenBillFromHistory(HistoryTester historyTester) {
+        historyTester.openBillWithReadings(READING_FROM, READING_TO);
+    }
+
+    @Override
+    protected void removeBillFromHistory(HistoryTester historyTester) {
+        historyTester.removeBillWithReadings(READING_FROM, READING_TO);
     }
 }

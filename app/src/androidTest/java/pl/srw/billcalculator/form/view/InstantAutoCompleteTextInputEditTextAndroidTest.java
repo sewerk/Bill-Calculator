@@ -43,7 +43,6 @@ public class InstantAutoCompleteTextInputEditTextAndroidTest {
                 .build();
         component.inject(this);
 
-        historyGenerator.clear();
         pgePrices.setTariff(SharedPreferencesEnergyPrices.TARIFF_G11);
 
         testRule.launchActivity(null);

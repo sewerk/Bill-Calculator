@@ -1,5 +1,7 @@
 package pl.srw.billcalculator.testutils;
 
+import android.util.Log;
+
 import org.threeten.bp.LocalDate;
 
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ import pl.srw.billcalculator.util.Dates;
 @Singleton
 public final class HistoryGenerator {
 
+    private static final String TAG = "HistoryGenerator";
     private final pl.srw.billcalculator.settings.prices.PgePrices prefsPrices;
 
     @Inject
@@ -27,6 +30,7 @@ public final class HistoryGenerator {
     }
 
     public void generatePgeG11Bills(final int count) {
+        Log.d(TAG, "Generate " + count + " PGE G11 bills");
         final PgeG11BillDao dao = Database.getSession().getPgeG11BillDao();
         final PgePrices pgePrices = prefsPrices.convertToDb();
 
@@ -43,6 +47,7 @@ public final class HistoryGenerator {
     }
 
     public void clear() {
+        Log.d(TAG, "Clear Database");
         final DaoSession session = Database.getSession();
         //bills
         session.getPgnigBillDao().deleteAll();
@@ -57,6 +62,7 @@ public final class HistoryGenerator {
     }
 
     public void generatePgeG11Bill(int readingTo) {
+        Log.d(TAG, "Create PGE G11 bill with readingTo=" + readingTo);
         final PgeG11BillDao dao = Database.getSession().getPgeG11BillDao();
         final PgePrices pgePrices = prefsPrices.convertToDb();
 

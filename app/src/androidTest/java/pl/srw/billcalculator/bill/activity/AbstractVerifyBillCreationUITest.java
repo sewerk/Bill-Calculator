@@ -66,8 +66,11 @@ public abstract class AbstractVerifyBillCreationUITest {
 
         revertPricesToDefault();
 
-        verifyAndOpenBillInHistory(tester.onHistory());
+        verifyAndOpenBillFromHistory(tester.onHistory());
         verifyCalculatedValues(billTester);
+        billTester.close();
+
+        removeBillFromHistory(tester.onHistory());
     }
 
     protected abstract Provider getProvider();
@@ -86,5 +89,7 @@ public abstract class AbstractVerifyBillCreationUITest {
                 .close();
     }
 
-    protected abstract void verifyAndOpenBillInHistory(HistoryTester historyTester);
+    protected abstract void verifyAndOpenBillFromHistory(HistoryTester historyTester);
+
+    protected abstract void removeBillFromHistory(HistoryTester historyTester);
 }

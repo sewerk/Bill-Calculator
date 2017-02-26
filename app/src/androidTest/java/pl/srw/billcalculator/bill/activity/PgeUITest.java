@@ -110,7 +110,12 @@ public class PgeUITest extends AbstractVerifyBillCreationUITest {
     }
 
     @Override
-    protected void verifyAndOpenBillInHistory(HistoryTester historyTester) {
+    protected void verifyAndOpenBillFromHistory(HistoryTester historyTester) {
         historyTester.openBillWithReadings(READING_DAY_FROM, READING_DAY_TO);
+    }
+
+    @Override
+    protected void removeBillFromHistory(HistoryTester historyTester) {
+        historyTester.removeBillWithReadings(READING_DAY_FROM, READING_DAY_TO);
     }
 }
