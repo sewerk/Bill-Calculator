@@ -5,6 +5,7 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.ServiceTestCase;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,6 +53,12 @@ public class PgnigBillStoringServiceTest extends ServiceTestCase<PgnigBillStorin
         setContext(InstrumentationRegistry.getInstrumentation().getTargetContext());
 
         Database.initialize(getSystemContext());
+    }
+
+    @After
+    @Override
+    public void tearDown() throws Exception {
+        super.tearDown();
         Database.getSession().deleteAll(PgnigBill.class);
     }
 
