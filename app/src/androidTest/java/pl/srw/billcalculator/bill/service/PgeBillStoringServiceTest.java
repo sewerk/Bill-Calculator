@@ -18,6 +18,7 @@ import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgePrices;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.persistence.Database;
+import pl.srw.billcalculator.testutils.HistoryGenerator;
 import pl.srw.billcalculator.util.Dates;
 
 /**
@@ -60,8 +61,7 @@ public class PgeBillStoringServiceTest extends ServiceTestCase<PgeBillStoringSer
     @Override
     public void tearDown() throws Exception {
         super.tearDown();
-        Database.getSession().getPgeG11BillDao().deleteAll();
-        Database.getSession().getPgeG12BillDao().deleteAll();
+        HistoryGenerator.clear();
     }
 
     @Override

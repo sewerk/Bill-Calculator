@@ -17,6 +17,7 @@ import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.PgnigPrices;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.persistence.Database;
+import pl.srw.billcalculator.testutils.HistoryGenerator;
 import pl.srw.billcalculator.util.Dates;
 
 /**
@@ -59,7 +60,7 @@ public class PgnigBillStoringServiceTest extends ServiceTestCase<PgnigBillStorin
     @Override
     public void tearDown() throws Exception {
         super.tearDown();
-        Database.getSession().deleteAll(PgnigBill.class);
+        HistoryGenerator.clear();
     }
 
     @Override

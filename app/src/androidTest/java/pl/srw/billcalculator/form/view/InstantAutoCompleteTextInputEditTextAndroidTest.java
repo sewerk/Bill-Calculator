@@ -50,7 +50,7 @@ public class InstantAutoCompleteTextInputEditTextAndroidTest {
 
     @After
     public void tearDown() throws Exception {
-        historyGenerator.clear();
+        HistoryGenerator.clear();
     }
 
     @Test

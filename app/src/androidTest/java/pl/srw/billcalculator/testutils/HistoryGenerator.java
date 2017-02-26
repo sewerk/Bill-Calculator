@@ -46,7 +46,7 @@ public final class HistoryGenerator {
         dao.insertInTx(pgeBills);
     }
 
-    public void clear() {
+    public static void clear() {
         Log.d(TAG, "Clear Database");
         final DaoSession session = Database.getSession();
         //bills
