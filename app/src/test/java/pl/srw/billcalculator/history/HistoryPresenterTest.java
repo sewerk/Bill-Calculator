@@ -4,6 +4,7 @@ import org.greenrobot.greendao.query.LazyList;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -25,14 +26,13 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(JUnitParamsRunner.class)
 public class HistoryPresenterTest {
 
-    private HistoryPresenter sut;
+    @InjectMocks private HistoryPresenter sut;
     
     @Mock HistoryPresenter.HistoryView view;
     @Mock SettingsRepo settings;
@@ -43,10 +43,8 @@ public class HistoryPresenterTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        when(history.getAll()).thenReturn(listData);
-
-        sut = new HistoryPresenter(settings, history, savedBillsRegistry);
         Whitebox.setInternalState(sut, "view", view);
+        when(history.getAll()).thenReturn(listData);
     }
 
     @Test
@@ -100,7 +98,7 @@ public class HistoryPresenterTest {
         sut.onNewViewRestoreState();
 
         // THEN
-        verify(history, times(2)).getAll();
+        verify(history).getAll();
     }
 
     @Test
@@ -241,7 +239,7 @@ public class HistoryPresenterTest {
         sut.onListItemDismissed(0, bill);
 
         // THEN
-        verify(history, times(2)).getAll();
+        verify(history).getAll();
     }
 
     @Test
@@ -295,7 +293,7 @@ public class HistoryPresenterTest {
         sut.undoDeleteClicked(0);
 
         // THEN
-        verify(history, times(2)).getAll();
+        verify(history).getAll();
     }
 
     @Test

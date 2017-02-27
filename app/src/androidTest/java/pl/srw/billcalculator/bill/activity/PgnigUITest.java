@@ -90,9 +90,4 @@ public class PgnigUITest extends AbstractVerifyBillCreationUITest {
     protected void verifyAndOpenBillFromHistory(HistoryTester historyTester) {
         historyTester.openBillWithReadings(READING_FROM, READING_TO);
     }
-
-    @Override
-    protected void removeBillFromHistory(HistoryTester historyTester) {
-        historyTester.removeBillWithReadings(READING_FROM, READING_TO);
-    }
 }

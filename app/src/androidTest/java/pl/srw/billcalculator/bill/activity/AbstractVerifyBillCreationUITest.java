@@ -3,6 +3,7 @@ package pl.srw.billcalculator.bill.activity;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ import pl.srw.billcalculator.tester.BillTester;
 import pl.srw.billcalculator.tester.FormTester;
 import pl.srw.billcalculator.tester.HistoryTester;
 import pl.srw.billcalculator.tester.ProviderSettingsTester;
+import pl.srw.billcalculator.testutils.HistoryGenerator;
 import pl.srw.billcalculator.type.Provider;
 
 @RunWith(AndroidJUnit4.class)
@@ -22,6 +24,11 @@ public abstract class AbstractVerifyBillCreationUITest {
     public final ActivityTestRule<DrawerActivity> testRule = new ActivityTestRule<>(DrawerActivity.class);
 
     private AppTester tester = new AppTester();
+
+    @After
+    public void tearDown() throws Exception {
+        HistoryGenerator.clear();
+    }
 
     @Test
     public void checkCalculatedBillValuesAndPrices() throws Exception {
@@ -40,9 +47,6 @@ public abstract class AbstractVerifyBillCreationUITest {
 
         verifyAndOpenBillFromHistory(tester.onHistory());
         verifyCalculatedValues(billTester);
-        billTester.close();
-
-        removeBillFromHistory(tester.onHistory());
     }
 
     protected abstract Provider getProvider();
@@ -62,6 +66,4 @@ public abstract class AbstractVerifyBillCreationUITest {
     }
 
     protected abstract void verifyAndOpenBillFromHistory(HistoryTester historyTester);
-
-    protected abstract void removeBillFromHistory(HistoryTester historyTester);
 }
