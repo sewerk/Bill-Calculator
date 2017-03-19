@@ -45,10 +45,10 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Dependencies.inject(this);
         Analytics.logContent(ContentType.TAURON_BILL,
                 "Tauron new", String.valueOf(prices == null),
                 "Tauron tariff", (isTwoUnitTariff() ? "G12" : "G11"));
-        Dependencies.inject(this);
 
         if (prices == null)
             prices = prefsPrices;

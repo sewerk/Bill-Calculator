@@ -2,6 +2,7 @@ BUGS
 - storing service crashes on Dart - replace/remove
 - history list refreshed after coming back from Settings (rebind is doing extra work)
 - settings list desc is cut off on tablets
+- form layout is cut off
 
 TEST
 - print with screen rotation and openning different bill, which icon will appear

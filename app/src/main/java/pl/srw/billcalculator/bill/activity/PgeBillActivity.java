@@ -44,10 +44,10 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Dependencies.inject(this);
         Analytics.logContent(ContentType.PGE_BILL,
                 "PGE new", String.valueOf(prices == null),
                 "PGE tariff", (isTwoUnitTariff() ? "G12" : "G11"));
-        Dependencies.inject(this);
 
         if (prices == null)
             prices = prefsPrices;
