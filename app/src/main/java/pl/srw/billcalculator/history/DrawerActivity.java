@@ -38,6 +38,7 @@ import pl.srw.billcalculator.history.list.item.HistoryItemTouchCallback;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.util.strategy.Transitions;
 import pl.srw.billcalculator.wrapper.Dependencies;
 import pl.srw.mfvp.MvpActivity;
 import pl.srw.mfvp.presenter.PresenterHandlingDelegate;
@@ -169,10 +170,10 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         new CheckPricesDialogFragment().show(getSupportFragmentManager(), null);
     }
 
-        @Override
-    public void openBill(Bill bill) {
+    @Override
+    public void openBill(Bill bill, View viewClicked) {
         final Intent intent = BillActivityIntentFactory.create(this, bill);
-        startActivity(intent);
+        Transitions.getInstance().startActivity(this, intent, viewClicked);
     }
 
     @Override

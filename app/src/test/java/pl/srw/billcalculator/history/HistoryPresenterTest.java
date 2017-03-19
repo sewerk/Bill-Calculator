@@ -1,5 +1,7 @@
 package pl.srw.billcalculator.history;
 
+import android.view.View;
+
 import org.greenrobot.greendao.query.LazyList;
 import org.junit.Before;
 import org.junit.Test;
@@ -299,22 +301,23 @@ public class HistoryPresenterTest {
     @Test
     public void onListItemClicked_opensBill() throws Exception {
         // GIVEN
-        final Bill bill = mock(PgeG11Bill.class);
+        Bill bill = mock(PgeG11Bill.class);
+        View itemView = mock(View.class);
 
         // WHEN
-        sut.onListItemClicked(bill);
+        sut.onListItemClicked(bill, itemView);
 
         // THEN
-        verify(view).openBill(bill);
+        verify(view).openBill(bill, itemView);
     }
 
     @Test
     public void onListItemClicked_registerSavedBill() throws Exception {
         // GIVEN
-        final Bill bill = mock(PgeG11Bill.class);
+        Bill bill = mock(PgeG11Bill.class);
 
         // WHEN
-        sut.onListItemClicked(bill);
+        sut.onListItemClicked(bill, mock(View.class));
 
         // THEN
         verify(savedBillsRegistry).register(bill);

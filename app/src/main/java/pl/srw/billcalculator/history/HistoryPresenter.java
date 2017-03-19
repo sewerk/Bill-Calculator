@@ -1,5 +1,7 @@
 package pl.srw.billcalculator.history;
 
+import android.view.View;
+
 import org.greenrobot.greendao.query.LazyList;
 
 import javax.inject.Inject;
@@ -60,7 +62,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         present(new UIChange<HistoryView>() {
             @Override
             public void change(HistoryView view) {
-                view.setListData(historyData);
+                view.setListData(historyData); // TODO: BUG: when data not change the lazyList is closed by this call
             }
         });
     }
@@ -158,11 +160,11 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     }
 
     @Override
-    public void onListItemClicked(final Bill bill) {
+    public void onListItemClicked(final Bill bill, final View viewClicked) {
         present(new UIChange<HistoryView>() {
             @Override
             public void change(HistoryView view) {
-                view.openBill(bill);
+                view.openBill(bill, viewClicked);
             }
         });
         savedBillsRegistry.register(bill);
@@ -197,6 +199,6 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
 
         void itemAddedToList(int position, LazyList<History> newData);
 
-        void openBill(Bill bill);
+        void openBill(Bill bill, View viewClicked);
     }
 }

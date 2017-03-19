@@ -30,6 +30,7 @@ import javax.inject.Inject;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment;
+import pl.srw.billcalculator.util.strategy.Transitions;
 import pl.srw.mfvp.di.component.MvpComponent;
 import pl.srw.mfvp.presenter.PresenterHandlingDelegate;
 import pl.srw.mfvp.presenter.PresenterOwner;
@@ -42,7 +43,6 @@ abstract class BillActivity<T extends MvpComponent>
     public static final String MIME_APPLICATION_PDF = "application/pdf";
     public static final String MIME_IMAGE = "image/*";
 
-    private static final String VIEW_TRANSITION_NAME = "BillActivity:transition";
     private static final int PERMISSION_REQUEST_CODE = 101;
 
     @Inject BillPresenter presenter;
@@ -53,7 +53,7 @@ abstract class BillActivity<T extends MvpComponent>
     @CallSuper
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ViewCompat.setTransitionName(findViewById(R.id.decor_content_parent), VIEW_TRANSITION_NAME);//TODO
+        ViewCompat.setTransitionName(findViewById(R.id.decor_content_parent), Transitions.BILL_VIEW_TRANSITION_NAME);
     }
 
     @Override

@@ -52,8 +52,7 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder implements Vi
 
     @Override
     public void onClick(View v) {
-        clickListener.onListItemClicked(getBill());
-        // TODO: transition logo to open bill (move to activity)?
+        clickListener.onListItemClicked(getBill(), v);
     }
 
     public Bill getBill() {
