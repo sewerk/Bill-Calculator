@@ -20,6 +20,7 @@ public class TauronPrices implements pl.srw.billcalculator.pojo.ITauronPrices, j
     private String energiaElektrycznaCzynnaNoc;
     private String oplataDystrybucyjnaZmiennaDzien;
     private String oplataDystrybucyjnaZmiennaNoc;
+    private String oplataOze;
 
     @Generated
     public TauronPrices() {
@@ -30,7 +31,7 @@ public class TauronPrices implements pl.srw.billcalculator.pojo.ITauronPrices, j
     }
 
     @Generated
-    public TauronPrices(Long id, String energiaElektrycznaCzynna, String oplataDystrybucyjnaZmienna, String oplataDystrybucyjnaStala, String oplataPrzejsciowa, String oplataAbonamentowa, String energiaElektrycznaCzynnaDzien, String energiaElektrycznaCzynnaNoc, String oplataDystrybucyjnaZmiennaDzien, String oplataDystrybucyjnaZmiennaNoc) {
+    public TauronPrices(Long id, String energiaElektrycznaCzynna, String oplataDystrybucyjnaZmienna, String oplataDystrybucyjnaStala, String oplataPrzejsciowa, String oplataAbonamentowa, String energiaElektrycznaCzynnaDzien, String energiaElektrycznaCzynnaNoc, String oplataDystrybucyjnaZmiennaDzien, String oplataDystrybucyjnaZmiennaNoc, String oplataOze) {
         this.id = id;
         this.energiaElektrycznaCzynna = energiaElektrycznaCzynna;
         this.oplataDystrybucyjnaZmienna = oplataDystrybucyjnaZmienna;
@@ -41,6 +42,7 @@ public class TauronPrices implements pl.srw.billcalculator.pojo.ITauronPrices, j
         this.energiaElektrycznaCzynnaNoc = energiaElektrycznaCzynnaNoc;
         this.oplataDystrybucyjnaZmiennaDzien = oplataDystrybucyjnaZmiennaDzien;
         this.oplataDystrybucyjnaZmiennaNoc = oplataDystrybucyjnaZmiennaNoc;
+        this.oplataOze = oplataOze;
     }
 
     public Long getId() {
@@ -121,6 +123,14 @@ public class TauronPrices implements pl.srw.billcalculator.pojo.ITauronPrices, j
 
     public void setOplataDystrybucyjnaZmiennaNoc(String oplataDystrybucyjnaZmiennaNoc) {
         this.oplataDystrybucyjnaZmiennaNoc = oplataDystrybucyjnaZmiennaNoc;
+    }
+
+    public String getOplataOze() {
+        return oplataOze;
+    }
+
+    public void setOplataOze(String oplataOze) {
+        this.oplataOze = oplataOze;
     }
 
 }

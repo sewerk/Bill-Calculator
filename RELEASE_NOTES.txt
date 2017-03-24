@@ -1,5 +1,9 @@
 v.2.0
  - material design
+v.1.6.1
+ - fix key/value backup by adding db migration
+v.1.6
+ - opłata OZE
 v.1.5.1
  - auto-backup for pre-M
  - better explanation for request permission rationale dialog

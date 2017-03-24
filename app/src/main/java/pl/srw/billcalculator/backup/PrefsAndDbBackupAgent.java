@@ -12,8 +12,11 @@ import java.io.IOException;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import pl.srw.billcalculator.BuildConfig;
 import pl.srw.billcalculator.di.ApplicationModule;
 import pl.srw.billcalculator.persistence.Database;
+import pl.srw.billcalculator.type.ActionType;
+import pl.srw.billcalculator.wrapper.Analytics;
 
 /**
  * Created by Kamil Seweryn on 07.02.2016.
@@ -48,12 +51,18 @@ public class PrefsAndDbBackupAgent extends BackupAgentHelper {
     @Override
     public void onRestore(BackupDataInput data, int appVersionCode, ParcelFileDescriptor newState)
             throws IOException {
-        Log.d(TAG, "onRestore appVersionCode = " + appVersionCode);
+        Analytics.logAction(ActionType.BACKUP_RESTORE, "onRestore -> current",
+                appVersionCode + "/" + BuildConfig.VERSION_CODE);
 
         lock.lock();
         try {
             Log.d(TAG, "onRestore in-lock");
             super.onRestore(data, appVersionCode, newState);
+            if (appVersionCode < 22) {
+                // migrate db to db.ver=3
+                Database.close();
+                Database.initialize(this.getApplicationContext());
+            }
         } finally {
             lock.unlock();
         }

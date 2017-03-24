@@ -111,6 +111,39 @@ public class DatesTest {
     }
 
     @Test
+    @Parameters({
+            "01/02/2015,31/06/2016|0",
+            "01/06/2016,02/07/2016|1",
+            "01/06/2016,31/07/2016|30",
+            "01/07/2016,31/07/2016|30",
+            "01/08/2016,31/09/2016|60",
+            "01/08/2016,31/09/2017|425",
+    })
+    public void shouldCountDaysFromJuly16(String fromDate, String toDate, int count) throws Exception {
+        // WHEN
+        final int result = Dates.countDaysFromJuly16(fromDate, toDate);
+
+        // THEN
+        assertEquals(count, result);
+    }
+
+    @Test
+    @Parameters({
+            "01/05/2015,01/05/2015|0",
+            "01/05/2014,01/06/2015|396",
+            "01/06/2016,01/07/2016|30",
+            "01/06/2016,31/07/2016|60",
+            "01/08/2016,30/09/2016|60",
+    })
+    public void shouldCountDays(String fromDate, String toDate, int count) throws Exception {
+        // WHEN
+        final int result = Dates.countDays(fromDate, toDate);
+
+        // THEN
+        assertEquals(count, result);
+    }
+
+    @Test
     public void shouldConvertToLocalDate() {
         assertEquals(LocalDate.of(1970, Month.JANUARY, 1), Dates.toLocalDate(new Date(0)));
 

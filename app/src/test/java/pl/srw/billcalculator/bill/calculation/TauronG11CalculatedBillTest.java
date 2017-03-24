@@ -18,7 +18,7 @@ public class TauronG11CalculatedBillTest {
     @Test
     public void expectProperCalculations() {
         // prepare
-        final TauronPrices prices = new TauronPrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", null, null, null, null);
+        final TauronPrices prices = new TauronPrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", null, null, null, null, "0.00");
 
         // calculate
         final TauronG11CalculatedBill sut = new TauronG11CalculatedBill(20, 30, "01/03/2015", "30/04/2015", prices);
@@ -53,10 +53,36 @@ public class TauronG11CalculatedBillTest {
     }
 
     @Test
+    public void whenAfterJuly16IncludeOplataOze() throws Exception {
+        // prepare
+        final TauronPrices prices = new TauronPrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", null, null, null, null, "0.00251");
+
+        // calculate
+        final TauronG11CalculatedBill sut = new TauronG11CalculatedBill(20, 30, "01/07/2016", "30/08/2016", prices);
+
+        // verify
+        assertThat(sut.getConsumptionFromJuly16(), is(10));
+        assertThat(sut.getOplataOzeNetCharge(), is(new BigDecimal("0.02510")));
+        assertThat(sut.getOplataOzeVatCharge(), is(new BigDecimal("0.0057730")));
+
+        assertThat(sut.getNetChargeSum(), is(new BigDecimal("55.57")));
+        assertThat(sut.getVatChargeSum(), is(new BigDecimal("12.78")));
+        assertThat(sut.getGrossChargeSum(), is(new BigDecimal("68.35")));
+        assertThat(sut.getExcise(), is(new BigDecimal("0.20")));
+
+        assertThat(sut.getSellNetCharge(), is(new BigDecimal("11.10")));
+        assertThat(sut.getSellVatCharge(), is(new BigDecimal("2.55")));
+        assertThat(sut.getSellGrossCharge(), is(new BigDecimal("13.65")));
+        assertThat(sut.getDistributeNetCharge(), is(new BigDecimal("44.47")));
+        assertThat(sut.getDistributeVatCharge(), is(new BigDecimal("10.23")));
+        assertThat(sut.getDistributeGrossCharge(), is(new BigDecimal("54.70")));
+    }
+
+    @Test
     public void realLifeExample() {
         // prepare
-        final TauronPrices prices1 = new TauronPrices(1L, "0.25470", "0.18670", "1.46", "2.44", "0.80", null, null, null, null);
-        final TauronPrices prices2 = new TauronPrices(2L, "0.25680", "0.19130", "1.55", "3.29", "0.80", null, null, null, null);
+        final TauronPrices prices1 = new TauronPrices(1L, "0.25470", "0.18670", "1.46", "2.44", "0.80", null, null, null, null, "0.00");
+        final TauronPrices prices2 = new TauronPrices(2L, "0.25680", "0.19130", "1.55", "3.29", "0.80", null, null, null, null, "0.00");
 
         // calculate
         final TauronG11CalculatedBill bill1 = new TauronG11CalculatedBill(7869, 8681, "01/08/2014", "31/12/2014", prices1);

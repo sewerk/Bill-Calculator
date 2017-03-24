@@ -35,6 +35,7 @@ public class TauronPricesDao extends AbstractDao<TauronPrices, Long> {
         public final static Property EnergiaElektrycznaCzynnaNoc = new Property(7, String.class, "energiaElektrycznaCzynnaNoc", false, "ENERGIA_ELEKTRYCZNA_CZYNNA_NOC");
         public final static Property OplataDystrybucyjnaZmiennaDzien = new Property(8, String.class, "oplataDystrybucyjnaZmiennaDzien", false, "OPLATA_DYSTRYBUCYJNA_ZMIENNA_DZIEN");
         public final static Property OplataDystrybucyjnaZmiennaNoc = new Property(9, String.class, "oplataDystrybucyjnaZmiennaNoc", false, "OPLATA_DYSTRYBUCYJNA_ZMIENNA_NOC");
+        public final static Property OplataOze = new Property(10, String.class, "oplataOze", false, "OPLATA_OZE");
     }
 
 
@@ -59,7 +60,8 @@ public class TauronPricesDao extends AbstractDao<TauronPrices, Long> {
                 "\"ENERGIA_ELEKTRYCZNA_CZYNNA_DZIEN\" TEXT," + // 6: energiaElektrycznaCzynnaDzien
                 "\"ENERGIA_ELEKTRYCZNA_CZYNNA_NOC\" TEXT," + // 7: energiaElektrycznaCzynnaNoc
                 "\"OPLATA_DYSTRYBUCYJNA_ZMIENNA_DZIEN\" TEXT," + // 8: oplataDystrybucyjnaZmiennaDzien
-                "\"OPLATA_DYSTRYBUCYJNA_ZMIENNA_NOC\" TEXT);"); // 9: oplataDystrybucyjnaZmiennaNoc
+                "\"OPLATA_DYSTRYBUCYJNA_ZMIENNA_NOC\" TEXT," + // 9: oplataDystrybucyjnaZmiennaNoc
+                "\"OPLATA_OZE\" TEXT);"); // 10: oplataOze
     }
 
     /** Drops the underlying database table. */
@@ -121,6 +123,11 @@ public class TauronPricesDao extends AbstractDao<TauronPrices, Long> {
         if (oplataDystrybucyjnaZmiennaNoc != null) {
             stmt.bindString(10, oplataDystrybucyjnaZmiennaNoc);
         }
+ 
+        String oplataOze = entity.getOplataOze();
+        if (oplataOze != null) {
+            stmt.bindString(11, oplataOze);
+        }
     }
 
     @Override
@@ -176,6 +183,11 @@ public class TauronPricesDao extends AbstractDao<TauronPrices, Long> {
         if (oplataDystrybucyjnaZmiennaNoc != null) {
             stmt.bindString(10, oplataDystrybucyjnaZmiennaNoc);
         }
+ 
+        String oplataOze = entity.getOplataOze();
+        if (oplataOze != null) {
+            stmt.bindString(11, oplataOze);
+        }
     }
 
     @Override
@@ -195,7 +207,8 @@ public class TauronPricesDao extends AbstractDao<TauronPrices, Long> {
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // energiaElektrycznaCzynnaDzien
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // energiaElektrycznaCzynnaNoc
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // oplataDystrybucyjnaZmiennaDzien
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9) // oplataDystrybucyjnaZmiennaNoc
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // oplataDystrybucyjnaZmiennaNoc
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10) // oplataOze
         );
         return entity;
     }
@@ -212,6 +225,7 @@ public class TauronPricesDao extends AbstractDao<TauronPrices, Long> {
         entity.setEnergiaElektrycznaCzynnaNoc(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
         entity.setOplataDystrybucyjnaZmiennaDzien(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
         entity.setOplataDystrybucyjnaZmiennaNoc(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setOplataOze(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
      }
     
     @Override

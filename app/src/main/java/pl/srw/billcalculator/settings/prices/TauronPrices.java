@@ -16,6 +16,7 @@ public class TauronPrices extends SharedPreferencesEnergyPrices implements ITaur
     private static final String OPLATA_DYSTRYBUCYJNA_STALA = "oplataDystrybucyjnaStala";
     private static final String OPLATA_PRZEJSCIOWA = "oplataPrzejsciowa";
     private static final String OPLATA_ABONAMENTOWA = "oplataAbonamentowa";
+    private static final String OPLATA_OZE = "oplataOze";
     private static final String ENERGIA_ELEKTRYCZNA_CZYNNA_DZIEN = "energiaElektrycznaCzynnaDzien";
     private static final String OPLATA_DYSTRYBUCYJNA_ZMIENNA_DZIEN = "oplataDystrybucyjnaZmiennaDzien";
     private static final String OPLATA_DYSTRYBUCYJNA_ZMIENNA_NOC = "oplataDystrybucyjnaZmiennaNoc";
@@ -27,6 +28,7 @@ public class TauronPrices extends SharedPreferencesEnergyPrices implements ITaur
     private final String oplataDystrybucyjnaStala = "1.55";
     private final String oplataPrzejsciowa = "1.04";
     private final String oplataAbonamentowa = "4.80";
+    private final String oplataOze = "0.00251";
 
     private final String energiaElektrycznaCzynnaDzien = "0.3134";
     private final String oplataDystrybucyjnaZmiennaDzien = "0.1990";
@@ -45,6 +47,7 @@ public class TauronPrices extends SharedPreferencesEnergyPrices implements ITaur
         dbPrices.setOplataDystrybucyjnaStala(getOplataDystrybucyjnaStala());
         dbPrices.setOplataPrzejsciowa(getOplataPrzejsciowa());
         dbPrices.setOplataAbonamentowa(getOplataAbonamentowa());
+        dbPrices.setOplataOze(getOplataOze());
 
         dbPrices.setEnergiaElektrycznaCzynnaDzien(getEnergiaElektrycznaCzynnaDzien());
         dbPrices.setOplataDystrybucyjnaZmiennaDzien(getOplataDystrybucyjnaZmiennaDzien());
@@ -61,6 +64,7 @@ public class TauronPrices extends SharedPreferencesEnergyPrices implements ITaur
         removeOplataDystrybucyjnaStala();
         removeOplataPrzejsciowa();
         removeOplataAbonamentowa();
+        removeOplataOze();
         removeEnergiaElektrycznaCzynnaDzien();
         removeEnergiaElektrycznaCzynnaNoc();
         removeOplataDystrybucyjnaZmiennaDzien();
@@ -76,6 +80,7 @@ public class TauronPrices extends SharedPreferencesEnergyPrices implements ITaur
         setOplataDystrybucyjnaStala(getOplataDystrybucyjnaStala());
         setOplataPrzejsciowa(getOplataPrzejsciowa());
         setOplataAbonamentowa(getOplataAbonamentowa());
+        setOplataOze(getOplataOze());
         setEnergiaElektrycznaCzynnaDzien(getEnergiaElektrycznaCzynnaDzien());
         setOplataDystrybucyjnaZmiennaDzien(getOplataDystrybucyjnaZmiennaDzien());
         setEnergiaElektrycznaCzynnaNoc(getEnergiaElektrycznaCzynnaNoc());
@@ -86,6 +91,8 @@ public class TauronPrices extends SharedPreferencesEnergyPrices implements ITaur
     public void setDefaultIfNotSet() {
         if (!containsEnergiaElektrycznaCzynna())
             setDefault();
+        else if (!containsOplataOze())
+            setOplataOze(getOplataOze());
     }
 
     @Override
@@ -184,6 +191,22 @@ public class TauronPrices extends SharedPreferencesEnergyPrices implements ITaur
 
     public void removeOplataAbonamentowa() {
         removePref(OPLATA_ABONAMENTOWA);
+    }
+
+    public String getOplataOze() {
+        return getPref(OPLATA_OZE, this.oplataOze);
+    }
+
+    public void setOplataOze(String oplataOze) {
+        setPref(OPLATA_OZE, oplataOze);
+    }
+
+    public boolean containsOplataOze() {
+        return containsPref(OPLATA_OZE);
+    }
+
+    public void removeOplataOze() {
+        removePref(OPLATA_OZE);
     }
 
     public String getEnergiaElektrycznaCzynnaDzien() {

@@ -12,7 +12,7 @@ import pl.srw.billcalculator.db.dao.TauronG11BillDao;
 import pl.srw.billcalculator.db.dao.TauronG12BillDao;
 import pl.srw.billcalculator.persistence.type.BillType;
 
-import static pl.srw.billcalculator.persistence.SqlBuilder.*;
+import static pl.srw.billcalculator.persistence.SqlTriggerBuilder.*;
 
 /**
  * Created by Kamil Seweryn.
@@ -36,8 +36,8 @@ public final class Triggers {
             deleteHistoryTrigger("bill_tauronG11_delete_trigger", TauronG11BillDao.TABLENAME, BillType.TAURON_G11.toString()),
             deleteHistoryTrigger("bill_tauronG12_delete_trigger", TauronG12BillDao.TABLENAME, BillType.TAURON_G12.toString())
     };
-    public static final int DB_VER_2_FROM_TRIGGER = 3;
-    public static final int DB_VER_2_TO_TRIGGER = 4;
+    private static final int DB_VER_2_FROM_TRIGGER = 3;
+    private static final int DB_VER_2_TO_TRIGGER = 4;
 
     public static void create(SQLiteDatabase db) {
         for (String sql : Triggers.BILL_INSERT_TRIGGERS)

@@ -5,6 +5,12 @@ import java.math.BigInteger
 
 import pl.srw.billcalculator.util.Dates
 
+/**
+ * Calculates and represent each bill position value.
+ * <br/>
+ * Net value precision is not modified.<br/>
+ * Vat value precision is Net.precision+2
+ */
 abstract class CalculatedBill(private val greedy: Boolean, dateFrom: String, dateTo: String) {
 
     companion object {
@@ -24,6 +30,9 @@ abstract class CalculatedBill(private val greedy: Boolean, dateFrom: String, dat
         get() = _vatChargeSum.round()
 
     protected fun countNetAndAddToSum(price: String, count: Int)
+            = countNetAndAddToSum(price, BigDecimal(count))
+
+    protected fun countNetAndAddToSum(price: String, count: String)
             = countNetAndAddToSum(price, BigDecimal(count))
 
     protected fun countNetAndAddToSum(price: String, count: BigInteger)

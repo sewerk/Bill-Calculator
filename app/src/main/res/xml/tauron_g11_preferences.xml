@@ -21,6 +21,15 @@
         android:title="@string/tauron_energia_elektryczna" />
 
     <EditTextPreference
+        android:key="oplataOze"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:dialogMessage="@string/oplata_oze_desc"
+        android:title="@string/oplata_oze" />
+
+    <EditTextPreference
         android:key="oplataDystrybucyjnaZmienna"
         android:inputType="numberDecimal"
         android:maxLines="1"

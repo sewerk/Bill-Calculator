@@ -55,4 +55,8 @@ public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
     protected void injectDependencies() {
         BillCalculator.get(getActivity()).getApplicationComponent().getSettingsComponent().inject(this);
     }
+
+    protected String getMWhMeasurePrefKeys() {
+        return getStringFor(R.string.preferences_pge_oplata_oze);
+    }
 }

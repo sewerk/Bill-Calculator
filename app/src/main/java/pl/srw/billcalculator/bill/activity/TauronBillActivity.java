@@ -10,6 +10,7 @@ import com.f2prateek.dart.InjectExtra;
 import com.f2prateek.dart.Optional;
 
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.Month;
 
 import java.math.BigDecimal;
 
@@ -22,6 +23,7 @@ import pl.srw.billcalculator.bill.calculation.TauronCalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG12CalculatedBill;
 import pl.srw.billcalculator.bill.di.TauronBillComponent;
+import pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.ITauronPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
@@ -50,8 +52,14 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
                 "Tauron new", String.valueOf(prices == null),
                 "Tauron tariff", (isTwoUnitTariff() ? "G12" : "G11"));
 
-        if (prices == null)
+        if (prices == null) {
             prices = prefsPrices;
+        } else if (savedInstanceState == null
+                && "0.00".equals(prices.getOplataOze())
+                && Dates.parse(dateTo).isAfter(LocalDate.of(2016, Month.JULY, 1))) {
+            new BillCalculatedBeforeOZEChangeDialogFragment()
+                    .show(getFragmentManager(), null);
+        }
 
         bill = isTwoUnitTariff() ?
                 new TauronG12CalculatedBill(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices)
@@ -100,20 +108,29 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
             setG12Rows();
         else
             setG11Rows();
-        setRow(R.id.row_oplata_dyst_stala, R.string.tauron_oplata_dyst_stala, "", "", "", bill.getMonthCount(), "", new BigDecimal(prices.getOplataDystrybucyjnaStala()), bill.getOplataDystrybucyjnaStalaNetCharge());
-        setRow(R.id.row_oplata_przejsciowa, R.string.tauron_oplata_przejsciowa, "", "", "", bill.getMonthCount(), "", new BigDecimal(prices.getOplataPrzejsciowa()), bill.getOplataPrzejsciowaNetCharge());
-        setRow(R.id.row_oplata_abonamentowa, R.string.tauron_oplata_abonamentowa, "", "", "", bill.getMonthCount(), "", new BigDecimal(prices.getOplataAbonamentowa()), bill.getOplataAbonamentowaNetCharge());
+        setRow(R.id.row_oplata_dyst_stala, R.string.tauron_oplata_dyst_stala, "", "", "", "" + bill.getMonthCount(), "", new BigDecimal(prices.getOplataDystrybucyjnaStala()), bill.getOplataDystrybucyjnaStalaNetCharge());
+        setRow(R.id.row_oplata_przejsciowa, R.string.tauron_oplata_przejsciowa, "", "", "", "" + bill.getMonthCount(), "", new BigDecimal(prices.getOplataPrzejsciowa()), bill.getOplataPrzejsciowaNetCharge());
+        setRow(R.id.row_oplata_abonamentowa, R.string.tauron_oplata_abonamentowa, "", "", "", "" + bill.getMonthCount(), "", new BigDecimal(prices.getOplataAbonamentowa()), bill.getOplataAbonamentowaNetCharge());
 
         setSummary();
     }
 
     private void setG12Rows() {
         final TauronG12CalculatedBill bill = (TauronG12CalculatedBill) this.bill;
-        setRow(R.id.row_za_energie_czynna, R.string.tauron_energia_elektryczna_G12dzien, "00000000", "" + readingDayFrom, "" + readingDayTo, 1, "" + bill.getDayConsumption(), new BigDecimal(prices.getEnergiaElektrycznaCzynnaDzien()), bill.getEnergiaElektrycznaDayNetCharge());
-        setRow(R.id.row_za_energie_czynna2, R.string.tauron_energia_elektryczna_G12noc, "00000000", "" + readingNightFrom, "" + readingNightTo, 1, "" + bill.getNightConsumption(), new BigDecimal(prices.getEnergiaElektrycznaCzynnaNoc()), bill.getEnergiaElektrycznaNightNetCharge());
+        setRow(R.id.row_za_energie_czynna, R.string.tauron_energia_elektryczna_G12dzien, "00000000", "" + readingDayFrom, "" + readingDayTo, "1", "" + bill.getDayConsumption(), new BigDecimal(prices.getEnergiaElektrycznaCzynnaDzien()), bill.getEnergiaElektrycznaDayNetCharge());
+        setRow(R.id.row_za_energie_czynna2, R.string.tauron_energia_elektryczna_G12noc, "00000000", "" + readingNightFrom, "" + readingNightTo, "1", "" + bill.getNightConsumption(), new BigDecimal(prices.getEnergiaElektrycznaCzynnaNoc()), bill.getEnergiaElektrycznaNightNetCharge());
         findViewById(R.id.row_za_energie_czynna2).setBackgroundResource(R.drawable.undeline);
-        setRow(R.id.row_oplata_dyst_zm, R.string.tauron_oplata_dyst_zmienna_G12dzien, "00000000", "" + readingDayFrom, "" + readingDayTo, 1, "" + bill.getDayConsumption(), new BigDecimal(prices.getOplataDystrybucyjnaZmiennaDzien()), bill.getOplataDystrybucyjnaZmiennaDayNetCharge());
-        setRow(R.id.row_oplata_dyst_zm2, R.string.tauron_oplata_dyst_zmienna_G12noc, "00000000", "" + readingNightFrom, "" + readingNightTo, 1, "" + bill.getNightConsumption(), new BigDecimal(prices.getOplataDystrybucyjnaZmiennaNoc()), bill.getOplataDystrybucyjnaZmiennaNightNetCharge());
+
+        setRow(R.id.row_oplata_dyst_zm, R.string.tauron_oplata_dyst_zmienna_G12dzien, "00000000", "" + readingDayFrom, "" + readingDayTo, "1", "" + bill.getDayConsumption(), new BigDecimal(prices.getOplataDystrybucyjnaZmiennaDzien()), bill.getOplataDystrybucyjnaZmiennaDayNetCharge());
+        setRow(R.id.row_oplata_dyst_zm2, R.string.tauron_oplata_dyst_zmienna_G12noc, "00000000", "" + readingNightFrom, "" + readingNightTo, "1", "" + bill.getNightConsumption(), new BigDecimal(prices.getOplataDystrybucyjnaZmiennaNoc()), bill.getOplataDystrybucyjnaZmiennaNightNetCharge());
+
+        if (bill.getDayConsumptionFromJuly16() > 0 || bill.getNightConsumptionFromJuly16() > 0) {
+            setRow(R.id.row_oplata_oze, R.string.tauron_oplata_oze_G12dzien, "", "" + (readingDayTo - bill.getDayConsumptionFromJuly16()), "" + readingDayTo, "1,00", "" + bill.getDayConsumptionFromJuly16(), new BigDecimal(prices.getOplataOze()), bill.getOplataOzeDayNetCharge());
+            setRow(R.id.row_oplata_oze2, R.string.tauron_oplata_oze_G12noc, "", "" + (readingNightTo - bill.getNightConsumptionFromJuly16()), "" + readingNightTo, "1,00", "" + bill.getNightConsumptionFromJuly16(), new BigDecimal(prices.getOplataOze()), bill.getOplataOzeNightNetCharge());
+        } else {
+            findViewById(R.id.row_oplata_oze).setVisibility(View.GONE);
+            findViewById(R.id.row_oplata_oze2).setVisibility(View.GONE);
+        }
     }
 
     private void setG11Rows() {
@@ -121,22 +138,29 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
         final String prevReading = Integer.toString(readingFrom);
         final String currReading = Integer.toString(readingTo);
         final String consumption = Integer.toString(bill.getTotalConsumption());
-        setRow(R.id.row_za_energie_czynna, R.string.tauron_energia_elektryczna, "00000000", prevReading, currReading, 1, consumption, new BigDecimal(prices.getEnergiaElektrycznaCzynna()), bill.getEnergiaElektrycznaNetCharge());
+        setRow(R.id.row_za_energie_czynna, R.string.tauron_energia_elektryczna, "00000000", prevReading, currReading, "1", consumption, new BigDecimal(prices.getEnergiaElektrycznaCzynna()), bill.getEnergiaElektrycznaNetCharge());
         findViewById(R.id.row_za_energie_czynna).setBackgroundResource(R.drawable.undeline);
         findViewById(R.id.row_za_energie_czynna2).setVisibility(View.GONE);
-        setRow(R.id.row_oplata_dyst_zm, R.string.tauron_oplata_dyst_zmienna, "00000000", prevReading, currReading, 1, consumption, new BigDecimal(prices.getOplataDystrybucyjnaZmienna()), bill.getOplataDystrybucyjnaZmiennaNetCharge());
+
+        setRow(R.id.row_oplata_dyst_zm, R.string.tauron_oplata_dyst_zmienna, "00000000", prevReading, currReading, "1", consumption, new BigDecimal(prices.getOplataDystrybucyjnaZmienna()), bill.getOplataDystrybucyjnaZmiennaNetCharge());
         findViewById(R.id.row_oplata_dyst_zm2).setVisibility(View.GONE);
+
+        if (bill.getConsumptionFromJuly16() > 0)
+            setRow(R.id.row_oplata_oze, R.string.tauron_oplata_oze, "", "" + (readingTo - bill.getConsumptionFromJuly16()), currReading, "1,00", "" + bill.getConsumptionFromJuly16(), new BigDecimal(prices.getOplataOze()), bill.getOplataOzeNetCharge());
+        else
+            findViewById(R.id.row_oplata_oze).setVisibility(View.GONE);
+        findViewById(R.id.row_oplata_oze2).setVisibility(View.GONE);
     }
 
-    private void setRow(@IdRes int rowId, @StringRes int descId, String meterNo, String prevReading, String currReading, int count, String consumption, BigDecimal price, BigDecimal amount) {
+    private void setRow(@IdRes int rowId, @StringRes int descId, String meterNo, String prevReading, String currReading, String count, String consumption, BigDecimal price, BigDecimal amount) {
         final TableRow row = (TableRow) findViewById(rowId);
         Views.setTVInRow(row, R.id.tv_description, descId);
         Views.setTVInRow(row, R.id.tv_meter_no, meterNo);
-        Views.setTVInRow(row, R.id.tv_prev_date, Dates.changeSeparator(dateFrom, "."));
+        Views.setTVInRow(row, R.id.tv_prev_date, getDateStringFor(rowId, dateFrom));
         Views.setTVInRow(row, R.id.tv_prev_reading, prevReading);
-        Views.setTVInRow(row, R.id.tv_curr_date, Dates.changeSeparator(dateTo, "."));
+        Views.setTVInRow(row, R.id.tv_curr_date, getDateStringFor(rowId, dateTo));
         Views.setTVInRow(row, R.id.tv_curr_reading, currReading);
-        Views.setTVInRow(row, R.id.tv_count, Integer.toString(count));
+        Views.setTVInRow(row, R.id.tv_count, count);
         Views.setTVInRow(row, R.id.tv_consumption, consumption);
         Views.setTVInRow(row, R.id.tv_price, Display.withScale(price, PRICE_SCALE));
         Views.setTVInRow(row, R.id.tv_amount, Display.toPay(amount));
@@ -170,4 +194,11 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
         return tariff;
     }
 
+    private String getDateStringFor(@IdRes int rowId, String date) {
+        if ((rowId == R.id.row_oplata_oze || rowId == R.id.row_oplata_oze2) &&
+                Dates.parse(date).isBefore(LocalDate.of(2016, Month.JULY, 1))) {
+            return "01.07.2016";
+        }
+        return Dates.changeSeparator(date, ".");
+    }
 }

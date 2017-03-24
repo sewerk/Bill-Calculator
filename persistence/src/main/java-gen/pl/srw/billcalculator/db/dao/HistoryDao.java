@@ -35,7 +35,7 @@ public class HistoryDao extends AbstractDao<History, Long> {
     public HistoryDao(DaoConfig config) {
         super(config);
     }
-
+    
     public HistoryDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
     }

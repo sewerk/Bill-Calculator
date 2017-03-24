@@ -36,6 +36,7 @@ public class PgePricesDao extends AbstractDao<PgePrices, Long> {
         public final static Property ZaEnergieCzynnaNoc = new Property(8, String.class, "zaEnergieCzynnaNoc", false, "ZA_ENERGIE_CZYNNA_NOC");
         public final static Property OplataSieciowaDzien = new Property(9, String.class, "oplataSieciowaDzien", false, "OPLATA_SIECIOWA_DZIEN");
         public final static Property OplataSieciowaNoc = new Property(10, String.class, "oplataSieciowaNoc", false, "OPLATA_SIECIOWA_NOC");
+        public final static Property OplataOze = new Property(11, String.class, "oplataOze", false, "OPLATA_OZE");
     }
 
 
@@ -61,7 +62,8 @@ public class PgePricesDao extends AbstractDao<PgePrices, Long> {
                 "\"ZA_ENERGIE_CZYNNA_DZIEN\" TEXT," + // 7: zaEnergieCzynnaDzien
                 "\"ZA_ENERGIE_CZYNNA_NOC\" TEXT," + // 8: zaEnergieCzynnaNoc
                 "\"OPLATA_SIECIOWA_DZIEN\" TEXT," + // 9: oplataSieciowaDzien
-                "\"OPLATA_SIECIOWA_NOC\" TEXT);"); // 10: oplataSieciowaNoc
+                "\"OPLATA_SIECIOWA_NOC\" TEXT," + // 10: oplataSieciowaNoc
+                "\"OPLATA_OZE\" TEXT);"); // 11: oplataOze
     }
 
     /** Drops the underlying database table. */
@@ -128,6 +130,11 @@ public class PgePricesDao extends AbstractDao<PgePrices, Long> {
         if (oplataSieciowaNoc != null) {
             stmt.bindString(11, oplataSieciowaNoc);
         }
+ 
+        String oplataOze = entity.getOplataOze();
+        if (oplataOze != null) {
+            stmt.bindString(12, oplataOze);
+        }
     }
 
     @Override
@@ -188,6 +195,11 @@ public class PgePricesDao extends AbstractDao<PgePrices, Long> {
         if (oplataSieciowaNoc != null) {
             stmt.bindString(11, oplataSieciowaNoc);
         }
+ 
+        String oplataOze = entity.getOplataOze();
+        if (oplataOze != null) {
+            stmt.bindString(12, oplataOze);
+        }
     }
 
     @Override
@@ -208,7 +220,8 @@ public class PgePricesDao extends AbstractDao<PgePrices, Long> {
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // zaEnergieCzynnaDzien
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // zaEnergieCzynnaNoc
             cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // oplataSieciowaDzien
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10) // oplataSieciowaNoc
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // oplataSieciowaNoc
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11) // oplataOze
         );
         return entity;
     }
@@ -226,6 +239,7 @@ public class PgePricesDao extends AbstractDao<PgePrices, Long> {
         entity.setZaEnergieCzynnaNoc(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
         entity.setOplataSieciowaDzien(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
         entity.setOplataSieciowaNoc(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setOplataOze(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
      }
     
     @Override

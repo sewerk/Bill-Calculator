@@ -76,6 +76,11 @@ public class PgnigSettingsFragment extends ProviderSettingsFragment {
     }
 
     @Override
+    protected String getMWhMeasurePrefKeys() {
+        return "";
+    }
+
+    @Override
     protected void injectDependencies() {
         BillCalculator.get(getActivity()).getApplicationComponent().getSettingsComponent().inject(this);
     }

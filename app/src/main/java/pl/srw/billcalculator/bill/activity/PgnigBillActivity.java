@@ -53,8 +53,9 @@ public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
         Dependencies.inject(this);
         Analytics.logContent(ContentType.PGNIG_BILL, "PGNIG new", String.valueOf(prices == null));
 
-        if (prices == null)
+        if (prices == null) {
             prices = prefsPrices;
+        }
         this.bill = new PgnigCalculatedBill(readingFrom, readingTo, dateFrom, dateTo, prices);
 
         setDate();

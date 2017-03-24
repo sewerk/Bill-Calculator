@@ -10,6 +10,7 @@ import com.f2prateek.dart.InjectExtra;
 import com.f2prateek.dart.Optional;
 
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.Month;
 
 import java.math.BigDecimal;
 
@@ -21,6 +22,7 @@ import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.PgeG12CalculatedBill;
 import pl.srw.billcalculator.bill.di.PgeBillComponent;
+import pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgePrices;
 import pl.srw.billcalculator.settings.prices.PgePrices;
@@ -49,8 +51,14 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
                 "PGE new", String.valueOf(prices == null),
                 "PGE tariff", (isTwoUnitTariff() ? "G12" : "G11"));
 
-        if (prices == null)
+        if (prices == null) {
             prices = prefsPrices;
+        } else if (savedInstanceState == null
+                && "0.00".equals(prices.getOplataOze())
+                && Dates.parse(dateTo).isAfter(LocalDate.of(2016, Month.JULY, 1))) {
+            new BillCalculatedBeforeOZEChangeDialogFragment()
+                    .show(getFragmentManager(), null);
+        }
 
         bill = isTwoUnitTariff() ?
                 new PgeG12CalculatedBill(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices)
@@ -115,6 +123,11 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
                 new BigDecimal(prices.getSkladnikJakosciowy()), bill.getSkladnikJakosciowyNetCharge());
         setRow(chargeDetailsTable, R.id.row_oplata_sieciowa, R.string.strefa_calodobowa, R.string.oplata_sieciowa, consumption, R.string.kWh,
                 new BigDecimal(prices.getOplataSieciowa()), bill.getOplataSieciowaNetCharge());
+
+        if (bill.getConsumptionFromJuly16() > 0) {
+            setRow(chargeDetailsTable, R.id.row_oplata_oze, R.string.strefa_calodobowa, R.string.oplata_oze, bill.getConsumptionFromJuly16(), R.string.MWh,
+                    new BigDecimal(prices.getOplataOze()), bill.getOplataOzeNetCharge());
+        }
     }
 
     private void setG12Rows(TableLayout chargeDetailsTable, int dayConsumption, int nightConsumption) {
@@ -132,6 +145,13 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
                 new BigDecimal(prices.getSkladnikJakosciowy()), bill.getSkladnikJakosciowyNightNetCharge());
         setRow(chargeDetailsTable, R.id.row_oplata_sieciowa2, R.string.strefa_nocna, R.string.oplata_sieciowa, nightConsumption, R.string.kWh,
                 new BigDecimal(prices.getOplataSieciowaNoc()), bill.getOplataSieciowaNightNetCharge());
+
+        if (bill.getDayConsumptionFromJuly16() > 0 || bill.getNightConsumptionFromJuly16() > 0) {
+            setRow(chargeDetailsTable, R.id.row_oplata_oze, R.string.strefa_dzienna, R.string.oplata_oze, bill.getDayConsumptionFromJuly16(), R.string.MWh,
+                    new BigDecimal(prices.getOplataOze()), bill.getOplataOzeDayNetCharge());
+            setRow(chargeDetailsTable, R.id.row_oplata_oze2, R.string.strefa_nocna, R.string.oplata_oze, bill.getNightConsumptionFromJuly16(), R.string.MWh,
+                    new BigDecimal(prices.getOplataOze()), bill.getOplataOzeNightNetCharge());
+        }
     }
 
     private void setRow(View componentsTable, @IdRes int rowId, @StringRes int zoneId, @StringRes int descriptionId, int count, @StringRes int jmId,
@@ -143,8 +163,11 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
         Views.setTVInRow(row, R.id.tv_description, descriptionId);
         Views.setTVInRow(row, R.id.tv_Jm, jmId);
         if (jmId == R.string.kWh) {
-            setReadingsInRow(row, zoneId);
+            setReadingsInRow(row, zoneId, count);
             Views.setTVInRow(row, R.id.tv_count, Integer.toString(count));
+        } else if (jmId == R.string.MWh){
+            setReadingsInRow(row, zoneId, count);
+            Views.setTVInRow(row, R.id.tv_count, String.format(Dates.PL_LOCALE, "%.3f", (count * 0.001)));
         } else {
             Views.setTVInRow(row, R.id.tv_month_count, Integer.toString(count) + ".00");
         }
@@ -152,16 +175,16 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
         Views.setTVInRow(row, R.id.tv_price, Display.withScale(netPrice, PRICE_SCALE));
     }
 
-    private void setReadingsInRow(View row, @StringRes int zoneId) {
+    private void setReadingsInRow(View row, @StringRes int zoneId, int count) {
         if (zoneId == R.string.strefa_dzienna) {
             Views.setTVInRow(row, R.id.tv_current_reading, Integer.toString(readingDayTo));
-            Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingDayFrom));
+            Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingDayTo - count));
         } else if (zoneId == R.string.strefa_nocna) {
             Views.setTVInRow(row, R.id.tv_current_reading, Integer.toString(readingNightTo));
-            Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingNightFrom));
+            Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingNightTo - count));
         } else {
             Views.setTVInRow(row, R.id.tv_current_reading, Integer.toString(readingTo));
-            Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingFrom));
+            Views.setTVInRow(row, R.id.tv_previous_reading, Integer.toString(readingTo - count));
         }
     }
 

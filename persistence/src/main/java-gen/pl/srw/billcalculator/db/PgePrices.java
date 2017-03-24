@@ -21,6 +21,7 @@ public class PgePrices implements pl.srw.billcalculator.pojo.IPgePrices, java.io
     private String zaEnergieCzynnaNoc;
     private String oplataSieciowaDzien;
     private String oplataSieciowaNoc;
+    private String oplataOze;
 
     @Generated
     public PgePrices() {
@@ -31,7 +32,7 @@ public class PgePrices implements pl.srw.billcalculator.pojo.IPgePrices, java.io
     }
 
     @Generated
-    public PgePrices(Long id, String zaEnergieCzynna, String skladnikJakosciowy, String oplataSieciowa, String oplataPrzejsciowa, String oplataStalaZaPrzesyl, String oplataAbonamentowa, String zaEnergieCzynnaDzien, String zaEnergieCzynnaNoc, String oplataSieciowaDzien, String oplataSieciowaNoc) {
+    public PgePrices(Long id, String zaEnergieCzynna, String skladnikJakosciowy, String oplataSieciowa, String oplataPrzejsciowa, String oplataStalaZaPrzesyl, String oplataAbonamentowa, String zaEnergieCzynnaDzien, String zaEnergieCzynnaNoc, String oplataSieciowaDzien, String oplataSieciowaNoc, String oplataOze) {
         this.id = id;
         this.zaEnergieCzynna = zaEnergieCzynna;
         this.skladnikJakosciowy = skladnikJakosciowy;
@@ -43,6 +44,7 @@ public class PgePrices implements pl.srw.billcalculator.pojo.IPgePrices, java.io
         this.zaEnergieCzynnaNoc = zaEnergieCzynnaNoc;
         this.oplataSieciowaDzien = oplataSieciowaDzien;
         this.oplataSieciowaNoc = oplataSieciowaNoc;
+        this.oplataOze = oplataOze;
     }
 
     public Long getId() {
@@ -131,6 +133,14 @@ public class PgePrices implements pl.srw.billcalculator.pojo.IPgePrices, java.io
 
     public void setOplataSieciowaNoc(String oplataSieciowaNoc) {
         this.oplataSieciowaNoc = oplataSieciowaNoc;
+    }
+
+    public String getOplataOze() {
+        return oplataOze;
+    }
+
+    public void setOplataOze(String oplataOze) {
+        this.oplataOze = oplataOze;
     }
 
 }

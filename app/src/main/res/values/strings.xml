@@ -41,6 +41,10 @@
     <string name="rationale_dialog_goto_settings_msg">Printing the bill requires device Storage access to create file. Access can be approved through:\nPermissions > Storage</string>
     <string name="rationale_dialog_goto_settings">Go to Settings</string>
     <string name="rationale_dialog_cancel">Cancel</string>
+    <string name="dialog_bill_without_oze_title">Information</string>
+    <string name="dialog_bill_without_oze_message">Following bill does not include \'opłata OZE\' fee which started to apply from July 2016. It is recommended to re-calculate this bill.</string>
+    <string name="dialog_bill_without_oze_positive">OK</string>
+    <string name="dialog_bill_without_oze_cancel">No thanks.</string>
 
     <!-- energy_bill -->
     <string name="energy_bill">Energy bill</string>
@@ -56,6 +60,7 @@
     <string name="oplata_przejsciowa" translatable="false">opłata przejściowa</string>
     <string name="oplata_stala_za_przesyl" translatable="false">opł. stała za przesył</string>
     <string name="oplata_abonamentowa" translatable="false">opłata abonamentowa</string>
+    <string name="oplata_oze" translatable="false">opłata OZE</string>
 
     <string name="za_energie_czynna_G12dzien" translatable="false">za energię czynną (strefa dzienna)</string>
     <string name="za_energie_czynna_G12noc" translatable="false">za energię czynną (strefa nocna)</string>
@@ -66,6 +71,7 @@
     <string name="tariff_G12_on_bill" translatable="false">Taryfa: G12</string>
 
     <string name="kWh" translatable="false">kWh</string>
+    <string name="MWh" translatable="false">MWh</string>
     <string name="m_c" translatable="false">m-c</string>
     <string name="akcyza" translatable="false">Od %d kWh energii elektrycznej [ KOD CN 2716 00 00] naliczono akcyzę w kwocie %s zł.</string>
     <string name="to_pay" translatable="false">DO ZAPŁATY : %s zł</string>
@@ -77,11 +83,14 @@
     <string name="tauron_oplata_dyst_stala" translatable="false">Opłata dystrybucyjna stała</string>
     <string name="tauron_oplata_przejsciowa" translatable="false">Opłata przejściowa</string>
     <string name="tauron_oplata_abonamentowa" translatable="false">Opłata abonamentowa</string>
+    <string name="tauron_oplata_oze" translatable="false">Opłata OZE całodobowa</string>
 
     <string name="tauron_energia_elektryczna_G12dzien" translatable="false">Energia elektryczna czynna dzienna</string>
     <string name="tauron_energia_elektryczna_G12noc" translatable="false">Energia elektryczna czynna nocna</string>
     <string name="tauron_oplata_dyst_zmienna_G12dzien" translatable="false">Opłata dystr. zm. dzienna</string>
     <string name="tauron_oplata_dyst_zmienna_G12noc" translatable="false">Opłata dystr. zm. nocna</string>
+    <string name="tauron_oplata_oze_G12dzien" translatable="false">Opłata OZE dzienna</string>
+    <string name="tauron_oplata_oze_G12noc" translatable="false">Opłata OZE nocna</string>
 
     <string name="data_wystawienia" translatable="false">Data wystawienia %1$s</string>
     <string name="grupa_taryfowa" translatable="false">Grupa taryfowa Sprzedawcy: %1$s\nGrupa taryfowa OSD(dystrybucja): %1$s</string>
@@ -135,9 +144,10 @@
     <string name="settings_pge_summary">Set tariff and prices</string>
 
     <string name="pge_tariff_in_preferences" translatable="false">TARYFA</string>
-    <string name="oplata_przejsciowa_desc" translatable="false">Składnik opłaty przejściowej jest zależny od rocznego zużycia kWh:\n - do 500 kWH/rok wynosi 0.25 zł netto\n - od 500 do 1200 kWh/rok wynosi 1.04 zł netto\n - od 1200 kWh/rok wynosi 3.29 zł netto</string>
+    <string name="oplata_przejsciowa_desc" translatable="false">Składnik opłaty przejściowej jest zależny od rocznego zużycia kWh:\n - do 500 kWH/rok wynosi 0.24 zł netto\n - od 500 do 1200 kWh/rok wynosi 1.00 zł netto\n - od 1200 kWh/rok wynosi 3.15 zł netto</string>
     <string name="oplata_stala_za_przesyl_desc" translatable="false">Inne nazwy:\n - składnik stały stawki sieciowej,\n - opłata przesyłowa stała.\nCena naliczana co miesiąc, niezależnie od zużycia.</string>
     <string name="oplata_abonamentowa_desc" translatable="false">Stała cena za abonament, naliczana co miesiąc, niezależnie od zużycia.</string>
+    <string name="oplata_oze_desc" translatable="false">Opłata na Odnawialne Źródła Energii, obowiązująca od lipca 2016 r., zależna od zużycia.</string>
     <string name="skladnik_jakosciowy_desc" translatable="false">Inne nazwy:\n - składnik jakościowy opłaty systemowej,\n - opłata dystrybucyjna jakościowa.\nCena zapewnienia odpowiedniej jakości dostaw energii.</string>
     <string name="za_energie_czynna_desc" translatable="false">Cena netto jednej kilowatogodziny energii.</string>
     <string name="oplata_sieciowa_desc" translatable="false">Inne nazwy:\n - składnik zmienny stawki sieciowej,\n - opłata przesyłowa zmienna,\n - opłata dystrybucyjna zmienna.\nCena dostarczania prądu.</string>

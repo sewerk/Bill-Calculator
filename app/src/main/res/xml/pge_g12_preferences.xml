@@ -30,6 +30,15 @@
         android:title="@string/oplata_sieciowa_G12dzien" />
 
     <EditTextPreference
+        android:key="@string/preferences_pge_oplata_oze"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:dialogMessage="@string/oplata_oze_desc"
+        android:title="@string/oplata_oze" />
+
+    <EditTextPreference
         android:key="@string/preferences_pge_skladnik_jakosciowy"
         android:inputType="numberDecimal"
         android:maxLines="1"

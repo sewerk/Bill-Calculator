@@ -50,6 +50,11 @@ public class TauronSettingsFragment extends EnergyProviderSettingsFragment {
     }
 
     @Override
+    protected String getMWhMeasurePrefKeys() {
+        return "";
+    }
+
+    @Override
     protected void injectDependencies() {
         BillCalculator.get(getActivity()).getApplicationComponent().getSettingsComponent().inject(this);
     }

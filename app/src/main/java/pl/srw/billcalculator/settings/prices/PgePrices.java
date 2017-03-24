@@ -21,18 +21,20 @@ public class PgePrices extends SharedPreferencesEnergyPrices implements IPgePric
     private static final String CENA_OPLATA_PRZEJSCIOWA = "cena_oplata_przejsciowa";
     private static final String CENA_OPLATA_STALA_ZA_PRZESYL = "cena_oplata_stala_za_przesyl";
     private static final String CENA_OPLATA_ABONAMENTOWA = "cena_oplata_abonamentowa";
+    private static final String CENA_OPLATA_OZE = "cena_oplata_oze";
 
     private final String pge_tariff = TARIFF_G11;
-    private final String cena_za_energie_czynna = "0.2553";
-    private final String cena_za_energie_czynna_G12dzien = "0.2861";
-    private final String cena_za_energie_czynna_G12noc = "0.1917";
-    private final String cena_oplata_sieciowa = "0.2170";
-    private final String cena_oplata_sieciowa_G12dzien = "0.2417";
-    private final String cena_oplata_sieciowa_G12noc = "0.0836";
-    private final String cena_skladnik_jakosciowy = "0.0115";
-    private final String cena_oplata_przejsciowa = "1.04";
-    private final String cena_oplata_stala_za_przesyl = "1.95";
-    private final String cena_oplata_abonamentowa = "5.20";
+    private final String cena_za_energie_czynna = "0.2410";
+    private final String cena_za_energie_czynna_G12dzien = "0.2835";
+    private final String cena_za_energie_czynna_G12noc = "0.1900";
+    private final String cena_oplata_sieciowa = "0.2075";
+    private final String cena_oplata_sieciowa_G12dzien = "0.2340";
+    private final String cena_oplata_sieciowa_G12noc = "0.0706";
+    private final String cena_skladnik_jakosciowy = "0.0127";
+    private final String cena_oplata_przejsciowa = "1.90";
+    private final String cena_oplata_stala_za_przesyl = "1.96";
+    private final String cena_oplata_abonamentowa = "5.10";
+    private final String cena_oplata_oze = "3.70";
 
     @Inject
     public PgePrices(SharedPreferences prefs) {
@@ -47,6 +49,7 @@ public class PgePrices extends SharedPreferencesEnergyPrices implements IPgePric
         dbPrices.setOplataStalaZaPrzesyl(getOplataStalaZaPrzesyl());
         dbPrices.setSkladnikJakosciowy(getSkladnikJakosciowy());
         dbPrices.setZaEnergieCzynna(getZaEnergieCzynna());
+        dbPrices.setOplataOze(getOplataOze());
 
         dbPrices.setOplataSieciowaDzien(getOplataSieciowaDzien());
         dbPrices.setOplataSieciowaNoc(getOplataSieciowaNoc());
@@ -68,6 +71,7 @@ public class PgePrices extends SharedPreferencesEnergyPrices implements IPgePric
         removeOplataPrzejsciowa();
         removeOplataStalaZaPrzesyl();
         removeOplataAbonamentowa();
+        removeOplataOze();
     }
 
     @Override
@@ -84,12 +88,15 @@ public class PgePrices extends SharedPreferencesEnergyPrices implements IPgePric
         setOplataPrzejsciowa(getOplataPrzejsciowa());
         setOplataStalaZaPrzesyl(getOplataStalaZaPrzesyl());
         setOplataAbonamentowa(getOplataAbonamentowa());
+        setOplataOze(getOplataOze());
     }
 
     @Override
     public void setDefaultIfNotSet() {
         if (!containsZaEnergieCzynna())
             setDefault();
+        else if (!containsOplataOze())
+            setOplataOze(getOplataOze());
     }
 
     @Override
@@ -268,5 +275,21 @@ public class PgePrices extends SharedPreferencesEnergyPrices implements IPgePric
 
     public void removeOplataAbonamentowa() {
         removePref(CENA_OPLATA_ABONAMENTOWA);
+    }
+
+    public String getOplataOze() {
+        return getPref(CENA_OPLATA_OZE, this.cena_oplata_oze);
+    }
+
+    public void setOplataOze(String cenaOplataOze) {
+        setPref(CENA_OPLATA_OZE, cenaOplataOze);
+    }
+
+    public boolean containsOplataOze() {
+        return containsPref(CENA_OPLATA_OZE);
+    }
+
+    public void removeOplataOze() {
+        removePref(CENA_OPLATA_OZE);
     }
 }

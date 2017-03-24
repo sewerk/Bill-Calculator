@@ -9,16 +9,22 @@ class TauronG12CalculatedBill(readingDayFrom: Int, readingDayTo: Int,
 
     val dayConsumption = readingDayTo - readingDayFrom
     val nightConsumption = readingNightTo - readingNightFrom
+    val dayConsumptionFromJuly16 = countConsumptionPartFromJuly16(dateFrom, dateTo, dayConsumption)
+    val nightConsumptionFromJuly16 = countConsumptionPartFromJuly16(dateFrom, dateTo, nightConsumption)
 
     val energiaElektrycznaDayNetCharge = countNetAndAddToSum(prices.energiaElektrycznaCzynnaDzien, dayConsumption)
     val oplataDystrybucyjnaZmiennaDayNetCharge = countNetAndAddToSum(prices.oplataDystrybucyjnaZmiennaDzien, dayConsumption)
     val energiaElektrycznaNightNetCharge = countNetAndAddToSum(prices.energiaElektrycznaCzynnaNoc, nightConsumption)
     val oplataDystrybucyjnaZmiennaNightNetCharge = countNetAndAddToSum(prices.oplataDystrybucyjnaZmiennaNoc, nightConsumption)
+    val oplataOzeDayNetCharge = countNetAndAddToSum(prices.oplataOze, dayConsumptionFromJuly16)
+    val oplataOzeNightNetCharge = countNetAndAddToSum(prices.oplataOze, nightConsumptionFromJuly16)
 
     val energiaElektrycznaDayVatCharge = countVatAndAddToSum(energiaElektrycznaDayNetCharge)
     val oplataDystrybucyjnaZmiennaDayVatCharge = countVatAndAddToSum(oplataDystrybucyjnaZmiennaDayNetCharge)
     val energiaElektrycznaNightVatCharge = countVatAndAddToSum(energiaElektrycznaNightNetCharge)
     val oplataDystrybucyjnaZmiennaNightVatCharge = countVatAndAddToSum(oplataDystrybucyjnaZmiennaNightNetCharge)
+    val oplataOzeDayVatCharge = countVatAndAddToSum(oplataOzeDayNetCharge)
+    val oplataOzeNightVatCharge = countVatAndAddToSum(oplataOzeNightNetCharge)
 
     override val totalConsumption = dayConsumption + nightConsumption
 

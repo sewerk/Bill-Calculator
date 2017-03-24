@@ -9,6 +9,8 @@ class PgeG12CalculatedBill(readingDayFrom: Int, readingDayTo: Int,
 
     val dayConsumption = readingDayTo - readingDayFrom
     val nightConsumption = readingNightTo - readingNightFrom
+    val dayConsumptionFromJuly16 = countConsumptionPartFromJuly16(dateFrom, dateTo, dayConsumption)
+    val nightConsumptionFromJuly16 = countConsumptionPartFromJuly16(dateFrom, dateTo, nightConsumption)
 
     val zaEnergieCzynnaDayNetCharge = countNetAndAddToSum(prices.zaEnergieCzynnaDzien, dayConsumption)
     val skladnikJakosciowyDayNetCharge = countNetAndAddToSum(prices.skladnikJakosciowy, dayConsumption)
@@ -16,6 +18,8 @@ class PgeG12CalculatedBill(readingDayFrom: Int, readingDayTo: Int,
     val zaEnergieCzynnaNightNetCharge = countNetAndAddToSum(prices.zaEnergieCzynnaNoc, nightConsumption)
     val skladnikJakosciowyNightNetCharge = countNetAndAddToSum(prices.skladnikJakosciowy, nightConsumption)
     val oplataSieciowaNightNetCharge = countNetAndAddToSum(prices.oplataSieciowaNoc, nightConsumption)
+    val oplataOzeDayNetCharge = countNetAndAddToSum(prices.oplataOze, (dayConsumptionFromJuly16 * 0.001).toString())
+    val oplataOzeNightNetCharge = countNetAndAddToSum(prices.oplataOze, (nightConsumptionFromJuly16 * 0.001).toString())
 
     val zaEnergieCzynnaDayVatCharge = countVatAndAddToSum(zaEnergieCzynnaDayNetCharge)
     val skladnikJakosciowyDayVatCharge = countVatAndAddToSum(skladnikJakosciowyDayNetCharge)
@@ -23,6 +27,8 @@ class PgeG12CalculatedBill(readingDayFrom: Int, readingDayTo: Int,
     val zaEnergieCzynnaNightVatCharge = countVatAndAddToSum(zaEnergieCzynnaNightNetCharge)
     val skladnikJakosciowyNightVatCharge = countVatAndAddToSum(skladnikJakosciowyNightNetCharge)
     val oplataSieciowaNightVatCharge = countVatAndAddToSum(oplataSieciowaNightNetCharge)
+    val oplataOzeDayVatCharge = countVatAndAddToSum(oplataOzeDayNetCharge)
+    val oplataOzeNightVatCharge = countVatAndAddToSum(oplataOzeNightNetCharge)
 
     override val totalConsumption = dayConsumption + nightConsumption
 }
