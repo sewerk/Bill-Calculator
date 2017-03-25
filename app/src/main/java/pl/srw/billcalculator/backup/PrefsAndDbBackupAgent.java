@@ -6,7 +6,6 @@ import android.app.backup.BackupDataOutput;
 import android.app.backup.SharedPreferencesBackupHelper;
 import android.os.ParcelFileDescriptor;
 import android.support.annotation.Keep;
-import android.util.Log;
 
 import java.io.IOException;
 import java.util.concurrent.locks.Lock;
@@ -17,14 +16,10 @@ import pl.srw.billcalculator.di.ApplicationModule;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.type.ActionType;
 import pl.srw.billcalculator.wrapper.Analytics;
+import timber.log.Timber;
 
-/**
- * Created by Kamil Seweryn on 07.02.2016.
- */
 @Keep
 public class PrefsAndDbBackupAgent extends BackupAgentHelper {
-
-    private static final String TAG = "PrefsAndDbBackupAgent";
 
     private final Lock lock = new ReentrantLock();
 
@@ -39,7 +34,7 @@ public class PrefsAndDbBackupAgent extends BackupAgentHelper {
     @Override
     public void onBackup(ParcelFileDescriptor oldState, BackupDataOutput data,
                          ParcelFileDescriptor newState) throws IOException {
-        Log.d(TAG, "onBackup");
+        Timber.d("onBackup");
         lock.lock();
         try {
             super.onBackup(oldState, data, newState);
@@ -56,7 +51,7 @@ public class PrefsAndDbBackupAgent extends BackupAgentHelper {
 
         lock.lock();
         try {
-            Log.d(TAG, "onRestore in-lock");
+            Timber.d("onRestore in-lock");
             super.onRestore(data, appVersionCode, newState);
             if (appVersionCode < 22) {
                 // migrate db to db.ver=3

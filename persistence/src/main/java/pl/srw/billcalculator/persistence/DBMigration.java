@@ -1,10 +1,9 @@
 package pl.srw.billcalculator.persistence;
 
-import android.util.Log;
-
 import pl.srw.billcalculator.db.dao.TauronG11BillDao;
 import pl.srw.billcalculator.db.dao.TauronG12BillDao;
 import pl.srw.billcalculator.db.dao.TauronPricesDao;
+import timber.log.Timber;
 
 /**
  * Migration done on db schema:
@@ -14,8 +13,8 @@ import pl.srw.billcalculator.db.dao.TauronPricesDao;
  */
 class DBMigration {
 
-    public static void migrate(final org.greenrobot.greendao.database.Database db, final int oldVersion, final int newVersion) {
-        Log.i("DBMigration", "Upgrading schema from version " + oldVersion + " to " + newVersion);
+    static void migrate(final org.greenrobot.greendao.database.Database db, final int oldVersion, final int newVersion) {
+        Timber.i("Upgrading schema from version " + oldVersion + " to " + newVersion);
         switch (oldVersion) {
             case 1:
                 migrate_1_3(db);
