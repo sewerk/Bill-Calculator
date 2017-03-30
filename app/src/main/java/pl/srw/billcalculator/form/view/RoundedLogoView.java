@@ -7,14 +7,14 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 import butterknife.BindColor;
 import butterknife.ButterKnife;
 import pl.srw.billcalculator.R;
 
-public class RoundedLogoView extends ImageView {
+public class RoundedLogoView extends AppCompatImageView {
 
     public static final float FITTING_SCALE = 0.85f;
     @BindColor(R.color.light) int grayLighter;
