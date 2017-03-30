@@ -16,10 +16,10 @@ public class PgnigPrices extends SharedPreferencesPrices implements IPgnigPrices
     private static final String WSP_KONWERSJI = "wsp_konwersji";
 
     private final String abonamentowa = "8.67";
-    private final String paliwo_gazowe = "0.11616";
+    private final String paliwo_gazowe = "0.0983";
     private final String dystrybucyjna_stala = "11.39";
     private final String dystrybucyjna_zmienna = "0.02821";
-    private final String wsp_konwersji = "11.251";
+    private final String wsp_konwersji = "11.290";
 
     @Inject
     public PgnigPrices(SharedPreferences prefs) {
