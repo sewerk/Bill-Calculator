@@ -119,7 +119,7 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
         final TauronG12CalculatedBill bill = (TauronG12CalculatedBill) this.bill;
         setRow(R.id.row_za_energie_czynna, R.string.tauron_energia_elektryczna_G12dzien, "00000000", "" + readingDayFrom, "" + readingDayTo, "1", "" + bill.getDayConsumption(), new BigDecimal(prices.getEnergiaElektrycznaCzynnaDzien()), bill.getEnergiaElektrycznaDayNetCharge());
         setRow(R.id.row_za_energie_czynna2, R.string.tauron_energia_elektryczna_G12noc, "00000000", "" + readingNightFrom, "" + readingNightTo, "1", "" + bill.getNightConsumption(), new BigDecimal(prices.getEnergiaElektrycznaCzynnaNoc()), bill.getEnergiaElektrycznaNightNetCharge());
-        findViewById(R.id.row_za_energie_czynna2).setBackgroundResource(R.drawable.undeline);
+        findViewById(R.id.row_za_energie_czynna2).setBackgroundResource(R.drawable.underline);
 
         setRow(R.id.row_oplata_dyst_zm, R.string.tauron_oplata_dyst_zmienna_G12dzien, "00000000", "" + readingDayFrom, "" + readingDayTo, "1", "" + bill.getDayConsumption(), new BigDecimal(prices.getOplataDystrybucyjnaZmiennaDzien()), bill.getOplataDystrybucyjnaZmiennaDayNetCharge());
         setRow(R.id.row_oplata_dyst_zm2, R.string.tauron_oplata_dyst_zmienna_G12noc, "00000000", "" + readingNightFrom, "" + readingNightTo, "1", "" + bill.getNightConsumption(), new BigDecimal(prices.getOplataDystrybucyjnaZmiennaNoc()), bill.getOplataDystrybucyjnaZmiennaNightNetCharge());
@@ -139,7 +139,7 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
         final String currReading = Integer.toString(readingTo);
         final String consumption = Integer.toString(bill.getTotalConsumption());
         setRow(R.id.row_za_energie_czynna, R.string.tauron_energia_elektryczna, "00000000", prevReading, currReading, "1", consumption, new BigDecimal(prices.getEnergiaElektrycznaCzynna()), bill.getEnergiaElektrycznaNetCharge());
-        findViewById(R.id.row_za_energie_czynna).setBackgroundResource(R.drawable.undeline);
+        findViewById(R.id.row_za_energie_czynna).setBackgroundResource(R.drawable.underline);
         findViewById(R.id.row_za_energie_czynna2).setVisibility(View.GONE);
 
         setRow(R.id.row_oplata_dyst_zm, R.string.tauron_oplata_dyst_zmienna, "00000000", prevReading, currReading, "1", consumption, new BigDecimal(prices.getOplataDystrybucyjnaZmienna()), bill.getOplataDystrybucyjnaZmiennaNetCharge());
