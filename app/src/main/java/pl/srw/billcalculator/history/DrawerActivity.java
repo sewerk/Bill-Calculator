@@ -38,6 +38,7 @@ import pl.srw.billcalculator.history.list.item.HistoryItemTouchCallback;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.util.BillSelection;
 import pl.srw.billcalculator.util.strategy.Transitions;
 import pl.srw.billcalculator.wrapper.Dependencies;
 import pl.srw.mfvp.MvpActivity;
@@ -63,6 +64,8 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Inject HistoryPresenter presenter;
 //TODO    @Inject DrawerPresenter drawerPresenter;
     @Inject FabsMenuHandler fabsMenuHandler;
+    @Inject BillSelection selection;
+    private MenuItem deleteMenuAction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +86,10 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.drawer_activity, menu);
+        deleteMenuAction = menu.findItem(R.id.action_delete);
+        if (selection.isAnySelected()) {
+            deleteMenuAction.setVisible(true);
+        }
         return true;
     }
 
@@ -92,6 +99,9 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
 
         if (id == R.id.action_help) {
             presenter.helpMenuClicked();
+            return true;
+        } else if (id == R.id.action_delete) {
+            presenter.deleteClicked();
             return true;
         }
 
@@ -166,6 +176,16 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     }
 
     @Override
+    public void showDeleteButton() {
+        deleteMenuAction.setVisible(true);
+    }
+
+    @Override
+    public void hideDeleteButton() {
+        deleteMenuAction.setVisible(false);
+    }
+
+    @Override
     public void showWelcomeDialog() {
         new CheckPricesDialogFragment().show(getSupportFragmentManager(), null);
     }
@@ -196,7 +216,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
 
     @Override
     public void itemRemovedFromList(int position, LazyList<History> newData) {
-        adapter.setData(newData);
+        adapter.setData(newData);//TODO: split set data and not
         adapter.notifyItemRemoved(position);
     }
 
@@ -210,7 +230,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     private void setupList() {
         listView.setHasFixedSize(true);
         listView.setLayoutManager(new GridLayoutManager(this, cardAmount));
-        adapter = new HistoryAdapter(new ShowViewOnEmptyDataObserver(emptyHistoryView), presenter);
+        adapter = new HistoryAdapter(new ShowViewOnEmptyDataObserver(emptyHistoryView), presenter, selection);
         listView.setAdapter(adapter);
 
         ItemTouchHelper helper = new ItemTouchHelper(new HistoryItemTouchCallback(presenter));

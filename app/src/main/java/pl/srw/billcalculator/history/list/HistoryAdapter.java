@@ -11,16 +11,20 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.history.list.item.HistoryItemClickListener;
 import pl.srw.billcalculator.history.list.item.HistoryItemViewHolder;
+import pl.srw.billcalculator.util.BillSelection;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryItemViewHolder> {
 
     private final ShowViewOnEmptyDataObserver dataChangeObserver;
     private final HistoryItemClickListener clickListener;
+    private final BillSelection selection;
     private LazyList<History> lazyList;
 
-    public HistoryAdapter(ShowViewOnEmptyDataObserver showViewOnEmptyDataObserver, HistoryItemClickListener clickListener) {
+    public HistoryAdapter(ShowViewOnEmptyDataObserver showViewOnEmptyDataObserver, HistoryItemClickListener clickListener,
+                          BillSelection selection) {
         this.dataChangeObserver = showViewOnEmptyDataObserver;
         this.clickListener = clickListener;
+        this.selection = selection;
     }
 
     public void setData(LazyList<History> data) {
@@ -39,7 +43,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryItemViewHolder> 
     @Override
     public void onBindViewHolder(final HistoryItemViewHolder holder, final int position) {
         History historyItem = lazyList.get(position);
-        holder.bindEntry(historyItem);
+        holder.bindEntry(historyItem, selection.isSelected(position));
     }
 
     @Override

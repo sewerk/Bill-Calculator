@@ -12,10 +12,12 @@ import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.form.fragment.FormPresenter;
 import pl.srw.billcalculator.history.list.item.HistoryItemClickListener;
 import pl.srw.billcalculator.history.list.item.HistoryItemDismissHandling;
+import pl.srw.billcalculator.history.list.item.HistoryViewItem;
 import pl.srw.billcalculator.persistence.type.BillType;
 import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.type.ContentType;
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.util.BillSelection;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.HistoryRepo;
 import pl.srw.mfvp.di.scope.RetainActivityScope;
@@ -28,14 +30,16 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     private final SettingsRepo settings;
     private final HistoryRepo history;
     private final SavedBillsRegistry savedBillsRegistry;
+    private final BillSelection selection;
     private LazyList<History> historyData; // TODO: remove state from presenter?
     private boolean needRefresh;
 
     @Inject
-    public HistoryPresenter(SettingsRepo settings, HistoryRepo history, SavedBillsRegistry savedBillsRegistry) {
+    public HistoryPresenter(SettingsRepo settings, HistoryRepo history, SavedBillsRegistry savedBillsRegistry, BillSelection selection) {
         this.settings = settings;
         this.history = history;
         this.savedBillsRegistry = savedBillsRegistry;
+        this.selection = selection;
     }
 
     @Override
@@ -148,6 +152,28 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         });
     }
 
+    @Override
+    public void onListItemClicked(final HistoryViewItem item) {
+        if (selection.isAnySelected()) {
+            handleSelection(item);
+        } else {
+            openBill(item);
+        }
+    }
+
+    @Override
+    public void onListItemLongClicked(HistoryViewItem item) {
+        if (!selection.isAnySelected()) {
+            present(new UIChange<HistoryView>() {
+                @Override
+                public void change(HistoryView view) {
+                    view.showDeleteButton();
+                }
+            });
+        }
+        handleSelection(item);
+    }
+
     public void undoDeleteClicked(final int position) {
         history.undoDelete();
         loadHistoryData();
@@ -159,20 +185,56 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         });
     }
 
-    @Override
-    public void onListItemClicked(final Bill bill, final View viewClicked) {
+    public void deleteClicked() {
+        for (Bill bill : selection.getItems()) {
+            history.deleteBillWithPrices(BillType.valueOf(bill), bill.getId(), bill.getPricesId());
+        }
+        loadHistoryData();
         present(new UIChange<HistoryView>() {
             @Override
             public void change(HistoryView view) {
-                view.openBill(bill, viewClicked);
+                for (int position : selection.getPositionsReverseOrder()) {
+                    view.itemRemovedFromList(position, historyData);
+                }
+                view.hideDeleteButton();
             }
         });
-        savedBillsRegistry.register(bill);
+        selection.deselectAll();
     }
 
     private void loadHistoryData() {
         historyData = history.getAll();
         needRefresh = false;
+    }
+
+    private void handleSelection(HistoryViewItem item) {
+        int position = item.getPositionOnList();
+
+        if (selection.isSelected(position)) {
+            selection.deselect(position);
+            item.deselect();
+        } else {
+            selection.select(position, item.getBill());
+            item.select();
+        }
+        if (!selection.isAnySelected()) {
+            present(new UIChange<HistoryView>() {
+                @Override
+                public void change(HistoryView view) {
+                    view.hideDeleteButton();
+                }
+            });
+        }
+    }
+
+    private void openBill(final HistoryViewItem item) {
+        present(new UIChange<HistoryView>() {
+            @Override
+            public void change(HistoryView view) {
+                view.openBill(item.getBill(), item.getView());
+            }
+        });
+        savedBillsRegistry.register(item.getBill());
     }
 
     public interface HistoryView {
@@ -200,5 +262,9 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         void itemAddedToList(int position, LazyList<History> newData);
 
         void openBill(Bill bill, View viewClicked);
+
+        void showDeleteButton();
+
+        void hideDeleteButton();
     }
 }

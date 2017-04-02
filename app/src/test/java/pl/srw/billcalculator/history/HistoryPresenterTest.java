@@ -10,6 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Arrays;
+
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import pl.srw.billcalculator.Whitebox;
@@ -17,9 +19,11 @@ import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.db.PgeG11Bill;
+import pl.srw.billcalculator.history.list.item.HistoryViewItem;
 import pl.srw.billcalculator.persistence.type.BillType;
 import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.util.BillSelection;
 import pl.srw.billcalculator.wrapper.HistoryRepo;
 
 import static junit.framework.Assert.assertFalse;
@@ -28,6 +32,7 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -41,6 +46,7 @@ public class HistoryPresenterTest {
     @Mock HistoryRepo history;
     @Mock SavedBillsRegistry savedBillsRegistry;
     @Mock LazyList<History> listData;
+    @Mock BillSelection selection;
 
     @Before
     public void setUp() throws Exception {
@@ -299,27 +305,281 @@ public class HistoryPresenterTest {
     }
 
     @Test
-    public void onListItemClicked_opensBill() throws Exception {
+    public void onListItemClicked_whenNotInSelectMode_opensBill() throws Exception {
         // GIVEN
         Bill bill = mock(PgeG11Bill.class);
         View itemView = mock(View.class);
+        HistoryViewItem item = given_historyViewItem(bill, itemView);
 
         // WHEN
-        sut.onListItemClicked(bill, itemView);
+        sut.onListItemClicked(item);
 
         // THEN
         verify(view).openBill(bill, itemView);
     }
 
     @Test
-    public void onListItemClicked_registerSavedBill() throws Exception {
+    public void onListItemClicked_whenNotInSelectMode_registerSavedBill() throws Exception {
         // GIVEN
         Bill bill = mock(PgeG11Bill.class);
+        HistoryViewItem item = given_historyViewItem(bill);
 
         // WHEN
-        sut.onListItemClicked(bill, mock(View.class));
+        sut.onListItemClicked(item);
 
         // THEN
         verify(savedBillsRegistry).register(bill);
+    }
+
+    @Test
+    public void onListItemClicked_andItemSelected_deselectsViewItem() throws Exception {
+        // GIVEN
+        int position = 2;
+        when(selection.isAnySelected()).thenReturn(true);
+        when(selection.isSelected(position)).thenReturn(true);
+        HistoryViewItem item = given_historyViewItem(position);
+
+        // WHEN
+        sut.onListItemClicked(item);
+
+        // THEN
+        verify(item).deselect();
+    }
+
+    @Test
+    public void onListItemClicked_andItemSelected_deselectPosition() throws Exception {
+        // GIVEN
+        int position = 2;
+        when(selection.isAnySelected()).thenReturn(true);
+        when(selection.isSelected(position)).thenReturn(true);
+        HistoryViewItem item = given_historyViewItem(position);
+
+        // WHEN
+        sut.onListItemClicked(item);
+
+        // THEN
+        verify(selection).deselect(position);
+    }
+
+    @Test
+    public void onListItemClicked_whenInSelectMode_andItemNotSelected_selectsViewItem() throws Exception {
+        // GIVEN
+        when(selection.isAnySelected()).thenReturn(true);
+        int position = 2;
+        HistoryViewItem item = given_historyViewItem(position);
+
+        // WHEN
+        sut.onListItemClicked(item);
+
+        // THEN
+        verify(item).select();
+    }
+
+    @Test
+    public void onListItemClicked_whenInSelectMode_andItemNotSelected_selectsPosition() throws Exception {
+        // GIVEN
+        when(selection.isAnySelected()).thenReturn(true);
+        int position = 2;
+        PgeG11Bill bill = mock(PgeG11Bill.class);
+        HistoryViewItem item = given_historyViewItem(bill, mock(View.class), position);
+
+        // WHEN
+        sut.onListItemClicked(item);
+
+        // THEN
+        verify(selection).select(position, bill);
+    }
+
+    @Test
+    public void onListItemClicked_onSingleSelectedItem_hidesDeleteButton() throws Exception {
+        // GIVEN
+        when(selection.isAnySelected()).thenReturn(true, false);
+        int position = 2;
+        when(selection.isSelected(position)).thenReturn(true);
+        HistoryViewItem item = given_historyViewItem(position);
+
+        // WHEN
+        sut.onListItemClicked(item);
+
+        // THEN
+        verify(view).hideDeleteButton();
+    }
+
+    @Test
+    public void onListItemLongClicked_whenNotInSelectMode_showsDeleteButton() throws Exception {
+        // GIVEN
+        HistoryViewItem item = given_historyViewItem(2);
+
+        // WHEN
+        sut.onListItemLongClicked(item);
+
+        // THEN
+        verify(view).showDeleteButton();
+    }
+
+    @Test
+    public void onListItemLongClicked_whenNotInSelectMode_selectsViewItem() throws Exception {
+        // GIVEN
+        HistoryViewItem item = given_historyViewItem(2);
+
+        // WHEN
+        sut.onListItemLongClicked(item);
+
+        // THEN
+        verify(item).select();
+    }
+
+    @Test
+    public void onListItemLongClicked_andItemSelected_deselectsViewItem() throws Exception {
+        // GIVEN
+        int position = 2;
+        when(selection.isAnySelected()).thenReturn(true);
+        when(selection.isSelected(position)).thenReturn(true);
+        HistoryViewItem item = given_historyViewItem(position);
+
+        // WHEN
+        sut.onListItemLongClicked(item);
+
+        // THEN
+        verify(item).deselect();
+    }
+
+    @Test
+    public void onListItemLongClicked_andItemSelected_deselectsPosition() throws Exception {
+        // GIVEN
+        int position = 2;
+        when(selection.isAnySelected()).thenReturn(true);
+        when(selection.isSelected(position)).thenReturn(true);
+        HistoryViewItem item = given_historyViewItem(position);
+
+        // WHEN
+        sut.onListItemLongClicked(item);
+
+        // THEN
+        verify(selection).deselect(position);
+    }
+
+    @Test
+    public void onListItemLongClicked_whenInSelectMode_andItemNotSelected_selectsViewItem() throws Exception {
+        // GIVEN
+        when(selection.isAnySelected()).thenReturn(true);
+        HistoryViewItem item = given_historyViewItem(2);
+
+        // WHEN
+        sut.onListItemLongClicked(item);
+
+        // THEN
+        verify(item).select();
+    }
+
+    @Test
+    public void onListItemLongClicked_whenItemNotSelected_selectsPosition() throws Exception {
+        // GIVEN
+        int position = 2;
+        Bill bill = mock(Bill.class);
+        HistoryViewItem item = given_historyViewItem(bill, mock(View.class), position);
+
+        // WHEN
+        sut.onListItemLongClicked(item);
+
+        // THEN
+        verify(selection).select(position, bill);
+    }
+
+    @Test
+    public void onListItemLongClicked_onSingleSelectedItem_hidesDeleteButton() throws Exception {
+        // GIVEN
+        int position = 2;
+        when(selection.isAnySelected()).thenReturn(true, false);
+        when(selection.isSelected(position)).thenReturn(true);
+        HistoryViewItem item = given_historyViewItem(position);
+
+        // WHEN
+        sut.onListItemLongClicked(item);
+
+        // THEN
+        verify(view).hideDeleteButton();
+    }
+
+    @Test
+    public void deleteClicked_deletesSelectedBill() throws Exception {
+        // GIVEN
+        final Long id = 1L;
+        final Long pricesId = 2L;
+        Bill bill = mock(PgeG11Bill.class);
+        when(bill.getId()).thenReturn(id);
+        when(bill.getPricesId()).thenReturn(pricesId);
+
+        when(selection.isAnySelected()).thenReturn(true);
+        when(selection.getItems()).thenReturn(Arrays.asList(bill, bill));
+        when(selection.getPositionsReverseOrder()).thenReturn(new int[]{3, 2});
+
+        // WHEN
+        sut.deleteClicked();
+
+        // THEN
+        verify(history, times(2)).deleteBillWithPrices(BillType.PGE_G11, id, pricesId);
+    }
+
+    @Test
+    public void deleteClicked_removesViewsFromList() throws Exception {
+        // GIVEN
+        int position1 = 2;
+        int position2 = 5;
+        when(selection.isAnySelected()).thenReturn(true);
+        when(selection.getPositionsReverseOrder()).thenReturn(new int[]{position2, position1});
+
+        // WHEN
+        sut.deleteClicked();
+
+        // THEN
+        verify(view).itemRemovedFromList(eq(position2), any(LazyList.class));
+        verify(view).itemRemovedFromList(eq(position1), any(LazyList.class));
+    }
+
+    @Test
+    public void deleteClicked_clearsSelection() throws Exception {
+        // GIVEN
+        when(selection.isAnySelected()).thenReturn(true);
+        when(selection.getPositionsReverseOrder()).thenReturn(new int[0]);
+
+        // WHEN
+        sut.deleteClicked();
+
+        // THEN
+        verify(selection).deselectAll();
+    }
+
+    @Test
+    public void deleteClicked_hidesDeleteButton() throws Exception {
+        // GIVEN
+        when(selection.isAnySelected()).thenReturn(true);
+        when(selection.getPositionsReverseOrder()).thenReturn(new int[0]);
+
+        // WHEN
+        sut.deleteClicked();
+
+        // THEN
+        verify(view).hideDeleteButton();
+    }
+
+    private HistoryViewItem given_historyViewItem(int position) {
+        return given_historyViewItem(mock(PgeG11Bill.class), mock(View.class), position);
+    }
+
+    private HistoryViewItem given_historyViewItem(Bill bill) {
+        return given_historyViewItem(bill, mock(View.class), 0);
+    }
+
+    private HistoryViewItem given_historyViewItem(Bill bill, View itemView) {
+        return given_historyViewItem(bill, itemView, 0);
+    }
+
+    private HistoryViewItem given_historyViewItem(Bill bill, View itemView, int position) {
+        HistoryViewItem item = mock(HistoryViewItem.class);
+        when(item.getBill()).thenReturn(bill);
+        when(item.getView()).thenReturn(itemView);
+        when(item.getPositionOnList()).thenReturn(position);
+        return item;
     }
 }

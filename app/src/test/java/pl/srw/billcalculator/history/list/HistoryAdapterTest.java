@@ -11,6 +11,7 @@ import pl.srw.billcalculator.Whitebox;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.history.list.item.HistoryItemClickListener;
 import pl.srw.billcalculator.history.list.item.HistoryItemViewHolder;
+import pl.srw.billcalculator.util.BillSelection;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -25,6 +26,7 @@ public class HistoryAdapterTest {
     @Mock ShowViewOnEmptyDataObserver dataChangeObserver;
     @Mock HistoryItemClickListener clickListener;
     @Mock LazyList<History> lazyList;
+    @Mock BillSelection selection;
 
     @Before
     public void setUp() throws Exception {
@@ -74,7 +76,26 @@ public class HistoryAdapterTest {
         sut.onBindViewHolder(viewHolder, position);
 
         // THEN
-        verify(viewHolder).bindEntry(history);
+        verify(viewHolder).bindEntry(history, false);
+    }
+
+    @Test
+    public void onBindViewHolder_whenBillSelected_bindsEntryWithSelectionTrue() throws Exception {
+        // GIVEN
+        final int position = 0;
+        boolean selected = true;
+        final History history = mock(History.class);
+        final HistoryItemViewHolder viewHolder = mock(HistoryItemViewHolder.class);
+
+        when(lazyList.get(position)).thenReturn(history);
+        Whitebox.setInternalState(sut, "lazyList", lazyList);
+        when(selection.isSelected(position)).thenReturn(selected);
+
+        // WHEN
+        sut.onBindViewHolder(viewHolder, position);
+
+        // THEN
+        verify(viewHolder).bindEntry(history, selected);
     }
 
     @Test
