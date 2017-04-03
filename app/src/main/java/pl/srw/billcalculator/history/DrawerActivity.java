@@ -211,18 +211,21 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Override
     public void setListData(LazyList<History> data) {
         adapter.setData(data);
+    }
+
+    @Override
+    public void redrawList() {
         adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void itemRemovedFromList(int position, LazyList<History> newData) {
-        adapter.setData(newData);//TODO: split set data and not
+    public void onItemRemoveFromList(int position) {
         adapter.notifyItemRemoved(position);
+        //TODO: animate swipe-delete
     }
 
     @Override
-    public void itemAddedToList(int position, LazyList<History> newData) {
-        adapter.setData(newData);
+    public void onItemInsertedToList(int position) {
         adapter.notifyItemInserted(position);
         listView.smoothScrollToPosition(position);
     }

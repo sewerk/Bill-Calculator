@@ -95,6 +95,7 @@ public class HistoryPresenterTest {
 
         // THEN
         verify(view).setListData(listData);
+        verify(view).redrawList();
     }
 
     @Test
@@ -120,6 +121,7 @@ public class HistoryPresenterTest {
 
         // THEN
         verify(view).setListData(list);
+        verify(view).redrawList();
     }
 
     @Test
@@ -260,7 +262,8 @@ public class HistoryPresenterTest {
         sut.onListItemDismissed(position, bill);
 
         // THEN
-        verify(view).itemRemovedFromList(eq(position), any(LazyList.class));
+        verify(view).setListData(any(LazyList.class));
+        verify(view).onItemRemoveFromList(eq(position));
     }
 
     @Test
@@ -283,7 +286,8 @@ public class HistoryPresenterTest {
         sut.undoDeleteClicked(position);
 
         // THEN
-        verify(view).itemAddedToList(eq(position), any(LazyList.class));
+        verify(view).setListData(any(LazyList.class));
+        verify(view).onItemInsertedToList(eq(position));
     }
 
     @Test
@@ -533,8 +537,9 @@ public class HistoryPresenterTest {
         sut.deleteClicked();
 
         // THEN
-        verify(view).itemRemovedFromList(eq(position2), any(LazyList.class));
-        verify(view).itemRemovedFromList(eq(position1), any(LazyList.class));
+        verify(view).setListData(any(LazyList.class));
+        verify(view).onItemRemoveFromList(eq(position2));
+        verify(view).onItemRemoveFromList(eq(position1));
     }
 
     @Test

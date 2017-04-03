@@ -54,6 +54,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
                     view.showWelcomeDialog();
                 }
                 view.setListData(historyData);
+                view.redrawList();
             }
         });
     }
@@ -67,6 +68,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
             @Override
             public void change(HistoryView view) {
                 view.setListData(historyData); // TODO: BUG: when data not change the lazyList is closed by this call
+                view.redrawList();
             }
         });
     }
@@ -146,7 +148,8 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         present(new UIChange<HistoryView>() {
             @Override
             public void change(HistoryView view) {
-                view.itemRemovedFromList(position, historyData);
+                view.setListData(historyData);
+                view.onItemRemoveFromList(position);
                 view.showUndoDeleteMessage(position);
             }
         });
@@ -180,7 +183,8 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         present(new UIChange<HistoryView>() {
             @Override
             public void change(HistoryView view) {
-                view.itemAddedToList(position, historyData);
+                view.setListData(historyData);
+                view.onItemInsertedToList(position);
             }
         });
     }
@@ -193,8 +197,9 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         present(new UIChange<HistoryView>() {
             @Override
             public void change(HistoryView view) {
+                view.setListData(historyData);
                 for (int position : selection.getPositionsReverseOrder()) {
-                    view.itemRemovedFromList(position, historyData);
+                    view.onItemRemoveFromList(position);
                 }
                 view.hideDeleteButton();
             }
@@ -257,9 +262,11 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
 
         void showUndoDeleteMessage(int position);
 
-        void itemRemovedFromList(int position, LazyList<History> newData);
+        void redrawList();
 
-        void itemAddedToList(int position, LazyList<History> newData);
+        void onItemRemoveFromList(int position);
+
+        void onItemInsertedToList(int position);
 
         void openBill(Bill bill, View viewClicked);
 
