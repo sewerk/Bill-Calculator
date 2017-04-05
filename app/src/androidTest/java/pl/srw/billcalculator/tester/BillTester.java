@@ -15,7 +15,7 @@ public class BillTester extends Tester {
 
     private AppTester parent;
 
-    public BillTester(AppTester parent) {
+    BillTester(AppTester parent) {
         this.parent = parent;
     }
 

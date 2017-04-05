@@ -5,6 +5,11 @@ import android.support.test.espresso.NoMatchingViewException;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.type.Provider;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+
 public class AppTester extends Tester {
 
     private HistoryTester historyTester = new HistoryTester(this);
@@ -44,5 +49,9 @@ public class AppTester extends Tester {
 
     public HistoryTester onHistory() {
         return historyTester;
+    }
+
+    public void checkPricesDialogIsVisible() {
+        onView(withText(R.string.check_price_info_message)).check(matches(isDisplayed()));
     }
 }

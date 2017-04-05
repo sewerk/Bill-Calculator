@@ -33,7 +33,7 @@ public class FormTester extends Tester {
     private BillTester billTester = new BillTester(parent);
     private ProviderSettingsTester<FormTester> settingsTester = new ProviderSettingsTester<>(this);
 
-    public FormTester(AppTester parent) {
+    FormTester(AppTester parent) {
         this.parent = parent;
     }
 

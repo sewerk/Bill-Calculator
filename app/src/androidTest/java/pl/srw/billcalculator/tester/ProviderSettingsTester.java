@@ -27,7 +27,7 @@ public class ProviderSettingsTester<T extends Tester> extends Tester {
 
     private final T parent;
 
-    public ProviderSettingsTester(T parent) {
+    ProviderSettingsTester(T parent) {
         this.parent = parent;
     }
 
