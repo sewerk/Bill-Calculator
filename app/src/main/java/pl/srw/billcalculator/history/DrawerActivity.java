@@ -112,8 +112,8 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.my_bills) {
-            presenter.myBillsClicked();
+        if (id == R.id.history) {
+            presenter.historyClicked();
         } else if (id == R.id.new_bill_pge) {
             presenter.newBillClicked(Provider.PGE);
         } else if (id == R.id.new_bill_pgnig) {
@@ -241,7 +241,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     }
 
     private void setupToolbar() {
-        toolbar.setTitle(R.string.my_bills);
+        toolbar.setTitle(R.string.history);
         collapsingToolbarLayout.setTitle(toolbar.getTitle());
         setSupportActionBar(toolbar);
     }

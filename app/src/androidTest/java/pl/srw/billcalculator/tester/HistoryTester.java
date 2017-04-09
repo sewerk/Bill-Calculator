@@ -37,7 +37,7 @@ public class HistoryTester extends Tester {
     }
 
     public HistoryTester changeItemSelectionWithReadings(String from, String to) {
-        onView(allOf(withId(R.id.my_bills_item_logo), hasSibling(withText(from + " - " + to))))
+        onView(allOf(withId(R.id.history_item_logo), hasSibling(withText(from + " - " + to))))
                 .perform(click());
         return this;
     }
@@ -54,7 +54,7 @@ public class HistoryTester extends Tester {
 
     public HistoryTester checkItemSelected(int position) {
         onView(withId(R.id.bill_list)).perform(scrollToPosition(position + 1));
-        onView(allOf(withId(R.id.my_bills_item_logo),
+        onView(allOf(withId(R.id.history_item_logo),
                 withParent(withParent(childAtPosition(withId(R.id.bill_list), position)))))
                 .check(matches(withImageDrawable(R.drawable.history_item_selected)));
         return this;

@@ -111,7 +111,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         return handled[0];
     }
 
-    public void myBillsClicked() {
+    public void historyClicked() {
         //TODO remove this option from drawer?
         present(new UIChange<HistoryView>() {
             @Override

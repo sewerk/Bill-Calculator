@@ -36,7 +36,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryItemViewHolder> 
 
     @Override
     public HistoryItemViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-        final View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_drawer_my_bills_item, parent, false);
+        final View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_drawer_history_item, parent, false);
         return new HistoryItemViewHolder(itemView, clickListener);
     }
 

@@ -187,7 +187,7 @@
     <string name="history_readings_label">Readings</string>
     <string name="history_amount" translatable="false">%s zł</string>
     <string name="empty_history">Tap + to calculate bill</string>
-    <string name="my_bills">My bills</string>
+    <string name="history">My bills</string>
     <string name="bill_deleted">Bill deleted</string>
     <string name="action_undo_delete">UNDO</string>
     <string name="history_item_readings_from">from</string>

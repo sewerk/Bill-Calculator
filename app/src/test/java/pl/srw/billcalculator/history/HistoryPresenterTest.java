@@ -188,9 +188,9 @@ public class HistoryPresenterTest {
     }
 
     @Test
-    public void myBillsClicked_closesDrawer() throws Exception {
+    public void historyClicked_closesDrawer() throws Exception {
         // WHEN
-        sut.myBillsClicked();
+        sut.historyClicked();
 
         // THEN
         verify(view).closeDrawer();

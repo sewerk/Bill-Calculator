@@ -17,7 +17,7 @@
         android:scrollbars="vertical"
         android:padding="@dimen/small_padding"
         android:background="@color/gray_light"
-        tools:listitem="@layout/activity_drawer_my_bills_item"/>
+        tools:listitem="@layout/activity_drawer_history_item"/>
 
     <TextView
         android:id="@+id/empty_history"

@@ -18,11 +18,11 @@ import pl.srw.billcalculator.history.list.provider.HistoryItemValueProvider;
 public class HistoryItemViewHolder extends RecyclerView.ViewHolder
         implements View.OnClickListener, View.OnLongClickListener, HistoryViewItem {
 
-    @BindView(R.id.my_bills_item_date_period) TextView datePeriodView;
-    @BindView(R.id.my_bills_item_logo) ImageView logoImage;
-    @BindView(R.id.my_bills_item_day_readings) TextView dayReadings;
-    @BindView(R.id.my_bills_item_night_readings) TextView nightReadings;
-    @BindView(R.id.my_bills_item_amount) TextView amountView;
+    @BindView(R.id.history_item_date_period) TextView datePeriodView;
+    @BindView(R.id.history_item_logo) ImageView logoImage;
+    @BindView(R.id.history_item_day_readings) TextView dayReadings;
+    @BindView(R.id.history_item_night_readings) TextView nightReadings;
+    @BindView(R.id.history_item_amount) TextView amountView;
 
     private final HistoryItemClickListener clickListener;
     private final HistoryItemSelectionAnimator logoAnimator;
