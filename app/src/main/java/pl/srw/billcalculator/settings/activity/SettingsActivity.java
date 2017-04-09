@@ -20,7 +20,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.OnItemClick;
 import pl.srw.billcalculator.BackableActivity;
-import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.SettingsPresenter;
 import pl.srw.billcalculator.settings.di.SettingsComponent;
@@ -60,7 +59,7 @@ public class SettingsActivity extends BackableActivity<SettingsComponent>
 
     @Override
     public SettingsComponent prepareComponent() {
-        return BillCalculator.get(this).getApplicationComponent().getSettingsComponent();
+        return Dependencies.getApplicationComponent().getSettingsComponent();
     }
 
     @Override

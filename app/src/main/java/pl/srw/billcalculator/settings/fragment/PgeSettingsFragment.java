@@ -2,14 +2,11 @@ package pl.srw.billcalculator.settings.fragment;
 
 import javax.inject.Inject;
 
-import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.wrapper.Dependencies;
 
-/**
- * Created by Kamil Seweryn.
- */
 public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
 
     @Inject PgePrices pgePrices;
@@ -53,7 +50,7 @@ public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
 
     @Override
     protected void injectDependencies() {
-        BillCalculator.get(getActivity()).getApplicationComponent().getSettingsComponent().inject(this);
+        Dependencies.getApplicationComponent().getSettingsComponent().inject(this);
     }
 
     protected String getMWhMeasurePrefKeys() {

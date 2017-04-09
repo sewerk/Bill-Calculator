@@ -1,7 +1,5 @@
 package pl.srw.billcalculator.wrapper;
 
-import android.content.Context;
-
 import com.f2prateek.dart.Dart;
 
 import butterknife.ButterKnife;
@@ -14,22 +12,37 @@ import pl.srw.billcalculator.bill.service.PgeBillStoringService;
 import pl.srw.billcalculator.bill.service.PgnigBillStoringService;
 import pl.srw.billcalculator.bill.service.TauronBillStoringService;
 import pl.srw.billcalculator.di.ApplicationComponent;
+import pl.srw.billcalculator.di.ApplicationModule;
+import pl.srw.billcalculator.di.DaggerApplicationComponent;
 import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
 
 public class Dependencies {
 
+    private static ApplicationComponent applicationComponent;
+
+    public static ApplicationComponent getApplicationComponent() {
+        return applicationComponent;
+    }
+
+    public static void inject(BillCalculator application) {
+        applicationComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(application))
+                .build();
+        applicationComponent.inject(application);
+    }
+
     public static void inject(PgeBillStoringService service) {
-        getApplicationComponent(service).inject(service);
+        applicationComponent.inject(service);
     }
 
     public static void inject(PgnigBillStoringService service) {
-        getApplicationComponent(service).inject(service);
+        applicationComponent.inject(service);
     }
 
     public static void inject(TauronBillStoringService service) {
-        getApplicationComponent(service).inject(service);
+        applicationComponent.inject(service);
     }
 
     public static void inject(PgeBillActivity activity) {
@@ -45,10 +58,6 @@ public class Dependencies {
     public static void inject(TauronBillActivity activity) {
         Dart.inject(activity);
         ButterKnife.bind(activity);
-    }
-
-    private static ApplicationComponent getApplicationComponent(Context context) {
-        return BillCalculator.get(context).getApplicationComponent();
     }
 
     public static void inject(SettingsActivity activity) {

@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 
 import javax.inject.Inject;
 
-import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.TauronCalculatedBill;
@@ -73,7 +72,7 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
 
     @Override
     public TauronBillComponent prepareComponent() {
-        return BillCalculator.get(this).getApplicationComponent().getTauronBillComponent();
+        return Dependencies.getApplicationComponent().getTauronBillComponent();
     }
 
     @Override

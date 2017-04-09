@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 
 import javax.inject.Inject;
 
-import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill;
@@ -73,7 +72,7 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
 
     @Override
     public PgeBillComponent prepareComponent() {
-        return BillCalculator.get(this).getApplicationComponent().getPgeBillComponent();
+        return Dependencies.getApplicationComponent().getPgeBillComponent();
     }
 
     @Override

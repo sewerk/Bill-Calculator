@@ -25,15 +25,14 @@ import javax.inject.Inject;
 import butterknife.BindInt;
 import butterknife.BindView;
 import pl.srw.billcalculator.AboutActivity;
-import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.dialog.CheckPricesDialogFragment;
 import pl.srw.billcalculator.form.fragment.FormFragment;
 import pl.srw.billcalculator.history.di.HistoryComponent;
-import pl.srw.billcalculator.history.list.ShowViewOnEmptyDataObserver;
 import pl.srw.billcalculator.history.list.HistoryAdapter;
+import pl.srw.billcalculator.history.list.ShowViewOnEmptyDataObserver;
 import pl.srw.billcalculator.history.list.item.HistoryItemTouchCallback;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
@@ -142,7 +141,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
 
     @Override
     public HistoryComponent prepareComponent() {
-        return BillCalculator.get(this).getApplicationComponent().getHistoryComponent();
+        return Dependencies.getApplicationComponent().getHistoryComponent();
     }
 
     @Override

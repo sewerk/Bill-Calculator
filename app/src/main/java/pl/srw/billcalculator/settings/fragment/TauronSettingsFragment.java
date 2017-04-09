@@ -2,14 +2,11 @@ package pl.srw.billcalculator.settings.fragment;
 
 import javax.inject.Inject;
 
-import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.wrapper.Dependencies;
 
-/**
- * Created by Kamil Seweryn.
- */
 public class TauronSettingsFragment extends EnergyProviderSettingsFragment {
 
     @Inject TauronPrices tauronPrices;
@@ -56,6 +53,6 @@ public class TauronSettingsFragment extends EnergyProviderSettingsFragment {
 
     @Override
     protected void injectDependencies() {
-        BillCalculator.get(getActivity()).getApplicationComponent().getSettingsComponent().inject(this);
+        Dependencies.getApplicationComponent().getSettingsComponent().inject(this);
     }
 }

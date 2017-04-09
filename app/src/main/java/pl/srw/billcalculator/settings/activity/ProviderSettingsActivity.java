@@ -6,14 +6,13 @@ import android.os.Bundle;
 
 import com.f2prateek.dart.InjectExtra;
 
-import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.BackableActivity;
-import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.di.ProviderSettingsComponent;
 import pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment;
 import pl.srw.billcalculator.type.ContentType;
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 
 /**
@@ -56,7 +55,7 @@ public class ProviderSettingsActivity extends BackableActivity<ProviderSettingsC
 
     @Override
     public ProviderSettingsComponent prepareComponent() {
-        return BillCalculator.get(this).getApplicationComponent().getProviderSettingsComponent();
+        return Dependencies.getApplicationComponent().getProviderSettingsComponent();
     }
 
     @Override
