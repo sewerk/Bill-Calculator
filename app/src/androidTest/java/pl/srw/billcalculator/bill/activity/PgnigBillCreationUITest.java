@@ -9,10 +9,7 @@ import pl.srw.billcalculator.tester.HistoryTester;
 import pl.srw.billcalculator.tester.ProviderSettingsTester;
 import pl.srw.billcalculator.type.Provider;
 
-/**
- * Created by Kamil Seweryn.
- */
-public class PgnigUITest extends AbstractVerifyBillCreationUITest {
+public class PgnigBillCreationUITest extends AbstractVerifyBillCreationUITest {
 
     private static final String READING_FROM = "6696";
     private static final String READING_TO = "7101";

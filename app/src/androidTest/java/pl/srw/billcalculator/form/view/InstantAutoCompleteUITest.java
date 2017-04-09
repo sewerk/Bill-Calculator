@@ -3,13 +3,11 @@ package pl.srw.billcalculator.form.view;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 
@@ -23,8 +21,7 @@ import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.testutils.HistoryGenerator;
 import pl.srw.billcalculator.type.Provider;
 
-@RunWith(AndroidJUnit4.class)
-public class InstantAutoCompleteTextInputEditTextAndroidTest {
+public class InstantAutoCompleteUITest {
 
     @Rule
     public ActivityTestRule<DrawerActivity> testRule = new ActivityTestRule<>(DrawerActivity.class, false, false);

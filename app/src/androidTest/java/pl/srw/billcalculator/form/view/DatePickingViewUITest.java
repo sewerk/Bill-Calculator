@@ -1,11 +1,9 @@
 package pl.srw.billcalculator.form.view;
 
 import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.Month;
 
@@ -15,8 +13,7 @@ import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.tester.FormTester;
 import pl.srw.billcalculator.type.Provider;
 
-@RunWith(AndroidJUnit4.class)
-public class DatePickingViewAndroidTest {
+public class DatePickingViewUITest {
 
     @Rule
     public ActivityTestRule<DrawerActivity> mActivityTestRule = new ActivityTestRule<>(DrawerActivity.class);

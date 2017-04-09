@@ -1,12 +1,10 @@
 package pl.srw.billcalculator.form;
 
 import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.history.DrawerActivity;
@@ -17,8 +15,7 @@ import static pl.srw.billcalculator.type.Provider.PGE;
 import static pl.srw.billcalculator.type.Provider.PGNIG;
 import static pl.srw.billcalculator.type.Provider.TAURON;
 
-@RunWith(AndroidJUnit4.class)
-public class FormAndroidTest {
+public class FormUITest {
 
     @Rule
     public ActivityTestRule<DrawerActivity> testRule = new ActivityTestRule<>(DrawerActivity.class);

@@ -3,12 +3,10 @@ package pl.srw.billcalculator.settings;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 
@@ -20,8 +18,7 @@ import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.type.Provider;
 
-@RunWith(AndroidJUnit4.class)
-public class SettingsAndroidTest {
+public class SettingsUITest {
 
     @Rule
     public ActivityTestRule<DrawerActivity> testRule = new ActivityTestRule<>(DrawerActivity.class, false, false);

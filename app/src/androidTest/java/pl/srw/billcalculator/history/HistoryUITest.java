@@ -22,7 +22,7 @@ import pl.srw.billcalculator.testutils.HistoryGenerator;
 import static org.junit.Assert.assertTrue;
 import static pl.srw.billcalculator.di.ApplicationModule.SHARED_PREFERENCES_FILE;
 
-public class HistoryAndroidTest {
+public class HistoryUITest {
 
     @Rule
     public ActivityTestRule<DrawerActivity> testRule = new ActivityTestRule<>(DrawerActivity.class, false, false);

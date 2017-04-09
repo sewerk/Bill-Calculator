@@ -14,7 +14,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
-public class PgeUITest extends AbstractVerifyBillCreationUITest {
+public class PgeBillCreationUITest extends AbstractVerifyBillCreationUITest {
 
     private static final String READING_DAY_FROM = "16683";
     private static final String READING_DAY_TO = "16787";

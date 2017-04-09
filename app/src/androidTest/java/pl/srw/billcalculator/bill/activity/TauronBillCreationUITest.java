@@ -15,10 +15,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.containsString;
 
-/**
- * Created by kseweryn on 17.04.15.
- */
-public class TauronUITest extends AbstractVerifyBillCreationUITest {
+public class TauronBillCreationUITest extends AbstractVerifyBillCreationUITest {
 
     private static final String READING_FROM = "7869";
     private static final String READING_TO = "8681";
