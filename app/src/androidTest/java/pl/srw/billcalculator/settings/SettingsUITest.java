@@ -1,7 +1,5 @@
 package pl.srw.billcalculator.settings;
 
-import android.content.Context;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 
 import org.junit.Before;
@@ -10,12 +8,11 @@ import org.junit.Test;
 
 import javax.inject.Inject;
 
-import pl.srw.billcalculator.di.ApplicationModule;
-import pl.srw.billcalculator.di.DaggerTestApplicationComponent;
 import pl.srw.billcalculator.di.TestApplicationComponent;
 import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.tester.AppTester;
+import pl.srw.billcalculator.testutils.TestDependencies;
 import pl.srw.billcalculator.type.Provider;
 
 public class SettingsUITest {
@@ -29,11 +26,7 @@ public class SettingsUITest {
 
     @Before
     public void setUp() throws Exception {
-        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
-
-        TestApplicationComponent component = DaggerTestApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(context))
-                .build();
+        TestApplicationComponent component = TestDependencies.getTestApplicationComponent();
         component.inject(this);
 
         settingsRepo.markFirstLaunch();
