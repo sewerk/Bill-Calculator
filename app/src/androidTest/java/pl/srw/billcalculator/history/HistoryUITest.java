@@ -11,13 +11,14 @@ import org.junit.Test;
 
 import javax.inject.Inject;
 
-import pl.srw.billcalculator.di.ApplicationModule;
 import pl.srw.billcalculator.di.DaggerTestApplicationComponent;
 import pl.srw.billcalculator.di.TestApplicationComponent;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.tester.HistoryTester;
 import pl.srw.billcalculator.testutils.HistoryGenerator;
+import pl.srw.billcalculator.util.BillSelection;
+import pl.srw.billcalculator.wrapper.Dependencies;
 
 import static org.junit.Assert.assertTrue;
 import static pl.srw.billcalculator.di.ApplicationModule.SHARED_PREFERENCES_FILE;
@@ -29,20 +30,22 @@ public class HistoryUITest {
 
     @Inject HistoryGenerator historyGenerator;
 
+    @Inject BillSelection selection;
+
     private AppTester tester = new AppTester();
 
     @Before
     public void setUp() throws Exception {
-        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
-
         TestApplicationComponent component = DaggerTestApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(context))
+                .applicationModule(Dependencies.getApplicationComponent().getApplicationModule())
                 .build();
+        Dependencies.setApplicationComponent(component);
         component.inject(this);
     }
 
     @After
     public void tearDown() throws Exception {
+        selection.deselectAll();
         HistoryGenerator.clear();
     }
 

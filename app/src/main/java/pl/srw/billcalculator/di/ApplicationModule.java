@@ -78,4 +78,10 @@ public class ApplicationModule {
     String getPrintPathDir() {
         return Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + context.getString(R.string.print_dir);
     }
+
+    @Provides
+    @Singleton
+    ApplicationModule applicationModule() {
+        return this;
+    }
 }

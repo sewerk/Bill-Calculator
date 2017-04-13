@@ -40,6 +40,7 @@ public class BillCalculator extends Application {
             Database.enableDatabaseLogging();
         }
 
+        Dependencies.init(getApplicationContext());
         Dependencies.inject(this);
 
         Analytics.initialize(this);

@@ -18,6 +18,8 @@ import pl.srw.billcalculator.settings.di.SettingsComponent;
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
 
+    ApplicationModule getApplicationModule();
+
     HistoryComponent getHistoryComponent();
 
     SettingsComponent getSettingsComponent();

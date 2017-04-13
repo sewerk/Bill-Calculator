@@ -1,5 +1,8 @@
 package pl.srw.billcalculator.wrapper;
 
+import android.content.Context;
+import android.support.annotation.VisibleForTesting;
+
 import com.f2prateek.dart.Dart;
 
 import butterknife.ButterKnife;
@@ -22,14 +25,22 @@ public class Dependencies {
 
     private static ApplicationComponent applicationComponent;
 
+    public static void init(Context application) {
+        applicationComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(application))
+                .build();
+    }
+
+    @VisibleForTesting
+    public static void setApplicationComponent(ApplicationComponent applicationComponent) {
+        Dependencies.applicationComponent = applicationComponent;
+    }
+
     public static ApplicationComponent getApplicationComponent() {
         return applicationComponent;
     }
 
     public static void inject(BillCalculator application) {
-        applicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(application))
-                .build();
         applicationComponent.inject(application);
     }
 
