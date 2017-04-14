@@ -8,8 +8,8 @@ import pl.srw.billcalculator.history.HistoryUITest;
 import pl.srw.billcalculator.settings.SettingsUITest;
 
 @Singleton
-@Component(modules = ApplicationModule.class)
-public interface TestApplicationComponent extends ApplicationComponent {
+@Component(modules = TestApplicationModule.class)
+public interface TestApplicationComponent {
 
     void inject(InstantAutoCompleteUITest test);
 

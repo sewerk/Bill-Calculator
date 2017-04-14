@@ -1,7 +1,6 @@
 package pl.srw.billcalculator.wrapper;
 
 import android.content.Context;
-import android.support.annotation.VisibleForTesting;
 
 import com.f2prateek.dart.Dart;
 
@@ -29,11 +28,6 @@ public class Dependencies {
         applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(application))
                 .build();
-    }
-
-    @VisibleForTesting
-    public static void setApplicationComponent(ApplicationComponent applicationComponent) {
-        Dependencies.applicationComponent = applicationComponent;
     }
 
     public static ApplicationComponent getApplicationComponent() {

@@ -11,12 +11,11 @@ import org.junit.Test;
 
 import javax.inject.Inject;
 
-import pl.srw.billcalculator.di.TestApplicationComponent;
+import pl.srw.billcalculator.di.TestDependencies;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.tester.HistoryTester;
 import pl.srw.billcalculator.testutils.HistoryGenerator;
-import pl.srw.billcalculator.testutils.TestDependencies;
 import pl.srw.billcalculator.util.BillSelection;
 
 import static org.junit.Assert.assertTrue;
@@ -35,8 +34,7 @@ public class HistoryUITest {
 
     @Before
     public void setUp() throws Exception {
-        TestApplicationComponent component = TestDependencies.getTestApplicationComponent();
-        component.inject(this);
+        TestDependencies.inject(this);
     }
 
     @After

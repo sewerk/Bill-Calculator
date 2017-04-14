@@ -13,12 +13,13 @@ import pl.srw.billcalculator.bill.service.TauronBillStoringService;
 import pl.srw.billcalculator.history.di.HistoryComponent;
 import pl.srw.billcalculator.settings.di.ProviderSettingsComponent;
 import pl.srw.billcalculator.settings.di.SettingsComponent;
+import pl.srw.billcalculator.settings.global.SettingsRepo;
+import pl.srw.billcalculator.settings.prices.PgePrices;
+import pl.srw.billcalculator.util.BillSelection;
 
 @Singleton
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
-
-    ApplicationModule getApplicationModule();
 
     HistoryComponent getHistoryComponent();
 
@@ -39,4 +40,10 @@ public interface ApplicationComponent {
     void inject(PgnigBillStoringService service);
 
     void inject(TauronBillStoringService service);
+
+    PgePrices getPgePrices();
+
+    SettingsRepo getSettingsRepo();
+
+    BillSelection getBillSelection();
 }

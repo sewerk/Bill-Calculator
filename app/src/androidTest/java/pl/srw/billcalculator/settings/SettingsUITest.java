@@ -8,11 +8,10 @@ import org.junit.Test;
 
 import javax.inject.Inject;
 
-import pl.srw.billcalculator.di.TestApplicationComponent;
+import pl.srw.billcalculator.di.TestDependencies;
 import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.tester.AppTester;
-import pl.srw.billcalculator.testutils.TestDependencies;
 import pl.srw.billcalculator.type.Provider;
 
 public class SettingsUITest {
@@ -26,8 +25,7 @@ public class SettingsUITest {
 
     @Before
     public void setUp() throws Exception {
-        TestApplicationComponent component = TestDependencies.getTestApplicationComponent();
-        component.inject(this);
+        TestDependencies.inject(this);
 
         settingsRepo.markFirstLaunch();
 
