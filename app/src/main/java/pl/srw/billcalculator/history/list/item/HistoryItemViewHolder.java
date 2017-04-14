@@ -69,11 +69,13 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder
     @Override
     public void select() {
         logoAnimator.changeTo(R.drawable.history_item_selected);
+        logoImage.setSelected(true);
     }
 
     @Override
     public void deselect() {
         logoAnimator.changeTo(itemValuesProvider.getLogoId());
+        logoImage.setSelected(false);
     }
 
     @Override
@@ -103,6 +105,7 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder
                 : itemValuesProvider.getLogoId();
 
         logoImage.setImageResource(logoId);
+        logoImage.setSelected(selected);
     }
 
 }

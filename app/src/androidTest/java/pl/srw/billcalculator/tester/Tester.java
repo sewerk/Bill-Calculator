@@ -1,20 +1,13 @@
 package pl.srw.billcalculator.tester;
 
-import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.support.design.widget.NavigationView;
-import android.support.test.espresso.matcher.BoundedMatcher;
 import android.support.test.rule.ActivityTestRule;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.widget.ImageView;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -99,37 +92,5 @@ abstract class Tester {
             change = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         }
         testRule.getActivity().setRequestedOrientation(change);
-    }
-
-    static Matcher<View> withImageDrawable(final int resourceId) {
-        return new BoundedMatcher<View, ImageView>(ImageView.class) {
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("has image drawable resource " + resourceId);
-            }
-
-            @Override
-            public boolean matchesSafely(ImageView imageView) {
-                return sameBitmap(imageView.getContext(), imageView.getDrawable(), resourceId);
-            }
-        };
-    }
-
-    private static boolean sameBitmap(Context context, Drawable drawable, int resourceId) {
-        Drawable otherDrawable = context.getResources().getDrawable(resourceId);
-        if (drawable == null || otherDrawable == null) {
-            return false;
-        }
-        if (drawable instanceof LayerDrawable && otherDrawable instanceof LayerDrawable) {
-            drawable = ((LayerDrawable) drawable).getDrawable(1);
-            otherDrawable = ((LayerDrawable) otherDrawable).getDrawable(1);
-            return drawable.getConstantState().equals(otherDrawable.getConstantState());
-        }
-        if (drawable instanceof BitmapDrawable && otherDrawable instanceof BitmapDrawable) {
-            Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-            Bitmap otherBitmap = ((BitmapDrawable) otherDrawable).getBitmap();
-            return bitmap.sameAs(otherBitmap);
-        }
-        return false;
     }
 }

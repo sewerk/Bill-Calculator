@@ -11,6 +11,7 @@ import static android.support.test.espresso.contrib.RecyclerViewActions.actionOn
 import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.hasSibling;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isSelected;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -56,12 +57,12 @@ public class HistoryTester extends Tester {
         onView(withId(R.id.bill_list)).perform(scrollToPosition(position + 1));
         onView(allOf(withId(R.id.history_item_logo),
                 withParent(withParent(childAtPosition(withId(R.id.bill_list), position)))))
-                .check(matches(withImageDrawable(R.drawable.history_item_selected)));
+                .check(matches(isSelected()));
         return this;
     }
 
     public HistoryTester checkNoSelection() {
-        onView(withImageDrawable(R.drawable.history_item_selected)).check(doesNotExist());
+        onView(isSelected()).check(doesNotExist());
         return this;
     }
 
