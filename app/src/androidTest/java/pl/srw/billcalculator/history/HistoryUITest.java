@@ -76,6 +76,40 @@ public class HistoryUITest {
     }
 
     @Test
+    public void shouldShowUndoMessageAfterSwipeDelete() {
+        // given: one bill in history
+        historyGenerator.generatePgeG11Bill(11);
+        testRule.launchActivity(null);
+
+        // when: deleting one bill
+        HistoryTester historyTester = tester.skipCheckPricesDialogIfVisible()
+                .onHistory()
+                .deleteBillWithReadings("1", "11");
+
+        // then:
+        historyTester
+                .checkUndoMessageIsShown()
+                .checkEmptyHistoryIsShown();
+    }
+
+    @Test
+    public void shouldRestoreBillWhenUndoActionClicked() throws Exception {
+        // given: one bill in history
+        historyGenerator.generatePgeG11Bill(11);
+        testRule.launchActivity(null);
+
+        // when: deleting one bill
+        HistoryTester historyTester = tester.skipCheckPricesDialogIfVisible()
+                .onHistory()
+                .deleteBillWithReadings("1", "11")
+                .undoDelete();
+
+        // then:
+        historyTester.checkEmptyHistoryIsNotShown()
+                .openBillWithReadings("1", "11");
+    }
+
+    @Test
     public void shouldUnselectAfterDeletion() {
         // given: list contain 5 entries
         historyGenerator.generatePgeG11Bills(5);

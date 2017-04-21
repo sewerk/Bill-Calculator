@@ -16,6 +16,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.not;
 
 public class HistoryTester extends Tester {
 
@@ -43,13 +44,33 @@ public class HistoryTester extends Tester {
         return this;
     }
 
+    public HistoryTester deleteBillWithReadings(String from, String to) {
+        onView(withText(from + " - " + to)).perform(swipeAwayRight());
+        return this;
+    }
+
     public HistoryTester deleteSelected() {
         clickView(R.id.action_delete);
         return this;
     }
 
+    public HistoryTester undoDelete() {
+        clickText(R.string.action_undo_delete);
+        return this;
+    }
+
     public HistoryTester checkEmptyHistoryIsShown() {
         onView(withText(R.string.empty_history)).check(matches(isDisplayed()));
+        return this;
+    }
+
+    public HistoryTester checkEmptyHistoryIsNotShown() {
+        onView(withText(R.string.empty_history)).check(matches(not(isDisplayed())));
+        return this;
+    }
+
+    public HistoryTester checkUndoMessageIsShown() {
+        onView(withText(R.string.bill_deleted)).check(matches(isDisplayed()));
         return this;
     }
 

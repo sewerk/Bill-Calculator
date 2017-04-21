@@ -4,6 +4,12 @@ import android.content.pm.ActivityInfo;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.support.design.widget.NavigationView;
+import android.support.test.espresso.ViewAction;
+import android.support.test.espresso.action.CoordinatesProvider;
+import android.support.test.espresso.action.GeneralLocation;
+import android.support.test.espresso.action.GeneralSwipeAction;
+import android.support.test.espresso.action.Press;
+import android.support.test.espresso.action.Swipe;
 import android.support.test.rule.ActivityTestRule;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +23,7 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.history.DrawerActivity;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.actionWithAssertions;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.swipeUp;
@@ -60,8 +67,21 @@ abstract class Tester {
         onView(withId(id)).perform(click());
     }
 
-    static Matcher<View> childAtPosition(
-            final Matcher<View> parentMatcher, final int position) {
+    ViewAction swipeAwayRight() {
+        return actionWithAssertions(new GeneralSwipeAction(Swipe.FAST,
+                GeneralLocation.VISIBLE_CENTER,
+                new CoordinatesProvider() {
+                    @Override
+                    public float[] calculateCoordinates(View view) {
+                        float xy[] = GeneralLocation.CENTER_RIGHT.calculateCoordinates(view);
+                        xy[0] += 3f * view.getWidth();
+                        return xy;
+                    }
+                },
+                Press.FINGER));
+    }
+
+    Matcher<View> childAtPosition(final Matcher<View> parentMatcher, final int position) {
 
         return new TypeSafeMatcher<View>() {
             @Override
