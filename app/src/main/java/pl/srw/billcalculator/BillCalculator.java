@@ -2,6 +2,7 @@ package pl.srw.billcalculator;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.v7.app.AppCompatDelegate;
 
 import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.squareup.leakcanary.LeakCanary;
@@ -50,6 +51,8 @@ public class BillCalculator extends Application {
         pgePrices.setDefaultIfNotSet();
         pgnigPrices.setDefaultIfNotSet();
         tauronPrices.setDefaultIfNotSet();
+
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
 
     public static BillCalculator get(Context context) {
