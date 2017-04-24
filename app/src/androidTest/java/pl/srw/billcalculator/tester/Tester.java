@@ -69,12 +69,12 @@ abstract class Tester {
 
     ViewAction swipeAwayRight() {
         return actionWithAssertions(new GeneralSwipeAction(Swipe.FAST,
-                GeneralLocation.VISIBLE_CENTER,
+                GeneralLocation.CENTER_LEFT,
                 new CoordinatesProvider() {
                     @Override
                     public float[] calculateCoordinates(View view) {
                         float xy[] = GeneralLocation.CENTER_RIGHT.calculateCoordinates(view);
-                        xy[0] += 3f * view.getWidth();
+                        xy[0] += 20f * view.getWidth();
                         return xy;
                     }
                 },
