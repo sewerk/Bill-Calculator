@@ -9,12 +9,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import pl.srw.billcalculator.history.DrawerActivity;
+import pl.srw.billcalculator.history.HistoryGenerator;
 import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.tester.BillTester;
 import pl.srw.billcalculator.tester.FormTester;
 import pl.srw.billcalculator.tester.HistoryTester;
 import pl.srw.billcalculator.tester.ProviderSettingsTester;
-import pl.srw.billcalculator.testutils.HistoryGenerator;
 import pl.srw.billcalculator.type.Provider;
 
 @RunWith(AndroidJUnit4.class)

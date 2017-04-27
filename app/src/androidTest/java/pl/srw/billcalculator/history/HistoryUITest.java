@@ -15,7 +15,6 @@ import pl.srw.billcalculator.di.TestDependencies;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.tester.HistoryTester;
-import pl.srw.billcalculator.testutils.HistoryGenerator;
 import pl.srw.billcalculator.util.BillSelection;
 
 import static org.junit.Assert.assertTrue;

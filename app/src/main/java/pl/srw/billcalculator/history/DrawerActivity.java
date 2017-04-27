@@ -64,6 +64,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
 //TODO    @Inject DrawerPresenter drawerPresenter;
     @Inject FabsMenuHandler fabsMenuHandler;
     @Inject BillSelection selection;
+    @Inject MenuClickHandlerExtension menuHandlerExtension;
     private MenuItem deleteMenuAction;
 
     @Override
@@ -101,6 +102,8 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
             return true;
         } else if (id == R.id.action_delete) {
             presenter.deleteClicked();
+            return true;
+        } else if (menuHandlerExtension.onOptionsItemSelected(item)) {
             return true;
         }
 

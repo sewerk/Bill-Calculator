@@ -11,10 +11,10 @@ import javax.inject.Inject;
 
 import pl.srw.billcalculator.di.TestDependencies;
 import pl.srw.billcalculator.history.DrawerActivity;
+import pl.srw.billcalculator.history.HistoryGenerator;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.tester.AppTester;
-import pl.srw.billcalculator.testutils.HistoryGenerator;
 import pl.srw.billcalculator.type.Provider;
 
 public class InstantAutoCompleteUITest {
