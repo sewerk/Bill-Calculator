@@ -281,6 +281,9 @@ public class HistoryPresenterTest {
 
     @Test
     public void undoDeleteClicked_viewAddsItemToList() throws Exception {
+        // GIVEN
+        when(history.isUndoDeletePossible()).thenReturn(true);
+
         // WHEN
         final int position = 0;
         sut.undoDeleteClicked(position);
@@ -292,6 +295,9 @@ public class HistoryPresenterTest {
 
     @Test
     public void undoDeleteClicked_undosDeleteHistory() throws Exception {
+        // GIVEN
+        when(history.isUndoDeletePossible()).thenReturn(true);
+
         // WHEN
         sut.undoDeleteClicked(0);
 
@@ -300,7 +306,23 @@ public class HistoryPresenterTest {
     }
 
     @Test
+    public void undoDeleteClicked_whenAlreadyUndo_doesNotUndoAnyMore() throws Exception {
+        // GIVEN
+        when(history.isUndoDeletePossible()).thenReturn(false);
+
+        // WHEN
+        sut.undoDeleteClicked(0);
+
+        // THEN
+        verify(history).isUndoDeletePossible();
+        verify(history, never()).undoDelete();
+    }
+
+    @Test
     public void undoDeleteClicked_fetchAllHistory() throws Exception {
+        // GIVEN
+        when(history.isUndoDeletePossible()).thenReturn(true);
+
         // WHEN
         sut.undoDeleteClicked(0);
 

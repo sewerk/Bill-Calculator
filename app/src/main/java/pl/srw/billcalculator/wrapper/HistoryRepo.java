@@ -24,6 +24,10 @@ public class HistoryRepo {
         Database.undelete();
     }
 
+    public boolean isUndoDeletePossible() {
+        return Database.canUndelete();
+    }
+
     public LazyList<History> getAll() {
         return Database.getHistory(); // TODO: Rewrite to Rx
     }

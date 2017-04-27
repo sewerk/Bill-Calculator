@@ -8,6 +8,7 @@ import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.query.LazyList;
 import org.greenrobot.greendao.query.Query;
 import org.greenrobot.greendao.query.QueryBuilder;
+
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.db.Prices;
@@ -95,6 +96,9 @@ public class Database {
         type.getDao().deleteByKey(billId);
     }
 
+    /**
+     * Adds back last bill+prices which were removed
+     */
     public static void undelete() {
         if (deletedBill != null && deletedPrices != null) {
             final BillType type = BillType.valueOf(deletedBill);
@@ -103,5 +107,9 @@ public class Database {
             ((AbstractDao<Bill, Long>) type.getDao()).insert(deletedBill);
             deletedBill = null;
         }
+    }
+
+    public static boolean canUndelete() {
+        return deletedBill != null && deletedPrices != null;
     }
 }
