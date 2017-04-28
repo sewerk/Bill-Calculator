@@ -28,8 +28,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryItemViewHolder> 
     }
 
     public void setData(LazyList<History> data) {
-        if (lazyList != null)
-            lazyList.close();
         lazyList = data;
         dataChangeObserver.onChanged(this);
     }

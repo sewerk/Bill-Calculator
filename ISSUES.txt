@@ -1,6 +1,5 @@
 BUGS
 - storing service crashes on Dart - replace/remove
-- history list refreshed after coming back from Settings (rebind is doing extra work)
 - settings list desc is cut off on tablets
 - form layout is cut off
 - logcat error when form open

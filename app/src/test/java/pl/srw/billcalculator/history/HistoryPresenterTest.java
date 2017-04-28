@@ -99,14 +99,17 @@ public class HistoryPresenterTest {
     }
 
     @Test
-    public void onNewViewRestoreState_whenNeedRefresh_fetchAllHistory() throws Exception {
+    public void onNewViewRestoreState_whenNeedRefresh_closesOldListAndFetchNewOne() throws Exception {
         // GIVEN
+        final LazyList<History> list = mock(LazyList.class);
+        Whitebox.setInternalState(sut, "historyData", list);
         Whitebox.setInternalState(sut, "needRefresh", true);
 
         // WHEN
         sut.onNewViewRestoreState();
 
         // THEN
+        verify(list).close();
         verify(history).getAll();
     }
 

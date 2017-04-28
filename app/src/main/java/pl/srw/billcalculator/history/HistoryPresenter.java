@@ -69,8 +69,8 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         present(new UIChange<HistoryView>() {
             @Override
             public void change(HistoryView view) {
-                view.setListData(historyData); // TODO: BUG: when data not change the lazyList is closed by this call
-                view.redrawList();
+                view.setListData(historyData);
+                view.redrawList();// TODO: this is unnecessary then coming back from other screen
             }
         });
     }
@@ -219,6 +219,9 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     }
 
     private void loadHistoryData() {
+        if (historyData != null)
+            historyData.close();
+
         historyData = history.getAll();
         needRefresh = false;
     }

@@ -34,18 +34,6 @@ public class HistoryAdapterTest {
     }
 
     @Test
-    public void setData_whenDataSet_closesLazyList() throws Exception {
-        // GIVEN
-        Whitebox.setInternalState(sut, "lazyList", lazyList);
-
-        // WHEN
-        sut.setData(null);
-
-        // THEN
-        verify(lazyList).close();
-    }
-
-    @Test
     public void setData_setsData() throws Exception {
         // WHEN
         sut.setData(lazyList);
