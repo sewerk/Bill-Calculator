@@ -54,6 +54,10 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
             public void change(HistoryView view) {
                 if (settings.isFirstLaunch()) {
                     view.showWelcomeDialog();
+                    settings.markHelpShown();
+                } else if (!settings.wasHelpShown()) {
+                    view.showHelp();
+                    settings.markHelpShown();
                 }
                 view.setListData(historyData);
                 view.redrawList();

@@ -68,6 +68,30 @@ public class HistoryPresenterTest {
     }
 
     @Test
+    public void onFirstBind_whenFirstLaunch_doesNotShowHelp() throws Exception {
+        // GIVEN
+        when(settings.isFirstLaunch()).thenReturn(true);
+
+        // WHEN
+        sut.onFirstBind();
+
+        // THEN
+        verify(view, never()).showHelp();
+    }
+
+    @Test
+    public void onFirstBind_whenFirstLaunch_marksHelpShown() throws Exception {
+        // GIVEN
+        when(settings.isFirstLaunch()).thenReturn(true);
+
+        // WHEN
+        sut.onFirstBind();
+
+        // THEN
+        verify(settings).markHelpShown();
+    }
+
+    @Test
     public void onFirstBind_whenNotFirstLaunch_dontShowsWelcomeDialog() throws Exception {
         // GIVEN
         when(settings.isFirstLaunch()).thenReturn(false);
@@ -77,6 +101,48 @@ public class HistoryPresenterTest {
 
         // THEN
         verify(view, never()).showWelcomeDialog();
+    }
+
+    @Test
+    public void onFirstBind_whenNotFirstLaunch_andHelpWasNotShown_showsHelpAndMarkShown() throws Exception {
+        // GIVEN
+        when(settings.isFirstLaunch()).thenReturn(false);
+        when(settings.wasHelpShown()).thenReturn(false);
+
+        // WHEN
+        sut.onFirstBind();
+
+        // THEN
+        verify(view).showHelp();
+        verify(settings).markHelpShown();
+    }
+
+    @Test
+    public void onFirstBind_whenNotFirstLaunch_andFirstLaunchOnFreshInstallation_neverShowHelp() throws Exception {
+        // GIVEN
+        when(settings.isFirstLaunch()).thenReturn(true, false);
+        sut.onFirstBind();
+        verify(settings).markHelpShown();
+
+        // WHEN
+        when(settings.wasHelpShown()).thenReturn(true);
+        sut.onFirstBind();
+
+        // THEN
+        verify(view, never()).showHelp();
+    }
+
+    @Test
+    public void onFirstBind_whenNotFirstLaunch_andHelpWasShown_doesNotShowHelp() throws Exception {
+        // GIVEN
+        when(settings.isFirstLaunch()).thenReturn(false);
+        when(settings.wasHelpShown()).thenReturn(true);
+
+        // WHEN
+        sut.onFirstBind();
+
+        // THEN
+        verify(view, never()).showHelp();
     }
 
     @Test

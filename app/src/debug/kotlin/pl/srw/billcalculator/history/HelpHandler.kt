@@ -18,16 +18,6 @@ class HelpHandler @Inject constructor(res: Resources) {
     val menuDesc: String = res.getString(R.string.help_menu_desc)
     val optionsDesc: String = res.getString(R.string.help_options_desc)
 
-    val sequenceListener = object : TapTargetSequence.Listener {
-        override fun onSequenceFinish() {
-            TODO()
-        }
-
-        override fun onSequenceStep(lastTarget: TapTarget, targetClicked: Boolean) {}
-
-        override fun onSequenceCanceled(lastTarget: TapTarget) {}
-    }
-
     fun show(activity: Activity) {
         val toolbar = activity.findViewById(R.id.toolbar) as Toolbar
         val fab = activity.findViewById(R.id.fab)
@@ -42,7 +32,6 @@ class HelpHandler @Inject constructor(res: Resources) {
                 )
                 .continueOnCancel(true)
                 .considerOuterCircleCanceled(true)
-                .listener(sequenceListener)
                 .start()
     }
 }
