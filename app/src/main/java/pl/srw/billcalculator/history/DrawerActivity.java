@@ -63,6 +63,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Inject HistoryPresenter presenter;
 //TODO    @Inject DrawerPresenter drawerPresenter;
     @Inject FabsMenuHandler fabsMenuHandler;
+    @Inject HelpHandler helpHandler;
     @Inject BillSelection selection;
     @Inject MenuClickHandlerExtension menuHandlerExtension;
     private MenuItem deleteMenuAction;
@@ -174,7 +175,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
 
     @Override
     public void showHelp() {
-        // TODO: impl overlaying help
+        helpHandler.show(this);
     }
 
     @Override

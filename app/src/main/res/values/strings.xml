@@ -8,6 +8,11 @@
     <string name="new_pgnig_bill">gas from PGNiG</string>
     <string name="drawer_group_more">More</string>
 
+    <string name="help_fab_desc">Calculate bill</string>
+    <string name="help_swipe_delete_desc">Swipe bill to delete</string>
+    <string name="help_menu_desc">Menu</string>
+    <string name="help_options_desc">More options</string>
+
     <!-- activity_main -->
     <string name="app_name">Bill Calculator</string>
     <string name="tariff_change"><![CDATA[<a href="prices/pge/tariff">change</a>]]></string>

@@ -2,6 +2,7 @@ package pl.srw.billcalculator.di;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 
@@ -75,7 +76,13 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    String getPrintPathDir() {
+    String providePrintPathDir() {
         return Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + context.getString(R.string.print_dir);
+    }
+
+    @Provides
+    @Singleton
+    Resources provideResources() {
+        return context.getResources();
     }
 }
