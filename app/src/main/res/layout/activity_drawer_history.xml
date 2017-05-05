@@ -30,7 +30,7 @@
         android:id="@+id/swipe_delete_history_icon"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        app:srcCompat="@drawable/ic_swipe_right_white_24dp"
+        app:srcCompat="@drawable/finger_moving_right"
         android:visibility="invisible"
         android:layout_gravity="center"/>
 
