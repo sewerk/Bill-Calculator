@@ -62,10 +62,11 @@
         <item name="android:background">@drawable/underline</item>
     </style>
 
-    <style name="FormDateInput">
-        <item name="android:layout_width">0dp</item>
+    <!--<style name="FormDateInput" parent="Widget.AppCompat.Spinner.Underlined">-->
+    <style name="FormDateInput" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:maxLines">2</item>
+        <item name="android:maxLines">1</item>
     </style>
 
     <style name="FormReadingInputLayout">
@@ -86,6 +87,10 @@
         <item name="android:layout_height">24dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_marginLeft">4dp</item>
+    </style>
+
+    <style name="FormDateIcon" parent="FormEntryIcon">
+        <item name="android:visibility">gone</item>
     </style>
 
     <style name="FormEntryUnit">

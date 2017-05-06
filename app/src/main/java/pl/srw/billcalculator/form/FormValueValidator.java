@@ -5,6 +5,7 @@ import android.support.annotation.StringRes;
 import org.threeten.bp.LocalDate;
 
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.form.fragment.FormFragment;
 import pl.srw.billcalculator.util.Dates;
 
 public final class FormValueValidator {
@@ -26,8 +27,8 @@ public final class FormValueValidator {
     }
 
     public static boolean isDatesOrderCorrect(final String fromDate, final String toDate, OnErrorCallback callback) {
-        LocalDate from = Dates.parse(fromDate);
-        LocalDate to = Dates.parse(toDate);
+        LocalDate from = Dates.parse(fromDate, FormFragment.DATE_PATTERN);
+        LocalDate to = Dates.parse(toDate, FormFragment.DATE_PATTERN);
         if (!from.isBefore(to)) {
             callback.onError(R.string.date_error);
             return false;

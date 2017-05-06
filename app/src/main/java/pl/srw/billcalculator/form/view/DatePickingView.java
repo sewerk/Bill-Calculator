@@ -3,7 +3,7 @@ package pl.srw.billcalculator.form.view;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.support.annotation.StringRes;
-import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.widget.DatePicker;
 
@@ -12,9 +12,10 @@ import org.threeten.bp.Month;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import pl.srw.billcalculator.form.fragment.FormFragment;
 import pl.srw.billcalculator.util.Dates;
 
-public class DatePickingView extends AppCompatButton {
+public class DatePickingView extends AppCompatTextView {
 
     private OnDatePickedListener onDatePickedListener;
     private ErrorViewHandler errorHandler;
@@ -49,7 +50,7 @@ public class DatePickingView extends AppCompatButton {
 
     @OnClick
     void showDatePicker() {
-        final LocalDate date = Dates.parse(this.getText().toString());
+        final LocalDate date = Dates.parse(this.getText().toString(), FormFragment.DATE_PATTERN);
         final int year = date.getYear();
         final int monthValue = date.getMonthValue() - 1;
         final int dayOfMonth = date.getDayOfMonth();
@@ -61,7 +62,7 @@ public class DatePickingView extends AppCompatButton {
         return new DatePickerDialog.OnDateSetListener(){
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                DatePickingView.this.setText(Dates.format(year, Month.of(month + 1), day));
+                DatePickingView.this.setText(Dates.format(year, Month.of(month + 1), day, FormFragment.DATE_PATTERN));
                 setError(null);
                 if (onDatePickedListener != null) {
                     onDatePickedListener.onDatePicked(DatePickingView.this);

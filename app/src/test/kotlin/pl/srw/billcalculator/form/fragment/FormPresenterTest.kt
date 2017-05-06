@@ -81,10 +81,10 @@ class FormPresenterTest : RxJavaBaseTest() {
 
         // THEN
         verify(view).setLogo(provider)
-        verify(view, never()).setupSettingsLink()
+        verify(view).setupSettingsLink()
         verify(view, times(if (tariff != null) 1 else 0)).setTariffText(tariff)
         verify(view).setReadingUnit(readingUnitResId)
-        verify(view, never()).setDates(anyString(), anyString())
+        verify(view, never()).setDates(any(), any())
     }
 
     @Test
@@ -335,18 +335,12 @@ class FormPresenterTest : RxJavaBaseTest() {
         whenever(readingsRepo.getPreviousReadingsFor(any())).thenReturn(Single.just(readings))
     }
 
-    private fun calculateDateFrom(): String {
-        return "01/" + currentMonthString() + "/" + LocalDate.now().year
+    private fun calculateDateFrom(): LocalDate {
+        return LocalDate.now().withDayOfMonth(1)
     }
 
-    private fun calculateDateTo(): String {
+    private fun calculateDateTo(): LocalDate {
         val now = LocalDate.now()
-        return "" + now.lengthOfMonth() + "/" + currentMonthString() + "/" + now.year
-    }
-
-    private fun currentMonthString() : String {
-        val monthValue = LocalDate.now().monthValue
-        if (monthValue < 10) return "0" + monthValue
-        else return "" + monthValue
+        return now.withDayOfMonth(now.lengthOfMonth())
     }
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- phone (Nexus 5X) out of split screen -->
+    <style name="FormDateIcon" parent="FormEntryIcon">
+        <item name="android:visibility">visible</item>
+        <item name="android:layout_marginRight">4dp</item>
+    </style>
+</resources>

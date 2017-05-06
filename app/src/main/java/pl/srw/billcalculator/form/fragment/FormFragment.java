@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
+import org.threeten.bp.LocalDate;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -39,6 +41,7 @@ import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Animations;
+import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Views;
 import pl.srw.mfvp.MvpFragment;
 import pl.srw.mfvp.presenter.PresenterHandlingDelegate;
@@ -50,6 +53,7 @@ public class FormFragment extends MvpFragment
         implements MvpFragmentScopedFragment<FormComponent, HistoryComponent>,
         PresenterOwner, FormPresenter.FormView {
 
+    public static final String DATE_PATTERN = "dd.MM.yy";
     private static final String EXTRA_PROVIDER = "PROVIDER";
 
     @Inject
@@ -190,9 +194,9 @@ public class FormFragment extends MvpFragment
     }
 
     @Override
-    public void setDates(String fromDate, String toDate) {
-        dateFromView.setText(fromDate);
-        dateToView.setText(toDate);
+    public void setDates(LocalDate fromDate, LocalDate toDate) {
+        dateFromView.setText(Dates.format(fromDate, DATE_PATTERN));
+        dateToView.setText(Dates.format(toDate, DATE_PATTERN));
     }
 
     @Override

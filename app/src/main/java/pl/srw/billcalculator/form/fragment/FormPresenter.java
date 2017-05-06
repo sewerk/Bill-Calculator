@@ -3,12 +3,13 @@ package pl.srw.billcalculator.form.fragment;
 import android.support.annotation.StringRes;
 import android.view.View;
 
+import org.threeten.bp.LocalDate;
+
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.form.FormValueValidator;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
@@ -49,9 +50,8 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
         present(new UIChange<FormView>() {
             @Override
             public void change(FormView view) {
-                view.setupSettingsLink();
                 setFormValues(view);
-                view.setDates(Dates.format(Dates.firstDayOfThisMonth()), Dates.format(Dates.lastDayOfThisMonth()));
+                view.setDates(Dates.firstDayOfThisMonth(), Dates.lastDayOfThisMonth());
             }
         });
     }
@@ -174,6 +174,7 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
     }
 
     private void setFormValues(FormView view) {
+        view.setupSettingsLink();
         view.setLogo(provider);
         view.setReadingUnit(provider.formReadingUnit);
         if (provider == PGNIG) {
@@ -257,7 +258,7 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
 
         void setTariffText(String tariff);
 
-        void setDates(String fromDate, String toDate);
+        void setDates(LocalDate fromDate, LocalDate toDate);
 
         void setAutoCompleteDataForReadingFrom(int[] readings);
 

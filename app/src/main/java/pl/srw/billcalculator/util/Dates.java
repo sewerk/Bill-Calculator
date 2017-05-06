@@ -19,12 +19,20 @@ public class Dates {
     private static final String DATE_PATTERN = "dd/MM/yyyy";
 
     public static LocalDate parse(String text) {
-        return LocalDate.parse(text, DateTimeFormatter.ofPattern(DATE_PATTERN));
+        return parse(text, DATE_PATTERN);
+    }
+
+    public static LocalDate parse(String text, String pattern) {
+        return LocalDate.parse(text, DateTimeFormatter.ofPattern(pattern));
     }
 
     public static String format(int year, Month month, int day) {
+        return format(year, month, day, DATE_PATTERN);
+    }
+
+    public static String format(int year, Month month, int day, String pattern) {
         final LocalDate date = LocalDate.of(year, month, day);
-        return format(date, DATE_PATTERN);
+        return format(date, pattern);
     }
 
     public static String format(LocalDate date) {

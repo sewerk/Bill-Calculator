@@ -18,7 +18,7 @@
 
     <ImageView
         android:id="@+id/form_entry_dates_icon"
-        style="@style/FormEntryIcon"
+        style="@style/FormDateIcon"
         android:contentDescription="@string/form_entry_dates_icon_content_desc"
         app:layout_constraintBottom_toBottomOf="@+id/form_entry_dates_from"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -34,7 +34,7 @@
         app:layout_constraintRight_toLeftOf="@+id/form_entry_dates_separator"
         app:layout_constraintTop_toBottomOf="@+id/form_entry_dates_header"
         tools:layout_width="75dp"
-        tools:text="11/12/2014"/>
+        tools:text="11.12.14"/>
 
     <TextView
         android:id="@+id/form_entry_dates_separator"
@@ -47,14 +47,13 @@
     <pl.srw.billcalculator.form.view.DatePickingView
         android:id="@+id/form_entry_dates_to"
         style="@style/FormDateInput"
-        android:layout_marginRight="32dp"
         android:freezesText="true"
         app:errorView="@+id/date_to_error"
         app:layout_constraintLeft_toRightOf="@+id/form_entry_dates_separator"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/form_entry_dates_space"
         app:layout_constraintTop_toTopOf="@+id/form_entry_dates_from"
         tools:layout_width="75dp"
-        tools:text="31/12/2014"/>
+        tools:text="31.12.14"/>
 
     <TextView
         android:id="@+id/date_to_error"
@@ -68,4 +67,8 @@
         app:layout_constraintTop_toBottomOf="@+id/form_entry_dates_to"
         tools:text="@string/date_error"/>
 
+    <View
+        android:id="@+id/form_entry_dates_space"
+        style="@style/FormDateIcon"
+        app:layout_constraintRight_toRightOf="parent"/>
 </merge>
