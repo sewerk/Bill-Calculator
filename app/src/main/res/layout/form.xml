@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
              xmlns:tools="http://schemas.android.com/tools"
              android:id="@+id/form"
-             android:layout_width="wrap_content"
+             android:layout_width="match_parent"
              android:layout_height="wrap_content">
 
     <ScrollView
@@ -15,55 +16,55 @@
         android:background="@drawable/form_background"
         android:paddingBottom="28dp">
 
-        <RelativeLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
 
             <include layout="@layout/form_logo"/>
 
-            <TableLayout
-                android:layout_width="wrap_content"
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/form_entry_background"
+                app:layout_constraintTop_toTopOf="@+id/form_entry_reading_header"
+                app:layout_constraintBottom_toBottomOf="@+id/date_to_error"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <TextView
+                android:id="@+id/form_entry_reading_header"
+                style="@style/FormHeader"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:background="@drawable/form_entry_background"
-                android:layout_below="@+id/form_logo">
+                android:text="@string/form_readings_header"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="@+id/form_entry_tariff"
+                app:layout_constraintTop_toBottomOf="@+id/form_logo"/>
 
-                <TableRow>
-                    <TextView
-                        style="@style/FormHeader"
-                        android:layout_span="4"
-                        android:text="@string/form_readings_header"/>
+            <TextView
+                android:id="@+id/form_entry_tariff"
+                style="@style/FormHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:gravity="end"
+                app:layout_constraintBaseline_toBaselineOf="@id/form_entry_reading_header"
+                app:layout_constraintLeft_toRightOf="@id/form_entry_reading_header"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:text="G11"/>
 
-                    <TextView
-                        android:id="@+id/form_entry_tariff"
-                        style="@style/FormHeader"
-                        android:layout_column="4"
-                        android:gravity="end"
-                        tools:text="G11"/>
-                </TableRow>
+            <include layout="@layout/form_readings_single"/>
 
-                <include layout="@layout/form_readings_single"/>
+            <include layout="@layout/form_readings_double"/>
 
-                <include layout="@layout/form_readings_double"/>
+            <include layout="@layout/form_dates"/>
 
-                <TableRow>
-                    <TextView
-                        style="@style/FormHeader"
-                        android:layout_span="5"
-                        android:text="@string/form_dates_header"/>
-                </TableRow>
-
-                <include layout="@layout/form_dates"/>
-
-            </TableLayout>
-        </RelativeLayout>
+        </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
     <include layout="@layout/form_fabs"/>

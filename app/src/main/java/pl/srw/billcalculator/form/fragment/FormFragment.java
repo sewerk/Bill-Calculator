@@ -15,7 +15,6 @@ import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.style.UnderlineSpan;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
@@ -60,8 +59,12 @@ public class FormFragment extends MvpFragment
     @BindView(R.id.form_settings_link) TextView settingsLink;
     @BindView(R.id.form_entry_tariff) TextView tariffView;
     @BindView(R.id.form_entry_reading_unit) TextView unitView;
-    @BindView(R.id.form_entry_readings_single) ViewGroup singleReadingsGroup;
-    @BindViews({R.id.form_entry_readings_day, R.id.form_entry_readings_night}) ViewGroup[] doubleReadingsGroups;
+    @BindViews({R.id.form_entry_reading_icon, R.id.form_entry_reading_from, R.id.form_entry_reading_separator,
+            R.id.form_entry_reading_to, R.id.form_entry_reading_unit}) View[] singleReadingsGroup;
+    @BindViews({R.id.form_entry_reading_day_icon, R.id.form_entry_reading_day_from, R.id.form_entry_reading_day_separator,
+            R.id.form_entry_reading_day_to, R.id.form_entry_reading_day_unit, R.id.form_entry_reading_night_icon,
+            R.id.form_entry_reading_night_from, R.id.form_entry_reading_night_separator,
+            R.id.form_entry_reading_night_to, R.id.form_entry_reading_night_unit}) View[] doubleReadingsGroups;
     @BindView(R.id.form_entry_dates_from) DatePickingView dateFromView;
     @BindView(R.id.form_entry_dates_to) DatePickingView dateToView;
 
@@ -193,15 +196,20 @@ public class FormFragment extends MvpFragment
     }
 
     @Override
-    public void setSingleReadingsVisibility(int visibility) {
-        singleReadingsGroup.setVisibility(visibility);
+    public void setSingleReadingsVisibility(final int visibility) {
+        ButterKnife.apply(singleReadingsGroup, new ButterKnife.Action<View>() {
+            @Override
+            public void apply(@NonNull View view, int index) {
+                view.setVisibility(visibility);
+            }
+        });
     }
 
     @Override
     public void setDoubleReadingsVisibility(final int visibility) {
-        ButterKnife.apply(doubleReadingsGroups, new ButterKnife.Action<ViewGroup>() {
+        ButterKnife.apply(doubleReadingsGroups, new ButterKnife.Action<View>() {
             @Override
-            public void apply(@NonNull ViewGroup view, int index) {
+            public void apply(@NonNull View view, int index) {
                 view.setVisibility(visibility);
             }
         });

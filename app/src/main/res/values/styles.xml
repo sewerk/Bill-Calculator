@@ -62,6 +62,17 @@
         <item name="android:background">@drawable/underline</item>
     </style>
 
+    <style name="FormDateInput">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">2</item>
+    </style>
+
+    <style name="FormEntryInput">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
     <style name="FormReadingEntry">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -74,16 +85,19 @@
         <item name="android:layout_width">24dp</item>
         <item name="android:layout_height">24dp</item>
         <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginLeft">4dp</item>
     </style>
 
     <style name="FormEntryUnit">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">12sp</item>
         <item name="android:layout_gravity">center</item>
     </style>
 
     <style name="FormEntrySeparator">
-        <item name="android:paddingLeft">8dp</item>
-        <item name="android:paddingRight">8dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">24sp</item>
         <item name="android:text">-</item>
         <item name="android:layout_gravity">center</item>

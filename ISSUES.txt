@@ -1,6 +1,5 @@
 BUGS
 - storing service crashes on Dart - replace/remove
-- form layout is cut off
 - logcat error when form open
 
 TEST
