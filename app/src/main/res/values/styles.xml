@@ -68,12 +68,12 @@
         <item name="android:maxLines">2</item>
     </style>
 
-    <style name="FormEntryInput">
+    <style name="FormReadingInputLayout">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="FormReadingEntry">
+    <style name="FormReadingInput">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLength">9</item>
