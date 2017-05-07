@@ -35,8 +35,8 @@ public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
     private static final String DATE_PATTERN = "dd.MM.yyyy";
     private static final int PRICE_SCALE = 5;
 
-    @InjectExtra(IntentCreator.DATE_FROM) String dateFrom;
-    @InjectExtra(IntentCreator.DATE_TO) String dateTo;
+    @InjectExtra(IntentCreator.DATE_FROM) LocalDate dateFrom;
+    @InjectExtra(IntentCreator.DATE_TO) LocalDate dateTo;
     @InjectExtra(IntentCreator.READING_FROM) int readingFrom;
     @InjectExtra(IntentCreator.READING_TO) int readingTo;
 
@@ -86,9 +86,9 @@ public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
     private void setReadingsTable() {
         TableLayout readingsTable = (TableLayout) findViewById(R.id.t_readings);
 
-        Views.setTV(readingsTable, R.id.tv_prev_reading_date, Dates.changeSeparator(dateFrom, "."));
+        Views.setTV(readingsTable, R.id.tv_prev_reading_date, Dates.format(dateFrom, DATE_PATTERN));
         Views.setTV(readingsTable, R.id.tv_previous_reading, getString(R.string.odczyt_na_dzien, readingFrom));
-        Views.setTV(readingsTable, R.id.tv_curr_reading_date, Dates.changeSeparator(dateTo, "."));
+        Views.setTV(readingsTable, R.id.tv_curr_reading_date, Dates.format(dateTo, DATE_PATTERN));
         Views.setTV(readingsTable, R.id.tv_current_reading, getString(R.string.odczyt_na_dzien, readingTo));
         Views.setTV(readingsTable, R.id.tv_consumption, getString(R.string.zuzycie, bill.getConsumptionM3()));
 
@@ -116,8 +116,8 @@ public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
                         BigDecimal netPrice, BigDecimal netCharge, String exciseAmount) {
         View row = chargeTable.findViewById(rowId);
         Views.setTV(row, R.id.tv_charge_desc, getString(descId));
-        Views.setTV(row, R.id.tv_date_from, Dates.changeSeparator(dateFrom, "."));
-        Views.setTV(row, R.id.tv_date_to, Dates.changeSeparator(dateTo, "."));
+        Views.setTV(row, R.id.tv_date_from, Dates.format(dateFrom, DATE_PATTERN));
+        Views.setTV(row, R.id.tv_date_to, Dates.format(dateTo, DATE_PATTERN));
         Views.setTV(row, R.id.tv_Jm, getString(jmId));
         Views.setTV(row, R.id.tv_count, count);
         Views.setTV(row, R.id.tv_net_price, Display.withScale(netPrice, PRICE_SCALE));

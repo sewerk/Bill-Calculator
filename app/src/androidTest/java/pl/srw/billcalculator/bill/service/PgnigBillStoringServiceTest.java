@@ -9,6 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.Month;
 
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -20,9 +22,6 @@ import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.util.Dates;
 
-/**
- * Created by Kamil Seweryn.
- */
 @RunWith(AndroidJUnit4.class)
 public class PgnigBillStoringServiceTest extends ServiceTestCase<PgnigBillStoringServiceTest.PgnigBillStoringServiceWrapper> {
 
@@ -76,8 +75,8 @@ public class PgnigBillStoringServiceTest extends ServiceTestCase<PgnigBillStorin
         final Intent intent = new Intent(getContext(), PgnigBillStoringService.class);
         intent.putExtra(IntentCreator.READING_FROM, 1);
         intent.putExtra(IntentCreator.READING_TO, 4);
-        intent.putExtra(IntentCreator.DATE_FROM, "01/01/2014");
-        intent.putExtra(IntentCreator.DATE_TO, "21/12/2015");
+        intent.putExtra(IntentCreator.DATE_FROM, LocalDate.of(2014, Month.JANUARY, 1));
+        intent.putExtra(IntentCreator.DATE_TO, LocalDate.of(2015, Month.DECEMBER, 21));
         startService(intent);
 
         latch.await();

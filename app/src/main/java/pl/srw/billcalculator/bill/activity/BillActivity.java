@@ -147,7 +147,7 @@ abstract class BillActivity<T extends MvpComponent>
         intent.setDataAndType(uri, type);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try {
-            startActivity(intent);
+            startActivity(intent); // TODO: StrictMode.onFileUriExposed: exposed beyond app through Intent.getData()
         } catch (ActivityNotFoundException e) {
             Toast.makeText(this, getString(R.string.print_no_pdf_viewer, file.getAbsolutePath()), Toast.LENGTH_LONG).show();
         }

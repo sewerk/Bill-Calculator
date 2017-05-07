@@ -9,14 +9,11 @@ import pl.srw.billcalculator.bill.calculation.TauronG12CalculatedBill;
 import pl.srw.billcalculator.db.TauronG11Bill;
 import pl.srw.billcalculator.db.TauronG12Bill;
 import pl.srw.billcalculator.db.TauronPrices;
-import pl.srw.billcalculator.wrapper.Dependencies;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
+import pl.srw.billcalculator.wrapper.Dependencies;
 
-/**
- * Created by kseweryn on 29.05.15.
- */
 public class TauronBillStoringService extends BillStoringService<TauronPrices, CalculatedEnergyBill> {
 
     @Inject pl.srw.billcalculator.settings.prices.TauronPrices prices;
@@ -41,13 +38,13 @@ public class TauronBillStoringService extends BillStoringService<TauronPrices, C
     protected void storeBill(CalculatedEnergyBill calculatedBill, TauronPrices prices) {
         if (isTwoUnitTariff()) {
             final TauronG12Bill bill = new TauronG12Bill(null, readingDayFrom, readingDayTo, readingNightFrom, readingNightTo,
-                    Dates.toDate(Dates.parse(dateFrom)), Dates.toDate(Dates.parse(dateTo)),
+                    Dates.toDate(dateFrom), Dates.toDate(dateTo),
                     calculatedBill.getGrossChargeSum().doubleValue(), prices.getId());
             Database.getSession().insert(bill);
             savedBillsRegistry.register(bill);
         } else {
             final TauronG11Bill bill = new TauronG11Bill(null, readingFrom, readingTo,
-                    Dates.toDate(Dates.parse(dateFrom)), Dates.toDate(Dates.parse(dateTo)),
+                    Dates.toDate(dateFrom), Dates.toDate(dateTo),
                     calculatedBill.getGrossChargeSum().doubleValue(), prices.getId());
             Database.getSession().insert(bill);
             savedBillsRegistry.register(bill);

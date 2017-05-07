@@ -55,7 +55,7 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
             prices = prefsPrices;
         } else if (savedInstanceState == null
                 && "0.00".equals(prices.getOplataOze())
-                && Dates.parse(dateTo).isAfter(LocalDate.of(2016, Month.JULY, 1))) {
+                && dateTo.isAfter(LocalDate.of(2016, Month.JULY, 1))) {
             new BillCalculatedBeforeOZEChangeDialogFragment()
                     .show(getFragmentManager(), null);
         }
@@ -90,8 +90,8 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
 
     private void setDates() {
         Views.setTV(this, R.id.tv_invoice_date, getString(R.string.data_wystawienia, Dates.format(LocalDate.now(), DATE_PATTERN)));
-        Views.setTV(this, R.id.tv_title, getString(R.string.data_sprzedazy, Dates.format(Dates.parse(dateTo), "MM.yyyy")));
-        Views.setTV(this, R.id.tv_for_period, getString(R.string.okres_rozliczeniowy, Dates.changeSeparator(dateFrom, "."), Dates.changeSeparator(dateTo, ".")));
+        Views.setTV(this, R.id.tv_title, getString(R.string.data_sprzedazy, Dates.format(dateTo, "MM.yyyy")));
+        Views.setTV(this, R.id.tv_for_period, getString(R.string.okres_rozliczeniowy, Dates.format(dateFrom, DATE_PATTERN), Dates.format(dateTo, DATE_PATTERN)));
     }
 
     private void setTariff() {
@@ -193,11 +193,11 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
         return tariff;
     }
 
-    private String getDateStringFor(@IdRes int rowId, String date) {
+    private String getDateStringFor(@IdRes int rowId, LocalDate date) {
         if ((rowId == R.id.row_oplata_oze || rowId == R.id.row_oplata_oze2) &&
-                Dates.parse(date).isBefore(LocalDate.of(2016, Month.JULY, 1))) {
+                date.isBefore(LocalDate.of(2016, Month.JULY, 1))) {
             return "01.07.2016";
         }
-        return Dates.changeSeparator(date, ".");
+        return Dates.format(date, DATE_PATTERN);
     }
 }

@@ -1,11 +1,12 @@
 package pl.srw.billcalculator.bill.calculation
 
+import org.threeten.bp.LocalDate
 import pl.srw.billcalculator.pojo.IPgnigPrices
 import pl.srw.billcalculator.util.Dates
 import java.math.BigDecimal
 import java.math.RoundingMode
 
-class PgnigCalculatedBill(readingFrom: Int, readingTo: Int, dateFrom: String, dateTo: String, prices: IPgnigPrices)
+class PgnigCalculatedBill(readingFrom: Int, readingTo: Int, dateFrom: LocalDate, dateTo: LocalDate, prices: IPgnigPrices)
     : CalculatedBill(true, dateFrom, dateTo) {
 
     val monthCountExact = Dates.countMonth(dateFrom, dateTo)

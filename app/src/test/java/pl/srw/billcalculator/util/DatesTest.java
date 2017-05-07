@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.Month;
+import org.threeten.bp.format.DateTimeFormatter;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -85,7 +86,7 @@ public class DatesTest {
             "11/11/2014,11/11/2015|12"
             })
     public void shouldCountWholeMonth(String fromDate, String toDate, int count) {
-        assertEquals(count, Dates.countWholeMonth(fromDate, toDate));
+        assertEquals(count, Dates.countWholeMonth(parse(fromDate), parse(toDate)));
     }
 
     @Test
@@ -106,7 +107,7 @@ public class DatesTest {
             "11/11/2014,11/11/2015|12"
     })
     public void shouldCountMonth(String fromDate, String toDate, double count) {
-        final double result = Dates.countMonth(fromDate, toDate).doubleValue();
+        final double result = Dates.countMonth(parse(fromDate), parse(toDate)).doubleValue();
         assertEquals(count, result, 0.0001);
     }
 
@@ -121,7 +122,7 @@ public class DatesTest {
     })
     public void shouldCountDaysFromJuly16(String fromDate, String toDate, int count) throws Exception {
         // WHEN
-        final int result = Dates.countDaysFromJuly16(fromDate, toDate);
+        final int result = Dates.countDaysFromJuly16(parse(fromDate), parse(toDate));
 
         // THEN
         assertEquals(count, result);
@@ -137,7 +138,7 @@ public class DatesTest {
     })
     public void shouldCountDays(String fromDate, String toDate, int count) throws Exception {
         // WHEN
-        final int result = Dates.countDays(fromDate, toDate);
+        final int result = Dates.countDays(parse(fromDate), parse(toDate));
 
         // THEN
         assertEquals(count, result);
@@ -191,5 +192,9 @@ public class DatesTest {
 
     private String format(Date date) {
         return new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(date);
+    }
+
+    private LocalDate parse(String text) {
+        return LocalDate.parse(text, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 }

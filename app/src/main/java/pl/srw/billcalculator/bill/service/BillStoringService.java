@@ -8,19 +8,18 @@ import com.f2prateek.dart.Dart;
 import com.f2prateek.dart.InjectExtra;
 import com.f2prateek.dart.Optional;
 
+import org.threeten.bp.LocalDate;
+
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.bill.calculation.CalculatedBill;
 import pl.srw.billcalculator.db.Prices;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.type.Provider;
 
-/**
- * Created by kseweryn on 02.06.15.
- */
 public abstract class BillStoringService<P extends Prices, C extends CalculatedBill> extends IntentService {
 
-    protected @InjectExtra(IntentCreator.DATE_FROM) String dateFrom;
-    protected @InjectExtra(IntentCreator.DATE_TO) String dateTo;
+    protected @InjectExtra(IntentCreator.DATE_FROM) LocalDate dateFrom;
+    protected @InjectExtra(IntentCreator.DATE_TO) LocalDate dateTo;
     protected @Optional @InjectExtra(IntentCreator.READING_FROM) int readingFrom;
     protected @Optional @InjectExtra(IntentCreator.READING_TO) int readingTo;
     protected @Optional @InjectExtra(IntentCreator.READING_DAY_FROM) int readingDayFrom;

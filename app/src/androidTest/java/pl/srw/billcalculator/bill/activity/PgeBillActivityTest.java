@@ -7,19 +7,19 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.Month;
+
 import java.math.BigDecimal;
 
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 
-/**
- * Created by Kamil Seweryn.
- */
 public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBillActivity> {
 
-    private static final String DATE_FROM = "01/12/2014";
-    private static final String DATE_TO = "31/12/2014";
+    private static final LocalDate DATE_FROM = LocalDate.of(2014, Month.DECEMBER, 1);
+    private static final LocalDate DATE_TO = LocalDate.of(2014, Month.DECEMBER, 31);
     private static final int FROM = 12;
     private static final int TO = 25;
 
@@ -60,8 +60,8 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
     }
 
     public void testZaOkresLabelDependsOnIntentExtra() {
-        final String dateFrom = "03/12/2014";
-        final String dateTo = "29/12/2014";
+        final LocalDate dateFrom = LocalDate.of(2014, Month.DECEMBER, 3);
+        final LocalDate dateTo = LocalDate.of(2014, Month.DECEMBER, 29);
 
         Intent intent = new Intent();
         putReadings(intent, FROM, TO);
@@ -253,7 +253,7 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         putDates(intent, DATE_FROM, DATE_TO);
     }
 
-    private void putDates(Intent intent, String dateFrom, String dateTo) {
+    private void putDates(Intent intent, LocalDate dateFrom, LocalDate dateTo) {
         intent.putExtra(IntentCreator.DATE_FROM, dateFrom);
         intent.putExtra(IntentCreator.DATE_TO, dateTo);
     }
@@ -266,8 +266,8 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         Intent intent = new Intent();
         intent.putExtra(IntentCreator.READING_FROM, 1);
         intent.putExtra(IntentCreator.READING_TO, 2);
-        intent.putExtra(IntentCreator.DATE_FROM, "01/01/2014");
-        intent.putExtra(IntentCreator.DATE_TO, "21/12/2015");
+        intent.putExtra(IntentCreator.DATE_FROM, LocalDate.of(2014, Month.JANUARY, 1));
+        intent.putExtra(IntentCreator.DATE_TO, LocalDate.of(2015, Month.DECEMBER, 21));
         setActivityIntent(intent);
     }
 

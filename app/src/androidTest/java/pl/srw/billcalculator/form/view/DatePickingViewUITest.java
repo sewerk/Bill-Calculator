@@ -31,7 +31,7 @@ public class DatePickingViewUITest {
                 .openDateFromPicker()
                 .acceptDate()
 
-                .dateFromView().hasText("01/" + monthPrefix + now.getMonthValue() + "/" + now.getYear());
+                .dateFromView().hasText("01." + monthPrefix + now.getMonthValue() + "." + now.getYear() % 100);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class DatePickingViewUITest {
                 .pickDate(15, Month.JANUARY, 2017)
                 .acceptDate()
 
-                .dateFromView().hasText("15/01/2017");
+                .dateFromView().hasText("15.01.17");
     }
 
     @Test

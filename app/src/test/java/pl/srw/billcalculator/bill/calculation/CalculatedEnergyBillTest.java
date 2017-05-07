@@ -2,20 +2,23 @@ package pl.srw.billcalculator.bill.calculation;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.Month;
 
 import java.math.BigDecimal;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import pl.srw.billcalculator.util.Dates;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(JUnitParamsRunner.class)
 public class CalculatedEnergyBillTest {
 
     private int consumption;
 
-    private CalculatedEnergyBill sut = new CalculatedEnergyBill("01/01/2000", "01/01/2000", "0.00", "0.00", "0.00") {
+    private CalculatedEnergyBill sut = new CalculatedEnergyBill(LocalDate.of(2000, Month.JANUARY, 1), LocalDate.of(2000, Month.JANUARY, 1), "0.00", "0.00", "0.00") {
         @Override
         public int getTotalConsumption() {
             return consumption;
@@ -34,7 +37,7 @@ public class CalculatedEnergyBillTest {
     })
     public void countConsumptionPartFromJuly16(String dateFrom, String dateTo, int consumption, int expected) throws Exception {
         // WHEN
-        final int result = sut.countConsumptionPartFromJuly16(dateFrom, dateTo, consumption);
+        final int result = sut.countConsumptionPartFromJuly16(Dates.parse(dateFrom), Dates.parse(dateTo), consumption);
 
         // THEN
         assertEquals(expected, result);

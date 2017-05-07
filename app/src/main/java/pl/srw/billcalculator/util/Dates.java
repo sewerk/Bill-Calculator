@@ -1,5 +1,7 @@
 package pl.srw.billcalculator.util;
 
+import android.support.annotation.Size;
+
 import org.threeten.bp.DateTimeUtils;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.Month;
@@ -18,7 +20,7 @@ public class Dates {
     public static final Locale PL_LOCALE = new Locale("pl", "PL");
     private static final String DATE_PATTERN = "dd/MM/yyyy";
 
-    public static LocalDate parse(String text) {
+    public static LocalDate parse(String text) { // TODO: remove
         return parse(text, DATE_PATTERN);
     }
 
@@ -39,12 +41,8 @@ public class Dates {
         return format(date, DATE_PATTERN);
     }
 
-    public static String format(LocalDate date, String datePattern) {
+    public static String format(LocalDate date, @Size(min = 4, max = 10) String datePattern) {
         return date.format(DateTimeFormatter.ofPattern(datePattern));
-    }
-
-    public static String changeSeparator(String date, String separator) {
-        return date.replaceAll("/", separator);
     }
 
     public static LocalDate toLocalDate(Date utilDate) {
@@ -55,21 +53,19 @@ public class Dates {
         return new Date(DateTimeUtils.toSqlDate(localDate).getTime());
     }
 
-    public static int countWholeMonth(String from, String to) {
+    public static int countWholeMonth(LocalDate from, LocalDate to) {
         final double count = getMonthCount(from, to);
         final int wholeMonth = (int) count;
         return wholeMonth
                 + (count-wholeMonth >= 0.5 ? 1 : 0);
     }
 
-    public static BigDecimal countMonth(String from, String to) {
+    public static BigDecimal countMonth(LocalDate from, LocalDate to) {
         final double count = getMonthCount(from, to);
         return new BigDecimal(count).setScale(4, RoundingMode.HALF_UP);
     }
 
-    private static double getMonthCount(String from, String to) {
-        final LocalDate startDate = parse(from);
-        final LocalDate endDate = parse(to);
+    private static double getMonthCount(LocalDate startDate, LocalDate endDate) {
         final Period period = Period.between(startDate, endDate);
         if (period.getDays() == 0) // from 01.01 to 01.02 // full month
             return period.getMonths()
@@ -100,22 +96,18 @@ public class Dates {
         return LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());
     }
 
-    public static int countDaysFromJuly16(String from, String to) {
+    public static int countDaysFromJuly16(LocalDate startDate, LocalDate endDate) {
         final LocalDate julyFirst = LocalDate.of(2016, Month.JULY, 1);
-        final LocalDate endDate = parse(to);
         if (endDate.isBefore(julyFirst)) {
             return 0;
         }
-        final LocalDate startDate = parse(from);
         if (startDate.isBefore(julyFirst)) {
-            return countDays(format(2016, Month.JULY, 1), to);
+            return countDays(julyFirst, endDate);
         } else
-            return countDays(from, to);
+            return countDays(startDate, endDate);
     }
 
-    public static int countDays(String from, String to) {
-        final LocalDate startDate = parse(from);
-        final LocalDate endDate = parse(to);
+    public static int countDays(LocalDate startDate, LocalDate endDate) {
         return (int) ChronoUnit.DAYS.between(startDate, endDate);
     }
 }

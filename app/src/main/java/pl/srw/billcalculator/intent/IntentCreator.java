@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.TextView;
 
+import org.threeten.bp.LocalDate;
+
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.TauronG11Bill;
 import pl.srw.billcalculator.db.TauronG12Bill;
+import pl.srw.billcalculator.form.fragment.FormFragment;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.wrapper.Analytics;
 
@@ -36,10 +39,11 @@ public final class IntentCreator {
     public Intent from(final TextView etReadingFrom, final TextView etReadingTo,
                        final TextView bDateFrom, final TextView bDateTo) {
         return from(getIntText(etReadingFrom), getIntText(etReadingTo),
-                getText(bDateFrom), getText(bDateTo));
+                Dates.parse(getText(bDateFrom), FormFragment.DATE_PATTERN),
+                Dates.parse(getText(bDateTo), FormFragment.DATE_PATTERN));
     }
 
-    private Intent from(int readingFrom, int readingTo, String dateFrom, String dateTo) {
+    private Intent from(int readingFrom, int readingTo, LocalDate dateFrom, LocalDate dateTo) {
         putReadingsExtra(readingFrom, readingTo);
         putDatesExtra(dateFrom, dateTo);
         return intent;
@@ -50,10 +54,11 @@ public final class IntentCreator {
                        final TextView bDateFrom, final TextView bDateTo) {
         return from(getIntText(etReadingDayFrom), getIntText(etReadingDayTo),
                 getIntText(etReadingNightFrom), getIntText(etReadingNightTo),
-                getText(bDateFrom), getText(bDateTo));
+                Dates.parse(getText(bDateFrom), FormFragment.DATE_PATTERN),
+                Dates.parse(getText(bDateTo), FormFragment.DATE_PATTERN));
     }
 
-    private Intent from(int readingDayFrom, int readingDayTo, int readingNightFrom, int readingNightTo, String dateFrom, String dateTo) {
+    private Intent from(int readingDayFrom, int readingDayTo, int readingNightFrom, int readingNightTo, LocalDate dateFrom, LocalDate dateTo) {
         putReadingsG12Extra(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo);
         putDatesExtra(dateFrom, dateTo);
         return intent;
@@ -95,8 +100,8 @@ public final class IntentCreator {
     }
 
     private void putDatesExtra(final Bill bill) {
-        final String dateFrom = Dates.format(Dates.toLocalDate(bill.getDateFrom()));
-        final String dateTo = Dates.format(Dates.toLocalDate(bill.getDateTo()));
+        final LocalDate dateFrom = Dates.toLocalDate(bill.getDateFrom());
+        final LocalDate dateTo = Dates.toLocalDate(bill.getDateTo());
         putDatesExtra(dateFrom, dateTo);
     }
 
@@ -118,10 +123,10 @@ public final class IntentCreator {
         Analytics.setInt(READING_NIGHT_TO, readingNightTo);
     }
 
-    private void putDatesExtra(final String dateFrom, final String dateTo) {
+    private void putDatesExtra(final LocalDate dateFrom, final LocalDate dateTo) {
         intent.putExtra(DATE_FROM, dateFrom);
         intent.putExtra(DATE_TO, dateTo);
-        Analytics.setString(DATE_FROM, dateFrom);
-        Analytics.setString(DATE_TO, dateTo);
+        Analytics.setString(DATE_FROM, dateFrom.toString());
+        Analytics.setString(DATE_TO, dateTo.toString());
     }
 }

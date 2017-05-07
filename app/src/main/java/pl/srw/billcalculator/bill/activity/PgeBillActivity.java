@@ -54,7 +54,7 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
             prices = prefsPrices;
         } else if (savedInstanceState == null
                 && "0.00".equals(prices.getOplataOze())
-                && Dates.parse(dateTo).isAfter(LocalDate.of(2016, Month.JULY, 1))) {
+                && dateTo.isAfter(LocalDate.of(2016, Month.JULY, 1))) {
             new BillCalculatedBeforeOZEChangeDialogFragment()
                     .show(getFragmentManager(), null);
         }

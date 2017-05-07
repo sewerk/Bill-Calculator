@@ -1,9 +1,10 @@
 package pl.srw.billcalculator.bill.calculation
 
+import org.threeten.bp.LocalDate
 import pl.srw.billcalculator.util.Dates
 import java.math.BigDecimal
 
-abstract class CalculatedEnergyBill(dateFrom: String, dateTo: String,
+abstract class CalculatedEnergyBill(dateFrom: LocalDate, dateTo: LocalDate,
                                     oplataAbonamentowa: String, oplataPrzejsciowa: String, oplataStalaZaPrzesyl: String)
     : CalculatedBill(false, dateFrom, dateTo) {
 
@@ -19,7 +20,7 @@ abstract class CalculatedEnergyBill(dateFrom: String, dateTo: String,
     val oplataPrzejsciowaVatCharge = countVatAndAddToSum(oplataPrzejsciowaNetCharge)
     val oplataDystrybucyjnaStalaVatCharge = countVatAndAddToSum(oplataDystrybucyjnaStalaNetCharge)
 
-    protected fun countConsumptionPartFromJuly16(dateFrom: String, dateTo: String, consumption: Int): Int {
+    protected fun countConsumptionPartFromJuly16(dateFrom: LocalDate, dateTo: LocalDate, consumption: Int): Int {
         val daysFromJuly16 = Dates.countDaysFromJuly16(dateFrom, dateTo)
         val periodInDays = Dates.countDays(dateFrom, dateTo)
         if (daysFromJuly16 == periodInDays) {

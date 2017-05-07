@@ -9,6 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.Month;
 
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -77,8 +79,8 @@ public class PgeBillStoringServiceTest extends ServiceTestCase<PgeBillStoringSer
         final Intent intent = new Intent(getContext(), PgeBillStoringService.class);
         intent.putExtra(IntentCreator.READING_FROM, 2);
         intent.putExtra(IntentCreator.READING_TO, 5);
-        intent.putExtra(IntentCreator.DATE_FROM, "01/01/2014");
-        intent.putExtra(IntentCreator.DATE_TO, "21/12/2015");
+        intent.putExtra(IntentCreator.DATE_FROM, LocalDate.of(2014, Month.JANUARY, 1));
+        intent.putExtra(IntentCreator.DATE_TO, LocalDate.of(2015, Month.DECEMBER, 21));
         startService(intent);
 
         latch.await();
@@ -104,8 +106,8 @@ public class PgeBillStoringServiceTest extends ServiceTestCase<PgeBillStoringSer
         intent.putExtra(IntentCreator.READING_DAY_TO, 11);
         intent.putExtra(IntentCreator.READING_NIGHT_FROM, 12);
         intent.putExtra(IntentCreator.READING_NIGHT_TO, 13);
-        intent.putExtra(IntentCreator.DATE_FROM, "01/02/2014");
-        intent.putExtra(IntentCreator.DATE_TO, "21/10/2015");
+        intent.putExtra(IntentCreator.DATE_FROM, LocalDate.of(2014, Month.FEBRUARY, 1));
+        intent.putExtra(IntentCreator.DATE_TO, LocalDate.of(2015, Month.OCTOBER, 21));
         startService(intent);
 
         latch.await();

@@ -1,6 +1,8 @@
 package pl.srw.billcalculator.bill.calculation;
 
 import org.junit.Test;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.Month;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -10,9 +12,6 @@ import pl.srw.billcalculator.db.TauronPrices;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by kseweryn on 02.06.15.
- */
 public class TauronG11CalculatedBillTest {
 
     @Test
@@ -21,7 +20,7 @@ public class TauronG11CalculatedBillTest {
         final TauronPrices prices = new TauronPrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", null, null, null, null, "0.00");
 
         // calculate
-        final TauronG11CalculatedBill sut = new TauronG11CalculatedBill(20, 30, "01/03/2015", "30/04/2015", prices);
+        final TauronG11CalculatedBill sut = new TauronG11CalculatedBill(20, 30, LocalDate.of(2015, Month.MARCH, 1), LocalDate.of(2015, Month.APRIL, 30), prices);
 
         // verify
         assertThat(sut.getTotalConsumption(), is(10));
@@ -58,7 +57,7 @@ public class TauronG11CalculatedBillTest {
         final TauronPrices prices = new TauronPrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", null, null, null, null, "0.00251");
 
         // calculate
-        final TauronG11CalculatedBill sut = new TauronG11CalculatedBill(20, 30, "01/07/2016", "30/08/2016", prices);
+        final TauronG11CalculatedBill sut = new TauronG11CalculatedBill(20, 30, LocalDate.of(2016, Month.JULY, 1), LocalDate.of(2016, Month.AUGUST, 30), prices);
 
         // verify
         assertThat(sut.getConsumptionFromJuly16(), is(10));
@@ -85,8 +84,8 @@ public class TauronG11CalculatedBillTest {
         final TauronPrices prices2 = new TauronPrices(2L, "0.25680", "0.19130", "1.55", "3.29", "0.80", null, null, null, null, "0.00");
 
         // calculate
-        final TauronG11CalculatedBill bill1 = new TauronG11CalculatedBill(7869, 8681, "01/08/2014", "31/12/2014", prices1);
-        final TauronG11CalculatedBill bill2 = new TauronG11CalculatedBill(8681, 8865, "01/01/2015", "28/02/2015", prices2);
+        final TauronG11CalculatedBill bill1 = new TauronG11CalculatedBill(7869, 8681, LocalDate.of(2014, Month.AUGUST, 1), LocalDate.of(2014, Month.DECEMBER, 31), prices1);
+        final TauronG11CalculatedBill bill2 = new TauronG11CalculatedBill(8681, 8865, LocalDate.of(2015, Month.JANUARY, 1), LocalDate.of(2015, Month.FEBRUARY, 28), prices2);
 
         // verify
         assertThat(bill1.getTotalConsumption(), is(812));

@@ -41,9 +41,9 @@ public class FormValueValidatorTest {
     }
 
     @Test
-    @Parameters({"01/01/2015, 02/01/2015|true",
-            "02/01/2015, 02/01/2015|false",
-            "02/01/2015, 01/01/2015|false"})
+    @Parameters({"01.01.15, 02.01.15|true",
+            "02.01.15, 02.01.15|false",
+            "02.01.15, 01.01.15|false"})
     public void testIsDatesOrderCorrect(String fromDate, String toDate, boolean expected) throws Exception {
         assertThat(FormValueValidator.isDatesOrderCorrect(fromDate, toDate, onErrorCallback), is(expected));
         verify(onErrorCallback, times(expected ? 0 : 1)).onError(anyInt());

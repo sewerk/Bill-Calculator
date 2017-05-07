@@ -1,9 +1,9 @@
 package pl.srw.billcalculator.bill.calculation
 
+import org.threeten.bp.LocalDate
+import pl.srw.billcalculator.util.Dates
 import java.math.BigDecimal
 import java.math.BigInteger
-
-import pl.srw.billcalculator.util.Dates
 
 /**
  * Calculates and represent each bill position value.
@@ -11,7 +11,7 @@ import pl.srw.billcalculator.util.Dates
  * Net value precision is not modified.<br/>
  * Vat value precision is Net.precision+2
  */
-abstract class CalculatedBill(private val greedy: Boolean, dateFrom: String, dateTo: String) {
+abstract class CalculatedBill(private val greedy: Boolean, dateFrom: LocalDate, dateTo: LocalDate) {
 
     companion object {
         private val VAT = BigDecimal("0.23")

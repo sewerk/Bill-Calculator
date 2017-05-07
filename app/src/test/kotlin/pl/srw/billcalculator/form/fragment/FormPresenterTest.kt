@@ -10,7 +10,6 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyInt
-import org.mockito.ArgumentMatchers.anyString
 import org.mockito.verification.VerificationMode
 import org.threeten.bp.LocalDate
 import pl.srw.billcalculator.R
@@ -160,7 +159,7 @@ class FormPresenterTest : RxJavaBaseTest() {
         sut.setup(provider)
         given_tariff(SharedPreferencesEnergyPrices.TARIFF_G11)
 
-        sut.calculateButtonClicked("1", "2", "28/12/2016", "31/12/2016", "11", "12", "22", "23")
+        sut.calculateButtonClicked("1", "2", "28.12.16", "31.12.16", "11", "12", "22", "23")
 
         verify(view).startStoringServiceForSingleReadings(provider)
         verify(view).startBillActivityForSingleReadings(provider)
@@ -173,7 +172,7 @@ class FormPresenterTest : RxJavaBaseTest() {
         sut.setup(provider)
         given_tariff(SharedPreferencesEnergyPrices.TARIFF_G12)
 
-        sut.calculateButtonClicked("1", "2", "28/12/2016", "31/12/2016", "11", "12", "22", "23")
+        sut.calculateButtonClicked("1", "2", "28.12.16", "31.12.16", "11", "12", "22", "23")
 
         verify(view).startStoringServiceForDoubleReadings(provider)
         verify(view).startBillActivityForDoubleReadings(provider)
@@ -185,7 +184,7 @@ class FormPresenterTest : RxJavaBaseTest() {
         sut.setup(provider)
         given_tariff(tariff)
 
-        sut.calculateButtonClicked("1", "2", "28/12/2016", "31/12/2016", "11", "12", "22", "23")
+        sut.calculateButtonClicked("1", "2", "28.12.16", "31.12.16", "11", "12", "22", "23")
 
         verify(view).hideForm()
     }
@@ -201,7 +200,7 @@ class FormPresenterTest : RxJavaBaseTest() {
     fun calculateButtonClicked_forPGNIG_whenReadingValueIncorrect_showsReadingsError() {
         sut.setup(Provider.PGNIG)
 
-        sut.calculateButtonClicked("", "", "28/12/2016", "31/12/2016", "", "", "", "")
+        sut.calculateButtonClicked("", "", "28.12.16", "31.12.16", "", "", "", "")
 
         verify(view).showReadingFieldError(any(), anyInt())
     }
@@ -212,7 +211,7 @@ class FormPresenterTest : RxJavaBaseTest() {
         sut.setup(provider)
         given_tariff(tariff)
 
-        sut.calculateButtonClicked("", "", "28/12/2016", "31/12/2016", "", "", "", "")
+        sut.calculateButtonClicked("", "", "28.12.16", "31.12.16", "", "", "", "")
 
         verify(view).showReadingFieldError(any(), anyInt())
     }
@@ -228,7 +227,7 @@ class FormPresenterTest : RxJavaBaseTest() {
     fun calculateButtonClicked_forPGNIG_whenDateValueIncorrect_showsDateError() {
         sut.setup(Provider.PGNIG)
 
-        sut.calculateButtonClicked("1", "2", "28/12/2016", "31/11/2016", "11", "12", "22", "23")
+        sut.calculateButtonClicked("1", "2", "28.12.16", "31.11.16", "11", "12", "22", "23")
 
         verify(view).showDateFieldError(anyInt())
     }
@@ -239,7 +238,7 @@ class FormPresenterTest : RxJavaBaseTest() {
         sut.setup(provider)
         given_tariff(tariff)
 
-        sut.calculateButtonClicked("1", "2", "28/12/2016", "31/11/2016", "11", "12", "22", "23")
+        sut.calculateButtonClicked("1", "2", "28.12.16", "31.11.16", "11", "12", "22", "23")
 
         verify(view).showDateFieldError(anyInt())
     }
@@ -313,7 +312,7 @@ class FormPresenterTest : RxJavaBaseTest() {
     fun `refetch history list when calculate button clicked for single readings and validation passed`() {
         given_tariff(SharedPreferencesEnergyPrices.TARIFF_G11)
 
-        sut.calculateButtonClicked("1", "2", "28/12/2016" , "31/12/2016", "", "", "", "")
+        sut.calculateButtonClicked("1", "2", "28.12.16" , "31.12.16", "", "", "", "")
 
         verify(historyUpdater).onHistoryChanged()
     }
@@ -322,7 +321,7 @@ class FormPresenterTest : RxJavaBaseTest() {
     fun `refetch history list when calculate button clicked for double readings and validation passed`() {
         given_tariff(SharedPreferencesEnergyPrices.TARIFF_G12)
 
-        sut.calculateButtonClicked("", "", "28/12/2016" , "31/12/2016", "11", "12", "21", "22")
+        sut.calculateButtonClicked("", "", "28.12.16" , "31.12.16", "11", "12", "21", "22")
 
         verify(historyUpdater).onHistoryChanged()
     }
