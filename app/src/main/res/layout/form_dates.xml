@@ -55,6 +55,13 @@
         tools:layout_width="75dp"
         tools:text="31.12.14"/>
 
+    <!-- this view requires constraint top to properly align id/form_entry_dates_to on Samsung ICS-->
+    <View
+        android:id="@+id/form_entry_dates_space"
+        style="@style/FormDateIcon"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/form_entry_dates_from"/>
+
     <TextView
         android:id="@+id/date_to_error"
         android:layout_width="0dp"
@@ -67,8 +74,4 @@
         app:layout_constraintTop_toBottomOf="@+id/form_entry_dates_to"
         tools:text="@string/date_error"/>
 
-    <View
-        android:id="@+id/form_entry_dates_space"
-        style="@style/FormDateIcon"
-        app:layout_constraintRight_toRightOf="parent"/>
 </merge>
