@@ -29,7 +29,7 @@
         android:id="@+id/form_entry_dates_from"
         style="@style/FormDateInput"
         android:freezesText="true"
-        app:errorView="@+id/date_to_error"
+        app:errorView="@+id/form_entry_dates_to_error"
         app:layout_constraintLeft_toRightOf="@+id/form_entry_dates_icon"
         app:layout_constraintRight_toLeftOf="@+id/form_entry_dates_separator"
         app:layout_constraintTop_toBottomOf="@+id/form_entry_dates_header"
@@ -48,7 +48,7 @@
         android:id="@+id/form_entry_dates_to"
         style="@style/FormDateInput"
         android:freezesText="true"
-        app:errorView="@+id/date_to_error"
+        app:errorView="@+id/form_entry_dates_to_error"
         app:layout_constraintLeft_toRightOf="@+id/form_entry_dates_separator"
         app:layout_constraintRight_toLeftOf="@+id/form_entry_dates_space"
         app:layout_constraintTop_toTopOf="@+id/form_entry_dates_from"
@@ -63,7 +63,7 @@
         app:layout_constraintTop_toTopOf="@id/form_entry_dates_from"/>
 
     <TextView
-        android:id="@+id/date_to_error"
+        android:id="@+id/form_entry_dates_to_error"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="8dp"

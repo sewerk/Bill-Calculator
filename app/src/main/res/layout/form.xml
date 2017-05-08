@@ -31,7 +31,7 @@
                 android:layout_height="0dp"
                 android:background="@drawable/form_entry_background"
                 app:layout_constraintTop_toTopOf="@+id/form_entry_reading_header"
-                app:layout_constraintBottom_toBottomOf="@+id/date_to_error"
+                app:layout_constraintBottom_toBottomOf="@+id/form_entry_dates_to_error"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent" />
 

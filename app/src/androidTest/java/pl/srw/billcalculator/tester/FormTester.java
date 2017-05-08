@@ -162,7 +162,7 @@ public class FormTester extends Tester {
     }
 
     public FieldView dateToErrorView() {
-        return new FieldView(R.id.date_to_error);
+        return new FieldView(R.id.form_entry_dates_to_error);
     }
 
     public ProviderSettingsTester<FormTester> openProviderSettings() {
