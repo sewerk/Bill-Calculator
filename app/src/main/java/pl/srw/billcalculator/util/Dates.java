@@ -18,27 +18,15 @@ import java.util.Locale;
 public class Dates {
 
     public static final Locale PL_LOCALE = new Locale("pl", "PL");
-    private static final String DATE_PATTERN = "dd/MM/yyyy";
-
-    public static LocalDate parse(String text) { // TODO: remove
-        return parse(text, DATE_PATTERN);
-    }
+    public static final String DEFAULT_DATE_PATTERN = "dd/MM/yyyy";
 
     public static LocalDate parse(String text, String pattern) {
         return LocalDate.parse(text, DateTimeFormatter.ofPattern(pattern));
     }
 
-    public static String format(int year, Month month, int day) {
-        return format(year, month, day, DATE_PATTERN);
-    }
-
     public static String format(int year, Month month, int day, String pattern) {
         final LocalDate date = LocalDate.of(year, month, day);
         return format(date, pattern);
-    }
-
-    public static String format(LocalDate date) {
-        return format(date, DATE_PATTERN);
     }
 
     public static String format(LocalDate date, @Size(min = 4, max = 10) String datePattern) {

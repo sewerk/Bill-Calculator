@@ -69,7 +69,7 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         setActivityIntent(intent);
 
         sut = getActivity();
-        String expected = sut.getString(R.string.for_period, dateFrom, dateTo);
+        String expected = "Za okres od 03/12/2014 do 29/12/2014";
         assEqText(expected, R.id.tv_for_period);
     }
 

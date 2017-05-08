@@ -47,8 +47,8 @@ public abstract class HistoryItemValueProvider {
 
     public String getDatePeriod() {
         return createPeriodString(
-                Dates.format(Dates.toLocalDate(getBill().getDateFrom())),
-                Dates.format(Dates.toLocalDate(getBill().getDateTo())));
+                Dates.format(Dates.toLocalDate(getBill().getDateFrom()), Dates.DEFAULT_DATE_PATTERN),
+                Dates.format(Dates.toLocalDate(getBill().getDateTo()), Dates.DEFAULT_DATE_PATTERN));
     }
 
     public String getAmount() {

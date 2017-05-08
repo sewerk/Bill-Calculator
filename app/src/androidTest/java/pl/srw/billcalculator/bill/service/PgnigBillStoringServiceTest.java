@@ -87,8 +87,8 @@ public class PgnigBillStoringServiceTest extends ServiceTestCase<PgnigBillStorin
         final PgnigBill bill = bills.get(0);
         assertEquals(1, bill.getReadingFrom().intValue());
         assertEquals(4, bill.getReadingTo().intValue());
-        assertEquals("01/01/2014", Dates.format(Dates.toLocalDate(bill.getDateFrom())));
-        assertEquals("21/12/2015", Dates.format(Dates.toLocalDate(bill.getDateTo())));
+        assertEquals("01/01/2014", Dates.format(Dates.toLocalDate(bill.getDateFrom()), Dates.DEFAULT_DATE_PATTERN));
+        assertEquals("21/12/2015", Dates.format(Dates.toLocalDate(bill.getDateTo()), Dates.DEFAULT_DATE_PATTERN));
         assertNotNull(bill.getAmountToPay());
         final PgnigPrices prices = bill.getPgnigPrices();
         assertTrue(prices.getId() > 0);

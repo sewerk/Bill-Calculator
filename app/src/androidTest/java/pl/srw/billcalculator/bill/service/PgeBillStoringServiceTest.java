@@ -91,8 +91,8 @@ public class PgeBillStoringServiceTest extends ServiceTestCase<PgeBillStoringSer
         final PgeG11Bill bill = bills.get(0);
         assertEquals(2, bill.getReadingFrom().intValue());
         assertEquals(5, bill.getReadingTo().intValue());
-        assertEquals("01/01/2014", Dates.format(Dates.toLocalDate(bill.getDateFrom())));
-        assertEquals("21/12/2015", Dates.format(Dates.toLocalDate(bill.getDateTo())));
+        assertEquals("01/01/2014", Dates.format(Dates.toLocalDate(bill.getDateFrom()), Dates.DEFAULT_DATE_PATTERN));
+        assertEquals("21/12/2015", Dates.format(Dates.toLocalDate(bill.getDateTo()), Dates.DEFAULT_DATE_PATTERN));
         assertNotNull(bill.getAmountToPay());
         final PgePrices prices = bill.getPgePrices();
         assertTrue(prices.getId() > 0);
@@ -120,8 +120,8 @@ public class PgeBillStoringServiceTest extends ServiceTestCase<PgeBillStoringSer
         assertEquals(11, bill.getReadingDayTo().intValue());
         assertEquals(12, bill.getReadingNightFrom().intValue());
         assertEquals(13, bill.getReadingNightTo().intValue());
-        assertEquals("01/02/2014", Dates.format(Dates.toLocalDate(bill.getDateFrom())));
-        assertEquals("21/10/2015", Dates.format(Dates.toLocalDate(bill.getDateTo())));
+        assertEquals("01/02/2014", Dates.format(Dates.toLocalDate(bill.getDateFrom()), Dates.DEFAULT_DATE_PATTERN));
+        assertEquals("21/10/2015", Dates.format(Dates.toLocalDate(bill.getDateTo()), Dates.DEFAULT_DATE_PATTERN));
         assertNotNull(bill.getAmountToPay());
         final PgePrices prices = bill.getPgePrices();
         assertTrue(prices.getId() > 0);

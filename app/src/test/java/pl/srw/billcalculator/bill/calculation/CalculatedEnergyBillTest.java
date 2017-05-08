@@ -37,7 +37,10 @@ public class CalculatedEnergyBillTest {
     })
     public void countConsumptionPartFromJuly16(String dateFrom, String dateTo, int consumption, int expected) throws Exception {
         // WHEN
-        final int result = sut.countConsumptionPartFromJuly16(Dates.parse(dateFrom), Dates.parse(dateTo), consumption);
+        final int result = sut.countConsumptionPartFromJuly16(
+                Dates.parse(dateFrom, Dates.DEFAULT_DATE_PATTERN),
+                Dates.parse(dateTo, Dates.DEFAULT_DATE_PATTERN),
+                consumption);
 
         // THEN
         assertEquals(expected, result);

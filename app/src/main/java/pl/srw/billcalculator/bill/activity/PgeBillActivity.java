@@ -35,6 +35,7 @@ import pl.srw.billcalculator.wrapper.Dependencies;
 
 public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
 
+    private static final String DATE_PATTERN = "dd/MM/yyyy";
     private static final int PRICE_SCALE = 4;
 
     @Optional @InjectExtra(IntentCreator.PRICES) IPgePrices prices;
@@ -89,8 +90,8 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
     }
 
     private void setDates() {
-        Views.setTV(this, R.id.tv_title, getString(R.string.rachunek_rozliczeniowy, Dates.format(LocalDate.now())));
-        Views.setTV(this, R.id.tv_for_period, getString(R.string.for_period, dateFrom, dateTo));
+        Views.setTV(this, R.id.tv_title, getString(R.string.rachunek_rozliczeniowy, Dates.format(LocalDate.now(), DATE_PATTERN)));
+        Views.setTV(this, R.id.tv_for_period, getString(R.string.for_period, Dates.format(dateFrom, DATE_PATTERN), Dates.format(dateTo, DATE_PATTERN)));
     }
 
     private void setChargeDetailsTable() {
