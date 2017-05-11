@@ -17,17 +17,16 @@ public final class Animations {
     private static final long DURATION_LONG = 1000;
     private static final long DURATION_SHORT = 200;
     private static final float ROTATION_TO_ANGLE = 135f;
-    private static final AccelerateDecelerateInterpolator INTERPOLATOR = new AccelerateDecelerateInterpolator();
-    private static final ObjectAnimator SHAKE = ObjectAnimator
-            .ofFloat(null, "translationX", 0, 25, -25, 25, -25, 15, -15, 6, -6, 0)
-            .setDuration(DURATION_LONG);
 
     private Animations() {
     }
 
     public static void shake(View target) {
-        SHAKE.setTarget(target);
-        SHAKE.start();
+        ObjectAnimator shakeAnimation = ObjectAnimator
+                .ofFloat(null, "translationX", 0, 25, -25, 25, -25, 15, -15, 6, -6, 0)
+                .setDuration(DURATION_LONG);
+        shakeAnimation.setTarget(target);
+        shakeAnimation.start();
     }
 
     public static AnimatorSet getExpandFabs(final FloatingActionButton baseFab, final FloatingActionButton... fabs) {
@@ -55,7 +54,7 @@ public final class Animations {
             }
         });
         animatorSet.setDuration(DURATION_SHORT);
-        animatorSet.setInterpolator(INTERPOLATOR);
+        animatorSet.setInterpolator(new AccelerateDecelerateInterpolator());
         return animatorSet;
     }
 
@@ -85,7 +84,7 @@ public final class Animations {
             }
         });
         animatorSet.setDuration(DURATION_SHORT);
-        animatorSet.setInterpolator(INTERPOLATOR);
+        animatorSet.setInterpolator(new AccelerateDecelerateInterpolator());
         return animatorSet;
     }
 
