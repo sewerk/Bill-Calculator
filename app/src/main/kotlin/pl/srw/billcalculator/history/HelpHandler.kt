@@ -13,10 +13,10 @@ import javax.inject.Inject
  */
 class HelpHandler @Inject constructor(res: Resources) {
 
-    val fabDesc: String = res.getString(R.string.help_fab_desc)
-    val swipeDesc: String = res.getString(R.string.help_swipe_delete_desc)
-    val menuDesc: String = res.getString(R.string.help_menu_desc)
-    val optionsDesc: String = res.getString(R.string.help_options_desc)
+    val fabDesc: String = res.getString(R.string.main_help_fab_desc)
+    val swipeDesc: String = res.getString(R.string.main_help_swipe_delete_desc)
+    val menuDesc: String = res.getString(R.string.main_help_menu_desc)
+    val optionsDesc: String = res.getString(R.string.main_help_options_desc)
 
     fun show(activity: Activity) {
         val toolbar = activity.findViewById(R.id.toolbar) as Toolbar

@@ -244,7 +244,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     }
 
     private void setupToolbar() {
-        toolbar.setTitle(R.string.history);
+        toolbar.setTitle(R.string.history_label);
         collapsingToolbarLayout.setTitle(toolbar.getTitle());
         setSupportActionBar(toolbar);
     }

@@ -4,17 +4,17 @@
         android:fragment="pl.srw.billcalculator.settings.fragment.PgeSettingsFragment"
         android:icon="@drawable/pge_small"
         android:summary="@string/settings_pge_summary"
-        android:title="@string/pge_prices"/>
+        android:title="@string/settings_pge"/>
 
     <header
         android:fragment="pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment"
         android:icon="@drawable/pgnig_small"
         android:summary="@string/settings_pgnig_summary"
-        android:title="@string/pgnig_prices"/>
+        android:title="@string/settings_pgnig"/>
 
     <header
         android:fragment="pl.srw.billcalculator.settings.fragment.TauronSettingsFragment"
         android:icon="@drawable/tauron_small"
         android:summary="@string/settings_tauron_summary"
-        android:title="@string/tauron_prices"/>
+        android:title="@string/settings_tauron"/>
 </preference-headers>

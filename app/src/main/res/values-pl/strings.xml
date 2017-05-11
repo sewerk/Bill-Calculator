@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Drawer activity -->
+    <string name="app_name">Kalkulator rachunków</string>
+    <string name="reading_missing">Puste!</string>
+    <string name="reading_order_error">Za małe zużycie!</string>
+    <string name="date_error">Nieprawidłowy okres!</string>
+    <!-- drawer -->
+    <string name="navigation_drawer_close">Zamknij menu</string>
+    <string name="navigation_drawer_open">Otwórz menu</string>
+    <string name="drawer_group_more">Inne</string>
+    <string name="drawer_group_new_bill">Nowy rachunek</string>
+    <string name="drawer_new_pge_bill">energia od PGE</string>
+    <string name="drawer_new_pgnig_bill">gaz od PGNiG</string>
+    <string name="drawer_new_tauron_bill">energia od TAURON</string>
+    <!-- Main help -->
+    <string name="main_help_fab_desc">Wylicz rachunek</string>
+    <string name="main_help_menu_desc">Menu</string>
+    <string name="main_help_options_desc">Akcje</string>
+    <string name="main_help_swipe_delete_desc">Przeciągnij rachunek w bok aby usunąć</string>
+    <!-- history -->
+    <string name="history_label">Moje rachunki</string>
+    <string name="action_delete">Usuń</string>
+    <string name="history_readings_label">Wskazania:</string>
+    <string name="empty_history">Wybierz + aby obliczyć rachunek</string>
+    <string name="action_undo_delete">COFNIJ</string>
+    <string name="bill_deleted">Usunięty</string>
+    <string name="history_item_amount_label">Koszt:</string>
+    <string name="history_item_logo_desc">Logo dostawcy</string>
+    <!-- form -->
+    <string name="form_dates_header">Za okres</string>
+    <string name="form_entry_dates_icon_content_desc">Ikona okresu</string>
+    <string name="form_entry_reading_icon_content_desc">Ikona odczytów</string>
+    <string name="form_logo_description">Logo dostawcy</string>
+    <string name="form_reading_from_hint">poprzedni</string>
+    <string name="form_reading_to_hint">obecny</string>
+    <string name="form_readings_header">Odczyty</string>
+    <!-- bill -->
+    <string name="action_print">Drukuj do PDF</string>
+    <string name="print_dir">Rachunki</string>
+    <string name="print_failed">Błąd: Zapis do PDF nieudany.</string>
+    <string name="print_no_pdf_viewer">Wydruk wygenerowany: %s</string>
+    <string name="error_permission_storage_missing">Brak dostępu do pamięci urządzenia</string>
+    <string name="rationale_dialog_title">Wymagany dostęp</string>
+    <string name="rationale_dialog_msg">Drukowanie rachunku wymaga dostępu do pamięci urządzenia w celu utworzenia pliku. Brak akceptacji uniemożliwi drukowanie!</string>
+    <string name="rationale_dialog_ok">Akceptuje</string>
+    <string name="rationale_dialog_goto_settings_msg">Drukowanie rachunku wymaga dostępu do pamięci urządzenia w celu utworzenia pliku. Ustawienia można zmienić w:\nZezwolenia > Pamięć</string>
+    <string name="rationale_dialog_goto_settings">Idz do Ustawień</string>
+    <string name="rationale_dialog_cancel">Anuluj</string>
+    <string name="dialog_bill_without_oze_title">Informacja</string>
+    <string name="dialog_bill_without_oze_message">Niniejszy rachunek nie uwzględnia opłaty OZE, która według ustawy, obowiązuje od lipca 2016 r. Zalecam przeliczyć ten rachunek ponownie.</string>
+    <string name="dialog_bill_without_oze_positive">Rozumiem</string>
+    <string name="dialog_bill_without_oze_cancel">Nie trzeba</string>
+    <!-- energy_bill -->
+    <string name="energy_bill">Rachunek za energię</string>
+    <!-- gas_bill -->
+    <string name="gas_bill">Rachunek za gaz</string>
+    <!-- Preferences -->
+    <string name="settings_label">Ustawienia</string>
+    <string name="action_help">Pomoc</string>
+    <string name="settings_pge_summary">Ustaw taryfę i ceny za energię</string>
+    <string name="settings_pgnig_summary">Ustaw współ. konwersji i ceny za gaz</string>
+    <string name="check_prices_info_title">Sprawdź ceny przed wyliczeniem</string>
+    <string name="check_price_info_message">Wartość twojej faktury uzależniona jest od cen, które oferuje dostawca mediów. Na wysokość cen wpływa: rodzaj taryfy oraz lokalizacja, pora dnia i wielkość zużycia. Dostosuj ceny do własnego planu taryfowego.</string>
+    <string name="check_prices_info_ok">Sprawdź</string>
+    <string name="check_prices_info_cancel">Później</string>
+    <string name="action_restore">Przywróć domyślne</string>
+    <string name="restore_prices_cancel">Anuluj</string>
+    <string name="restore_prices_confirm">Tak</string>
+    <string name="confirm_restore_prices_message">Czy chcesz przywrócić domyśne wartości ustawień?</string>
+    <string name="settings_tauron_summary">Ustaw taryfę i ceny za energię</string>
+    <!-- about -->
+    <string name="about_label">O programie</string>
+    <string name="version_text">Wersja %1$s<![CDATA[<br/>na <a href="http://opensource.org/licenses/MIT">licencji MIT</a>]]></string>
+    <string name="description">Obliczaj wysokość rachunku za media</string>
+    <string name="contact_header">W razie problemów/pomysłów:</string>
+    <string name="emailme">napisz co myślisz</string>
+    <string name="link_gplus">lub dołącz do testowania</string>
+    <string name="clause">Nazwy własne, logotypy oraz znaki towarowe są własnością firm dystrybucyjnych. Przedstawione wyliczenia są jedynie przybliżoną wartością stanu faktyczenego i nie mają podstawy by stanowić roszczenia finansowego.</string>
+    <string name="email_client_missing">Brak aplikacji poczty e-mail</string>
+
+</resources>

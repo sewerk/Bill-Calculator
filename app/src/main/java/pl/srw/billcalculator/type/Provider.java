@@ -7,14 +7,20 @@ import android.support.annotation.StringRes;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 
-import static pl.srw.billcalculator.persistence.type.CurrentReadingType.*;
+import static pl.srw.billcalculator.persistence.type.CurrentReadingType.PGE_DAY_TO;
+import static pl.srw.billcalculator.persistence.type.CurrentReadingType.PGE_NIGHT_TO;
+import static pl.srw.billcalculator.persistence.type.CurrentReadingType.PGE_TO;
+import static pl.srw.billcalculator.persistence.type.CurrentReadingType.PGNIG_TO;
+import static pl.srw.billcalculator.persistence.type.CurrentReadingType.TAURON_DAY_TO;
+import static pl.srw.billcalculator.persistence.type.CurrentReadingType.TAURON_NIGHT_TO;
+import static pl.srw.billcalculator.persistence.type.CurrentReadingType.TAURON_TO;
 
 public enum Provider {
-    PGE(R.string.pge_prices, R.string.settings_pge_summary, R.drawable.pge, R.drawable.pge_small,
+    PGE(R.string.settings_pge, R.string.settings_pge_summary, R.drawable.pge, R.drawable.pge_small,
             R.string.form_reading_unit_kWh, PGE_TO, PGE_DAY_TO, PGE_NIGHT_TO),
-    PGNIG(R.string.pgnig_prices, R.string.settings_pgnig_summary, R.drawable.pgnig, R.drawable.pgnig_small,
+    PGNIG(R.string.settings_pgnig, R.string.settings_pgnig_summary, R.drawable.pgnig, R.drawable.pgnig_small,
             R.string.form_reading_unit_m3, PGNIG_TO),
-    TAURON(R.string.tauron_prices, R.string.settings_tauron_summary, R.drawable.tauron, R.drawable.tauron_small,
+    TAURON(R.string.settings_tauron, R.string.settings_tauron_summary, R.drawable.tauron, R.drawable.tauron_small,
             R.string.form_reading_unit_kWh, TAURON_TO, TAURON_DAY_TO, TAURON_NIGHT_TO);
 
     public final int settingsTitleRes;

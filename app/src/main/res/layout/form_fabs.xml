@@ -11,7 +11,7 @@
         app:backgroundTint="@color/primary"
         app:fabSize="mini"
         app:rippleColor="@color/primaryDark"
-        app:srcCompat="@drawable/ic_close_white_24dp"/>
+        app:srcCompat="@drawable/ic_close_white_24dp"/><!-- shadow broken on Samsung -->
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/calculate_button"
@@ -21,5 +21,5 @@
         android:layout_marginBottom="8dp"
         app:backgroundTint="@color/primary"
         app:rippleColor="@color/primaryDark"
-        app:srcCompat="@drawable/ic_arrow_forward_white_24dp"/>
+        app:srcCompat="@drawable/ic_arrow_forward_white_24dp"/><!-- margins not right on Samsung -->
 </merge>

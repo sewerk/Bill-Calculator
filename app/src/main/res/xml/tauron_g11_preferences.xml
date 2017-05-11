@@ -3,7 +3,7 @@
 
     <ListPreference
         android:key="preferences_tauron_tariff"
-        android:title="@string/tauron_tariff_in_preferences"
+        android:title="@string/settings_tauron_tariff"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
         android:entryValues="@array/preferences_energy_tariff_values"

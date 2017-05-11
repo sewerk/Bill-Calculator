@@ -3,7 +3,7 @@
 
     <ListPreference
         android:key="@string/preferences_pge_tariff"
-        android:title="@string/pge_tariff_in_preferences"
+        android:title="@string/settings_pge_tariff_title"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
         android:entryValues="@array/preferences_energy_tariff_values"

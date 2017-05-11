@@ -89,17 +89,17 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
     }
 
     private void setDates() {
-        Views.setTV(this, R.id.tv_invoice_date, getString(R.string.data_wystawienia, Dates.format(LocalDate.now(), DATE_PATTERN)));
-        Views.setTV(this, R.id.tv_title, getString(R.string.data_sprzedazy, Dates.format(dateTo, "MM.yyyy")));
-        Views.setTV(this, R.id.tv_for_period, getString(R.string.okres_rozliczeniowy, Dates.format(dateFrom, DATE_PATTERN), Dates.format(dateTo, DATE_PATTERN)));
+        Views.setTV(this, R.id.tv_invoice_date, getString(R.string.tauron_data_wystawienia, Dates.format(LocalDate.now(), DATE_PATTERN)));
+        Views.setTV(this, R.id.tv_title, getString(R.string.tauron_data_sprzedazy, Dates.format(dateTo, "MM.yyyy")));
+        Views.setTV(this, R.id.tv_for_period, getString(R.string.tauron_okres_rozliczeniowy, Dates.format(dateFrom, DATE_PATTERN), Dates.format(dateTo, DATE_PATTERN)));
     }
 
     private void setTariff() {
-        Views.setTV(this, R.id.tv_tariff, getString(R.string.grupa_taryfowa, getTariff()));
+        Views.setTV(this, R.id.tv_tariff, getString(R.string.tauron_grupa_taryfowa, getTariff()));
     }
 
     private void setExcise() {
-        Views.setTV(this, R.id.tv_excise, getString(R.string.kwota_akcyzy, Display.toPay(bill.getExcise())));
+        Views.setTV(this, R.id.tv_excise, getString(R.string.tauron_kwota_akcyzy, Display.toPay(bill.getExcise())));
     }
 
     private void setTable() {
