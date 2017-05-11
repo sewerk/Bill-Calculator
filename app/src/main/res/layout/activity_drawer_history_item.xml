@@ -9,30 +9,27 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/bill_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="81dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/history_item_date_period"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="01/02 - 31/03/2016"
-            />
+            tools:text="01/02 - 31/03/2016"/>
 
         <ImageView
             android:id="@+id/history_item_logo"
-            android:layout_width="64dp"
+            android:layout_width="0dp"
             android:layout_height="64dp"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:contentDescription="@string/history_item_logo_desc"
+            app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/pge_small"/>
@@ -41,42 +38,46 @@
             android:id="@+id/history_item_readings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/history_readings_label"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/history_item_logo"
-            tools:layout_constraintTop_creator="1"
-            />
+            tools:layout_constraintTop_creator="1"/>
 
         <TextView
             android:id="@+id/history_item_day_readings"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:ellipsize="marquee"
+            android:lines="1"
             app:layout_constraintBottom_toBottomOf="@+id/history_item_readings"
             app:layout_constraintLeft_toRightOf="@+id/history_item_readings"
-            tools:text="day unit: 1234-5678"
-            />
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="1234 - 5678"/>
 
         <TextView
             android:id="@+id/history_item_night_readings"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
             android:layout_marginTop="8dp"
+            android:ellipsize="marquee"
+            android:lines="1"
             app:layout_constraintLeft_toLeftOf="@+id/history_item_day_readings"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/history_item_day_readings"
-            tools:text="night unit: 123456789-234567891"
-            />
+            tools:text="123456789  -234567891"/>
 
         <TextView
             android:id="@+id/history_item_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -84,18 +85,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/history_item_night_readings"
-            tools:text="43 456.83 zł"
-            />
+            tools:text="43 456.83 zł"/>
 
         <TextView
             android:id="@+id/charge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="@string/history_item_amount_label"
             app:layout_constraintBaseline_toBaselineOf="@+id/history_item_amount"
-            app:layout_constraintRight_toLeftOf="@+id/history_item_amount"
-            />
+            app:layout_constraintRight_toLeftOf="@+id/history_item_amount"/>
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

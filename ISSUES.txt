@@ -1,6 +1,8 @@
 BUGS
 - storing service crashes on Dart - replace/remove
 - logcat error when form open
+- form dialog is hidden by keyboard on tablet landscape - cant click suggestion and cant see what is being entered
+- form on bigger devices is too width
 
 TEST
 - print with screen rotation and openning different bill, which icon will appear
