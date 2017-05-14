@@ -30,7 +30,7 @@ public class InstantAutoCompleteUITest {
     @Before
     public void setUp() throws Exception {
         TestDependencies.inject(this);
-
+        HistoryGenerator.clear();
         pgePrices.setTariff(SharedPreferencesEnergyPrices.TARIFF_G11);
 
         testRule.launchActivity(null);

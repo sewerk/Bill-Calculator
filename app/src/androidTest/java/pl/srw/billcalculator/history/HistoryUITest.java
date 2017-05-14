@@ -34,6 +34,7 @@ public class HistoryUITest {
     @Before
     public void setUp() throws Exception {
         TestDependencies.inject(this);
+        HistoryGenerator.clear();
     }
 
     @After

@@ -69,7 +69,7 @@ abstract class Tester {
 
     ViewAction swipeAwayRight() {
         return actionWithAssertions(new GeneralSwipeAction(Swipe.FAST,
-                GeneralLocation.CENTER_LEFT,
+                GeneralLocation.CENTER,
                 new CoordinatesProvider() {
                     @Override
                     public float[] calculateCoordinates(View view) {
