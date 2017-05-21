@@ -6,9 +6,6 @@ import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TableLayout;
 
-import com.f2prateek.dart.InjectExtra;
-import com.f2prateek.dart.Optional;
-
 import org.threeten.bp.LocalDate;
 
 import java.math.BigDecimal;
@@ -35,12 +32,7 @@ public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
     private static final String DATE_PATTERN = "dd.MM.yyyy";
     private static final int PRICE_SCALE = 5;
 
-    @InjectExtra(IntentCreator.DATE_FROM) LocalDate dateFrom;
-    @InjectExtra(IntentCreator.DATE_TO) LocalDate dateTo;
-    @InjectExtra(IntentCreator.READING_FROM) int readingFrom;
-    @InjectExtra(IntentCreator.READING_TO) int readingTo;
-
-    @Optional @InjectExtra(IntentCreator.PRICES) IPgnigPrices prices;
+    private IPgnigPrices prices;
     @Inject PgnigPrices prefsPrices;
     @Inject SavedBillsRegistry savedBillsRegistry;
 
@@ -52,6 +44,7 @@ public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
         Dependencies.inject(this);
         Analytics.logContent(ContentType.PGNIG_BILL, "PGNIG new", String.valueOf(prices == null));
 
+        prices = (IPgnigPrices) getIntent().getSerializableExtra(IntentCreator.PRICES);
         if (prices == null) {
             prices = prefsPrices;
         }

@@ -6,9 +6,6 @@ import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TableLayout;
 
-import com.f2prateek.dart.InjectExtra;
-import com.f2prateek.dart.Optional;
-
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.Month;
 
@@ -38,7 +35,7 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
     private static final String DATE_PATTERN = "dd/MM/yyyy";
     private static final int PRICE_SCALE = 4;
 
-    @Optional @InjectExtra(IntentCreator.PRICES) IPgePrices prices;
+    private IPgePrices prices;
 
     @Inject PgePrices prefsPrices;
     @Inject SavedBillsRegistry savedBillsRegistry;
@@ -51,6 +48,7 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
                 "PGE new", String.valueOf(prices == null),
                 "PGE tariff", (isTwoUnitTariff() ? "G12" : "G11"));
 
+        prices = (IPgePrices) getIntent().getSerializableExtra(IntentCreator.PRICES);
         if (prices == null) {
             prices = prefsPrices;
         } else if (savedInstanceState == null

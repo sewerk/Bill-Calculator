@@ -6,9 +6,6 @@ import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TableRow;
 
-import com.f2prateek.dart.InjectExtra;
-import com.f2prateek.dart.Optional;
-
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.Month;
 
@@ -39,7 +36,7 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
     private static final String DATE_PATTERN = "dd.MM.yyyy";
     private static final int PRICE_SCALE = 5;
 
-    @Optional @InjectExtra(IntentCreator.PRICES) ITauronPrices prices;
+    private ITauronPrices prices;
     @Inject TauronPrices prefsPrices;
     @Inject SavedBillsRegistry savedBillsRegistry;
 
@@ -51,6 +48,7 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
                 "Tauron new", String.valueOf(prices == null),
                 "Tauron tariff", (isTwoUnitTariff() ? "G12" : "G11"));
 
+        prices = (ITauronPrices) getIntent().getSerializableExtra(IntentCreator.PRICES);
         if (prices == null) {
             prices = prefsPrices;
         } else if (savedInstanceState == null

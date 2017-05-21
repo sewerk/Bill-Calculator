@@ -8,23 +8,16 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.widget.ImageView;
 
-import com.f2prateek.dart.Dart;
-import com.f2prateek.dart.InjectExtra;
-
-import butterknife.ButterKnife;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.srw.billcalculator.R;
 
-/**
- * Created by Kamil Seweryn.
- */
 public class ProviderSettingsHelpActivity extends Activity {
 
     private static final String EXTRA_LAYOUT_RESOURCE = "EXTRA_LAYOUT_RESOURCE";
     private static final String EXTRA_IMAGE_RESOURCE = "EXTRA_IMAGE_RESOURCE";
-    @InjectExtra(EXTRA_LAYOUT_RESOURCE) int layoutResource;
-    @InjectExtra(EXTRA_IMAGE_RESOURCE) int imageResource;
+
     @BindView(R.id.iv_example) ImageView ivExample;
 
     public static Intent createIntent(final Context context,
@@ -38,9 +31,11 @@ public class ProviderSettingsHelpActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Dart.inject(this);
-        setContentView(layoutResource);
+        final Intent intent = getIntent();
+        int layoutResource = intent.getIntExtra(EXTRA_LAYOUT_RESOURCE, 0);
+        int imageResource = intent.getIntExtra(EXTRA_IMAGE_RESOURCE, 0);
 
+        setContentView(layoutResource);
         ButterKnife.bind(this);
         ivExample.setImageResource(imageResource);
     }

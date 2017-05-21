@@ -2,8 +2,6 @@ package pl.srw.billcalculator.wrapper;
 
 import android.content.Context;
 
-import com.f2prateek.dart.Dart;
-
 import butterknife.ButterKnife;
 import pl.srw.billcalculator.AboutActivity;
 import pl.srw.billcalculator.BillCalculator;
@@ -17,7 +15,6 @@ import pl.srw.billcalculator.di.ApplicationComponent;
 import pl.srw.billcalculator.di.ApplicationModule;
 import pl.srw.billcalculator.di.DaggerApplicationComponent;
 import pl.srw.billcalculator.history.DrawerActivity;
-import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
 
 public class Dependencies {
@@ -51,26 +48,19 @@ public class Dependencies {
     }
 
     public static void inject(PgeBillActivity activity) {
-        Dart.inject(activity);
         ButterKnife.bind(activity);
     }
 
     public static void inject(PgnigBillActivity activity) {
-        Dart.inject(activity);
         ButterKnife.bind(activity);
     }
 
     public static void inject(TauronBillActivity activity) {
-        Dart.inject(activity);
         ButterKnife.bind(activity);
     }
 
     public static void inject(SettingsActivity activity) {
         ButterKnife.bind(activity);
-    }
-
-    public static void inject(ProviderSettingsActivity activity) {
-        Dart.inject(activity);
     }
 
     public static void inject(DrawerActivity activity) {

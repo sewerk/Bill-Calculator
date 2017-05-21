@@ -16,13 +16,6 @@
 #   public *;
 #}
 
-### Dart
--dontwarn com.f2prateek.dart.internal.**
--keep class **$$ExtraInjector { *; }
--keepclasseswithmembernames class * {
-    @com.f2prateek.dart.* <fields>;
-}
-
 ### itext
 -dontwarn org.spongycastle.**
 -dontwarn javax.management.OperationsException

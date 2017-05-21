@@ -20,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
+import org.threeten.bp.LocalDate;
 
 import java.io.File;
 import java.lang.annotation.Retention;
@@ -30,6 +31,7 @@ import javax.inject.Inject;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment;
+import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.util.strategy.Transitions;
 import pl.srw.mfvp.di.component.MvpComponent;
 import pl.srw.mfvp.presenter.PresenterHandlingDelegate;
@@ -45,6 +47,11 @@ abstract class BillActivity<T extends MvpComponent>
 
     private static final int PERMISSION_REQUEST_CODE = 101;
 
+    protected LocalDate dateFrom;
+    protected LocalDate dateTo;
+    protected int readingFrom;
+    protected int readingTo;
+
     @Inject BillPresenter presenter;
 
     private Menu menu;
@@ -54,6 +61,12 @@ abstract class BillActivity<T extends MvpComponent>
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ViewCompat.setTransitionName(findViewById(R.id.decor_content_parent), Transitions.BILL_VIEW_TRANSITION_NAME);
+
+        final Intent intent = getIntent();
+        dateFrom = (LocalDate) intent.getSerializableExtra(IntentCreator.DATE_FROM);
+        dateTo = (LocalDate) intent.getSerializableExtra(IntentCreator.DATE_TO);
+        readingFrom = intent.getIntExtra(IntentCreator.READING_FROM, 0);
+        readingTo = intent.getIntExtra(IntentCreator.READING_TO, 0);
     }
 
     @Override

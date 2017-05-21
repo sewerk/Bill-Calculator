@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.f2prateek.dart.InjectExtra;
-
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.di.ProviderSettingsComponent;
@@ -15,15 +13,11 @@ import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 
-/**
- * Created by Kamil Seweryn.
- */
 public class ProviderSettingsActivity extends BackableActivity<ProviderSettingsComponent>
         implements ProviderSettingsFragmentOwner {
 
     private static final String FRAGMENT_TAG = "SettingsFragment";
     private static final String EXTRA_PROVIDER_NAME = "PROVIDER_NAME";
-    @InjectExtra(EXTRA_PROVIDER_NAME) Provider provider;
 
     public static Intent createIntent(final Context context, final Provider type) {
         Intent i = new Intent(context, ProviderSettingsActivity.class);
@@ -34,7 +28,7 @@ public class ProviderSettingsActivity extends BackableActivity<ProviderSettingsC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Dependencies.inject(this);
+        Provider provider = (Provider) getIntent().getSerializableExtra(EXTRA_PROVIDER_NAME);
         Analytics.logContent(ContentType.SETTINGS, "settings for", provider.toString());
 
         if (savedInstanceState == null) {
