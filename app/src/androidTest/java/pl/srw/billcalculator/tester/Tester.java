@@ -38,10 +38,10 @@ import static org.hamcrest.Matchers.allOf;
 abstract class Tester {
 
     void openDrawer() {
-        clickIcon("Open navigation drawer");
+        clickIcon(R.string.navigation_drawer_open);
     }
 
-    void clickDrawerMenu(String label) {
+    void clickDrawerMenu(@StringRes int label) {
         onView(isAssignableFrom(NavigationView.class)).perform(swipeUp());
         onView(allOf(withId(R.id.design_menu_item_text), withText(label)))
                 .perform(click());
@@ -59,7 +59,7 @@ abstract class Tester {
         onView(allOf(withId(viewId), isDisplayed())).perform(typeText(text), closeSoftKeyboard());
     }
 
-    void clickIcon(String description) {
+    void clickIcon(@StringRes int description) {
         onView(withContentDescription(description)).perform(click());
     }
 

@@ -43,7 +43,7 @@ public class AppTester extends Tester {
 
     public SettingsTester openSettings() {
         openDrawer();
-        clickDrawerMenu("Settings");
+        clickDrawerMenu(R.string.settings_label);
         return settingsTester;
     }
 

@@ -5,6 +5,8 @@ import android.support.annotation.StringRes;
 import android.support.test.espresso.DataInteraction;
 import android.support.test.espresso.matcher.PreferenceMatchers;
 
+import pl.srw.billcalculator.R;
+
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
@@ -32,8 +34,8 @@ public class ProviderSettingsTester<T extends Tester> extends Tester {
     }
 
     public ProviderSettingsTester<T> restoreDefault() {
-        clickIcon("Restore default");
-        clickText("Yes");
+        clickIcon(R.string.action_restore);
+        clickText(R.string.restore_prices_confirm);
         return this;
     }
 
