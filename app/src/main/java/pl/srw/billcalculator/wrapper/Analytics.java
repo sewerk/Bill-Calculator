@@ -2,9 +2,6 @@ package pl.srw.billcalculator.wrapper;
 
 import android.content.Context;
 
-import pl.srw.billcalculator.BuildConfig;
-import timber.log.Timber;
-
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.ContentViewEvent;
@@ -13,8 +10,10 @@ import com.crashlytics.android.answers.CustomEvent;
 import java.util.Arrays;
 
 import io.fabric.sdk.android.Fabric;
+import pl.srw.billcalculator.BuildConfig;
 import pl.srw.billcalculator.type.ActionType;
 import pl.srw.billcalculator.type.ContentType;
+import timber.log.Timber;
 
 /**
  * Wrapper class for logging errors to on-line analytics tool.
@@ -75,9 +74,10 @@ public class Analytics {
     /**
      * Logs caught exception.
      * @param exception
+     * @param message
      */
-    public static void error(Throwable exception) {
-        Timber.e(exception.getMessage(), exception);
+    public static void error(Throwable exception, String message) {
+        Timber.e(exception, message);
         Analytics.log(exception.getMessage());
         if (ENABLED)
             Crashlytics.logException(exception);

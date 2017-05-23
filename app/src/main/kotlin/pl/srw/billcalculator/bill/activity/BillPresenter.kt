@@ -91,7 +91,7 @@ class BillPresenter @Inject constructor(val printer: Printer, printDirPath: Stri
         present { view ->
             view.showMessage(R.string.print_failed)
             view.setPrintReadyIcon()
-            Analytics.error(exception)
+            Analytics.error(exception, "print failed")
         }
     }
 
