@@ -115,24 +115,24 @@ public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
         Views.setTV(row, R.id.tv_count, count);
         Views.setTV(row, R.id.tv_net_price, Display.withScale(netPrice, PRICE_SCALE));
         Views.setTV(row, R.id.tv_excise, exciseAmount);
-        Views.setTV(row, R.id.tv_net_charge, Display.toPay(netCharge));
+        Views.setTV(row, R.id.pgnig_component_row_net_charge, Display.toPay(netCharge));
 
     }
 
     private void setChargeSummary(View chargeTable) {
         View summaryRow = chargeTable.findViewById(R.id.row_sum);
 
-        Views.setTV(summaryRow, R.id.tv_net_charge, Display.toPay(bill.getNetChargeSum()));
-        Views.setTV(summaryRow, R.id.tv_vat_amount, Display.toPay(bill.getVatChargeSum()));
-        Views.setTV(summaryRow, R.id.tv_gross_charge, Display.toPay(bill.getGrossChargeSum()));
+        Views.setTV(summaryRow, R.id.pgnig_components_net_charge, Display.toPay(bill.getNetChargeSum()));
+        Views.setTV(summaryRow, R.id.pgnig_components_vat_amount, Display.toPay(bill.getVatChargeSum()));
+        Views.setTV(summaryRow, R.id.pgnig_components_gross_charge, Display.toPay(bill.getGrossChargeSum()));
     }
 
     private void setSummaryTable() {
         TableLayout summaryTable = (TableLayout) findViewById(R.id.t_summary);
 
-        Views.setTV(summaryTable, R.id.tv_net_charge, Display.toPay(bill.getNetChargeSum()));
-        Views.setTV(summaryTable, R.id.tv_vat_amount, Display.toPay(bill.getVatChargeSum()));
-        Views.setTV(summaryTable, R.id.tv_gross_charge, Display.toPay(bill.getGrossChargeSum()));
+        Views.setTV(summaryTable, R.id.pgnig_sum_net_charge, Display.toPay(bill.getNetChargeSum()));
+        Views.setTV(summaryTable, R.id.pgnig_sum_vat_amount, Display.toPay(bill.getVatChargeSum()));
+        Views.setTV(summaryTable, R.id.pgnig_sum_gross_charge, Display.toPay(bill.getGrossChargeSum()));
     }
 
     private void setChargeTV() {

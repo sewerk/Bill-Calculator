@@ -209,9 +209,9 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
 
     private void setSummaryTable() {
         TableLayout summaryTable = (TableLayout) findViewById(R.id.t_summary);
-        Views.setTVInRow(summaryTable, R.id.tv_net_charge, Display.toPay(bill.getNetChargeSum()));
-        Views.setTVInRow(summaryTable, R.id.tv_vat_amount, Display.toPay(bill.getVatChargeSum()));
-        Views.setTVInRow(summaryTable, R.id.tv_gross_charge, Display.toPay(bill.getGrossChargeSum()));
+        Views.setTVInRow(summaryTable, R.id.pge_sum_net_charge, Display.toPay(bill.getNetChargeSum()));
+        Views.setTVInRow(summaryTable, R.id.pge_sum_vat_amount, Display.toPay(bill.getVatChargeSum()));
+        Views.setTVInRow(summaryTable, R.id.pge_sum_gross_charge, Display.toPay(bill.getGrossChargeSum()));
     }
 
     private void setToPayTV() {

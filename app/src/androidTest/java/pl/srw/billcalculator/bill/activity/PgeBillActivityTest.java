@@ -140,13 +140,13 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         BigDecimal sumNetto = countSum(ilosc);
         String expected = sumNetto.toString();
         assEqText(expected, R.id.tv_total_net_charge);
-        assEqText(expected, R.id.tv_net_charge);
+        assEqText(expected, R.id.pge_sum_net_charge);
 
         BigDecimal vatCost = countVatSum(ilosc);
-        assEqText(vatCost.toString(), R.id.tv_vat_amount);
+        assEqText(vatCost.toString(), R.id.pge_sum_vat_amount);
 
         BigDecimal sumAll = sumNetto.add(vatCost);
-        assEqText(sumAll.toString(), R.id.tv_gross_charge);
+        assEqText(sumAll.toString(), R.id.pge_sum_gross_charge);
 
         String doZaplatyExpected = sut.getString(R.string.to_pay, sumAll);
         assEqText(doZaplatyExpected, R.id.tv_to_pay);
@@ -178,9 +178,9 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         assEqTextInRow("8.08", R.id.tv_charge, R.id.row_oplata_abonamentowa);
 
         assEqText("1 112.01", R.id.tv_total_net_charge);
-        assEqText("1 112.01", R.id.tv_net_charge);
-        assEqText("255.76", R.id.tv_vat_amount);
-        assEqText("1 367.77", R.id.tv_gross_charge);
+        assEqText("1 112.01", R.id.pge_sum_net_charge);
+        assEqText("255.76", R.id.pge_sum_vat_amount);
+        assEqText("1 367.77", R.id.pge_sum_gross_charge);
     }
 
     // ================================================================ private methods

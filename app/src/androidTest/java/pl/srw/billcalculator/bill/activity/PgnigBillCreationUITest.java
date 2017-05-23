@@ -70,16 +70,16 @@ public class PgnigBillCreationUITest extends AbstractVerifyBillCreationUITest {
         billTester.checkTvInRowMatch(R.id.tv_net_price, R.id.row_dystrybucyjna_stala, "22.62000");
         billTester.checkTvInRowMatch(R.id.tv_net_price, R.id.row_dystrybucyjna_zmienna, "0.03823");
         // verify warotść netto
-        billTester.checkTvInRowMatch(R.id.tv_net_charge, R.id.row_abonamentowa, "13.94");
-        billTester.checkTvInRowMatch(R.id.tv_net_charge, R.id.row_paliwo_gazowe, "530.85");
-        billTester.checkTvInRowMatch(R.id.tv_net_charge, R.id.row_dystrybucyjna_stala, "48.89");
-        billTester.checkTvInRowMatch(R.id.tv_net_charge, R.id.row_dystrybucyjna_zmienna, "171.77");
+        billTester.checkTvInRowMatch(R.id.pgnig_component_row_net_charge, R.id.row_abonamentowa, "13.94");
+        billTester.checkTvInRowMatch(R.id.pgnig_component_row_net_charge, R.id.row_paliwo_gazowe, "530.85");
+        billTester.checkTvInRowMatch(R.id.pgnig_component_row_net_charge, R.id.row_dystrybucyjna_stala, "48.89");
+        billTester.checkTvInRowMatch(R.id.pgnig_component_row_net_charge, R.id.row_dystrybucyjna_zmienna, "171.77");
 
         // VAT 122,10 3,21 11,24 39,51
         // verify Razem
-        billTester.checkTvInRowMatch(R.id.tv_net_charge, R.id.row_sum, "765.45");
-        billTester.checkTvInRowMatch(R.id.tv_vat_amount, R.id.row_sum, "176.06");
-        billTester.checkTvInRowMatch(R.id.tv_gross_charge, R.id.row_sum, "941.51");
+        billTester.checkTvInRowMatch(R.id.pgnig_components_net_charge, R.id.row_sum, "765.45");
+        billTester.checkTvInRowMatch(R.id.pgnig_components_vat_amount, R.id.row_sum, "176.06");
+        billTester.checkTvInRowMatch(R.id.pgnig_components_gross_charge, R.id.row_sum, "941.51");
         billTester.checkTvMatch(R.id.tv_invoice_value, "Wartość faktury brutto: 941.51 zł");
     }
 

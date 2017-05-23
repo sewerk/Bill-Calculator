@@ -101,9 +101,9 @@ public class PgeBillCreationUITest extends AbstractVerifyBillCreationUITest {
         billTester.checkTvEndsWith(R.id.tv_excise, "2.30 zł.");
 
         // verify podsumowanie zużycia
-        billTester.checkTvMatch(R.id.tv_net_charge, "64.80");
-        billTester.checkTvMatch(R.id.tv_vat_amount, "14.91");
-        billTester.checkTvMatch(R.id.tv_gross_charge, "79.71");
+        billTester.checkTvMatch(R.id.pge_sum_net_charge, "64.80");
+        billTester.checkTvMatch(R.id.pge_sum_vat_amount, "14.91");
+        billTester.checkTvMatch(R.id.pge_sum_gross_charge, "79.71");
 
         // verify Do zapłaty
         billTester.checkTvEndsWith(R.id.tv_to_pay, "79.71 zł");
