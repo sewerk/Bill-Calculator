@@ -52,4 +52,11 @@
         app:backgroundTint="@color/primary"
         app:rippleColor="@color/primaryDark"
         app:srcCompat="@drawable/ic_add_white_24dp"/>
+
+    <View
+        android:id="@+id/fabs_dim_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dim_overlay"
+        android:visibility="gone"/>
 </merge>

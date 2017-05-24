@@ -22,6 +22,7 @@ public class FabsMenuHandler {
     @BindView(R.id.fab_new_pge) FloatingActionButton fabPge;
     @BindView(R.id.fab_new_pgnig) FloatingActionButton fabPgnig;
     @BindView(R.id.fab_new_tauron) FloatingActionButton fabTauron;
+    @BindView(R.id.fabs_dim_view) View dim;
     private AnimatorSet expandAnimator;
     private AnimatorSet collapseAnimator;
     private HistoryPresenter activityPresenter;
@@ -51,6 +52,11 @@ public class FabsMenuHandler {
         collapse();// TODO: move to presenter
     }
 
+    @OnClick(R.id.fabs_dim_view)
+    public void onDimClicked() {
+        collapse();
+    }
+
     private void expand() {
         if (isCollapsingInProgress()) {
             collapseAnimator.end();
@@ -59,6 +65,7 @@ public class FabsMenuHandler {
             expandAnimator = Animations.getExpandFabs(fab, fabPge, fabPgnig, fabTauron);
         }
         expandAnimator.start();
+        dim.setVisibility(View.VISIBLE);
     }
 
     private void collapse() {
@@ -69,6 +76,7 @@ public class FabsMenuHandler {
             collapseAnimator = Animations.getCollapseFabs(fab, fabPge, fabPgnig, fabTauron);
         }
         collapseAnimator.start();
+        dim.setVisibility(View.GONE);
     }
 
     private boolean isExpandingInProgress() {
