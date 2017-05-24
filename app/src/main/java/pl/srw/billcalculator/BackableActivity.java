@@ -3,12 +3,10 @@ package pl.srw.billcalculator;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.mfvp.MvpActivity;
 import pl.srw.mfvp.di.component.MvpComponent;
 
-/**
- * Created by Kamil Seweryn.
- */
 public abstract class BackableActivity<T extends MvpComponent> extends MvpActivity<T> {
 
     @Override
@@ -26,5 +24,11 @@ public abstract class BackableActivity<T extends MvpComponent> extends MvpActivi
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Analytics.log("Back pressed");
+        super.onBackPressed();
     }
 }

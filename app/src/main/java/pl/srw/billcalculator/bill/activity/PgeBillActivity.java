@@ -45,7 +45,7 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
         super.onCreate(savedInstanceState);
         Dependencies.inject(this);
         Analytics.logContent(ContentType.PGE_BILL,
-                "PGE new", String.valueOf(prices == null),
+                "PGE new", prices == null,
                 "PGE tariff", (isTwoUnitTariff() ? "G12" : "G11"));
 
         prices = (IPgePrices) getIntent().getSerializableExtra(IntentCreator.PRICES);

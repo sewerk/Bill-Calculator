@@ -42,7 +42,7 @@ public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Dependencies.inject(this);
-        Analytics.logContent(ContentType.PGNIG_BILL, "PGNIG new", String.valueOf(prices == null));
+        Analytics.logContent(ContentType.PGNIG_BILL, "PGNIG new", prices == null);
 
         prices = (IPgnigPrices) getIntent().getSerializableExtra(IntentCreator.PRICES);
         if (prices == null) {

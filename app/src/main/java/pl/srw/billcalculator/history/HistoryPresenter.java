@@ -47,7 +47,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     @Override
     protected void onFirstBind() {
         loadHistoryData();
-        Analytics.logContent(ContentType.HISTORY, "history size", String.valueOf(historyData.size()));
+        Analytics.logContent(ContentType.HISTORY, "history size", historyData.size());
 
         present(new UIChange<HistoryView>() {
             @Override
@@ -87,6 +87,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     @Override
     public void onListItemDismissed(final int position, Bill bill) {
         Analytics.logAction(ActionType.DELETE_BILL, "dismissed", "true");
+        Timber.d("bill id=%d", bill.getId());
         history.deleteBillWithPrices(BillType.valueOf(bill), bill.getId(), bill.getPricesId());
         loadHistoryData();
         present(new UIChange<HistoryView>() {
@@ -251,6 +252,8 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     }
 
     private void openBill(final HistoryViewItem item) {
+        Analytics.logAction(ActionType.OPEN_BILL,"provider", item.getBill().getClass().getSimpleName());
+        Timber.d("bill id=%d", item.getBill().getId());
         present(new UIChange<HistoryView>() {
             @Override
             public void change(HistoryView view) {

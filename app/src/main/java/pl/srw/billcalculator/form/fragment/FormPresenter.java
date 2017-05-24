@@ -13,9 +13,11 @@ import io.reactivex.schedulers.Schedulers;
 import pl.srw.billcalculator.form.FormValueValidator;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
+import pl.srw.billcalculator.type.ActionType;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.ProviderMapper;
+import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.ReadingsRepo;
 import pl.srw.mfvp.di.scope.RetainFragmentScope;
 import pl.srw.mfvp.presenter.MvpPresenter;
@@ -88,6 +90,7 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
                                        String dateFrom, String dateTo,
                                        String readingDayFrom, String readingDayTo,
                                        String readingNightFrom, String readingNightTo) {
+        Analytics.logAction(ActionType.CALCULATE, "provider", provider);
         present(new UIChange<FormView>() {
             @Override
             public void change(FormView view) {

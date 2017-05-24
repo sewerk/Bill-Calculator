@@ -88,7 +88,7 @@ public class Analytics {
      * @param contentId
      * @param args
      */
-    public static void logContent(@ContentType String contentId, String... args) {
+    public static void logContent(@ContentType String contentId, Object... args) {
         final String message = "Content viewed: " + contentId + " " + Arrays.toString(args);
         Analytics.log(message);
         if (!ENABLED || args.length % 2 != 0) return;
@@ -96,7 +96,7 @@ public class Analytics {
         ContentViewEvent event = new ContentViewEvent();
         event.putContentId(contentId);
         for (int i = 0; i < args.length; i+=2) {
-            event.putCustomAttribute(args[i], args[i + 1]);
+            event.putCustomAttribute(args[i].toString(), args[i + 1].toString());
         }
         Answers.getInstance().logContentView(event);
     }
@@ -106,14 +106,14 @@ public class Analytics {
      * @param action
      * @param args
      */
-    public static void logAction(@ActionType String action, String... args) {
+    public static void logAction(@ActionType String action, Object... args) {
         final String message = "Action triggered: " + action + " " + Arrays.toString(args);
         Analytics.log(message);
         if (!ENABLED || args.length % 2 != 0) return;
 
         CustomEvent customEvent = new CustomEvent(action);
         for (int i = 0; i < args.length; i+=2) {
-            customEvent.putCustomAttribute(args[i], args[i + 1]);
+            customEvent.putCustomAttribute(args[i].toString(), args[i + 1].toString());
         }
         Answers.getInstance().logCustom(customEvent);
     }

@@ -29,7 +29,7 @@ public class ProviderSettingsActivity extends BackableActivity<ProviderSettingsC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Provider provider = (Provider) getIntent().getSerializableExtra(EXTRA_PROVIDER_NAME);
-        Analytics.logContent(ContentType.SETTINGS, "settings for", provider.toString());
+        Analytics.logContent(ContentType.SETTINGS, "settings for", provider);
 
         if (savedInstanceState == null) {
             getFragmentManager()

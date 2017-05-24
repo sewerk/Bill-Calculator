@@ -45,7 +45,7 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
         super.onCreate(savedInstanceState);
         Dependencies.inject(this);
         Analytics.logContent(ContentType.TAURON_BILL,
-                "Tauron new", String.valueOf(prices == null),
+                "Tauron new", prices == null,
                 "Tauron tariff", (isTwoUnitTariff() ? "G12" : "G11"));
 
         prices = (ITauronPrices) getIntent().getSerializableExtra(IntentCreator.PRICES);

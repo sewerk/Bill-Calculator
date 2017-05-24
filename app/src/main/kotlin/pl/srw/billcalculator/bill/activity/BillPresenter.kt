@@ -67,7 +67,7 @@ class BillPresenter @Inject constructor(val printer: Printer, printDirPath: Stri
         if (targetFile != null) {
             Analytics.logAction(ActionType.PRINT,
                     "print file", targetFile.name,
-                    "print file exist", targetFile.exists().toString())
+                    "print file exist", targetFile.exists())
             if (targetFile.exists())
                 present { it.openFile(targetFile, BillActivity.MIME_APPLICATION_PDF) }
             else
