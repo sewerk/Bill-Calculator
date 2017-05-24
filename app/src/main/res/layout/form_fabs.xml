@@ -6,20 +6,22 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/close_button"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:backgroundTint="@color/primary"
+        android:layout_marginLeft="@dimen/form_close_fab_margin_left"
+        android:layout_marginTop="@dimen/form_close_fab_margin_top"
         app:fabSize="mini"
         app:rippleColor="@color/primaryDark"
-        app:srcCompat="@drawable/ic_close_white_24dp"/><!-- shadow broken on Samsung -->
+        app:srcCompat="@drawable/ic_close_white_24dp"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/calculate_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="@dimen/form_calculate_button_margin_bottom"
         app:backgroundTint="@color/primary"
         app:rippleColor="@color/primaryDark"
-        app:srcCompat="@drawable/ic_arrow_forward_white_24dp"/><!-- margins not right on Samsung -->
+        app:srcCompat="@drawable/ic_arrow_forward_white_24dp"/>
 </merge>
