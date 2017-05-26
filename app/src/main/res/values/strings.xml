@@ -38,7 +38,7 @@
     <string name="form_reading_to_hint">current</string>
     <string name="form_reading_unit_m3" translatable="false">[m\u00B3]</string>
     <string name="form_reading_unit_kWh" translatable="false">[kWh]</string>
-    <string name="form_readings_header">Readings</string>
+    <string name="form_readings_header">Meter readings</string>
     <string name="form_dates_header">For period</string>
     <string name="form_logo_description">Provider logo</string>
     <string name="form_entry_reading_icon_content_desc">Readings icon</string>

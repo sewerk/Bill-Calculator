@@ -16,7 +16,7 @@
     <!-- Main help -->
     <string name="main_help_fab_desc">Wylicz rachunek</string>
     <string name="main_help_menu_desc">Menu</string>
-    <string name="main_help_options_desc">Akcje</string>
+    <string name="main_help_options_desc">Więcej opcji</string>
     <string name="main_help_swipe_delete_desc">Przeciągnij rachunek w bok aby usunąć</string>
     <!-- history -->
     <string name="history_label">Moje rachunki</string>
@@ -34,7 +34,7 @@
     <string name="form_logo_description">Logo dostawcy</string>
     <string name="form_reading_from_hint">poprzedni</string>
     <string name="form_reading_to_hint">obecny</string>
-    <string name="form_readings_header">Odczyty</string>
+    <string name="form_readings_header">Odczyty licznika</string>
     <!-- bill -->
     <string name="action_print">Drukuj do PDF</string>
     <string name="print_dir">Rachunki</string>
