@@ -23,6 +23,7 @@ public class FabsMenuHandler {
     @BindView(R.id.fab_new_pgnig) FloatingActionButton fabPgnig;
     @BindView(R.id.fab_new_tauron) FloatingActionButton fabTauron;
     @BindView(R.id.fabs_dim_view) View dim;
+    @BindView(R.id.app_bar) View toolbar;
     private AnimatorSet expandAnimator;
     private AnimatorSet collapseAnimator;
     private HistoryPresenter activityPresenter;
@@ -66,6 +67,7 @@ public class FabsMenuHandler {
         }
         expandAnimator.start();
         dim.setVisibility(View.VISIBLE);
+        toolbar.setEnabled(false);
     }
 
     private void collapse() {
@@ -77,6 +79,7 @@ public class FabsMenuHandler {
         }
         collapseAnimator.start();
         dim.setVisibility(View.GONE);
+        toolbar.setEnabled(true);
     }
 
     private boolean isExpandingInProgress() {

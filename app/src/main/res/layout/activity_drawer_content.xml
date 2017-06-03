@@ -7,9 +7,9 @@
     android:layout_height="match_parent"
     tools:context="pl.srw.billcalculator.history.DrawerActivity">
 
-    <include layout="@layout/activity_drawer_history"/>
-
     <include layout="@layout/activity_drawer_toolbar"/>
+
+    <include layout="@layout/activity_drawer_history"/>
 
     <include layout="@layout/activity_drawer_content_fabs"/>
 
