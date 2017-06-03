@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.tester;
 
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.support.design.widget.NavigationView;
@@ -10,6 +11,7 @@ import android.support.test.espresso.action.GeneralLocation;
 import android.support.test.espresso.action.GeneralSwipeAction;
 import android.support.test.espresso.action.Press;
 import android.support.test.espresso.action.Swipe;
+import android.support.test.espresso.action.ViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +23,10 @@ import org.hamcrest.TypeSafeMatcher;
 
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.history.DrawerActivity;
+import pl.srw.billcalculator.tester.action.CustomClickAction;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.actionWithAssertions;
-import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.swipeUp;
 import static android.support.test.espresso.action.ViewActions.typeText;
@@ -112,5 +114,12 @@ abstract class Tester {
             change = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         }
         testRule.getActivity().setRequestedOrientation(change);
+    }
+
+    private ViewAction click() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return actionWithAssertions(new CustomClickAction());
+        }
+        return ViewActions.click();
     }
 }
