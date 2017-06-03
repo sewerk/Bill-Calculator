@@ -58,6 +58,8 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder
             DoubleReadingsBillHistoryItemValueProviding doubleItemValuesProvider
                     = (DoubleReadingsBillHistoryItemValueProviding) this.itemValuesProvider;
             nightReadings.setText(doubleItemValuesProvider.getNightReadings());
+        } else {
+            nightReadings.setText("");
         }
     }
 
