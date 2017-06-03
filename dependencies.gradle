@@ -1,6 +1,6 @@
 ext {
-    kotlinVer = '1.1.2'
-    supportLibVer = '25.3.0'
+    kotlinVer = '1.1.2-4'
+    supportLibVer = '25.3.1'
     daggerVer = '2.0.1'
     butterKnifeVer = '8.3.0'
     leakcanaryVer = '1.5'
