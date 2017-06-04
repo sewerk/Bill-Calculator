@@ -159,6 +159,29 @@ public class HistoryUITest {
                 .checkNoSelection();
     }
 
+    @Test
+    public void shouldDisplayProperReadingsAfterScrolling() {
+        final int count = 10;
+        // given: one double-reading bill and more single-reading
+        historyGenerator.generatePgeG12Bill(101, 201);
+        historyGenerator.generatePgeG11Bills(count);
+        testRule.launchActivity(null);
+
+        // when:
+        HistoryTester historyTester = tester
+                .skipCheckPricesDialogIfVisible()
+                .onHistory();
+
+        // then:
+        historyTester.checkItemReadings(0, "91 - 101", "191 - 201");
+        // and: double reading should be empty for position > 0
+        for(int i = count ; i > 0; i--) {
+            final int position = count - i + 1;
+            final String firstLine = i + " - " + (i + 10);
+            historyTester.checkItemReadings(position, firstLine, "");
+        }
+    }
+
     private void cleanFirstLaunch() {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
         context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE)

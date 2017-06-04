@@ -1,5 +1,9 @@
 package pl.srw.billcalculator.tester;
 
+import android.support.test.espresso.NoMatchingViewException;
+import android.support.test.espresso.ViewAssertion;
+import android.view.View;
+
 import pl.srw.billcalculator.R;
 
 import static android.support.test.espresso.Espresso.onView;
@@ -95,5 +99,16 @@ public class HistoryTester extends Tester {
     public HistoryTester checkDeleteButtonHidden() {
         onView(withId(R.id.action_delete)).check(doesNotExist());
         return this;
+    }
+
+    public void checkItemReadings(final int position, final String firstLine, final String secondLine) {
+        onView(withId(R.id.bill_list)).perform(scrollToPosition(position + 1));
+        onRecyclerView(withId(R.id.bill_list)).atPositionCheck(position, new ViewAssertion() {
+            @Override
+            public void check(View itemView, NoMatchingViewException ex) {
+                matches(withText(firstLine)).check(itemView.findViewById(R.id.history_item_day_readings), ex);
+                matches(withText(secondLine)).check(itemView.findViewById(R.id.history_item_night_readings), ex);
+            }
+        });
     }
 }

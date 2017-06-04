@@ -24,6 +24,7 @@ import org.hamcrest.TypeSafeMatcher;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.tester.action.CustomClickAction;
+import pl.srw.billcalculator.tester.interactor.RecyclerViewInteraction;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.actionWithAssertions;
@@ -38,6 +39,21 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
 abstract class Tester {
+
+    public void changeOrientation(ActivityTestRule<DrawerActivity> testRule) {
+        int current = testRule.getActivity().getRequestedOrientation();
+        int change;
+        if (current == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+            change = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+        } else if (current == ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
+            change = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+            testRule.getActivity().setRequestedOrientation(change);
+            change = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+        } else {
+            change = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+        }
+        testRule.getActivity().setRequestedOrientation(change);
+    }
 
     void openDrawer() {
         clickIcon(R.string.navigation_drawer_open);
@@ -101,19 +117,8 @@ abstract class Tester {
         };
     }
 
-    public void changeOrientation(ActivityTestRule<DrawerActivity> testRule) {
-        int current = testRule.getActivity().getRequestedOrientation();
-        int change;
-        if (current == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
-            change = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
-        } else if (current == ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
-            change = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
-            testRule.getActivity().setRequestedOrientation(change);
-            change = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
-        } else {
-            change = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
-        }
-        testRule.getActivity().setRequestedOrientation(change);
+    RecyclerViewInteraction onRecyclerView(Matcher<View> viewMatcher) {
+        return new RecyclerViewInteraction(onView(viewMatcher));
     }
 
     private ViewAction click() {
