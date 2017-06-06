@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.tester.interactor;
 
+import android.support.annotation.IdRes;
 import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.PerformException;
 import android.support.test.espresso.ViewAssertion;
@@ -13,12 +14,14 @@ import android.view.View;
  */
 public class RecyclerViewInteraction {
     private ViewInteraction viewInteraction;
+    private final int position;
 
-    public RecyclerViewInteraction(ViewInteraction viewInteraction) {
+    public RecyclerViewInteraction(ViewInteraction viewInteraction, int position) {
         this.viewInteraction = viewInteraction;
+        this.position = position;
     }
 
-    public void atPositionCheck(final int position, final ViewAssertion itemViewAssertion) {
+    public RecyclerViewInteraction checkView(final @IdRes int id, final ViewAssertion itemViewAssertion) {
         viewInteraction.check(new ViewAssertion() {
             @Override
             public void check(View view, NoMatchingViewException ex) {
@@ -31,10 +34,11 @@ public class RecyclerViewInteraction {
                             .withCause(new IllegalStateException("No view holder at position: " + position))
                             .build();
                 } else {
-                    View viewAtPosition = viewHolderForPosition.itemView;
+                    View viewAtPosition = viewHolderForPosition.itemView.findViewById(id);
                     itemViewAssertion.check(viewAtPosition, ex);
                 }
             }
         });
+        return this;
     }
 }

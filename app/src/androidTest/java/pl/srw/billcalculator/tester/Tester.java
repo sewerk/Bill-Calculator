@@ -117,8 +117,8 @@ abstract class Tester {
         };
     }
 
-    RecyclerViewInteraction onRecyclerView(Matcher<View> viewMatcher) {
-        return new RecyclerViewInteraction(onView(viewMatcher));
+    RecyclerViewInteraction onRecyclerViewItem(Matcher<View> viewMatcher, int position) {
+        return new RecyclerViewInteraction(onView(viewMatcher), position);
     }
 
     private ViewAction click() {
