@@ -180,10 +180,11 @@ public class HistoryPresenterTest {
     }
 
     @Test
-    public void onNewViewRestoreState_setsHistoryDataOnList() throws Exception {
+    public void onNewViewRestoreState_whenNeedRefresh_setsHistoryDataOnList() throws Exception {
         // GIVEN
         final LazyList<History> list = mock(LazyList.class);
-        Whitebox.setInternalState(sut, "historyData", list);
+        when(history.getAll()).thenReturn(list);
+        Whitebox.setInternalState(sut, "needRefresh", true);
 
         // WHEN
         sut.onNewViewRestoreState();
@@ -191,6 +192,20 @@ public class HistoryPresenterTest {
         // THEN
         verify(view).setListData(list);
         verify(view).redrawList();
+    }
+
+    @Test
+    public void onCreate_setsHistoryDataOnList() throws Exception {
+        // GIVEN
+        final LazyList<History> list = mock(LazyList.class);
+        Whitebox.setInternalState(sut, "historyData", list);
+
+        // WHEN
+        sut.onCreate();
+
+        // THEN
+        verify(view).setListData(list);
+        verify(view, never()).redrawList();
     }
 
     @Test

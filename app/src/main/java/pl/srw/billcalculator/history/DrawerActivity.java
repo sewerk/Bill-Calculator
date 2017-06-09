@@ -77,6 +77,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         setupToolbar();
         setupDrawer();
         setupList();
+        presenter.onCreate();
     }
 
     @Override

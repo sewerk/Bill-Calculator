@@ -69,12 +69,23 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     protected void onNewViewRestoreState() {
         if (needRefresh) {
             loadHistoryData();
+            // set list after bill creation, activity rotation set is handled in #onCreate
+            present(new UIChange<HistoryView>() {
+                @Override
+                public void change(HistoryView view) {
+                    view.setListData(historyData);
+                    view.redrawList();
+                }
+            });
         }
+    }
+
+    public void onCreate() { // FIXME: remove this workaround when MVFP lib is fixed
+        //note this present will be executed after view is bind
         present(new UIChange<HistoryView>() {
             @Override
             public void change(HistoryView view) {
                 view.setListData(historyData);
-                view.redrawList();// TODO: this is unnecessary then coming back from other screen
             }
         });
     }
