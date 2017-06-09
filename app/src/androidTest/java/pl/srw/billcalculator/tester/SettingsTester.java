@@ -13,11 +13,12 @@ import static org.hamcrest.Matchers.allOf;
 
 public class SettingsTester extends Tester {
 
-    private AppTester parent;
-    private ProviderSettingsTester<SettingsTester> providerSettingsTester = new ProviderSettingsTester<>(this);
+    private final AppTester parent;
+    private final ProviderSettingsTester<SettingsTester> providerSettingsTester;
 
     SettingsTester(AppTester parent) {
         this.parent = parent;
+        this.providerSettingsTester = new ProviderSettingsTester<>(this);
     }
 
     public ProviderSettingsTester<SettingsTester> pickProvider(Provider provider) {

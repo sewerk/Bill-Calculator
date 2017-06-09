@@ -182,6 +182,25 @@ public class HistoryUITest {
         }
     }
 
+    @Test
+    public void shouldOpenAndCloseBillAfterScrolling() {
+        // given:
+        historyGenerator.generatePgeG11Bills(20);
+        testRule.launchActivity(null);
+
+        // when:
+        tester
+                .skipCheckPricesDialogIfVisible()
+                .onHistory()
+                .openBillAtPosition(16)
+                .close()
+                .onHistory()
+                .openBillAtPosition(1)
+                .close();
+
+        // then: no crash
+    }
+
     private void cleanFirstLaunch() {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
         context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE)

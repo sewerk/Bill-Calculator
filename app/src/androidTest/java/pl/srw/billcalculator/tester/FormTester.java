@@ -29,12 +29,14 @@ import static org.hamcrest.CoreMatchers.not;
 
 public class FormTester extends Tester {
 
-    private AppTester parent;
-    private BillTester billTester = new BillTester(parent);
-    private ProviderSettingsTester<FormTester> settingsTester = new ProviderSettingsTester<>(this);
+    private final AppTester parent;
+    private final BillTester billTester;
+    private final ProviderSettingsTester<FormTester> settingsTester;
 
     FormTester(AppTester parent) {
         this.parent = parent;
+        this.billTester = new BillTester(parent);
+        this.settingsTester = new ProviderSettingsTester<>(this);
     }
 
     public FormTester putIntoReadingFrom(String text) {

@@ -19,15 +19,21 @@ import static org.hamcrest.Matchers.not;
 
 public class HistoryTester extends Tester {
 
-    private AppTester parent;
-    private BillTester billTester = new BillTester(parent);
+    private final AppTester parent;
+    private final BillTester billTester;
 
     HistoryTester(AppTester parent) {
         this.parent = parent;
+        billTester = new BillTester(parent);
     }
 
     public BillTester openBillWithReadings(String from, String to) {
         clickText(from + " - " + to);
+        return billTester;
+    }
+
+    public BillTester openBillAtPosition(int position) {
+        onView(withId(R.id.bill_list)).perform(actionOnItemAtPosition(position, click()));
         return billTester;
     }
 
