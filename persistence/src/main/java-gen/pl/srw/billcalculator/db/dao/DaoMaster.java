@@ -114,7 +114,7 @@ public class DaoMaster extends AbstractDaoMaster {
         @Override
         public void onUpgrade(Database db, int oldVersion, int newVersion) {
             Timber.i("Upgrading schema from version " + oldVersion + " to " + newVersion + " by dropping all tables");
-            dropAllTables(db, true);// TODO
+            dropAllTables(db, true);
             onCreate(db);
         }
     }

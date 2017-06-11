@@ -17,6 +17,7 @@ import java.util.concurrent.CountDownLatch;
 
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.PgnigPrices;
+import pl.srw.billcalculator.db.dao.DaoMaster;
 import pl.srw.billcalculator.history.HistoryGenerator;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.persistence.Database;
@@ -52,7 +53,7 @@ public class PgnigBillStoringServiceTest extends ServiceTestCase<PgnigBillStorin
         super.setUp();
         setContext(InstrumentationRegistry.getInstrumentation().getTargetContext());
 
-        Database.initialize(getSystemContext());
+        DaoMaster.newDevSession(getContext(), this.getClass().getSimpleName() + ".DB");
     }
 
     @After

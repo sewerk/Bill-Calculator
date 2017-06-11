@@ -148,7 +148,7 @@ public final class Animations {
         return alpha;
     }
 
-    //TODO
+    // FIXME: is needed?
 //    public static void reveal() {
 //        Animator reveal = ViewAnimationUtils.createCircularReveal(
 //                viewToReveal, // The new View to reveal

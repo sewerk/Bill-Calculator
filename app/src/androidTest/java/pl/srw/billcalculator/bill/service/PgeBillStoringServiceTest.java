@@ -18,14 +18,12 @@ import java.util.concurrent.CountDownLatch;
 import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgePrices;
+import pl.srw.billcalculator.db.dao.DaoMaster;
 import pl.srw.billcalculator.history.HistoryGenerator;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.util.Dates;
 
-/**
- * Created by Kamil Seweryn.
- */
 @RunWith(AndroidJUnit4.class)
 public class PgeBillStoringServiceTest extends ServiceTestCase<PgeBillStoringServiceTest.PgeBillStoringServiceWrapper> {
 
@@ -56,7 +54,7 @@ public class PgeBillStoringServiceTest extends ServiceTestCase<PgeBillStoringSer
         super.setUp();
         setContext(InstrumentationRegistry.getInstrumentation().getTargetContext());
 
-        Database.initialize(getSystemContext());
+        DaoMaster.newDevSession(getContext(), this.getClass().getSimpleName() + ".DB");
     }
 
     @After

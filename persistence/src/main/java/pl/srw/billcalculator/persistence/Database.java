@@ -18,14 +18,10 @@ import pl.srw.billcalculator.db.dao.HistoryDao;
 import pl.srw.billcalculator.persistence.type.BillType;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 
-/**
- * Created by Kamil Seweryn.
- */
 public class Database {
 
     public static final String DB_NAME = "pl.srw.billcalculator.db";
     private static final String QUERY_ROW_LIMIT = "100";
-    private static SQLiteDatabase database;
     private static DaoSession daoSession;
     private static Query<History> historyQuery;
     private static Prices deletedPrices;
@@ -35,11 +31,9 @@ public class Database {
         daoSession = new DaoMaster(getDatabase(context)).newSession();
     }
 
-    public static void close() {
-        if (database != null) {
-            database.close();
-            database = null;
-        }
+    public static void restart(Context context) {
+        close();
+        initialize(context);
     }
 
     public static void enableDatabaseLogging() {
@@ -48,22 +42,20 @@ public class Database {
     }
 
     private static synchronized SQLiteDatabase getDatabase(Context context) {
-        if (database == null)
-            database = new DaoMaster.DevOpenHelper(context, DB_NAME, null) {
+        return new DaoMaster.OpenHelper(context, DB_NAME) {
 
-                @Override
-                public void onCreate(final SQLiteDatabase db) {
-                    super.onCreate(db);
-                    Triggers.create(db);
-                }
+            @Override
+            public void onCreate(final SQLiteDatabase db) {
+                super.onCreate(db);
+                Triggers.create(db);
+            }
 
-                @Override
-                public void onUpgrade(org.greenrobot.greendao.database.Database db, int oldVersion, int newVersion) {
-                    DBMigration.migrate(db, oldVersion, newVersion);
-                    Triggers.update(db, oldVersion, newVersion);
-                }
-            }.getWritableDatabase();
-        return database;
+            @Override
+            public void onUpgrade(org.greenrobot.greendao.database.Database db, int oldVersion, int newVersion) {
+                DBMigration.migrate(db, oldVersion, newVersion);
+                Triggers.update(db, oldVersion, newVersion);
+            }
+        }.getWritableDatabase();
     }
 
     public static DaoSession getSession() {
@@ -72,6 +64,7 @@ public class Database {
 
     public static int[] queryCurrentReadings(CurrentReadingType readingType) {
         String[] columns = {readingType.getColumnName()};
+        final SQLiteDatabase database = (SQLiteDatabase) daoSession.getDatabase().getRawDatabase();
         Cursor cursor = database.query(true, readingType.getTableName(), columns, null, null, null, null, columns[0] + " DESC", QUERY_ROW_LIMIT);
 
         int[] readings = new int[cursor.getCount()];
@@ -85,7 +78,8 @@ public class Database {
     public static LazyList<History> getHistory() {
         if (historyQuery == null)
             historyQuery = getSession().getHistoryDao().queryBuilder()
-                .orderDesc(HistoryDao.Properties.DateFrom, HistoryDao.Properties.BillType, HistoryDao.Properties.BillId).build();
+                    .orderDesc(HistoryDao.Properties.DateFrom, HistoryDao.Properties.BillType, HistoryDao.Properties.BillId)
+                    .build();
         return historyQuery.listLazy();
     }
 
@@ -111,5 +105,12 @@ public class Database {
 
     public static boolean canUndelete() {
         return deletedBill != null && deletedPrices != null;
+    }
+
+    private static void close() {
+        if (daoSession != null) {
+            daoSession.getDatabase().close();
+            daoSession = null;
+        }
     }
 }

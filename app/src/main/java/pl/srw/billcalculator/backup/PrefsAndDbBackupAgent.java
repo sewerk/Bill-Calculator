@@ -55,8 +55,7 @@ public class PrefsAndDbBackupAgent extends BackupAgentHelper {
             super.onRestore(data, appVersionCode, newState);
             if (appVersionCode < 22) {
                 // migrate db to db.ver=3
-                Database.close();
-                Database.initialize(this.getApplicationContext());
+                Database.restart(this.getApplicationContext());
             }
         } finally {
             lock.unlock();

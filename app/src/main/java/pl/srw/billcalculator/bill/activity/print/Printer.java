@@ -103,12 +103,12 @@ public class Printer {
 
     @VisibleForTesting
     Bitmap buildBitmapFrom(View contentView) {
-        return Views.buildBitmapFrom(contentView);// TODO: rewrite to Rx
+        return Views.buildBitmapFrom(contentView);// FIXME: rewrite to Rx
     }
 
     @VisibleForTesting
     File writeToImage(Bitmap bitmap, File tmpImg) throws IOException {
-        return BillExporter.writeToImage(tmpImg, bitmap);// TODO: rewrite to Rx
+        return BillExporter.writeToImage(tmpImg, bitmap);// FIXME: rewrite to Rx
     }
 
     @VisibleForTesting

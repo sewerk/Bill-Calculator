@@ -80,7 +80,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         }
     }
 
-    public void onCreate() { // FIXME: remove this workaround when MVFP lib is fixed
+    public void onCreate() { // TODO: remove this workaround when MVFP lib is fixed
         //note this present will be executed after view is bind
         present(new UIChange<HistoryView>() {
             @Override
@@ -167,7 +167,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     }
 
     void historyClicked() {
-        //TODO remove this option from drawer?
+        //FIXME: remove this option from drawer?
         present(new UIChange<HistoryView>() {
             @Override
             public void change(HistoryView view) {
