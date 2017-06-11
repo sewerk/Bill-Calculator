@@ -7,6 +7,7 @@ import javax.inject.Singleton
 @Singleton
 class MenuClickHandlerExtension @Inject constructor() {
 
+    @Suppress("UNUSED_PARAMETER")
     fun onOptionsItemSelected(item: MenuItem): Boolean {
         // does nothing
         return false
