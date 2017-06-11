@@ -12,6 +12,7 @@ import android.support.annotation.StringDef;
 import android.support.annotation.StringRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.view.ViewCompat;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +30,7 @@ import java.lang.annotation.RetentionPolicy;
 import javax.inject.Inject;
 
 import pl.srw.billcalculator.BackableActivity;
+import pl.srw.billcalculator.BuildConfig;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment;
 import pl.srw.billcalculator.intent.IntentCreator;
@@ -45,6 +47,7 @@ abstract class BillActivity<T extends MvpComponent>
     public static final String MIME_APPLICATION_PDF = "application/pdf";
     public static final String MIME_IMAGE = "image/*";
 
+    private static final String FILE_PROVIDER_AUTHORITY = BuildConfig.APPLICATION_ID + ".fileprovider";
     private static final int PERMISSION_REQUEST_CODE = 101;
 
     protected LocalDate dateFrom;
@@ -155,12 +158,12 @@ abstract class BillActivity<T extends MvpComponent>
 
     @Override
     public void openFile(@NonNull File file, @NonNull @FileType String type) {
-        final Uri uri = Uri.fromFile(file);
+        final Uri uri = FileProvider.getUriForFile(this, FILE_PROVIDER_AUTHORITY, file);
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(uri, type);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_ACTIVITY_NEW_TASK);
         try {
-            startActivity(intent); // TODO: StrictMode.onFileUriExposed: exposed beyond app through Intent.getData()
+            startActivity(intent);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(this, getString(R.string.print_no_pdf_viewer, file.getAbsolutePath()), Toast.LENGTH_LONG).show();
         }

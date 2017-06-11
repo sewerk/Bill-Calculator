@@ -1,5 +1,4 @@
 BUGS
-- storing service crashes on Dart - replace/remove
 - logcat error when form open
 - form dialog is hidden by keyboard on tablet landscape - cant click suggestion and cant see what is being entered
 - form on bigger devices is too width
@@ -14,6 +13,7 @@ RETHINK
 - add labels to fabs
 - select mode on history list, delete by swipe animation + fade out
 - move injection to Dependencies (conflict with mvfp lib)
+- print loading icon is not white
 - new launcher icon/ round icon
 - new restore default prices icon
 - form icons - counter for g11
