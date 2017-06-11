@@ -1,8 +1,8 @@
-    apply plugin: 'com.android.library'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '25.0.0'
+    buildToolsVersion "$buildToolsVer"
 
     defaultConfig {
         minSdkVersion 15
@@ -11,8 +11,6 @@ android {
         versionName "1.0"
 
         consumerProguardFiles 'proguard-rules.pro'
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     sourceSets {
@@ -22,11 +20,9 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile('org.greenrobot:greendao:3.1.0')
-    compile 'com.jakewharton.timber:timber:4.1.0'
+
+    compile "org.greenrobot:greendao:$greenDaoVer"
+    compile "com.jakewharton.timber:timber:$timberVer"
 
     testCompile 'junit:junit:4.12'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
-    androidTestCompile 'com.android.support.test:runner:0.5'
-    androidTestCompile 'com.android.support:support-annotations:24.1.1'
 }

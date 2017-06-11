@@ -1,4 +1,8 @@
 ext {
+    buildToolsVer = '25.0.0'
+
+    greenDaoVer = '3.1.0'
+    timberVer = '4.1.0'
     kotlinVer = '1.1.2-4'
     supportLibVer = '25.3.1'
     daggerVer = '2.0.1'

@@ -6,7 +6,7 @@ apply plugin: 'hugo'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.0'
+    buildToolsVersion "$buildToolsVer"
     defaultConfig {
         applicationId "pl.srw.billcalculator"
         minSdkVersion 15
