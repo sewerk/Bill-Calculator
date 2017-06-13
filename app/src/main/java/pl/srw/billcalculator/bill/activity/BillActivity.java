@@ -58,6 +58,7 @@ abstract class BillActivity<T extends MvpComponent>
     @Inject BillPresenter presenter;
 
     private Menu menu;
+    private Runnable menuChange;
 
     @Override
     @CallSuper
@@ -82,6 +83,10 @@ abstract class BillActivity<T extends MvpComponent>
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.bill, menu);
         this.menu = menu;
+        if (menuChange != null) {
+            menuChange.run();
+            menuChange = null;
+        }
         return true;
     }
 
@@ -116,6 +121,13 @@ abstract class BillActivity<T extends MvpComponent>
             MenuItem printMenuItem = menu.findItem(R.id.action_print);
             printMenuItem.setEnabled(false);
             printMenuItem.setActionView(new ProgressBar(this));
+        } else {
+            menuChange = new Runnable() {
+                @Override
+                public void run() {
+                    setPrintInProgressIcon();
+                }
+            };
         }
     }
 

@@ -55,7 +55,8 @@ public class Printer {
                         return buildBitmapFrom(contentView);
                     }
                 })
-                .subscribeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(Schedulers.io())
                 .map(new Function<Bitmap, File>() {
                     @Override
                     public File apply(Bitmap bitmap) throws Exception {
@@ -74,7 +75,6 @@ public class Printer {
                         }
                     }
                 })
-                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Consumer<File>() {
             @Override

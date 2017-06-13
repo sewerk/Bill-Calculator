@@ -1,31 +1,21 @@
 BUGS
-- logcat error when form open
 - form dialog is hidden by keyboard on tablet landscape - cant click suggestion and cant see what is being entered
-- form on bigger devices is too width
-- deleting bills and immediately opening one cause closing bill transition to crash
-
-TEST
-- print with screen rotation and openning different bill, which icon will appear
-- undo deletion on list with order being possible changed due to order in db
+- change toolbar my bills image
+- [beta2] logcat error when form open
+- [beta2] form on bigger devices is too width
 
 RETHINK
-- transition logo to form
 - add labels to fabs
-- select mode on history list, delete by swipe animation + fade out
-- move injection to Dependencies (conflict with mvfp lib)
+- delete by swipe animation + fade out
 - print loading icon is not white
 - new launcher icon/ round icon
 - new restore default prices icon
 - form icons - counter for g11
-- my bills collapsable toolbar + image
 - drawer menu
 - rework on images
 - empty history icon
-- update providers logo on FAB
 - scroll bill to amount/logo on start
 - rethink preferences names (consider optional properties)
 - za okres: from < to ? error
 - reveal on FAB clicked
-
-UX GUIDE
-settings - polacz ustawienia w grupy - dystrybucja, konsumpcja
+- combine settings items into groups - dystrybucja, konsumpcja
