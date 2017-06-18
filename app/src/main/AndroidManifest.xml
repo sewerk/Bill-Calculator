@@ -13,8 +13,8 @@
         android:fullBackupContent="@xml/backup"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"> <!--TODO disable rtl-->
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme">
 
         <meta-data
             android:name="com.google.android.backup.api_key"

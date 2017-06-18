@@ -1,4 +1,0 @@
-<resources xmlns:tools="http://schemas.android.com/tools"
-           tools:locale="en">
-    <string name="lib_name" translatable="false">Persistence</string>
-</resources>
