@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.wrapper;
 
+import android.app.Activity;
 import android.content.Context;
 
 import butterknife.ButterKnife;
@@ -15,6 +16,7 @@ import pl.srw.billcalculator.di.ApplicationComponent;
 import pl.srw.billcalculator.di.ApplicationModule;
 import pl.srw.billcalculator.di.DaggerApplicationComponent;
 import pl.srw.billcalculator.history.DrawerActivity;
+import pl.srw.billcalculator.history.FabsMenuViewHandler;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
 
 public class Dependencies {
@@ -69,5 +71,9 @@ public class Dependencies {
 
     public static void inject(AboutActivity activity) {
         ButterKnife.bind(activity);
+    }
+
+    public static void inject(FabsMenuViewHandler target, Activity viewSource) {
+        ButterKnife.bind(target, viewSource);
     }
 }

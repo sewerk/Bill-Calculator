@@ -62,7 +62,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
 
     @Inject HistoryPresenter presenter;
 //TODO    @Inject DrawerPresenter drawerPresenter;
-    @Inject FabsMenuHandler fabsMenuHandler;
+    @Inject FabsMenuViewHandler fabsMenuHandler;
     @Inject HelpHandler helpHandler;
     @Inject BillSelection selection;
     @Inject MenuClickHandlerExtension menuHandlerExtension;
@@ -73,7 +73,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         super.onCreate(savedInstanceState);
         Dependencies.inject(this);
 
-        fabsMenuHandler.setup(this);
+        fabsMenuHandler.init(this);
         setupToolbar();
         setupDrawer();
         setupList();

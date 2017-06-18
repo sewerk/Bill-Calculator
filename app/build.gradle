@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply from: 'signing.gradle'
 apply plugin: 'hugo'
 
@@ -50,8 +51,8 @@ android {
 
 dependencies {
 
-    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVer"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVer"
+    kapt "com.google.dagger:dagger-compiler:$daggerVer"
+    kapt "com.jakewharton:butterknife-compiler:$butterKnifeVer"
 
     compile project(':persistence')
     compile fileTree(dir: 'libs', include: ['*.jar'])
