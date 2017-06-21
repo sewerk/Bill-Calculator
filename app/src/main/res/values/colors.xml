@@ -8,7 +8,7 @@
     <color name="white">#FFFFFF</color>
     <color name="gray_light">#DDDDDD</color>
     <color name="gray">#AAAAAA</color>
-    <color name="gray_dark">#616161</color>
+    <color name="gray_dark">#414141</color>
     <color name="black">#000000</color>
     <color name="light">#efefef</color>
     <color name="light2">#e1e1e1</color>
@@ -20,6 +20,7 @@
     <color name="pgnigDark">#0f2845</color>
     <color name="tauron">#cc0099</color>
     <color name="tauronDark">#990066</color>
+    <color name="my_bills">@color/gray_dark</color>
 
     <color name="blue">#2196f3</color>
     <color name="red">#F44336</color>

@@ -48,7 +48,7 @@
     </style>
 
     <style name="Title.expanded">
-        <item name="android:textColor">@color/gray_dark</item>
+        <item name="android:textColor">@color/my_bills</item>
         <item name="android:textSize">32sp</item>
     </style>
 
