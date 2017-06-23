@@ -1,5 +1,6 @@
 v.2.0
  - material design
+ - preferences list switch on tariff change
 v.1.6.1
  - fix key/value backup by adding db migration
 v.1.6

@@ -94,7 +94,7 @@ public class Database {
      * Adds back last bill+prices which were removed
      */
     public static void undelete() {
-        if (deletedBill != null && deletedPrices != null) {
+        if (deletedBill != null && deletedPrices != null) { // TODO: undo delete after selected delete retrieves last from selection
             final BillType type = BillType.valueOf(deletedBill);
             ((AbstractDao<Prices, Long>) type.getPricesDao()).insert(deletedPrices);
             deletedPrices = null;
