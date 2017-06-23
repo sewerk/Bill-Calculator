@@ -1,4 +1,6 @@
-v.2.0
+v.2.0-beta1
+ - fix crash: TabTarget use reflection to access toolbar overflow
+v.2.0-beta
  - material design
  - preferences list switch on tariff change
 v.1.6.1
