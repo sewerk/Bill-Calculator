@@ -14,11 +14,7 @@ import java.io.OutputStream;
 
 import hugo.weaving.DebugLog;
 
-/**
- * Created by Kamil Seweryn.
- */
-public final class BillExporter {
-
+public class BillExporter {
     @DebugLog
     public static File writeToImage(final File imageFile, final Bitmap bitmap) throws IOException {
         OutputStream out = null;
@@ -50,8 +46,8 @@ public final class BillExporter {
 
     @DebugLog
     private static void scaleToFit(Document document, Image image) {
-        float scaler = ((document.getPageSize().getWidth() - document.leftMargin()
+        float scale = ((document.getPageSize().getWidth() - document.leftMargin()
                 - document.rightMargin()) / image.getWidth()) * 100;
-        image.scalePercent(scaler);
+        image.scalePercent(scale);
     }
 }

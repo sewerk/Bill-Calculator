@@ -1,16 +1,24 @@
 package pl.srw.billcalculator.settings.fragment;
 
+import javax.inject.Inject;
+
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.prices.PgePrices;
+import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.wrapper.Dependencies;
 
-/**
- * Created by Kamil Seweryn.
- */
 public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
 
+    @Inject PgePrices pgePrices;
+
     @Override
-    protected int getPreferencesResource() {
-        return R.xml.pge_preferences;
+    protected int getPreferencesG11Resource() {
+        return R.xml.pge_g11_preferences;
+    }
+
+    @Override
+    protected int getPreferencesG12Resource() {
+        return R.xml.pge_g12_preferences;
     }
 
     @Override
@@ -19,13 +27,18 @@ public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
     }
 
     @Override
-    public int getTitleResource() {
-        return R.string.pge_prices;
+    protected String getTariffKey() {
+        return PgePrices.KEY_TARIFF;
     }
 
     @Override
-    protected String getTariffKey() {
-        return getString(R.string.preferences_pge_tariff);
+    protected boolean isTariffG12() {
+        return pgePrices.isTariffG12();
+    }
+
+    @Override
+    protected Provider getProvider() {
+        return Provider.PGE;
     }
 
     @Override
@@ -36,13 +49,11 @@ public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
     }
 
     @Override
-    protected String getMWhMeasurePrefKeys() {
-        return getStringFor(R.string.preferences_pge_oplata_oze);
+    protected void injectDependencies() {
+        Dependencies.getApplicationComponent().getSettingsComponent().inject(this);
     }
 
-    @Override
-    public void restoreSettings() {
-        super.restoreSettings();
-        new PgePrices().setDefault();
+    protected String getMWhMeasurePrefKeys() {
+        return getStringFor(R.string.preferences_pge_oplata_oze);
     }
 }

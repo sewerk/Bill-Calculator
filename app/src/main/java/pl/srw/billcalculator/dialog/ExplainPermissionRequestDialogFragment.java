@@ -12,9 +12,6 @@ import android.support.v4.app.ActivityCompat;
 
 import pl.srw.billcalculator.R;
 
-/**
- * Created by Kamil Seweryn on 05.02.2016.
- */
 public class ExplainPermissionRequestDialogFragment extends DialogFragment {
 
     private static final String ARGS_PERMISSIONS = "ARGS_PERMISSIONS";

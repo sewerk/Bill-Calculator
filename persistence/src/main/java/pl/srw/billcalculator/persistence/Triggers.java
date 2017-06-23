@@ -2,6 +2,8 @@ package pl.srw.billcalculator.persistence;
 
 import android.database.sqlite.SQLiteDatabase;
 
+import org.greenrobot.greendao.database.Database;
+
 import pl.srw.billcalculator.db.dao.HistoryDao;
 import pl.srw.billcalculator.db.dao.PgeG11BillDao;
 import pl.srw.billcalculator.db.dao.PgeG12BillDao;
@@ -44,13 +46,14 @@ public final class Triggers {
             db.execSQL(sql);
     }
 
-    public static void update(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public static void update(org.greenrobot.greendao.database.Database db, int oldVersion, int newVersion) {
         switch (oldVersion) {
             case 1: addTriggers(db, DB_VER_2_FROM_TRIGGER, DB_VER_2_TO_TRIGGER);
         }
     }
 
-    private static void addTriggers(SQLiteDatabase db, int fromIdx, int toIdx) {
+    @SuppressWarnings("SameParameterValue")
+    private static void addTriggers(Database db, int fromIdx, int toIdx) {
         for (int i = fromIdx; i <= toIdx; i++) {
             db.execSQL(Triggers.BILL_INSERT_TRIGGERS[i]);
             db.execSQL(Triggers.BILL_DELETE_TRIGGERS[i]);

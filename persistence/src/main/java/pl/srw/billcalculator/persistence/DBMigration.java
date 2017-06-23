@@ -1,11 +1,9 @@
 package pl.srw.billcalculator.persistence;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-
 import pl.srw.billcalculator.db.dao.TauronG11BillDao;
 import pl.srw.billcalculator.db.dao.TauronG12BillDao;
 import pl.srw.billcalculator.db.dao.TauronPricesDao;
+import timber.log.Timber;
 
 /**
  * Migration done on db schema:
@@ -15,8 +13,8 @@ import pl.srw.billcalculator.db.dao.TauronPricesDao;
  */
 class DBMigration {
 
-    public static void migrate(final SQLiteDatabase db, final int oldVersion, final int newVersion) {
-        Log.i("DBMigration", "Upgrading schema from version " + oldVersion + " to " + newVersion);
+    static void migrate(final org.greenrobot.greendao.database.Database db, final int oldVersion, final int newVersion) {
+        Timber.i("Upgrading schema from version " + oldVersion + " to " + newVersion);
         switch (oldVersion) {
             case 1:
                 migrate_1_3(db);
@@ -27,7 +25,7 @@ class DBMigration {
         }
     }
 
-    private static void migrate_1_3(final SQLiteDatabase db) {
+    private static void migrate_1_3(final org.greenrobot.greendao.database.Database db) {
         TauronPricesDao.createTable(db, true); // this will handle partially the migrate_2_3
         TauronG11BillDao.createTable(db, true);
         TauronG12BillDao.createTable(db, true);
@@ -36,12 +34,12 @@ class DBMigration {
         addOplataOzeColumnTo(db, "PGE_PRICES");
     }
 
-    private static void migrate_2_3(SQLiteDatabase db) {
+    private static void migrate_2_3(org.greenrobot.greendao.database.Database db) {
         addOplataOzeColumnTo(db, "PGE_PRICES");
         addOplataOzeColumnTo(db, "TAURON_PRICES");
     }
 
-    private static void addOplataOzeColumnTo(SQLiteDatabase db, String tableName) {
+    private static void addOplataOzeColumnTo(org.greenrobot.greendao.database.Database db, String tableName) {
         db.execSQL("ALTER TABLE " + tableName + " ADD COLUMN 'OPLATA_OZE' TEXT DEFAULT '0.00';");
     }
 }

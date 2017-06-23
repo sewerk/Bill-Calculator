@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">@color/red</color>
+    <color name="primaryDark">#B71C1C</color>
+    <color name="accent">@color/blue_gray</color>
+    <color name="primaryTransparent">#80F44336</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="gray_light">#DDDDDD</color>
+    <color name="gray">#AAAAAA</color>
+    <color name="gray_dark">#414141</color>
+    <color name="black">#000000</color>
+    <color name="light">#efefef</color>
+    <color name="light2">#e1e1e1</color>
+    <color name="dim_overlay">#80000000</color>
+
+    <color name="pge">#ed7900</color>
+    <color name="pgeDark">#e50005</color>
+    <color name="pgnig">#0c3b70</color>
+    <color name="pgnigDark">#0f2845</color>
+    <color name="tauron">#cc0099</color>
+    <color name="tauronDark">#990066</color>
+    <color name="my_bills">@color/gray_dark</color>
+
+    <color name="blue">#2196f3</color>
+    <color name="red">#F44336</color>
+    <color name="pink">#e91e63</color>
+    <color name="teal">#009688</color>
+    <color name="green">#4caf50</color>
+    <color name="yellow">#ffeb3b</color>
+    <color name="orange">#ff9800</color>
+    <color name="deep_orange">#ff5722</color>
+    <color name="blue_gray">#607d8b</color>
+</resources>

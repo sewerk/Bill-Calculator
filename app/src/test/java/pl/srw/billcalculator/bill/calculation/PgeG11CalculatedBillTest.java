@@ -1,6 +1,8 @@
 package pl.srw.billcalculator.bill.calculation;
 
 import org.junit.Test;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.Month;
 
 import java.math.BigDecimal;
 
@@ -20,10 +22,9 @@ public class PgeG11CalculatedBillTest {
         final PgePrices prices = new PgePrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", "6.06", null, null, null, null, "0.00");
 
         // calculate
-        final PgeG11CalculatedBill sut = new PgeG11CalculatedBill(20, 30, "01/03/2015", "30/04/2015", prices);
+        final PgeG11CalculatedBill sut = new PgeG11CalculatedBill(20, 30, LocalDate.of(2015, Month.MARCH, 1), LocalDate.of(2015, Month.APRIL, 30), prices);
 
         // verify
-        assertThat(sut.getConsumption(), is(10));
         assertThat(sut.getTotalConsumption(), is(10));
         assertThat(sut.getMonthCount(), is(2));
 
@@ -53,7 +54,7 @@ public class PgeG11CalculatedBillTest {
         final PgePrices prices = new PgePrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", "6.06", null, null, null, null, "2.51");
 
         // WHEN
-        final PgeG11CalculatedBill sut = new PgeG11CalculatedBill(20, 30, "01/07/2016", "30/08/2016", prices);
+        final PgeG11CalculatedBill sut = new PgeG11CalculatedBill(20, 30, LocalDate.of(2016, Month.JULY, 1), LocalDate.of(2016, Month.AUGUST, 30), prices);
 
         // THEN
         assertThat(sut.getConsumptionFromJuly16(), is(10));

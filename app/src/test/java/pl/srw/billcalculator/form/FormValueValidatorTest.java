@@ -4,7 +4,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
@@ -13,12 +12,10 @@ import junitparams.Parameters;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
-/**
- * Created by kseweryn on 29.06.15.
- */
 @RunWith(JUnitParamsRunner.class)
 public class FormValueValidatorTest {
 
@@ -29,7 +26,7 @@ public class FormValueValidatorTest {
     @Parameters
     public void testIsValueFilled(String input, boolean expected) throws Exception {
         assertThat(FormValueValidator.isValueFilled(input, onErrorCallback), is(expected));
-        Mockito.verify(onErrorCallback, times(expected ? 0 : 1)).onError(anyInt());
+        verify(onErrorCallback, times(expected ? 0 : 1)).onError(anyInt());
     }
 
     private Object parametersForTestIsValueFilled() {
@@ -40,15 +37,15 @@ public class FormValueValidatorTest {
     @Parameters({"1,2|true", "2,2|false", "2,1|false"})
     public void testIsValueOrderCorrect(String prev, String curr, boolean expected) throws Exception {
         assertThat(FormValueValidator.isValueOrderCorrect(prev, curr, onErrorCallback), is(expected));
-        Mockito.verify(onErrorCallback, times(expected ? 0 : 1)).onError(anyInt());
+        verify(onErrorCallback, times(expected ? 0 : 1)).onError(anyInt());
     }
 
     @Test
-    @Parameters({"01/01/2015, 02/01/2015|true",
-                 "02/01/2015, 02/01/2015|false",
-                 "02/01/2015, 01/01/2015|false"})
+    @Parameters({"01.01.15, 02.01.15|true",
+            "02.01.15, 02.01.15|false",
+            "02.01.15, 01.01.15|false"})
     public void testIsDatesOrderCorrect(String fromDate, String toDate, boolean expected) throws Exception {
         assertThat(FormValueValidator.isDatesOrderCorrect(fromDate, toDate, onErrorCallback), is(expected));
-        Mockito.verify(onErrorCallback, times(expected ? 0 : 1)).onError(anyInt());
+        verify(onErrorCallback, times(expected ? 0 : 1)).onError(anyInt());
     }
 }

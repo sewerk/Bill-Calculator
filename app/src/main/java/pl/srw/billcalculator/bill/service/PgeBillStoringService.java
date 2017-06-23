@@ -1,5 +1,7 @@
 package pl.srw.billcalculator.bill.service;
 
+import javax.inject.Inject;
+
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.CalculatedEnergyBill;
 import pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill;
@@ -10,14 +12,21 @@ import pl.srw.billcalculator.db.PgePrices;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
+import pl.srw.billcalculator.wrapper.Dependencies;
 
-/**
- * Created by Kamil Seweryn.
- */
 public class PgeBillStoringService extends BillStoringService<PgePrices, CalculatedEnergyBill> {
+
+    @Inject pl.srw.billcalculator.settings.prices.PgePrices prices;
+    @Inject SavedBillsRegistry savedBillsRegistry;
 
     public PgeBillStoringService() {
         super("PgeBillStoringService");
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Dependencies.inject(this);
     }
 
     @Override
@@ -29,16 +38,16 @@ public class PgeBillStoringService extends BillStoringService<PgePrices, Calcula
     protected void storeBill(CalculatedEnergyBill calculatedBill, PgePrices prices) {
         if (isTwoUnitTariff()) {
             final PgeG12Bill bill = new PgeG12Bill(null, readingDayFrom, readingDayTo, readingNightFrom, readingNightTo,
-                    Dates.toDate(Dates.parse(dateFrom)), Dates.toDate(Dates.parse(dateTo)),
+                    Dates.toDate(dateFrom), Dates.toDate(dateTo),
                     calculatedBill.getGrossChargeSum().doubleValue(), prices.getId());
             Database.getSession().insert(bill);
-            SavedBillsRegistry.getInstance().register(bill);
+            savedBillsRegistry.register(bill);
         } else {
             final PgeG11Bill bill = new PgeG11Bill(null, readingFrom, readingTo,
-                    Dates.toDate(Dates.parse(dateFrom)), Dates.toDate(Dates.parse(dateTo)),
+                    Dates.toDate(dateFrom), Dates.toDate(dateTo),
                     calculatedBill.getGrossChargeSum().doubleValue(), prices.getId());
             Database.getSession().insert(bill);
-            SavedBillsRegistry.getInstance().register(bill);
+            savedBillsRegistry.register(bill);
         }
     }
 
@@ -52,7 +61,7 @@ public class PgeBillStoringService extends BillStoringService<PgePrices, Calcula
 
     @Override
     protected PgePrices storePrices() {
-        final PgePrices dbPrices = new pl.srw.billcalculator.settings.prices.PgePrices().convertToDb();
+        final PgePrices dbPrices = prices.convertToDb();
         Database.getSession().insert(dbPrices);
         return dbPrices;
     }

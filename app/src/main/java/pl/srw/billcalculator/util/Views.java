@@ -6,46 +6,33 @@ import android.graphics.Canvas;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.support.annotation.UiThread;
+import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.widget.TextView;
 
 import hugo.weaving.DebugLog;
-import pl.srw.billcalculator.BillCalculator;
 
-/**
- * Created by Kamil Seweryn.
- */
 public final class Views {
     
     private Views() {}
 
-
     public static void setTVInRow(View row, @IdRes int textViewId, @StringRes int stringId) {
         TextView tv = (TextView) row.findViewById(textViewId);
-        setTV(tv, stringId);
+        tv.setText(stringId);
     }
 
     public static void setTVInRow(View row, @IdRes int textViewId, String string) {
-        TextView tv = (TextView) row.findViewById(textViewId);
-        setTV(tv, string);
+        setTV(row, textViewId, string);
     }
 
     public static void setTV(Activity activity, @IdRes int textViewId, String string) {
         TextView tv = (TextView) activity.findViewById(textViewId);
-        setTV(tv, string);
+        tv.setText(string);
     }
 
     public static void setTV(View parent, @IdRes int textViewId, String string) {
         TextView tv = (TextView) parent.findViewById(textViewId);
-        setTV(tv, string);
-    }
-    
-    public static void setTV(TextView tv, String string) {
         tv.setText(string);
-    }
-
-    public static void setTV(TextView tv, @StringRes int stringId) {
-        tv.setText(BillCalculator.context.getString(stringId));
     }
 
     @UiThread
@@ -58,4 +45,15 @@ public final class Views {
         return b;
     }
 
+    public static String getText(TextInputLayout view) {
+        return view.getEditText().getText().toString();
+    }
+
+    public static String getText(TextView view) {
+        return view.getText().toString();
+    }
+
+    public static int getIntText(final TextView textView) {
+        return Integer.parseInt(getText(textView));
+    }
 }

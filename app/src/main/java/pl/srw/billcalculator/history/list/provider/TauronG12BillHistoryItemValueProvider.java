@@ -1,29 +1,23 @@
 package pl.srw.billcalculator.history.list.provider;
 
-import android.content.Intent;
+import android.content.Context;
 
-import lombok.ToString;
-import pl.srw.billcalculator.BillCalculator;
-import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.db.TauronG12Bill;
 import pl.srw.billcalculator.db.dao.HistoryDao;
 import pl.srw.billcalculator.db.dao.TauronG12BillDao;
-import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.persistence.exception.DbRelationMissingException;
 import pl.srw.billcalculator.persistence.type.BillType;
 import pl.srw.billcalculator.type.Provider;
 
-/**
- * Created by kseweryn on 03.06.15.
- */
-@ToString
-public class TauronG12BillHistoryItemValueProvider extends HistoryItemValueProvider {
+class TauronG12BillHistoryItemValueProvider extends HistoryItemValueProvider
+        implements DoubleReadingsBillHistoryItemValueProviding {
 
     private final TauronG12Bill bill;
 
-    public TauronG12BillHistoryItemValueProvider(final History item) {
+    TauronG12BillHistoryItemValueProvider(final History item, Context context) {
+        super(context);
         bill = (TauronG12Bill) BillType.TAURON_G12.getDao().load(item.getBillId());
         if (bill == null)
             throw new DbRelationMissingException(HistoryDao.TABLENAME, TauronG12BillDao.TABLENAME);
@@ -40,14 +34,12 @@ public class TauronG12BillHistoryItemValueProvider extends HistoryItemValueProvi
     }
 
     @Override
-    public String getReadings() {
-        return BillCalculator.context.getString(R.string.history_readingsG12,
-                bill.getReadingDayFrom(), bill.getReadingDayTo(),
-                bill.getReadingNightFrom(), bill.getReadingNightTo());
+    public String getDayReadings() {
+        return createPeriodString(bill.getReadingDayFrom().toString(), bill.getReadingDayTo().toString());
     }
 
     @Override
-    public Intent getIntent() {
-        return BillActivityIntentFactory.of(BillCalculator.context, Provider.TAURON).from(bill);
+    public String getNightReadings() {
+        return createPeriodString(bill.getReadingNightFrom().toString(), bill.getReadingNightTo().toString());
     }
 }

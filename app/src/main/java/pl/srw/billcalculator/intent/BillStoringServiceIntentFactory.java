@@ -5,8 +5,8 @@ import android.content.Context;
 import pl.srw.billcalculator.bill.service.PgeBillStoringService;
 import pl.srw.billcalculator.bill.service.PgnigBillStoringService;
 import pl.srw.billcalculator.bill.service.TauronBillStoringService;
-import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
+import pl.srw.billcalculator.type.Provider;
 
 /**
  * Created by Kamil Seweryn.

@@ -2,9 +2,9 @@ package pl.srw.billcalculator.intent;
 
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+
+import org.threeten.bp.LocalDate;
 
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.PgeG11Bill;
@@ -12,12 +12,13 @@ import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.TauronG11Bill;
 import pl.srw.billcalculator.db.TauronG12Bill;
-import pl.srw.billcalculator.form.view.ErrorShowingDatePickerButton;
+import pl.srw.billcalculator.form.fragment.FormFragment;
 import pl.srw.billcalculator.util.Dates;
+import pl.srw.billcalculator.wrapper.Analytics;
 
-/**
-* Created by Kamil Seweryn.
-*/
+import static pl.srw.billcalculator.util.Views.getIntText;
+import static pl.srw.billcalculator.util.Views.getText;
+
 public final class IntentCreator {
 
     public static final String READING_FROM = "READING_FROM";
@@ -35,27 +36,29 @@ public final class IntentCreator {
         intent = new Intent(context, aClass);
     }
 
-    public Intent from(final EditText etReadingFrom, final EditText etReadingTo,
-                       final Button bDateFrom, final ErrorShowingDatePickerButton bDateTo) {
+    public Intent from(final TextView etReadingFrom, final TextView etReadingTo,
+                       final TextView bDateFrom, final TextView bDateTo) {
         return from(getIntText(etReadingFrom), getIntText(etReadingTo),
-                getStringText(bDateFrom), getStringText(bDateTo));
+                Dates.parse(getText(bDateFrom), FormFragment.DATE_PATTERN),
+                Dates.parse(getText(bDateTo), FormFragment.DATE_PATTERN));
     }
 
-    private Intent from(int readingFrom, int readingTo, String dateFrom, String dateTo) {
+    private Intent from(int readingFrom, int readingTo, LocalDate dateFrom, LocalDate dateTo) {
         putReadingsExtra(readingFrom, readingTo);
         putDatesExtra(dateFrom, dateTo);
         return intent;
     }
 
-    public Intent from(final EditText etReadingDayFrom, final EditText etReadingDayTo,
-                       final EditText etReadingNightFrom, final EditText etReadingNightTo,
-                       final Button bDateFrom, final ErrorShowingDatePickerButton bDateTo) {
+    public Intent from(final TextView etReadingDayFrom, final TextView etReadingDayTo,
+                       final TextView etReadingNightFrom, final TextView etReadingNightTo,
+                       final TextView bDateFrom, final TextView bDateTo) {
         return from(getIntText(etReadingDayFrom), getIntText(etReadingDayTo),
                 getIntText(etReadingNightFrom), getIntText(etReadingNightTo),
-                getStringText(bDateFrom), getStringText(bDateTo));
+                Dates.parse(getText(bDateFrom), FormFragment.DATE_PATTERN),
+                Dates.parse(getText(bDateTo), FormFragment.DATE_PATTERN));
     }
 
-    private Intent from(int readingDayFrom, int readingDayTo, int readingNightFrom, int readingNightTo, String dateFrom, String dateTo) {
+    private Intent from(int readingDayFrom, int readingDayTo, int readingNightFrom, int readingNightTo, LocalDate dateFrom, LocalDate dateTo) {
         putReadingsG12Extra(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo);
         putDatesExtra(dateFrom, dateTo);
         return intent;
@@ -97,14 +100,16 @@ public final class IntentCreator {
     }
 
     private void putDatesExtra(final Bill bill) {
-        final String dateFrom = Dates.format(Dates.toLocalDate(bill.getDateFrom()));
-        final String dateTo = Dates.format(Dates.toLocalDate(bill.getDateTo()));
+        final LocalDate dateFrom = Dates.toLocalDate(bill.getDateFrom());
+        final LocalDate dateTo = Dates.toLocalDate(bill.getDateTo());
         putDatesExtra(dateFrom, dateTo);
     }
 
     private void putReadingsExtra(final int readingFrom, final int readingTo) {
         intent.putExtra(READING_FROM, readingFrom);
         intent.putExtra(READING_TO, readingTo);
+        Analytics.setInt(READING_FROM, readingFrom);
+        Analytics.setInt(READING_TO, readingTo);
     }
 
     private void putReadingsG12Extra(final int readingDayFrom, final int readingDayTo, final int readingNightFrom, final int readingNightTo) {
@@ -112,22 +117,16 @@ public final class IntentCreator {
         intent.putExtra(READING_DAY_TO, readingDayTo);
         intent.putExtra(READING_NIGHT_FROM, readingNightFrom);
         intent.putExtra(READING_NIGHT_TO, readingNightTo);
+        Analytics.setInt(READING_DAY_FROM, readingDayFrom);
+        Analytics.setInt(READING_DAY_TO, readingDayTo);
+        Analytics.setInt(READING_NIGHT_FROM, readingNightFrom);
+        Analytics.setInt(READING_NIGHT_TO, readingNightTo);
     }
 
-    private void putDatesExtra(final String dateFrom, final String dateTo) {
+    private void putDatesExtra(final LocalDate dateFrom, final LocalDate dateTo) {
         intent.putExtra(DATE_FROM, dateFrom);
         intent.putExtra(DATE_TO, dateTo);
-    }
-
-    private int getIntText(final TextView textView) {
-        return Integer.parseInt(getStringText(textView));
-    }
-
-    private String getStringText(final TextView textView) {
-        return textView.getText().toString();
-    }
-
-    private String getStringText(ErrorShowingDatePickerButton view) {
-        return view.getText().toString();
+        Analytics.setString(DATE_FROM, dateFrom.toString());
+        Analytics.setString(DATE_TO, dateTo.toString());
     }
 }

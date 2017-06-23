@@ -1,119 +1,113 @@
 package pl.srw.billcalculator.history.list.item;
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
+import android.support.annotation.DrawableRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import hugo.weaving.DebugLog;
-import pl.srw.billcalculator.AnalyticsWrapper;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.bill.SavedBillsRegistry;
-import pl.srw.billcalculator.history.list.HistoryAdapter;
-import pl.srw.billcalculator.history.list.provider.HistoryItemValueProvider;
+import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
-import pl.srw.billcalculator.util.MultiSelect;
-import pl.srw.billcalculator.history.list.SelectedBill;
+import pl.srw.billcalculator.history.list.provider.DoubleReadingsBillHistoryItemValueProviding;
+import pl.srw.billcalculator.history.list.provider.HistoryItemValueProvider;
 
-/**
-* Created by Kamil Seweryn.
-*/
 public class HistoryItemViewHolder extends RecyclerView.ViewHolder
-        implements SwipeDetectionTouchListener.SwipeExecutor {
+        implements View.OnClickListener, View.OnLongClickListener, HistoryViewItem {
 
-    @InjectView(R.id.iv_bill_type) ImageView imgLogo;
-    @InjectView(R.id.tv_for_period) TextView tvForPeriod;
-    @InjectView(R.id.tv_readings) TextView tvReadings;
-    @InjectView(R.id.tv_amount) TextView tvAmount;
+    @BindView(R.id.history_item_date_period) TextView datePeriodView;
+    @BindView(R.id.history_item_logo) ImageView logoImage;
+    @BindView(R.id.history_item_day_readings) TextView dayReadings;
+    @BindView(R.id.history_item_night_readings) TextView nightReadings;
+    @BindView(R.id.history_item_amount) TextView amountView;
+
+    private final HistoryItemClickListener clickListener;
+    private final HistoryItemSelectionAnimator logoAnimator;
     private HistoryItemValueProvider itemValuesProvider;
-    private final AnimatorSet changeLogoAnimator;
 
-    private final HistoryAdapter adapter;
-    private final MultiSelect<SelectedBill> selection;
-
-    public HistoryItemViewHolder(HistoryAdapter adapter, final MultiSelect<SelectedBill> selection, View v) {
+    public HistoryItemViewHolder(View v, final HistoryItemClickListener clickListener) {
         super(v);
-        this.adapter = adapter;
-        this.selection = selection;
+        this.clickListener = clickListener;
+        v.setOnClickListener(this);
+        v.setOnLongClickListener(this);
+        ButterKnife.bind(this, v);
+        logoImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onLongClick(v);
+            }
+        });
 
-        v.setOnTouchListener(new SwipeDetectionTouchListener(adapter.getActivity(), this));
-        ButterKnife.inject(this, v);
-
-        final Animator outAnimator = AnimatorInflater.loadAnimator(adapter.getActivity(), R.animator.card_flip_right_out);
-        final ObjectAnimator changeAnimator = ObjectAnimator.ofInt(imgLogo, "imageResource", 0, 0).setDuration(0);
-        final Animator inAnimator = AnimatorInflater.loadAnimator(adapter.getActivity(), R.animator.card_flip_left_in);
-        changeLogoAnimator = new AnimatorSet();
-        changeLogoAnimator.playSequentially(outAnimator, changeAnimator, inAnimator);
-        changeLogoAnimator.setTarget(imgLogo);
+        logoAnimator = new HistoryItemSelectionAnimator(v.getContext(), logoImage);
     }
 
     @DebugLog
-    public void bindEntry(final History item) {
-        itemValuesProvider = HistoryItemValueProvider.of(item);
+    public void bindEntry(final History item, boolean selected) {
+        itemValuesProvider = HistoryItemValueProvider.of(item, itemView.getContext());
 
-        setLogoImage(false);
-        tvForPeriod.setText(itemValuesProvider.getDatePeriod());
-        tvReadings.setText(itemValuesProvider.getReadings());
-        tvAmount.setText(itemValuesProvider.getAmount());
-    }
+        setLogo(selected);
 
-    private void setLogoImage(final boolean animateChange) {
-        final int drawable;
-        if (selection.isSelected(getLayoutPosition())) drawable = R.drawable.selected;
-        else drawable = itemValuesProvider.getLogoId();
+        datePeriodView.setText(itemValuesProvider.getDatePeriod());
+        amountView.setText(itemValuesProvider.getAmount());
 
-        if (animateChange)
-            animateLogoChange(drawable);
-        else
-            imgLogo.setImageResource(drawable);
-        imgLogo.setTag(drawable);
-    }
-
-    @Override
-    public void onTap() {
-        if (adapter.getActivity().isInDeleteMode())
-            toggleSelection();
-        else {
-            itemView.getContext().startActivity(itemValuesProvider.getIntent());
-            SavedBillsRegistry.getInstance().register(itemValuesProvider.getBill());
-        }
-    }
-
-    @Override
-    public void onLongPress() {
-        if (adapter.getActivity().isInDeleteMode()) {
-            onTap();
-            return;
-        }
-
-        adapter.getActivity().enableDeleteMode();
-        toggleSelection();
-    }
-
-    @Override
-    public void onSwipeDetected(SwipeDetectionTouchListener.Direction direction) {
-        onLongPress();
-    }
-
-    private void toggleSelection() {
-        if (selection.isSelected(getLayoutPosition())) {
-            AnalyticsWrapper.log("Selecting " + getLayoutPosition() + "-th item");
-            selection.deselect(getLayoutPosition());
+        dayReadings.setText(itemValuesProvider.getDayReadings());
+        if (itemValuesProvider instanceof DoubleReadingsBillHistoryItemValueProviding) {
+            DoubleReadingsBillHistoryItemValueProviding doubleItemValuesProvider
+                    = (DoubleReadingsBillHistoryItemValueProviding) this.itemValuesProvider;
+            nightReadings.setText(doubleItemValuesProvider.getNightReadings());
         } else {
-            AnalyticsWrapper.log("Deselecting " + getLayoutPosition() + "-th item");
-            selection.select(getLayoutPosition(), new SelectedBill(itemValuesProvider.getBill()));
+            nightReadings.setText("");
         }
-        setLogoImage(true);
     }
 
-    private void animateLogoChange(final int drawable) {
-        ((ObjectAnimator) changeLogoAnimator.getChildAnimations().get(1)).setIntValues(drawable, drawable);
-        changeLogoAnimator.start();
+    @Override
+    public View getView() {
+        return itemView;
     }
+
+    @Override
+    public void select() {
+        logoAnimator.changeTo(R.drawable.history_item_selected);
+        logoImage.setSelected(true);
+    }
+
+    @Override
+    public void deselect() {
+        logoAnimator.changeTo(itemValuesProvider.getLogoId());
+        logoImage.setSelected(false);
+    }
+
+    @Override
+    public int getPositionOnList() {
+        return getAdapterPosition();
+    }
+
+    @Override
+    public void onClick(View v) {
+        clickListener.onListItemClicked(this);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        clickListener.onListItemLongClicked(this);
+        return true;
+    }
+
+    @Override
+    public Bill getBill() {
+        return itemValuesProvider.getBill();
+    }
+
+    private void setLogo(boolean selected) {
+        @DrawableRes int logoId = selected
+                ? R.drawable.history_item_selected
+                : itemValuesProvider.getLogoId();
+
+        logoImage.setImageResource(logoId);
+        logoImage.setSelected(selected);
+    }
+
 }

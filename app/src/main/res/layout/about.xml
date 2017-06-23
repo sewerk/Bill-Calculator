@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".AboutActivity">
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            tools:context=".AboutActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,7 +21,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="@string/description"/>
-        
+
         <TextView
             android:id="@+id/tv_app_name"
             android:layout_width="wrap_content"
@@ -34,17 +32,18 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:drawableLeft="@mipmap/ic_launcher"
+            android:drawablePadding="@dimen/small_padding"
             android:contentDescription="Application logo"
             android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/app_name"/>
 
-        <ImageView
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="1dp"
             android:layout_below="@id/tv_app_name"
-            android:src="@drawable/undeline"/>
-        
+            android:background="@color/gray_light" />
+
         <TextView
             android:id="@+id/tv_links"
             android:layout_width="wrap_content"
@@ -54,7 +53,7 @@
             android:layout_alignLeft="@+id/tv_link_g_plus"
             android:gravity="center"
             android:text="@string/contact_header" />
-        
+
         <TextView
             android:id="@+id/tv_link_emailme"
             android:layout_width="wrap_content"
@@ -64,8 +63,9 @@
             android:layout_alignLeft="@+id/tv_link_g_plus"
             android:gravity="center"
             android:drawableLeft="@drawable/ic_gmail"
+            android:drawablePadding="@dimen/small_padding"
             android:text="@string/emailme" />
-        
+
         <TextView
             android:id="@+id/tv_link_g_plus"
             android:layout_width="wrap_content"
@@ -76,14 +76,15 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:drawableLeft="@drawable/ic_gplus"
+            android:drawablePadding="@dimen/small_padding"
             android:text="@string/link_gplus"/>
 
-        <ImageView
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="1dp"
             android:layout_below="@id/tv_link_g_plus"
-            android:src="@drawable/undeline"/>
-        
+            android:background="@color/gray_light" />
+
         <TextView
             android:id="@+id/tv_klauzula"
             android:layout_width="wrap_content"
@@ -108,10 +109,11 @@
 
         <Button
             android:id="@+id/b_close"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_ver"
             android:layout_marginTop="@dimen/padding"
+            android:layout_alignParentRight="true"
             android:text="OK" />
     </RelativeLayout>
 </ScrollView>

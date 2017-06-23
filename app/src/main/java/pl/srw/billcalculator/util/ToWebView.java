@@ -8,9 +8,6 @@ import android.webkit.WebView;
 
 import java.io.ByteArrayOutputStream;
 
-/**
- * Created by kseweryn on 27.04.15.
- */
 public final class ToWebView {
 
     private ToWebView() {

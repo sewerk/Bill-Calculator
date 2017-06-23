@@ -1,6 +1,8 @@
 package pl.srw.billcalculator.bill.calculation;
 
 import org.junit.Test;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.Month;
 
 import java.math.BigDecimal;
 
@@ -9,9 +11,6 @@ import pl.srw.billcalculator.db.TauronPrices;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by kseweryn on 02.06.15.
- */
 public class TauronG12CalculatedBillTest {
 
     @Test
@@ -20,7 +19,7 @@ public class TauronG12CalculatedBillTest {
         final TauronPrices prices = new TauronPrices(1L, null, null, "4.04", "5.05", "6.06", "7.07", "8.08", "9.09", "11.11", "0.00");
 
         // calculate
-        final TauronG12CalculatedBill sut = new TauronG12CalculatedBill(11, 21, 25, 45, "01/01/2015", "30/10/2015", prices);
+        final TauronG12CalculatedBill sut = new TauronG12CalculatedBill(11, 21, 25, 45, LocalDate.of(2015, Month.JANUARY, 1), LocalDate.of(2015, Month.OCTOBER, 30), prices);
 
         // verify
         assertThat(sut.getDayConsumption(), is(10));
@@ -63,7 +62,7 @@ public class TauronG12CalculatedBillTest {
         final TauronPrices prices = new TauronPrices(1L, null, null, "4.04", "5.05", "6.06", "7.07", "8.08", "9.09", "11.11", "0.00251");
 
         // calculate
-        final TauronG12CalculatedBill sut = new TauronG12CalculatedBill(11, 21, 25, 45, "01/07/2016", "30/04/2017", prices);
+        final TauronG12CalculatedBill sut = new TauronG12CalculatedBill(11, 21, 25, 45, LocalDate.of(2016, Month.JULY, 1), LocalDate.of(2017, Month.APRIL, 30), prices);
 
         // verify
         assertThat(sut.getDayConsumptionFromJuly16(), is(10));

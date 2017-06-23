@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.settings.fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
@@ -10,11 +11,19 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import java.util.Map;
 
 import hugo.weaving.DebugLog;
+import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.settings.help.ProviderSettingsHelpActivity;
+import pl.srw.billcalculator.settings.restore.ConfirmRestoreSettingsDialogFragment;
+import pl.srw.billcalculator.type.EnumVariantNotHandledException;
+import pl.srw.billcalculator.type.Provider;
 
 /**
  * Created by Kamil Seweryn.
@@ -22,27 +31,49 @@ import pl.srw.billcalculator.R;
 public abstract class ProviderSettingsFragment extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
+    private static final String TAG_CONFIRM_RESTORE = "RESTORE_DEFAULT_CONFIRM_DIALOG";
     private static final String EMPTY_VALUE_REPLACEMENT = "0.00";
+
+    /**
+     * Creates new provider settings fragment
+     * @param provider  provider type
+     * @return new instance of {@link ProviderSettingsFragment}
+     */
+    public static ProviderSettingsFragment newInstance(Provider provider) {
+        switch (provider) {
+            case PGNIG:
+                return new PgnigSettingsFragment();
+            case PGE:
+                return new PgeSettingsFragment();
+            case TAURON:
+                return new TauronSettingsFragment();
+        }
+        throw new EnumVariantNotHandledException(provider);
+    }
 
     @DebugLog
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        injectDependencies();
         init();
+        setHasOptionsMenu(true);
     }
+
+    protected abstract void injectDependencies();
 
     protected void init() {
         addPreferencesFromResource(getPreferencesResource());
         setSummary();
     }
 
+    protected abstract Provider getProvider();
+
     protected abstract int getPreferencesResource();
 
     public abstract @LayoutRes int getHelpLayoutResource();
 
     public abstract @DrawableRes int getHelpImageExampleResource();
-
-    public abstract int getTitleResource();
 
     @Override
     public void onResume() {
@@ -58,9 +89,39 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.settings, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_help) {
+            showHelp();
+            return true;
+        } else if (item.getItemId() == R.id.action_default) {
+            ConfirmRestoreSettingsDialogFragment.newInstance(getProvider())
+                    .show(((BackableActivity) getActivity()).getSupportFragmentManager(), TAG_CONFIRM_RESTORE);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         replaceEmptyValue(sharedPreferences, key);
         updateSummary(sharedPreferences, key);
+    }
+
+    public void refreshScreen() {
+        setPreferenceScreen(null);
+        init();
+    }
+
+    private void showHelp() {
+        final Intent intent = ProviderSettingsHelpActivity.createIntent(
+                getActivity(), getHelpLayoutResource(), getHelpImageExampleResource());
+        startActivity(intent);
     }
 
     private void replaceEmptyValue(final SharedPreferences sharedPreferences, final String key) {
@@ -108,12 +169,4 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
         }
         return sb.toString();
     }
-
-    public final void restoreDefault() {
-        restoreSettings();
-        setPreferenceScreen(null);
-        init();
-    }
-
-    protected abstract void restoreSettings();
 }

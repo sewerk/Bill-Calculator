@@ -1,6 +1,6 @@
 package pl.srw.billcalculator.persistence;
 
-import de.greenrobot.dao.Property;
+import org.greenrobot.greendao.Property;
 
 public class SqlTriggerBuilder {
 

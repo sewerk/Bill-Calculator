@@ -1,9 +1,16 @@
 package pl.srw.billcalculator.settings.prices;
 
+import android.content.SharedPreferences;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import pl.srw.billcalculator.pojo.IPgePrices;
 
-public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
+@Singleton
+public class PgePrices extends SharedPreferencesEnergyPrices implements IPgePrices {
 
+    public static final String KEY_TARIFF = "pge_tariff";
     private static final String CENA_ZA_ENERGIE_CZYNNA = "cena_za_energie_czynna";
     private static final String CENA_ZA_ENERGIE_CZYNNA_G_12_DZIEN = "cena_za_energie_czynna_G12dzien";
     private static final String CENA_ZA_ENERGIE_CZYNNA_G_12_NOC = "cena_za_energie_czynna_G12noc";
@@ -16,17 +23,23 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
     private static final String CENA_OPLATA_ABONAMENTOWA = "cena_oplata_abonamentowa";
     private static final String CENA_OPLATA_OZE = "cena_oplata_oze";
 
-    private final String cena_za_energie_czynna = "0.2530";
+    private final String pge_tariff = TARIFF_G11;
+    private final String cena_za_energie_czynna = "0.2410";
     private final String cena_za_energie_czynna_G12dzien = "0.2835";
     private final String cena_za_energie_czynna_G12noc = "0.1900";
-    private final String cena_oplata_sieciowa = "0.2057";
+    private final String cena_oplata_sieciowa = "0.2075";
     private final String cena_oplata_sieciowa_G12dzien = "0.2340";
     private final String cena_oplata_sieciowa_G12noc = "0.0706";
-    private final String cena_skladnik_jakosciowy = "0.0129";
-    private final String cena_oplata_przejsciowa = "1.00";
-    private final String cena_oplata_stala_za_przesyl = "1.95";
+    private final String cena_skladnik_jakosciowy = "0.0127";
+    private final String cena_oplata_przejsciowa = "1.90";
+    private final String cena_oplata_stala_za_przesyl = "1.96";
     private final String cena_oplata_abonamentowa = "5.10";
-    private final String cena_oplata_oze = "2.51";
+    private final String cena_oplata_oze = "3.70";
+
+    @Inject
+    public PgePrices(SharedPreferences prefs) {
+        super(prefs);
+    }
 
     public pl.srw.billcalculator.db.PgePrices convertToDb() {
         pl.srw.billcalculator.db.PgePrices dbPrices = new pl.srw.billcalculator.db.PgePrices();
@@ -45,7 +58,9 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
         return dbPrices;
     }
 
+    @Override
     public void clear() {
+        removeTariff();
         removeZaEnergieCzynna();
         removeZaEnergieCzynnaDzien();
         removeZaEnergieCzynnaNoc();
@@ -59,8 +74,10 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
         removeOplataOze();
     }
 
+    @Override
     public void setDefault() {
         clear();
+        setTariff(getTariff());
         setZaEnergieCzynna(getZaEnergieCzynna());
         setZaEnergieCzynnaDzien(getZaEnergieCzynnaDzien());
         setZaEnergieCzynnaNoc(getZaEnergieCzynnaNoc());
@@ -74,11 +91,30 @@ public class PgePrices extends SharedPreferencesPrices implements IPgePrices {
         setOplataOze(getOplataOze());
     }
 
-    public void init() {
+    @Override
+    public void setDefaultIfNotSet() {
         if (!containsZaEnergieCzynna())
             setDefault();
         else if (!containsOplataOze())
             setOplataOze(getOplataOze());
+    }
+
+    @Override
+    public @TariffOption String getTariff() {
+        //noinspection WrongConstant
+        return getPref(KEY_TARIFF, this.pge_tariff);
+    }
+
+    public void setTariff(@TariffOption String tariff) {
+        setPref(KEY_TARIFF, tariff);
+    }
+
+    public boolean containsTariff() {
+        return containsPref(KEY_TARIFF);
+    }
+
+    public void removeTariff() {
+        removePref(KEY_TARIFF);
     }
 
     public String getZaEnergieCzynna() {

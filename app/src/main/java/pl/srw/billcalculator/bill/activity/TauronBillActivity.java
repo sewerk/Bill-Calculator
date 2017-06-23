@@ -6,20 +6,19 @@ import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TableRow;
 
-import com.f2prateek.dart.InjectExtra;
-import com.f2prateek.dart.Optional;
-
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.Month;
 
 import java.math.BigDecimal;
 
-import pl.srw.billcalculator.AnalyticsWrapper;
+import javax.inject.Inject;
+
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.TauronCalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG12CalculatedBill;
+import pl.srw.billcalculator.bill.di.TauronBillComponent;
 import pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.ITauronPrices;
@@ -29,27 +28,32 @@ import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 import pl.srw.billcalculator.util.Views;
+import pl.srw.billcalculator.wrapper.Analytics;
+import pl.srw.billcalculator.wrapper.Dependencies;
 
-public class TauronBillActivity extends EnergyBillActivity {
+public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> {
 
     private static final String DATE_PATTERN = "dd.MM.yyyy";
     private static final int PRICE_SCALE = 5;
 
-    @Optional @InjectExtra(IntentCreator.PRICES) ITauronPrices prices;
+    private ITauronPrices prices;
+    @Inject TauronPrices prefsPrices;
+    @Inject SavedBillsRegistry savedBillsRegistry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tauron_bill);
-        AnalyticsWrapper.logContent(ContentType.TAURON_BILL,
-                "Tauron new", String.valueOf(prices == null),
+        Dependencies.inject(this);
+        Analytics.logContent(ContentType.TAURON_BILL,
+                "Tauron new", prices == null,
                 "Tauron tariff", (isTwoUnitTariff() ? "G12" : "G11"));
 
-        if (prices == null)
-            prices = new TauronPrices();
-        else if (savedInstanceState == null
+        prices = (ITauronPrices) getIntent().getSerializableExtra(IntentCreator.PRICES);
+        if (prices == null) {
+            prices = prefsPrices;
+        } else if (savedInstanceState == null
                 && "0.00".equals(prices.getOplataOze())
-                && Dates.parse(dateTo).isAfter(LocalDate.of(2016, Month.JULY, 1))) {
+                && dateTo.isAfter(LocalDate.of(2016, Month.JULY, 1))) {
             new BillCalculatedBeforeOZEChangeDialogFragment()
                     .show(getFragmentManager(), null);
         }
@@ -65,25 +69,35 @@ public class TauronBillActivity extends EnergyBillActivity {
     }
 
     @Override
+    public TauronBillComponent prepareComponent() {
+        return Dependencies.getApplicationComponent().getTauronBillComponent();
+    }
+
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.tauron_bill;
+    }
+
+    @Override
     protected String getBillIdentifier() {
         if (isTwoUnitTariff())
-            return SavedBillsRegistry.getInstance().getIdentifier(Provider.TAURON, readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices);
+            return savedBillsRegistry.getIdentifier(Provider.TAURON, readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices);
         else
-            return SavedBillsRegistry.getInstance().getIdentifier(Provider.TAURON, readingFrom, readingTo, dateFrom, dateTo, prices);
+            return savedBillsRegistry.getIdentifier(Provider.TAURON, readingFrom, readingTo, dateFrom, dateTo, prices);
     }
 
     private void setDates() {
-        Views.setTV(this, R.id.tv_invoice_date, getString(R.string.data_wystawienia, Dates.format(LocalDate.now(), DATE_PATTERN)));
-        Views.setTV(this, R.id.tv_title, getString(R.string.data_sprzedazy, Dates.format(Dates.parse(dateTo), "MM.yyyy")));
-        Views.setTV(this, R.id.tv_for_period, getString(R.string.okres_rozliczeniowy, Dates.changeSeparator(dateFrom, "."), Dates.changeSeparator(dateTo, ".")));
+        Views.setTV(this, R.id.tv_invoice_date, getString(R.string.tauron_data_wystawienia, Dates.format(LocalDate.now(), DATE_PATTERN)));
+        Views.setTV(this, R.id.tv_title, getString(R.string.tauron_data_sprzedazy, Dates.format(dateTo, "MM.yyyy")));
+        Views.setTV(this, R.id.tv_for_period, getString(R.string.tauron_okres_rozliczeniowy, Dates.format(dateFrom, DATE_PATTERN), Dates.format(dateTo, DATE_PATTERN)));
     }
 
     private void setTariff() {
-        Views.setTV(this, R.id.tv_tariff, getString(R.string.grupa_taryfowa, getTariff()));
+        Views.setTV(this, R.id.tv_tariff, getString(R.string.tauron_grupa_taryfowa, getTariff()));
     }
 
     private void setExcise() {
-        Views.setTV(this, R.id.tv_excise, getString(R.string.kwota_akcyzy, Display.toPay(bill.getExcise())));
+        Views.setTV(this, R.id.tv_excise, getString(R.string.tauron_kwota_akcyzy, Display.toPay(bill.getExcise())));
     }
 
     private void setTable() {
@@ -102,7 +116,7 @@ public class TauronBillActivity extends EnergyBillActivity {
         final TauronG12CalculatedBill bill = (TauronG12CalculatedBill) this.bill;
         setRow(R.id.row_za_energie_czynna, R.string.tauron_energia_elektryczna_G12dzien, "00000000", "" + readingDayFrom, "" + readingDayTo, "1", "" + bill.getDayConsumption(), new BigDecimal(prices.getEnergiaElektrycznaCzynnaDzien()), bill.getEnergiaElektrycznaDayNetCharge());
         setRow(R.id.row_za_energie_czynna2, R.string.tauron_energia_elektryczna_G12noc, "00000000", "" + readingNightFrom, "" + readingNightTo, "1", "" + bill.getNightConsumption(), new BigDecimal(prices.getEnergiaElektrycznaCzynnaNoc()), bill.getEnergiaElektrycznaNightNetCharge());
-        findViewById(R.id.row_za_energie_czynna2).setBackgroundResource(R.drawable.undeline);
+        findViewById(R.id.row_za_energie_czynna2).setBackgroundResource(R.drawable.underline);
 
         setRow(R.id.row_oplata_dyst_zm, R.string.tauron_oplata_dyst_zmienna_G12dzien, "00000000", "" + readingDayFrom, "" + readingDayTo, "1", "" + bill.getDayConsumption(), new BigDecimal(prices.getOplataDystrybucyjnaZmiennaDzien()), bill.getOplataDystrybucyjnaZmiennaDayNetCharge());
         setRow(R.id.row_oplata_dyst_zm2, R.string.tauron_oplata_dyst_zmienna_G12noc, "00000000", "" + readingNightFrom, "" + readingNightTo, "1", "" + bill.getNightConsumption(), new BigDecimal(prices.getOplataDystrybucyjnaZmiennaNoc()), bill.getOplataDystrybucyjnaZmiennaNightNetCharge());
@@ -120,9 +134,9 @@ public class TauronBillActivity extends EnergyBillActivity {
         final TauronG11CalculatedBill bill = (TauronG11CalculatedBill) this.bill;
         final String prevReading = Integer.toString(readingFrom);
         final String currReading = Integer.toString(readingTo);
-        final String consumption = Integer.toString(bill.getConsumption());
+        final String consumption = Integer.toString(bill.getTotalConsumption());
         setRow(R.id.row_za_energie_czynna, R.string.tauron_energia_elektryczna, "00000000", prevReading, currReading, "1", consumption, new BigDecimal(prices.getEnergiaElektrycznaCzynna()), bill.getEnergiaElektrycznaNetCharge());
-        findViewById(R.id.row_za_energie_czynna).setBackgroundResource(R.drawable.undeline);
+        findViewById(R.id.row_za_energie_czynna).setBackgroundResource(R.drawable.underline);
         findViewById(R.id.row_za_energie_czynna2).setVisibility(View.GONE);
 
         setRow(R.id.row_oplata_dyst_zm, R.string.tauron_oplata_dyst_zmienna, "00000000", prevReading, currReading, "1", consumption, new BigDecimal(prices.getOplataDystrybucyjnaZmienna()), bill.getOplataDystrybucyjnaZmiennaNetCharge());
@@ -177,11 +191,11 @@ public class TauronBillActivity extends EnergyBillActivity {
         return tariff;
     }
 
-    private String getDateStringFor(@IdRes int rowId, String date) {
+    private String getDateStringFor(@IdRes int rowId, LocalDate date) {
         if ((rowId == R.id.row_oplata_oze || rowId == R.id.row_oplata_oze2) &&
-                Dates.parse(date).isBefore(LocalDate.of(2016, Month.JULY, 1))) {
+                date.isBefore(LocalDate.of(2016, Month.JULY, 1))) {
             return "01.07.2016";
         }
-        return Dates.changeSeparator(date, ".");
+        return Dates.format(date, DATE_PATTERN);
     }
 }

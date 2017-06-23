@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.Month;
+import org.threeten.bp.format.DateTimeFormatter;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -13,17 +14,14 @@ import java.util.Locale;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-/**
- * Created by kseweryn on 07.04.15.
- */
 @RunWith(JUnitParamsRunner.class)
 public class DatesTest {
 
     @Test
     public void shouldParseString() {
-        LocalDate result = Dates.parse("31/12/2014");
+        LocalDate result = Dates.parse("31/12/2014", Dates.DEFAULT_DATE_PATTERN);
 
         assertEquals(31, result.getDayOfMonth());
         assertEquals(Month.DECEMBER, result.getMonth());
@@ -33,14 +31,14 @@ public class DatesTest {
 
     @Test
     public void shouldFormatDateValues() {
-        String result = Dates.format(2014, Month.DECEMBER, 31);
+        String result = Dates.format(2014, Month.DECEMBER, 31, Dates.DEFAULT_DATE_PATTERN);
 
         assertEquals("31/12/2014", result);
     }
 
     @Test
     public void shouldFormatDate() {
-        final String result = Dates.format(LocalDate.of(2015, Month.FEBRUARY, 22));
+        final String result = Dates.format(LocalDate.of(2015, Month.FEBRUARY, 22), Dates.DEFAULT_DATE_PATTERN);
 
         assertEquals("22/02/2015", result);
     }
@@ -88,7 +86,7 @@ public class DatesTest {
             "11/11/2014,11/11/2015|12"
             })
     public void shouldCountWholeMonth(String fromDate, String toDate, int count) {
-        assertEquals(count, Dates.countWholeMonth(fromDate, toDate));
+        assertEquals(count, Dates.countWholeMonth(parse(fromDate), parse(toDate)));
     }
 
     @Test
@@ -109,7 +107,7 @@ public class DatesTest {
             "11/11/2014,11/11/2015|12"
     })
     public void shouldCountMonth(String fromDate, String toDate, double count) {
-        final double result = Dates.countMonth(fromDate, toDate).doubleValue();
+        final double result = Dates.countMonth(parse(fromDate), parse(toDate)).doubleValue();
         assertEquals(count, result, 0.0001);
     }
 
@@ -124,7 +122,7 @@ public class DatesTest {
     })
     public void shouldCountDaysFromJuly16(String fromDate, String toDate, int count) throws Exception {
         // WHEN
-        final int result = Dates.countDaysFromJuly16(fromDate, toDate);
+        final int result = Dates.countDaysFromJuly16(parse(fromDate), parse(toDate));
 
         // THEN
         assertEquals(count, result);
@@ -140,7 +138,7 @@ public class DatesTest {
     })
     public void shouldCountDays(String fromDate, String toDate, int count) throws Exception {
         // WHEN
-        final int result = Dates.countDays(fromDate, toDate);
+        final int result = Dates.countDays(parse(fromDate), parse(toDate));
 
         // THEN
         assertEquals(count, result);
@@ -165,10 +163,10 @@ public class DatesTest {
     public void wholeConversionCycle() {
         final String dateFromUser = "23/02/2015";
 
-        final Date storedDate = Dates.toDate(Dates.parse(dateFromUser));
+        final Date storedDate = Dates.toDate(Dates.parse(dateFromUser, Dates.DEFAULT_DATE_PATTERN));
         final LocalDate retrieveFromDatabase = Dates.toLocalDate(storedDate);
 
-        final String dateBackToUser = Dates.format(retrieveFromDatabase);
+        final String dateBackToUser = Dates.format(retrieveFromDatabase, Dates.DEFAULT_DATE_PATTERN);
 
         assertEquals(dateFromUser, dateBackToUser);
     }
@@ -194,5 +192,9 @@ public class DatesTest {
 
     private String format(Date date) {
         return new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(date);
+    }
+
+    private LocalDate parse(String text) {
+        return LocalDate.parse(text, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 }

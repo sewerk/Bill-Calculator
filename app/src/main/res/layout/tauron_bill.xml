@@ -7,7 +7,7 @@
     android:scrollbars="none"
     android:padding="2dp"
     android:background="@color/white"
-    tools:context=".bill.TauronBillActivity">
+    tools:context=".bill.activity.TauronBillActivity">
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
                 android:layout_below="@id/image_logo"
                 android:layout_alignRight="@id/image_logo"
                 android:layout_marginTop="@dimen/double_padding"
-                android:text="@string/data_wystawienia"/>
+                android:text="@string/tauron_data_wystawienia"/>
 
             <TextView
                 android:id="@+id/tv_register_number"
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/tv_register_number"
-                android:text="@string/grupa_taryfowa"/>
+                android:text="@string/tauron_grupa_taryfowa"/>
 
             <TextView
                 android:id="@+id/tv_power"
@@ -74,7 +74,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/tv_power"
                 android:textStyle="bold"
-                android:text="@string/data_sprzedazy"/>
+                android:text="@string/tauron_data_sprzedazy"/>
 
             <TextView
                 android:id="@+id/tv_for_period"
@@ -83,7 +83,7 @@
                 android:layout_alignRight="@+id/t_components_table"
                 android:layout_alignBottom="@id/tv_title"
                 android:textStyle="bold"
-                android:text="@string/okres_rozliczeniowy"/>
+                android:text="@string/tauron_okres_rozliczeniowy"/>
 
             <include
                 layout="@layout/tauron_components_table" />
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/t_components_table"
                 android:layout_marginTop="@dimen/padding"
-                android:text="@string/kwota_akcyzy" />
+                android:text="@string/tauron_kwota_akcyzy" />
         </RelativeLayout>
 
     </ScrollView>

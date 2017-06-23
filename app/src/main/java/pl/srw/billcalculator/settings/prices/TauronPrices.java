@@ -1,8 +1,16 @@
 package pl.srw.billcalculator.settings.prices;
 
+import android.content.SharedPreferences;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import pl.srw.billcalculator.pojo.ITauronPrices;
 
-public class TauronPrices extends SharedPreferencesPrices implements ITauronPrices {
+@Singleton
+public class TauronPrices extends SharedPreferencesEnergyPrices implements ITauronPrices {
+
+    public static final String KEY_TARIFF = "preferences_tauron_tariff";
     private static final String ENERGIA_ELEKTRYCZNA_CZYNNA = "energiaElektrycznaCzynna";
     private static final String OPLATA_DYSTRYBUCYJNA_ZMIENNA = "oplataDystrybucyjnaZmienna";
     private static final String OPLATA_DYSTRYBUCYJNA_STALA = "oplataDystrybucyjnaStala";
@@ -14,6 +22,7 @@ public class TauronPrices extends SharedPreferencesPrices implements ITauronPric
     private static final String OPLATA_DYSTRYBUCYJNA_ZMIENNA_NOC = "oplataDystrybucyjnaZmiennaNoc";
     private static final String ENERGIA_ELEKTRYCZNA_CZYNNA_NOC = "energiaElektrycznaCzynnaNoc";
 
+    private final String tauron_tariff = TARIFF_G11;
     private final String energiaElektrycznaCzynna = "0.2529";
     private final String oplataDystrybucyjnaZmienna = "0.1783";
     private final String oplataDystrybucyjnaStala = "1.57";
@@ -25,6 +34,11 @@ public class TauronPrices extends SharedPreferencesPrices implements ITauronPric
     private final String oplataDystrybucyjnaZmiennaDzien = "0.1873";
     private final String energiaElektrycznaCzynnaNoc = "0.1615";
     private final String oplataDystrybucyjnaZmiennaNoc = "0.0714";
+
+    @Inject
+    public TauronPrices(SharedPreferences prefs) {
+        super(prefs);
+    }
 
     public pl.srw.billcalculator.db.TauronPrices convertToDb() {
         pl.srw.billcalculator.db.TauronPrices dbPrices = new pl.srw.billcalculator.db.TauronPrices();
@@ -42,7 +56,9 @@ public class TauronPrices extends SharedPreferencesPrices implements ITauronPric
         return dbPrices;
     }
 
+    @Override
     public void clear() {
+        removeTariff();
         removeEnergiaElektrycznaCzynna();
         removeOplataDystrybucyjnaZmienna();
         removeOplataDystrybucyjnaStala();
@@ -55,8 +71,10 @@ public class TauronPrices extends SharedPreferencesPrices implements ITauronPric
         removeOplataDystrybucyjnaZmiennaNoc();
     }
 
+    @Override
     public void setDefault() {
         clear();
+        setTariff(getTariff());
         setEnergiaElektrycznaCzynna(getEnergiaElektrycznaCzynna());
         setOplataDystrybucyjnaZmienna(getOplataDystrybucyjnaZmienna());
         setOplataDystrybucyjnaStala(getOplataDystrybucyjnaStala());
@@ -69,11 +87,30 @@ public class TauronPrices extends SharedPreferencesPrices implements ITauronPric
         setOplataDystrybucyjnaZmiennaNoc(getOplataDystrybucyjnaZmiennaNoc());
     }
 
-    public void init() {
+    @Override
+    public void setDefaultIfNotSet() {
         if (!containsEnergiaElektrycznaCzynna())
             setDefault();
         else if (!containsOplataOze())
             setOplataOze(getOplataOze());
+    }
+
+    @Override
+    public @TariffOption String getTariff() {
+        //noinspection WrongConstant
+        return getPref(KEY_TARIFF, this.tauron_tariff);
+    }
+
+    public void setTariff(@TariffOption String tariff) {
+        setPref(KEY_TARIFF, tariff);
+    }
+
+    public boolean containsTariff() {
+        return containsPref(KEY_TARIFF);
+    }
+
+    public void removeTariff() {
+        removePref(KEY_TARIFF);
     }
 
     public String getEnergiaElektrycznaCzynna() {

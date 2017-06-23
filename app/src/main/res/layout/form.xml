@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:id="@+id/form"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             tools:ignore="RtlHardcoded">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="36dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/form_background"
+        android:paddingBottom="28dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <include layout="@layout/form_logo"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/form_entry_background"
+                app:layout_constraintTop_toTopOf="@+id/form_entry_reading_header"
+                app:layout_constraintBottom_toBottomOf="@+id/form_entry_dates_to_error"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <TextView
+                android:id="@+id/form_entry_reading_header"
+                style="@style/FormHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/form_readings_header"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="@+id/form_entry_tariff"
+                app:layout_constraintTop_toBottomOf="@+id/form_logo"/>
+
+            <TextView
+                android:id="@+id/form_entry_tariff"
+                style="@style/FormHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:gravity="end"
+                app:layout_constraintBaseline_toBaselineOf="@id/form_entry_reading_header"
+                app:layout_constraintLeft_toRightOf="@id/form_entry_reading_header"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:text="G11"/>
+
+            <include layout="@layout/form_readings_single"/>
+
+            <include layout="@layout/form_readings_double"/>
+
+            <include layout="@layout/form_dates"/>
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+    <include layout="@layout/form_fabs"/>
+</FrameLayout>

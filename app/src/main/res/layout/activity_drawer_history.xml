@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="pl.srw.billcalculator.history.DrawerActivity"
+    tools:showIn="@layout/activity_drawer_content">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/bill_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:background="@color/gray_light"
+        tools:listitem="@layout/activity_drawer_history_item"/>
+
+    <TextView
+        android:id="@+id/empty_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_history"
+        android:layout_gravity="center"/>
+
+    <ImageView
+        android:id="@+id/swipe_delete_history_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:srcCompat="@drawable/finger_moving_right"
+        android:visibility="invisible"
+        android:layout_gravity="center"/>
+
+</FrameLayout>

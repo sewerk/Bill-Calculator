@@ -1,0 +1,209 @@
+package pl.srw.billcalculator.history;
+
+import android.content.Context;
+import android.support.test.InstrumentationRegistry;
+import android.support.test.rule.ActivityTestRule;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+
+import javax.inject.Inject;
+
+import pl.srw.billcalculator.di.TestDependencies;
+import pl.srw.billcalculator.persistence.Database;
+import pl.srw.billcalculator.tester.AppTester;
+import pl.srw.billcalculator.tester.HistoryTester;
+import pl.srw.billcalculator.util.BillSelection;
+
+import static org.junit.Assert.assertTrue;
+import static pl.srw.billcalculator.di.ApplicationModule.SHARED_PREFERENCES_FILE;
+
+public class HistoryUITest {
+
+    @Rule
+    public ActivityTestRule<DrawerActivity> testRule = new ActivityTestRule<>(DrawerActivity.class, false, false);
+
+    @Inject HistoryGenerator historyGenerator;
+
+    @Inject BillSelection selection;
+
+    private AppTester tester = new AppTester();
+
+    @Before
+    public void setUp() throws Exception {
+        TestDependencies.inject(this);
+        HistoryGenerator.clear();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        selection.deselectAll();
+        HistoryGenerator.clear();
+    }
+
+    @Test
+    public void shouldShowCheckPricesDialogOnFirstStart() {
+        // given: first start
+        cleanFirstLaunch();
+
+        // when: application start
+        testRule.launchActivity(null);
+
+        // then: check prices dialog show up
+        tester.checkPricesDialogIsVisible();
+    }
+
+    @Test
+    public void shouldRemoveBillWithPricesFromDb() {
+        // given: one bill in history
+        historyGenerator.generatePgeG11Bill(11);
+        testRule.launchActivity(null);
+
+        // when: deleting one bill
+        HistoryTester historyTester = tester.skipCheckPricesDialogIfVisible()
+                .onHistory()
+                .changeItemSelectionWithReadings("1", "11")
+                .deleteSelected();
+
+        // then:
+        historyTester.checkEmptyHistoryIsShown();
+
+        // and no bill and prices in database is available
+        assertTrue(Database.getSession().getPgeG11BillDao().loadAll().isEmpty());
+        assertTrue(Database.getSession().getPgePricesDao().loadAll().isEmpty());
+    }
+
+    @Test
+    public void shouldShowUndoMessageAfterSwipeDelete() {
+        // given: one bill in history
+        historyGenerator.generatePgeG11Bill(11);
+        testRule.launchActivity(null);
+
+        // when: deleting one bill
+        HistoryTester historyTester = tester.skipCheckPricesDialogIfVisible()
+                .onHistory()
+                .deleteBillWithReadings("1", "11");
+
+        // then:
+        historyTester
+                .checkUndoMessageIsShown()
+                .checkEmptyHistoryIsShown();
+    }
+
+    @Test
+    public void shouldRestoreBillWhenUndoActionClicked() throws Exception {
+        // given: one bill in history
+        historyGenerator.generatePgeG11Bill(11);
+        testRule.launchActivity(null);
+
+        // when: deleting one bill
+        HistoryTester historyTester = tester.skipCheckPricesDialogIfVisible()
+                .onHistory()
+                .deleteBillWithReadings("1", "11")
+                .undoDelete();
+
+        // then:
+        historyTester.checkEmptyHistoryIsNotShown()
+                .openBillWithReadings("1", "11");
+    }
+
+    @Test
+    public void shouldUnselectAfterDeletion() {
+        // given: list contain 5 entries
+        historyGenerator.generatePgeG11Bills(5);
+        testRule.launchActivity(null);
+
+        // when: select second entry and delete
+        HistoryTester historyTester = tester.skipCheckPricesDialogIfVisible()
+                .onHistory()
+                .changeItemSelectionAtPosition(1)
+                .deleteSelected()
+                // and select second and third entry and delete
+                .changeItemSelectionAtPosition(1)
+                .changeItemSelectionAtPosition(2)
+                .deleteSelected();
+
+        // then:
+        historyTester.checkNoSelection()
+                .checkDeleteButtonHidden();
+    }
+
+    @Test
+    public void shouldRestoreSelectionOnScreenRotation() throws InterruptedException {
+        // given:
+        historyGenerator.generatePgeG11Bills(3);
+        testRule.launchActivity(null);
+
+        // and one item is selected
+        tester.skipCheckPricesDialogIfVisible()
+                .onHistory()
+                .changeItemSelectionAtPosition(1)
+                .checkItemSelected(1);
+
+        // when:
+        tester.changeOrientation(testRule);
+
+        // then: item is selected
+        tester.onHistory()
+                .checkItemSelected(1)
+                .checkDeleteButtonShown()
+
+        // when:
+                .deleteSelected();
+        tester.changeOrientation(testRule);
+
+        // then:
+        tester.onHistory()
+                .checkNoSelection();
+    }
+
+    @Test
+    public void shouldDisplayProperReadingsAfterScrolling() {
+        final int count = 10;
+        // given: one double-reading bill and more single-reading
+        historyGenerator.generatePgeG12Bill(101, 201);
+        historyGenerator.generatePgeG11Bills(count);
+        testRule.launchActivity(null);
+
+        // when:
+        HistoryTester historyTester = tester
+                .skipCheckPricesDialogIfVisible()
+                .onHistory();
+
+        // then:
+        historyTester.checkItemReadings(0, "91 - 101", "191 - 201");
+        // and: double reading should be empty for position > 0
+        for(int i = count ; i > 0; i--) {
+            final int position = count - i + 1;
+            final String firstLine = i + " - " + (i + 10);
+            historyTester.checkItemReadings(position, firstLine, "");
+        }
+    }
+
+    @Test
+    public void shouldOpenAndCloseBillAfterScrolling() {
+        // given:
+        historyGenerator.generatePgeG11Bills(20);
+        testRule.launchActivity(null);
+
+        // when:
+        tester
+                .skipCheckPricesDialogIfVisible()
+                .onHistory()
+                .openBillAtPosition(16)
+                .close()
+                .onHistory()
+                .openBillAtPosition(1)
+                .close();
+
+        // then: no crash
+    }
+
+    private void cleanFirstLaunch() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE)
+                .edit().remove("first_launch").apply();
+    }
+}

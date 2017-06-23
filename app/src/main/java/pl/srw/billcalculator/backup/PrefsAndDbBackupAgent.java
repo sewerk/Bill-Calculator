@@ -5,32 +5,28 @@ import android.app.backup.BackupDataInput;
 import android.app.backup.BackupDataOutput;
 import android.app.backup.SharedPreferencesBackupHelper;
 import android.os.ParcelFileDescriptor;
-import android.util.Log;
+import android.support.annotation.Keep;
 
 import java.io.IOException;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import pl.srw.billcalculator.AnalyticsWrapper;
-import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.BuildConfig;
+import pl.srw.billcalculator.di.ApplicationModule;
 import pl.srw.billcalculator.persistence.Database;
-import pl.srw.billcalculator.settings.GeneralPreferences;
 import pl.srw.billcalculator.type.ActionType;
+import pl.srw.billcalculator.wrapper.Analytics;
+import timber.log.Timber;
 
-/**
- * Created by Kamil Seweryn on 07.02.2016.
- */
+@Keep
 public class PrefsAndDbBackupAgent extends BackupAgentHelper {
-
-    private static final String TAG = "PrefsAndDbBackupAgent";
 
     private final Lock lock = new ReentrantLock();
 
     @Override
     public void onCreate() {
         addHelper("PREFS_BACKUP_KEY", new SharedPreferencesBackupHelper(this,
-                GeneralPreferences.SHARED_PREFERENCES_FILE,
+                ApplicationModule.SHARED_PREFERENCES_FILE,
                 getPackageName() + "_preferences"));
         addHelper("DB_BACKUP_KEY", new DbBackupHelper(this, Database.DB_NAME));
     }
@@ -38,7 +34,7 @@ public class PrefsAndDbBackupAgent extends BackupAgentHelper {
     @Override
     public void onBackup(ParcelFileDescriptor oldState, BackupDataOutput data,
                          ParcelFileDescriptor newState) throws IOException {
-        Log.d(TAG, "onBackup");
+        Timber.d("onBackup");
         lock.lock();
         try {
             super.onBackup(oldState, data, newState);
@@ -50,17 +46,16 @@ public class PrefsAndDbBackupAgent extends BackupAgentHelper {
     @Override
     public void onRestore(BackupDataInput data, int appVersionCode, ParcelFileDescriptor newState)
             throws IOException {
-        AnalyticsWrapper.logAction(ActionType.BACKUP_RESTORE, "onRestore -> current",
+        Analytics.logAction(ActionType.BACKUP_RESTORE, "onRestore -> current",
                 appVersionCode + "/" + BuildConfig.VERSION_CODE);
 
         lock.lock();
         try {
-            Log.d(TAG, "onRestore in-lock");
+            Timber.d("onRestore in-lock");
             super.onRestore(data, appVersionCode, newState);
             if (appVersionCode < 22) {
                 // migrate db to db.ver=3
-                Database.close();
-                Database.initialize(BillCalculator.context);
+                Database.restart(this.getApplicationContext());
             }
         } finally {
             lock.unlock();

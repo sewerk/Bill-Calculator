@@ -4,31 +4,24 @@ import android.app.IntentService;
 import android.app.backup.BackupManager;
 import android.content.Intent;
 
-import com.f2prateek.dart.Dart;
-import com.f2prateek.dart.InjectExtra;
-import com.f2prateek.dart.Optional;
+import org.threeten.bp.LocalDate;
 
-import de.greenrobot.event.EventBus;
 import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.bill.calculation.CalculatedBill;
-import pl.srw.billcalculator.event.HistoryChangedEvent;
-import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.db.Prices;
+import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.type.Provider;
 
-/**
- * Created by kseweryn on 02.06.15.
- */
 public abstract class BillStoringService<P extends Prices, C extends CalculatedBill> extends IntentService {
 
-    protected @InjectExtra(IntentCreator.DATE_FROM) String dateFrom;
-    protected @InjectExtra(IntentCreator.DATE_TO) String dateTo;
-    protected @Optional @InjectExtra(IntentCreator.READING_FROM) int readingFrom;
-    protected @Optional @InjectExtra(IntentCreator.READING_TO) int readingTo;
-    protected @Optional @InjectExtra(IntentCreator.READING_DAY_FROM) int readingDayFrom;
-    protected @Optional @InjectExtra(IntentCreator.READING_DAY_TO) int readingDayTo;
-    protected @Optional @InjectExtra(IntentCreator.READING_NIGHT_FROM) int readingNightFrom;
-    protected @Optional @InjectExtra(IntentCreator.READING_NIGHT_TO) int readingNightTo;
+    protected LocalDate dateFrom;
+    protected LocalDate dateTo;
+    protected int readingFrom;
+    protected int readingTo;
+    protected int readingDayFrom;
+    protected int readingDayTo;
+    protected int readingNightFrom;
+    protected int readingNightTo;
 
     protected BillStoringService(String name) {
         super(name);
@@ -37,13 +30,12 @@ public abstract class BillStoringService<P extends Prices, C extends CalculatedB
     @DebugLog
     @Override
     protected void onHandleIntent(final Intent intent) {
-        Dart.inject(this, intent.getExtras());
+        readExtra(intent);
 
         final P prices = storePrices();
         final C calculatedBill = calculateBill(prices);
         storeBill(calculatedBill, prices);
 
-        EventBus.getDefault().post(new HistoryChangedEvent(getProvider()));
         new BackupManager(this).dataChanged();
     }
 
@@ -59,4 +51,14 @@ public abstract class BillStoringService<P extends Prices, C extends CalculatedB
         return readingDayTo > 0;
     }
 
+    private void readExtra(Intent intent) {
+        dateFrom = (LocalDate) intent.getSerializableExtra(IntentCreator.DATE_FROM);
+        dateTo = (LocalDate) intent.getSerializableExtra(IntentCreator.DATE_TO);
+        readingFrom = intent.getIntExtra(IntentCreator.READING_FROM, 0);
+        readingTo = intent.getIntExtra(IntentCreator.READING_TO, 0);
+        readingDayFrom = intent.getIntExtra(IntentCreator.READING_DAY_FROM, 0);
+        readingDayTo = intent.getIntExtra(IntentCreator.READING_DAY_TO, 0);
+        readingNightFrom = intent.getIntExtra(IntentCreator.READING_NIGHT_FROM, 0);
+        readingNightTo = intent.getIntExtra(IntentCreator.READING_NIGHT_TO, 0);
+    }
 }

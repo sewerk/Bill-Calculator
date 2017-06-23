@@ -1,6 +1,8 @@
 package pl.srw.billcalculator.bill.calculation;
 
 import org.junit.Test;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.Month;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -21,12 +23,13 @@ public class PgnigCalculatedBillTest {
         final PgnigPrices prices = new PgnigPrices(1L, "1.01", "2.02", "3.03", "4.04", "5.05");
 
         // calculate
-        final PgnigCalculatedBill sut = new PgnigCalculatedBill(100, 200, "31/07/2015", "24/09/2015", prices);
+        final PgnigCalculatedBill sut = new PgnigCalculatedBill(100, 200, LocalDate.of(2015, Month.JULY, 31), LocalDate.of(2015, Month.SEPTEMBER, 24), prices);
 
         // verify
         assertThat(sut.getConsumptionM3(), is(100));
         assertThat(sut.getConsumptionKWh(), is(BigInteger.valueOf(505)));
         assertThat(sut.getMonthCount(), is(2));
+        assertThat(sut.getMonthCountExact(), is(new BigDecimal("1.8000")));
 
         assertThat(sut.getOplataAbonamentowaNetCharge(), is(new BigDecimal("2.02")));
         assertThat(sut.getPaliwoGazoweNetCharge(), is(new BigDecimal("1020.10")));

@@ -6,19 +6,18 @@ import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TableLayout;
 
-import com.f2prateek.dart.InjectExtra;
-import com.f2prateek.dart.Optional;
-
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.Month;
 
 import java.math.BigDecimal;
 
-import pl.srw.billcalculator.AnalyticsWrapper;
+import javax.inject.Inject;
+
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.PgeG12CalculatedBill;
+import pl.srw.billcalculator.bill.di.PgeBillComponent;
 import pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgePrices;
@@ -28,29 +27,33 @@ import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 import pl.srw.billcalculator.util.Views;
+import pl.srw.billcalculator.wrapper.Analytics;
+import pl.srw.billcalculator.wrapper.Dependencies;
 
-/**
- * Created by Kamil Seweryn
- */
-public class PgeBillActivity extends EnergyBillActivity {
+public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
 
+    private static final String DATE_PATTERN = "dd/MM/yyyy";
     private static final int PRICE_SCALE = 4;
 
-    @Optional @InjectExtra(IntentCreator.PRICES) IPgePrices prices;
+    private IPgePrices prices;
+
+    @Inject PgePrices prefsPrices;
+    @Inject SavedBillsRegistry savedBillsRegistry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pge_bill);
-        AnalyticsWrapper.logContent(ContentType.PGE_BILL,
-                "PGE new", String.valueOf(prices == null),
+        Dependencies.inject(this);
+        Analytics.logContent(ContentType.PGE_BILL,
+                "PGE new", prices == null,
                 "PGE tariff", (isTwoUnitTariff() ? "G12" : "G11"));
 
-        if (prices == null)
-            prices = new PgePrices();
-        else if (savedInstanceState == null
+        prices = (IPgePrices) getIntent().getSerializableExtra(IntentCreator.PRICES);
+        if (prices == null) {
+            prices = prefsPrices;
+        } else if (savedInstanceState == null
                 && "0.00".equals(prices.getOplataOze())
-                && Dates.parse(dateTo).isAfter(LocalDate.of(2016, Month.JULY, 1))) {
+                && dateTo.isAfter(LocalDate.of(2016, Month.JULY, 1))) {
             new BillCalculatedBeforeOZEChangeDialogFragment()
                     .show(getFragmentManager(), null);
         }
@@ -67,16 +70,26 @@ public class PgeBillActivity extends EnergyBillActivity {
     }
 
     @Override
+    public PgeBillComponent prepareComponent() {
+        return Dependencies.getApplicationComponent().getPgeBillComponent();
+    }
+
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.pge_bill;
+    }
+
+    @Override
     protected String getBillIdentifier() {
         if (isTwoUnitTariff())
-            return SavedBillsRegistry.getInstance().getIdentifier(Provider.PGE, readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices);
+            return savedBillsRegistry.getIdentifier(Provider.PGE, readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo, prices);
         else
-            return SavedBillsRegistry.getInstance().getIdentifier(Provider.PGE, readingFrom, readingTo, dateFrom, dateTo, prices);
+            return savedBillsRegistry.getIdentifier(Provider.PGE, readingFrom, readingTo, dateFrom, dateTo, prices);
     }
 
     private void setDates() {
-        Views.setTV(this, R.id.tv_title, getString(R.string.rachunek_rozliczeniowy, Dates.format(LocalDate.now())));
-        Views.setTV(this, R.id.tv_for_period, getString(R.string.for_period, dateFrom, dateTo));
+        Views.setTV(this, R.id.tv_title, getString(R.string.rachunek_rozliczeniowy, Dates.format(LocalDate.now(), DATE_PATTERN)));
+        Views.setTV(this, R.id.tv_for_period, getString(R.string.for_period, Dates.format(dateFrom, DATE_PATTERN), Dates.format(dateTo, DATE_PATTERN)));
     }
 
     private void setChargeDetailsTable() {
@@ -174,7 +187,7 @@ public class PgeBillActivity extends EnergyBillActivity {
     }
 
     private int countConsumption() {
-        return ((PgeG11CalculatedBill)bill).getConsumption();
+        return bill.getTotalConsumption();
     }
 
     private int countDayConsumption() {
@@ -196,9 +209,9 @@ public class PgeBillActivity extends EnergyBillActivity {
 
     private void setSummaryTable() {
         TableLayout summaryTable = (TableLayout) findViewById(R.id.t_summary);
-        Views.setTVInRow(summaryTable, R.id.tv_net_charge, Display.toPay(bill.getNetChargeSum()));
-        Views.setTVInRow(summaryTable, R.id.tv_vat_amount, Display.toPay(bill.getVatChargeSum()));
-        Views.setTVInRow(summaryTable, R.id.tv_gross_charge, Display.toPay(bill.getGrossChargeSum()));
+        Views.setTVInRow(summaryTable, R.id.pge_sum_net_charge, Display.toPay(bill.getNetChargeSum()));
+        Views.setTVInRow(summaryTable, R.id.pge_sum_vat_amount, Display.toPay(bill.getVatChargeSum()));
+        Views.setTVInRow(summaryTable, R.id.pge_sum_gross_charge, Display.toPay(bill.getGrossChargeSum()));
     }
 
     private void setToPayTV() {

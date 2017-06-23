@@ -6,17 +6,16 @@ import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TableLayout;
 
-import com.f2prateek.dart.InjectExtra;
-import com.f2prateek.dart.Optional;
-
 import org.threeten.bp.LocalDate;
 
 import java.math.BigDecimal;
 
-import pl.srw.billcalculator.AnalyticsWrapper;
+import javax.inject.Inject;
+
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
+import pl.srw.billcalculator.bill.di.PgnigBillComponent;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
@@ -25,31 +24,30 @@ import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 import pl.srw.billcalculator.util.Views;
+import pl.srw.billcalculator.wrapper.Analytics;
+import pl.srw.billcalculator.wrapper.Dependencies;
 
-/**
- * Created by Kamil Seweryn
- */
-public class PgnigBillActivity extends BillActivity {
+public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
 
     private static final String DATE_PATTERN = "dd.MM.yyyy";
     private static final int PRICE_SCALE = 5;
 
-    @InjectExtra(IntentCreator.DATE_FROM) String dateFrom;
-    @InjectExtra(IntentCreator.DATE_TO) String dateTo;
-    @InjectExtra(IntentCreator.READING_FROM) int readingFrom;
-    @InjectExtra(IntentCreator.READING_TO) int readingTo;
-    @Optional @InjectExtra(IntentCreator.PRICES) IPgnigPrices prices;
+    private IPgnigPrices prices;
+    @Inject PgnigPrices prefsPrices;
+    @Inject SavedBillsRegistry savedBillsRegistry;
 
     private PgnigCalculatedBill bill;
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.pgnig_bill);
-        AnalyticsWrapper.logContent(ContentType.PGNIG_BILL, "PGNIG new", String.valueOf(prices == null));
+        super.onCreate(savedInstanceState);
+        Dependencies.inject(this);
+        Analytics.logContent(ContentType.PGNIG_BILL, "PGNIG new", prices == null);
 
-        if (prices == null)
-            prices = new PgnigPrices();
+        prices = (IPgnigPrices) getIntent().getSerializableExtra(IntentCreator.PRICES);
+        if (prices == null) {
+            prices = prefsPrices;
+        }
         this.bill = new PgnigCalculatedBill(readingFrom, readingTo, dateFrom, dateTo, prices);
 
         setDate();
@@ -60,8 +58,18 @@ public class PgnigBillActivity extends BillActivity {
     }
 
     @Override
+    public PgnigBillComponent prepareComponent() {
+        return Dependencies.getApplicationComponent().getPgnigBillComponent();
+    }
+
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.pgnig_bill;
+    }
+
+    @Override
     protected String getBillIdentifier() {
-        return SavedBillsRegistry.getInstance().getIdentifier(Provider.PGNIG, readingFrom, readingTo, dateFrom, dateTo, prices);
+        return savedBillsRegistry.getIdentifier(Provider.PGNIG, readingFrom, readingTo, dateFrom, dateTo, prices);
     }
 
     private void setDate() {
@@ -71,9 +79,9 @@ public class PgnigBillActivity extends BillActivity {
     private void setReadingsTable() {
         TableLayout readingsTable = (TableLayout) findViewById(R.id.t_readings);
 
-        Views.setTV(readingsTable, R.id.tv_prev_reading_date, Dates.changeSeparator(dateFrom, "."));
+        Views.setTV(readingsTable, R.id.tv_prev_reading_date, Dates.format(dateFrom, DATE_PATTERN));
         Views.setTV(readingsTable, R.id.tv_previous_reading, getString(R.string.odczyt_na_dzien, readingFrom));
-        Views.setTV(readingsTable, R.id.tv_curr_reading_date, Dates.changeSeparator(dateTo, "."));
+        Views.setTV(readingsTable, R.id.tv_curr_reading_date, Dates.format(dateTo, DATE_PATTERN));
         Views.setTV(readingsTable, R.id.tv_current_reading, getString(R.string.odczyt_na_dzien, readingTo));
         Views.setTV(readingsTable, R.id.tv_consumption, getString(R.string.zuzycie, bill.getConsumptionM3()));
 
@@ -101,30 +109,30 @@ public class PgnigBillActivity extends BillActivity {
                         BigDecimal netPrice, BigDecimal netCharge, String exciseAmount) {
         View row = chargeTable.findViewById(rowId);
         Views.setTV(row, R.id.tv_charge_desc, getString(descId));
-        Views.setTV(row, R.id.tv_date_from, Dates.changeSeparator(dateFrom, "."));
-        Views.setTV(row, R.id.tv_date_to, Dates.changeSeparator(dateTo, "."));
+        Views.setTV(row, R.id.tv_date_from, Dates.format(dateFrom, DATE_PATTERN));
+        Views.setTV(row, R.id.tv_date_to, Dates.format(dateTo, DATE_PATTERN));
         Views.setTV(row, R.id.tv_Jm, getString(jmId));
         Views.setTV(row, R.id.tv_count, count);
         Views.setTV(row, R.id.tv_net_price, Display.withScale(netPrice, PRICE_SCALE));
         Views.setTV(row, R.id.tv_excise, exciseAmount);
-        Views.setTV(row, R.id.tv_net_charge, Display.toPay(netCharge));
+        Views.setTV(row, R.id.pgnig_component_row_net_charge, Display.toPay(netCharge));
 
     }
 
     private void setChargeSummary(View chargeTable) {
         View summaryRow = chargeTable.findViewById(R.id.row_sum);
 
-        Views.setTV(summaryRow, R.id.tv_net_charge, Display.toPay(bill.getNetChargeSum()));
-        Views.setTV(summaryRow, R.id.tv_vat_amount, Display.toPay(bill.getVatChargeSum()));
-        Views.setTV(summaryRow, R.id.tv_gross_charge, Display.toPay(bill.getGrossChargeSum()));
+        Views.setTV(summaryRow, R.id.pgnig_components_net_charge, Display.toPay(bill.getNetChargeSum()));
+        Views.setTV(summaryRow, R.id.pgnig_components_vat_amount, Display.toPay(bill.getVatChargeSum()));
+        Views.setTV(summaryRow, R.id.pgnig_components_gross_charge, Display.toPay(bill.getGrossChargeSum()));
     }
 
     private void setSummaryTable() {
         TableLayout summaryTable = (TableLayout) findViewById(R.id.t_summary);
 
-        Views.setTV(summaryTable, R.id.tv_net_charge, Display.toPay(bill.getNetChargeSum()));
-        Views.setTV(summaryTable, R.id.tv_vat_amount, Display.toPay(bill.getVatChargeSum()));
-        Views.setTV(summaryTable, R.id.tv_gross_charge, Display.toPay(bill.getGrossChargeSum()));
+        Views.setTV(summaryTable, R.id.pgnig_sum_net_charge, Display.toPay(bill.getNetChargeSum()));
+        Views.setTV(summaryTable, R.id.pgnig_sum_vat_amount, Display.toPay(bill.getVatChargeSum()));
+        Views.setTV(summaryTable, R.id.pgnig_sum_gross_charge, Display.toPay(bill.getGrossChargeSum()));
     }
 
     private void setChargeTV() {

@@ -1,24 +1,20 @@
 package pl.srw.billcalculator;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.f2prateek.dart.Dart;
+import pl.srw.billcalculator.wrapper.Analytics;
+import pl.srw.mfvp.MvpActivity;
+import pl.srw.mfvp.di.component.MvpComponent;
 
-/**
- * Created by Kamil Seweryn.
- */
-public abstract class BackableActivity extends Activity {
+public abstract class BackableActivity<T extends MvpComponent> extends MvpActivity<T> {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Dart.inject(this);
 
-        if (getActionBar() != null)
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -28,5 +24,11 @@ public abstract class BackableActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Analytics.log("Back pressed");
+        super.onBackPressed();
     }
 }

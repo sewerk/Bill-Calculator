@@ -7,13 +7,16 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
+import javax.inject.Inject;
+
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
+import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.wrapper.Dependencies;
 
-/**
- * Created by Kamil Seweryn.
- */
 public class PgnigSettingsFragment extends ProviderSettingsFragment {
+
+    @Inject PgnigPrices pgnigPrices;
 
     @Override
     public void init() {
@@ -37,10 +40,10 @@ public class PgnigSettingsFragment extends ProviderSettingsFragment {
     }
 
     @Override
-    public int getTitleResource() {
-        return R.string.pgnig_prices;
+    protected Provider getProvider() {
+        return Provider.PGNIG;
     }
-    
+
     private void setWspKonwersjiDescription() {
         EditTextPreference wspKonwersjiPreference = (EditTextPreference) findPreference(getString(R.string.preferences_pgnig_wsp_konwersji));
         wspKonwersjiPreference.setDialogMessage(Html.fromHtml(getString(R.string.wsp_konwersji_desc)));
@@ -75,7 +78,7 @@ public class PgnigSettingsFragment extends ProviderSettingsFragment {
     }
 
     @Override
-    public void restoreSettings() {
-        new PgnigPrices().setDefault();
+    protected void injectDependencies() {
+        Dependencies.getApplicationComponent().getSettingsComponent().inject(this);
     }
 }

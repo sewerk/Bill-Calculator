@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       xmlns:tools="http://schemas.android.com/tools"
+       tools:showIn="@layout/form">
+
+    <TextView
+        android:id="@+id/form_entry_dates_header"
+        style="@style/FormHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/form_dates_header"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/form_entry_reading_night_from"/>
+
+    <ImageView
+        android:id="@+id/form_entry_dates_icon"
+        style="@style/FormDateIcon"
+        android:contentDescription="@string/form_entry_dates_icon_content_desc"
+        app:layout_constraintBottom_toBottomOf="@+id/form_entry_dates_from"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/form_entry_dates_from"
+        app:srcCompat="@drawable/ic_today_black_24dp"/>
+
+    <pl.srw.billcalculator.form.view.DatePickingView
+        android:id="@+id/form_entry_dates_from"
+        style="@style/FormDateInput"
+        android:freezesText="true"
+        app:errorView="@+id/form_entry_dates_to_error"
+        app:layout_constraintLeft_toRightOf="@+id/form_entry_dates_icon"
+        app:layout_constraintRight_toLeftOf="@+id/form_entry_dates_separator"
+        app:layout_constraintTop_toBottomOf="@+id/form_entry_dates_header"
+        tools:layout_width="75dp"
+        tools:text="11.12.14"/>
+
+    <TextView
+        android:id="@+id/form_entry_dates_separator"
+        style="@style/FormEntrySeparator"
+        app:layout_constraintBottom_toBottomOf="@+id/form_entry_dates_from"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/form_entry_dates_from"/>
+
+    <pl.srw.billcalculator.form.view.DatePickingView
+        android:id="@+id/form_entry_dates_to"
+        style="@style/FormDateInput"
+        android:freezesText="true"
+        app:errorView="@+id/form_entry_dates_to_error"
+        app:layout_constraintLeft_toRightOf="@+id/form_entry_dates_separator"
+        app:layout_constraintRight_toLeftOf="@+id/form_entry_dates_space"
+        app:layout_constraintTop_toTopOf="@+id/form_entry_dates_from"
+        tools:layout_width="75dp"
+        tools:text="31.12.14"/>
+
+    <!-- this view requires constraint top to properly align id/form_entry_dates_to on Samsung ICS-->
+    <View
+        android:id="@+id/form_entry_dates_space"
+        style="@style/FormDateIcon"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/form_entry_dates_from"/>
+
+    <TextView
+        android:id="@+id/form_entry_dates_to_error"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="0dp"
+        android:textAppearance="@style/TextAppearance.Design.Error"
+        app:layout_constraintLeft_toLeftOf="@+id/form_entry_dates_to"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/form_entry_dates_to"
+        tools:text="@string/date_error"/>
+
+</merge>

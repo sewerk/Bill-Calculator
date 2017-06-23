@@ -7,20 +7,31 @@ Android app to calculate bill value for PGE, PGNiG and Tauron providers.
 <img width="25%" height="25%" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" />
 </a>
 
+[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=57a501adecce840100848f7c&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/57a501adecce840100848f7c/build/latest)
+
 With help of
 ---------
 - [Butter Knife](https://github.com/JakeWharton/butterknife)
+- [Dagger 2](https://google.github.io/dagger/)
+- [ConstraintLayout](https://developer.android.com/training/constraint-layout/index.html)
 - [Dart](https://github.com/f2prateek/dart)
-- [EventBus](https://github.com/greenrobot/EventBus)
 - [GreenDao](http://greendao-orm.com/)
-- [Lombok](https://projectlombok.org/)
 - [ITEXTG](http://itextpdf.com/product/itextg)
-- [ThreeTenABP] (https://github.com/JakeWharton/ThreeTenABP)
+- [MfVP](https://github.com/sewerk/mfvp)
+- [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+- [RxJava 2](https://github.com/ReactiveX/RxJava)
+- [Support Library](https://developer.android.com/topic/libraries/support-library/index.html)
+- [ThreeTenABP](https://github.com/JakeWharton/ThreeTenABP)
+
+tools
+---------
+- [Crashlytics](https://fabric.io)
 - [Hugo](https://github.com/jakewharton/hugo)
 - [LeakCanary](https://github.com/square/leakcanary)
-- [Crashlytics](https://fabric.io)
-- [Stetho](http://facebook.github.io/stetho)
+
+tests
+---------
 - [Espresso](https://code.google.com/p/android-test-kit/wiki/Espresso)
-- [Mockito](http://mockito.org)
+- [JUnit](http://junit.org/junit4/)
 - [JUnitParams](https://github.com/Pragmatists/junitparams)
-- [Robotium] (https://code.google.com/p/robotium)
+- [mockito-kotlin](https://github.com/nhaarman/mockito-kotlin)

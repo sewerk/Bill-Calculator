@@ -2,14 +2,11 @@ package pl.srw.billcalculator.database;
 
 import java.io.File;
 
-import de.greenrobot.daogenerator.DaoGenerator;
-import de.greenrobot.daogenerator.Entity;
-import de.greenrobot.daogenerator.Property;
-import de.greenrobot.daogenerator.Schema;
+import org.greenrobot.greendao.generator.DaoGenerator;
+import org.greenrobot.greendao.generator.Entity;
+import org.greenrobot.greendao.generator.Property;
+import org.greenrobot.greendao.generator.Schema;
 
-/**
- * Created by Kamil Seweryn.
- */
 public class GreenDaoGenerator {
 
     private static final String OUTPUT_DIR = "persistence/src/main/java-gen";

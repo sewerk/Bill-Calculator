@@ -1,31 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-<!-- activity_main -->
-    <string name="app_name">Bill Calculator</string>
-    <string name="tariff_change"><![CDATA[<a href="prices/pge/tariff">change</a>]]></string>
-    <string name="previous_reading">Previous reading:</string>
-    <string name="current_reading">Current reading:</string>
-    <string name="reading">Reading</string>
-    <string name="previous">prevoius:</string>
-    <string name="current">current:</string>
-    <string name="reading_day_time">day unit:</string>
-    <string name="reading_night_time">night unit:</string>
-    <string name="date_from">From date:</string>
-    <string name="date_to">To date:</string>
-    <string name="calculate">Calculate</string>
-    <string name="reading_missing">This field cannot be empty</string>
-    <string name="reading_order_error">Current reading need to exceed previous reading</string>
-    <string name="date_error">\"To date\" need to be later then \"From date\"</string>
-    <string name="reading_hint_m3" translatable="false">[m\u00B3]</string>
-    <string name="reading_hint_kWh" translatable="false">[kWh]</string>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:locale="en" >
 
-<!-- bill -->
-    <string name="page_view_label">Page view</string>
+    <!-- Drawer activity -->
+    <string name="app_name">Bill Calculator</string>
+    <string name="reading_missing">Empty!</string>
+    <string name="reading_order_error">Usage too low!</string>
+    <string name="date_error">Period too short!</string>
+
+    <!-- drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="drawer_group_new_bill">New bill</string>
+    <string name="drawer_new_tauron_bill">energy from TAURON</string>
+    <string name="drawer_new_pge_bill">energy from PGE</string>
+    <string name="drawer_new_pgnig_bill">gas from PGNiG</string>
+    <string name="drawer_group_more">More</string>
+
+    <!-- Main help -->
+    <string name="main_help_fab_desc">Calculate bill</string>
+    <string name="main_help_swipe_delete_desc">Swipe bill to delete</string>
+    <string name="main_help_menu_desc">Menu</string>
+    <string name="main_help_options_desc">More actions</string>
+
+    <!-- history -->
+    <string name="history_label">My bills</string>
+    <string name="action_delete">Delete</string>
+    <string name="history_period" translatable="false">%1$s - %2$s</string>
+    <string name="history_readings_label">Readings</string>
+    <string name="history_amount" translatable="false">%s zł</string>
+    <string name="empty_history">Tap + to calculate bill</string>
+    <string name="bill_deleted">Deleted</string>
+    <string name="action_undo_delete">UNDO</string>
+    <string name="history_item_amount_label">Charge:</string>
+    <string name="history_item_logo_desc">Provider logo</string>
+    <!-- form -->
+    <string name="form_reading_from_hint">previous</string>
+    <string name="form_reading_to_hint">current</string>
+    <string name="form_reading_unit_m3" translatable="false">[m\u00B3]</string>
+    <string name="form_reading_unit_kWh" translatable="false">[kWh]</string>
+    <string name="form_readings_header">Meter readings</string>
+    <string name="form_dates_header">For period</string>
+    <string name="form_logo_description">Provider logo</string>
+    <string name="form_entry_reading_icon_content_desc">Readings icon</string>
+    <string name="form_entry_dates_icon_content_desc">Date period icon</string>
+
+    <!-- bill -->
     <string name="action_print">Print to PDF</string>
     <string name="print_dir">Bills</string>
-    <string name="print_io_problem">Error: cannot access external storage</string>
     <string name="print_failed">Saving to PDF failed</string>
-    <string name="print_no_pdf_viewer">"Bill printed to file: "</string>
+    <string name="print_no_pdf_viewer">Bill printed to file: %s</string>
     <string name="error_permission_storage_missing">Missing Storage permission</string>
     <string name="rationale_dialog_title">Required permission</string>
     <string name="rationale_dialog_msg">Printing the bill requires device Storage access to create file. Denying access disables the printing!</string>
@@ -38,13 +61,13 @@
     <string name="dialog_bill_without_oze_positive">OK</string>
     <string name="dialog_bill_without_oze_cancel">No thanks.</string>
 
-    <!-- energy_bill -->
+    <!-- PGE bill -->
     <string name="energy_bill">Energy bill</string>
     <string name="rachunek_rozliczeniowy" translatable="false">RACHUNEK ROZLICZENIOWY z dnia %1$s\nZA ENERGIĘ ELEKTRYCZNĄ I USŁUGI DYSTRYBUCJI</string>
     <string name="strefa_calodobowa" translatable="false">całodobowa</string>
     <string name="strefa_dzienna" translatable="false">dzienna</string>
     <string name="strefa_nocna" translatable="false">nocna</string>
-    <string name="strefa_pusta" translatable="false"></string>
+    <string name="strefa_pusta" translatable="false"/>
 
     <string name="za_energie_czynna" translatable="false">za energię czynną</string>
     <string name="skladnik_jakosciowy" translatable="false">składnik jakościowy</string>
@@ -65,11 +88,11 @@
     <string name="kWh" translatable="false">kWh</string>
     <string name="MWh" translatable="false">MWh</string>
     <string name="m_c" translatable="false">m-c</string>
-    <string name="akcyza" translatable="false">Od %1$s kWh energii elektrycznej [ KOD CN 2716 00 00] naliczono akcyzę w kwocie %2$s zł.</string>
+    <string name="akcyza" translatable="false">Od %d kWh energii elektrycznej [ KOD CN 2716 00 00] naliczono akcyzę w kwocie %s zł.</string>
     <string name="to_pay" translatable="false">DO ZAPŁATY : %s zł</string>
     <string name="for_period" translatable="false">Za okres od %1$s do %2$s</string>
 
-    <!--tauron-->
+    <!-- Tauron bill -->
     <string name="tauron_energia_elektryczna" translatable="false">Energia elektryczna czynna całodobowa</string>
     <string name="tauron_oplata_dyst_zmienna" translatable="false">Opłata dystr. zm. całodobowa</string>
     <string name="tauron_oplata_dyst_stala" translatable="false">Opłata dystrybucyjna stała</string>
@@ -84,19 +107,19 @@
     <string name="tauron_oplata_oze_G12dzien" translatable="false">Opłata OZE dzienna</string>
     <string name="tauron_oplata_oze_G12noc" translatable="false">Opłata OZE nocna</string>
 
-    <string name="data_wystawienia" translatable="false">Data wystawienia %1$s</string>
-    <string name="grupa_taryfowa" translatable="false">Grupa taryfowa Sprzedawcy: %1$s\nGrupa taryfowa OSD(dystrybucja): %1$s</string>
-    <string name="data_sprzedazy" translatable="false">Data sprzedaży: %1$s\nRozliczenie z tytułu dostarczenia energii elektrycznej\n(PKWiU 35.11.10.0)</string>
-    <string name="okres_rozliczeniowy" translatable="false">Okres rozliczeniowy: %1$s - %2$s</string>
-    <string name="kwota_akcyzy" translatable="false">Kwota podatku akcyzowego, zawarta w wartości energii wykazanej w tym rozliczeniu wynosi %1$s zł.</string>
+    <string name="tauron_data_wystawienia" translatable="false">Data wystawienia %1$s</string>
+    <string name="tauron_grupa_taryfowa" translatable="false">Grupa taryfowa Sprzedawcy: %1$s\nGrupa taryfowa OSD(dystrybucja): %1$s</string>
+    <string name="tauron_data_sprzedazy" translatable="false">Data sprzedaży: %1$s\nRozliczenie z tytułu dostarczenia energii elektrycznej\n(PKWiU 35.11.10.0)</string>
+    <string name="tauron_okres_rozliczeniowy" translatable="false">Okres rozliczeniowy: %1$s - %2$s</string>
+    <string name="tauron_kwota_akcyzy" translatable="false">Kwota podatku akcyzowego, zawarta w wartości energii wykazanej w tym rozliczeniu wynosi %1$s zł.</string>
 
-    <!-- gas_bill -->
+    <!-- PGNiG bill -->
     <string name="gas_bill">Gas bill</string>
     <string name="rozliczenie_dnia" translatable="false">Rozliczenie z dnia %1$s</string>
     <string name="wartosc_faktury" translatable="false">Wartość faktury brutto: %1$s zł</string>
-    <string name="odczyt_na_dzien" translatable="false">%1$s [m\u00B3]</string>
-    <string name="zuzycie" translatable="false">%1$s [m\u00B3]</string>
-    <string name="zuzycie_razem" translatable="false">Zużycie razem: %1$s [m\u00B3]</string>
+    <string name="odczyt_na_dzien" translatable="false">%d [m\u00B3]</string>
+    <string name="zuzycie" translatable="false">%d [m\u00B3]</string>
+    <string name="zuzycie_razem" translatable="false">Zużycie razem: %d [m\u00B3]</string>
     <string name="wsp_konwersji" translatable="false">Wsp. konwersji: %1$s</string>
     <string name="zuzycie_razem_kWh" translatable="false">Zużycie razem: %1$s [kWh]</string>
 
@@ -110,7 +133,7 @@
     <string name="mc" translatable="false">mc</string>
     <string name="m3" translatable="false">m\u00B3</string>
 
-<!-- Preferences -->
+    <!-- Preferences -->
     <string name="settings_label">Settings</string>
     <string name="action_help">Help</string>
     <string name="action_restore">Restore default</string>
@@ -131,11 +154,11 @@
         <item>Taryfa dwustrefowa (G12)</item>
     </string-array>
 
-    <!--pge-->
-    <string name="pge_prices">PGE</string>
+    <!-- PGE settings -->
+    <string name="settings_pge" translatable="false">PGE</string>
     <string name="settings_pge_summary">Set tariff and prices</string>
 
-    <string name="pge_tariff_in_preferences" translatable="false">TARYFA</string>
+    <string name="settings_pge_tariff_title" translatable="false">TARYFA</string>
     <string name="oplata_przejsciowa_desc" translatable="false">Składnik opłaty przejściowej jest zależny od rocznego zużycia kWh:\n - do 500 kWH/rok wynosi 0.24 zł netto\n - od 500 do 1200 kWh/rok wynosi 1.00 zł netto\n - od 1200 kWh/rok wynosi 3.15 zł netto</string>
     <string name="oplata_stala_za_przesyl_desc" translatable="false">Inne nazwy:\n - składnik stały stawki sieciowej,\n - opłata przesyłowa stała.\nCena naliczana co miesiąc, niezależnie od zużycia.</string>
     <string name="oplata_abonamentowa_desc" translatable="false">Stała cena za abonament, naliczana co miesiąc, niezależnie od zużycia.</string>
@@ -149,8 +172,8 @@
     <string name="za_energie_czynna_G12noc_desc" translatable="false">Cena netto jednej kilowatogodziny energii, w strefie nocnej.</string>
     <string name="oplata_sieciowa_G12noc_desc" translatable="false">Inne nazwy:\n - składnik zmienny stawki sieciowej,\n - opłata przesyłowa zmienna,\n - opłata dystrybucyjna zmienna.\nCena dostarczania prądu, w strefie nocnej.</string>
 
-    <!--pgnig-->
-    <string name="pgnig_prices">PGNiG</string>
+    <!-- PGNiG settings -->
+    <string name="settings_pgnig" translatable="false">PGNiG</string>
     <string name="settings_pgnig_summary">Set gas conversion ratio and prices</string>
 
     <string name="wsp_konwersji_desc" translatable="false">Współczynnik konwersji to mnożnik, dzięki któremu można zamienić jednostki objętości [m\u00B3] na jednostki energii [kWh]. Więcej na <![CDATA[<a href="http://od.pgnig.pl/dladomu/nowamiara/przeliczanie">http://od.pgnig.pl/dladomu/nowamiara/przeliczanie</a>]]></string>
@@ -159,12 +182,12 @@
     <string name="dystrybucyjna_stala_desc" translatable="false">Cena za dostarczanie gazu (wcześniej opłata sieciowa stała), naliczana co miesiąc, niezależnie od zużycia.</string>
     <string name="dystrybucyjna_zmienna_desc" translatable="false">Cena za dostarczanie gazu (wcześniej opłata sieciowa zmienna), naliczana proporcjonalnie do zużycia.</string>
 
-    <!--tauron-->
-    <string name="tauron_prices">Tauron</string>
+    <!-- TAURON settings -->
+    <string name="settings_tauron" translatable="false">Tauron</string>
     <string name="settings_tauron_summary">Set tariff and prices</string>
-    <string name="tauron_tariff_in_preferences" translatable="false">Grupa Taryfowa</string>
+    <string name="settings_tauron_tariff" translatable="false">Grupa Taryfowa</string>
 
-    <!-- about -->
+    <!-- About -->
     <string name="about_label">About</string>
     <string name="version_text">Version %1$s<![CDATA[<br/>under <a href="http://opensource.org/licenses/MIT">MIT license</a>]]></string>
     <string name="description">Calculate the cost of utility bill</string>
@@ -173,14 +196,5 @@
     <string name="link_gplus">or join early version testing</string>
     <string name="clause">The names, logos and trade marks are owned by distribution companies. Given calculations are just approximate value of the bill and cannot be used as ground for financial claiming.</string>
     <string name="email_client_missing">I could not find any e-mail client installed</string>
-<!-- history -->
-    <string name="history_label">History</string>
-    <string name="action_delete">Delete</string>
-    <string name="history_period" translatable="false">%1$s - %2$s</string>
-    <string name="history_readings_label">Readings:</string>
-    <string name="histiry_readings" translatable="false">%1$s - %2$s</string>
-    <string name="history_readingsG12">day(%1$s - %2$s)\nnight(%3$s - %4$s)</string>
-    <string name="history_amount" translatable="false">%1$s zł</string>
-    <string name="empty_history">No bill calculated yet</string>
 
 </resources>
