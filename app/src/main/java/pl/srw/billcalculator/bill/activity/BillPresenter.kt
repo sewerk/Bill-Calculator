@@ -63,6 +63,7 @@ class BillPresenter @Inject constructor(val printer: Printer, printDirPath: Stri
     }
 
     private fun performPrint() {
+        Timber.d("printing... permission granted")
         val targetFile: File? = getTargetFile()
         if (targetFile != null) {
             Analytics.logAction(ActionType.PRINT,

@@ -82,7 +82,8 @@ dependencies {
     testCompile 'org.threeten:threetenbp:1.3.1'
 
     kaptAndroidTest "com.google.dagger:dagger-compiler:$daggerVer"
-    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.2'
+    androidTestCompile "com.android.support.test.espresso:espresso-contrib:$espressoVer"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$espressoVer"
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile "com.android.support:design:$supportLibVer"
 

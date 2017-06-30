@@ -39,6 +39,7 @@ import pl.srw.mfvp.di.component.MvpComponent;
 import pl.srw.mfvp.presenter.PresenterHandlingDelegate;
 import pl.srw.mfvp.presenter.PresenterOwner;
 import pl.srw.mfvp.presenter.SinglePresenterHandlingDelegate;
+import timber.log.Timber;
 
 abstract class BillActivity<T extends MvpComponent>
         extends BackableActivity<T>
@@ -138,6 +139,7 @@ abstract class BillActivity<T extends MvpComponent>
 
     @Override
     public void requestPermission(@NonNull String permission) {
+        Timber.d("requesting print permission");
         ActivityCompat.requestPermissions(this, new String[]{permission}, PERMISSION_REQUEST_CODE);
     }
 
