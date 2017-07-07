@@ -155,16 +155,6 @@ public class HistoryPresenterTest {
     }
 
     @Test
-    public void onFirstBind_setsHistoryDataOnList() throws Exception {
-        // WHEN
-        sut.onFirstBind();
-
-        // THEN
-        verify(view).setListData(listData);
-        verify(view).redrawList();
-    }
-
-    @Test
     public void onNewViewRestoreState_whenNeedRefresh_closesOldListAndFetchNewOne() throws Exception {
         // GIVEN
         final LazyList<History> list = mock(LazyList.class);

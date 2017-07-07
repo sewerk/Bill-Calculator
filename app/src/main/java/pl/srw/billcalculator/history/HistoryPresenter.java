@@ -59,8 +59,6 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
                     view.showHelp();
                     settings.markHelpShown();
                 }
-                view.setListData(historyData);
-                view.redrawList();
             }
         });
     }
