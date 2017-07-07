@@ -15,12 +15,13 @@ import pl.srw.billcalculator.history.HistoryGenerator;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.tester.AppTester;
+import pl.srw.billcalculator.tester.rule.ClosingActivityTestRule;
 import pl.srw.billcalculator.type.Provider;
 
 public class InstantAutoCompleteUITest {
 
     @Rule
-    public ActivityTestRule<DrawerActivity> testRule = new ActivityTestRule<>(DrawerActivity.class, false, false);
+    public ActivityTestRule<DrawerActivity> testRule = new ClosingActivityTestRule<>(DrawerActivity.class, false, false);
 
     @Inject HistoryGenerator historyGenerator;
     @Inject PgePrices pgePrices;

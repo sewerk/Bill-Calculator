@@ -2,7 +2,6 @@ package pl.srw.billcalculator.history
 
 import android.content.Context
 import android.support.test.InstrumentationRegistry
-import android.support.test.rule.ActivityTestRule
 import org.junit.After
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -12,13 +11,14 @@ import pl.srw.billcalculator.di.ApplicationModule.SHARED_PREFERENCES_FILE
 import pl.srw.billcalculator.di.TestDependencies
 import pl.srw.billcalculator.persistence.Database
 import pl.srw.billcalculator.tester.AppTester
+import pl.srw.billcalculator.tester.rule.ClosingActivityTestRule
 import pl.srw.billcalculator.util.BillSelection
 import javax.inject.Inject
 
 class HistoryUITest {
 
     @Rule @JvmField
-    var testRule = ActivityTestRule(DrawerActivity::class.java, false, false)
+    var testRule = ClosingActivityTestRule(DrawerActivity::class.java, false, false)
 
     @Inject lateinit var historyGenerator: HistoryGenerator
     @Inject lateinit var selection: BillSelection

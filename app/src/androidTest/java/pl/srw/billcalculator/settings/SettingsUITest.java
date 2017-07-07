@@ -12,12 +12,13 @@ import pl.srw.billcalculator.di.TestDependencies;
 import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.tester.AppTester;
+import pl.srw.billcalculator.tester.rule.ClosingActivityTestRule;
 import pl.srw.billcalculator.type.Provider;
 
 public class SettingsUITest {
 
     @Rule
-    public ActivityTestRule<DrawerActivity> testRule = new ActivityTestRule<>(DrawerActivity.class, false, false);
+    public ActivityTestRule<DrawerActivity> testRule = new ClosingActivityTestRule<>(DrawerActivity.class, false, false);
 
     @Inject SettingsRepo settingsRepo;
 

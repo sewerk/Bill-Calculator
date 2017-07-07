@@ -11,12 +11,13 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.tester.FormTester;
+import pl.srw.billcalculator.tester.rule.ClosingActivityTestRule;
 import pl.srw.billcalculator.type.Provider;
 
 public class DatePickingViewUITest {
 
     @Rule
-    public ActivityTestRule<DrawerActivity> mActivityTestRule = new ActivityTestRule<>(DrawerActivity.class);
+    public ActivityTestRule<DrawerActivity> mActivityTestRule = new ClosingActivityTestRule<>(DrawerActivity.class);
 
     private AppTester tester = new AppTester();
 
