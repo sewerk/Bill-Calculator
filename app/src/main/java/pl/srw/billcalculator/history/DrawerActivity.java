@@ -253,6 +253,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     private void setupDrawer() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle.setDrawerSlideAnimationEnabled(false);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
