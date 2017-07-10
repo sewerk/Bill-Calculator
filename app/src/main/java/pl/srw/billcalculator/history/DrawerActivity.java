@@ -134,7 +134,8 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
 
     @Override
     public void onBackPressed() {
-        if (!presenter.handleBackPressed()) {
+        if (!presenter.handleBackPressed()
+                && !fabsMenuHandler.handleBackPressed()) {
             super.onBackPressed();
         }
     }

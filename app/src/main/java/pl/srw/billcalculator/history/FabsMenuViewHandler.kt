@@ -51,6 +51,10 @@ class FabsMenuViewHandler @Inject constructor() : FabsMenuPresenter.View {
         presenter.outsideClicked()
     }
 
+    fun handleBackPressed(): Boolean {
+        return presenter.handleBackPressed()
+    }
+
     override fun isExpanded() = fabPge.visibility == View.VISIBLE
 
     override fun isCollapsingInProgress() = collapseAnimator.isRunning
