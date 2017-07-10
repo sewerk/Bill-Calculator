@@ -41,7 +41,8 @@ public abstract class AbstractVerifyBillCreationUITest {
     private final static RxEspressoScheduleHandler rxEspressoScheduleHandler = new RxEspressoScheduleHandler();
 
     @Rule
-    public final IntentsTestRule<DrawerActivity> testRule = new PermissionsIntentsTestRule<>(DrawerActivity.class,
+    public final IntentsTestRule<DrawerActivity> testRule
+            = new PermissionsIntentsTestRule<>(DrawerActivity.class, false, false,
             Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
     private AppTester tester = new AppTester();
@@ -50,6 +51,8 @@ public abstract class AbstractVerifyBillCreationUITest {
     public void setUp() throws Exception {
         RxJavaPlugins.setScheduleHandler(rxEspressoScheduleHandler);
         Espresso.registerIdlingResources(rxEspressoScheduleHandler.getIdlingResource());
+        HistoryGenerator.clear();
+        testRule.launchActivity(null);
     }
 
     @After

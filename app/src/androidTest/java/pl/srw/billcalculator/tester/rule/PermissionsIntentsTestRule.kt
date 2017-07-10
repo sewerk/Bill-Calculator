@@ -12,11 +12,13 @@ import org.junit.runners.model.Statement
  * activity closing after test execution and intent testing
  * @param <T> tested activity
  */
-class PermissionsIntentsTestRule<T : Activity>(clazz: Class<T>, vararg permissions: String) : IntentsTestRule<T>(clazz) {
+class PermissionsIntentsTestRule<T : Activity>(clazz: Class<T>,
+                                               initialTouchMode: Boolean = false,
+                                               launchActivity: Boolean = true,
+                                               vararg val permissions: String)
+    : IntentsTestRule<T>(clazz, initialTouchMode, launchActivity) {
 
     private val closingHelper = ClosingActivitiesRuleHelper()
-
-    private val permissions: Array<out String> = permissions
 
     override fun apply(base: Statement, description: Description): Statement {
         try {
