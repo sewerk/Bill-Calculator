@@ -90,7 +90,6 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
                                        String dateFrom, String dateTo,
                                        String readingDayFrom, String readingDayTo,
                                        String readingNightFrom, String readingNightTo) {
-        Analytics.logAction(ActionType.CALCULATE, "provider", provider);
         present(new UIChange<FormView>() {
             @Override
             public void change(FormView view) {
@@ -124,6 +123,7 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
             });
         }
         historyUpdater.onHistoryChanged();
+        Analytics.logAction(ActionType.CALCULATE, "provider", provider);
     }
 
     private boolean isSingleReadingsFormValid(String readingFrom, String readingTo,
