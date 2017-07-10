@@ -1,10 +1,12 @@
 package pl.srw.billcalculator.tester;
 
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.support.design.widget.NavigationView;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.action.CoordinatesProvider;
 import android.support.test.espresso.action.GeneralLocation;
@@ -13,6 +15,7 @@ import android.support.test.espresso.action.Press;
 import android.support.test.espresso.action.Swipe;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.rule.ActivityTestRule;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -119,6 +122,19 @@ abstract class Tester {
 
     RecyclerViewInteraction onRecyclerViewItem(Matcher<View> viewMatcher, int position) {
         return new RecyclerViewInteraction(onView(viewMatcher), position);
+    }
+
+    protected boolean isOnTablet() {
+        return isScreenSw(600);
+    }
+
+    private boolean isScreenSw(int dp) {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        DisplayMetrics displayMetrics = context.getApplicationContext().getResources().getDisplayMetrics();
+        float widthDp = displayMetrics.widthPixels / displayMetrics.density;
+        float heightDp = displayMetrics.heightPixels / displayMetrics.density;
+        float screenSw = Math.min(widthDp, heightDp);
+        return screenSw >= dp;
     }
 
     private ViewAction click() {

@@ -30,7 +30,9 @@ public class SettingsTester extends Tester {
     }
 
     public AppTester close() {
-        pressBack();
+        if (!isOnTablet()) {
+            pressBack();
+        }
         return parent;
     }
 }

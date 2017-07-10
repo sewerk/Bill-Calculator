@@ -65,7 +65,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
 
     @Override
     protected void onNewViewRestoreState() {
-        if (needRefresh) {
+        if (needRefresh) { // FIXME: when bill activity will be closed quickly then onStart will not be called - will not refresh
             loadHistoryData();
             // set list after bill creation, activity rotation set is handled in #onCreate
             present(new UIChange<HistoryView>() {
