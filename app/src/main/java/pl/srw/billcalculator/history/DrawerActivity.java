@@ -210,6 +210,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
                         presenter.undoDeleteClicked(position);
                     }
                 })
+                .setActionTextColor(getResources().getColor(R.color.yellow))
                 .show();
     }
 
