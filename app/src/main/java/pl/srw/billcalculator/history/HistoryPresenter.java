@@ -272,7 +272,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         savedBillsRegistry.register(item.getBill());
     }
 
-    interface HistoryView {
+    public interface HistoryView {
 
         void showHelp();
 
