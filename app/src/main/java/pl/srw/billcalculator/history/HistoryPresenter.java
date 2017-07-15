@@ -126,6 +126,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
                 @Override
                 public void change(HistoryView view) {
                     view.showDeleteButton();
+                    view.disableSwipeDelete();
                 }
             });
         }
@@ -228,6 +229,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
                     view.onItemRemoveFromList(position);
                 }
                 view.hideDeleteButton();
+                view.enableSwipeDelete();
             }
         });
         selection.deselectAll();
@@ -256,6 +258,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
                 @Override
                 public void change(HistoryView view) {
                     view.hideDeleteButton();
+                    view.enableSwipeDelete();
                 }
             });
         }
@@ -304,5 +307,9 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         void showDeleteButton();
 
         void hideDeleteButton();
+
+        void enableSwipeDelete();
+
+        void disableSwipeDelete();
     }
 }

@@ -58,7 +58,6 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @BindView(R.id.bill_list) RecyclerView listView;
     @BindView(R.id.empty_history) View emptyHistoryView;
     @BindInt(R.integer.cardAmount) int cardAmount;
-    private HistoryAdapter adapter;
 
     @Inject HistoryPresenter presenter;
 //TODO    @Inject DrawerPresenter drawerPresenter;
@@ -66,7 +65,10 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Inject HelpHandler helpHandler;
     @Inject BillSelection selection;
     @Inject MenuClickHandlerExtension menuHandlerExtension;
+
+    private HistoryAdapter adapter;
     private MenuItem deleteMenuAction;
+    private ItemTouchHelper itemTouchHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,6 +193,16 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     }
 
     @Override
+    public void enableSwipeDelete() {
+        itemTouchHelper.attachToRecyclerView(listView);
+    }
+
+    @Override
+    public void disableSwipeDelete() {
+        itemTouchHelper.attachToRecyclerView(null);
+    }
+
+    @Override
     public void showWelcomeDialog() {
         new CheckPricesDialogFragment().show(getSupportFragmentManager(), null);
     }
@@ -242,8 +254,8 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         adapter = new HistoryAdapter(new ShowViewOnEmptyDataObserver(emptyHistoryView), presenter, selection);
         listView.setAdapter(adapter);
 
-        ItemTouchHelper helper = new ItemTouchHelper(new HistoryItemTouchCallback(presenter));
-        helper.attachToRecyclerView(listView);
+        itemTouchHelper = new ItemTouchHelper(new HistoryItemTouchCallback(presenter));
+        enableSwipeDelete();
     }
 
     private void setupToolbar() {

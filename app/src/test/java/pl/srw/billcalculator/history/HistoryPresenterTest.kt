@@ -514,6 +514,21 @@ class HistoryPresenterTest {
     }
 
     @Test
+    fun onListItemClicked_onSingleSelectedItem_enablesSwipeDelete() {
+        // GIVEN
+        whenever(selection.isAnySelected).thenReturn(true, false)
+        val position = 2
+        whenever(selection.isSelected(position)).thenReturn(true)
+        val item = given_historyViewItem(position = position)
+
+        // WHEN
+        sut.onListItemClicked(item)
+
+        // THEN
+        verify(view).enableSwipeDelete()
+    }
+
+    @Test
     fun onListItemLongClicked_whenNotInSelectMode_showsDeleteButton() {
         // GIVEN
         val item = given_historyViewItem(position = 2)
@@ -523,6 +538,18 @@ class HistoryPresenterTest {
 
         // THEN
         verify(view).showDeleteButton()
+    }
+
+    @Test
+    fun onListItemLongClicked_whenNotInSelectMode_disablesSwipeDelete() {
+        // GIVEN
+        val item = given_historyViewItem(position = 2)
+
+        // WHEN
+        sut.onListItemLongClicked(item)
+
+        // THEN
+        verify(view).disableSwipeDelete()
     }
 
     @Test
@@ -610,6 +637,21 @@ class HistoryPresenterTest {
     }
 
     @Test
+    fun onListItemLongClicked_onSingleSelectedItem_enablesSwipeDelete() {
+        // GIVEN
+        val position = 2
+        whenever(selection.isAnySelected).thenReturn(true, false)
+        whenever(selection.isSelected(position)).thenReturn(true)
+        val item = given_historyViewItem(position = position)
+
+        // WHEN
+        sut.onListItemLongClicked(item)
+
+        // THEN
+        verify(view).enableSwipeDelete()
+    }
+
+    @Test
     fun deleteClicked_deletesSelectedBill() {
         // GIVEN
         val id = 1L
@@ -645,6 +687,18 @@ class HistoryPresenterTest {
         verify(view).setListData(any())
         verify(view).onItemRemoveFromList(eq(position2))
         verify(view).onItemRemoveFromList(eq(position1))
+    }
+
+    @Test
+    fun `delete button clicked, enables swipe on items`() {
+        // GIVEN
+        whenever(selection.positionsReverseOrder).thenReturn(intArrayOf(1))
+
+        // WHEN
+        sut.deleteClicked()
+
+        // THEN
+        verify(view).enableSwipeDelete()
     }
 
     @Test
