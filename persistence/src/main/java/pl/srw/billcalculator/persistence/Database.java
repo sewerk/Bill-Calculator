@@ -84,17 +84,23 @@ public class Database {
     }
 
     public static void deleteBillWithPrices(final BillType type, final Long billId, final Long pricesId) {
-        deletedPrices = type.getPricesDao().load(pricesId);
         type.getPricesDao().deleteByKey(pricesId);
-        deletedBill = type.getDao().load(billId);
         type.getDao().deleteByKey(billId);
+    }
+
+    /**
+     * Cache bill+prices values in memory to be able to retrieve them later
+     */
+    public static void cacheForUndelete(final BillType type, final Long billId, final Long pricesId) {
+        deletedPrices = type.getPricesDao().load(pricesId);
+        deletedBill = type.getDao().load(billId);
     }
 
     /**
      * Adds back last bill+prices which were removed
      */
     public static void undelete() {
-        if (deletedBill != null && deletedPrices != null) { // TODO: undo delete after selected delete retrieves last from selection
+        if (canUndelete()) {
             final BillType type = BillType.valueOf(deletedBill);
             ((AbstractDao<Prices, Long>) type.getPricesDao()).insert(deletedPrices);
             deletedPrices = null;

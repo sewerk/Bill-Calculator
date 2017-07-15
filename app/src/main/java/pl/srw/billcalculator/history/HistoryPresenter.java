@@ -97,6 +97,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     public void onListItemDismissed(final int position, Bill bill) {
         Analytics.logAction(ActionType.DELETE_BILL, "dismissed", "true");
         Timber.d("bill id=%d", bill.getId());
+        history.cacheBillForUndoDelete(BillType.valueOf(bill), bill.getId(), bill.getPricesId());
         history.deleteBillWithPrices(BillType.valueOf(bill), bill.getId(), bill.getPricesId());
         loadHistoryData();
         present(new UIChange<HistoryView>() {

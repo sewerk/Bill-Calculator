@@ -33,7 +33,7 @@ class HistoryPresenterTest {
     val view: HistoryPresenter.HistoryView = mock()
     val settings: SettingsRepo = mock()
     val history: HistoryRepo = mock {
-        on { all } doReturn listData
+        on { getAll() } doReturn listData
     }
     val savedBillsRegistry: SavedBillsRegistry = mock()
     val selection: BillSelection = mock()
@@ -141,7 +141,7 @@ class HistoryPresenterTest {
         sut.onFirstBind()
 
         // THEN
-        verify(history).all
+        verify(history).getAll()
     }
 
     @Test
@@ -156,14 +156,14 @@ class HistoryPresenterTest {
 
         // THEN
         verify(list).close()
-        verify(history).all
+        verify(history).getAll()
     }
 
     @Test
     fun onNewViewRestoreState_whenNeedRefresh_setsHistoryDataOnList() {
         // GIVEN
         val list: LazyList<History> = mock()
-        whenever(history.all).thenReturn(list)
+        whenever(history.getAll()).thenReturn(list)
         sut.setState("needRefresh", true)
 
         // WHEN
@@ -306,6 +306,23 @@ class HistoryPresenterTest {
     }
 
     @Test
+    fun `on list item dismissed, cache item for undo posibility`() {
+        // GIVEN
+        val id = 1L
+        val pricesId = 2L
+        val bill: PgeG11Bill = mock {
+            on { getId() } doReturn id
+            on { getPricesId() } doReturn pricesId
+        }
+
+        // WHEN
+        sut.onListItemDismissed(0, bill)
+
+        // THEN
+        verify(history).cacheBillForUndoDelete(BillType.PGE_G11, id, pricesId)
+    }
+
+    @Test
     fun onListItemDismissed_fetchAllHistory() {
         // GIVEN
         val bill: PgeG11Bill = mock()
@@ -314,7 +331,7 @@ class HistoryPresenterTest {
         sut.onListItemDismissed(0, bill)
 
         // THEN
-        verify(history).all
+        verify(history).getAll()
     }
 
     @Test
@@ -347,7 +364,7 @@ class HistoryPresenterTest {
     @Test
     fun undoDeleteClicked_viewAddsItemToList() {
         // GIVEN
-        whenever(history.isUndoDeletePossible).thenReturn(true)
+        whenever(history.isUndoDeletePossible()).thenReturn(true)
 
         // WHEN
         val position = 0
@@ -361,7 +378,7 @@ class HistoryPresenterTest {
     @Test
     fun undoDeleteClicked_undosDeleteHistory() {
         // GIVEN
-        whenever(history.isUndoDeletePossible).thenReturn(true)
+        whenever(history.isUndoDeletePossible()).thenReturn(true)
 
         // WHEN
         sut.undoDeleteClicked(0)
@@ -373,26 +390,26 @@ class HistoryPresenterTest {
     @Test
     fun undoDeleteClicked_whenAlreadyUndo_doesNotUndoAnyMore() {
         // GIVEN
-        whenever(history.isUndoDeletePossible).thenReturn(false)
+        whenever(history.isUndoDeletePossible()).thenReturn(false)
 
         // WHEN
         sut.undoDeleteClicked(0)
 
         // THEN
-        verify(history).isUndoDeletePossible
+        verify(history).isUndoDeletePossible()
         verify(history, never()).undoDelete()
     }
 
     @Test
     fun undoDeleteClicked_fetchAllHistory() {
         // GIVEN
-        whenever(history.isUndoDeletePossible).thenReturn(true)
+        whenever(history.isUndoDeletePossible()).thenReturn(true)
 
         // WHEN
         sut.undoDeleteClicked(0)
 
         // THEN
-        verify(history).all
+        verify(history).getAll()
     }
 
     @Test
