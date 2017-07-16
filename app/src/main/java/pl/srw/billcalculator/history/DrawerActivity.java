@@ -68,7 +68,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
 
     private HistoryAdapter adapter;
     private MenuItem deleteMenuAction;
-    private ItemTouchHelper itemTouchHelper;
+    private HistoryItemTouchCallback touchCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -194,12 +194,12 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
 
     @Override
     public void enableSwipeDelete() {
-        itemTouchHelper.attachToRecyclerView(listView);
+        touchCallback.setSwipeEnabled(true);
     }
 
     @Override
     public void disableSwipeDelete() {
-        itemTouchHelper.attachToRecyclerView(null);
+        touchCallback.setSwipeEnabled(false);
     }
 
     @Override
@@ -254,8 +254,9 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         adapter = new HistoryAdapter(new ShowViewOnEmptyDataObserver(emptyHistoryView), presenter, selection);
         listView.setAdapter(adapter);
 
-        itemTouchHelper = new ItemTouchHelper(new HistoryItemTouchCallback(presenter));
-        enableSwipeDelete();
+        touchCallback = new HistoryItemTouchCallback(presenter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(touchCallback);
+        itemTouchHelper.attachToRecyclerView(listView);
     }
 
     private void setupToolbar() {

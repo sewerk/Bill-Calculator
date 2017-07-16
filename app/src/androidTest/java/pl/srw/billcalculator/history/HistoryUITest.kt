@@ -87,7 +87,25 @@ class HistoryUITest {
     }
 
     @Test
-    fun shouldRestoreBillWhenUndoActionClicked() {
+    fun shouldShowUndoMessageAfterSelectDelete() {
+        // given: one bill in history
+        historyGenerator.generatePgeG11Bills(5)
+        testRule.launchActivity(null)
+
+        // when: deleting one bill
+        val historyTester = tester.skipCheckPricesDialogIfVisible()
+                .onHistory()
+                .changeItemSelectionAtPosition(1)
+                .changeItemSelectionAtPosition(3)
+                .deleteSelected()
+
+        // then:
+        historyTester
+                .checkUndoMessageIsShown()
+    }
+
+    @Test
+    fun shouldRestoreBillAfterSwipeDeleteWhenUndoActionClicked() {
         // given: one bill in history
         historyGenerator.generatePgeG11Bill(11)
         testRule.launchActivity(null)
@@ -96,6 +114,25 @@ class HistoryUITest {
         val historyTester = tester.skipCheckPricesDialogIfVisible()
                 .onHistory()
                 .deleteBillWithReadings("1", "11")
+                .undoDelete()
+
+        // then:
+        historyTester.checkEmptyHistoryIsNotShown()
+                .openBillWithReadings("1", "11")
+    }
+
+    @Test
+    fun shouldRestoreBillAfterSelectDeleteWhenUndoActionClicked() {
+        // given: one bill in history
+        historyGenerator.generatePgeG11Bill(11)
+        historyGenerator.generatePgeG11Bill(22)
+        testRule.launchActivity(null)
+
+        // when: deleting one bill
+        val historyTester = tester.skipCheckPricesDialogIfVisible()
+                .onHistory()
+                .changeItemSelectionWithReadings("1", "11")
+                .deleteSelected()
                 .undoDelete()
 
         // then:
