@@ -1,4 +1,5 @@
 v.2.0-beta2
+ - new v2.0 UI dialog
  - fix: delete by swipe and selection followed by undo breaks list
  - disable drawer toggle animation
  - close FABs menu on back pressed

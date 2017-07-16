@@ -57,7 +57,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
                     view.showWelcomeDialog();
                     settings.markHelpShown();
                 } else if (!settings.wasHelpShown()) {
-                    view.showHelp();
+                    view.showNewUIDialog();
                     settings.markHelpShown();
                 }
             }
@@ -317,5 +317,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         void enableSwipeDelete();
 
         void disableSwipeDelete();
+
+        void showNewUIDialog();
     }
 }

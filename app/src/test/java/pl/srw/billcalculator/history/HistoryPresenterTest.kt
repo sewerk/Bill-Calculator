@@ -57,7 +57,7 @@ class HistoryPresenterTest {
     }
 
     @Test
-    fun onFirstBind_whenFirstLaunch_doesNotShowHelp() {
+    fun onFirstBind_whenFirstLaunch_doesNotShowNewUIDialog() {
         // GIVEN
         whenever(settings.isFirstLaunch).thenReturn(true)
 
@@ -65,7 +65,7 @@ class HistoryPresenterTest {
         sut.onFirstBind()
 
         // THEN
-        verify(view, never()).showHelp()
+        verify(view, never()).showNewUIDialog()
     }
 
     @Test
@@ -93,7 +93,7 @@ class HistoryPresenterTest {
     }
 
     @Test
-    fun onFirstBind_whenNotFirstLaunch_andHelpWasNotShown_showsHelpAndMarkShown() {
+    fun onFirstBind_whenNotFirstLaunch_andHelpWasNotShown_showsNewUIDialogAndMarkShown() {
         // GIVEN
         whenever(settings.isFirstLaunch).thenReturn(false)
         whenever(settings.wasHelpShown()).thenReturn(false)
@@ -102,27 +102,12 @@ class HistoryPresenterTest {
         sut.onFirstBind()
 
         // THEN
-        verify(view).showHelp()
+        verify(view).showNewUIDialog()
         verify(settings).markHelpShown()
     }
 
     @Test
-    fun onFirstBind_whenNotFirstLaunch_andFirstLaunchOnFreshInstallation_neverShowHelp() {
-        // GIVEN
-        whenever(settings.isFirstLaunch).thenReturn(true, false)
-        sut.onFirstBind()
-        verify(settings).markHelpShown()
-
-        // WHEN
-        whenever(settings.wasHelpShown()).thenReturn(true)
-        sut.onFirstBind()
-
-        // THEN
-        verify(view, never()).showHelp()
-    }
-
-    @Test
-    fun onFirstBind_whenNotFirstLaunch_andHelpWasShown_doesNotShowHelp() {
+    fun onFirstBind_whenNotFirstLaunch_andHelpWasMarkShown_doesNotShowNewUIDialog() {
         // GIVEN
         whenever(settings.isFirstLaunch).thenReturn(false)
         whenever(settings.wasHelpShown()).thenReturn(true)
@@ -131,7 +116,7 @@ class HistoryPresenterTest {
         sut.onFirstBind()
 
         // THEN
-        verify(view, never()).showHelp()
+        verify(view, never()).showNewUIDialog()
     }
 
     @Test

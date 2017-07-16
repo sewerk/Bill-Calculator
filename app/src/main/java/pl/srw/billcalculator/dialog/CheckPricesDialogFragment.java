@@ -17,9 +17,6 @@ import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.mfvp.MvpFragment;
 import pl.srw.mfvp.view.fragment.MvpActivityScopedFragment;
 
-/**
- * Created by Kamil Seweryn
- */
 public class CheckPricesDialogFragment extends MvpFragment
         implements MvpActivityScopedFragment<HistoryComponent> {
 
