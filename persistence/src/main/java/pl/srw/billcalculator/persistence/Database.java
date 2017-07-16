@@ -3,6 +3,7 @@ package pl.srw.billcalculator.persistence;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Pair;
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.query.LazyList;
@@ -24,8 +25,6 @@ public class Database {
     private static final String QUERY_ROW_LIMIT = "100";
     private static DaoSession daoSession;
     private static Query<History> historyQuery;
-    private static Prices deletedPrices;
-    private static Bill deletedBill;
 
     public static void initialize(Context context) {
         daoSession = new DaoMaster(getDatabase(context)).newSession();
@@ -83,34 +82,21 @@ public class Database {
         return historyQuery.listLazy();
     }
 
+    public static Pair<Bill, Prices> load(final BillType type, final Long billId, final Long pricesId) {
+        Prices deletedPrices = type.getPricesDao().load(pricesId);
+        Bill deletedBill = type.getDao().load(billId);
+        return new Pair<>(deletedBill, deletedPrices);
+    }
+
     public static void deleteBillWithPrices(final BillType type, final Long billId, final Long pricesId) {
         type.getPricesDao().deleteByKey(pricesId);
         type.getDao().deleteByKey(billId);
     }
 
-    /**
-     * Cache bill+prices values in memory to be able to retrieve them later
-     */
-    public static void cacheForUndelete(final BillType type, final Long billId, final Long pricesId) {
-        deletedPrices = type.getPricesDao().load(pricesId);
-        deletedBill = type.getDao().load(billId);
-    }
-
-    /**
-     * Adds back last bill+prices which were removed
-     */
-    public static void undelete() {
-        if (canUndelete()) {
+    public static void insert(Bill deletedBill, Prices deletedPrices) {
             final BillType type = BillType.valueOf(deletedBill);
             ((AbstractDao<Prices, Long>) type.getPricesDao()).insert(deletedPrices);
-            deletedPrices = null;
             ((AbstractDao<Bill, Long>) type.getDao()).insert(deletedBill);
-            deletedBill = null;
-        }
-    }
-
-    public static boolean canUndelete() {
-        return deletedBill != null && deletedPrices != null;
     }
 
     private static void close() {

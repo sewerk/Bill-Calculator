@@ -18,7 +18,6 @@ import pl.srw.billcalculator.db.Bill
 import pl.srw.billcalculator.db.History
 import pl.srw.billcalculator.db.PgeG11Bill
 import pl.srw.billcalculator.history.list.item.HistoryViewItem
-import pl.srw.billcalculator.persistence.type.BillType
 import pl.srw.billcalculator.setState
 import pl.srw.billcalculator.settings.global.SettingsRepo
 import pl.srw.billcalculator.type.Provider
@@ -291,35 +290,25 @@ class HistoryPresenterTest {
     @Test
     fun onListItemDismissed_deleteBillWithPrices() {
         // GIVEN
-        val id = 1L
-        val pricesId = 2L
-        val bill: PgeG11Bill = mock {
-            on { getId() } doReturn id
-            on { getPricesId() } doReturn pricesId
-        }
+        val bill: PgeG11Bill = mock()
 
         // WHEN
         sut.onListItemDismissed(0, bill)
 
         // THEN
-        verify(history).deleteBillWithPrices(BillType.PGE_G11, id, pricesId)
+        verify(history).deleteBillWithPrices(bill)
     }
 
     @Test
     fun `on list item dismissed, cache item for undo posibility`() {
         // GIVEN
-        val id = 1L
-        val pricesId = 2L
-        val bill: PgeG11Bill = mock {
-            on { getId() } doReturn id
-            on { getPricesId() } doReturn pricesId
-        }
+        val bill: PgeG11Bill = mock()
 
         // WHEN
         sut.onListItemDismissed(0, bill)
 
         // THEN
-        verify(history).cacheBillForUndoDelete(BillType.PGE_G11, id, pricesId)
+        verify(history).cacheBillForUndoDelete(bill)
     }
 
     @Test
@@ -362,17 +351,19 @@ class HistoryPresenterTest {
     }
 
     @Test
-    fun undoDeleteClicked_viewAddsItemToList() {
+    fun `undo delete clicked, add view items to list, in natural order`() {
         // GIVEN
         whenever(history.isUndoDeletePossible()).thenReturn(true)
 
         // WHEN
-        val position = 0
-        sut.undoDeleteClicked(position)
+        sut.undoDeleteClicked(3, 2, 5)
 
         // THEN
-        verify(view).setListData(any())
-        verify(view).onItemInsertedToList(eq(position))
+        val inOrder = inOrder(view)
+        inOrder.verify(view).setListData(any())
+        inOrder.verify(view).onItemInsertedToList(2)
+        inOrder.verify(view).onItemInsertedToList(3)
+        inOrder.verify(view).onItemInsertedToList(5)
     }
 
     @Test
@@ -652,16 +643,23 @@ class HistoryPresenterTest {
     }
 
     @Test
-    fun deleteClicked_deletesSelectedBill() {
+    fun `delete button clicked, caches bills for undo posibility`() {
         // GIVEN
-        val id = 1L
-        val pricesId = 2L
-        val bill: PgeG11Bill = mock {
-            on { getId() } doReturn id
-            on { getPricesId() } doReturn pricesId
-        }
+        val items = listOf(mock<Bill>(), mock<Bill>())
+        whenever(selection.items).thenReturn(items)
+        whenever(selection.positionsReverseOrder).thenReturn(intArrayOf(1, 0))
 
-        whenever(selection.isAnySelected).thenReturn(true)
+        // WHEN
+        sut.deleteClicked()
+
+        // THEN
+        verify(history).cacheBillsForUndoDelete(items)
+    }
+
+    @Test
+    fun deleteClicked_deletesSelectedBills() {
+        // GIVEN
+        val bill: PgeG11Bill = mock()
         whenever(selection.items).thenReturn(Arrays.asList<Bill>(bill, bill))
         whenever(selection.positionsReverseOrder).thenReturn(intArrayOf(3, 2))
 
@@ -669,24 +667,23 @@ class HistoryPresenterTest {
         sut.deleteClicked()
 
         // THEN
-        verify(history, times(2)).deleteBillWithPrices(BillType.PGE_G11, id, pricesId)
+        verify(history, times(2)).deleteBillWithPrices(bill)
     }
 
     @Test
-    fun deleteClicked_removesViewsFromList() {
+    fun `delete button clicked, remove view items to list, in reverse order`() {
         // GIVEN
-        val position1 = 2
-        val position2 = 5
         whenever(selection.isAnySelected).thenReturn(true)
-        whenever(selection.positionsReverseOrder).thenReturn(intArrayOf(position2, position1))
+        whenever(selection.positionsReverseOrder).thenReturn(intArrayOf(5, 2))
 
         // WHEN
         sut.deleteClicked()
 
         // THEN
-        verify(view).setListData(any())
-        verify(view).onItemRemoveFromList(eq(position2))
-        verify(view).onItemRemoveFromList(eq(position1))
+        val inOrder = inOrder(view)
+        inOrder.verify(view).setListData(any())
+        inOrder.verify(view).onItemRemoveFromList(5)
+        inOrder.verify(view).onItemRemoveFromList(2)
     }
 
     @Test
@@ -699,6 +696,18 @@ class HistoryPresenterTest {
 
         // THEN
         verify(view).enableSwipeDelete()
+    }
+
+    @Test
+    fun `delete button clicked, shows undo delete message`() {
+        // GIVEN
+        whenever(selection.positionsReverseOrder).thenReturn(intArrayOf(5, 3))
+
+        // WHEN
+        sut.deleteClicked()
+
+        // THEN
+        verify(view).showUndoDeleteMessage(5, 3)
     }
 
     @Test

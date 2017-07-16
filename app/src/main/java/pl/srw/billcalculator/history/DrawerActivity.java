@@ -214,12 +214,12 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     }
 
     @Override
-    public void showUndoDeleteMessage(final int position) {
+    public void showUndoDeleteMessage(final int... positions) {
         Snackbar.make(coordinatorLayout, R.string.bill_deleted, Snackbar.LENGTH_LONG)
                 .setAction(R.string.action_undo_delete, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        presenter.undoDeleteClicked(position);
+                        presenter.undoDeleteClicked(positions);
                     }
                 })
                 .setActionTextColor(getResources().getColor(R.color.yellow))
