@@ -29,7 +29,6 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.dialog.CheckPricesDialogFragment;
-import pl.srw.billcalculator.dialog.NewUIDialogFragment;
 import pl.srw.billcalculator.form.fragment.FormFragment;
 import pl.srw.billcalculator.history.di.HistoryComponent;
 import pl.srw.billcalculator.history.list.HistoryAdapter;
