@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.dialog
+package pl.srw.billcalculator.history
 
 import android.app.Dialog
 import android.os.Bundle
@@ -8,7 +8,6 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import butterknife.Unbinder
 import pl.srw.billcalculator.R
-import pl.srw.billcalculator.history.HelpHandler
 import pl.srw.billcalculator.history.di.HistoryComponent
 import pl.srw.mfvp.MvpFragment
 import pl.srw.mfvp.view.fragment.MvpActivityScopedFragment
