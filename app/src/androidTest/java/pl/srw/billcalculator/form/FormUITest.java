@@ -10,6 +10,7 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.tester.FormTester;
+import pl.srw.billcalculator.tester.rule.ClosingActivityTestRule;
 
 import static pl.srw.billcalculator.type.Provider.PGE;
 import static pl.srw.billcalculator.type.Provider.PGNIG;
@@ -18,7 +19,7 @@ import static pl.srw.billcalculator.type.Provider.TAURON;
 public class FormUITest {
 
     @Rule
-    public ActivityTestRule<DrawerActivity> testRule = new ActivityTestRule<>(DrawerActivity.class);
+    public ActivityTestRule<DrawerActivity> testRule = new ClosingActivityTestRule<>(DrawerActivity.class);
 
     private AppTester tester = new AppTester();
 

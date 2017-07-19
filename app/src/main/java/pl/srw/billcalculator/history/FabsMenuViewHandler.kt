@@ -27,8 +27,8 @@ class FabsMenuViewHandler @Inject constructor() : FabsMenuPresenter.View {
     lateinit var activity: DrawerActivity
     val presenter: FabsMenuPresenter = FabsMenuPresenter(this)
 
-    val expandAnimator: AnimatorSet by lazy { Animations.getExpandFabs(fab, fabPge, fabPgnig, fabTauron) }
-    val collapseAnimator: AnimatorSet by lazy { Animations.getCollapseFabs(fab, fabPge, fabPgnig, fabTauron) }
+    val expandAnimator: AnimatorSet by lazy(LazyThreadSafetyMode.NONE) { Animations.getExpandFabs(fab, fabPge, fabPgnig, fabTauron) }
+    val collapseAnimator: AnimatorSet by lazy(LazyThreadSafetyMode.NONE) { Animations.getCollapseFabs(fab, fabPge, fabPgnig, fabTauron) }
 
     fun init(activity: DrawerActivity) {
         Dependencies.inject(this, activity)
@@ -49,6 +49,10 @@ class FabsMenuViewHandler @Inject constructor() : FabsMenuPresenter.View {
     @OnClick(R.id.fabs_dim_view)
     fun onDimClicked() {
         presenter.outsideClicked()
+    }
+
+    fun handleBackPressed(): Boolean {
+        return presenter.handleBackPressed()
     }
 
     override fun isExpanded() = fabPge.visibility == View.VISIBLE

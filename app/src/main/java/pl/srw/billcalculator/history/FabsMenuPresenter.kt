@@ -21,6 +21,13 @@ class FabsMenuPresenter(val view: View) {
         collapseAndHideDim()
     }
 
+    fun handleBackPressed(): Boolean {
+        if (view.isExpanded() && !view.isCollapsingInProgress()) {
+            collapseAndHideDim()
+            return true
+        } else return false
+    }
+
     private fun expandAndShowDim() {
         view.expand()
         view.showDim()

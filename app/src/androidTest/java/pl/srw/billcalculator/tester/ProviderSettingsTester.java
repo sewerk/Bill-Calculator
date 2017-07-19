@@ -3,7 +3,6 @@ package pl.srw.billcalculator.tester;
 import android.preference.EditTextPreference;
 import android.support.annotation.StringRes;
 import android.support.test.espresso.DataInteraction;
-import android.support.test.espresso.matcher.PreferenceMatchers;
 
 import pl.srw.billcalculator.R;
 
@@ -21,6 +20,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
@@ -45,7 +45,9 @@ public class ProviderSettingsTester<T extends Tester> extends Tester {
     }
 
     public Preference getPreferenceAtLine(int index) {
-        DataInteraction dataInteraction = onData(PreferenceMatchers.isEnabled()).atPosition(index);
+        DataInteraction dataInteraction = onData(anything())
+                .inAdapterView(withId(android.R.id.list))
+                .atPosition(index);
         return new Preference(dataInteraction);
     }
 

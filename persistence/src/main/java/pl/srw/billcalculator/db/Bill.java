@@ -2,9 +2,6 @@ package pl.srw.billcalculator.db;
 
 import java.util.Date;
 
-/**
- * Created by Kamil Seweryn.
- */
 public interface Bill {
 
     Long getId();

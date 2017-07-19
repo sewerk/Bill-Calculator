@@ -8,4 +8,6 @@ ext {
     daggerVer = '2.0.1'
     butterKnifeVer = '8.6.0'
     leakcanaryVer = '1.5'
+
+    espressoVer = '2.2.2'
 }

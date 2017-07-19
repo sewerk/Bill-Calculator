@@ -259,7 +259,7 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
     }
 
     private void setDefaultPrices() {
-        pgePrices.clear();
+        pgePrices.setDefault();
     }
 
     private void setDummyIntent() {

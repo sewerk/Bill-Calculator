@@ -58,7 +58,6 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @BindView(R.id.bill_list) RecyclerView listView;
     @BindView(R.id.empty_history) View emptyHistoryView;
     @BindInt(R.integer.cardAmount) int cardAmount;
-    private HistoryAdapter adapter;
 
     @Inject HistoryPresenter presenter;
 //TODO    @Inject DrawerPresenter drawerPresenter;
@@ -66,7 +65,10 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Inject HelpHandler helpHandler;
     @Inject BillSelection selection;
     @Inject MenuClickHandlerExtension menuHandlerExtension;
+
+    private HistoryAdapter adapter;
     private MenuItem deleteMenuAction;
+    private HistoryItemTouchCallback touchCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +136,8 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
 
     @Override
     public void onBackPressed() {
-        if (!presenter.handleBackPressed()) {
+        if (!presenter.handleBackPressed()
+                && !fabsMenuHandler.handleBackPressed()) {
             super.onBackPressed();
         }
     }
@@ -190,8 +193,23 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     }
 
     @Override
+    public void enableSwipeDelete() {
+        touchCallback.setSwipeEnabled(true);
+    }
+
+    @Override
+    public void disableSwipeDelete() {
+        touchCallback.setSwipeEnabled(false);
+    }
+
+    @Override
     public void showWelcomeDialog() {
         new CheckPricesDialogFragment().show(getSupportFragmentManager(), null);
+    }
+
+    @Override
+    public void showNewUIDialog() {
+        new NewUIDialogFragment().show(getSupportFragmentManager(), null);
     }
 
     @Override
@@ -201,14 +219,15 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     }
 
     @Override
-    public void showUndoDeleteMessage(final int position) {
+    public void showUndoDeleteMessage(final int... positions) {
         Snackbar.make(coordinatorLayout, R.string.bill_deleted, Snackbar.LENGTH_LONG)
                 .setAction(R.string.action_undo_delete, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        presenter.undoDeleteClicked(position);
+                        presenter.undoDeleteClicked(positions);
                     }
                 })
+                .setActionTextColor(getResources().getColor(R.color.yellow))
                 .show();
     }
 
@@ -240,8 +259,9 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         adapter = new HistoryAdapter(new ShowViewOnEmptyDataObserver(emptyHistoryView), presenter, selection);
         listView.setAdapter(adapter);
 
-        ItemTouchHelper helper = new ItemTouchHelper(new HistoryItemTouchCallback(presenter));
-        helper.attachToRecyclerView(listView);
+        touchCallback = new HistoryItemTouchCallback(presenter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(touchCallback);
+        itemTouchHelper.attachToRecyclerView(listView);
     }
 
     private void setupToolbar() {
@@ -253,6 +273,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     private void setupDrawer() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle.setDrawerSlideAnimationEnabled(false);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 

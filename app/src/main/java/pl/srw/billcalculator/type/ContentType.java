@@ -5,9 +5,6 @@ import android.support.annotation.StringDef;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/**
- * Created by Kamil Seweryn.
- */
 @StringDef({ContentType.SETTINGS, ContentType.HISTORY, ContentType.PGE_BILL, ContentType.PGNIG_BILL, ContentType.TAURON_BILL})
 @Retention(RetentionPolicy.SOURCE)
 public @interface ContentType {

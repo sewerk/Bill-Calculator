@@ -14,6 +14,9 @@
     <string name="drawer_new_pgnig_bill">gaz od PGNiG</string>
     <string name="drawer_new_tauron_bill">energia od TAURON</string>
     <!-- Main help -->
+    <string name="new_ui_header">Nowa wersja 2.0</string>
+    <string name="new_ui_content">Aplikacja zyskała nowy wygląd.\nZapoznaj się teraz z 4 krótkimi wskazówkami.\nJeśli coś jest niejasne, daj znać\n(menu: O programie > e-mail).</string>
+    <string name="new_ui_button">Zaczynamy</string>
     <string name="main_help_fab_desc">Wylicz rachunek</string>
     <string name="main_help_menu_desc">Menu</string>
     <string name="main_help_options_desc">Więcej opcji</string>

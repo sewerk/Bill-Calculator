@@ -4,6 +4,8 @@ import android.view.View;
 
 import org.greenrobot.greendao.query.LazyList;
 
+import java.util.Arrays;
+
 import javax.inject.Inject;
 
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
@@ -13,7 +15,6 @@ import pl.srw.billcalculator.form.fragment.FormPresenter;
 import pl.srw.billcalculator.history.list.item.HistoryItemClickListener;
 import pl.srw.billcalculator.history.list.item.HistoryItemDismissHandling;
 import pl.srw.billcalculator.history.list.item.HistoryViewItem;
-import pl.srw.billcalculator.persistence.type.BillType;
 import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.type.ActionType;
 import pl.srw.billcalculator.type.ContentType;
@@ -56,18 +57,16 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
                     view.showWelcomeDialog();
                     settings.markHelpShown();
                 } else if (!settings.wasHelpShown()) {
-                    view.showHelp();
+                    view.showNewUIDialog();
                     settings.markHelpShown();
                 }
-                view.setListData(historyData);
-                view.redrawList();
             }
         });
     }
 
     @Override
     protected void onNewViewRestoreState() {
-        if (needRefresh) {
+        if (needRefresh) { // FIXME: when bill activity will be closed quickly then onStart will not be called - will not refresh
             loadHistoryData();
             // set list after bill creation, activity rotation set is handled in #onCreate
             present(new UIChange<HistoryView>() {
@@ -99,7 +98,8 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     public void onListItemDismissed(final int position, Bill bill) {
         Analytics.logAction(ActionType.DELETE_BILL, "dismissed", "true");
         Timber.d("bill id=%d", bill.getId());
-        history.deleteBillWithPrices(BillType.valueOf(bill), bill.getId(), bill.getPricesId());
+        history.cacheBillForUndoDelete(bill);
+        history.deleteBillWithPrices(bill);
         loadHistoryData();
         present(new UIChange<HistoryView>() {
             @Override
@@ -127,6 +127,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
                 @Override
                 public void change(HistoryView view) {
                     view.showDeleteButton();
+                    view.disableSwipeDelete();
                 }
             });
         }
@@ -196,7 +197,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         });
     }
 
-    void undoDeleteClicked(final int position) {
+    void undoDeleteClicked(final int... positions) {
         Analytics.log("Undo clicked");
         if (!history.isUndoDeletePossible()) {
             Timber.d("Undo delete clicked twice");
@@ -208,7 +209,10 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
             @Override
             public void change(HistoryView view) {
                 view.setListData(historyData);
-                view.onItemInsertedToList(position);
+                Arrays.sort(positions);
+                for (int position : positions) {
+                    view.onItemInsertedToList(position);
+                }
             }
         });
     }
@@ -217,8 +221,9 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         Analytics.logAction(ActionType.DELETE_BILL,
                 "dismissed", "false",
                 "selected", "" + selection.getItems().size());
-        for (Bill bill : selection.getItems()) {
-            history.deleteBillWithPrices(BillType.valueOf(bill), bill.getId(), bill.getPricesId());
+        history.cacheBillsForUndoDelete(selection.getItems());
+        for (Bill bill : selection.getItems()) { // TODO: move iteration to db repo
+            history.deleteBillWithPrices(bill);
         }
         loadHistoryData();
         present(new UIChange<HistoryView>() {
@@ -229,6 +234,8 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
                     view.onItemRemoveFromList(position);
                 }
                 view.hideDeleteButton();
+                view.enableSwipeDelete();
+                view.showUndoDeleteMessage(selection.getPositionsReverseOrder()); // TODO: return non ordered, sort when needed
             }
         });
         selection.deselectAll();
@@ -257,6 +264,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
                 @Override
                 public void change(HistoryView view) {
                     view.hideDeleteButton();
+                    view.enableSwipeDelete();
                 }
             });
         }
@@ -274,7 +282,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         savedBillsRegistry.register(item.getBill());
     }
 
-    interface HistoryView {
+    public interface HistoryView {
 
         void showHelp();
 
@@ -292,7 +300,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
 
         void setListData(LazyList<History> data);
 
-        void showUndoDeleteMessage(int position);
+        void showUndoDeleteMessage(int... position);
 
         void redrawList();
 
@@ -305,5 +313,11 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         void showDeleteButton();
 
         void hideDeleteButton();
+
+        void enableSwipeDelete();
+
+        void disableSwipeDelete();
+
+        void showNewUIDialog();
     }
 }

@@ -17,6 +17,9 @@
     <string name="drawer_group_more">More</string>
 
     <!-- Main help -->
+    <string name="new_ui_header">New version 2.0</string>
+    <string name="new_ui_content">Application has been updated with new look.\nSee 4 short tips now.\nIf something is not clear, let me know\n(menu: About > e-mail).</string>
+    <string name="new_ui_button">Start</string>
     <string name="main_help_fab_desc">Calculate bill</string>
     <string name="main_help_swipe_delete_desc">Swipe bill to delete</string>
     <string name="main_help_menu_desc">Menu</string>

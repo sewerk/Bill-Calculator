@@ -2,6 +2,8 @@ package pl.srw.billcalculator.tester;
 
 import android.support.annotation.IdRes;
 
+import pl.srw.billcalculator.R;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -34,5 +36,10 @@ public class BillTester extends Tester {
     public AppTester close() {
         pressBack();
         return parent;
+    }
+
+    public BillTester print() {
+        clickView(R.id.action_print);
+        return this;
     }
 }
