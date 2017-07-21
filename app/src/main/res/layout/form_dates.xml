@@ -33,7 +33,6 @@
         app:layout_constraintLeft_toRightOf="@+id/form_entry_dates_icon"
         app:layout_constraintRight_toLeftOf="@+id/form_entry_dates_separator"
         app:layout_constraintTop_toBottomOf="@+id/form_entry_dates_header"
-        tools:layout_width="75dp"
         tools:text="11.12.14"/>
 
     <TextView
@@ -52,7 +51,6 @@
         app:layout_constraintLeft_toRightOf="@+id/form_entry_dates_separator"
         app:layout_constraintRight_toLeftOf="@+id/form_entry_dates_space"
         app:layout_constraintTop_toTopOf="@+id/form_entry_dates_from"
-        tools:layout_width="75dp"
         tools:text="31.12.14"/>
 
     <!-- this view requires constraint top to properly align id/form_entry_dates_to on Samsung ICS-->

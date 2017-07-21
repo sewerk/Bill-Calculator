@@ -21,8 +21,7 @@
         android:hint="@string/form_reading_from_hint"
         app:layout_constraintLeft_toRightOf="@+id/form_entry_reading_day_icon"
         app:layout_constraintRight_toLeftOf="@+id/form_entry_reading_day_separator"
-        app:layout_constraintTop_toBottomOf="@+id/form_entry_reading_from"
-        tools:layout_width="75dp">
+        app:layout_constraintTop_toBottomOf="@+id/form_entry_reading_from">
 
         <pl.srw.billcalculator.form.view.InstantAutoCompleteTextInputEditText
             android:id="@+id/form_entry_reading_day_from_input"
@@ -48,8 +47,7 @@
         android:hint="@string/form_reading_to_hint"
         app:layout_constraintLeft_toRightOf="@+id/form_entry_reading_day_separator"
         app:layout_constraintRight_toLeftOf="@+id/form_entry_reading_day_unit"
-        app:layout_constraintTop_toTopOf="@+id/form_entry_reading_day_from"
-        tools:layout_width="75dp">
+        app:layout_constraintTop_toTopOf="@+id/form_entry_reading_day_from">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/form_entry_reading_day_to_input"
@@ -87,8 +85,7 @@
         android:hint="@string/form_reading_from_hint"
         app:layout_constraintLeft_toRightOf="@+id/form_entry_reading_night_icon"
         app:layout_constraintRight_toLeftOf="@+id/form_entry_reading_night_separator"
-        app:layout_constraintTop_toBottomOf="@+id/form_entry_reading_day_from"
-        tools:layout_width="75dp">
+        app:layout_constraintTop_toBottomOf="@+id/form_entry_reading_day_from">
 
         <pl.srw.billcalculator.form.view.InstantAutoCompleteTextInputEditText
             android:id="@+id/form_entry_reading_night_from_input"
@@ -99,7 +96,7 @@
             android:nextFocusLeft="@+id/form_entry_reading_day_to_input"
             android:nextFocusRight="@+id/form_entry_reading_night_to_input"
             android:nextFocusUp="@id/form_entry_reading_day_to_input"
-            tools:text="123"/>
+            tools:text="123456789"/>
     </android.support.design.widget.TextInputLayout>
 
     <TextView
@@ -116,8 +113,7 @@
         android:hint="@string/form_reading_to_hint"
         app:layout_constraintLeft_toRightOf="@+id/form_entry_reading_night_separator"
         app:layout_constraintRight_toLeftOf="@+id/form_entry_reading_night_unit"
-        app:layout_constraintTop_toTopOf="@+id/form_entry_reading_night_from"
-        tools:layout_width="75dp">
+        app:layout_constraintTop_toTopOf="@+id/form_entry_reading_night_from">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/form_entry_reading_night_to_input"
