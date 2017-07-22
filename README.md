@@ -10,7 +10,7 @@ Android app to calculate bill value for PGE, PGNiG and Tauron providers.
 
 With help of
 ---------
-- [Butter Knife](https://github.com/JakeWharton/butterknife)
+- [ButterKnife](https://github.com/JakeWharton/butterknife)
 - [ConstraintLayout](https://developer.android.com/training/constraint-layout/index.html)
 - [Dagger 2](https://google.github.io/dagger/)
 - [GreenDao](http://greendao-orm.com/)

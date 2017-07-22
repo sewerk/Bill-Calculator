@@ -108,4 +108,8 @@
         <item name="android:layout_gravity">center</item>
     </style>
 
+    <style name="FormReadingEntrySeparator" parent="FormEntrySeparator">
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+
 </resources>
