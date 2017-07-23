@@ -89,6 +89,10 @@
         <item name="android:layout_marginLeft">4dp</item>
     </style>
 
+    <style name="FormReadingEntryIcon" parent="FormEntryIcon">
+        <item name="android:layout_marginTop">20dp</item><!--setting fix margin to handle error-expand layout scenario-->
+    </style>
+
     <style name="FormDateIcon" parent="FormEntryIcon">
         <item name="android:visibility">gone</item>
     </style>
@@ -109,7 +113,7 @@
     </style>
 
     <style name="FormReadingEntrySeparator" parent="FormEntrySeparator">
-        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginTop">15dp</item><!--setting fix margin to handle error-expand layout scenario-->
     </style>
 
 </resources>

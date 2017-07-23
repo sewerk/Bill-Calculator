@@ -6,6 +6,7 @@ BUGS
 
 RETHINK
 - add labels to fabs
+- add tooltips to day/night tariff icon on form
 - delete by swipe animation + fade out
 - print loading icon is not white
 - new launcher icon/ round icon
