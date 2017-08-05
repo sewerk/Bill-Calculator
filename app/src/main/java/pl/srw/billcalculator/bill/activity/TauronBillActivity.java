@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.bill.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
@@ -13,7 +14,6 @@ import java.math.BigDecimal;
 
 import javax.inject.Inject;
 
-import butterknife.ButterKnife;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.TauronCalculatedBill;
@@ -21,7 +21,6 @@ import pl.srw.billcalculator.bill.calculation.TauronG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG12CalculatedBill;
 import pl.srw.billcalculator.bill.di.TauronBillComponent;
 import pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment;
-import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.ITauronPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
 import pl.srw.billcalculator.type.ContentType;
@@ -44,15 +43,12 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
         Analytics.logContent(ContentType.TAURON_BILL,
-                "Tauron new", prices == null,
+                "Tauron new", isNewBill(),
                 "Tauron tariff", (isTwoUnitTariff() ? "G12" : "G11"));
 
-        prices = (ITauronPrices) getIntent().getSerializableExtra(IntentCreator.PRICES);
-        if (prices == null) {
-            prices = prefsPrices;
-        } else if (savedInstanceState == null
+        if (!isNewBill()
+                && savedInstanceState == null
                 && "0.00".equals(prices.getOplataOze())
                 && dateTo.isAfter(LocalDate.of(2016, Month.JULY, 1))) {
             new BillCalculatedBeforeOZEChangeDialogFragment()
@@ -75,7 +71,13 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
     }
 
     @Override
-    protected int getContentLayoutId() {
+    protected void readExtraFrom(Intent intent) {
+        super.readExtraFrom(intent);
+        prices = getPricesFromIntentOr(prefsPrices); // TODO: try generics
+    }
+
+    @Override
+    protected int getLayoutId() {
         return R.layout.tauron_bill;
     }
 

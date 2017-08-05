@@ -10,7 +10,7 @@ import butterknife.Unbinder
 import pl.srw.billcalculator.R
 import pl.srw.billcalculator.history.di.HistoryComponent
 import pl.srw.mfvp.MvpFragment
-import pl.srw.mfvp.view.fragment.MvpActivityScopedFragment
+import pl.srw.mfvp.di.MvpActivityScopedFragment
 import javax.inject.Inject
 
 class NewUIDialogFragment : MvpFragment(), MvpActivityScopedFragment<HistoryComponent> {

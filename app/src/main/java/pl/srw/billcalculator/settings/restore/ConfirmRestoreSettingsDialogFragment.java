@@ -12,14 +12,11 @@ import pl.srw.billcalculator.settings.activity.ProviderSettingsFragmentOwner;
 import pl.srw.billcalculator.settings.di.ConfirmRestoreSettingsComponentInjectable;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.mfvp.MvpFragment;
-import pl.srw.mfvp.presenter.PresenterHandlingDelegate;
-import pl.srw.mfvp.presenter.PresenterOwner;
-import pl.srw.mfvp.presenter.SinglePresenterHandlingDelegate;
-import pl.srw.mfvp.view.fragment.MvpActivityScopedFragment;
+import pl.srw.mfvp.di.MvpActivityScopedFragment;
 
 public class ConfirmRestoreSettingsDialogFragment extends MvpFragment
         implements MvpActivityScopedFragment<ConfirmRestoreSettingsComponentInjectable>,
-        PresenterOwner, ConfirmRestoreSettingsPresenter.ConfirmRestoreSettingsView {
+        ConfirmRestoreSettingsPresenter.ConfirmRestoreSettingsView {
 
     private static final String EXTRA_PROVIDER = "EXTRA_PROVIDER";
     @Inject ConfirmRestoreSettingsPresenter presenter;
@@ -38,6 +35,7 @@ public class ConfirmRestoreSettingsDialogFragment extends MvpFragment
         final int providerIdx = getArguments().getInt(EXTRA_PROVIDER);
         final Provider provider = Provider.values()[providerIdx];
         presenter.setup(provider);
+        attachPresenter(presenter);
     }
 
     @Override
@@ -54,11 +52,6 @@ public class ConfirmRestoreSettingsDialogFragment extends MvpFragment
     @Override
     public void injectDependencies(ConfirmRestoreSettingsComponentInjectable settingsComponent) {
         settingsComponent.inject(this);
-    }
-
-    @Override
-    public PresenterHandlingDelegate createPresenterDelegate() {
-        return new SinglePresenterHandlingDelegate(this, presenter);
     }
 
     @Override

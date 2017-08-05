@@ -5,7 +5,7 @@ import android.view.MenuItem;
 
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.mfvp.MvpActivity;
-import pl.srw.mfvp.di.component.MvpComponent;
+import pl.srw.mfvp.di.MvpComponent;
 
 public abstract class BackableActivity<T extends MvpComponent> extends MvpActivity<T> {
 

@@ -19,8 +19,8 @@ import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.ProviderMapper;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.ReadingsRepo;
+import pl.srw.mfvp.MvpPresenter;
 import pl.srw.mfvp.di.scope.RetainFragmentScope;
-import pl.srw.mfvp.presenter.MvpPresenter;
 
 import static pl.srw.billcalculator.form.FormValueValidator.isDatesOrderCorrect;
 import static pl.srw.billcalculator.form.FormValueValidator.isValueFilled;

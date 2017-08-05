@@ -44,14 +44,11 @@ import pl.srw.billcalculator.util.Animations;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Views;
 import pl.srw.mfvp.MvpFragment;
-import pl.srw.mfvp.presenter.PresenterHandlingDelegate;
-import pl.srw.mfvp.presenter.PresenterOwner;
-import pl.srw.mfvp.presenter.SinglePresenterHandlingDelegate;
-import pl.srw.mfvp.view.fragment.MvpFragmentScopedFragment;
+import pl.srw.mfvp.di.MvpFragmentScopedFragment;
 
 public class FormFragment extends MvpFragment
         implements MvpFragmentScopedFragment<FormComponent, HistoryComponent>,
-        PresenterOwner, FormPresenter.FormView {
+        FormPresenter.FormView {
 
     public static final String DATE_PATTERN = "dd.MM.yy";
     private static final String EXTRA_PROVIDER = "PROVIDER";
@@ -98,6 +95,7 @@ public class FormFragment extends MvpFragment
         final int providerIdx = getArguments().getInt(EXTRA_PROVIDER);
         final Provider provider = Provider.values()[providerIdx];
         presenter.setup(provider);
+        attachPresenter(presenter);
     }
 
     @NonNull
@@ -123,11 +121,6 @@ public class FormFragment extends MvpFragment
     @Override
     public FormComponent prepareComponent(HistoryComponent historyComponent) {
         return historyComponent.getFormComponent();
-    }
-
-    @Override
-    public PresenterHandlingDelegate createPresenterDelegate() {
-        return new SinglePresenterHandlingDelegate(this, presenter);
     }
 
     @Override

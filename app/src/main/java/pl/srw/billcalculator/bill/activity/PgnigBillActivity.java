@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.bill.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
@@ -12,12 +13,10 @@ import java.math.BigDecimal;
 
 import javax.inject.Inject;
 
-import butterknife.ButterKnife;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.bill.di.PgnigBillComponent;
-import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
 import pl.srw.billcalculator.type.ContentType;
@@ -42,13 +41,8 @@ public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
-        Analytics.logContent(ContentType.PGNIG_BILL, "PGNIG new", prices == null);
+        Analytics.logContent(ContentType.PGNIG_BILL, "PGNIG new", isNewBill());
 
-        prices = (IPgnigPrices) getIntent().getSerializableExtra(IntentCreator.PRICES);
-        if (prices == null) {
-            prices = prefsPrices;
-        }
         this.bill = new PgnigCalculatedBill(readingFrom, readingTo, dateFrom, dateTo, prices);
 
         setDate();
@@ -64,7 +58,13 @@ public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
     }
 
     @Override
-    protected int getContentLayoutId() {
+    protected void readExtraFrom(Intent intent) {
+        super.readExtraFrom(intent);
+        prices = getPricesFromIntentOr(prefsPrices);
+    }
+
+    @Override
+    protected int getLayoutId() {
         return R.layout.pgnig_bill;
     }
 

@@ -3,8 +3,8 @@ package pl.srw.billcalculator.settings;
 import javax.inject.Inject;
 
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.mfvp.MvpPresenter;
 import pl.srw.mfvp.di.scope.RetainActivityScope;
-import pl.srw.mfvp.presenter.MvpPresenter;
 
 @RetainActivityScope
 public class SettingsPresenter extends MvpPresenter<SettingsPresenter.SettingsView> {

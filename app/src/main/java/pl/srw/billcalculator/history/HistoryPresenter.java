@@ -22,8 +22,8 @@ import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.BillSelection;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.HistoryRepo;
+import pl.srw.mfvp.MvpPresenter;
 import pl.srw.mfvp.di.scope.RetainActivityScope;
-import pl.srw.mfvp.presenter.MvpPresenter;
 import timber.log.Timber;
 
 @RetainActivityScope
@@ -53,6 +53,8 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         present(new UIChange<HistoryView>() {
             @Override
             public void change(HistoryView view) {
+                view.setListData(historyData);
+
                 if (settings.isFirstLaunch()) {
                     view.showWelcomeDialog();
                     settings.markHelpShown();
@@ -68,25 +70,17 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     protected void onNewViewRestoreState() {
         if (needRefresh) { // FIXME: when bill activity will be closed quickly then onStart will not be called - will not refresh
             loadHistoryData();
-            // set list after bill creation, activity rotation set is handled in #onCreate
-            present(new UIChange<HistoryView>() {
-                @Override
-                public void change(HistoryView view) {
-                    view.setListData(historyData);
-                    view.redrawList();
-                }
-            });
         }
-    }
-
-    public void onCreate() { // TODO: remove this workaround when MVFP lib is fixed
-        //note this present will be executed after view is bind
         present(new UIChange<HistoryView>() {
             @Override
             public void change(HistoryView view) {
                 view.setListData(historyData);
+                if (needRefresh) {
+                    view.redrawList();
+                }
             }
         });
+        needRefresh = false;
     }
 
     @Override
@@ -246,7 +240,6 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
             historyData.close();
 
         historyData = history.getAll();
-        needRefresh = false;
     }
 
     private void handleSelection(HistoryViewItem item) {

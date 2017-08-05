@@ -42,13 +42,9 @@ import pl.srw.billcalculator.util.BillSelection;
 import pl.srw.billcalculator.util.strategy.Transitions;
 import pl.srw.billcalculator.wrapper.Dependencies;
 import pl.srw.mfvp.MvpActivity;
-import pl.srw.mfvp.presenter.PresenterHandlingDelegate;
-import pl.srw.mfvp.presenter.PresenterOwner;
-import pl.srw.mfvp.presenter.SinglePresenterHandlingDelegate;
 
 public class DrawerActivity extends MvpActivity<HistoryComponent>
         implements HistoryPresenter.HistoryView,
-        PresenterOwner,
         NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.coordinator_layout) CoordinatorLayout coordinatorLayout;
@@ -74,18 +70,15 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_drawer);
         ButterKnife.bind(this);
 
         fabsMenuHandler.init(this);
         setupToolbar();
         setupDrawer();
         setupList();
-        presenter.onCreate();
-    }
 
-    @Override
-    protected int getContentLayoutId() {
-        return R.layout.activity_drawer;
+        attachPresenter(presenter);
     }
 
     @Override
@@ -141,11 +134,6 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
                 && !fabsMenuHandler.handleBackPressed()) {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public PresenterHandlingDelegate createPresenterDelegate() {
-        return new SinglePresenterHandlingDelegate(this, presenter);
     }
 
     @Override

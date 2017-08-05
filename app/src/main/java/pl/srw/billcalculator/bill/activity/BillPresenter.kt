@@ -8,8 +8,8 @@ import pl.srw.billcalculator.R
 import pl.srw.billcalculator.bill.activity.print.Printer
 import pl.srw.billcalculator.type.ActionType
 import pl.srw.billcalculator.wrapper.Analytics
+import pl.srw.mfvp.MvpPresenter
 import pl.srw.mfvp.di.scope.RetainActivityScope
-import pl.srw.mfvp.presenter.MvpPresenter
 import timber.log.Timber
 import java.io.File
 import javax.inject.Inject

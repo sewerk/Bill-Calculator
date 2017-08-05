@@ -45,6 +45,20 @@ class HistoryPresenterTest {
     }
 
     @Test
+    fun onFirstBind_setsHistoryDataOnList() {
+        // GIVEN
+        val list: LazyList<History> = mock()
+        whenever(history.getAll()).thenReturn(list)
+
+        // WHEN
+        sut.onFirstBind()
+
+        // THEN
+        verify(view).setListData(list)
+        verify(view, never()).redrawList()
+    }
+
+    @Test
     fun onFirstBind_whenFirstLaunch_showsWelcomeDialog() {
         // GIVEN
         whenever(settings.isFirstLaunch).thenReturn(true)
@@ -129,6 +143,33 @@ class HistoryPresenterTest {
     }
 
     @Test
+    fun onNewViewRestoreState_setsHistoryDataOnList() {
+        // GIVEN
+        val list: LazyList<History> = mock()
+        sut.setState("historyData", list)
+
+        // WHEN
+        sut.onNewViewRestoreState()
+
+        // THEN
+        verify(view).setListData(list)
+    }
+
+    @Test
+    fun onNewViewRestoreState_whenNeedRefresh_redrawsList() {
+        // GIVEN
+        val list: LazyList<History> = mock()
+        whenever(history.getAll()).thenReturn(list)
+        sut.setState("needRefresh", true)
+
+        // WHEN
+        sut.onNewViewRestoreState()
+
+        // THEN
+        verify(view).redrawList()
+    }
+
+    @Test
     fun onNewViewRestoreState_whenNeedRefresh_closesOldListAndFetchNewOne() {
         // GIVEN
         val list: LazyList<History> = mock()
@@ -141,35 +182,6 @@ class HistoryPresenterTest {
         // THEN
         verify(list).close()
         verify(history).getAll()
-    }
-
-    @Test
-    fun onNewViewRestoreState_whenNeedRefresh_setsHistoryDataOnList() {
-        // GIVEN
-        val list: LazyList<History> = mock()
-        whenever(history.getAll()).thenReturn(list)
-        sut.setState("needRefresh", true)
-
-        // WHEN
-        sut.onNewViewRestoreState()
-
-        // THEN
-        verify(view).setListData(list)
-        verify(view).redrawList()
-    }
-
-    @Test
-    fun onCreate_setsHistoryDataOnList() {
-        // GIVEN
-        val list: LazyList<History> = mock()
-        sut.setState("historyData", list)
-
-        // WHEN
-        sut.onCreate()
-
-        // THEN
-        verify(view).setListData(list)
-        verify(view, never()).redrawList()
     }
 
     @Test

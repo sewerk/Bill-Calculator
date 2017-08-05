@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.CheckResult;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringDef;
 import android.support.annotation.StringRes;
@@ -35,15 +36,12 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.util.strategy.Transitions;
-import pl.srw.mfvp.di.component.MvpComponent;
-import pl.srw.mfvp.presenter.PresenterHandlingDelegate;
-import pl.srw.mfvp.presenter.PresenterOwner;
-import pl.srw.mfvp.presenter.SinglePresenterHandlingDelegate;
+import pl.srw.mfvp.di.MvpComponent;
 import timber.log.Timber;
 
 abstract class BillActivity<T extends MvpComponent>
         extends BackableActivity<T>
-        implements PresenterOwner, BillPresenter.BillView {
+        implements BillPresenter.BillView {
 
     public static final String MIME_APPLICATION_PDF = "application/pdf";
     public static final String MIME_IMAGE = "image/*";
@@ -65,19 +63,13 @@ abstract class BillActivity<T extends MvpComponent>
     @CallSuper
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getLayoutId());
         ViewCompat.setTransitionName(findViewById(R.id.decor_content_parent), Transitions.BILL_VIEW_TRANSITION_NAME);
 
-        final Intent intent = getIntent();
-        dateFrom = (LocalDate) intent.getSerializableExtra(IntentCreator.DATE_FROM);
-        dateTo = (LocalDate) intent.getSerializableExtra(IntentCreator.DATE_TO);
-        readingFrom = intent.getIntExtra(IntentCreator.READING_FROM, 0);
-        readingTo = intent.getIntExtra(IntentCreator.READING_TO, 0);
-    }
+        readExtraFrom(getIntent());
 
-    @Override
-    protected void onStart() {
         presenter.setup(getBillIdentifier());
-        super.onStart();
+        attachPresenter(presenter);
     }
 
     @Override
@@ -100,11 +92,6 @@ abstract class BillActivity<T extends MvpComponent>
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public PresenterHandlingDelegate createPresenterDelegate() {
-        return new SinglePresenterHandlingDelegate(this, presenter);
     }
 
     @Override
@@ -194,5 +181,25 @@ abstract class BillActivity<T extends MvpComponent>
         return findViewById(R.id.bill_content);
     }
 
+    @CallSuper
+    protected void readExtraFrom(Intent intent) {
+        dateFrom = (LocalDate) intent.getSerializableExtra(IntentCreator.DATE_FROM);
+        dateTo = (LocalDate) intent.getSerializableExtra(IntentCreator.DATE_TO);
+        readingFrom = intent.getIntExtra(IntentCreator.READING_FROM, 0);
+        readingTo = intent.getIntExtra(IntentCreator.READING_TO, 0);
+    }
+
+    @LayoutRes
+    protected abstract int getLayoutId();
+
     protected abstract String getBillIdentifier();
+
+    protected boolean isNewBill() {
+        return !getIntent().hasExtra(IntentCreator.PRICES);
+    }
+
+    protected <T> T getPricesFromIntentOr(T prefsPrices) {
+        if (isNewBill()) return prefsPrices;
+        else return (T) getIntent().getSerializableExtra(IntentCreator.PRICES);
+    }
 }
