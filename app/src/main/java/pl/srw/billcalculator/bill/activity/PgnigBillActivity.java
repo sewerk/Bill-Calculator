@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
@@ -41,7 +42,7 @@ public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Dependencies.inject(this);
+        ButterKnife.bind(this);
         Analytics.logContent(ContentType.PGNIG_BILL, "PGNIG new", prices == null);
 
         prices = (IPgnigPrices) getIntent().getSerializableExtra(IntentCreator.PRICES);

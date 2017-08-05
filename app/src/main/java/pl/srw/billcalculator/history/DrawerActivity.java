@@ -24,6 +24,7 @@ import javax.inject.Inject;
 
 import butterknife.BindInt;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import pl.srw.billcalculator.AboutActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.Bill;
@@ -73,7 +74,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Dependencies.inject(this);
+        ButterKnife.bind(this);
 
         fabsMenuHandler.init(this);
         setupToolbar();

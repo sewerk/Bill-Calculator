@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 import butterknife.BindString;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
-import pl.srw.billcalculator.wrapper.Dependencies;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -30,7 +30,7 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about);
-        Dependencies.inject(this);
+        ButterKnife.bind(this);
 
         setLinks();
     }

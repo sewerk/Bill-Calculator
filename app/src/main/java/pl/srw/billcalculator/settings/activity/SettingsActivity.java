@@ -18,6 +18,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
@@ -48,7 +49,7 @@ public class SettingsActivity extends BackableActivity<SettingsComponent>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Dependencies.inject(this);
+        ButterKnife.bind(this);
         presenter.setup(isDualPane());
     }
 

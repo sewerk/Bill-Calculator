@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill;
@@ -43,7 +44,7 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Dependencies.inject(this);
+        ButterKnife.bind(this);
         Analytics.logContent(ContentType.PGE_BILL,
                 "PGE new", prices == null,
                 "PGE tariff", (isTwoUnitTariff() ? "G12" : "G11"));

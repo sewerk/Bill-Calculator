@@ -4,12 +4,12 @@ import android.animation.AnimatorSet
 import android.support.design.widget.FloatingActionButton
 import android.view.View
 import butterknife.BindView
+import butterknife.ButterKnife
 import butterknife.OnClick
 import pl.srw.billcalculator.R
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.Animations
 import pl.srw.billcalculator.util.debugMeasure
-import pl.srw.billcalculator.wrapper.Dependencies
 import javax.inject.Inject
 
 /**
@@ -31,7 +31,7 @@ class FabsMenuViewHandler @Inject constructor() : FabsMenuPresenter.View {
     val collapseAnimator: AnimatorSet by lazy(LazyThreadSafetyMode.NONE) { Animations.getCollapseFabs(fab, fabPge, fabPgnig, fabTauron) }
 
     fun init(activity: DrawerActivity) {
-        Dependencies.inject(this, activity)
+        ButterKnife.bind(this, activity)
         this.activity = activity
     }
 
