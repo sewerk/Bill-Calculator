@@ -1,6 +1,5 @@
 package pl.srw.billcalculator.bill.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
@@ -11,10 +10,7 @@ import org.threeten.bp.LocalDate;
 
 import java.math.BigDecimal;
 
-import javax.inject.Inject;
-
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.bill.di.PgnigBillComponent;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
@@ -27,14 +23,10 @@ import pl.srw.billcalculator.util.Views;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 
-public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
+public class PgnigBillActivity extends BillActivity<IPgnigPrices, PgnigPrices, PgnigBillComponent> {
 
     private static final String DATE_PATTERN = "dd.MM.yyyy";
     private static final int PRICE_SCALE = 5;
-
-    private IPgnigPrices prices;
-    @Inject PgnigPrices prefsPrices;
-    @Inject SavedBillsRegistry savedBillsRegistry;
 
     private PgnigCalculatedBill bill;
 
@@ -55,12 +47,6 @@ public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
     @Override
     public PgnigBillComponent prepareComponent() {
         return Dependencies.getApplicationComponent().getPgnigBillComponent();
-    }
-
-    @Override
-    protected void readExtraFrom(Intent intent) {
-        super.readExtraFrom(intent);
-        prices = getPricesFromIntentOr(prefsPrices);
     }
 
     @Override

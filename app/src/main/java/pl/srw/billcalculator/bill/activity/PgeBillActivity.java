@@ -1,6 +1,5 @@
 package pl.srw.billcalculator.bill.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
@@ -12,10 +11,7 @@ import org.threeten.bp.Month;
 
 import java.math.BigDecimal;
 
-import javax.inject.Inject;
-
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.PgeG12CalculatedBill;
 import pl.srw.billcalculator.bill.di.PgeBillComponent;
@@ -30,15 +26,10 @@ import pl.srw.billcalculator.util.Views;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 
-public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
+public class PgeBillActivity extends EnergyBillActivity<IPgePrices, PgePrices, PgeBillComponent> {
 
     private static final String DATE_PATTERN = "dd/MM/yyyy";
     private static final int PRICE_SCALE = 4;
-
-    private IPgePrices prices;
-
-    @Inject PgePrices prefsPrices;
-    @Inject SavedBillsRegistry savedBillsRegistry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,12 +60,6 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
     @Override
     public PgeBillComponent prepareComponent() {
         return Dependencies.getApplicationComponent().getPgeBillComponent();
-    }
-
-    @Override
-    protected void readExtraFrom(Intent intent) {
-        super.readExtraFrom(intent);
-        prices = getPricesFromIntentOr(prefsPrices);
     }
 
     @Override

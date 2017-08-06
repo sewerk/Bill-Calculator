@@ -33,13 +33,15 @@ import javax.inject.Inject;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.BuildConfig;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.bill.SavedBillsRegistry;
+import pl.srw.billcalculator.db.Prices;
 import pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.util.strategy.Transitions;
 import pl.srw.mfvp.di.MvpComponent;
 import timber.log.Timber;
 
-abstract class BillActivity<T extends MvpComponent>
+abstract class BillActivity<P extends Prices, PP extends P, T extends MvpComponent>
         extends BackableActivity<T>
         implements BillPresenter.BillView {
 
@@ -53,8 +55,11 @@ abstract class BillActivity<T extends MvpComponent>
     protected LocalDate dateTo;
     protected int readingFrom;
     protected int readingTo;
+    protected P prices;
 
     @Inject BillPresenter presenter;
+    @Inject SavedBillsRegistry savedBillsRegistry;
+    @Inject PP prefsPrices;
 
     private Menu menu;
     private Runnable menuChange;
@@ -187,6 +192,7 @@ abstract class BillActivity<T extends MvpComponent>
         dateTo = (LocalDate) intent.getSerializableExtra(IntentCreator.DATE_TO);
         readingFrom = intent.getIntExtra(IntentCreator.READING_FROM, 0);
         readingTo = intent.getIntExtra(IntentCreator.READING_TO, 0);
+        prices = getPricesFromIntentOr(prefsPrices);
     }
 
     @LayoutRes
@@ -198,8 +204,8 @@ abstract class BillActivity<T extends MvpComponent>
         return !getIntent().hasExtra(IntentCreator.PRICES);
     }
 
-    protected <T> T getPricesFromIntentOr(T prefsPrices) {
+    private P getPricesFromIntentOr(PP prefsPrices) {
         if (isNewBill()) return prefsPrices;
-        else return (T) getIntent().getSerializableExtra(IntentCreator.PRICES);
+        else return (P) getIntent().getSerializableExtra(IntentCreator.PRICES);
     }
 }

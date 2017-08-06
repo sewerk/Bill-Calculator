@@ -3,10 +3,12 @@ package pl.srw.billcalculator.bill.activity;
 import android.content.Intent;
 
 import pl.srw.billcalculator.bill.calculation.CalculatedEnergyBill;
+import pl.srw.billcalculator.db.Prices;
 import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.mfvp.di.MvpComponent;
 
-public abstract class EnergyBillActivity<T extends MvpComponent> extends BillActivity<T> {
+public abstract class EnergyBillActivity<P extends Prices, PP extends P, T extends MvpComponent>
+        extends BillActivity<P, PP, T> {
     protected CalculatedEnergyBill bill;
     protected int readingDayFrom;
     protected int readingDayTo;

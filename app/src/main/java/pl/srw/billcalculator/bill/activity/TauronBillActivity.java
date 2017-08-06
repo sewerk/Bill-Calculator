@@ -1,6 +1,5 @@
 package pl.srw.billcalculator.bill.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
@@ -12,10 +11,7 @@ import org.threeten.bp.Month;
 
 import java.math.BigDecimal;
 
-import javax.inject.Inject;
-
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.TauronCalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG12CalculatedBill;
@@ -31,14 +27,10 @@ import pl.srw.billcalculator.util.Views;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 
-public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> {
+public class TauronBillActivity extends EnergyBillActivity<ITauronPrices, TauronPrices, TauronBillComponent> {
 
     private static final String DATE_PATTERN = "dd.MM.yyyy";
     private static final int PRICE_SCALE = 5;
-
-    private ITauronPrices prices;
-    @Inject TauronPrices prefsPrices;
-    @Inject SavedBillsRegistry savedBillsRegistry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +60,6 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
     @Override
     public TauronBillComponent prepareComponent() {
         return Dependencies.getApplicationComponent().getTauronBillComponent();
-    }
-
-    @Override
-    protected void readExtraFrom(Intent intent) {
-        super.readExtraFrom(intent);
-        prices = getPricesFromIntentOr(prefsPrices); // TODO: try generics
     }
 
     @Override
