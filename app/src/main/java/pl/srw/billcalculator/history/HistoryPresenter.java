@@ -192,7 +192,6 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     }
 
     void undoDeleteClicked(final int... positions) {
-        Analytics.log("Undo clicked");
         if (!history.isUndoDeletePossible()) {
             Timber.d("Undo delete clicked twice");
             return;

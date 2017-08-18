@@ -40,6 +40,7 @@ import pl.srw.billcalculator.settings.activity.SettingsActivity;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.BillSelection;
 import pl.srw.billcalculator.util.strategy.Transitions;
+import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 import pl.srw.mfvp.MvpActivity;
 
@@ -115,12 +116,16 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         if (id == R.id.history) {
             presenter.historyClicked();
         } else if (id == R.id.new_bill_pge) {
+            Analytics.log("Drawer: New bill picked: PGE");
             presenter.newBillClicked(Provider.PGE);
         } else if (id == R.id.new_bill_pgnig) {
+            Analytics.log("Drawer: New bill picked: PGNIG");
             presenter.newBillClicked(Provider.PGNIG);
         } else if (id == R.id.new_bill_tauron) {
+            Analytics.log("Drawer: New bill picked: TAURON");
             presenter.newBillClicked(Provider.TAURON);
         } else if (id == R.id.settings) {
+            Analytics.log("Drawer: Settings clicked");
             presenter.settingsClicked();
         } else if (id == R.id.about) {
             presenter.aboutClicked();
@@ -130,6 +135,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
 
     @Override
     public void onBackPressed() {
+        Analytics.log("Back clicked");
         if (!presenter.handleBackPressed()
                 && !fabsMenuHandler.handleBackPressed()) {
             super.onBackPressed();
@@ -213,6 +219,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
                 .setAction(R.string.action_undo_delete, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Analytics.log("Undo clicked");
                         presenter.undoDeleteClicked(positions);
                     }
                 })

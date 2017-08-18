@@ -84,7 +84,7 @@ public class Analytics {
     }
 
     /**
-     * Logs user viewed content.
+     * Logs user viewed content. This will be used to see statistics
      * @param contentId
      * @param args
      */
@@ -102,7 +102,7 @@ public class Analytics {
     }
 
     /**
-     * Logs user took action.
+     * Logs user took action. This will be used to see statistics
      * @param action
      * @param args
      */

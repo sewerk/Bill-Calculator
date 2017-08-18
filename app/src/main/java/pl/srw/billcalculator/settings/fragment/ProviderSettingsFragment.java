@@ -22,6 +22,7 @@ import pl.srw.billcalculator.settings.help.ProviderSettingsHelpActivity;
 import pl.srw.billcalculator.settings.restore.ConfirmRestoreSettingsDialogFragment;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.wrapper.Analytics;
 
 public abstract class ProviderSettingsFragment extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -91,6 +92,7 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
             showHelp();
             return true;
         } else if (item.getItemId() == R.id.action_default) {
+            Analytics.log("Restore prices clicked for " + getProvider());
             ConfirmRestoreSettingsDialogFragment.newInstance(getProvider())
                     .show(((BackableActivity) getActivity()).getSupportFragmentManager(), TAG_CONFIRM_RESTORE);
             return true;

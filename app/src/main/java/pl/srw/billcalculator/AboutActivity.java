@@ -13,6 +13,8 @@ import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import pl.srw.billcalculator.type.ContentType;
+import pl.srw.billcalculator.wrapper.Analytics;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -28,6 +30,7 @@ public class AboutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Analytics.logContent(ContentType.ABOUT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about);
         ButterKnife.bind(this);
