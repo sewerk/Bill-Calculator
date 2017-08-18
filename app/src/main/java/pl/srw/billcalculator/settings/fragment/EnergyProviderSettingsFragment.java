@@ -2,11 +2,6 @@ package pl.srw.billcalculator.settings.fragment;
 
 import android.content.SharedPreferences;
 
-import pl.srw.billcalculator.R;
-
-/**
- * Created by Kamil Seweryn.
- */
 abstract class EnergyProviderSettingsFragment extends ProviderSettingsFragment {
 
     private int preferencesSchemaResId;
@@ -18,11 +13,6 @@ abstract class EnergyProviderSettingsFragment extends ProviderSettingsFragment {
     protected abstract int getPreferencesG11Resource();
 
     protected abstract int getPreferencesG12Resource();
-
-    @Override
-    public int getHelpLayoutResource() {
-        return R.layout.settings_help_energy;
-    }
 
     @Override
     protected final int getPreferencesResource() {

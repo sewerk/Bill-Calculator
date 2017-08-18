@@ -7,8 +7,6 @@ import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -25,9 +23,6 @@ import pl.srw.billcalculator.settings.restore.ConfirmRestoreSettingsDialogFragme
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 
-/**
- * Created by Kamil Seweryn.
- */
 public abstract class ProviderSettingsFragment extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -70,10 +65,6 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
     protected abstract Provider getProvider();
 
     protected abstract int getPreferencesResource();
-
-    public abstract @LayoutRes int getHelpLayoutResource();
-
-    public abstract @DrawableRes int getHelpImageExampleResource();
 
     @Override
     public void onResume() {
@@ -119,8 +110,7 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
     }
 
     private void showHelp() {
-        final Intent intent = ProviderSettingsHelpActivity.createIntent(
-                getActivity(), getHelpLayoutResource(), getHelpImageExampleResource());
+        final Intent intent = ProviderSettingsHelpActivity.createIntent(getActivity(), getProvider());
         startActivity(intent);
     }
 

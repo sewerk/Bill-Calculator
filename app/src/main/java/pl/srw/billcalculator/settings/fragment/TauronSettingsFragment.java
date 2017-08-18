@@ -22,11 +22,6 @@ public class TauronSettingsFragment extends EnergyProviderSettingsFragment {
     }
 
     @Override
-    public int getHelpImageExampleResource() {
-        return R.drawable.tauron_example;
-    }
-
-    @Override
     protected String getTariffKey() {
         return TauronPrices.KEY_TARIFF;
     }
