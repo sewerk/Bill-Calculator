@@ -34,12 +34,7 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder
         v.setOnClickListener(this);
         v.setOnLongClickListener(this);
         ButterKnife.bind(this, v);
-        logoImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onLongClick(v);
-            }
-        });
+        logoImage.setOnClickListener(this::onLongClick);
 
         logoAnimator = new HistoryItemSelectionAnimator(v.getContext(), logoImage);
     }

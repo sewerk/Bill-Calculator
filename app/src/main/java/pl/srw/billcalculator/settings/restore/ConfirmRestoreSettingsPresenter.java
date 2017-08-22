@@ -28,12 +28,7 @@ public class ConfirmRestoreSettingsPresenter extends MvpPresenter<ConfirmRestore
     public void onConfirmedClicked() {
         prices.setDefault();
         Analytics.logAction(ActionType.RESTORE_PRICES, "Default prices restored", prices.getClass().getSimpleName());
-        present(new UIChange<ConfirmRestoreSettingsView>() {
-            @Override
-            public void change(ConfirmRestoreSettingsView view) {
-                view.refresh();
-            }
-        });
+        present(ConfirmRestoreSettingsView::refresh);
     }
 
     public interface ConfirmRestoreSettingsView {

@@ -16,8 +16,6 @@ import javax.inject.Singleton;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import pl.srw.billcalculator.util.BillExporter;
 import pl.srw.billcalculator.util.Views;
@@ -49,50 +47,36 @@ public class Printer {
         }
 
         Single.just(contentView)
-                .map(new Function<View, Bitmap>() {
-                    @Override
-                    public Bitmap apply(View view) throws Exception {
-                        return buildBitmapFrom(contentView);
-                    }
-                })
+                .map(view -> buildBitmapFrom(contentView))
 //                .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(Schedulers.io())
-                .map(new Function<Bitmap, File>() {
-                    @Override
-                    public File apply(Bitmap bitmap) throws Exception {
-                        File tmpImg = null;
-                        try {
-                            tmpImg = File.createTempFile("img", null, targetFile.getParentFile());
-                            tmpImg = writeToImage(bitmap, tmpImg);
+                .map(bitmap -> {
+                    File tmpImg = null;
+                    try {
+                        tmpImg = File.createTempFile("img", null, targetFile.getParentFile());
+                        tmpImg = writeToImage(bitmap, tmpImg);
 
-                            return imageToPdf(tmpImg, targetFile);
-                        } finally {
-                            if (tmpImg != null) {
-                                final boolean deleted = tmpImg.delete();
-                                if (!deleted)
-                                    Analytics.warning("Tmp file NOT deleted");
-                            }
+                        return imageToPdf(tmpImg, targetFile);
+                    } finally {
+                        if (tmpImg != null) {
+                            final boolean deleted = tmpImg.delete();
+                            if (!deleted)
+                                Analytics.warning("Tmp file NOT deleted");
                         }
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Consumer<File>() {
-            @Override
-            public void accept(File file) throws Exception {
-                inProgressFiles.remove(targetFile.getAbsolutePath());
+        .subscribe(file -> {
+            inProgressFiles.remove(targetFile.getAbsolutePath());
 
-                if (listener != null) {
-                    listener.onPrintoutReady(file);
-                }
+            if (listener != null) {
+                listener.onPrintoutReady(file);
             }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                inProgressFiles.remove(targetFile.getAbsolutePath());
+        }, throwable -> {
+            inProgressFiles.remove(targetFile.getAbsolutePath());
 
-                if (listener != null) {
-                    listener.onPrintFailed(throwable);
-                }
+            if (listener != null) {
+                listener.onPrintFailed(throwable);
             }
         });
     }
