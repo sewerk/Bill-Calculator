@@ -200,8 +200,8 @@ class HistoryUITest {
         // and one item is selected
         val historyTester = tester.skipCheckPricesDialogIfVisible()
                 .onHistory()
+                .changeItemSelectionAtPosition(0)
                 .changeItemSelectionAtPosition(1)
-                .changeItemSelectionAtPosition(2)
 
         // when:
         tester.openForm(Provider.PGNIG)
