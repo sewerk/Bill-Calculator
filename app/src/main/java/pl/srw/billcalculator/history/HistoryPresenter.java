@@ -86,6 +86,14 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     @Override
     public void onHistoryChanged() {
         needRefresh = true;
+        selection.deselectAll();
+        present(new UIChange<HistoryView>() {
+            @Override
+            public void change(HistoryView view) {
+                view.hideDeleteButton();
+                view.enableSwipeDelete();
+            }
+        });
     }
 
     @Override

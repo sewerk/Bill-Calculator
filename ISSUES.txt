@@ -1,8 +1,7 @@
-BUGS
+BUGS (probably wont fix)
 - form dialog is hidden by keyboard on tablet landscape - cant click suggestion and cant see what is being entered
-- change toolbar my bills image
-- [beta2] logcat error when form open
-- [beta2] form on bigger devices is too width
+- logcat error when form open
+- form on bigger devices is too width
 
 RETHINK
 - add labels to fabs

@@ -156,11 +156,11 @@ class HistoryPresenterTest {
     }
 
     @Test
-    fun onNewViewRestoreState_whenNeedRefresh_redrawsList() {
+    fun `redraw list, on new view restore state, when history changed`() {
         // GIVEN
         val list: LazyList<History> = mock()
         whenever(history.getAll()).thenReturn(list)
-        sut.setState("needRefresh", true)
+        sut.onHistoryChanged()
 
         // WHEN
         sut.onNewViewRestoreState()
@@ -170,11 +170,11 @@ class HistoryPresenterTest {
     }
 
     @Test
-    fun onNewViewRestoreState_whenNeedRefresh_closesOldListAndFetchNewOne() {
+    fun `closes old and featches new list, on new view restore state, when history changed`() {
         // GIVEN
         val list: LazyList<History> = mock()
         sut.setState("historyData", list)
-        sut.setState("needRefresh", true)
+        sut.onHistoryChanged()
 
         // WHEN
         sut.onNewViewRestoreState()
@@ -182,6 +182,27 @@ class HistoryPresenterTest {
         // THEN
         verify(list).close()
         verify(history).getAll()
+    }
+
+    @Test
+    fun `unselects bills, when history changes`() {
+        sut.onHistoryChanged()
+
+        verify(selection).deselectAll()
+    }
+
+    @Test
+    fun `hides delete button, when history changes`() {
+        sut.onHistoryChanged()
+
+        verify(view).hideDeleteButton()
+    }
+
+    @Test
+    fun `enables swipe delete, when history changes`() {
+        sut.onHistoryChanged()
+
+        verify(view).enableSwipeDelete()
     }
 
     @Test

@@ -12,6 +12,7 @@ import pl.srw.billcalculator.di.TestDependencies
 import pl.srw.billcalculator.persistence.Database
 import pl.srw.billcalculator.tester.AppTester
 import pl.srw.billcalculator.tester.rule.ClosingActivityTestRule
+import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.BillSelection
 import javax.inject.Inject
 
@@ -188,6 +189,29 @@ class HistoryUITest {
         // then:
         tester.onHistory()
                 .checkNoSelection()
+    }
+
+    @Test
+    fun shouldUnselectWhenNewBillCalculated() {
+        // given:
+        historyGenerator.generatePgeG11Bills(3)
+        testRule.launchActivity(null)
+
+        // and one item is selected
+        val historyTester = tester.skipCheckPricesDialogIfVisible()
+                .onHistory()
+                .changeItemSelectionAtPosition(1)
+                .changeItemSelectionAtPosition(2)
+
+        // when:
+        tester.openForm(Provider.PGNIG)
+                .putIntoReadingFrom("12")
+                .putIntoReadingTo("23")
+                .calculate()
+
+        // then:
+        historyTester.checkNoSelection()
+                .checkDeleteButtonHidden()
     }
 
     @Test
