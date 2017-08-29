@@ -22,11 +22,6 @@ public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
     }
 
     @Override
-    public int getHelpImageExampleResource() {
-        return R.drawable.pge_example;
-    }
-
-    @Override
     protected String getTariffKey() {
         return PgePrices.KEY_TARIFF;
     }

@@ -18,6 +18,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
@@ -26,12 +27,9 @@ import pl.srw.billcalculator.settings.di.SettingsComponent;
 import pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.wrapper.Dependencies;
-import pl.srw.mfvp.presenter.PresenterHandlingDelegate;
-import pl.srw.mfvp.presenter.PresenterOwner;
-import pl.srw.mfvp.presenter.SinglePresenterHandlingDelegate;
 
 public class SettingsActivity extends BackableActivity<SettingsComponent>
-        implements PresenterOwner, SettingsPresenter.SettingsView,
+        implements SettingsPresenter.SettingsView,
         ProviderSettingsFragmentOwner {
 
     private static final String FRAGMENT_TAG = "SettingsFragment";
@@ -48,23 +46,15 @@ public class SettingsActivity extends BackableActivity<SettingsComponent>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Dependencies.inject(this);
+        setContentView(R.layout.settings);
+        ButterKnife.bind(this);
         presenter.setup(isDualPane());
-    }
-
-    @Override
-    protected int getContentLayoutId() {
-        return R.layout.settings;
+        attachPresenter(presenter);
     }
 
     @Override
     public SettingsComponent prepareComponent() {
         return Dependencies.getApplicationComponent().getSettingsComponent();
-    }
-
-    @Override
-    public PresenterHandlingDelegate createPresenterDelegate() {
-        return new SinglePresenterHandlingDelegate(this, presenter);
     }
 
     @Override

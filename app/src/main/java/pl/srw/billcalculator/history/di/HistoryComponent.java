@@ -5,7 +5,7 @@ import pl.srw.billcalculator.dialog.CheckPricesDialogFragment;
 import pl.srw.billcalculator.form.di.FormComponent;
 import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.history.NewUIDialogFragment;
-import pl.srw.mfvp.di.component.MvpComponent;
+import pl.srw.mfvp.di.MvpComponent;
 import pl.srw.mfvp.di.scope.RetainActivityScope;
 
 @RetainActivityScope

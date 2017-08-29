@@ -2,6 +2,7 @@ package pl.srw.billcalculator.form.fragment;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -14,6 +15,7 @@ import android.support.v7.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.style.UnderlineSpan;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
@@ -43,15 +45,13 @@ import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Animations;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Views;
+import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.mfvp.MvpFragment;
-import pl.srw.mfvp.presenter.PresenterHandlingDelegate;
-import pl.srw.mfvp.presenter.PresenterOwner;
-import pl.srw.mfvp.presenter.SinglePresenterHandlingDelegate;
-import pl.srw.mfvp.view.fragment.MvpFragmentScopedFragment;
+import pl.srw.mfvp.di.MvpFragmentScopedFragment;
 
 public class FormFragment extends MvpFragment
         implements MvpFragmentScopedFragment<FormComponent, HistoryComponent>,
-        PresenterOwner, FormPresenter.FormView {
+        FormPresenter.FormView {
 
     public static final String DATE_PATTERN = "dd.MM.yy";
     private static final String EXTRA_PROVIDER = "PROVIDER";
@@ -84,6 +84,17 @@ public class FormFragment extends MvpFragment
 
     private Unbinder unbinder;
 
+    private final DialogInterface.OnKeyListener onBackListener = new DialogInterface.OnKeyListener() {
+        @Override
+        public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+            if (keyCode == KeyEvent.KEYCODE_BACK
+                    && event.getAction() == KeyEvent.ACTION_UP) {
+                Analytics.log("Form: back pressed");
+            }
+            return false;
+        }
+    };
+
     public static FormFragment newInstance(Provider provider) {
         Bundle args = new Bundle();
         args.putInt(EXTRA_PROVIDER, provider.ordinal());
@@ -98,6 +109,7 @@ public class FormFragment extends MvpFragment
         final int providerIdx = getArguments().getInt(EXTRA_PROVIDER);
         final Provider provider = Provider.values()[providerIdx];
         presenter.setup(provider);
+        attachPresenter(presenter);
     }
 
     @NonNull
@@ -109,6 +121,7 @@ public class FormFragment extends MvpFragment
                 .create();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCanceledOnTouchOutside(false);
+        dialog.setOnKeyListener(onBackListener);
 
         unbinder = ButterKnife.bind(this, view);
         return dialog;
@@ -126,11 +139,6 @@ public class FormFragment extends MvpFragment
     }
 
     @Override
-    public PresenterHandlingDelegate createPresenterDelegate() {
-        return new SinglePresenterHandlingDelegate(this, presenter);
-    }
-
-    @Override
     public void setupSettingsLink() {
         final String settingsLabel = settingsLink.getText().toString();
         final SpannableString span = new SpannableString(settingsLabel);
@@ -141,16 +149,19 @@ public class FormFragment extends MvpFragment
 
     @OnClick(R.id.form_settings_link)
     void onSettingsLinkClicked() {
+        Analytics.log("Form: Settings link clicked");
         presenter.settingsLinkClicked();
     }
 
     @OnClick(R.id.close_button)
     void closeButtonClicked() {
+        Analytics.log("Form: Close clicked");
         presenter.closeButtonClicked();
     }
 
     @OnClick(R.id.calculate_button)
     void calculateButtonClicked() {
+        Analytics.log("Form: Calculate clicked");
         presenter.calculateButtonClicked(Views.getText(readingFrom), Views.getText(readingTo),
                 Views.getText(dateFromView), Views.getText(dateToView),
                 Views.getText(readingDayFrom), Views.getText(readingDayTo),

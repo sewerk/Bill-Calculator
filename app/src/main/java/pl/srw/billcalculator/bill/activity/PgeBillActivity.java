@@ -11,15 +11,11 @@ import org.threeten.bp.Month;
 
 import java.math.BigDecimal;
 
-import javax.inject.Inject;
-
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.PgeG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.PgeG12CalculatedBill;
 import pl.srw.billcalculator.bill.di.PgeBillComponent;
 import pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment;
-import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgePrices;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.type.ContentType;
@@ -30,28 +26,20 @@ import pl.srw.billcalculator.util.Views;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 
-public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
+public class PgeBillActivity extends EnergyBillActivity<IPgePrices, PgePrices, PgeBillComponent> {
 
     private static final String DATE_PATTERN = "dd/MM/yyyy";
     private static final int PRICE_SCALE = 4;
 
-    private IPgePrices prices;
-
-    @Inject PgePrices prefsPrices;
-    @Inject SavedBillsRegistry savedBillsRegistry;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Dependencies.inject(this);
         Analytics.logContent(ContentType.PGE_BILL,
-                "PGE new", prices == null,
+                "PGE new", isNewBill(),
                 "PGE tariff", (isTwoUnitTariff() ? "G12" : "G11"));
 
-        prices = (IPgePrices) getIntent().getSerializableExtra(IntentCreator.PRICES);
-        if (prices == null) {
-            prices = prefsPrices;
-        } else if (savedInstanceState == null
+        if (!isNewBill()
+                && savedInstanceState == null
                 && "0.00".equals(prices.getOplataOze())
                 && dateTo.isAfter(LocalDate.of(2016, Month.JULY, 1))) {
             new BillCalculatedBeforeOZEChangeDialogFragment()
@@ -75,7 +63,7 @@ public class PgeBillActivity extends EnergyBillActivity<PgeBillComponent> {
     }
 
     @Override
-    protected int getContentLayoutId() {
+    protected int getLayoutId() {
         return R.layout.pge_bill;
     }
 

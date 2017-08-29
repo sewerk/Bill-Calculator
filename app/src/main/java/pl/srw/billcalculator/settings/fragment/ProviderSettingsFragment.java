@@ -7,8 +7,6 @@ import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -24,10 +22,8 @@ import pl.srw.billcalculator.settings.help.ProviderSettingsHelpActivity;
 import pl.srw.billcalculator.settings.restore.ConfirmRestoreSettingsDialogFragment;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.wrapper.Analytics;
 
-/**
- * Created by Kamil Seweryn.
- */
 public abstract class ProviderSettingsFragment extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -71,10 +67,6 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
 
     protected abstract int getPreferencesResource();
 
-    public abstract @LayoutRes int getHelpLayoutResource();
-
-    public abstract @DrawableRes int getHelpImageExampleResource();
-
     @Override
     public void onResume() {
         super.onResume();
@@ -100,6 +92,7 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
             showHelp();
             return true;
         } else if (item.getItemId() == R.id.action_default) {
+            Analytics.log("Restore prices clicked for " + getProvider());
             ConfirmRestoreSettingsDialogFragment.newInstance(getProvider())
                     .show(((BackableActivity) getActivity()).getSupportFragmentManager(), TAG_CONFIRM_RESTORE);
             return true;
@@ -119,8 +112,7 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
     }
 
     private void showHelp() {
-        final Intent intent = ProviderSettingsHelpActivity.createIntent(
-                getActivity(), getHelpLayoutResource(), getHelpImageExampleResource());
+        final Intent intent = ProviderSettingsHelpActivity.createIntent(getActivity(), getProvider());
         startActivity(intent);
     }
 

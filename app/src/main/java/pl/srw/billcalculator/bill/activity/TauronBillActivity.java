@@ -11,16 +11,12 @@ import org.threeten.bp.Month;
 
 import java.math.BigDecimal;
 
-import javax.inject.Inject;
-
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.TauronCalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG12CalculatedBill;
 import pl.srw.billcalculator.bill.di.TauronBillComponent;
 import pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment;
-import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.ITauronPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
 import pl.srw.billcalculator.type.ContentType;
@@ -31,27 +27,20 @@ import pl.srw.billcalculator.util.Views;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 
-public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> {
+public class TauronBillActivity extends EnergyBillActivity<ITauronPrices, TauronPrices, TauronBillComponent> {
 
     private static final String DATE_PATTERN = "dd.MM.yyyy";
     private static final int PRICE_SCALE = 5;
 
-    private ITauronPrices prices;
-    @Inject TauronPrices prefsPrices;
-    @Inject SavedBillsRegistry savedBillsRegistry;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Dependencies.inject(this);
         Analytics.logContent(ContentType.TAURON_BILL,
-                "Tauron new", prices == null,
+                "Tauron new", isNewBill(),
                 "Tauron tariff", (isTwoUnitTariff() ? "G12" : "G11"));
 
-        prices = (ITauronPrices) getIntent().getSerializableExtra(IntentCreator.PRICES);
-        if (prices == null) {
-            prices = prefsPrices;
-        } else if (savedInstanceState == null
+        if (!isNewBill()
+                && savedInstanceState == null
                 && "0.00".equals(prices.getOplataOze())
                 && dateTo.isAfter(LocalDate.of(2016, Month.JULY, 1))) {
             new BillCalculatedBeforeOZEChangeDialogFragment()
@@ -74,7 +63,7 @@ public class TauronBillActivity extends EnergyBillActivity<TauronBillComponent> 
     }
 
     @Override
-    protected int getContentLayoutId() {
+    protected int getLayoutId() {
         return R.layout.tauron_bill;
     }
 

@@ -19,8 +19,8 @@ import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.ProviderMapper;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.ReadingsRepo;
+import pl.srw.mfvp.MvpPresenter;
 import pl.srw.mfvp.di.scope.RetainFragmentScope;
-import pl.srw.mfvp.presenter.MvpPresenter;
 
 import static pl.srw.billcalculator.form.FormValueValidator.isDatesOrderCorrect;
 import static pl.srw.billcalculator.form.FormValueValidator.isValueFilled;
@@ -49,77 +49,48 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
 
     @Override
     protected void onFirstBind() {
-        present(new UIChange<FormView>() {
-            @Override
-            public void change(FormView view) {
-                setFormValues(view);
-                view.setDates(Dates.firstDayOfThisMonth(), Dates.lastDayOfThisMonth());
-            }
+        present(view -> {
+            setFormValues(view);
+            view.setDates(Dates.firstDayOfThisMonth(), Dates.lastDayOfThisMonth());
         });
     }
 
     @Override
     protected void onNewViewRestoreState() {
-        present(new UIChange<FormView>() {
-            @Override
-            public void change(FormView view) {
-                setFormValues(view);
-            }
-        });
+        present(this::setFormValues);
     }
 
     public void settingsLinkClicked() {
-        present(new UIChange<FormView>() {
-            @Override
-            public void change(FormView view) {
-                view.showProviderSettings(provider);
-            }
-        });
+        present(view -> view.showProviderSettings(provider));
     }
 
     public void closeButtonClicked() {
-        present(new UIChange<FormView>() {
-            @Override
-            public void change(FormView view) {
-                view.hideForm();
-            }
-        });
+        present(FormView::hideForm);
     }
 
     public void calculateButtonClicked(String readingFrom, String readingTo,
                                        String dateFrom, String dateTo,
                                        String readingDayFrom, String readingDayTo,
                                        String readingNightFrom, String readingNightTo) {
-        present(new UIChange<FormView>() {
-            @Override
-            public void change(FormView view) {
-                view.cleanErrorsOnFields();
-            }
-        });
+        present(FormView::cleanErrorsOnFields);
 
         if (provider == PGNIG || SharedPreferencesEnergyPrices.TARIFF_G11.equals(getTariff())) {
             if (!isSingleReadingsFormValid(readingFrom, readingTo, dateFrom, dateTo)) {
                 return;
             }
-            present(new UIChange<FormView>() {
-                @Override
-                public void change(FormView view) {
-                    view.startStoringServiceForSingleReadings(provider);
-                    view.startBillActivityForSingleReadings(provider);
-                    view.hideForm();
-                }
+            present(view -> {
+                view.startStoringServiceForSingleReadings(provider);
+                view.startBillActivityForSingleReadings(provider);
+                view.hideForm();
             });
         } else {
             if (!isDoubleReadingsFormValid(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo)) {
                 return;
             }
-            present(new UIChange<FormView>() {
-                @Override
-                public void change(FormView view) {
-                    view.startStoringServiceForDoubleReadings(provider);
-                    view.startBillActivityForDoubleReadings(provider);
-                    view.hideForm();
-                }
+            present(view -> {
+                view.startStoringServiceForDoubleReadings(provider);
+                view.startBillActivityForDoubleReadings(provider);
+                view.hideForm();
             });
         }
         historyUpdater.onHistoryChanged();
@@ -149,31 +120,11 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
     }
 
     private FormValueValidator.OnErrorCallback onErrorCallback(final FormView.Field field) {
-        return new FormValueValidator.OnErrorCallback() {
-            @Override
-            public void onError(@StringRes final int errorMsgRes) {
-                present(new UIChange<FormView>() {
-                    @Override
-                    public void change(FormView view) {
-                        view.showReadingFieldError(field, errorMsgRes);
-                    }
-                });
-            }
-        };
+        return errorMsgRes -> present(view -> view.showReadingFieldError(field, errorMsgRes));
     }
 
     private FormValueValidator.OnErrorCallback onDateErrorCallback() {
-        return new FormValueValidator.OnErrorCallback() {
-            @Override
-            public void onError(@StringRes final int errorMsgRes) {
-                present(new UIChange<FormView>() {
-                    @Override
-                    public void change(FormView view) {
-                        view.showDateFieldError(errorMsgRes);
-                    }
-                });
-            }
-        };
+        return errorMsgRes -> present(view -> view.showDateFieldError(errorMsgRes));
     }
 
     private void setFormValues(FormView view) {
@@ -182,58 +133,22 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
         view.setReadingUnit(provider.formReadingUnit);
         if (provider == PGNIG) {
             view.setDoubleReadingsVisibility(View.GONE);
-            getPreviousReadings(CurrentReadingType.PGNIG_TO, new Consumer<int[]>() {
-                @Override
-                public void accept(final int[] readings) throws Exception {
-                    present(new UIChange<FormView>() {
-                        @Override
-                        public void change(FormView view) {
-                            view.setAutoCompleteDataForReadingFrom(readings);
-                        }
-                    });
-                }
-            });
+            getPreviousReadings(CurrentReadingType.PGNIG_TO,
+                    readings -> present(formView -> formView.setAutoCompleteDataForReadingFrom(readings)));
         } else {
             String tariff = getTariff();
             if (SharedPreferencesEnergyPrices.TARIFF_G11.equals(tariff)) {
                 view.setSingleReadingsVisibility(View.VISIBLE);
                 view.setDoubleReadingsVisibility(View.GONE);
-                getPreviousReadings(provider.singleReadingType, new Consumer<int[]>() {
-                    @Override
-                    public void accept(final int[] readings) throws Exception {
-                        present(new UIChange<FormView>() {
-                            @Override
-                            public void change(FormView view) {
-                                view.setAutoCompleteDataForReadingFrom(readings);
-                            }
-                        });
-                    }
-                });
+                getPreviousReadings(provider.singleReadingType,
+                        readings -> present(formView -> formView.setAutoCompleteDataForReadingFrom(readings)));
             } else {
                 view.setDoubleReadingsVisibility(View.VISIBLE);
                 view.setSingleReadingsVisibility(View.GONE);
-                getPreviousReadings(provider.doubleReadingTypes[0], new Consumer<int[]>() {
-                    @Override
-                    public void accept(final int[] readings) throws Exception {
-                        present(new UIChange<FormView>() {
-                            @Override
-                            public void change(FormView view) {
-                                view.setAutoCompleteDataForReadingDayFrom(readings);
-                            }
-                        });
-                    }
-                });
-                getPreviousReadings(provider.doubleReadingTypes[1], new Consumer<int[]>() {
-                    @Override
-                    public void accept(final int[] readings) throws Exception {
-                        present(new UIChange<FormView>() {
-                            @Override
-                            public void change(FormView view) {
-                                view.setAutoCompleteDataForReadingNightFrom(readings);
-                            }
-                        });
-                    }
-                });
+                getPreviousReadings(provider.doubleReadingTypes[0],
+                        readings -> present(formView -> formView.setAutoCompleteDataForReadingDayFrom(readings)));
+                getPreviousReadings(provider.doubleReadingTypes[1],
+                        readings -> present(formView -> formView.setAutoCompleteDataForReadingNightFrom(readings)));
             }
             view.setTariffText(tariff);
         }

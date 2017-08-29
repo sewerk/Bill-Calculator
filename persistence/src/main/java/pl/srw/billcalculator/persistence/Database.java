@@ -3,7 +3,6 @@ package pl.srw.billcalculator.persistence;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Pair;
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.query.LazyList;
@@ -82,10 +81,12 @@ public class Database {
         return historyQuery.listLazy();
     }
 
-    public static Pair<Bill, Prices> load(final BillType type, final Long billId, final Long pricesId) {
-        Prices deletedPrices = type.getPricesDao().load(pricesId);
-        Bill deletedBill = type.getDao().load(billId);
-        return new Pair<>(deletedBill, deletedPrices);
+    public static Bill loadBill(final BillType type, final Long billId) {
+        return type.getDao().load(billId);
+    }
+
+    public static Prices loadPrices(final BillType type, final Long pricesId) {
+        return type.getPricesDao().load(pricesId);
     }
 
     public static void deleteBillWithPrices(final BillType type, final Long billId, final Long pricesId) {

@@ -9,13 +9,12 @@ import android.view.KeyEvent;
 
 import javax.inject.Inject;
 
-import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.history.di.HistoryComponent;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
 import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.mfvp.MvpFragment;
-import pl.srw.mfvp.view.fragment.MvpActivityScopedFragment;
+import pl.srw.mfvp.di.MvpActivityScopedFragment;
 
 public class CheckPricesDialogFragment extends MvpFragment
         implements MvpActivityScopedFragment<HistoryComponent> {
@@ -40,34 +39,22 @@ public class CheckPricesDialogFragment extends MvpFragment
     }
 
     private DialogInterface.OnClickListener positiveClickListener() {
-        return new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                getActivity().startActivity(new Intent(getActivity(), SettingsActivity.class));
-                markDialogProcessed();
-            }
+        return (dialog, which) -> {
+            getActivity().startActivity(new Intent(getActivity(), SettingsActivity.class));
+            markDialogProcessed();
         };
     }
 
     private DialogInterface.OnClickListener negativeClickListener() {
-        return new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                markDialogProcessed();
-            }
-        };
+        return (dialog, which) -> markDialogProcessed();
     }
 
     private DialogInterface.OnKeyListener backButtonListener() {
-        return new DialogInterface.OnKeyListener() {
-            @Override
-            @DebugLog
-            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-                    markDialogProcessed();
-                }
-                return false;
+        return (dialog, keyCode, event) -> {
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+                markDialogProcessed();
             }
+            return false;
         };
     }
 

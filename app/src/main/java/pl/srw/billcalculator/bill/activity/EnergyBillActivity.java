@@ -1,13 +1,14 @@
 package pl.srw.billcalculator.bill.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 
 import pl.srw.billcalculator.bill.calculation.CalculatedEnergyBill;
+import pl.srw.billcalculator.db.Prices;
 import pl.srw.billcalculator.intent.IntentCreator;
-import pl.srw.mfvp.di.component.MvpComponent;
+import pl.srw.mfvp.di.MvpComponent;
 
-public abstract class EnergyBillActivity<T extends MvpComponent> extends BillActivity<T> {
+public abstract class EnergyBillActivity<P extends Prices, PP extends P, T extends MvpComponent>
+        extends BillActivity<P, PP, T> {
     protected CalculatedEnergyBill bill;
     protected int readingDayFrom;
     protected int readingDayTo;
@@ -19,9 +20,8 @@ public abstract class EnergyBillActivity<T extends MvpComponent> extends BillAct
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        final Intent intent = getIntent();
+    protected void readExtraFrom(Intent intent) {
+        super.readExtraFrom(intent);
         readingDayFrom = intent.getIntExtra(IntentCreator.READING_DAY_FROM, 0);
         readingDayTo = intent.getIntExtra(IntentCreator.READING_DAY_TO, 0);
         readingNightFrom = intent.getIntExtra(IntentCreator.READING_NIGHT_FROM, 0);

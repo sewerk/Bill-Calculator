@@ -28,6 +28,7 @@ public class ProviderSettingsActivity extends BackableActivity<ProviderSettingsC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.settings_provider);
         Provider provider = (Provider) getIntent().getSerializableExtra(EXTRA_PROVIDER_NAME);
         Analytics.logContent(ContentType.SETTINGS, "settings for", provider);
 
@@ -50,10 +51,5 @@ public class ProviderSettingsActivity extends BackableActivity<ProviderSettingsC
     @Override
     public ProviderSettingsComponent prepareComponent() {
         return Dependencies.getApplicationComponent().getProviderSettingsComponent();
-    }
-
-    @Override
-    protected int getContentLayoutId() {
-        return R.layout.settings_provider;
     }
 }

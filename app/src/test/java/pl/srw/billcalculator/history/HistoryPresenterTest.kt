@@ -45,6 +45,20 @@ class HistoryPresenterTest {
     }
 
     @Test
+    fun onFirstBind_setsHistoryDataOnList() {
+        // GIVEN
+        val list: LazyList<History> = mock()
+        whenever(history.getAll()).thenReturn(list)
+
+        // WHEN
+        sut.onFirstBind()
+
+        // THEN
+        verify(view).setListData(list)
+        verify(view, never()).redrawList()
+    }
+
+    @Test
     fun onFirstBind_whenFirstLaunch_showsWelcomeDialog() {
         // GIVEN
         whenever(settings.isFirstLaunch).thenReturn(true)
@@ -129,11 +143,38 @@ class HistoryPresenterTest {
     }
 
     @Test
-    fun onNewViewRestoreState_whenNeedRefresh_closesOldListAndFetchNewOne() {
+    fun onNewViewRestoreState_setsHistoryDataOnList() {
         // GIVEN
         val list: LazyList<History> = mock()
         sut.setState("historyData", list)
-        sut.setState("needRefresh", true)
+
+        // WHEN
+        sut.onNewViewRestoreState()
+
+        // THEN
+        verify(view).setListData(list)
+    }
+
+    @Test
+    fun `redraw list, on new view restore state, when history changed`() {
+        // GIVEN
+        val list: LazyList<History> = mock()
+        whenever(history.getAll()).thenReturn(list)
+        sut.onHistoryChanged()
+
+        // WHEN
+        sut.onNewViewRestoreState()
+
+        // THEN
+        verify(view).redrawList()
+    }
+
+    @Test
+    fun `closes old and featches new list, on new view restore state, when history changed`() {
+        // GIVEN
+        val list: LazyList<History> = mock()
+        sut.setState("historyData", list)
+        sut.onHistoryChanged()
 
         // WHEN
         sut.onNewViewRestoreState()
@@ -144,32 +185,24 @@ class HistoryPresenterTest {
     }
 
     @Test
-    fun onNewViewRestoreState_whenNeedRefresh_setsHistoryDataOnList() {
-        // GIVEN
-        val list: LazyList<History> = mock()
-        whenever(history.getAll()).thenReturn(list)
-        sut.setState("needRefresh", true)
+    fun `unselects bills, when history changes`() {
+        sut.onHistoryChanged()
 
-        // WHEN
-        sut.onNewViewRestoreState()
-
-        // THEN
-        verify(view).setListData(list)
-        verify(view).redrawList()
+        verify(selection).deselectAll()
     }
 
     @Test
-    fun onCreate_setsHistoryDataOnList() {
-        // GIVEN
-        val list: LazyList<History> = mock()
-        sut.setState("historyData", list)
+    fun `hides delete button, when history changes`() {
+        sut.onHistoryChanged()
 
-        // WHEN
-        sut.onCreate()
+        verify(view).hideDeleteButton()
+    }
 
-        // THEN
-        verify(view).setListData(list)
-        verify(view, never()).redrawList()
+    @Test
+    fun `enables swipe delete, when history changes`() {
+        sut.onHistoryChanged()
+
+        verify(view).enableSwipeDelete()
     }
 
     @Test

@@ -1,6 +1,5 @@
 package pl.srw.billcalculator.wrapper
 
-import android.util.Pair
 import org.greenrobot.greendao.query.LazyList
 import pl.srw.billcalculator.db.Bill
 import pl.srw.billcalculator.db.History
@@ -13,7 +12,7 @@ import javax.inject.Singleton
 @Singleton
 class HistoryRepo @Inject internal constructor() {
 
-    var deleted: Collection<Pair<Bill, Prices>> = emptyList()
+    private var deleted: Collection<Pair<Bill, Prices>> = emptyList()
 
     // TODO: Rewrite to Rx
     fun getAll(): LazyList<History> = Database.getHistory()
@@ -23,21 +22,26 @@ class HistoryRepo @Inject internal constructor() {
     }
 
     fun cacheBillsForUndoDelete(bills: Collection<Bill>) {
-        deleted = bills.map(this::load)
+        val prices = bills.map { loadPricesForBill(it)}
+        deleted = bills.zip(prices)
     }
 
     fun cacheBillForUndoDelete(bill: Bill) {
-        deleted = listOf(load(bill))
+        deleted = listOf(Pair(bill, loadPricesForBill(bill)))
     }
 
     fun undoDelete() {
-        for (pair in deleted) {
-            Database.insert(pair.first, pair.second)
+        for ((bill, prices) in deleted) {
+            Database.insert(bill, prices)
         }
         deleted = emptyList()
     }
 
     fun isUndoDeletePossible()= !deleted.isEmpty()
 
-    private fun load(bill: Bill) = Database.load(BillType.valueOf(bill), bill.id, bill.pricesId)
+    private fun loadPricesForBill(bill: Bill): Prices {
+        val billType = BillType.valueOf(bill)
+        val loadPrices = Database.loadPrices(billType, bill.pricesId)
+        return checkNotNull(loadPrices, {"Prices not found for id ${bill.pricesId}"})
+    }
 }

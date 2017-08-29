@@ -10,13 +10,9 @@ import org.threeten.bp.LocalDate;
 
 import java.math.BigDecimal;
 
-import javax.inject.Inject;
-
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.bill.di.PgnigBillComponent;
-import pl.srw.billcalculator.intent.IntentCreator;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
 import pl.srw.billcalculator.type.ContentType;
@@ -27,27 +23,18 @@ import pl.srw.billcalculator.util.Views;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 
-public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
+public class PgnigBillActivity extends BillActivity<IPgnigPrices, PgnigPrices, PgnigBillComponent> {
 
     private static final String DATE_PATTERN = "dd.MM.yyyy";
     private static final int PRICE_SCALE = 5;
-
-    private IPgnigPrices prices;
-    @Inject PgnigPrices prefsPrices;
-    @Inject SavedBillsRegistry savedBillsRegistry;
 
     private PgnigCalculatedBill bill;
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Dependencies.inject(this);
-        Analytics.logContent(ContentType.PGNIG_BILL, "PGNIG new", prices == null);
+        Analytics.logContent(ContentType.PGNIG_BILL, "PGNIG new", isNewBill());
 
-        prices = (IPgnigPrices) getIntent().getSerializableExtra(IntentCreator.PRICES);
-        if (prices == null) {
-            prices = prefsPrices;
-        }
         this.bill = new PgnigCalculatedBill(readingFrom, readingTo, dateFrom, dateTo, prices);
 
         setDate();
@@ -63,7 +50,7 @@ public class PgnigBillActivity extends BillActivity<PgnigBillComponent> {
     }
 
     @Override
-    protected int getContentLayoutId() {
+    protected int getLayoutId() {
         return R.layout.pgnig_bill;
     }
 

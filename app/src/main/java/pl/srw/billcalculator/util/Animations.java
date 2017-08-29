@@ -91,12 +91,9 @@ public final class Animations {
     @NonNull
     private static ValueAnimator rotationAnimator(final FloatingActionButton target, float from, float to) {
         final ValueAnimator fabRotation = ValueAnimator.ofFloat(from, to);
-        fabRotation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                final float animatedValue = (float) animation.getAnimatedValue();
-                target.setRotation(animatedValue);
-            }
+        fabRotation.addUpdateListener(animation -> {
+            final float animatedValue = (float) animation.getAnimatedValue();
+            target.setRotation(animatedValue);
         });
         return fabRotation;
     }
@@ -106,13 +103,10 @@ public final class Animations {
         final ValueAnimator translationY = topDirection
                 ? ValueAnimator.ofInt(0, shift)
                 : ValueAnimator.ofInt(shift, 0);
-        translationY.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                final int dY = (int) animation.getAnimatedValue();
-                for (int i = 0; i < targets.length; i++)
-                    targets[i].setTranslationY((i + 1) * -dY);
-            }
+        translationY.addUpdateListener(animation -> {
+            final int dY = (int) animation.getAnimatedValue();
+            for (int i = 0; i < targets.length; i++)
+                targets[i].setTranslationY((i + 1) * -dY);
         });
         return translationY;
     }
@@ -136,14 +130,11 @@ public final class Animations {
     @NonNull
     private static ValueAnimator alphaAnimator(float from, float to, final FloatingActionButton[] targets) {
         final ValueAnimator alpha = ValueAnimator.ofFloat(from, to);
-        alpha.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                final float value = (float) animation.getAnimatedValue();
-                if (value >= 0.0f && value <= 1.0)
-                    for (FloatingActionButton target : targets)
-                        target.setAlpha(value);
-            }
+        alpha.addUpdateListener(animation -> {
+            final float value = (float) animation.getAnimatedValue();
+            if (value >= 0.0f && value <= 1.0)
+                for (FloatingActionButton target : targets)
+                    target.setAlpha(value);
         });
         return alpha;
     }

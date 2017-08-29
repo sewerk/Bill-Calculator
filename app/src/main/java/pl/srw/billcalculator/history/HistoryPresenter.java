@@ -22,8 +22,8 @@ import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.BillSelection;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.HistoryRepo;
+import pl.srw.mfvp.MvpPresenter;
 import pl.srw.mfvp.di.scope.RetainActivityScope;
-import pl.srw.mfvp.presenter.MvpPresenter;
 import timber.log.Timber;
 
 @RetainActivityScope
@@ -50,16 +50,15 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         loadHistoryData();
         Analytics.logContent(ContentType.HISTORY, "history size", historyData.size());
 
-        present(new UIChange<HistoryView>() {
-            @Override
-            public void change(HistoryView view) {
-                if (settings.isFirstLaunch()) {
-                    view.showWelcomeDialog();
-                    settings.markHelpShown();
-                } else if (!settings.wasHelpShown()) {
-                    view.showNewUIDialog();
-                    settings.markHelpShown();
-                }
+        present(view -> {
+            view.setListData(historyData);
+
+            if (settings.isFirstLaunch()) {
+                view.showWelcomeDialog();
+                settings.markHelpShown();
+            } else if (!settings.wasHelpShown()) {
+                view.showNewUIDialog();
+                settings.markHelpShown();
             }
         });
     }
@@ -68,30 +67,24 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     protected void onNewViewRestoreState() {
         if (needRefresh) { // FIXME: when bill activity will be closed quickly then onStart will not be called - will not refresh
             loadHistoryData();
-            // set list after bill creation, activity rotation set is handled in #onCreate
-            present(new UIChange<HistoryView>() {
-                @Override
-                public void change(HistoryView view) {
-                    view.setListData(historyData);
-                    view.redrawList();
-                }
-            });
         }
-    }
-
-    public void onCreate() { // TODO: remove this workaround when MVFP lib is fixed
-        //note this present will be executed after view is bind
-        present(new UIChange<HistoryView>() {
-            @Override
-            public void change(HistoryView view) {
-                view.setListData(historyData);
+        present(view -> {
+            view.setListData(historyData);
+            if (needRefresh) {
+                view.redrawList();
             }
         });
+        needRefresh = false;
     }
 
     @Override
     public void onHistoryChanged() {
         needRefresh = true;
+        selection.deselectAll();
+        present(view -> {
+            view.hideDeleteButton();
+            view.enableSwipeDelete();
+        });
     }
 
     @Override
@@ -101,13 +94,10 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         history.cacheBillForUndoDelete(bill);
         history.deleteBillWithPrices(bill);
         loadHistoryData();
-        present(new UIChange<HistoryView>() {
-            @Override
-            public void change(HistoryView view) {
-                view.setListData(historyData);
-                view.onItemRemoveFromList(position);
-                view.showUndoDeleteMessage(position);
-            }
+        present(view -> {
+            view.setListData(historyData);
+            view.onItemRemoveFromList(position);
+            view.showUndoDeleteMessage(position);
         });
     }
 
@@ -123,45 +113,31 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     @Override
     public void onListItemLongClicked(HistoryViewItem item) {
         if (!selection.isAnySelected()) {
-            present(new UIChange<HistoryView>() {
-                @Override
-                public void change(HistoryView view) {
-                    view.showDeleteButton();
-                    view.disableSwipeDelete();
-                }
+            present(view -> {
+                view.showDeleteButton();
+                view.disableSwipeDelete();
             });
         }
         handleSelection(item);
     }
 
     void helpMenuClicked() {
-        present(new UIChange<HistoryView>() {
-            @Override
-            public void change(HistoryView view) {
-                view.showHelp();
-            }
-        });
+        present(HistoryView::showHelp);
     }
 
     void settingsClicked() {
-        present(new UIChange<HistoryView>() {
-            @Override
-            public void change(HistoryView view) {
-                view.openSettings();
-                view.closeDrawer();
-            }
+        present(view -> {
+            view.openSettings();
+            view.closeDrawer();
         });
     }
 
     boolean handleBackPressed() {
         final boolean[] handled = {false};
-        present(new UIChange<HistoryView>() {
-            @Override
-            public void change(HistoryView view) {
-                if (view.isDrawerOpen()) {
-                    view.closeDrawer();
-                    handled[0] = true;
-                }
+        present(view -> {
+            if (view.isDrawerOpen()) {
+                view.closeDrawer();
+                handled[0] = true;
             }
         });
         return handled[0];
@@ -169,50 +145,35 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
 
     void historyClicked() {
         //FIXME: remove this option from drawer?
-        present(new UIChange<HistoryView>() {
-            @Override
-            public void change(HistoryView view) {
-                view.closeDrawer();
-            }
-        });
+        present(HistoryView::closeDrawer);
     }
 
     void newBillClicked(final Provider provider) {
-        present(new UIChange<HistoryView>() {
-            @Override
-            public void change(HistoryView view) {
-                view.showNewBillForm(provider);
-                view.closeDrawer();
-            }
+        present(view -> {
+            view.showNewBillForm(provider);
+            view.closeDrawer();
         });
     }
 
     void aboutClicked() {
-        present(new UIChange<HistoryView>() {
-            @Override
-            public void change(HistoryView view) {
-                view.showAbout();
-                view.closeDrawer();
-            }
+        present(view -> {
+            view.showAbout();
+            view.closeDrawer();
         });
     }
 
     void undoDeleteClicked(final int... positions) {
-        Analytics.log("Undo clicked");
         if (!history.isUndoDeletePossible()) {
             Timber.d("Undo delete clicked twice");
             return;
         }
         history.undoDelete();
         loadHistoryData();
-        present(new UIChange<HistoryView>() {
-            @Override
-            public void change(HistoryView view) {
-                view.setListData(historyData);
-                Arrays.sort(positions);
-                for (int position : positions) {
-                    view.onItemInsertedToList(position);
-                }
+        present(view -> {
+            view.setListData(historyData);
+            Arrays.sort(positions);
+            for (int position : positions) {
+                view.onItemInsertedToList(position);
             }
         });
     }
@@ -226,17 +187,14 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
             history.deleteBillWithPrices(bill);
         }
         loadHistoryData();
-        present(new UIChange<HistoryView>() {
-            @Override
-            public void change(HistoryView view) {
-                view.setListData(historyData);
-                for (int position : selection.getPositionsReverseOrder()) {
-                    view.onItemRemoveFromList(position);
-                }
-                view.hideDeleteButton();
-                view.enableSwipeDelete();
-                view.showUndoDeleteMessage(selection.getPositionsReverseOrder()); // TODO: return non ordered, sort when needed
+        present(view -> {
+            view.setListData(historyData);
+            for (int position : selection.getPositionsReverseOrder()) {
+                view.onItemRemoveFromList(position);
             }
+            view.hideDeleteButton();
+            view.enableSwipeDelete();
+            view.showUndoDeleteMessage(selection.getPositionsReverseOrder()); // TODO: return non ordered, sort when needed
         });
         selection.deselectAll();
     }
@@ -246,7 +204,6 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
             historyData.close();
 
         historyData = history.getAll();
-        needRefresh = false;
     }
 
     private void handleSelection(HistoryViewItem item) {
@@ -260,12 +217,9 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
             item.select();
         }
         if (!selection.isAnySelected()) {
-            present(new UIChange<HistoryView>() {
-                @Override
-                public void change(HistoryView view) {
-                    view.hideDeleteButton();
-                    view.enableSwipeDelete();
-                }
+            present(view -> {
+                view.hideDeleteButton();
+                view.enableSwipeDelete();
             });
         }
     }
@@ -273,12 +227,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     private void openBill(final HistoryViewItem item) {
         Analytics.logAction(ActionType.OPEN_BILL,"provider", item.getBill().getClass().getSimpleName());
         Timber.d("bill id=%d", item.getBill().getId());
-        present(new UIChange<HistoryView>() {
-            @Override
-            public void change(HistoryView view) {
-                view.openBill(item.getBill(), item.getView());
-            }
-        });
+        present(view -> view.openBill(item.getBill(), item.getView()));
         savedBillsRegistry.register(item.getBill());
     }
 

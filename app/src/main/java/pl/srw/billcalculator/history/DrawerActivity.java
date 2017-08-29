@@ -24,6 +24,7 @@ import javax.inject.Inject;
 
 import butterknife.BindInt;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import pl.srw.billcalculator.AboutActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.Bill;
@@ -39,15 +40,12 @@ import pl.srw.billcalculator.settings.activity.SettingsActivity;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.BillSelection;
 import pl.srw.billcalculator.util.strategy.Transitions;
+import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 import pl.srw.mfvp.MvpActivity;
-import pl.srw.mfvp.presenter.PresenterHandlingDelegate;
-import pl.srw.mfvp.presenter.PresenterOwner;
-import pl.srw.mfvp.presenter.SinglePresenterHandlingDelegate;
 
 public class DrawerActivity extends MvpActivity<HistoryComponent>
         implements HistoryPresenter.HistoryView,
-        PresenterOwner,
         NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.coordinator_layout) CoordinatorLayout coordinatorLayout;
@@ -73,18 +71,15 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Dependencies.inject(this);
+        setContentView(R.layout.activity_drawer);
+        ButterKnife.bind(this);
 
         fabsMenuHandler.init(this);
         setupToolbar();
         setupDrawer();
         setupList();
-        presenter.onCreate();
-    }
 
-    @Override
-    protected int getContentLayoutId() {
-        return R.layout.activity_drawer;
+        attachPresenter(presenter);
     }
 
     @Override
@@ -121,12 +116,16 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         if (id == R.id.history) {
             presenter.historyClicked();
         } else if (id == R.id.new_bill_pge) {
+            Analytics.log("Drawer: New bill picked: PGE");
             presenter.newBillClicked(Provider.PGE);
         } else if (id == R.id.new_bill_pgnig) {
+            Analytics.log("Drawer: New bill picked: PGNIG");
             presenter.newBillClicked(Provider.PGNIG);
         } else if (id == R.id.new_bill_tauron) {
+            Analytics.log("Drawer: New bill picked: TAURON");
             presenter.newBillClicked(Provider.TAURON);
         } else if (id == R.id.settings) {
+            Analytics.log("Drawer: Settings clicked");
             presenter.settingsClicked();
         } else if (id == R.id.about) {
             presenter.aboutClicked();
@@ -136,15 +135,11 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
 
     @Override
     public void onBackPressed() {
+        Analytics.log("Back clicked");
         if (!presenter.handleBackPressed()
                 && !fabsMenuHandler.handleBackPressed()) {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public PresenterHandlingDelegate createPresenterDelegate() {
-        return new SinglePresenterHandlingDelegate(this, presenter);
     }
 
     @Override
@@ -224,6 +219,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
                 .setAction(R.string.action_undo_delete, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Analytics.log("Undo clicked");
                         presenter.undoDeleteClicked(positions);
                     }
                 })
