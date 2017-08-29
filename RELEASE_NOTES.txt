@@ -1,3 +1,7 @@
+v.2.0-beta3
+ - fix: select for delete followed by bill creation breaks selection
+ - improve analytics
+ - fix: form elements move position when error show up
 v.2.0-beta2
  - new v2.0 UI dialog
  - fix: delete by swipe and selection followed by undo breaks list
