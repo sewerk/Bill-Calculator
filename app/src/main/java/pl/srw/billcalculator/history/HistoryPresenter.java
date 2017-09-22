@@ -65,13 +65,16 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
 
     @Override
     protected void onNewViewRestoreState() {
-        if (needRefresh) { // FIXME: when bill activity will be closed quickly then onStart will not be called - will not refresh
+        if (needRefresh) { // FIXME: when BillActivity will be closed quickly then DrawerActivity.onStart will not be called - will not refresh
             loadHistoryData();
         }
         present(view -> {
             view.setListData(historyData);
             if (needRefresh) {
                 view.redrawList();
+            }
+            if (selection.isAnySelected()) {
+                view.disableSwipeDelete();
             }
         });
         needRefresh = false;

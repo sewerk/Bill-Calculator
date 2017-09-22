@@ -143,7 +143,7 @@ class HistoryPresenterTest {
     }
 
     @Test
-    fun onNewViewRestoreState_setsHistoryDataOnList() {
+    fun `sets list data, on new restore state`() {
         // GIVEN
         val list: LazyList<History> = mock()
         sut.setState("historyData", list)
@@ -182,6 +182,15 @@ class HistoryPresenterTest {
         // THEN
         verify(list).close()
         verify(history).getAll()
+    }
+
+    @Test
+    fun `disables swipe delete, on new view restore state, when any item selected`() {
+        whenever(selection.isAnySelected()).thenReturn(true)
+
+        sut.onNewViewRestoreState()
+
+        verify(view).disableSwipeDelete()
     }
 
     @Test
