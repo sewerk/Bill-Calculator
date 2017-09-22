@@ -170,8 +170,9 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         history.undoDelete();
         loadHistoryData();
         present(view -> {
-            view.setListData(historyData);
             Arrays.sort(positions);
+            selection.onInsert(positions[0]);
+            view.setListData(historyData);
             for (int position : positions) {
                 view.onItemInsertedToList(position);
             }
