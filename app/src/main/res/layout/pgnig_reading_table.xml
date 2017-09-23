@@ -19,18 +19,23 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:paddingRight="40dp"
-                android:text="Numer gazomierza: 00000000" />
+                android:paddingEnd="40dp"
+                android:text="Numer gazomierza: 00000000"
+                tools:ignore="HardcodedText,RtlSymmetry"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Odczyt poprzedni:" />
+                android:text="Odczyt poprzedni:"
+                tools:ignore="HardcodedText"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="10dp"
-                android:text="na dzień:" />
+                android:paddingEnd="10dp"
+                android:text="na dzień:"
+                tools:ignore="HardcodedText,RtlSymmetry"/>
 
             <TextView
                 android:id="@+id/tv_prev_reading_date"
@@ -39,7 +44,9 @@
                 android:gravity="end"
                 android:textStyle="bold"
                 android:paddingRight="30dp"
-                tools:text="01/01/2014" />
+                android:paddingEnd="30dp"
+                tools:text="01/01/2014"
+                tools:ignore="RtlSymmetry"/>
 
             <TextView
                 android:id="@+id/tv_previous_reading"
@@ -63,13 +70,17 @@
                 android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:paddingRight="10dp"
-                android:text="Odczyt bieżący: Rzeczywisty" />
+                android:paddingEnd="10dp"
+                android:text="Odczyt bieżący: Rzeczywisty"
+                tools:ignore="HardcodedText,RtlSymmetry"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="10dp"
-                android:text="na dzień:" />
+                android:paddingEnd="10dp"
+                android:text="na dzień:"
+                tools:ignore="HardcodedText,RtlSymmetry"/>
 
             <TextView
                 android:id="@+id/tv_curr_reading_date"
@@ -78,7 +89,9 @@
                 android:gravity="end"
                 android:textStyle="bold"
                 android:paddingRight="30dp"
-                tools:text="31/12/2014" />
+                android:paddingEnd="30dp"
+                tools:text="31/12/2014"
+                tools:ignore="RtlSymmetry"/>
 
             <TextView
                 android:id="@+id/tv_current_reading"
@@ -94,8 +107,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
+                android:paddingStart="20dp"
                 android:textStyle="bold"
-                android:text="Zużycie:"/>
+                android:text="Zużycie:"
+                tools:ignore="HardcodedText,RtlSymmetry"/>
 
             <TextView
                 android:id="@+id/tv_consumption"

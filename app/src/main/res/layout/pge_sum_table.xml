@@ -22,7 +22,9 @@
                 android:gravity="end"
                 android:textStyle="bold"
                 android:paddingRight="30dp"
-                android:text="Należność netto (zł)" />
+                android:paddingEnd="30dp"
+                android:text="Należność netto (zł)"
+                tools:ignore="HardcodedText,RtlSymmetry"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -30,7 +32,9 @@
                 android:gravity="end"
                 android:textStyle="bold"
                 android:paddingRight="30dp"
-                android:text="Stawka VAT (%)" />
+                android:paddingEnd="30dp"
+                android:text="Stawka VAT (%)"
+                tools:ignore="HardcodedText,RtlSymmetry"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -38,14 +42,17 @@
                 android:gravity="end"
                 android:textStyle="bold"
                 android:paddingRight="30dp"
-                android:text="Kwota VAT (zł)" />
+                android:paddingEnd="30dp"
+                android:text="Kwota VAT (zł)"
+                tools:ignore="HardcodedText,RtlSymmetry"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:textStyle="bold"
-                android:text="Należność brutto (zł)" />
+                android:text="Należność brutto (zł)"
+                tools:ignore="HardcodedText"/>
         </TableRow>
 
         <TableRow
@@ -58,7 +65,9 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:paddingRight="30dp"
-                android:text="Należność ogółem" />
+                android:paddingEnd="30dp"
+                android:text="Należność ogółem"
+                tools:ignore="HardcodedText,RtlSymmetry"/>
 
             <TextView
                 android:id="@+id/pge_sum_net_charge"
@@ -67,7 +76,9 @@
                 android:gravity="end"
                 android:textStyle="bold"
                 android:paddingRight="30dp"
-                tools:text="61,09" />
+                android:paddingEnd="30dp"
+                tools:text="61,09"
+                tools:ignore="RtlSymmetry"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -75,8 +86,9 @@
                 android:gravity="center"
                 android:textStyle="bold"
                 android:paddingRight="30dp"
+                android:paddingEnd="30dp"
                 android:text="23"
-                tools:ignore="HardcodedText" />
+                tools:ignore="HardcodedText,RtlSymmetry" />
 
             <TextView
                 android:id="@+id/pge_sum_vat_amount"
@@ -85,7 +97,9 @@
                 android:gravity="end"
                 android:textStyle="bold"
                 android:paddingRight="30dp"
-                tools:text="14,05" />
+                android:paddingEnd="30dp"
+                tools:text="14,05"
+                tools:ignore="RtlSymmetry"/>
 
             <TextView
                 android:id="@+id/pge_sum_gross_charge"

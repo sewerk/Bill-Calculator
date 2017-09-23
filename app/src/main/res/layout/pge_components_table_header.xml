@@ -15,7 +15,8 @@
             android:layout_span="5"
             android:lines="1"
             android:textStyle="bold"
-            android:text="Licznik rozliczeniowy en. czynnej nr: 00000000" />
+            android:text="Licznik rozliczeniowy en. czynnej nr: 00000000"
+            tools:ignore="HardcodedText"/>
 
         <TextView
             android:id="@+id/tv_tariff"
@@ -32,7 +33,8 @@
             android:layout_gravity="end"
             android:layout_span="3"
             android:textStyle="bold"
-            android:text="Mnożna: 1" />
+            android:text="Mnożna: 1"
+            tools:ignore="HardcodedText"/>
     </TableRow>
 
     <TableRow
@@ -45,83 +47,104 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Strefa" />
+            android:text="Strefa"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Opis" />
+            android:text="Opis"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="PKWiU" />
+            android:text="PKWiU"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="J. m." />
+            android:text="J. m."
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Wskazanie\nbieżące" />
+            android:text="Wskazanie\nbieżące"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Wskazanie\npoprzednie" />
+            android:text="Wskazanie\npoprzednie"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Ilość\nm-c" />
+            android:text="Ilość\nm-c"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Ilość" />
+            android:text="Ilość"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Cena\nnetto (zł)" />
+            android:text="Cena\nnetto (zł)"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Należność\nnetto (zł)" />
+            android:text="Należność\nnetto (zł)"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="Stawka\nVAT(%)" />
+            android:text="Stawka\nVAT(%)"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
     </TableRow>
 
 </merge>

@@ -27,6 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:textStyle="bold"
                 android:text="@string/rozliczenie_dnia"/>
 
@@ -37,7 +38,7 @@
                 android:src="@drawable/pgnig"
                 android:layout_centerHorizontal="true"
                 android:layout_margin="@dimen/double_padding"
-                android:contentDescription="Provider bill logo"/>
+                android:contentDescription="@string/pgnig_bill_logo_content_desc"/>
 
             <TextView
                 android:id="@+id/tv_charge_place"
@@ -45,9 +46,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/image_logo"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Rozliczenie punktu poboru:"
-                android:paddingTop="24dp"/>
+                android:paddingTop="24dp"
+                tools:ignore="HardcodedText"/>
 
             <TextView
                 android:id="@+id/tv_charge_place_number"
@@ -55,7 +58,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/tv_charge_place"
                 android:layout_alignRight="@+id/tables"
-                android:text="Numer punktu poboru: 0000000000" />
+                android:layout_alignEnd="@+id/tables"
+                android:text="Numer punktu poboru: 0000000000"
+                tools:ignore="HardcodedText"/>
 
             <TextView
                 android:id="@+id/tv_tariff"
@@ -64,7 +69,9 @@
                 android:layout_below="@id/tv_charge_place"
                 android:layout_marginTop="24dp"
                 android:layout_alignParentLeft="true"
-                android:text="Grupa taryfowa PGNiG: W-x.x"/>
+                android:layout_alignParentStart="true"
+                android:text="Grupa taryfowa PGNiG: W-x.x"
+                tools:ignore="HardcodedText"/>
 
             <LinearLayout
                 android:id="@+id/tables"
@@ -84,13 +91,13 @@
                     layout="@layout/pgnig_sum_table" />
             </LinearLayout>
 
-
             <TextView
                 android:id="@+id/tv_invoice_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tables"
                 android:layout_alignRight="@id/tables"
+                android:layout_alignEnd="@id/tables"
                 android:layout_marginTop="8dp"
                 android:textStyle="bold"
                 android:text="@string/wartosc_faktury"

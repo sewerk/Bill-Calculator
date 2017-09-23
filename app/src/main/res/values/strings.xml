@@ -65,6 +65,7 @@
     <string name="dialog_bill_without_oze_cancel">No thanks.</string>
 
     <!-- PGE bill -->
+    <string name="pge_bill_logo_content_desc" translatable="false">PGE logo</string>
     <string name="energy_bill">Energy bill</string>
     <string name="rachunek_rozliczeniowy" translatable="false">RACHUNEK ROZLICZENIOWY z dnia %1$s\nZA ENERGIĘ ELEKTRYCZNĄ I USŁUGI DYSTRYBUCJI</string>
     <string name="strefa_calodobowa" translatable="false">całodobowa</string>
@@ -96,6 +97,7 @@
     <string name="for_period" translatable="false">Za okres od %1$s do %2$s</string>
 
     <!-- Tauron bill -->
+    <string name="tauron_bill_logo_content_desc" translatable="false">Tauron logo</string>
     <string name="tauron_energia_elektryczna" translatable="false">Energia elektryczna czynna całodobowa</string>
     <string name="tauron_oplata_dyst_zmienna" translatable="false">Opłata dystr. zm. całodobowa</string>
     <string name="tauron_oplata_dyst_stala" translatable="false">Opłata dystrybucyjna stała</string>
@@ -117,6 +119,7 @@
     <string name="tauron_kwota_akcyzy" translatable="false">Kwota podatku akcyzowego, zawarta w wartości energii wykazanej w tym rozliczeniu wynosi %1$s zł.</string>
 
     <!-- PGNiG bill -->
+    <string name="pgnig_bill_logo_content_desc" translatable="false">PGNiG logo</string>
     <string name="gas_bill">Gas bill</string>
     <string name="rozliczenie_dnia" translatable="false">Rozliczenie z dnia %1$s</string>
     <string name="wartosc_faktury" translatable="false">Wartość faktury brutto: %1$s zł</string>

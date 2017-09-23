@@ -17,14 +17,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
-        tools:text="01.01.2014" />
+        android:paddingStart="20dp"
+        tools:text="01.01.2014"
+        tools:ignore="RtlSymmetry"/>
 
     <TextView
         android:id="@+id/tv_date_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
-        tools:text="31.12.2014" />
+        android:paddingStart="20dp"
+        tools:text="31.12.2014"
+        tools:ignore="RtlSymmetry"/>
 
     <TextView
         android:id="@+id/tv_count"
@@ -39,7 +43,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:text="mc" />
+        android:text="mc"
+        tools:ignore="HardcodedText"/>
 
     <TextView
         android:id="@+id/tv_net_price"
@@ -48,7 +53,9 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:paddingRight="20dp"
-        tools:text="11,0400" />
+        android:paddingEnd="20dp"
+        tools:text="11,0400"
+        tools:ignore="RtlSymmetry"/>
 
     <TextView
         android:id="@+id/tv_excise"
@@ -56,21 +63,27 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:paddingRight="20dp"
-        android:text="ZW" />
+        android:paddingEnd="20dp"
+        android:text="ZW"
+        tools:ignore="HardcodedText,RtlSymmetry"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="end"
         android:paddingRight="20dp"
-        android:text="" />
+        android:paddingEnd="20dp"
+        android:text=""
+        tools:ignore="RtlSymmetry"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="end"
         android:paddingRight="20dp"
-        android:text="23" />
+        android:paddingEnd="20dp"
+        android:text="23"
+        tools:ignore="HardcodedText,RtlSymmetry"/>
 
     <TextView
         android:id="@+id/pgnig_component_row_net_charge"

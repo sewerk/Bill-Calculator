@@ -29,8 +29,10 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/tauron"
                 android:layout_alignRight="@+id/t_components_table"
+                android:layout_alignEnd="@+id/t_components_table"
                 android:layout_margin="@dimen/double_padding"
-                android:contentDescription="Tauron logo"/>
+                android:contentDescription="@string/tauron_bill_logo_content_desc"
+                tools:ignore="UnknownIdInLayout"/>
 
             <TextView
                 android:id="@+id/tv_invoice_date"
@@ -38,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/image_logo"
                 android:layout_alignRight="@id/image_logo"
+                android:layout_alignEnd="@id/image_logo"
                 android:layout_marginTop="@dimen/double_padding"
                 android:text="@string/tauron_data_wystawienia"/>
 
@@ -46,16 +49,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@id/tv_invoice_date"
                 android:layout_marginTop="@dimen/double_padding"
                 android:textStyle="bold"
-                android:text="Numer Ewidencyjny: 000 0000 000"/>
+                android:text="Numer Ewidencyjny: 000 0000 000"
+                tools:ignore="HardcodedText"/>
 
             <TextView
                 android:id="@+id/tv_tariff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@id/tv_register_number"
                 android:text="@string/tauron_grupa_taryfowa"/>
 
@@ -64,14 +70,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@id/tv_tariff"
-                android:text="Zabezp.(A): 25        Moc umowna (kW): 5,00        Ilość faz: 1"/>
+                android:text="Zabezp.(A): 25        Moc umowna (kW): 5,00        Ilość faz: 1"
+                tools:ignore="HardcodedText"/>
 
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@id/tv_power"
                 android:textStyle="bold"
                 android:text="@string/tauron_data_sprzedazy"/>
@@ -81,9 +90,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignRight="@+id/t_components_table"
+                android:layout_alignEnd="@+id/t_components_table"
                 android:layout_alignBottom="@id/tv_title"
                 android:textStyle="bold"
-                android:text="@string/tauron_okres_rozliczeniowy"/>
+                android:text="@string/tauron_okres_rozliczeniowy"
+                tools:ignore="UnknownIdInLayout"/>
 
             <include
                 layout="@layout/tauron_components_table" />
@@ -94,7 +105,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/t_components_table"
                 android:layout_marginTop="@dimen/padding"
-                android:text="@string/tauron_kwota_akcyzy" />
+                android:text="@string/tauron_kwota_akcyzy"
+                tools:ignore="UnknownIdInLayout"/>
         </RelativeLayout>
 
     </ScrollView>
