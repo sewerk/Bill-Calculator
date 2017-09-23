@@ -15,7 +15,7 @@ public class SettingsRepo {
 
     private static final String PREFERENCE_KEY_FIRST_LAUNCH = "first_launch";
     private static final String PREFERENCE_KEY_HELP_SHOWN = "help_shown";
-    private SharedPreferences prefs;
+    private final SharedPreferences prefs;
 
     @Inject
     SettingsRepo(@Named(GLOBAL_SHARED_PREFS) SharedPreferences prefs) {

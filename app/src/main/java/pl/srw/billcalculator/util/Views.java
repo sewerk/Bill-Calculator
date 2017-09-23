@@ -46,6 +46,7 @@ public final class Views {
     }
 
     public static String getText(TextInputLayout view) {
+        //noinspection ConstantConditions
         return view.getEditText().getText().toString();
     }
 

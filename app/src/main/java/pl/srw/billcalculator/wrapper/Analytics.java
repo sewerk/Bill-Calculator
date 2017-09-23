@@ -32,8 +32,6 @@ public class Analytics {
     /**
      * Logs key-value pair to help verify critical error. Please note this
      * won't be visible until critical error occur.
-     * @param key
-     * @param val
      */
     public static void setInt(String key, int val) {
         if (ENABLED)
@@ -43,8 +41,6 @@ public class Analytics {
     /**
      * Logs key-value pair to help verify critical error. Please note this
      * won't be visible until critical error occur.
-     * @param key
-     * @param val
      */
     public static void setString(String key, String val) {
         if (ENABLED)
@@ -73,8 +69,6 @@ public class Analytics {
 
     /**
      * Logs caught exception.
-     * @param exception
-     * @param message
      */
     public static void error(Throwable exception, String message) {
         Timber.e(exception, message);
@@ -85,8 +79,6 @@ public class Analytics {
 
     /**
      * Logs user viewed content. This will be used to see statistics
-     * @param contentId
-     * @param args
      */
     public static void logContent(@ContentType String contentId, Object... args) {
         final String message = "Content viewed: " + contentId + " " + Arrays.toString(args);
@@ -103,8 +95,6 @@ public class Analytics {
 
     /**
      * Logs user took action. This will be used to see statistics
-     * @param action
-     * @param args
      */
     public static void logAction(@ActionType String action, Object... args) {
         final String message = "Action triggered: " + action + " " + Arrays.toString(args);

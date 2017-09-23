@@ -181,7 +181,7 @@ class BillPresenterTest {
     fun `stop listening to printer events on destroy`() {
         sut_onFinish()
 
-        verify(printer).unregister(sut)
+        verify(printer).unregister()
     }
 
     @Test

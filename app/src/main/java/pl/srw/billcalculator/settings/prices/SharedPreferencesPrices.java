@@ -2,7 +2,7 @@ package pl.srw.billcalculator.settings.prices;
 
 import android.content.SharedPreferences;
 
-public abstract class SharedPreferencesPrices implements RestorablePrices {
+abstract class SharedPreferencesPrices implements RestorablePrices {
 
     private final SharedPreferences __prefs;
 

@@ -9,8 +9,8 @@ import pl.srw.mfvp.di.scope.RetainActivityScope;
 @RetainActivityScope
 public class SettingsPresenter extends MvpPresenter<SettingsPresenter.SettingsView> {
 
+    private final Provider[] providers;
     private boolean isOnTablet;
-    private Provider[] providers;
 
     @Inject
     SettingsPresenter(Provider[] providers) {

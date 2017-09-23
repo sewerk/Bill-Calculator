@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -20,33 +21,33 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="1. Kliknij na pozycję by edytować i zobaczyć opis.\n\n2. Wybierz Taryfę:"
-                />
+                tools:ignore="HardcodedText"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="- plan taryfowy ustala stawki za energię w zależności od pory dnia,\n- plan taryfowy można odczytać z ostatniej faktury,\n- jeśli nie wiesz jaką taryfę posiadasz prawdopodobnie jest to taryfa całodobowa G11,\n- jeśli posiadasz dwa odczyty na liczniku wybierz taryfę dwustrefową G12,\n- wybór taryfy umożliwia edycję zależnych cen."
-                />
+                tools:ignore="HardcodedText"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="\n3. Poszczególne ceny można odczytać z ostatniej faktury:"
-                />
+                tools:ignore="HardcodedText"/>
 
             <ImageView
                 android:id="@+id/iv_example"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:contentDescription="@string/settings_help_example_content_desc"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="\n4. Wszystkie ceny są cenami netto."
-                />
+                tools:ignore="HardcodedText"/>
         </LinearLayout>
     </ScrollView>
 
@@ -55,5 +56,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:text="OK"/>
+        android:text="OK"
+        tools:ignore="HardcodedText"/>
 </LinearLayout>

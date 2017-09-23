@@ -84,15 +84,12 @@ public class FormFragment extends MvpFragment
 
     private Unbinder unbinder;
 
-    private final DialogInterface.OnKeyListener onBackListener = new DialogInterface.OnKeyListener() {
-        @Override
-        public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-            if (keyCode == KeyEvent.KEYCODE_BACK
-                    && event.getAction() == KeyEvent.ACTION_UP) {
-                Analytics.log("Form: back pressed");
-            }
-            return false;
+    private final DialogInterface.OnKeyListener onBackListener = (dialog, keyCode, event) -> {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_UP) {
+            Analytics.log("Form: back pressed");
         }
+        return false;
     };
 
     public static FormFragment newInstance(Provider provider) {
@@ -119,6 +116,7 @@ public class FormFragment extends MvpFragment
         final AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setView(view)
                 .create();
+        //noinspection ConstantConditions
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCanceledOnTouchOutside(false);
         dialog.setOnKeyListener(onBackListener);
@@ -212,22 +210,12 @@ public class FormFragment extends MvpFragment
 
     @Override
     public void setSingleReadingsVisibility(final int visibility) {
-        ButterKnife.apply(singleReadingsGroup, new ButterKnife.Action<View>() {
-            @Override
-            public void apply(@NonNull View view, int index) {
-                view.setVisibility(visibility);
-            }
-        });
+        ButterKnife.apply(singleReadingsGroup, (ButterKnife.Action<View>) (view, index) -> view.setVisibility(visibility));
     }
 
     @Override
     public void setDoubleReadingsVisibility(final int visibility) {
-        ButterKnife.apply(doubleReadingsGroups, new ButterKnife.Action<View>() {
-            @Override
-            public void apply(@NonNull View view, int index) {
-                view.setVisibility(visibility);
-            }
-        });
+        ButterKnife.apply(doubleReadingsGroups, (ButterKnife.Action<View>) (view, index) -> view.setVisibility(visibility));
     }
 
     @Override

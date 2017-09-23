@@ -49,22 +49,21 @@ public class ExplainPermissionRequestDialogFragment extends DialogFragment {
     }
 
     private DialogInterface.OnClickListener onAccepted() {
-        return new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (canSystemDialogStillShowUp()) {
-                    final int requestCode = getArguments().getInt(ARGS_REQUEST_CODE);
-                    final String[] permissions = getArguments().getStringArray(ARGS_PERMISSIONS);
-                    ActivityCompat.requestPermissions(getActivity(), permissions, requestCode);
-                } else {
-                    goToSettings();
-                }
+        return (dialog, which) -> {
+            if (canSystemDialogStillShowUp()) {
+                final int requestCode = getArguments().getInt(ARGS_REQUEST_CODE);
+                final String[] permissions = getArguments().getStringArray(ARGS_PERMISSIONS);
+                //noinspection ConstantConditions
+                ActivityCompat.requestPermissions(getActivity(), permissions, requestCode);
+            } else {
+                goToSettings();
             }
         };
     }
 
     private boolean canSystemDialogStillShowUp() {
         final String[] permissions = getArguments().getStringArray(ARGS_PERMISSIONS);
+        //noinspection ConstantConditions
         return ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), permissions[0]);
     }
 

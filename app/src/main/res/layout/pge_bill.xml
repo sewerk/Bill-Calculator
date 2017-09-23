@@ -69,7 +69,7 @@
                 android:layout_below="@id/tv_for_period"
                 android:layout_marginTop="48dp"
                 android:text="Moc umowna: 4,0 kW"
-                tools:ignore="UnknownIdInLayout"/>
+                tools:ignore="HardcodedText,UnknownIdInLayout"/>
 
             <include
                 layout="@layout/pge_components_table" />

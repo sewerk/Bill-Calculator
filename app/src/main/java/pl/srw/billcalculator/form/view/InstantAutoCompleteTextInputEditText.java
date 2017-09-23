@@ -6,11 +6,9 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.ViewParent;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
-import android.widget.AdapterView;
 import android.widget.Filterable;
 import android.widget.ListAdapter;
 
@@ -68,12 +66,9 @@ public class InstantAutoCompleteTextInputEditText extends AppCompatAutoCompleteT
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextInputLayout textInputLayout = (TextInputLayout) InstantAutoCompleteTextInputEditText.this.getParent().getParent();
-                textInputLayout.setError(null);
-            }
+        setOnItemClickListener((parent, view, position, id) -> {
+            TextInputLayout textInputLayout = (TextInputLayout) InstantAutoCompleteTextInputEditText.this.getParent().getParent();
+            textInputLayout.setError(null);
         });
     }
 }

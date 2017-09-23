@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -20,20 +21,20 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="1. Kliknij na pozycję by edytować i zobaczyć opis.\n\n 2. Poszczególne ceny oraz współczynnik konwersji można odczytać z ostatniej faktury:"
-                />
+                tools:ignore="HardcodedText"/>
 
             <ImageView
                 android:id="@+id/iv_example"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:contentDescription="@string/settings_help_example_content_desc"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="\n3. Wszystkie ceny są cenami netto."
-                />
+                tools:ignore="HardcodedText"/>
         </LinearLayout>
     </ScrollView>
 
@@ -42,6 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:text="OK"/>
+        android:text="OK"
+        tools:ignore="HardcodedText"/>
 
 </LinearLayout>

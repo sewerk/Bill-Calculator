@@ -15,7 +15,7 @@ import pl.srw.billcalculator.util.Display;
 
 public abstract class HistoryItemValueProvider {
 
-    protected final Context context;
+    private final Context context;
 
     HistoryItemValueProvider(Context context) {
         this.context = context;

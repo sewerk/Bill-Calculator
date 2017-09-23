@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 
 import pl.srw.billcalculator.pojo.IPgePrices;
 
+@SuppressWarnings({"FieldCanBeLocal", "WeakerAccess", "unused"})
 @Singleton
 public class PgePrices extends SharedPreferencesEnergyPrices implements IPgePrices {
 
@@ -58,8 +59,7 @@ public class PgePrices extends SharedPreferencesEnergyPrices implements IPgePric
         return dbPrices;
     }
 
-    @Override
-    public void clear() {
+    private void clear() {
         removeTariff();
         removeZaEnergieCzynna();
         removeZaEnergieCzynnaDzien();

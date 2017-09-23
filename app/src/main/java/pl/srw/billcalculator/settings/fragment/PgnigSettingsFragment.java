@@ -2,7 +2,6 @@ package pl.srw.billcalculator.settings.fragment;
 
 import android.app.Dialog;
 import android.preference.EditTextPreference;
-import android.preference.Preference;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
@@ -37,14 +36,11 @@ public class PgnigSettingsFragment extends ProviderSettingsFragment {
     private void setWspKonwersjiDescription() {
         EditTextPreference wspKonwersjiPreference = (EditTextPreference) findPreference(getString(R.string.preferences_pgnig_wsp_konwersji));
         wspKonwersjiPreference.setDialogMessage(Html.fromHtml(getString(R.string.wsp_konwersji_desc)));
-        wspKonwersjiPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                Dialog dialog = ((EditTextPreference) preference).getDialog();
-                TextView tvDesc = (TextView) dialog.findViewById(android.R.id.message);
-                tvDesc.setMovementMethod(LinkMovementMethod.getInstance());
-                return false;
-            }
+        wspKonwersjiPreference.setOnPreferenceClickListener(preference -> {
+            Dialog dialog = ((EditTextPreference) preference).getDialog();
+            TextView tvDesc = (TextView) dialog.findViewById(android.R.id.message);
+            tvDesc.setMovementMethod(LinkMovementMethod.getInstance());
+            return false;
         });
     }
 

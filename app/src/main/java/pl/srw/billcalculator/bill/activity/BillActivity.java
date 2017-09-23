@@ -46,7 +46,7 @@ abstract class BillActivity<P extends Prices, PP extends P, T extends MvpCompone
         implements BillPresenter.BillView {
 
     public static final String MIME_APPLICATION_PDF = "application/pdf";
-    public static final String MIME_IMAGE = "image/*";
+    private static final String MIME_IMAGE = "image/*";
 
     private static final String FILE_PROVIDER_AUTHORITY = BuildConfig.APPLICATION_ID + ".fileprovider";
     private static final int PERMISSION_REQUEST_CODE = 101;
@@ -115,12 +115,7 @@ abstract class BillActivity<P extends Prices, PP extends P, T extends MvpCompone
             printMenuItem.setEnabled(false);
             printMenuItem.setActionView(new ProgressBar(this));
         } else {
-            menuChange = new Runnable() {
-                @Override
-                public void run() {
-                    setPrintInProgressIcon();
-                }
-            };
+            menuChange = this::setPrintInProgressIcon;
         }
     }
 
@@ -206,6 +201,7 @@ abstract class BillActivity<P extends Prices, PP extends P, T extends MvpCompone
 
     private P getPricesFromIntentOr(PP prefsPrices) {
         if (isNewBill()) return prefsPrices;
-        else return (P) getIntent().getSerializableExtra(IntentCreator.PRICES);
+        else //noinspection unchecked
+            return (P) getIntent().getSerializableExtra(IntentCreator.PRICES);
     }
 }

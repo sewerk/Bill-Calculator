@@ -24,7 +24,7 @@ import pl.srw.billcalculator.wrapper.Analytics;
 @Singleton
 public class Printer {
 
-    private Set<String> inProgressFiles;
+    private final Set<String> inProgressFiles;
     private Listener listener;
 
     @Inject
@@ -36,7 +36,7 @@ public class Printer {
         this.listener = listener;
     }
 
-    public void unregister(Listener listener) {
+    public void unregister() {
         this.listener = null;
     }
 

@@ -10,7 +10,6 @@ import pl.srw.billcalculator.db.TauronG11Bill;
 import pl.srw.billcalculator.db.TauronG12Bill;
 import pl.srw.billcalculator.db.TauronPrices;
 import pl.srw.billcalculator.persistence.Database;
-import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.wrapper.Dependencies;
 
@@ -27,11 +26,6 @@ public class TauronBillStoringService extends BillStoringService<TauronPrices, C
     public void onCreate() {
         super.onCreate();
         Dependencies.inject(this);
-    }
-
-    @Override
-    protected Provider getProvider() {
-        return Provider.TAURON;
     }
 
     @Override

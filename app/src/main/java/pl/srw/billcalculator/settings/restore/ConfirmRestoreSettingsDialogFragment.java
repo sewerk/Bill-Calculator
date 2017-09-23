@@ -3,6 +3,7 @@ package pl.srw.billcalculator.settings.restore;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 
 import javax.inject.Inject;
@@ -38,6 +39,7 @@ public class ConfirmRestoreSettingsDialogFragment extends MvpFragment
         attachPresenter(presenter);
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -61,12 +63,7 @@ public class ConfirmRestoreSettingsDialogFragment extends MvpFragment
     }
 
     private DialogInterface.OnClickListener onPositiveButton() {
-        return new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                presenter.onConfirmedClicked();
-            }
-        };
+        return (dialog, which) -> presenter.onConfirmedClicked();
     }
 
 }

@@ -124,7 +124,7 @@ public class PrinterTest extends RxJavaBaseTest {
         // GIVEN
         Printer.Listener listener = mock(Printer.Listener.class);
         sut.register(listener);
-        sut.unregister(listener);
+        sut.unregister();
 
         // WHEN
         sut.printToPdf(view, file);

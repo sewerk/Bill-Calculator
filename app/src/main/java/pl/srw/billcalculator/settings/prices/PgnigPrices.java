@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 
 import pl.srw.billcalculator.pojo.IPgnigPrices;
 
+@SuppressWarnings({"FieldCanBeLocal", "WeakerAccess", "unused"})
 @Singleton
 public class PgnigPrices extends SharedPreferencesPrices implements IPgnigPrices {
     private static final String ABONAMENTOWA = "abonamentowa";
@@ -36,8 +37,7 @@ public class PgnigPrices extends SharedPreferencesPrices implements IPgnigPrices
         return dbPrices;
     }
 
-    @Override
-    public void clear() {
+    private void clear() {
         removeOplataAbonamentowa();
         removeDystrybucyjnaStala();
         removeDystrybucyjnaZmienna();

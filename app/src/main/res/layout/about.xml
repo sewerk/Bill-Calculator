@@ -33,7 +33,7 @@
             android:gravity="center"
             android:drawableLeft="@mipmap/ic_launcher"
             android:drawablePadding="@dimen/small_padding"
-            android:contentDescription="Application logo"
+            android:contentDescription="@string/about_logo_content_desc"
             android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/app_name"/>
@@ -114,6 +114,8 @@
             android:layout_below="@id/tv_ver"
             android:layout_marginTop="@dimen/padding"
             android:layout_alignParentRight="true"
-            android:text="OK" />
+            android:layout_alignParentEnd="true"
+            android:text="OK"
+            tools:ignore="HardcodedText"/>
     </RelativeLayout>
 </ScrollView>

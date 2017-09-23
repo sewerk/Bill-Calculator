@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 
 import pl.srw.billcalculator.pojo.ITauronPrices;
 
+@SuppressWarnings({"FieldCanBeLocal", "WeakerAccess", "unused"})
 @Singleton
 public class TauronPrices extends SharedPreferencesEnergyPrices implements ITauronPrices {
 
@@ -56,8 +57,7 @@ public class TauronPrices extends SharedPreferencesEnergyPrices implements ITaur
         return dbPrices;
     }
 
-    @Override
-    public void clear() {
+    private void clear() {
         removeTariff();
         removeEnergiaElektrycznaCzynna();
         removeOplataDystrybucyjnaZmienna();

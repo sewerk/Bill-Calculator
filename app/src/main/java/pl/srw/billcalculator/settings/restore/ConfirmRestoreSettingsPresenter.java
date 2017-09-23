@@ -13,8 +13,8 @@ import pl.srw.mfvp.di.scope.RetainActivityScope;
 @RetainActivityScope
 public class ConfirmRestoreSettingsPresenter extends MvpPresenter<ConfirmRestoreSettingsPresenter.ConfirmRestoreSettingsView> {
 
+    private final ProviderMapper providerMapper;
     private RestorablePrices prices;
-    private ProviderMapper providerMapper;
 
     @Inject
     public ConfirmRestoreSettingsPresenter(ProviderMapper providerMapper) {

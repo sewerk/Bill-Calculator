@@ -6,6 +6,7 @@
     <string name="reading_missing">Empty!</string>
     <string name="reading_order_error">Usage too low!</string>
     <string name="date_error">Period too short!</string>
+    <string name="activity_drawer_toolbar_image_content_desc">Bills to pay</string>
 
     <!-- drawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -24,6 +25,7 @@
     <string name="main_help_swipe_delete_desc">Swipe bill to delete</string>
     <string name="main_help_menu_desc">Menu</string>
     <string name="main_help_options_desc">More actions</string>
+    <string name="activity_drawer_help_swipe_delete_content_desc">Finger moving right</string>
 
     <!-- history -->
     <string name="history_label">My bills</string>
@@ -62,7 +64,6 @@
     <string name="dialog_bill_without_oze_title">Information</string>
     <string name="dialog_bill_without_oze_message">Following bill does not include \'opłata OZE\' fee which started to apply from July 2016. It is recommended to re-calculate this bill.</string>
     <string name="dialog_bill_without_oze_positive">OK</string>
-    <string name="dialog_bill_without_oze_cancel">No thanks.</string>
 
     <!-- PGE bill -->
     <string name="pge_bill_logo_content_desc" translatable="false">PGE logo</string>
@@ -137,10 +138,10 @@
     <string name="wspolczynnik_konwersji" translatable="false">Współczynnik konwersji</string>
 
     <string name="mc" translatable="false">mc</string>
-    <string name="m3" translatable="false">m\u00B3</string>
 
     <!-- Preferences -->
     <string name="settings_label">Settings</string>
+    <string name="settings_list_item_logo_content_desc">provider icon</string>
     <string name="action_help">Help</string>
     <string name="action_restore">Restore default</string>
 
@@ -159,6 +160,7 @@
         <item>Taryfa całodobowa (G11)</item>
         <item>Taryfa dwustrefowa (G12)</item>
     </string-array>
+    <string name="settings_help_example_content_desc">Where to look at bill example</string>
 
     <!-- PGE settings -->
     <string name="settings_pge" translatable="false">PGE</string>
@@ -202,5 +204,6 @@
     <string name="link_gplus">or join early version testing</string>
     <string name="clause">The names, logos and trade marks are owned by distribution companies. Given calculations are just approximate value of the bill and cannot be used as ground for financial claiming.</string>
     <string name="email_client_missing">I could not find any e-mail client installed</string>
+    <string name="about_logo_content_desc">Application logo</string>
 
 </resources>
