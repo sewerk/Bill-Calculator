@@ -12,4 +12,15 @@
             column="9"/>
     </issue>
 
+    <issue
+        id="NewerVersionAvailable"
+        message="A newer version of com.jakewharton.timber:timber than 4.1.0 is available: 4.5.1"
+        errorLine1="    compile &quot;com.jakewharton.timber:timber:$timberVer&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="31"
+            column="5"/>
+    </issue>
+
 </issues>
