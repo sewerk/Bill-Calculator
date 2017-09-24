@@ -45,7 +45,9 @@ android {
     }
 
     lintOptions {
-        warning 'InvalidPackage'
+        baseline file('app-lint-baseline.xml')
+        checkAllWarnings true
+        warningsAsErrors true
     }
 
     compileOptions {

@@ -10,7 +10,6 @@
         android:layout_below="@id/tv_for_period">
 
         <include
-            android:id="@+id/t_header"
             layout="@layout/tauron_components_table_header" />
 
         <TableRow

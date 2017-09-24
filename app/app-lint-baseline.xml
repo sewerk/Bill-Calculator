@@ -1,0 +1,1321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="4" by="lint 3.0.0-beta2">
+
+    <issue
+        id="InvalidPackage"
+        message="Invalid package reference in library; not included in Android: `javax.management`. Referenced from `com.itextpdf.testutils.ITextTest`.">
+        <location
+            file="libs\itextg-5.5.4.jar"/>
+    </issue>
+
+    <issue
+        id="OldTargetApi"
+        message="Not targeting the latest versions of Android; compatibility &#xA;modes apply. Consider testing and updating this version. &#xA;Consult the android.os.Build.VERSION_CODES javadoc for details."
+        errorLine1="        targetSdkVersion 25"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="14"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fullBackupOnly` is only used in API level 21 and higher (current min is 15)"
+        errorLine1="        android:fullBackupOnly=&quot;true&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\AndroidManifest.xml"
+            line="12"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fontFamily` is only used in API level 16 and higher (current min is 15)"
+        errorLine1="          android:fontFamily=&quot;sans-serif-medium&quot;"
+        errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\activity_drawer_nav_header.xml"
+            line="10"
+            column="11"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.android.support:design than 25.3.1 is available: 26.1.0"
+        errorLine1="    compile &quot;com.android.support:design:$supportLibVer&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="68"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.android.support:cardview-v7 than 25.3.1 is available: 26.1.0"
+        errorLine1="    compile &quot;com.android.support:cardview-v7:$supportLibVer&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="69"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.crashlytics.sdk.android:crashlytics than 2.6.6 is available: 2.6.8"
+        errorLine1="    compile(&apos;com.crashlytics.sdk.android:crashlytics:2.6.6@aar&apos;) {"
+        errorLine2="    ^">
+        <location
+            file="build.gradle"
+            line="79"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.android.support.test:runner than 0.5 is available: 1.0.1"
+        errorLine1="    androidTestCompile &apos;com.android.support.test:runner:0.5&apos;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="94"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.android.support:design than 25.3.1 is available: 26.1.0"
+        errorLine1="    androidTestCompile &quot;com.android.support:design:$supportLibVer&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="95"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        message="A newer version of com.jakewharton:butterknife than 8.6.0 is available: 8.8.1"
+        errorLine1="    compile &quot;com.jakewharton:butterknife:$butterKnifeVer&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="74"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        message="A newer version of com.jakewharton.threetenabp:threetenabp than 1.0.3 is available: 1.0.5"
+        errorLine1="    compile &apos;com.jakewharton.threetenabp:threetenabp:1.0.3&apos;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="75"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        message="A newer version of io.reactivex.rxjava2:rxjava than 2.0.4 is available: 2.1.4"
+        errorLine1="    compile &apos;io.reactivex.rxjava2:rxjava:2.0.4&apos;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="76"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        message="A newer version of com.nhaarman:mockito-kotlin than 1.1.0 is available: 1.5.0"
+        errorLine1="    testCompile &apos;com.nhaarman:mockito-kotlin:1.1.0&apos;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="86"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        message="A newer version of pl.pragmatists:JUnitParams than 1.0.4 is available: 1.1.0"
+        errorLine1="    testCompile &apos;pl.pragmatists:JUnitParams:1.0.4&apos;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="88"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        message="A newer version of org.threeten:threetenbp than 1.3.1 is available: 1.3.6"
+        errorLine1="    testCompile &apos;org.threeten:threetenbp:1.3.1&apos;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="89"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        message="A newer version of com.squareup.leakcanary:leakcanary-android than 1.5 is available: 1.5.4"
+        errorLine1="    debugCompile &quot;com.squareup.leakcanary:leakcanary-android:$leakcanaryVer&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        includedVariants="debug"
+        excludedVariants="release">
+        <location
+            file="build.gradle"
+            line="97"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        message="A newer version of com.squareup.leakcanary:leakcanary-android-no-op than 1.5 is available: 1.5.4"
+        errorLine1="    releaseCompile &quot;com.squareup.leakcanary:leakcanary-android-no-op:$leakcanaryVer&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        includedVariants="release"
+        excludedVariants="debug">
+        <location
+            file="build.gradle"
+            line="98"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        message="A newer version of com.squareup.leakcanary:leakcanary-android-no-op than 1.5 is available: 1.5.4"
+        errorLine1="    testCompile &quot;com.squareup.leakcanary:leakcanary-android-no-op:$leakcanaryVer&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        includedVariants="release"
+        excludedVariants="debug">
+        <location
+            file="build.gradle"
+            line="99"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="VectorPath"
+        message="Very long vector path (2052 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector."
+        errorLine1="        android:pathData=&quot;M78.86,54.44c-0.6,-2.01 -1.79,-2.7 -2.08,-2.85c0.02,-0.09 0.04,-0.19 0.06,-0.32c0.02,-0.19 0.05,-0.39 0.08,-0.59c0.1,-0.45 0.21,-1.04 0.31,-1.7c0.01,-0.03 0.01,-0.05 0.01,-0.05s-0,0.01 -0,0.01c0.24,-1.62 0.37,-3.65 -0.13,-5.07c-0.94,-2.66 -3.69,-2.85 -3.81,-2.86c0.12,-0.63 0.13,-1.08 0.1,-1.35c0.06,-1.04 0.08,-2.59 -0.12,-4.37c-0.18,-1.66 -2.41,-2.94 -4.77,-3.81c-4.2,-1.05 -7.63,1.91 -7.63,1.91s4.09,-5.98 5.77,-9l0.09,-0.08l-0.05,0.07l5.91,-5.15l8.21,-7.12L66.61,0L65.66,6.68c-0.04,0.02 -14.08,-0.3 -24.62,2.19C28.52,11.84 18.08,15.81 18.14,16.1c0.04,0.19 12.08,-2.57 26.46,-2.32c6.58,0.11 12.73,1.24 16.79,2.2l-0.07,0.08c0,0 0.17,0.16 0.39,-0.01c0.01,0 0.02,0 0.02,0c-0.82,1.04 -1.61,2.07 -2.26,3c-2.22,3.14 -10.29,13.53 -12.08,15.24c-2.51,2.41 -3.03,4.03 -5.18,8.04c-1.78,3.32 -3.7,5.79 -4.88,7.35c-0.63,0.83 -1.16,1.88 -1.16,1.88s-0.56,-0.78 -1.02,-1.02c-0.53,-0.27 -1.91,0 -1.91,0c0.15,-0.75 0.75,-0.32 1.23,-1.94c0.46,-1.57 -0.38,-2.17 -0.28,-2.83c-0.01,0.12 1.61,-0.35 2.82,-2.35c0.93,-1.54 2.15,-2.97 2.4,-4.41c0.23,-1.33 0.23,-2.64 0.1,-3.29c-0.44,-2.25 -1.45,-3.14 -2.7,-3.09c-2.19,0.1 -4.12,3.89 -4.42,3.99c-0.3,0.1 -1.08,0.77 -1.08,0.77s-2.33,0.37 -5.03,2.48c-0.85,0.66 -1.63,4.23 -2.5,7.47c-1.05,3.89 -2.96,7.42 -2.6,9.94c0.23,1.59 2.09,9.11 4.48,14.49c2.8,6.3 6.15,10.58 7.08,12.36c1.73,3.31 2.14,7.56 3.36,10.27c3.61,8.05 31.99,3.2 32.43,1.91c0.44,-1.29 0.98,-1.21 0.5,-1.88c-0.35,-0.49 0.14,-1.03 0.38,-2.68c0.1,-0.63 -0.25,-1.89 -0.09,-2.68c0.44,-2.16 6.8,-14.3 9.64,-20.88c0.94,-2.18 0.88,-3.89 0.9,-4.25c0.08,-1.42 0.04,-0.16 -0.24,-2.17C79.47,60.77 79.55,56.74 78.86,54.44zM70.97,6.98c2.9,0.1 5.15,2.54 5.05,5.43c-0.05,1.35 -0.62,2.56 -1.5,3.46c-0.2,0.16 -0.66,0.53 -1.15,0.9c-0.46,0.26 -0.96,0.46 -1.5,0.57c1.02,-1.37 1.63,-2.01 2.24,-3.67c0.44,-1.23 0.57,-2.01 0.2,-2.73c-1.35,-2.58 -3.21,-3.5 -6.36,-1.65c-0.47,0.28 -1.32,1.1 -2.35,2.2c0.01,-0.06 0.01,-0.13 0.03,-0.19c0.04,-0.15 0.09,-0.37 0.14,-0.6C66.46,8.48 68.54,6.89 70.97,6.98zM65.76,10.77c-0.04,0.2 -0.09,0.41 -0.09,0.41l-0.02,0.02C65.69,11.06 65.72,10.91 65.76,10.77z&quot; />"
+        errorLine2="                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\drawable\finger_moving_right.xml"
+            line="8"
+            column="27"/>
+    </issue>
+
+    <issue
+        id="VectorPath"
+        message="Very long vector path (871 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector."
+        errorLine1="        android:pathData=&quot;M19.43,12.98c0.04,-0.32 0.07,-0.64 0.07,-0.98s-0.03,-0.66 -0.07,-0.98l2.11,-1.65c0.19,-0.15 0.24,-0.42 0.12,-0.64l-2,-3.46c-0.12,-0.22 -0.39,-0.3 -0.61,-0.22l-2.49,1c-0.52,-0.4 -1.08,-0.73 -1.69,-0.98l-0.38,-2.65C14.46,2.18 14.25,2 14,2h-4c-0.25,0 -0.46,0.18 -0.49,0.42l-0.38,2.65c-0.61,0.25 -1.17,0.59 -1.69,0.98l-2.49,-1c-0.23,-0.09 -0.49,0 -0.61,0.22l-2,3.46c-0.13,0.22 -0.07,0.49 0.12,0.64l2.11,1.65c-0.04,0.32 -0.07,0.65 -0.07,0.98s0.03,0.66 0.07,0.98l-2.11,1.65c-0.19,0.15 -0.24,0.42 -0.12,0.64l2,3.46c0.12,0.22 0.39,0.3 0.61,0.22l2.49,-1c0.52,0.4 1.08,0.73 1.69,0.98l0.38,2.65c0.03,0.24 0.24,0.42 0.49,0.42h4c0.25,0 0.46,-0.18 0.49,-0.42l0.38,-2.65c0.61,-0.25 1.17,-0.59 1.69,-0.98l2.49,1c0.23,0.09 0.49,0 0.61,-0.22l2,-3.46c0.12,-0.22 0.07,-0.49 -0.12,-0.64l-2.11,-1.65zM12,15.5c-1.93,0 -3.5,-1.57 -3.5,-3.5s1.57,-3.5 3.5,-3.5 3.5,1.57 3.5,3.5 -1.57,3.5 -3.5,3.5z&quot;/>"
+        errorLine2="                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\drawable\ic_settings_black_24dp.xml"
+            line="8"
+            column="27"/>
+    </issue>
+
+    <issue
+        id="MergeRootFrame"
+        message="This `&lt;FrameLayout>` can be replaced with a `&lt;merge>` tag"
+        errorLine1="&lt;FrameLayout"
+        errorLine2="^">
+        <location
+            file="src\main\res\layout\activity_drawer_history.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="MergeRootFrame"
+        message="This `&lt;FrameLayout>` can be replaced with a `&lt;merge>` tag"
+        errorLine1="&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src\main\res\layout\settings_provider.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@drawable/drawer_header_bg` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
+        errorLine1="          android:background=&quot;@drawable/drawer_header_bg&quot; />"
+        errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\activity_drawer_nav_header.xml"
+            line="14"
+            column="11"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/white` with a theme that also paints a background (inferred theme is `@style/AppTheme_Pge`)"
+        errorLine1="    android:background=&quot;@color/white&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\pge_bill.xml"
+            line="9"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/white` with a theme that also paints a background (inferred theme is `@style/AppTheme_Pgnig`)"
+        errorLine1="    android:background=&quot;@color/white&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\pgnig_bill.xml"
+            line="8"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/white` with a theme that also paints a background (inferred theme is `@style/AppTheme_Tauron`)"
+        errorLine1="    android:background=&quot;@color/white&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\tauron_bill.xml"
+            line="9"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.primaryTransparent` appears to be unused"
+        errorLine1="    &lt;color name=&quot;primaryTransparent&quot;>#80F44336&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\colors.xml"
+            line="6"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.pink` appears to be unused"
+        errorLine1="    &lt;color name=&quot;pink&quot;>#e91e63&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\colors.xml"
+            line="27"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.teal` appears to be unused"
+        errorLine1="    &lt;color name=&quot;teal&quot;>#009688&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\colors.xml"
+            line="28"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.green` appears to be unused"
+        errorLine1="    &lt;color name=&quot;green&quot;>#4caf50&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\colors.xml"
+            line="29"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.orange` appears to be unused"
+        errorLine1="    &lt;color name=&quot;orange&quot;>#ff9800&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\colors.xml"
+            line="31"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.deep_orange` appears to be unused"
+        errorLine1="    &lt;color name=&quot;deep_orange&quot;>#ff5722&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\colors.xml"
+            line="32"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.dialog_new_ui` appears to be unused"
+        errorLine1="&lt;android.support.constraint.ConstraintLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src\main\res\layout\dialog_new_ui.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.dimen.activity_vertical_margin` appears to be unused"
+        errorLine1="    &lt;dimen name=&quot;activity_vertical_margin&quot;>16dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\dimens.xml"
+            line="3"
+            column="12"/>
+        <location
+            file="src\main\res\values-sw600dp\dimens.xml"
+            line="8"
+            column="12"/>
+        <location
+            file="src\main\res\values-sw720dp-land\dimens.xml"
+            line="8"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.new_ui_border` appears to be unused"
+        errorLine1="&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src\main\res\drawable\new_ui_border.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.new_ui_header` appears to be unused"
+        errorLine1="    &lt;string name=&quot;new_ui_header&quot;>New version 2.0&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="21"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="18"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.new_ui_content` appears to be unused"
+        errorLine1="    &lt;string name=&quot;new_ui_content&quot;>Application has been updated with new look.\nSee 4 short tips now.\nIf something is not clear, let me know\n(menu: About > e-mail).&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="22"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="19"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.new_ui_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;new_ui_button&quot;>Start&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="23"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="20"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.main_help_fab_desc` appears to be unused"
+        errorLine1="    &lt;string name=&quot;main_help_fab_desc&quot;>Calculate bill&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="24"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="21"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.main_help_swipe_delete_desc` appears to be unused"
+        errorLine1="    &lt;string name=&quot;main_help_swipe_delete_desc&quot;>Swipe bill to delete&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="25"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="24"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.main_help_menu_desc` appears to be unused"
+        errorLine1="    &lt;string name=&quot;main_help_menu_desc&quot;>Menu&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="26"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="22"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.main_help_options_desc` appears to be unused"
+        errorLine1="    &lt;string name=&quot;main_help_options_desc&quot;>More actions&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="27"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="23"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.print_failed` appears to be unused"
+        errorLine1="    &lt;string name=&quot;print_failed&quot;>Saving to PDF failed&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="55"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="46"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.error_permission_storage_missing` appears to be unused"
+        errorLine1="    &lt;string name=&quot;error_permission_storage_missing&quot;>Missing Storage permission&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="57"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="48"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.fabs_dim_view` appears to be unused"
+        errorLine1="        android:id=&quot;@+id/fabs_dim_view&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\activity_drawer_content_fabs.xml"
+            line="8"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.swipe_delete_history_icon` appears to be unused"
+        errorLine1="        android:id=&quot;@+id/swipe_delete_history_icon&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\activity_drawer_history.xml"
+            line="28"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.app_bar` appears to be unused"
+        errorLine1="    android:id=&quot;@+id/app_bar&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\activity_drawer_toolbar.xml"
+            line="6"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.new_ui_header` appears to be unused"
+        errorLine1="        android:id=&quot;@+id/new_ui_header&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\dialog_new_ui.xml"
+            line="10"
+            column="9"/>
+        <location
+            file="src\main\res\layout\dialog_new_ui.xml"
+            line="36"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.new_ui_content` appears to be unused"
+        errorLine1="        android:id=&quot;@+id/new_ui_content&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\dialog_new_ui.xml"
+            line="27"
+            column="9"/>
+        <location
+            file="src\main\res\layout\dialog_new_ui.xml"
+            line="51"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.new_ui_ok` appears to be unused"
+        errorLine1="        android:id=&quot;@+id/new_ui_ok&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\dialog_new_ui.xml"
+            line="39"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.action_generate` appears to be unused"
+        errorLine1="        android:id=&quot;@+id/action_generate&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        includedVariants="debug"
+        excludedVariants="release">
+        <location
+            file="src\debug\res\menu\drawer_activity.xml"
+            line="19"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.form` appears to be unused"
+        errorLine1="             android:id=&quot;@+id/form&quot;"
+        errorLine2="             ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\form.xml"
+            line="5"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="IconMissingDensityFolder"
+        message="Missing density variation folders in `src\\main\\res`: drawable-hdpi, drawable-mdpi, drawable-xxhdpi">
+        <location
+            file="src\main\res"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\activity_drawer_history_item.xml"
+            line="13"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\activity_drawer_history_item.xml"
+            line="49"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\activity_drawer_history_item.xml"
+            line="60"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\activity_drawer_history_item.xml"
+            line="70"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="            &lt;TextView"
+        errorLine2="            ^">
+        <location
+            file="src\main\res\layout\form.xml"
+            line="52"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="&lt;TextView xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src\main\res\layout\form_autocomplete_item.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\form_dates.xml"
+            line="38"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\form_dates.xml"
+            line="63"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\form_readings_double.xml"
+            line="35"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\form_readings_double.xml"
+            line="99"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\form_readings_single.xml"
+            line="33"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\form_readings_single.xml"
+            line="56"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\pge_components_table_row.xml"
+            line="44"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\pge_components_table_row.xml"
+            line="54"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\pge_components_table_row.xml"
+            line="64"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\pge_components_table_row.xml"
+            line="74"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\pge_components_table_row.xml"
+            line="84"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\pge_components_table_row.xml"
+            line="94"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\pge_components_table_sum.xml"
+            line="21"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="            &lt;TextView"
+        errorLine2="            ^">
+        <location
+            file="src\main\res\layout\pge_sum_table.xml"
+            line="72"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="            &lt;TextView"
+        errorLine2="            ^">
+        <location
+            file="src\main\res\layout\pge_sum_table.xml"
+            line="93"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="            &lt;TextView"
+        errorLine2="            ^">
+        <location
+            file="src\main\res\layout\pge_sum_table.xml"
+            line="104"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\pgnig_components_table_row.xml"
+            line="15"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\pgnig_components_table_row.xml"
+            line="24"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\pgnig_components_table_row.xml"
+            line="33"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\pgnig_components_table_row.xml"
+            line="49"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\pgnig_components_table_row.xml"
+            line="88"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\pgnig_components_table_sum.xml"
+            line="109"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\pgnig_components_table_sum.xml"
+            line="121"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\pgnig_components_table_sum.xml"
+            line="134"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="            &lt;TextView"
+        errorLine2="            ^">
+        <location
+            file="src\main\res\layout\pgnig_reading_table.xml"
+            line="40"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="            &lt;TextView"
+        errorLine2="            ^">
+        <location
+            file="src\main\res\layout\pgnig_reading_table.xml"
+            line="85"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="            &lt;TextView"
+        errorLine2="            ^">
+        <location
+            file="src\main\res\layout\pgnig_sum_table.xml"
+            line="70"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="            &lt;TextView"
+        errorLine2="            ^">
+        <location
+            file="src\main\res\layout\pgnig_sum_table.xml"
+            line="80"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="            &lt;TextView"
+        errorLine2="            ^">
+        <location
+            file="src\main\res\layout\pgnig_sum_table.xml"
+            line="90"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\settings_list_item.xml"
+            line="25"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\settings_list_item.xml"
+            line="39"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_row.xml"
+            line="18"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_row.xml"
+            line="27"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_row.xml"
+            line="37"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_row.xml"
+            line="48"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_row.xml"
+            line="58"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_row.xml"
+            line="69"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_row.xml"
+            line="79"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_row.xml"
+            line="89"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="    &lt;TextView"
+        errorLine2="    ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_row.xml"
+            line="99"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_sum.xml"
+            line="20"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_sum.xml"
+            line="32"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_sum.xml"
+            line="82"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_sum_details.xml"
+            line="64"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_sum_details.xml"
+            line="75"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_sum_details.xml"
+            line="85"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_sum_details.xml"
+            line="106"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_sum_details.xml"
+            line="117"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_sum_details.xml"
+            line="127"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_sum_details.xml"
+            line="150"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_sum_details.xml"
+            line="162"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SelectableText"
+        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
+        errorLine1="        &lt;TextView"
+        errorLine2="        ^">
+        <location
+            file="src\main\res\layout\tauron_components_table_sum_details.xml"
+            line="173"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="GoogleAppIndexingWarning"
+        message="App is not indexable by Google Search; consider adding at least one Activity with an ACTION-VIEW intent filter. See issue explanation for more details."
+        errorLine1="    &lt;application"
+        errorLine2="    ^">
+        <location
+            file="src\main\AndroidManifest.xml"
+            line="8"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="NegativeMargin"
+        message="Margin values should not be negative"
+        errorLine1="        android:layout_marginStart=&quot;@dimen/form_close_fab_margin_left&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\form_fabs.xml"
+            line="13"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NegativeMargin"
+        message="Margin values should not be negative"
+        errorLine1="        android:layout_marginTop=&quot;@dimen/form_close_fab_margin_top&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\form_fabs.xml"
+            line="14"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NegativeMargin"
+        message="Margin values should not be negative"
+        errorLine1="        android:layout_marginBottom=&quot;@dimen/form_calculate_button_margin_bottom&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\form_fabs.xml"
+            line="24"
+            column="9"/>
+    </issue>
+
+</issues>

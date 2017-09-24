@@ -9,7 +9,6 @@
         android:background="@drawable/border" >
 
         <include
-            android:id="@+id/t_header"
             layout="@layout/pgnig_components_table_header" />
 
 

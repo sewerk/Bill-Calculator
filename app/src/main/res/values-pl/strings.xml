@@ -22,7 +22,7 @@
     <string name="main_help_menu_desc">Menu</string>
     <string name="main_help_options_desc">Więcej opcji</string>
     <string name="main_help_swipe_delete_desc">Przeciągnij rachunek w bok aby usunąć</string>
-    <string name="activity_drawer_help_swipe_delete_content_desc">Palec przsywa się w prawo</string>
+    <string name="activity_drawer_help_swipe_delete_content_desc">Palec przesywa się w prawo</string>
     <!-- history -->
     <string name="history_label">Moje rachunki</string>
     <string name="action_delete">Usuń</string>
@@ -61,7 +61,7 @@
     <string name="gas_bill">Rachunek za gaz</string>
     <!-- Preferences -->
     <string name="settings_label">Ustawienia</string>
-    <string name="settings_list_item_logo_content_desc">Icon dystrybutora</string>
+    <string name="settings_list_item_logo_content_desc">Logo dystrybutora</string>
     <string name="action_help">Pomoc</string>
     <string name="settings_help_example_content_desc">Przykład gdzie szukać wartości</string>
     <string name="settings_pge_summary">Ustaw taryfę i ceny za energię</string>

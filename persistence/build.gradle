@@ -16,6 +16,12 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/java-gen'
     }
+
+    lintOptions {
+        baseline file('persistence-lint-baseline.xml')
+        checkAllWarnings true
+        warningsAsErrors true
+    }
 }
 
 dependencies {

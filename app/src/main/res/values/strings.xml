@@ -62,7 +62,7 @@
     <string name="rationale_dialog_goto_settings">Go to Settings</string>
     <string name="rationale_dialog_cancel">Cancel</string>
     <string name="dialog_bill_without_oze_title">Information</string>
-    <string name="dialog_bill_without_oze_message">Following bill does not include \'opłata OZE\' fee which started to apply from July 2016. It is recommended to re-calculate this bill.</string>
+    <string name="dialog_bill_without_oze_message">Following bill does not include \&#8216;opłata OZE\&#8216; fee which started to apply from July 2016. It is recommended to re-calculate this bill.</string>
     <string name="dialog_bill_without_oze_positive">OK</string>
 
     <!-- PGE bill -->
