@@ -46,6 +46,7 @@ android {
 
     lintOptions {
         baseline file('app-lint-baseline.xml')
+        disable 'NewerVersionAvailable', 'GradleDependency'
         checkAllWarnings true
         warningsAsErrors true
     }
