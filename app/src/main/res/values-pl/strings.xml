@@ -2,6 +2,7 @@
 <resources>
     <!-- Drawer activity -->
     <string name="app_name">Kalkulator rachunków</string>
+    <string name="app_name_short">Kalk. rachunków</string>
     <string name="reading_missing">Puste!</string>
     <string name="reading_order_error">Za małe zużycie!</string>
     <string name="date_error">Nieprawidłowy okres!</string>

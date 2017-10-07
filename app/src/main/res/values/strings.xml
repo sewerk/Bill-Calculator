@@ -3,6 +3,7 @@
 
     <!-- Drawer activity -->
     <string name="app_name">Bill Calculator</string>
+    <string name="app_name_short">Bill Calculator</string>
     <string name="reading_missing">Empty!</string>
     <string name="reading_order_error">Usage too low!</string>
     <string name="date_error">Period too short!</string>
