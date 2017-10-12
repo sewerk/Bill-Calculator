@@ -62,7 +62,7 @@
             android:layout_marginTop="@dimen/padding"
             android:layout_alignLeft="@+id/tv_link_g_plus"
             android:gravity="center"
-            android:drawableLeft="@drawable/ic_gmail"
+            android:drawableLeft="@drawable/ic_mail_outline_black_32dp"
             android:drawablePadding="@dimen/small_padding"
             android:text="@string/emailme" />
 
@@ -75,7 +75,7 @@
             android:layout_marginBottom="@dimen/double_padding"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:drawableLeft="@drawable/ic_gplus"
+            android:drawableLeft="@drawable/ic_forum_black_32dp"
             android:drawablePadding="@dimen/small_padding"
             android:text="@string/link_gplus"/>
 
