@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<issues format="4" by="lint 3.0.0-beta2">
+<issues format="4" by="lint 3.0.0-beta7">
+
+    <issue
+        id="ObsoleteLintCustomCheck"
+        message="Lint found one or more custom checks using its older Java API; these checks are still run in compatibility mode, but this causes duplicated parsing, and in the next version lint will no longer include this legacy mode. Make sure the following lint detectors are upgraded to the new API: butterknife.lint.InvalidR2UsageDetector, timber.lint.WrongTimberUsageDetector">
+        <location
+            file="persistence"/>
+    </issue>
 
     <issue
         id="OldTargetApi"
