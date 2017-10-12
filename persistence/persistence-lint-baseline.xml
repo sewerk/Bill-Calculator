@@ -3,7 +3,14 @@
 
     <issue
         id="ObsoleteLintCustomCheck"
-        message="Lint found one or more custom checks using its older Java API; these checks are still run in compatibility mode, but this causes duplicated parsing, and in the next version lint will no longer include this legacy mode. Make sure the following lint detectors are upgraded to the new API: butterknife.lint.InvalidR2UsageDetector, timber.lint.WrongTimberUsageDetector">
+        message="Lint found one or more custom checks using its older Java API; these checks are still run in compatibility mode, but this causes duplicated parsing, and in the next version lint will no longer include this legacy mode. Make sure the following lint detectors are upgraded to the new API: butterknife.lint.InvalidR2UsageDetector">
+        <location
+            file="persistence"/>
+    </issue>
+
+    <issue
+        id="ObsoleteLintCustomCheck"
+        message="Lint found one or more custom checks using its older Java API; these checks are still run in compatibility mode, but this causes duplicated parsing, and in the next version lint will no longer include this legacy mode. Make sure the following lint detectors are upgraded to the new API: timber.lint.WrongTimberUsageDetector">
         <location
             file="persistence"/>
     </issue>
