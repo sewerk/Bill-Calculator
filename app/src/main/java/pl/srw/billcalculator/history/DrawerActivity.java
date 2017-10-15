@@ -58,7 +58,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @BindInt(R.integer.cardAmount) int cardAmount;
 
     @Inject HistoryPresenter presenter;
-//TODO    @Inject DrawerPresenter drawerPresenter;
+//FIXME    @Inject DrawerPresenter drawerPresenter;
     @Inject FabsMenuViewHandler fabsMenuHandler;
     @Inject HelpHandler helpHandler;
     @Inject BillSelection selection;
@@ -237,7 +237,6 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Override
     public void onItemRemoveFromList(int position) {
         adapter.notifyItemRemoved(position);
-        //TODO: animate swipe-delete
     }
 
     @Override

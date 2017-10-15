@@ -11,7 +11,6 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.never
-import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import pl.srw.billcalculator.bill.SavedBillsRegistry
 import pl.srw.billcalculator.db.Bill
@@ -710,14 +709,15 @@ class HistoryPresenterTest {
     fun deleteClicked_deletesSelectedBills() {
         // GIVEN
         val bill: PgeG11Bill = mock()
-        whenever(selection.getItems()).thenReturn(Arrays.asList<Bill>(bill, bill))
+        val bills = Arrays.asList<Bill>(bill, bill)
+        whenever(selection.getItems()).thenReturn(bills)
         whenever(selection.getPositionsReverseOrder()).thenReturn(intArrayOf(3, 2))
 
         // WHEN
         sut.deleteClicked()
 
         // THEN
-        verify(history, times(2)).deleteBillWithPrices(bill)
+        verify(history).deleteBillsWithPrices(bills)
     }
 
     @Test
