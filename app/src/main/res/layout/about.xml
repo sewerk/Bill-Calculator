@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="none"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
+            android:scrollbars="none"
             tools:context=".AboutActivity">
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
 
         <TextView
@@ -18,104 +19,117 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding"
-            android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="@string/description"/>
+            android:text="@string/description"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/tv_app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_about"
             android:layout_marginTop="@dimen/padding"
-            android:layout_marginBottom="@dimen/double_padding"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
+            android:contentDescription="@string/about_logo_content_desc"
             android:drawableLeft="@mipmap/ic_launcher"
             android:drawablePadding="@dimen/small_padding"
-            android:contentDescription="@string/about_logo_content_desc"
-            android:textStyle="bold"
+            android:drawableStart="@mipmap/ic_launcher"
+            android:gravity="center"
+            android:text="@string/app_name"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/app_name"/>
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_about"/>
 
         <View
+            android:id="@+id/first_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/tv_app_name"
-            android:background="@color/gray_light" />
+            android:layout_marginTop="@dimen/double_padding"
+            android:background="@color/gray_light"
+            app:layout_constraintTop_toBottomOf="@id/tv_app_name"/>
 
         <TextView
             android:id="@+id/tv_links"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_app_name"
             android:layout_marginTop="@dimen/double_padding"
-            android:layout_alignLeft="@+id/tv_link_g_plus"
             android:gravity="center"
-            android:text="@string/contact_header" />
+            android:text="@string/contact_header"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_link_g_plus"
+            app:layout_constraintTop_toBottomOf="@id/first_line"/>
 
         <TextView
             android:id="@+id/tv_link_emailme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_links"
             android:layout_marginTop="@dimen/padding"
-            android:layout_alignLeft="@+id/tv_link_g_plus"
-            android:gravity="center"
             android:drawableLeft="@drawable/ic_mail_outline_black_32dp"
             android:drawablePadding="@dimen/small_padding"
-            android:text="@string/emailme" />
+            android:gravity="center"
+            android:text="@string/emailme"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_link_g_plus"
+            app:layout_constraintTop_toBottomOf="@id/tv_links"/>
 
         <TextView
             android:id="@+id/tv_link_g_plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_link_emailme"
             android:layout_marginTop="@dimen/padding"
-            android:layout_marginBottom="@dimen/double_padding"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
             android:drawableLeft="@drawable/ic_forum_black_32dp"
             android:drawablePadding="@dimen/small_padding"
-            android:text="@string/link_gplus"/>
+            android:gravity="center"
+            android:text="@string/link_gplus"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_link_emailme"/>
 
         <View
+            android:id="@+id/second_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/tv_link_g_plus"
-            android:background="@color/gray_light" />
+            android:layout_marginTop="@dimen/double_padding"
+            android:background="@color/gray_light"
+            app:layout_constraintTop_toBottomOf="@id/tv_link_g_plus"/>
 
         <TextView
             android:id="@+id/tv_klauzula"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_link_g_plus"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/double_padding"
             android:gravity="center"
+            android:text="@string/clause"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/clause" />
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/second_line"/>
 
         <TextView
             android:id="@+id/tv_ver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/padding"
-            android:layout_below="@id/tv_klauzula"
             android:gravity="center"
+            android:text="@string/version_text"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/version_text"/>
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_klauzula"/>
 
         <Button
             android:id="@+id/b_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_ver"
             android:layout_marginTop="@dimen/padding"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
             android:text="OK"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_ver"
             tools:ignore="HardcodedText"/>
-    </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
 </ScrollView>
