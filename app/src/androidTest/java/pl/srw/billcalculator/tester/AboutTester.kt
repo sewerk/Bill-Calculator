@@ -15,6 +15,18 @@ internal class AboutTester : Tester() {
         return this
     }
 
+    fun clickGPlusLink(): AboutTester {
+        clickText(R.string.link_gplus)
+        return this
+    }
+
+    fun checkGPlusIntentSend(url: String) {
+        intended(allOf(
+                hasAction(Intent.ACTION_VIEW),
+                hasData(url)
+        ))
+    }
+
     fun checkMailIntentSend(address: String, title: String) {
         intended(chooser(allOf(
                 hasAction(Intent.ACTION_SENDTO),

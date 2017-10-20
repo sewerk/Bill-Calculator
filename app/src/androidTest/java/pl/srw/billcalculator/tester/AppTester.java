@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.tester;
 
+import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.NoMatchingViewException;
 
 import org.jetbrains.annotations.NotNull;
@@ -8,6 +9,7 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.type.Provider;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -63,5 +65,17 @@ public class AppTester extends Tester {
         openDrawer();
         clickDrawerMenu(R.string.about_label);
         return aboutTester;
+    }
+
+    public AppTester clickHelp() {
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().getTargetContext());
+        clickText(R.string.action_help);
+        return this;
+    }
+
+    @NotNull
+    public AppTester clickInCenter() {
+        clickView(R.id.empty_history);
+        return this;
     }
 }

@@ -21,4 +21,11 @@ class AboutUITest {
                 .checkMailIntentSend("kalkulator.rachunkow@gmail.com",
                         testRule.activity.getString(R.string.app_name))
     }
+
+    @Test
+    fun shouldOpenGPlusWhenLinkClicked() {
+        tester.openAbout()
+                .clickGPlusLink()
+                .checkGPlusIntentSend("https://plus.google.com/communities/113263640175495853700")
+    }
 }

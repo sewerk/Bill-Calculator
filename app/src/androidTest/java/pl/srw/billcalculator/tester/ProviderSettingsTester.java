@@ -28,6 +28,7 @@ import static org.hamcrest.Matchers.startsWith;
 public class ProviderSettingsTester<T extends Tester> extends Tester {
 
     private final T parent;
+    private final HelpTester helpTester = new HelpTester(this);
 
     ProviderSettingsTester(T parent) {
         this.parent = parent;
@@ -37,6 +38,11 @@ public class ProviderSettingsTester<T extends Tester> extends Tester {
         clickIcon(R.string.action_restore);
         clickText(R.string.restore_prices_confirm);
         return this;
+    }
+
+    public HelpTester openHelp() {
+        clickIcon(R.string.action_help);
+        return helpTester;
     }
 
     public T close() {
@@ -89,6 +95,20 @@ public class ProviderSettingsTester<T extends Tester> extends Tester {
             dataInteraction.perform(click());
             onView(allOf(withId(android.R.id.text1), withText(option))).perform(click());
             return ProviderSettingsTester.this;
+        }
+    }
+
+    public class HelpTester {
+
+        private final ProviderSettingsTester<T> parent;
+
+        public HelpTester(ProviderSettingsTester<T> parent) {
+            this.parent = parent;
+        }
+
+        public ProviderSettingsTester<T> clickOk() {
+            clickText("OK");
+            return parent;
         }
     }
 }

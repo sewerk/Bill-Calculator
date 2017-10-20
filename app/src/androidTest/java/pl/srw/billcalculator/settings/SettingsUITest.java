@@ -84,4 +84,22 @@ public class SettingsUITest {
                 .getPreferenceAtLine(0)
                 .hasSummary("Taryfa całodobowa (G11)");
     }
+
+    @Test
+    public void opensSettingsHelp() {
+        tester.openSettings()
+                .pickProvider(Provider.PGE)
+                .openHelp()
+                .clickOk()
+                .close()
+
+                .pickProvider(Provider.PGNIG)
+                .openHelp()
+                .clickOk()
+                .close()
+
+                .pickProvider(Provider.TAURON)
+                .openHelp()
+                .clickOk();
+    }
 }
