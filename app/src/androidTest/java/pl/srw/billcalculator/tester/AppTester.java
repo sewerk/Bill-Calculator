@@ -2,6 +2,8 @@ package pl.srw.billcalculator.tester;
 
 import android.support.test.espresso.NoMatchingViewException;
 
+import org.jetbrains.annotations.NotNull;
+
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.type.Provider;
 
@@ -15,6 +17,7 @@ public class AppTester extends Tester {
     private HistoryTester historyTester = new HistoryTester(this);
     private FormTester formTester = new FormTester(this);
     private SettingsTester settingsTester = new SettingsTester(this);
+    private AboutTester aboutTester = new AboutTester();
 
     public AppTester skipCheckPricesDialogIfVisible() {
         try {
@@ -53,5 +56,12 @@ public class AppTester extends Tester {
 
     public void checkPricesDialogIsVisible() {
         onView(withText(R.string.check_price_info_message)).check(matches(isDisplayed()));
+    }
+
+    @NotNull
+    public AboutTester openAbout() {
+        openDrawer();
+        clickDrawerMenu(R.string.about_label);
+        return aboutTester;
     }
 }
