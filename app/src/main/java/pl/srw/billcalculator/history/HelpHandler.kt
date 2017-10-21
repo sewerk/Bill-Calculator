@@ -16,6 +16,7 @@ import javax.inject.Inject
 class HelpHandler @Inject constructor(res: Resources) {
 
     private val fabDesc: String = res.getString(R.string.main_help_fab_desc)
+    private val listDesc: String = res.getString(R.string.main_help_list_desc)
     private val swipeDesc: String = res.getString(R.string.main_help_swipe_delete_desc)
     private val menuDesc: String = res.getString(R.string.main_help_menu_desc)
     private val optionsDesc: String = res.getString(R.string.main_help_options_desc)
@@ -30,7 +31,7 @@ class HelpHandler @Inject constructor(res: Resources) {
         TapTargetSequence(activity)
                 .targets(
                         TapTarget.forView(fab, fabDesc).transparentTarget(true),
-                        TapTarget.forView(swipeIcon, swipeDesc),
+                        TapTarget.forView(swipeIcon, listDesc, swipeDesc),
                         TapTarget.forToolbarNavigationIcon(toolbar, menuDesc),
                         TapTarget.forToolbarOverflow(toolbar, optionsDesc)
                 )

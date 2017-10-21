@@ -22,7 +22,8 @@
     <string name="main_help_fab_desc">Wylicz rachunek</string>
     <string name="main_help_menu_desc">Menu</string>
     <string name="main_help_options_desc">Więcej opcji</string>
-    <string name="main_help_swipe_delete_desc">Przeciągnij rachunek w bok aby usunąć</string>
+    <string name="main_help_list_desc">Przeglądaj rachunki</string>
+    <string name="main_help_swipe_delete_desc">przeciągnij w bok aby usunąć</string>
     <string name="activity_drawer_help_swipe_delete_content_desc">Palec przesywa się w prawo</string>
     <!-- history -->
     <string name="history_label">Moje rachunki</string>
