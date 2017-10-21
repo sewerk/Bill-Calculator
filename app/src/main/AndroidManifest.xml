@@ -58,10 +58,6 @@
                   android:label="@string/action_help"
                   android:theme="@style/DialogTheme" />
 
-        <activity android:name=".AboutActivity"
-                  android:label="@string/about_label"
-                  android:theme="@style/DialogTheme" />
-
         <service android:name=".bill.service.PgnigBillStoringService" />
 
         <service android:name=".bill.service.PgeBillStoringService" />

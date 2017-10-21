@@ -25,8 +25,8 @@ import javax.inject.Inject;
 import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import pl.srw.billcalculator.AboutActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.about.AboutDialogFragment;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.dialog.CheckPricesDialogFragment;
@@ -169,7 +169,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
 
     @Override
     public void showAbout() {
-        startActivity(new Intent(this, AboutActivity.class));
+        new AboutDialogFragment().show(getSupportFragmentManager(), null);
     }
 
     @Override
