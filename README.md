@@ -19,7 +19,7 @@ With help of
 - [RxAndroid](https://github.com/ReactiveX/RxAndroid)
 - [RxJava 2](https://github.com/ReactiveX/RxJava)
 - [Support Library](https://developer.android.com/topic/libraries/support-library/index.html)
-- [TapTargetView](https://github.com/JakeWharton/timber)
+- [TapTargetView](https://github.com/KeepSafe/TapTargetView)
 - [ThreeTenABP](https://github.com/JakeWharton/ThreeTenABP)
 - [Timber](https://github.com/JakeWharton/timber)
 
