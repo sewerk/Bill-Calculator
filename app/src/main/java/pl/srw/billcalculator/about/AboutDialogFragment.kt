@@ -62,11 +62,13 @@ class AboutDialogFragment : MvpFragment(), MvpActivityScopedFragment<HistoryComp
 
     private fun setEmailMeLink() {
         val underline1 = "<a href=\"\">" + tvLinkEmail.text + "</a>"
+        @Suppress("DEPRECATION")
         tvLinkEmail.text = Html.fromHtml(underline1)
     }
 
     private fun setGPlusLink() {
         val underline = "<a href=\"" + BETA_HTTP + "\">" + tvLinkGPlus.text + "</a>"
+        @Suppress("DEPRECATION")
         tvLinkGPlus.text = Html.fromHtml(underline)
         tvLinkGPlus.movementMethod = LinkMovementMethod.getInstance()
     }

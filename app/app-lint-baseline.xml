@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<issues format="4" by="lint 3.0.0-beta7">
+<issues format="4" by="lint 3.0.0-rc2">
 
     <issue
         id="ObsoleteLintCustomCheck"
@@ -145,6 +145,17 @@
 
     <issue
         id="UnusedResources"
+        message="The resource `R.layout.about` appears to be unused"
+        errorLine1="&lt;ScrollView xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src\main\res\layout\about.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
         message="The resource `R.color.primaryTransparent` appears to be unused"
         errorLine1="    &lt;color name=&quot;primaryTransparent&quot;>#80F44336&lt;/color>"
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~">
@@ -222,6 +233,29 @@
 
     <issue
         id="UnusedResources"
+        message="The resource `R.dimen.activity_horizontal_margin` appears to be unused"
+        errorLine1="    &lt;dimen name=&quot;activity_horizontal_margin&quot;>16dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\dimens.xml"
+            line="2"
+            column="12"/>
+        <location
+            file="src\main\res\values-sw600dp\dimens.xml"
+            line="7"
+            column="12"/>
+        <location
+            file="src\main\res\values-sw720dp-land\dimens.xml"
+            line="7"
+            column="12"/>
+        <location
+            file="src\main\res\values-w820dp\dimens.xml"
+            line="5"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
         message="The resource `R.dimen.activity_vertical_margin` appears to be unused"
         errorLine1="    &lt;dimen name=&quot;activity_vertical_margin&quot;>16dp&lt;/dimen>"
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
@@ -237,6 +271,65 @@
             file="src\main\res\values-sw720dp-land\dimens.xml"
             line="8"
             column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.dimen.small_padding` appears to be unused"
+        errorLine1="    &lt;dimen name=&quot;small_padding&quot;>4dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\dimens.xml"
+            line="4"
+            column="12"/>
+        <location
+            file="src\main\res\values-sw600dp\dimens.xml"
+            line="9"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_forum_black_32dp` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src\main\res\drawable\ic_forum_black_32dp.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_forum_selectable` appears to be unused"
+        errorLine1="&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
+        errorLine2="^">
+        <location
+            file="src\main\res\drawable\ic_forum_selectable.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_mail_outline_black_32dp` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src\main\res\drawable\ic_mail_outline_black_32dp.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_mail_outline_selectable` appears to be unused"
+        errorLine1="&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
+        errorLine2="^">
+        <location
+            file="src\main\res\drawable\ic_mail_outline_selectable.xml"
+            line="2"
+            column="1"/>
     </issue>
 
     <issue
@@ -382,6 +475,241 @@
         <location
             file="src\main\res\values-pl\strings.xml"
             line="49"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.version_text` appears to be unused"
+        errorLine1="    &lt;string name=&quot;version_text&quot;>Version %1$s&lt;![CDATA[&lt;br/>under &lt;a href=&quot;http://opensource.org/licenses/MIT&quot;>MIT license&lt;/a>]]&gt;&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="201"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="81"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.description` appears to be unused"
+        errorLine1="    &lt;string name=&quot;description&quot;>Calculate the cost of utility bill&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="202"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="82"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.contact_header` appears to be unused"
+        errorLine1="    &lt;string name=&quot;contact_header&quot;>In case of problems/ideas:&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="203"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="83"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.emailme` appears to be unused"
+        errorLine1="    &lt;string name=&quot;emailme&quot;>write what you think&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="204"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="84"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.link_gplus` appears to be unused"
+        errorLine1="    &lt;string name=&quot;link_gplus&quot;>or join early version testing&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="205"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="85"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.clause` appears to be unused"
+        errorLine1="    &lt;string name=&quot;clause&quot;>The names, logos and trade marks are owned by distribution companies. Given calculations are just approximate value of the bill and cannot be used as ground for financial claiming.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="206"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="86"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.email_client_missing` appears to be unused"
+        errorLine1="    &lt;string name=&quot;email_client_missing&quot;>I could not find any e-mail client installed&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="207"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="87"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.about_logo_content_desc` appears to be unused"
+        errorLine1="    &lt;string name=&quot;about_logo_content_desc&quot;>Application logo&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="208"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="88"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.tv_about` appears to be unused"
+        errorLine1="            android:id=&quot;@+id/tv_about&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\about.xml"
+            line="18"
+            column="13"/>
+        <location
+            file="src\main\res\layout\about.xml"
+            line="45"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.tv_app_name` appears to be unused"
+        errorLine1="            android:id=&quot;@+id/tv_app_name&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\about.xml"
+            line="30"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.first_line` appears to be unused"
+        errorLine1="            android:id=&quot;@+id/first_line&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\about.xml"
+            line="48"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.tv_links` appears to be unused"
+        errorLine1="            android:id=&quot;@+id/tv_links&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\about.xml"
+            line="56"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.tv_link_g_plus` appears to be unused"
+        errorLine1="            app:layout_constraintLeft_toLeftOf=&quot;@+id/tv_link_g_plus&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\about.xml"
+            line="62"
+            column="13"/>
+        <location
+            file="src\main\res\layout\about.xml"
+            line="75"
+            column="13"/>
+        <location
+            file="src\main\res\layout\about.xml"
+            line="79"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.tv_link_emailme` appears to be unused"
+        errorLine1="            android:id=&quot;@+id/tv_link_emailme&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\about.xml"
+            line="66"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.second_line` appears to be unused"
+        errorLine1="            android:id=&quot;@+id/second_line&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\about.xml"
+            line="94"
+            column="13"/>
+        <location
+            file="src\main\res\layout\about.xml"
+            line="112"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.tv_klauzula` appears to be unused"
+        errorLine1="            android:id=&quot;@+id/tv_klauzula&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\about.xml"
+            line="102"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.tv_ver` appears to be unused"
+        errorLine1="            android:id=&quot;@+id/tv_ver&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\about.xml"
+            line="115"
             column="13"/>
     </issue>
 
