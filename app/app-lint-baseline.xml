@@ -405,9 +405,9 @@
 
     <issue
         id="UnusedResources"
-        message="The resource `R.string.main_help_swipe_delete_desc` appears to be unused"
-        errorLine1="    &lt;string name=&quot;main_help_swipe_delete_desc&quot;>Swipe bill to delete&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        message="The resource `R.string.main_help_list_desc` appears to be unused"
+        errorLine1="    &lt;string name=&quot;main_help_list_desc&quot;>Browse bills&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src\main\res\values\strings.xml"
             line="26"
@@ -420,12 +420,27 @@
 
     <issue
         id="UnusedResources"
+        message="The resource `R.string.main_help_swipe_delete_desc` appears to be unused"
+        errorLine1="    &lt;string name=&quot;main_help_swipe_delete_desc&quot;>Swipe bill to delete&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="27"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="26"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
         message="The resource `R.string.main_help_menu_desc` appears to be unused"
         errorLine1="    &lt;string name=&quot;main_help_menu_desc&quot;>Menu&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src\main\res\values\strings.xml"
-            line="27"
+            line="28"
             column="13"/>
         <location
             file="src\main\res\values-pl\strings.xml"
@@ -440,7 +455,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src\main\res\values\strings.xml"
-            line="28"
+            line="29"
             column="13"/>
         <location
             file="src\main\res\values-pl\strings.xml"
@@ -455,11 +470,11 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="src\main\res\values\strings.xml"
-            line="56"
+            line="57"
             column="13"/>
         <location
             file="src\main\res\values-pl\strings.xml"
-            line="47"
+            line="48"
             column="13"/>
     </issue>
 
@@ -470,11 +485,11 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src\main\res\values\strings.xml"
-            line="58"
+            line="59"
             column="13"/>
         <location
             file="src\main\res\values-pl\strings.xml"
-            line="49"
+            line="50"
             column="13"/>
     </issue>
 
@@ -483,21 +498,6 @@
         message="The resource `R.string.version_text` appears to be unused"
         errorLine1="    &lt;string name=&quot;version_text&quot;>Version %1$s&lt;![CDATA[&lt;br/>under &lt;a href=&quot;http://opensource.org/licenses/MIT&quot;>MIT license&lt;/a>]]&gt;&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src\main\res\values\strings.xml"
-            line="201"
-            column="13"/>
-        <location
-            file="src\main\res\values-pl\strings.xml"
-            line="81"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.string.description` appears to be unused"
-        errorLine1="    &lt;string name=&quot;description&quot;>Calculate the cost of utility bill&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~">
         <location
             file="src\main\res\values\strings.xml"
             line="202"
@@ -510,9 +510,9 @@
 
     <issue
         id="UnusedResources"
-        message="The resource `R.string.contact_header` appears to be unused"
-        errorLine1="    &lt;string name=&quot;contact_header&quot;>In case of problems/ideas:&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        message="The resource `R.string.description` appears to be unused"
+        errorLine1="    &lt;string name=&quot;description&quot;>Calculate the cost of utility bill&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
         <location
             file="src\main\res\values\strings.xml"
             line="203"
@@ -525,9 +525,9 @@
 
     <issue
         id="UnusedResources"
-        message="The resource `R.string.emailme` appears to be unused"
-        errorLine1="    &lt;string name=&quot;emailme&quot;>write what you think&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~">
+        message="The resource `R.string.contact_header` appears to be unused"
+        errorLine1="    &lt;string name=&quot;contact_header&quot;>In case of problems/ideas:&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src\main\res\values\strings.xml"
             line="204"
@@ -540,9 +540,9 @@
 
     <issue
         id="UnusedResources"
-        message="The resource `R.string.link_gplus` appears to be unused"
-        errorLine1="    &lt;string name=&quot;link_gplus&quot;>or join early version testing&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        message="The resource `R.string.emailme` appears to be unused"
+        errorLine1="    &lt;string name=&quot;emailme&quot;>write what you think&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~">
         <location
             file="src\main\res\values\strings.xml"
             line="205"
@@ -555,9 +555,9 @@
 
     <issue
         id="UnusedResources"
-        message="The resource `R.string.clause` appears to be unused"
-        errorLine1="    &lt;string name=&quot;clause&quot;>The names, logos and trade marks are owned by distribution companies. Given calculations are just approximate value of the bill and cannot be used as ground for financial claiming.&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~">
+        message="The resource `R.string.link_gplus` appears to be unused"
+        errorLine1="    &lt;string name=&quot;link_gplus&quot;>or join early version testing&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
         <location
             file="src\main\res\values\strings.xml"
             line="206"
@@ -570,9 +570,9 @@
 
     <issue
         id="UnusedResources"
-        message="The resource `R.string.email_client_missing` appears to be unused"
-        errorLine1="    &lt;string name=&quot;email_client_missing&quot;>I could not find any e-mail client installed&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        message="The resource `R.string.clause` appears to be unused"
+        errorLine1="    &lt;string name=&quot;clause&quot;>The names, logos and trade marks are owned by distribution companies. Given calculations are just approximate value of the bill and cannot be used as ground for financial claiming.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~">
         <location
             file="src\main\res\values\strings.xml"
             line="207"
@@ -585,9 +585,9 @@
 
     <issue
         id="UnusedResources"
-        message="The resource `R.string.about_logo_content_desc` appears to be unused"
-        errorLine1="    &lt;string name=&quot;about_logo_content_desc&quot;>Application logo&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        message="The resource `R.string.email_client_missing` appears to be unused"
+        errorLine1="    &lt;string name=&quot;email_client_missing&quot;>I could not find any e-mail client installed&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src\main\res\values\strings.xml"
             line="208"
@@ -595,6 +595,21 @@
         <location
             file="src\main\res\values-pl\strings.xml"
             line="88"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.about_logo_content_desc` appears to be unused"
+        errorLine1="    &lt;string name=&quot;about_logo_content_desc&quot;>Application logo&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="209"
+            column="13"/>
+        <location
+            file="src\main\res\values-pl\strings.xml"
+            line="89"
             column="13"/>
     </issue>
 
