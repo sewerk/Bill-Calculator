@@ -86,18 +86,24 @@ public class SettingsUITest {
     }
 
     @Test
-    public void opensSettingsHelp() {
+    public void opensPgeSettingsHelp() {
         tester.openSettings()
                 .pickProvider(Provider.PGE)
                 .openHelp()
-                .clickOk()
-                .close()
+                .clickOk();
+    }
 
+    @Test
+    public void opensPgnigSettingsHelp() {
+        tester.openSettings()
                 .pickProvider(Provider.PGNIG)
                 .openHelp()
-                .clickOk()
-                .close()
+                .clickOk();
+    }
 
+    @Test
+    public void opensTauronSettingsHelp() {
+        tester.openSettings()
                 .pickProvider(Provider.TAURON)
                 .openHelp()
                 .clickOk();
