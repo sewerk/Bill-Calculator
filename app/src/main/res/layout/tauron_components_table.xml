@@ -10,7 +10,6 @@
         android:layout_below="@id/tv_for_period">
 
         <include
-            android:id="@+id/t_header"
             layout="@layout/tauron_components_table_header" />
 
         <TableRow
@@ -21,7 +20,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Sprzedaż energii" />
+                android:text="Sprzedaż energii"
+                tools:ignore="HardcodedText"/>
         </TableRow>
 
         <include
@@ -40,7 +40,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Dystrybucja energii" />
+                android:text="Dystrybucja energii"
+                tools:ignore="HardcodedText"/>
         </TableRow>
 
         <include

@@ -7,7 +7,6 @@
                                     android:layout_margin="@dimen/cardview_margin">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/bill_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -16,6 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -51,6 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:singleLine="true"
             app:layout_constraintBottom_toBottomOf="@+id/history_item_readings"
             app:layout_constraintLeft_toRightOf="@+id/history_item_readings"
@@ -72,6 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
@@ -81,10 +83,10 @@
             tools:text="43 456.83 zł"/>
 
         <TextView
-            android:id="@+id/charge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/history_item_amount_label"
             app:layout_constraintBaseline_toBaselineOf="@+id/history_item_amount"
             app:layout_constraintRight_toLeftOf="@+id/history_item_amount"/>

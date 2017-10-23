@@ -2,9 +2,11 @@
 <resources>
     <!-- Drawer activity -->
     <string name="app_name">Kalkulator rachunków</string>
+    <string name="app_name_short">Kalk. rachunków</string>
     <string name="reading_missing">Puste!</string>
     <string name="reading_order_error">Za małe zużycie!</string>
     <string name="date_error">Nieprawidłowy okres!</string>
+    <string name="activity_drawer_toolbar_image_content_desc">Rachunki</string>
     <!-- drawer -->
     <string name="navigation_drawer_close">Zamknij menu</string>
     <string name="navigation_drawer_open">Otwórz menu</string>
@@ -20,7 +22,9 @@
     <string name="main_help_fab_desc">Wylicz rachunek</string>
     <string name="main_help_menu_desc">Menu</string>
     <string name="main_help_options_desc">Więcej opcji</string>
-    <string name="main_help_swipe_delete_desc">Przeciągnij rachunek w bok aby usunąć</string>
+    <string name="main_help_list_desc">Przeglądaj rachunki</string>
+    <string name="main_help_swipe_delete_desc">przeciągnij w bok aby usunąć</string>
+    <string name="activity_drawer_help_swipe_delete_content_desc">Palec przesywa się w prawo</string>
     <!-- history -->
     <string name="history_label">Moje rachunki</string>
     <string name="action_delete">Usuń</string>
@@ -53,14 +57,15 @@
     <string name="dialog_bill_without_oze_title">Informacja</string>
     <string name="dialog_bill_without_oze_message">Niniejszy rachunek nie uwzględnia opłaty OZE, która według ustawy, obowiązuje od lipca 2016 r. Zalecam przeliczyć ten rachunek ponownie.</string>
     <string name="dialog_bill_without_oze_positive">Rozumiem</string>
-    <string name="dialog_bill_without_oze_cancel">Nie trzeba</string>
     <!-- energy_bill -->
     <string name="energy_bill">Rachunek za energię</string>
     <!-- gas_bill -->
     <string name="gas_bill">Rachunek za gaz</string>
     <!-- Preferences -->
     <string name="settings_label">Ustawienia</string>
+    <string name="settings_list_item_logo_content_desc">Logo dystrybutora</string>
     <string name="action_help">Pomoc</string>
+    <string name="settings_help_example_content_desc">Przykład gdzie szukać wartości</string>
     <string name="settings_pge_summary">Ustaw taryfę i ceny za energię</string>
     <string name="settings_pgnig_summary">Ustaw współ. konwersji i ceny za gaz</string>
     <string name="check_prices_info_title">Sprawdź ceny przed wyliczeniem</string>
@@ -81,5 +86,6 @@
     <string name="link_gplus">lub dołącz do testowania</string>
     <string name="clause">Nazwy własne, logotypy oraz znaki towarowe są własnością firm dystrybucyjnych. Przedstawione wyliczenia są jedynie przybliżoną wartością stanu faktyczenego i nie mają podstawy by stanowić roszczenia finansowego.</string>
     <string name="email_client_missing">Brak aplikacji poczty e-mail</string>
+    <string name="about_logo_content_desc">Logo aplikacji</string>
 
 </resources>

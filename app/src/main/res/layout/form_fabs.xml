@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         app:backgroundTint="@color/primary"
         android:layout_marginLeft="@dimen/form_close_fab_margin_left"
+        android:layout_marginStart="@dimen/form_close_fab_margin_left"
         android:layout_marginTop="@dimen/form_close_fab_margin_top"
         app:fabSize="mini"
         app:rippleColor="@color/primaryDark"

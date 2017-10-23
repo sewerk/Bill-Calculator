@@ -7,7 +7,6 @@ import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.PgnigPrices;
 import pl.srw.billcalculator.persistence.Database;
-import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.wrapper.Dependencies;
 
@@ -24,11 +23,6 @@ public class PgnigBillStoringService extends BillStoringService<PgnigPrices, Pgn
     public void onCreate() {
         super.onCreate();
         Dependencies.inject(this);
-    }
-
-    @Override
-    protected Provider getProvider() {
-        return Provider.PGNIG;
     }
 
     @Override

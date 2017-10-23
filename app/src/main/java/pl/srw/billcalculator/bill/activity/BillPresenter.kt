@@ -18,11 +18,11 @@ import kotlin.properties.Delegates
 const val STORAGE_PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE
 
 @RetainActivityScope
-class BillPresenter @Inject constructor(val printer: Printer, printDirPath: String) : MvpPresenter<BillPresenter.BillView>(), Printer.Listener {
+class BillPresenter @Inject constructor(private val printer: Printer, printDirPath: String) : MvpPresenter<BillPresenter.BillView>(), Printer.Listener {
 
-    val printDir = File(printDirPath)
+    private val printDir = File(printDirPath)
 
-    var billIdentifier by Delegates.notNull<String>()
+    private var billIdentifier by Delegates.notNull<String>()
 
     fun setup(billIdentifier: String) {
         this.billIdentifier = billIdentifier
@@ -39,17 +39,17 @@ class BillPresenter @Inject constructor(val printer: Printer, printDirPath: Stri
 
     override fun onFinish() {
         super.onFinish()
-        printer.unregister(this)
+        printer.unregister()
     }
 
     fun onPrintClicked() {
         present { view ->
-            if (view.hasPermission(STORAGE_PERMISSION))
-                performPrint()
-            else if (view.shouldShowExplanation(STORAGE_PERMISSION))
-                view.showExplanationForRequestPermission(STORAGE_PERMISSION)
-            else
-                view.requestPermission(STORAGE_PERMISSION) }
+            when {
+                view.hasPermission(STORAGE_PERMISSION) -> performPrint()
+                view.shouldShowExplanation(STORAGE_PERMISSION) -> view.showExplanationForRequestPermission(STORAGE_PERMISSION)
+                else -> view.requestPermission(STORAGE_PERMISSION)
+            }
+        }
     }
 
     fun processRequestPermissionResponse(grantResults: IntArray) {

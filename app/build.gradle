@@ -12,8 +12,8 @@ android {
         applicationId "pl.srw.billcalculator"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 27
-        versionName "2.0-beta3"
+        versionCode 28
+        versionName "2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         resConfig "pl"
@@ -45,7 +45,10 @@ android {
     }
 
     lintOptions {
-        warning 'InvalidPackage'
+        baseline file('app-lint-baseline.xml')
+        disable 'NewerVersionAvailable', 'GradleDependency'
+        checkAllWarnings true
+        warningsAsErrors true
     }
 
     compileOptions {
@@ -67,7 +70,7 @@ dependencies {
     compile "com.android.support:cardview-v7:$supportLibVer"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
-    compile 'com.github.sewerk:mfvp:2af1b0c'
+    compile 'com.github.sewerk:mfvp:1.0-beta1'
     compile "com.google.dagger:dagger:$daggerVer"
     compile "com.jakewharton:butterknife:$butterKnifeVer"
     compile 'com.jakewharton.threetenabp:threetenabp:1.0.3'

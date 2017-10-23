@@ -117,7 +117,8 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
     }
 
     private void replaceEmptyValue(final SharedPreferences sharedPreferences, final String key) {
-        if (TextUtils.isEmpty(sharedPreferences.getString(key, EMPTY_VALUE_REPLACEMENT)))
+        final String value = sharedPreferences.getString(key, EMPTY_VALUE_REPLACEMENT);
+        if (TextUtils.isEmpty(value) || "0.0".contains(value))
             sharedPreferences.edit().putString(key, EMPTY_VALUE_REPLACEMENT).apply();
     }
 

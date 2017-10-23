@@ -256,6 +256,18 @@ class HistoryUITest {
         // then: no crash
     }
 
+    @Test
+    fun shouldGoThroughHelpWithoutProblem() {
+        testRule.launchActivity(null)
+
+        tester.skipCheckPricesDialogIfVisible()
+                .clickHelp()
+                .clickInCenter()
+                .clickInCenter()
+                .clickInCenter()
+                .clickInCenter()
+    }
+
     private fun cleanFirstLaunch() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE)

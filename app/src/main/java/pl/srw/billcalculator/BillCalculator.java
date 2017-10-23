@@ -1,7 +1,6 @@
 package pl.srw.billcalculator;
 
 import android.app.Application;
-import android.content.Context;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.jakewharton.threetenabp.AndroidThreeTen;
@@ -53,9 +52,5 @@ public class BillCalculator extends Application {
         tauronPrices.setDefaultIfNotSet();
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-    }
-
-    public static BillCalculator get(Context context) {
-        return (BillCalculator) context.getApplicationContext();
     }
 }

@@ -5,7 +5,7 @@ import android.support.annotation.StringDef;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-@StringDef({ContentType.SETTINGS, ContentType.HISTORY, ContentType.ABOUT, ContentType.HELP,
+@StringDef({ContentType.SETTINGS, ContentType.HISTORY, ContentType.ABOUT, ContentType.HELP, ContentType.CHECK_PRICES,
         ContentType.PGE_BILL, ContentType.PGNIG_BILL, ContentType.TAURON_BILL})
 @Retention(RetentionPolicy.SOURCE)
 public @interface ContentType {
@@ -16,4 +16,5 @@ public @interface ContentType {
     String PGE_BILL = "PgeBill";
     String ABOUT = "About";
     String HELP = "Help";
+    String CHECK_PRICES = "Check prices";
 }

@@ -46,10 +46,10 @@ abstract class CalculatedBill(private val greedy: Boolean, dateFrom: LocalDate, 
 
     protected fun countVatAndAddToSum(netCharge: BigDecimal): BigDecimal {
         val vatCharge = netCharge.multiply(VAT)
-        if (greedy)
-            _vatChargeSum = _vatChargeSum.add(vatCharge.round())
+        _vatChargeSum = if (greedy)
+            _vatChargeSum.add(vatCharge.round())
         else
-            _vatChargeSum = _vatChargeSum.add(vatCharge)
+            _vatChargeSum.add(vatCharge)
         return vatCharge
     }
 }

@@ -16,61 +16,76 @@
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
             android:textStyle="bold"
-            android:text="Nazwa towaru lub usługi" />
+            android:paddingEnd="20dp"
+            android:text="Nazwa towaru lub usługi"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Nr licznika" />
+            android:text="Nr licznika"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_span="2"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Wskazanie poprzednie\nData                      Odczyt" />
+            android:text="Wskazanie poprzednie\nData                      Odczyt"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_span="2"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Wskazanie obecne\nData                      Odczyt" />
+            android:text="Wskazanie obecne\nData                      Odczyt"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Mnożna/\nil.m-c" />
+            android:text="Mnożna/\nil.m-c"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Zużycie\n[kWh/kW]" />
+            android:text="Zużycie\n[kWh/kW]"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Cena\nnetto[zł]" />
+            android:text="Cena\nnetto[zł]"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:textStyle="bold"
-            android:text="Wartość\nnetto[zł]" />
+            android:text="Wartość\nnetto[zł]"
+            tools:ignore="HardcodedText"/>
 
     </TableRow>
 

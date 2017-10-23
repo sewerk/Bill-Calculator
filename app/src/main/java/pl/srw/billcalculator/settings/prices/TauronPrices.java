@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 
 import pl.srw.billcalculator.pojo.ITauronPrices;
 
+@SuppressWarnings({"FieldCanBeLocal", "WeakerAccess", "unused"})
 @Singleton
 public class TauronPrices extends SharedPreferencesEnergyPrices implements ITauronPrices {
 
@@ -23,17 +24,17 @@ public class TauronPrices extends SharedPreferencesEnergyPrices implements ITaur
     private static final String ENERGIA_ELEKTRYCZNA_CZYNNA_NOC = "energiaElektrycznaCzynnaNoc";
 
     private final String tauron_tariff = TARIFF_G11;
-    private final String energiaElektrycznaCzynna = "0.2529";
-    private final String oplataDystrybucyjnaZmienna = "0.1783";
-    private final String oplataDystrybucyjnaStala = "1.57";
-    private final String oplataPrzejsciowa = "1.00";
+    private final String energiaElektrycznaCzynna = "0.2425";
+    private final String oplataDystrybucyjnaZmienna = "0.1763";
+    private final String oplataDystrybucyjnaStala = "1.62";
+    private final String oplataPrzejsciowa = "1.90";
     private final String oplataAbonamentowa = "4.80";
-    private final String oplataOze = "0.00251";
+    private final String oplataOze = "0.0037";
 
-    private final String energiaElektrycznaCzynnaDzien = "0.3119";
-    private final String oplataDystrybucyjnaZmiennaDzien = "0.1873";
-    private final String energiaElektrycznaCzynnaNoc = "0.1615";
-    private final String oplataDystrybucyjnaZmiennaNoc = "0.0714";
+    private final String energiaElektrycznaCzynnaDzien = "0.2989";
+    private final String oplataDystrybucyjnaZmiennaDzien = "0.1888";
+    private final String energiaElektrycznaCzynnaNoc = "0.1540";
+    private final String oplataDystrybucyjnaZmiennaNoc = "0.0659";
 
     @Inject
     public TauronPrices(SharedPreferences prefs) {
@@ -56,8 +57,7 @@ public class TauronPrices extends SharedPreferencesEnergyPrices implements ITaur
         return dbPrices;
     }
 
-    @Override
-    public void clear() {
+    private void clear() {
         removeTariff();
         removeEnergiaElektrycznaCzynna();
         removeOplataDystrybucyjnaZmienna();

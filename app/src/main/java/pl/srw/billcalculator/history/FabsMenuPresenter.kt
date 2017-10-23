@@ -22,10 +22,10 @@ class FabsMenuPresenter(val view: View) {
     }
 
     fun handleBackPressed(): Boolean {
-        if (view.isExpanded() && !view.isCollapsingInProgress()) {
+        return if (view.isExpanded() && !view.isCollapsingInProgress()) {
             collapseAndHideDim()
-            return true
-        } else return false
+            true
+        } else false
     }
 
     private fun expandAndShowDim() {

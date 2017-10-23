@@ -14,7 +14,7 @@ import timber.log.Timber;
 class DBMigration {
 
     static void migrate(final org.greenrobot.greendao.database.Database db, final int oldVersion, final int newVersion) {
-        Timber.i("Upgrading schema from version " + oldVersion + " to " + newVersion);
+        Timber.i("Upgrading schema from version %d to %d", oldVersion, newVersion);
         switch (oldVersion) {
             case 1:
                 migrate_1_3(db);

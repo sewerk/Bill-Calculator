@@ -76,8 +76,7 @@ public final class Animations {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                for (int i = 0, fabsLength = fabs.length; i < fabsLength; i++) {
-                    FloatingActionButton fab = fabs[i];
+                for (FloatingActionButton fab : fabs) {
                     fab.setVisibility(View.GONE);
                     fab.setLayerType(View.LAYER_TYPE_NONE, null);
                 }

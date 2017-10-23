@@ -13,8 +13,10 @@
         android:layout_column="8"
         android:gravity="end"
         android:paddingRight="20dp"
+        android:paddingEnd="20dp"
         android:textStyle="bold"
-        android:text="OGÓŁEM" />
+        android:text="OGÓŁEM"
+        tools:ignore="HardcodedText,RtlSymmetry"/>
 
     <TextView
         android:id="@+id/tv_total_net_charge"
@@ -23,6 +25,8 @@
         android:layout_column="9"
         android:gravity="end"
         android:paddingRight="20dp"
+        android:paddingEnd="20dp"
         android:textStyle="bold"
-        tools:text="61,09" />
+        tools:text="61,09"
+        tools:ignore="RtlSymmetry"/>
 </TableRow>

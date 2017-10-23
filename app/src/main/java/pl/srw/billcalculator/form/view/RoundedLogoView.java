@@ -16,7 +16,7 @@ import pl.srw.billcalculator.R;
 
 public class RoundedLogoView extends AppCompatImageView {
 
-    public static final float FITTING_SCALE = 0.85f;
+    private static final float FITTING_SCALE = 0.85f;
     @BindColor(R.color.light) int grayLighter;
     @BindColor(R.color.light2) int grayDarker;
 

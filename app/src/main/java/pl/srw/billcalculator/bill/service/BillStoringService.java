@@ -10,7 +10,6 @@ import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.bill.calculation.CalculatedBill;
 import pl.srw.billcalculator.db.Prices;
 import pl.srw.billcalculator.intent.IntentCreator;
-import pl.srw.billcalculator.type.Provider;
 
 public abstract class BillStoringService<P extends Prices, C extends CalculatedBill> extends IntentService {
 
@@ -38,8 +37,6 @@ public abstract class BillStoringService<P extends Prices, C extends CalculatedB
 
         new BackupManager(this).dataChanged();
     }
-
-    protected abstract Provider getProvider();
 
     protected abstract void storeBill(C calculatedBill, P prices);
 

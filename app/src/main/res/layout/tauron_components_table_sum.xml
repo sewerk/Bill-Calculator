@@ -13,7 +13,9 @@
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
             android:textStyle="bold"
-            android:text="Razem" />
+            android:paddingEnd="20dp"
+            android:text="Razem"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:id="@+id/tv_total_consumption"
@@ -22,8 +24,10 @@
             android:layout_column="7"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            tools:text="123456789" />
+            tools:text="123456789"
+            tools:ignore="RtlSymmetry"/>
 
         <TextView
             android:id="@+id/tv_component_net_amount"
@@ -69,9 +73,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Należność ogółem do zapłaty" />
+            android:text="Należność ogółem do zapłaty"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:id="@+id/tv_total_amount"

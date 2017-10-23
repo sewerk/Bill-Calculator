@@ -12,8 +12,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Podsumowanie zużycia" />
+            android:text="Podsumowanie zużycia"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -21,23 +23,28 @@
             android:layout_column="7"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Netto[zł]" />
+            android:text="Netto[zł]"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="VAT[zł]" />
+            android:text="VAT[zł]"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:textStyle="bold"
-            android:text="Brutto[zł]" />
+            android:text="Brutto[zł]"
+            tools:ignore="HardcodedText"/>
 
     </TableRow>
 
@@ -50,7 +57,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="w tym sprzedaż energii" />
+            android:paddingEnd="20dp"
+            android:text="w tym sprzedaż energii"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:id="@+id/tv_sell_net"
@@ -59,7 +68,9 @@
             android:layout_column="7"
             android:gravity="end"
             android:paddingRight="20dp"
-            tools:text="111.22" />
+            android:paddingEnd="20dp"
+            tools:text="111.22"
+            tools:ignore="RtlSymmetry"/>
 
         <TextView
             android:id="@+id/tv_sell_vat"
@@ -67,7 +78,9 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
-            tools:text="222.33" />
+            android:paddingEnd="20dp"
+            tools:text="222.33"
+            tools:ignore="RtlSymmetry"/>
 
         <TextView
             android:id="@+id/tv_sell_gross"
@@ -86,7 +99,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="w tym dystrybucja energii" />
+            android:paddingEnd="20dp"
+            android:text="w tym dystrybucja energii"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:id="@+id/tv_distribute_net"
@@ -95,7 +110,9 @@
             android:layout_column="7"
             android:gravity="end"
             android:paddingRight="20dp"
-            tools:text="111.22" />
+            android:paddingEnd="20dp"
+            tools:text="111.22"
+            tools:ignore="RtlSymmetry"/>
 
         <TextView
             android:id="@+id/tv_distribute_vat"
@@ -103,7 +120,9 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
-            tools:text="222.33" />
+            android:paddingEnd="20dp"
+            tools:text="222.33"
+            tools:ignore="RtlSymmetry"/>
 
         <TextView
             android:id="@+id/tv_distribute_gross"
@@ -123,8 +142,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="Razem" />
+            android:text="Razem"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:id="@+id/tv_total_net_amount"
@@ -134,7 +155,9 @@
             android:gravity="end"
             android:textStyle="bold"
             android:paddingRight="20dp"
-            tools:text="111.22" />
+            android:paddingEnd="20dp"
+            tools:text="111.22"
+            tools:ignore="RtlSymmetry"/>
 
         <TextView
             android:id="@+id/tv_total_vat_amount"
@@ -143,7 +166,9 @@
             android:gravity="end"
             android:textStyle="bold"
             android:paddingRight="20dp"
-            tools:text="222.33" />
+            android:paddingEnd="20dp"
+            tools:text="222.33"
+            tools:ignore="RtlSymmetry"/>
 
         <TextView
             android:id="@+id/tv_total_gross_amount"

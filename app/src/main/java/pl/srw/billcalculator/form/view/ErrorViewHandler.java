@@ -34,10 +34,6 @@ class ErrorViewHandler {
         }
     }
 
-    public void setView(TextView view) {
-        errorView = view;
-    }
-
     private TextView obtainView(View view) {
         if (errorView == null)
             errorView = (TextView) view.getRootView().findViewById(errorViewId);

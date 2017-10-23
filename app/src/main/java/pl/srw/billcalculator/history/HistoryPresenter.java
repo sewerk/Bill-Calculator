@@ -34,7 +34,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     private final HistoryRepo history;
     private final SavedBillsRegistry savedBillsRegistry;
     private final BillSelection selection;
-    private LazyList<History> historyData; // TODO: remove state from presenter?
+    private LazyList<History> historyData; // FIXME: remove state from presenter?
     private boolean needRefresh;
 
     @Inject
@@ -65,13 +65,16 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
 
     @Override
     protected void onNewViewRestoreState() {
-        if (needRefresh) { // FIXME: when bill activity will be closed quickly then onStart will not be called - will not refresh
+        if (needRefresh) { // FIXME: when BillActivity will be closed quickly then DrawerActivity.onStart will not be called - will not refresh
             loadHistoryData();
         }
         present(view -> {
             view.setListData(historyData);
             if (needRefresh) {
                 view.redrawList();
+            }
+            if (selection.isAnySelected()) {
+                view.disableSwipeDelete();
             }
         });
         needRefresh = false;
@@ -144,7 +147,6 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     }
 
     void historyClicked() {
-        //FIXME: remove this option from drawer?
         present(HistoryView::closeDrawer);
     }
 
@@ -170,8 +172,9 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         history.undoDelete();
         loadHistoryData();
         present(view -> {
-            view.setListData(historyData);
             Arrays.sort(positions);
+            selection.onInsert(positions[0]);
+            view.setListData(historyData);
             for (int position : positions) {
                 view.onItemInsertedToList(position);
             }
@@ -183,9 +186,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
                 "dismissed", "false",
                 "selected", "" + selection.getItems().size());
         history.cacheBillsForUndoDelete(selection.getItems());
-        for (Bill bill : selection.getItems()) { // TODO: move iteration to db repo
-            history.deleteBillWithPrices(bill);
-        }
+        history.deleteBillsWithPrices(selection.getItems());
         loadHistoryData();
         present(view -> {
             view.setListData(historyData);
@@ -194,7 +195,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
             }
             view.hideDeleteButton();
             view.enableSwipeDelete();
-            view.showUndoDeleteMessage(selection.getPositionsReverseOrder()); // TODO: return non ordered, sort when needed
+            view.showUndoDeleteMessage(selection.getPositionsReverseOrder()); // FIXME: return non ordered, sort when needed
         });
         selection.deselectAll();
     }

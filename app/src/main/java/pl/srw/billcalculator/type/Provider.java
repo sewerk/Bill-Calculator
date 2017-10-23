@@ -49,20 +49,6 @@ public enum Provider {
         this.doubleReadingTypes = doubleReadingTypes;
     }
 
-    public static Provider mapFrom(pl.srw.billcalculator.persistence.type.BillType persistenceType) {
-        switch (persistenceType) {
-            case PGNIG:
-                return PGNIG;
-            case PGE_G11:
-            case PGE_G12:
-                return PGE;
-            case TAURON_G11:
-            case TAURON_G12:
-                return TAURON;
-        }
-        throw new EnumVariantNotHandledException(persistenceType);
-    }
-
     public static Provider getByViewId(@IdRes int id) {
         if (id == R.id.fab_new_pge)
             return Provider.PGE;

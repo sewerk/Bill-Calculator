@@ -5,7 +5,6 @@ import android.content.Context;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-import android.widget.DatePicker;
 
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.Month;
@@ -18,7 +17,6 @@ import pl.srw.billcalculator.wrapper.Analytics;
 
 public class DatePickingView extends AppCompatTextView {
 
-    private OnDatePickedListener onDatePickedListener;
     private ErrorViewHandler errorHandler;
 
     public DatePickingView(Context context) {
@@ -61,23 +59,9 @@ public class DatePickingView extends AppCompatTextView {
     }
 
     private DatePickerDialog.OnDateSetListener onDatePickedListener() {
-        return new DatePickerDialog.OnDateSetListener(){
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                DatePickingView.this.setText(Dates.format(year, Month.of(month + 1), day, FormFragment.DATE_PATTERN));
-                setError(null);
-                if (onDatePickedListener != null) {
-                    onDatePickedListener.onDatePicked(DatePickingView.this);
-                }
-            }
+        return (datePicker, year, month, day) -> {
+            DatePickingView.this.setText(Dates.format(year, Month.of(month + 1), day, FormFragment.DATE_PATTERN));
+            setError(null);
         };
-    }
-
-    public void setOnDatePickedListener(OnDatePickedListener listener) {
-        onDatePickedListener = listener;
-    }
-
-    public interface OnDatePickedListener {
-        void onDatePicked(DatePickingView view);
     }
 }

@@ -11,14 +11,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingRight="20dp"
-        android:text="@string/tauron_energia_elektryczna" />
+        android:paddingEnd="20dp"
+        android:text="@string/tauron_energia_elektryczna"
+        tools:ignore="RtlSymmetry"/>
 
     <TextView
         android:id="@+id/tv_meter_no"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingRight="20dp"
-        tools:text="12345678" />
+        android:paddingEnd="20dp"
+        tools:text="12345678"
+        tools:ignore="RtlSymmetry"/>
 
     <TextView
         android:id="@+id/tv_prev_date"
@@ -26,7 +30,9 @@
         android:layout_height="wrap_content"
         android:gravity="start"
         android:paddingRight="10dp"
-        tools:text="01.01.2015" />
+        android:paddingEnd="10dp"
+        tools:text="01.01.2015"
+        tools:ignore="RtlSymmetry"/>
 
     <TextView
         android:id="@+id/tv_prev_reading"
@@ -35,7 +41,9 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:paddingRight="20dp"
-        tools:text="1" />
+        android:paddingEnd="20dp"
+        tools:text="1"
+        tools:ignore="RtlSymmetry"/>
 
     <TextView
         android:id="@+id/tv_curr_date"
@@ -43,7 +51,9 @@
         android:layout_height="wrap_content"
         android:gravity="start"
         android:paddingRight="10dp"
-        tools:text="12.12.2015" />
+        android:paddingEnd="10dp"
+        tools:text="12.12.2015"
+        tools:ignore="RtlSymmetry"/>
 
     <TextView
         android:id="@+id/tv_curr_reading"
@@ -52,7 +62,9 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:paddingRight="20dp"
-        tools:text="123456789" />
+        android:paddingEnd="20dp"
+        tools:text="123456789"
+        tools:ignore="RtlSymmetry"/>
 
     <TextView
         android:id="@+id/tv_count"
@@ -60,7 +72,9 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:paddingRight="20dp"
-        tools:text="1" />
+        android:paddingEnd="20dp"
+        tools:text="1"
+        tools:ignore="RtlSymmetry"/>
 
     <TextView
         android:id="@+id/tv_consumption"
@@ -68,7 +82,9 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:paddingRight="20dp"
-        tools:text="2 339" />
+        android:paddingEnd="20dp"
+        tools:text="2 339"
+        tools:ignore="RtlSymmetry"/>
 
     <TextView
         android:id="@+id/tv_price"
@@ -76,7 +92,9 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:paddingRight="20dp"
-        tools:text="0,27150" />
+        android:paddingEnd="20dp"
+        tools:text="0,27150"
+        tools:ignore="RtlSymmetry"/>
 
     <TextView
         android:id="@+id/tv_amount"

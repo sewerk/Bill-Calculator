@@ -82,6 +82,7 @@ public class SavedBillsRegistry {
     }
 
     private String getKey(Provider provider, int readingFrom, int readingTo, int readingFrom2, int readingTo2, LocalDate dateFrom, LocalDate dateTo, Prices prices) {
+        //noinspection StringBufferReplaceableByString
         return new StringBuilder()
                 .append(provider.toString()).append("_")
                 .append(readingFrom).append("_")
@@ -94,6 +95,7 @@ public class SavedBillsRegistry {
                 .toString();
     }
 
+    @SuppressWarnings("StringBufferReplaceableByString")
     private String getKey(Prices prices) {
         if (prices instanceof IPgePrices) {
             IPgePrices p = (IPgePrices) prices;

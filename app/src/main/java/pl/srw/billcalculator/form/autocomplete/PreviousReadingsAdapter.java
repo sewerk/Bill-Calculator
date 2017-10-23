@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.form.autocomplete;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
@@ -35,6 +36,7 @@ public class PreviousReadingsAdapter extends ArrayAdapter<String> {
         super.addAll(result);
     }
 
+    @NonNull
     @Override
     public Filter getFilter() {
         if (mFilter == null) {

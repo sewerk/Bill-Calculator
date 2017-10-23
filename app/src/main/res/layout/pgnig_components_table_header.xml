@@ -13,8 +13,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="120dp"
+            android:paddingEnd="120dp"
             android:textStyle="bold"
-            android:text="Opłaty" />
+            android:text="Opłaty"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,61 +24,74 @@
             android:layout_span="2"
             android:textStyle="bold"
             android:gravity="center_horizontal"
-            android:text="za okres\nod                         do" />
+            android:text="za okres\nod                         do"
+            tools:ignore="HardcodedText"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:layout_gravity="bottom|end"
-            android:text="Ilość" />
+            android:text="Ilość"
+            tools:ignore="HardcodedText"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
+            android:paddingStart="20dp"
             android:textStyle="bold"
             android:layout_gravity="bottom|end"
-            android:text="j.m." />
+            android:text="j.m."
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="cena\nnetto [zł]" />
+            android:text="cena\nnetto [zł]"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="wartość\nakcyzy [zł]" />
+            android:text="wartość\nakcyzy [zł]"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="współ-\nczynnik" />
+            android:text="współ-\nczynnik"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:textStyle="bold"
-            android:text="stawka\nVAT [%]" />
+            android:text="stawka\nVAT [%]"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:textStyle="bold"
-            android:text="wartość netto [zł]" />
+            android:text="wartość netto [zł]"
+            tools:ignore="HardcodedText"/>
 
     </TableRow>
 

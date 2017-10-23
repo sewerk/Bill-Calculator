@@ -9,7 +9,7 @@ import pl.srw.billcalculator.type.Provider;
 
 public class ProviderMapper {
 
-    private Map<Provider, RestorablePrices> pricesMap;
+    private final Map<Provider, RestorablePrices> pricesMap;
 
     @Inject
     public ProviderMapper(Map<Provider, RestorablePrices> pricesMap) {

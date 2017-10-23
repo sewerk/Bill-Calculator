@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_help"
@@ -12,5 +13,6 @@
         android:title="@string/action_delete"
         android:icon="@drawable/ic_delete_white_24dp"
         app:showAsAction="always"
-        android:visible="false"/>
+        android:visible="false"
+        tools:ignore="AlwaysShowAction"/>
 </menu>

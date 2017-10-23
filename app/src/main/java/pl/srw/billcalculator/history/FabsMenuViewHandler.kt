@@ -28,8 +28,8 @@ class FabsMenuViewHandler @Inject constructor() : FabsMenuPresenter.View {
     lateinit var activity: DrawerActivity
     val presenter: FabsMenuPresenter = FabsMenuPresenter(this)
 
-    val expandAnimator: AnimatorSet by lazy(LazyThreadSafetyMode.NONE) { Animations.getExpandFabs(fab, fabPge, fabPgnig, fabTauron) }
-    val collapseAnimator: AnimatorSet by lazy(LazyThreadSafetyMode.NONE) { Animations.getCollapseFabs(fab, fabPge, fabPgnig, fabTauron) }
+    private val expandAnimator: AnimatorSet by lazy(LazyThreadSafetyMode.NONE) { Animations.getExpandFabs(fab, fabPge, fabPgnig, fabTauron) }
+    private val collapseAnimator: AnimatorSet by lazy(LazyThreadSafetyMode.NONE) { Animations.getCollapseFabs(fab, fabPge, fabPgnig, fabTauron) }
 
     fun init(activity: DrawerActivity) {
         ButterKnife.bind(this, activity)

@@ -2,16 +2,15 @@ package pl.srw.billcalculator.history
 
 import android.view.View
 import com.nhaarman.mockito_kotlin.*
-import junit.framework.Assert.assertFalse
-import junit.framework.Assert.assertTrue
 import junitparams.JUnitParamsRunner
 import junitparams.Parameters
 import org.greenrobot.greendao.query.LazyList
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.never
-import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import pl.srw.billcalculator.bill.SavedBillsRegistry
 import pl.srw.billcalculator.db.Bill
@@ -143,7 +142,7 @@ class HistoryPresenterTest {
     }
 
     @Test
-    fun onNewViewRestoreState_setsHistoryDataOnList() {
+    fun `sets list data, on new restore state`() {
         // GIVEN
         val list: LazyList<History> = mock()
         sut.setState("historyData", list)
@@ -182,6 +181,15 @@ class HistoryPresenterTest {
         // THEN
         verify(list).close()
         verify(history).getAll()
+    }
+
+    @Test
+    fun `disables swipe delete, on new view restore state, when any item selected`() {
+        whenever(selection.isAnySelected()).thenReturn(true)
+
+        sut.onNewViewRestoreState()
+
+        verify(view).disableSwipeDelete()
     }
 
     @Test
@@ -422,6 +430,29 @@ class HistoryPresenterTest {
     }
 
     @Test
+    fun `update selection, when undo clicked`() {
+        whenever(history.isUndoDeletePossible()).thenReturn(true)
+        val lowestPosition = 1
+
+        sut.undoDeleteClicked(4, lowestPosition, 2)
+
+        verify(selection).onInsert(lowestPosition)
+    }
+
+    @Test
+    fun `updates selection, after undo clicked, before list data changed`() {
+        whenever(history.isUndoDeletePossible()).thenReturn(true)
+        val lowestPosition = 1
+
+        sut.undoDeleteClicked(lowestPosition)
+
+        val inOrder = inOrder(selection, view)
+        inOrder.verify(selection).onInsert(lowestPosition)
+        inOrder.verify(view).setListData(any())
+        inOrder.verify(view).onItemInsertedToList(lowestPosition)
+    }
+
+    @Test
     fun onListItemClicked_whenNotInSelectMode_opensBill() {
         // GIVEN
         val bill: PgeG11Bill = mock()
@@ -452,7 +483,7 @@ class HistoryPresenterTest {
     fun onListItemClicked_andItemSelected_deselectsViewItem() {
         // GIVEN
         val position = 2
-        whenever(selection.isAnySelected).thenReturn(true)
+        whenever(selection.isAnySelected()).thenReturn(true)
         whenever(selection.isSelected(position)).thenReturn(true)
         val item = given_historyViewItem(position = position)
 
@@ -467,7 +498,7 @@ class HistoryPresenterTest {
     fun onListItemClicked_andItemSelected_deselectPosition() {
         // GIVEN
         val position = 2
-        whenever(selection.isAnySelected).thenReturn(true)
+        whenever(selection.isAnySelected()).thenReturn(true)
         whenever(selection.isSelected(position)).thenReturn(true)
         val item = given_historyViewItem(position = position)
 
@@ -481,7 +512,7 @@ class HistoryPresenterTest {
     @Test
     fun onListItemClicked_whenInSelectMode_andItemNotSelected_selectsViewItem() {
         // GIVEN
-        whenever(selection.isAnySelected).thenReturn(true)
+        whenever(selection.isAnySelected()).thenReturn(true)
         val position = 2
         val item = given_historyViewItem(position = position)
 
@@ -495,7 +526,7 @@ class HistoryPresenterTest {
     @Test
     fun onListItemClicked_whenInSelectMode_andItemNotSelected_selectsPosition() {
         // GIVEN
-        whenever(selection.isAnySelected).thenReturn(true)
+        whenever(selection.isAnySelected()).thenReturn(true)
         val position = 2
         val bill: PgeG11Bill = mock()
         val item = given_historyViewItem(bill, mock<View>(), position)
@@ -510,7 +541,7 @@ class HistoryPresenterTest {
     @Test
     fun onListItemClicked_onSingleSelectedItem_hidesDeleteButton() {
         // GIVEN
-        whenever(selection.isAnySelected).thenReturn(true, false)
+        whenever(selection.isAnySelected()).thenReturn(true, false)
         val position = 2
         whenever(selection.isSelected(position)).thenReturn(true)
         val item = given_historyViewItem(position = position)
@@ -525,7 +556,7 @@ class HistoryPresenterTest {
     @Test
     fun onListItemClicked_onSingleSelectedItem_enablesSwipeDelete() {
         // GIVEN
-        whenever(selection.isAnySelected).thenReturn(true, false)
+        whenever(selection.isAnySelected()).thenReturn(true, false)
         val position = 2
         whenever(selection.isSelected(position)).thenReturn(true)
         val item = given_historyViewItem(position = position)
@@ -577,7 +608,7 @@ class HistoryPresenterTest {
     fun onListItemLongClicked_andItemSelected_deselectsViewItem() {
         // GIVEN
         val position = 2
-        whenever(selection.isAnySelected).thenReturn(true)
+        whenever(selection.isAnySelected()).thenReturn(true)
         whenever(selection.isSelected(position)).thenReturn(true)
         val item = given_historyViewItem(position = position)
 
@@ -592,7 +623,7 @@ class HistoryPresenterTest {
     fun onListItemLongClicked_andItemSelected_deselectsPosition() {
         // GIVEN
         val position = 2
-        whenever(selection.isAnySelected).thenReturn(true)
+        whenever(selection.isAnySelected()).thenReturn(true)
         whenever(selection.isSelected(position)).thenReturn(true)
         val item = given_historyViewItem(position = position)
 
@@ -606,7 +637,7 @@ class HistoryPresenterTest {
     @Test
     fun onListItemLongClicked_whenInSelectMode_andItemNotSelected_selectsViewItem() {
         // GIVEN
-        whenever(selection.isAnySelected).thenReturn(true)
+        whenever(selection.isAnySelected()).thenReturn(true)
         val item = given_historyViewItem(position = 2)
 
         // WHEN
@@ -634,7 +665,7 @@ class HistoryPresenterTest {
     fun onListItemLongClicked_onSingleSelectedItem_hidesDeleteButton() {
         // GIVEN
         val position = 2
-        whenever(selection.isAnySelected).thenReturn(true, false)
+        whenever(selection.isAnySelected()).thenReturn(true, false)
         whenever(selection.isSelected(position)).thenReturn(true)
         val item = given_historyViewItem(position = position)
 
@@ -649,7 +680,7 @@ class HistoryPresenterTest {
     fun onListItemLongClicked_onSingleSelectedItem_enablesSwipeDelete() {
         // GIVEN
         val position = 2
-        whenever(selection.isAnySelected).thenReturn(true, false)
+        whenever(selection.isAnySelected()).thenReturn(true, false)
         whenever(selection.isSelected(position)).thenReturn(true)
         val item = given_historyViewItem(position = position)
 
@@ -664,8 +695,8 @@ class HistoryPresenterTest {
     fun `delete button clicked, caches bills for undo posibility`() {
         // GIVEN
         val items = listOf(mock<Bill>(), mock<Bill>())
-        whenever(selection.items).thenReturn(items)
-        whenever(selection.positionsReverseOrder).thenReturn(intArrayOf(1, 0))
+        whenever(selection.getItems()).thenReturn(items)
+        whenever(selection.getPositionsReverseOrder()).thenReturn(intArrayOf(1, 0))
 
         // WHEN
         sut.deleteClicked()
@@ -678,21 +709,22 @@ class HistoryPresenterTest {
     fun deleteClicked_deletesSelectedBills() {
         // GIVEN
         val bill: PgeG11Bill = mock()
-        whenever(selection.items).thenReturn(Arrays.asList<Bill>(bill, bill))
-        whenever(selection.positionsReverseOrder).thenReturn(intArrayOf(3, 2))
+        val bills = Arrays.asList<Bill>(bill, bill)
+        whenever(selection.getItems()).thenReturn(bills)
+        whenever(selection.getPositionsReverseOrder()).thenReturn(intArrayOf(3, 2))
 
         // WHEN
         sut.deleteClicked()
 
         // THEN
-        verify(history, times(2)).deleteBillWithPrices(bill)
+        verify(history).deleteBillsWithPrices(bills)
     }
 
     @Test
     fun `delete button clicked, remove view items to list, in reverse order`() {
         // GIVEN
-        whenever(selection.isAnySelected).thenReturn(true)
-        whenever(selection.positionsReverseOrder).thenReturn(intArrayOf(5, 2))
+        whenever(selection.isAnySelected()).thenReturn(true)
+        whenever(selection.getPositionsReverseOrder()).thenReturn(intArrayOf(5, 2))
 
         // WHEN
         sut.deleteClicked()
@@ -707,7 +739,7 @@ class HistoryPresenterTest {
     @Test
     fun `delete button clicked, enables swipe on items`() {
         // GIVEN
-        whenever(selection.positionsReverseOrder).thenReturn(intArrayOf(1))
+        whenever(selection.getPositionsReverseOrder()).thenReturn(intArrayOf(1))
 
         // WHEN
         sut.deleteClicked()
@@ -719,7 +751,7 @@ class HistoryPresenterTest {
     @Test
     fun `delete button clicked, shows undo delete message`() {
         // GIVEN
-        whenever(selection.positionsReverseOrder).thenReturn(intArrayOf(5, 3))
+        whenever(selection.getPositionsReverseOrder()).thenReturn(intArrayOf(5, 3))
 
         // WHEN
         sut.deleteClicked()
@@ -731,8 +763,8 @@ class HistoryPresenterTest {
     @Test
     fun deleteClicked_clearsSelection() {
         // GIVEN
-        whenever(selection.isAnySelected).thenReturn(true)
-        whenever(selection.positionsReverseOrder).thenReturn(IntArray(0))
+        whenever(selection.isAnySelected()).thenReturn(true)
+        whenever(selection.getPositionsReverseOrder()).thenReturn(IntArray(0))
 
         // WHEN
         sut.deleteClicked()
@@ -744,8 +776,8 @@ class HistoryPresenterTest {
     @Test
     fun deleteClicked_hidesDeleteButton() {
         // GIVEN
-        whenever(selection.isAnySelected).thenReturn(true)
-        whenever(selection.positionsReverseOrder).thenReturn(IntArray(0))
+        whenever(selection.isAnySelected()).thenReturn(true)
+        whenever(selection.getPositionsReverseOrder()).thenReturn(IntArray(0))
 
         // WHEN
         sut.deleteClicked()

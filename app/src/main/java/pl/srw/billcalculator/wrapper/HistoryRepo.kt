@@ -14,8 +14,12 @@ class HistoryRepo @Inject internal constructor() {
 
     private var deleted: Collection<Pair<Bill, Prices>> = emptyList()
 
-    // TODO: Rewrite to Rx
+    // FIXME: Rewrite to Rx
     fun getAll(): LazyList<History> = Database.getHistory()
+
+    fun deleteBillsWithPrices(bills: Collection<Bill>) {
+        bills.forEach { deleteBillWithPrices(it) }
+    }
 
     fun deleteBillWithPrices(bill: Bill) {
         Database.deleteBillWithPrices(BillType.valueOf(bill), bill.id, bill.pricesId)

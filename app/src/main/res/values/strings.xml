@@ -3,9 +3,11 @@
 
     <!-- Drawer activity -->
     <string name="app_name">Bill Calculator</string>
+    <string name="app_name_short">Bill Calculator</string>
     <string name="reading_missing">Empty!</string>
     <string name="reading_order_error">Usage too low!</string>
     <string name="date_error">Period too short!</string>
+    <string name="activity_drawer_toolbar_image_content_desc">Bills to pay</string>
 
     <!-- drawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -21,9 +23,11 @@
     <string name="new_ui_content">Application has been updated with new look.\nSee 4 short tips now.\nIf something is not clear, let me know\n(menu: About > e-mail).</string>
     <string name="new_ui_button">Start</string>
     <string name="main_help_fab_desc">Calculate bill</string>
+    <string name="main_help_list_desc">Browse bills</string>
     <string name="main_help_swipe_delete_desc">Swipe bill to delete</string>
     <string name="main_help_menu_desc">Menu</string>
     <string name="main_help_options_desc">More actions</string>
+    <string name="activity_drawer_help_swipe_delete_content_desc">Finger moving right</string>
 
     <!-- history -->
     <string name="history_label">My bills</string>
@@ -60,11 +64,11 @@
     <string name="rationale_dialog_goto_settings">Go to Settings</string>
     <string name="rationale_dialog_cancel">Cancel</string>
     <string name="dialog_bill_without_oze_title">Information</string>
-    <string name="dialog_bill_without_oze_message">Following bill does not include \'opłata OZE\' fee which started to apply from July 2016. It is recommended to re-calculate this bill.</string>
+    <string name="dialog_bill_without_oze_message">Following bill does not include \&#8216;opłata OZE\&#8216; fee which started to apply from July 2016. It is recommended to re-calculate this bill.</string>
     <string name="dialog_bill_without_oze_positive">OK</string>
-    <string name="dialog_bill_without_oze_cancel">No thanks.</string>
 
     <!-- PGE bill -->
+    <string name="pge_bill_logo_content_desc" translatable="false">PGE logo</string>
     <string name="energy_bill">Energy bill</string>
     <string name="rachunek_rozliczeniowy" translatable="false">RACHUNEK ROZLICZENIOWY z dnia %1$s\nZA ENERGIĘ ELEKTRYCZNĄ I USŁUGI DYSTRYBUCJI</string>
     <string name="strefa_calodobowa" translatable="false">całodobowa</string>
@@ -96,6 +100,7 @@
     <string name="for_period" translatable="false">Za okres od %1$s do %2$s</string>
 
     <!-- Tauron bill -->
+    <string name="tauron_bill_logo_content_desc" translatable="false">Tauron logo</string>
     <string name="tauron_energia_elektryczna" translatable="false">Energia elektryczna czynna całodobowa</string>
     <string name="tauron_oplata_dyst_zmienna" translatable="false">Opłata dystr. zm. całodobowa</string>
     <string name="tauron_oplata_dyst_stala" translatable="false">Opłata dystrybucyjna stała</string>
@@ -117,6 +122,7 @@
     <string name="tauron_kwota_akcyzy" translatable="false">Kwota podatku akcyzowego, zawarta w wartości energii wykazanej w tym rozliczeniu wynosi %1$s zł.</string>
 
     <!-- PGNiG bill -->
+    <string name="pgnig_bill_logo_content_desc" translatable="false">PGNiG logo</string>
     <string name="gas_bill">Gas bill</string>
     <string name="rozliczenie_dnia" translatable="false">Rozliczenie z dnia %1$s</string>
     <string name="wartosc_faktury" translatable="false">Wartość faktury brutto: %1$s zł</string>
@@ -134,10 +140,10 @@
     <string name="wspolczynnik_konwersji" translatable="false">Współczynnik konwersji</string>
 
     <string name="mc" translatable="false">mc</string>
-    <string name="m3" translatable="false">m\u00B3</string>
 
     <!-- Preferences -->
     <string name="settings_label">Settings</string>
+    <string name="settings_list_item_logo_content_desc">provider icon</string>
     <string name="action_help">Help</string>
     <string name="action_restore">Restore default</string>
 
@@ -156,13 +162,14 @@
         <item>Taryfa całodobowa (G11)</item>
         <item>Taryfa dwustrefowa (G12)</item>
     </string-array>
+    <string name="settings_help_example_content_desc">Where to look at bill example</string>
 
     <!-- PGE settings -->
     <string name="settings_pge" translatable="false">PGE</string>
     <string name="settings_pge_summary">Set tariff and prices</string>
 
     <string name="settings_pge_tariff_title" translatable="false">TARYFA</string>
-    <string name="oplata_przejsciowa_desc" translatable="false">Składnik opłaty przejściowej jest zależny od rocznego zużycia kWh:\n - do 500 kWH/rok wynosi 0.24 zł netto\n - od 500 do 1200 kWh/rok wynosi 1.00 zł netto\n - od 1200 kWh/rok wynosi 3.15 zł netto</string>
+    <string name="oplata_przejsciowa_desc" translatable="false">Składnik opłaty przejściowej jest zależny od rocznego zużycia kWh:\n - do 500 kWH/rok wynosi 0.45 zł netto\n - od 500 do 1200 kWh/rok wynosi 1.90 zł netto\n - od 1200 kWh/rok wynosi 6.50 zł netto</string>
     <string name="oplata_stala_za_przesyl_desc" translatable="false">Inne nazwy:\n - składnik stały stawki sieciowej,\n - opłata przesyłowa stała.\nCena naliczana co miesiąc, niezależnie od zużycia.</string>
     <string name="oplata_abonamentowa_desc" translatable="false">Stała cena za abonament, naliczana co miesiąc, niezależnie od zużycia.</string>
     <string name="oplata_oze_desc" translatable="false">Opłata na Odnawialne Źródła Energii, obowiązująca od lipca 2016 r., zależna od zużycia.</string>
@@ -179,7 +186,7 @@
     <string name="settings_pgnig" translatable="false">PGNiG</string>
     <string name="settings_pgnig_summary">Set gas conversion ratio and prices</string>
 
-    <string name="wsp_konwersji_desc" translatable="false">Współczynnik konwersji to mnożnik, dzięki któremu można zamienić jednostki objętości [m\u00B3] na jednostki energii [kWh]. Więcej na <![CDATA[<a href="http://od.pgnig.pl/dladomu/nowamiara/przeliczanie">http://od.pgnig.pl/dladomu/nowamiara/przeliczanie</a>]]></string>
+    <string name="wsp_konwersji_desc" translatable="false">Współczynnik konwersji to mnożnik, dzięki któremu można zamienić jednostki objętości [m\u00B3] na jednostki energii [kWh]. Więcej na <![CDATA[<a href="www.pgnig.pl/dla-domu/poradnik/nowa-jednostka-rozliczeniowa">www.pgnig.pl/dla-domu/poradnik/nowa-jednostka-rozliczeniowa</a>]]></string>
     <string name="abonamentowa_desc" translatable="false">Stała cena za abonament, naliczana co miesiąc, niezależnie od zużycia.</string>
     <string name="paliwo_gazowe_desc" translatable="false">Cena netto jednej kilowatogodziny paliwa gazowego.</string>
     <string name="dystrybucyjna_stala_desc" translatable="false">Cena za dostarczanie gazu (wcześniej opłata sieciowa stała), naliczana co miesiąc, niezależnie od zużycia.</string>
@@ -199,5 +206,6 @@
     <string name="link_gplus">or join early version testing</string>
     <string name="clause">The names, logos and trade marks are owned by distribution companies. Given calculations are just approximate value of the bill and cannot be used as ground for financial claiming.</string>
     <string name="email_client_missing">I could not find any e-mail client installed</string>
+    <string name="about_logo_content_desc">Application logo</string>
 
 </resources>

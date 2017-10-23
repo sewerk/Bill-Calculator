@@ -25,8 +25,8 @@ import javax.inject.Inject;
 import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import pl.srw.billcalculator.AboutActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.about.AboutDialogFragment;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.dialog.CheckPricesDialogFragment;
@@ -58,7 +58,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @BindInt(R.integer.cardAmount) int cardAmount;
 
     @Inject HistoryPresenter presenter;
-//TODO    @Inject DrawerPresenter drawerPresenter;
+//FIXME    @Inject DrawerPresenter drawerPresenter;
     @Inject FabsMenuViewHandler fabsMenuHandler;
     @Inject HelpHandler helpHandler;
     @Inject BillSelection selection;
@@ -169,7 +169,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
 
     @Override
     public void showAbout() {
-        startActivity(new Intent(this, AboutActivity.class));
+        new AboutDialogFragment().show(getSupportFragmentManager(), null);
     }
 
     @Override
@@ -216,12 +216,9 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Override
     public void showUndoDeleteMessage(final int... positions) {
         Snackbar.make(coordinatorLayout, R.string.bill_deleted, Snackbar.LENGTH_LONG)
-                .setAction(R.string.action_undo_delete, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Analytics.log("Undo clicked");
-                        presenter.undoDeleteClicked(positions);
-                    }
+                .setAction(R.string.action_undo_delete, v -> {
+                    Analytics.log("Undo clicked");
+                    presenter.undoDeleteClicked(positions);
                 })
                 .setActionTextColor(getResources().getColor(R.color.yellow))
                 .show();
@@ -240,7 +237,6 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Override
     public void onItemRemoveFromList(int position) {
         adapter.notifyItemRemoved(position);
-        //TODO: animate swipe-delete
     }
 
     @Override

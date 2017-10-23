@@ -6,7 +6,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class MenuClickHandlerExtension @Inject constructor(val generator: HistoryGenerator) {
+class MenuClickHandlerExtension @Inject constructor(private val generator: HistoryGenerator) {
 
     fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_generate) {

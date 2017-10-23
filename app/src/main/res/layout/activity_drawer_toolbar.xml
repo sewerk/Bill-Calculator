@@ -23,7 +23,8 @@
             android:layout_height="match_parent"
             android:src="@drawable/bills_to_pay"
             android:scaleType="centerCrop"
-            app:layout_collapseMode="parallax"/>
+            app:layout_collapseMode="parallax"
+            android:contentDescription="@string/activity_drawer_toolbar_image_content_desc"/>
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
