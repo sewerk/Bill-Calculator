@@ -26,11 +26,11 @@ public class PgePrices extends SharedPreferencesEnergyPrices implements IPgePric
 
     private final String pge_tariff = TARIFF_G11;
     private final String cena_za_energie_czynna = "0.2410";
-    private final String cena_za_energie_czynna_G12dzien = "0.2835";
-    private final String cena_za_energie_czynna_G12noc = "0.1900";
+    private final String cena_za_energie_czynna_G12dzien = "0.2760";
+    private final String cena_za_energie_czynna_G12noc = "0.1770";
     private final String cena_oplata_sieciowa = "0.2075";
-    private final String cena_oplata_sieciowa_G12dzien = "0.2340";
-    private final String cena_oplata_sieciowa_G12noc = "0.0706";
+    private final String cena_oplata_sieciowa_G12dzien = "0.2360";
+    private final String cena_oplata_sieciowa_G12noc = "0.0720";
     private final String cena_skladnik_jakosciowy = "0.0127";
     private final String cena_oplata_przejsciowa = "1.90";
     private final String cena_oplata_stala_za_przesyl = "1.96";
