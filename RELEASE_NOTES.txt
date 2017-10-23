@@ -1,3 +1,11 @@
+v.2.0
+ - fix: dialog-activity cause unbind presenter on pre-L
+ - crunch images
+ - enable lint warnings, lint baseline
+ - new launcher icon
+ - fix: default value for incorrect price
+ - fix: disable swipe when bill selected after rotation
+ - fix: update selection after undo deleted
 v.2.0-beta3
  - fix: select for delete followed by bill creation breaks selection
  - improve analytics
