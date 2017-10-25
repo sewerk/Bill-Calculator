@@ -26,7 +26,6 @@ With help of
 tools
 ---------
 - [Crashlytics](https://fabric.io)
-- [Hugo](https://github.com/jakewharton/hugo)
 - [LeakCanary](https://github.com/square/leakcanary)
 
 tests

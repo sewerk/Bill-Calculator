@@ -10,8 +10,6 @@ import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.widget.TextView;
 
-import hugo.weaving.DebugLog;
-
 public final class Views {
     
     private Views() {}
@@ -36,7 +34,6 @@ public final class Views {
     }
 
     @UiThread
-    @DebugLog
     public static Bitmap buildBitmapFrom(View v) {
         Bitmap b = Bitmap.createBitmap(v.getMeasuredWidth(), v.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(b);

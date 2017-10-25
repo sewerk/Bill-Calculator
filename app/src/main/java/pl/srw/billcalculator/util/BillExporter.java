@@ -12,11 +12,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import hugo.weaving.DebugLog;
+import timber.log.Timber;
 
 public class BillExporter {
-    @DebugLog
     public static File writeToImage(final File imageFile, final Bitmap bitmap) throws IOException {
+        Timber.d("writeToImage() called with: imageFile = [%s]", imageFile.getName());
         OutputStream out = null;
         try {
             out = new FileOutputStream(imageFile);
@@ -30,8 +30,8 @@ public class BillExporter {
         return imageFile;
     }
 
-    @DebugLog
     public static File printToPdf(final File targetFile, final String imageFilePath) throws IOException, DocumentException {
+        Timber.d("printToPdf() called with: targetFile = [%s], imageFilePath = [%s]", targetFile, imageFilePath);
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(targetFile));
         document.open();
@@ -44,7 +44,6 @@ public class BillExporter {
         return targetFile;
     }
 
-    @DebugLog
     private static void scaleToFit(Document document, Image image) {
         float scale = ((document.getPageSize().getWidth() - document.leftMargin()
                 - document.rightMargin()) / image.getWidth()) * 100;

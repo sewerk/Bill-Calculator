@@ -15,7 +15,6 @@ import android.view.MenuItem;
 
 import java.util.Map;
 
-import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.help.ProviderSettingsHelpActivity;
@@ -47,7 +46,6 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
         throw new EnumVariantNotHandledException(provider);
     }
 
-    @DebugLog
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

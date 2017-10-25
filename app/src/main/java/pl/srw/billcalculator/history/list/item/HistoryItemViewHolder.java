@@ -8,12 +8,12 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.history.list.provider.DoubleReadingsBillHistoryItemValueProviding;
 import pl.srw.billcalculator.history.list.provider.HistoryItemValueProvider;
+import timber.log.Timber;
 
 public class HistoryItemViewHolder extends RecyclerView.ViewHolder
         implements View.OnClickListener, View.OnLongClickListener, HistoryViewItem {
@@ -39,8 +39,8 @@ public class HistoryItemViewHolder extends RecyclerView.ViewHolder
         logoAnimator = new HistoryItemSelectionAnimator(v.getContext(), logoImage);
     }
 
-    @DebugLog
     public void bindEntry(final History item, boolean selected) {
+        Timber.d("bindEntry() called with: item = [%s], selected = [%s]", item, selected);
         itemValuesProvider = HistoryItemValueProvider.of(item, itemView.getContext());
 
         setLogo(selected);

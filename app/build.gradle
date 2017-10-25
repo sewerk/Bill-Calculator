@@ -3,7 +3,6 @@ apply plugin: 'io.fabric'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply from: 'signing.gradle'
-apply plugin: 'hugo'
 
 android {
     compileSdkVersion 25

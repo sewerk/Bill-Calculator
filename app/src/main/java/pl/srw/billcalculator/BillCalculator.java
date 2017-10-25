@@ -8,7 +8,6 @@ import com.squareup.leakcanary.LeakCanary;
 
 import javax.inject.Inject;
 
-import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
@@ -23,7 +22,6 @@ public class BillCalculator extends Application {
     @Inject PgnigPrices pgnigPrices;
     @Inject TauronPrices tauronPrices;
 
-    @DebugLog
     @Override
     public void onCreate() {
         super.onCreate();

@@ -29,7 +29,6 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.form.autocomplete.PreviousReadingsAdapter;
 import pl.srw.billcalculator.form.di.FormComponent;
@@ -48,6 +47,7 @@ import pl.srw.billcalculator.util.Views;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.mfvp.MvpFragment;
 import pl.srw.mfvp.di.MvpFragmentScopedFragment;
+import timber.log.Timber;
 
 public class FormFragment extends MvpFragment
         implements MvpFragmentScopedFragment<FormComponent, HistoryComponent>,
@@ -181,9 +181,9 @@ public class FormFragment extends MvpFragment
         tariffView.setText(tariff);
     }
 
-    @DebugLog
     @Override
     public void setAutoCompleteDataForReadingFrom(int[] readings) {
+        Timber.d("setAutoCompleteDataForReadingFrom() called with: readings = [%s]", readings);
         readingFromInput.setAdapter(new PreviousReadingsAdapter(getContext(), readings));
     }
 

@@ -4,7 +4,6 @@ import android.content.Context;
 
 import java.math.BigDecimal;
 
-import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
@@ -21,7 +20,6 @@ public abstract class HistoryItemValueProvider {
         this.context = context;
     }
 
-    @DebugLog
     public static HistoryItemValueProvider of(final History item, Context context) {
         final BillType billType = BillType.valueOf(item.getBillType());
         switch (billType) {

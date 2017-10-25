@@ -6,7 +6,6 @@ import android.content.Intent;
 
 import org.threeten.bp.LocalDate;
 
-import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.bill.calculation.CalculatedBill;
 import pl.srw.billcalculator.db.Prices;
 import pl.srw.billcalculator.intent.IntentCreator;
@@ -26,7 +25,6 @@ public abstract class BillStoringService<P extends Prices, C extends CalculatedB
         super(name);
     }
 
-    @DebugLog
     @Override
     protected void onHandleIntent(final Intent intent) {
         readExtra(intent);
