@@ -25,10 +25,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile "org.greenrobot:greendao:$greenDaoVer"
-    compile "com.jakewharton.timber:timber:$timberVer"
+    api "org.greenrobot:greendao:$greenDaoVer"
+    implementation "com.jakewharton.timber:timber:$timberVer"
 
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 }
