@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<issues format="4" by="lint 3.0.0-beta7">
-
-    <issue
-        id="ObsoleteLintCustomCheck"
-        message="Lint found one or more custom checks using its older Java API; these checks are still run in compatibility mode, but this causes duplicated parsing, and in the next version lint will no longer include this legacy mode. Make sure the following lint detectors are upgraded to the new API: butterknife.lint.InvalidR2UsageDetector">
-        <location
-            file="persistence"/>
-    </issue>
-
-    <issue
-        id="ObsoleteLintCustomCheck"
-        message="Lint found one or more custom checks using its older Java API; these checks are still run in compatibility mode, but this causes duplicated parsing, and in the next version lint will no longer include this legacy mode. Make sure the following lint detectors are upgraded to the new API: timber.lint.WrongTimberUsageDetector">
-        <location
-            file="persistence"/>
-    </issue>
+<issues format="4" by="lint 3.0.0">
 
     <issue
         id="OldTargetApi"
@@ -24,17 +10,6 @@
             file="build.gradle"
             line="9"
             column="9"/>
-    </issue>
-
-    <issue
-        id="NewerVersionAvailable"
-        message="A newer version of com.jakewharton.timber:timber than 4.1.0 is available: 4.5.1"
-        errorLine1="    compile &quot;com.jakewharton.timber:timber:$timberVer&quot;"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="build.gradle"
-            line="31"
-            column="5"/>
     </issue>
 
 </issues>

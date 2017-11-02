@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<issues format="4" by="lint 3.0.0-rc2">
+<issues format="4" by="lint 3.0.0">
 
     <issue
         id="ObsoleteLintCustomCheck"
         message="Lint found one or more custom checks using its older Java API; these checks are still run in compatibility mode, but this causes duplicated parsing, and in the next version lint will no longer include this legacy mode. Make sure the following lint detectors are upgraded to the new API: butterknife.lint.InvalidR2UsageDetector">
-        <location
-            file="app"/>
-    </issue>
-
-    <issue
-        id="ObsoleteLintCustomCheck"
-        message="Lint found one or more custom checks using its older Java API; these checks are still run in compatibility mode, but this causes duplicated parsing, and in the next version lint will no longer include this legacy mode. Make sure the following lint detectors are upgraded to the new API: timber.lint.WrongTimberUsageDetector">
         <location
             file="app"/>
     </issue>
@@ -29,7 +22,7 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="14"
+            line="13"
             column="9"/>
     </issue>
 
@@ -53,6 +46,17 @@
             file="src\main\res\layout\activity_drawer_nav_header.xml"
             line="10"
             column="11"/>
+    </issue>
+
+    <issue
+        id="TimberExceptionLogging"
+        message="Use single-argument log method instead of null/empty message"
+        errorLine1="    public static void error(Throwable exception, String message) {"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\java\pl\srw\billcalculator\wrapper\Analytics.java"
+            line="73"
+            column="5"/>
     </issue>
 
     <issue
@@ -291,7 +295,7 @@
     <issue
         id="UnusedResources"
         message="The resource `R.drawable.ic_forum_black_32dp` appears to be unused"
-        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
         errorLine2="^">
         <location
             file="src\main\res\drawable\ic_forum_black_32dp.xml"
@@ -313,7 +317,7 @@
     <issue
         id="UnusedResources"
         message="The resource `R.drawable.ic_mail_outline_black_32dp` appears to be unused"
-        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
         errorLine2="^">
         <location
             file="src\main\res\drawable\ic_mail_outline_black_32dp.xml"

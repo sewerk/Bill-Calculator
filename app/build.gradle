@@ -69,6 +69,7 @@ dependencies {
     implementation "com.android.support:cardview-v7:$supportLibVer"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
+    implementation "com.jakewharton.timber:timber:$timberVer"
     implementation 'com.github.sewerk:mfvp:1.0-beta1'
     implementation "com.google.dagger:dagger:$daggerVer"
     implementation "com.jakewharton:butterknife:$butterKnifeVer"
