@@ -85,7 +85,6 @@ dependencies {
 
     testImplementation "junit:junit:$junitVer"
     testImplementation "com.nhaarman:mockito-kotlin:$mockitoKotlinVer"
-    testImplementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVer" // version conflict with mockito-kotlin
     testImplementation "pl.pragmatists:JUnitParams:$junitParamsVer"
     testImplementation "org.threeten:threetenbp:$threeTenVer"
 
