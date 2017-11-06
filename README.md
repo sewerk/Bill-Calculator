@@ -8,6 +8,8 @@ Android app to calculate bill value for PGE, PGNiG and Tauron providers.
 <img width="25%" height="25%" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" />
 </a>
 
+Get on Google Play or <a href="https://appetize.io/app/turtj6n62ty2q9cuud3297jyyw">try it out with Appetize</a>
+
 With help of
 ---------
 - [ButterKnife](https://github.com/JakeWharton/butterknife)
