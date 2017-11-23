@@ -3,22 +3,18 @@ package pl.srw.billcalculator.form.fragment
 import android.support.annotation.StringRes
 import android.view.View
 import com.nhaarman.mockito_kotlin.*
-import io.reactivex.Single
 import junitparams.JUnitParamsRunner
 import junitparams.Parameters
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyInt
-import org.mockito.verification.VerificationMode
-import org.threeten.bp.LocalDate
 import pl.srw.billcalculator.R
 import pl.srw.billcalculator.RxJavaBaseTest
 import pl.srw.billcalculator.setState
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.ProviderMapper
-import pl.srw.billcalculator.wrapper.ReadingsRepo
 
 @RunWith(JUnitParamsRunner::class)
 class FormPresenterTest : RxJavaBaseTest() {
@@ -28,12 +24,9 @@ class FormPresenterTest : RxJavaBaseTest() {
     val providerMapper: ProviderMapper = mock {
         on { getPrices(anyOrNull())} doReturn prices
     }
-    val readingsRepo: ReadingsRepo = mock {
-        on { getPreviousReadingsFor(any())} doReturn Single.never<IntArray>()
-    }
     val historyUpdater: FormPresenter.HistoryUpdating = mock()
 
-    val sut = FormPresenter(readingsRepo, providerMapper, historyUpdater)
+    val sut = FormPresenter(providerMapper, historyUpdater)
 
     @Before
     fun setUp() {
@@ -44,8 +37,6 @@ class FormPresenterTest : RxJavaBaseTest() {
     @Parameters(method = "paramsForSetFormValues")
     fun onFirstBind_setFormValues(provider: Provider, tariff: String?, @StringRes readingUnitResId: Int) {
         // GIVEN
-        val dateFrom = calculateDateFrom()
-        val dateTo = calculateDateTo()
         sut.setup(provider)
         if (tariff != null) given_tariff(tariff)
 
@@ -57,7 +48,6 @@ class FormPresenterTest : RxJavaBaseTest() {
         verify(view).setupSettingsLink()
         verify(view, times(if (tariff != null) 1 else 0)).setTariffText(tariff)
         verify(view).setReadingUnit(readingUnitResId)
-        verify(view).setDates(dateFrom, dateTo)
     }
 
     private fun paramsForSetFormValues() = arrayOf(
@@ -83,11 +73,10 @@ class FormPresenterTest : RxJavaBaseTest() {
         verify(view).setupSettingsLink()
         verify(view, times(if (tariff != null) 1 else 0)).setTariffText(tariff)
         verify(view).setReadingUnit(readingUnitResId)
-        verify(view, never()).setDates(any(), any())
     }
 
     @Test
-    @Parameters(value = *arrayOf("PGE", "PGNIG", "TAURON"))
+    @Parameters("PGE", "PGNIG", "TAURON")
     fun whenSettingsLinkClicked_showProviderSettings(provider: Provider) {
         sut.setup(provider)
 
@@ -244,71 +233,6 @@ class FormPresenterTest : RxJavaBaseTest() {
     }
 
     @Test
-    @Parameters(method = "paramsForAutoComplete")
-    fun onFirstBind_setsAutoCompletionDataForReadingFrom(
-            provider: Provider, tariff: String, singleVerificationMode: VerificationMode, doubleVerificationMode: VerificationMode) {
-        val readings = intArrayOf(1, 2, 3)
-        given_databaseReturnPreviousReadings(readings)
-        sut.setup(provider)
-        given_tariff(tariff)
-
-        sut.onFirstBind()
-        waitToFinish()
-
-        verify(view, singleVerificationMode).setAutoCompleteDataForReadingFrom(readings)
-        verify(view, doubleVerificationMode).setAutoCompleteDataForReadingDayFrom(readings)
-        verify(view, doubleVerificationMode).setAutoCompleteDataForReadingNightFrom(readings)
-    }
-
-    private fun paramsForAutoComplete() = arrayOf(
-            arrayOf(Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G11, times(1), never()),
-            arrayOf(Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G11, times(1), never()),
-            arrayOf(Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G12, never(), times(1)),
-            arrayOf(Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G12, never(), times(1))
-    )
-
-    @Test
-    @Parameters(method = "paramsForAutoComplete")
-    fun onNewViewRestoreState_setsAutoCompletionDataForReadingFrom(
-            provider: Provider, tariff: String, singleVerificationMode: VerificationMode, doubleVerificationMode: VerificationMode) {
-        val readings = intArrayOf(1, 2, 3)
-        given_databaseReturnPreviousReadings(readings)
-        sut.setup(provider)
-        given_tariff(tariff)
-
-        sut.onNewViewRestoreState()
-        waitToFinish()
-
-        verify(view, singleVerificationMode).setAutoCompleteDataForReadingFrom(readings)
-        verify(view, doubleVerificationMode).setAutoCompleteDataForReadingDayFrom(readings)
-        verify(view, doubleVerificationMode).setAutoCompleteDataForReadingNightFrom(readings)
-    }
-
-    @Test
-    fun onFirstBind_forPGNIG_setsAutoCompletionDataForReadingFrom() {
-        val readings = intArrayOf(1, 2, 3)
-        given_databaseReturnPreviousReadings(readings)
-        sut.setup(Provider.PGNIG)
-
-        sut.onFirstBind()
-        waitToFinish()
-
-        verify(view).setAutoCompleteDataForReadingFrom(readings)
-    }
-
-    @Test
-    fun onNewViewRestoreState_forPGNIG_setsAutoCompletionDataForReadingFrom() {
-        val readings = intArrayOf(1, 2, 3)
-        given_databaseReturnPreviousReadings(readings)
-        sut.setup(Provider.PGNIG)
-
-        sut.onNewViewRestoreState()
-        waitToFinish()
-
-        verify(view).setAutoCompleteDataForReadingFrom(readings)
-    }
-
-    @Test
     fun `refetch history list when calculate button clicked for single readings and validation passed`() {
         given_tariff(SharedPreferencesEnergyPrices.TARIFF_G11)
 
@@ -328,18 +252,5 @@ class FormPresenterTest : RxJavaBaseTest() {
 
     private fun given_tariff(@SharedPreferencesEnergyPrices.TariffOption tariff: String) {
         whenever(prices.tariff).thenReturn(tariff)
-    }
-
-    private fun given_databaseReturnPreviousReadings(readings: IntArray) {
-        whenever(readingsRepo.getPreviousReadingsFor(any())).thenReturn(Single.just(readings))
-    }
-
-    private fun calculateDateFrom(): LocalDate {
-        return LocalDate.now().withDayOfMonth(1)
-    }
-
-    private fun calculateDateTo(): LocalDate {
-        val now = LocalDate.now()
-        return now.withDayOfMonth(now.lengthOfMonth())
     }
 }

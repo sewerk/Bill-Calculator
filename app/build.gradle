@@ -68,6 +68,7 @@ dependencies {
     implementation "com.android.support:design:$supportLibVer"
     implementation "com.android.support:cardview-v7:$supportLibVer"
     implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVer"
+    implementation "android.arch.lifecycle:extensions:$archCompVer"
 
     implementation "com.jakewharton.timber:timber:$timberVer"
     implementation "com.github.sewerk:mfvp:$mfvpVer"
@@ -87,6 +88,7 @@ dependencies {
     testImplementation "com.nhaarman:mockito-kotlin:$mockitoKotlinVer"
     testImplementation "pl.pragmatists:JUnitParams:$junitParamsVer"
     testImplementation "org.threeten:threetenbp:$threeTenVer"
+    testImplementation "android.arch.core:core-testing:$archCompVer"
 
     kaptAndroidTest "com.google.dagger:dagger-compiler:$daggerVer"
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espressoVer"

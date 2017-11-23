@@ -5,6 +5,7 @@ ext {
     kotlinVer = '1.1.51'
     supportLibVer = '25.3.1'
     constraintLayoutVer = '1.0.2'
+    archCompVer = "1.0.0"
 
     mfvpVer = '1.0-beta1'
     greenDaoVer = '3.1.0'

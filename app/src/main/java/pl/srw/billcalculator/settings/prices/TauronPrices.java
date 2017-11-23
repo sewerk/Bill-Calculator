@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.settings.prices;
 
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -96,6 +97,7 @@ public class TauronPrices extends SharedPreferencesEnergyPrices implements ITaur
     }
 
     @Override
+    @NonNull
     public @TariffOption String getTariff() {
         //noinspection WrongConstant
         return getPref(KEY_TARIFF, this.tauron_tariff);

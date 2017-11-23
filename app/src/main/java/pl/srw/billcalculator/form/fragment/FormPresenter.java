@@ -3,22 +3,14 @@ package pl.srw.billcalculator.form.fragment;
 import android.support.annotation.StringRes;
 import android.view.View;
 
-import org.threeten.bp.LocalDate;
-
 import javax.inject.Inject;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 import pl.srw.billcalculator.form.FormValueValidator;
-import pl.srw.billcalculator.persistence.type.CurrentReadingType;
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.type.ActionType;
 import pl.srw.billcalculator.type.Provider;
-import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.ProviderMapper;
 import pl.srw.billcalculator.wrapper.Analytics;
-import pl.srw.billcalculator.wrapper.ReadingsRepo;
 import pl.srw.mfvp.MvpPresenter;
 import pl.srw.mfvp.di.scope.RetainFragmentScope;
 
@@ -30,15 +22,13 @@ import static pl.srw.billcalculator.type.Provider.PGNIG;
 @RetainFragmentScope
 public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
 
-    private final ReadingsRepo readingsRepo;
     private final ProviderMapper providerMapper;
     private final HistoryUpdating historyUpdater;
 
     private Provider provider;
 
     @Inject
-    public FormPresenter(ReadingsRepo readingsRepo, ProviderMapper providerMapper, HistoryUpdating historyUpdater) {
-        this.readingsRepo = readingsRepo;
+    public FormPresenter(ProviderMapper providerMapper, HistoryUpdating historyUpdater) {
         this.providerMapper = providerMapper;
         this.historyUpdater = historyUpdater;
     }
@@ -49,10 +39,7 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
 
     @Override
     protected void onFirstBind() {
-        present(view -> {
-            setFormValues(view);
-            view.setDates(Dates.firstDayOfThisMonth(), Dates.lastDayOfThisMonth());
-        });
+        present(this::setFormValues);
     }
 
     @Override
@@ -133,32 +120,17 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
         view.setReadingUnit(provider.formReadingUnit);
         if (provider == PGNIG) {
             view.setDoubleReadingsVisibility(View.GONE);
-            getPreviousReadings(CurrentReadingType.PGNIG_TO,
-                    readings -> present(formView -> formView.setAutoCompleteDataForReadingFrom(readings)));
         } else {
             String tariff = getTariff();
             if (SharedPreferencesEnergyPrices.TARIFF_G11.equals(tariff)) {
                 view.setSingleReadingsVisibility(View.VISIBLE);
                 view.setDoubleReadingsVisibility(View.GONE);
-                getPreviousReadings(provider.singleReadingType,
-                        readings -> present(formView -> formView.setAutoCompleteDataForReadingFrom(readings)));
             } else {
                 view.setDoubleReadingsVisibility(View.VISIBLE);
                 view.setSingleReadingsVisibility(View.GONE);
-                getPreviousReadings(provider.doubleReadingTypes[0],
-                        readings -> present(formView -> formView.setAutoCompleteDataForReadingDayFrom(readings)));
-                getPreviousReadings(provider.doubleReadingTypes[1],
-                        readings -> present(formView -> formView.setAutoCompleteDataForReadingNightFrom(readings)));
             }
             view.setTariffText(tariff);
         }
-    }
-
-    private void getPreviousReadings(CurrentReadingType type, Consumer<int[]> onSuccess) {
-        readingsRepo.getPreviousReadingsFor(type)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(onSuccess);
     }
 
     @SharedPreferencesEnergyPrices.TariffOption
@@ -175,14 +147,6 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
         void setupSettingsLink();
 
         void setTariffText(String tariff);
-
-        void setDates(LocalDate fromDate, LocalDate toDate);
-
-        void setAutoCompleteDataForReadingFrom(int[] readings);
-
-        void setAutoCompleteDataForReadingDayFrom(int[] readings);
-
-        void setAutoCompleteDataForReadingNightFrom(int[] readings);
 
         void setReadingUnit(@StringRes int unitResId);
 

@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.form.fragment;
 
 import android.app.Dialog;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,8 +29,11 @@ import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnTextChanged;
 import butterknife.Unbinder;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.form.FormVM;
+import pl.srw.billcalculator.form.FormVMFactory;
 import pl.srw.billcalculator.form.autocomplete.PreviousReadingsAdapter;
 import pl.srw.billcalculator.form.di.FormComponent;
 import pl.srw.billcalculator.form.view.DatePickingView;
@@ -47,7 +51,6 @@ import pl.srw.billcalculator.util.Views;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.mfvp.MvpFragment;
 import pl.srw.mfvp.di.MvpFragmentScopedFragment;
-import timber.log.Timber;
 
 public class FormFragment extends MvpFragment
         implements MvpFragmentScopedFragment<FormComponent, HistoryComponent>,
@@ -58,6 +61,9 @@ public class FormFragment extends MvpFragment
 
     @Inject
     FormPresenter presenter;
+
+    @Inject
+    FormVMFactory formVMFactory;
 
     @BindView(R.id.form_logo) RoundedLogoView logoView;
     @BindView(R.id.form_settings_link) TextView settingsLink;
@@ -82,6 +88,7 @@ public class FormFragment extends MvpFragment
     @BindView(R.id.form_entry_reading_night_from_input) InstantAutoCompleteTextInputEditText readingNightFromInput;
     @BindView(R.id.form_entry_reading_night_to) TextInputLayout readingNightTo;
 
+    private FormVM formVM;
     private Unbinder unbinder;
 
     private final DialogInterface.OnKeyListener onBackListener = (dialog, keyCode, event) -> {
@@ -107,6 +114,22 @@ public class FormFragment extends MvpFragment
         final Provider provider = Provider.values()[providerIdx];
         presenter.setup(provider);
         attachPresenter(presenter);
+
+        formVM = ViewModelProviders.of(this, formVMFactory).get(FormVM.class);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        final int providerIdx = getArguments().getInt(EXTRA_PROVIDER);
+        final Provider provider = Provider.values()[providerIdx];
+        formVM.init(provider);
+
+        setDates(formVM.getFromDate(), formVM.getToDate());
+        formVM.getSinglePrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingFromInput, readings));
+        formVM.getDayPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingDayFromInput, readings));
+        formVM.getNightPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingNightFromInput, readings));
     }
 
     @NonNull
@@ -143,6 +166,16 @@ public class FormFragment extends MvpFragment
         span.setSpan(new UnderlineSpan(), 0, settingsLabel.length(), 0);
         settingsLink.setText(span);
         settingsLink.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    @OnTextChanged(value = R.id.form_entry_dates_from, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    void onDateFromChanged(CharSequence text) {
+        formVM.setFromDate(Dates.parse(text, DATE_PATTERN));
+    }
+
+    @OnTextChanged(value = R.id.form_entry_dates_to, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    void onDateToChanged(CharSequence text) {
+        formVM.setToDate(Dates.parse(text, DATE_PATTERN));
     }
 
     @OnClick(R.id.form_settings_link)
@@ -182,30 +215,8 @@ public class FormFragment extends MvpFragment
     }
 
     @Override
-    public void setAutoCompleteDataForReadingFrom(int[] readings) {
-        Timber.d("setAutoCompleteDataForReadingFrom() called with: readings = [%s]", readings);
-        readingFromInput.setAdapter(new PreviousReadingsAdapter(getContext(), readings));
-    }
-
-    @Override
-    public void setAutoCompleteDataForReadingDayFrom(int[] readings) {
-        readingDayFromInput.setAdapter(new PreviousReadingsAdapter(getContext(), readings));
-    }
-
-    @Override
-    public void setAutoCompleteDataForReadingNightFrom(int[] readings) {
-        readingNightFromInput.setAdapter(new PreviousReadingsAdapter(getContext(), readings));
-    }
-
-    @Override
     public void setReadingUnit(@StringRes int unitResId) {
         unitView.setText(unitResId);
-    }
-
-    @Override
-    public void setDates(LocalDate fromDate, LocalDate toDate) {
-        dateFromView.setText(Dates.format(fromDate, DATE_PATTERN));
-        dateToView.setText(Dates.format(toDate, DATE_PATTERN));
     }
 
     @Override
@@ -283,6 +294,15 @@ public class FormFragment extends MvpFragment
                         readingNightFrom.getEditText(), readingNightTo.getEditText(),
                         dateFromView, dateToView);
         getActivity().startActivity(intent);
+    }
+
+    private void setDates(LocalDate fromDate, LocalDate toDate) {
+        dateFromView.setText(Dates.format(fromDate, DATE_PATTERN));
+        dateToView.setText(Dates.format(toDate, DATE_PATTERN));
+    }
+
+    private void setReadingsForAutocomplete(InstantAutoCompleteTextInputEditText autoCompleteEditText, int[] readings) {
+        autoCompleteEditText.setAdapter(new PreviousReadingsAdapter(getContext(), readings));
     }
 
     private TextInputLayout getViewFor(Field field) {
