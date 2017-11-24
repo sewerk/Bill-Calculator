@@ -7,7 +7,9 @@ import pl.srw.billcalculator.type.EnumVariantNotHandledException
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.ProviderMapper
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class PricesRepo @Inject constructor(private val providerMapper: ProviderMapper) {
 
     val tariffPge = MutableLiveData<String>()

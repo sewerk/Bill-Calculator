@@ -32,6 +32,7 @@ import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import butterknife.Unbinder;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.form.FormPreviousReadingsVM;
 import pl.srw.billcalculator.form.FormVM;
 import pl.srw.billcalculator.form.FormVMFactory;
 import pl.srw.billcalculator.form.autocomplete.PreviousReadingsAdapter;
@@ -89,6 +90,7 @@ public class FormFragment extends MvpFragment
     @BindView(R.id.form_entry_reading_night_to) TextInputLayout readingNightTo;
 
     private FormVM formVM;
+    private FormPreviousReadingsVM formPrevReadingsVM;
     private Unbinder unbinder;
 
     private final DialogInterface.OnKeyListener onBackListener = (dialog, keyCode, event) -> {
@@ -115,21 +117,19 @@ public class FormFragment extends MvpFragment
         presenter.setup(provider);
         attachPresenter(presenter);
 
+        formVMFactory.setProvider(provider);
         formVM = ViewModelProviders.of(this, formVMFactory).get(FormVM.class);
+        formPrevReadingsVM = ViewModelProviders.of(this, formVMFactory).get(FormPreviousReadingsVM.class);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        final int providerIdx = getArguments().getInt(EXTRA_PROVIDER);
-        final Provider provider = Provider.values()[providerIdx];
-        formVM.init(provider);
-
         setDates(formVM.getFromDate(), formVM.getToDate());
-        formVM.getSinglePrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingFromInput, readings));
-        formVM.getDayPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingDayFromInput, readings));
-        formVM.getNightPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingNightFromInput, readings));
+        formPrevReadingsVM.getSinglePrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingFromInput, readings));
+        formPrevReadingsVM.getDayPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingDayFromInput, readings));
+        formPrevReadingsVM.getNightPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingNightFromInput, readings));
     }
 
     @NonNull
