@@ -3,6 +3,7 @@ package pl.srw.billcalculator.history
 import android.app.Activity
 import android.content.res.Resources
 import android.support.v7.widget.Toolbar
+import android.view.View
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetSequence
 import pl.srw.billcalculator.R
@@ -24,9 +25,9 @@ class HelpHandler @Inject constructor(res: Resources) {
     fun show(activity: Activity) {
         Analytics.logContent(ContentType.HELP, "screen", "DrawerActivity")
 
-        val toolbar = activity.findViewById(R.id.toolbar) as Toolbar
-        val fab = activity.findViewById(R.id.fab)
-        val swipeIcon = activity.findViewById(R.id.swipe_delete_history_icon)
+        val toolbar: Toolbar = activity.findViewById(R.id.toolbar)
+        val fab: View = activity.findViewById(R.id.fab)
+        val swipeIcon: View = activity.findViewById(R.id.swipe_delete_history_icon)
 
         TapTargetSequence(activity)
                 .targets(

@@ -5,14 +5,16 @@ apply plugin: 'kotlin-kapt'
 apply from: 'signing.gradle'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion "$buildToolsVer"
     defaultConfig {
         applicationId "pl.srw.billcalculator"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 26
+
         versionCode 28
         versionName "2.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         resConfig "pl"
