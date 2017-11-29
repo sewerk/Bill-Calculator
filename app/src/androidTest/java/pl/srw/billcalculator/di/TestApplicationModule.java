@@ -7,6 +7,7 @@ import dagger.Provides;
 import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.util.BillSelection;
+import pl.srw.billcalculator.wrapper.PricesRepo;
 
 @Module
 class TestApplicationModule {
@@ -34,4 +35,8 @@ class TestApplicationModule {
     BillSelection provideBillSelection() {
         return productionComponent.getBillSelection();
     }
+
+    @Provides
+    @Singleton
+    PricesRepo providePricesRepo() { return productionComponent.getPricesRepo(); }
 }

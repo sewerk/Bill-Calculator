@@ -23,6 +23,8 @@ import android.widget.TextView;
 
 import org.threeten.bp.LocalDate;
 
+import java.util.Arrays;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -52,6 +54,7 @@ import pl.srw.billcalculator.util.Views;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.mfvp.MvpFragment;
 import pl.srw.mfvp.di.MvpFragmentScopedFragment;
+import timber.log.Timber;
 
 public class FormFragment extends MvpFragment
         implements MvpFragmentScopedFragment<FormComponent, HistoryComponent>,
@@ -302,6 +305,7 @@ public class FormFragment extends MvpFragment
     }
 
     private void setReadingsForAutocomplete(InstantAutoCompleteTextInputEditText autoCompleteEditText, int[] readings) {
+        Timber.d("Previous readings for autocomplete: %s", Arrays.toString(readings));
         autoCompleteEditText.setAdapter(new PreviousReadingsAdapter(getContext(), readings));
     }
 

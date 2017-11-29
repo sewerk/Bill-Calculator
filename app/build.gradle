@@ -97,6 +97,7 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espressoVer"
     androidTestImplementation "com.android.support.test:runner:$testRunnerVer"
     androidTestImplementation "com.android.support:design:$supportLibVer"
+    androidTestImplementation "android.arch.core:core-testing:$archCompVer"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanaryVer"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanaryVer"

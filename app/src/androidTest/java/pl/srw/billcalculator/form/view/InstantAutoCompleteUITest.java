@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.form.view;
 
+import android.arch.core.executor.testing.InstantTaskExecutorRule;
 import android.support.test.rule.ActivityTestRule;
 
 import org.junit.After;
@@ -17,13 +18,18 @@ import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.tester.rule.ClosingActivityTestRule;
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.wrapper.PricesRepo;
 
 public class InstantAutoCompleteUITest {
 
     @Rule
     public ActivityTestRule<DrawerActivity> testRule = new ClosingActivityTestRule<>(DrawerActivity.class, false, false);
 
+    @Rule
+    public InstantTaskExecutorRule instantExecutorRule = new InstantTaskExecutorRule();
+
     @Inject HistoryGenerator historyGenerator;
+    @Inject PricesRepo pricesRepo;
     @Inject PgePrices pgePrices;
 
     private AppTester tester = new AppTester();
@@ -32,6 +38,7 @@ public class InstantAutoCompleteUITest {
     public void setUp() throws Exception {
         TestDependencies.inject(this);
         HistoryGenerator.clear();
+        pricesRepo.updateTariff(Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G11);
         pgePrices.setTariff(SharedPreferencesEnergyPrices.TARIFF_G11);
 
         testRule.launchActivity(null);

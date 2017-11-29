@@ -32,12 +32,12 @@ class HistoryGenerator @Inject constructor(val prices: PgePrices) {
     }
 
     fun generatePgeG11Bill(readingTo: Int) {
-        Timber.d("Create PGE G11 bill with readingTo=" + readingTo)
+        Timber.d("Create PGE G11 bill with readingTo=$readingTo")
         insertBill(readingTo, insertPrices().id)
     }
 
     fun generatePgeG12Bill(readingDayTo: Int, readingNightTo: Int = 211) {
-        Timber.d("Create PGE G12 bill with readingTo=" + readingDayTo)
+        Timber.d("Create PGE G12 bill with readingTo=$readingDayTo")
         insertBill(readingDayTo, readingNightTo, insertPrices().id)
     }
 

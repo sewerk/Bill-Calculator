@@ -16,6 +16,7 @@ import pl.srw.billcalculator.settings.di.SettingsComponent;
 import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.util.BillSelection;
+import pl.srw.billcalculator.wrapper.PricesRepo;
 
 @Singleton
 @Component(modules = ApplicationModule.class)
@@ -46,4 +47,6 @@ public interface ApplicationComponent {
     SettingsRepo getSettingsRepo();
 
     BillSelection getBillSelection();
+
+    PricesRepo getPricesRepo();
 }
