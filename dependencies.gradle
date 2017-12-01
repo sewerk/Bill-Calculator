@@ -2,7 +2,7 @@ ext {
     gradlePluginVer = '3.0.0'
     buildToolsVer = '26.0.2'
 
-    kotlinVer = '1.1.51'
+    kotlinVer = '1.2.0'
     supportLibVer = '26.1.0'
     constraintLayoutVer = '1.0.2'
     archCompVer = "1.0.0"
