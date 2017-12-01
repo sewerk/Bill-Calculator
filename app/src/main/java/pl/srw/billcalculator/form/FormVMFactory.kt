@@ -15,7 +15,7 @@ class FormVMFactory @Inject constructor(private val readingsRepo: ReadingsRepo,
     override fun <T : ViewModel> create(modelClass: Class<T>) =
         with(modelClass) {
             when {
-                isAssignableFrom(FormVM::class.java) -> FormVM()
+                isAssignableFrom(FormVM::class.java) -> FormVM(provider, pricesRepo)
                 isAssignableFrom(FormPreviousReadingsVM::class.java) -> FormPreviousReadingsVM(provider, readingsRepo, pricesRepo)
                 else -> throw IllegalArgumentException("Don't know how to create ${modelClass.simpleName}")
             }

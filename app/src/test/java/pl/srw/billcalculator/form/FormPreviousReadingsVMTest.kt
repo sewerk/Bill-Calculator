@@ -4,14 +4,7 @@ package pl.srw.billcalculator.form
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
-import com.nhaarman.mockito_kotlin.any
-import com.nhaarman.mockito_kotlin.clearInvocations
-import com.nhaarman.mockito_kotlin.doReturn
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.never
-import com.nhaarman.mockito_kotlin.times
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.whenever
+import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Single
 import junitparams.JUnitParamsRunner
 import junitparams.Parameters
@@ -25,6 +18,7 @@ import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.wrapper.PricesRepo
 import pl.srw.billcalculator.wrapper.ReadingsRepo
 
+@Suppress("MemberVisibilityCanPrivate")
 @RunWith(JUnitParamsRunner::class)
 class FormPreviousReadingsVMTest : RxJavaBaseTest() {
 
@@ -49,7 +43,7 @@ class FormPreviousReadingsVMTest : RxJavaBaseTest() {
     fun `fetches single previous readings for PGNIG or G11 tariff`(provider: Provider) {
         setTariff(SharedPreferencesEnergyPrices.TARIFF_G11)
 
-        init(Provider.PGE)
+        init(provider)
 
         sut.singlePrevReadings.observeForever(testObserver)
         verify(testObserver).onChanged(readings)
@@ -60,7 +54,7 @@ class FormPreviousReadingsVMTest : RxJavaBaseTest() {
     fun `does not fetch double previous readings for PGNIG or G11 tariff`(provider: Provider) {
         setTariff(SharedPreferencesEnergyPrices.TARIFF_G11)
 
-        init(Provider.PGE)
+        init(provider)
 
         sut.dayPrevReadings.observeForever(testObserver)
         sut.nightPrevReadings.observeForever(testObserver)
@@ -72,7 +66,7 @@ class FormPreviousReadingsVMTest : RxJavaBaseTest() {
     fun `fetches double previous readings for G12 tariff`(provider: Provider) {
         setTariff(SharedPreferencesEnergyPrices.TARIFF_G12)
 
-        init(Provider.PGE)
+        init(provider)
 
         sut.dayPrevReadings.observeForever(testObserver)
         sut.nightPrevReadings.observeForever(testObserver)

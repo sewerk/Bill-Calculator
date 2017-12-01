@@ -125,16 +125,6 @@ public class FormFragment extends MvpFragment
         formPrevReadingsVM = ViewModelProviders.of(this, formVMFactory).get(FormPreviousReadingsVM.class);
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        setDates(formVM.getFromDate(), formVM.getToDate());
-        formPrevReadingsVM.getSinglePrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingFromInput, readings));
-        formPrevReadingsVM.getDayPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingDayFromInput, readings));
-        formPrevReadingsVM.getNightPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingNightFromInput, readings));
-    }
-
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -148,7 +138,25 @@ public class FormFragment extends MvpFragment
         dialog.setOnKeyListener(onBackListener);
 
         unbinder = ButterKnife.bind(this, view);
+        setupSettingsLink();
+
         return dialog;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        logoView.setImageResource(formVM.getLogoResource());
+        tariffView.setText(formVM.getTariffLabel());
+        unitView.setText(formVM.getReadingsUnitTextResource());
+        setDates(formVM.getFromDate(), formVM.getToDate());
+        formPrevReadingsVM.getSinglePrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingFromInput, readings));
+        formPrevReadingsVM.getDayPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingDayFromInput, readings));
+        formPrevReadingsVM.getNightPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingNightFromInput, readings));
+
+        formVM.getOpenSettingsCommand().observe(this, provider ->
+                startActivity(ProviderSettingsActivity.createIntent(getContext(), provider)));
     }
 
     @Override
@@ -160,15 +168,6 @@ public class FormFragment extends MvpFragment
     @Override
     public FormComponent prepareComponent(HistoryComponent historyComponent) {
         return historyComponent.getFormComponent();
-    }
-
-    @Override
-    public void setupSettingsLink() {
-        final String settingsLabel = settingsLink.getText().toString();
-        final SpannableString span = new SpannableString(settingsLabel);
-        span.setSpan(new UnderlineSpan(), 0, settingsLabel.length(), 0);
-        settingsLink.setText(span);
-        settingsLink.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     @OnTextChanged(value = R.id.form_entry_dates_from, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
@@ -184,7 +183,7 @@ public class FormFragment extends MvpFragment
     @OnClick(R.id.form_settings_link)
     void onSettingsLinkClicked() {
         Analytics.log("Form: Settings link clicked");
-        presenter.settingsLinkClicked();
+        formVM.settingsLinkClicked();
     }
 
     @OnClick(R.id.close_button)
@@ -200,26 +199,6 @@ public class FormFragment extends MvpFragment
                 Views.getText(dateFromView), Views.getText(dateToView),
                 Views.getText(readingDayFrom), Views.getText(readingDayTo),
                 Views.getText(readingNightFrom), Views.getText(readingNightTo));
-    }
-
-    @Override
-    public void setLogo(Provider provider) {
-        logoView.setImageResource(provider.logoRes);
-    }
-
-    @Override
-    public void showProviderSettings(Provider provider) {
-        startActivity(ProviderSettingsActivity.createIntent(getContext(), provider));
-    }
-
-    @Override
-    public void setTariffText(String tariff) {
-        tariffView.setText(tariff);
-    }
-
-    @Override
-    public void setReadingUnit(@StringRes int unitResId) {
-        unitView.setText(unitResId);
     }
 
     @Override
@@ -319,6 +298,14 @@ public class FormFragment extends MvpFragment
             case READING_NIGHT_TO: return readingNightTo;
         }
         throw new EnumVariantNotHandledException(field);
+    }
+
+    private void setupSettingsLink() {
+        final String settingsLabel = settingsLink.getText().toString();
+        final SpannableString span = new SpannableString(settingsLabel);
+        span.setSpan(new UnderlineSpan(), 0, settingsLabel.length(), 0);
+        settingsLink.setText(span);
+        settingsLink.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private void showKeyboard(TextView mTextView) {

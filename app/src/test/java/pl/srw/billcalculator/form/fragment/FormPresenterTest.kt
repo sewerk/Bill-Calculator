@@ -1,6 +1,6 @@
+@file:Suppress("IllegalIdentifier")
 package pl.srw.billcalculator.form.fragment
 
-import android.support.annotation.StringRes
 import android.view.View
 import com.nhaarman.mockito_kotlin.*
 import junitparams.JUnitParamsRunner
@@ -9,13 +9,13 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyInt
-import pl.srw.billcalculator.R
 import pl.srw.billcalculator.RxJavaBaseTest
 import pl.srw.billcalculator.setState
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.ProviderMapper
 
+@Suppress("MemberVisibilityCanPrivate")
 @RunWith(JUnitParamsRunner::class)
 class FormPresenterTest : RxJavaBaseTest() {
 
@@ -31,58 +31,6 @@ class FormPresenterTest : RxJavaBaseTest() {
     @Before
     fun setUp() {
         sut.setState("view", view)
-    }
-
-    @Test
-    @Parameters(method = "paramsForSetFormValues")
-    fun onFirstBind_setFormValues(provider: Provider, tariff: String?, @StringRes readingUnitResId: Int) {
-        // GIVEN
-        sut.setup(provider)
-        if (tariff != null) given_tariff(tariff)
-
-        // WHEN
-        sut.onFirstBind()
-
-        // THEN
-        verify(view).setLogo(provider)
-        verify(view).setupSettingsLink()
-        verify(view, times(if (tariff != null) 1 else 0)).setTariffText(tariff)
-        verify(view).setReadingUnit(readingUnitResId)
-    }
-
-    private fun paramsForSetFormValues() = arrayOf(
-                arrayOf(Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G11, R.string.form_reading_unit_kWh),
-                arrayOf(Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G12, R.string.form_reading_unit_kWh),
-                arrayOf(Provider.PGNIG, null, R.string.form_reading_unit_m3),
-                arrayOf(Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G11, R.string.form_reading_unit_kWh),
-                arrayOf(Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G12, R.string.form_reading_unit_kWh)
-    )
-
-    @Test
-    @Parameters(method = "paramsForSetFormValues")
-    fun onNewViewRestoreState_setFormValues(provider: Provider, tariff: String?, @StringRes readingUnitResId: Int) {
-        // GIVEN
-        sut.setup(provider)
-        if (tariff != null) given_tariff(tariff)
-
-        // WHEN
-        sut.onNewViewRestoreState()
-
-        // THEN
-        verify(view).setLogo(provider)
-        verify(view).setupSettingsLink()
-        verify(view, times(if (tariff != null) 1 else 0)).setTariffText(tariff)
-        verify(view).setReadingUnit(readingUnitResId)
-    }
-
-    @Test
-    @Parameters("PGE", "PGNIG", "TAURON")
-    fun whenSettingsLinkClicked_showProviderSettings(provider: Provider) {
-        sut.setup(provider)
-
-        sut.settingsLinkClicked()
-
-        verify(view).showProviderSettings(provider)
     }
 
     @Test
@@ -122,6 +70,7 @@ class FormPresenterTest : RxJavaBaseTest() {
         verify(view).setDoubleReadingsVisibility(doubleVisibility)
     }
 
+    @Suppress("unused")
     private fun paramsForReadingVisibility() = arrayOf(
             arrayOf(Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G11, View.VISIBLE, View.GONE),
             arrayOf(Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G11, View.VISIBLE, View.GONE),
@@ -142,7 +91,7 @@ class FormPresenterTest : RxJavaBaseTest() {
     }
 
     @Test
-    @Parameters(value = *arrayOf("PGE", "PGNIG", "TAURON"))
+    @Parameters("PGE", "PGNIG", "TAURON")
     fun calculateButtonClicked_forTariffG11_whenValuesCorrect_saveAndOpenBillForSingleReadings(
             provider: Provider) {
         sut.setup(provider)
@@ -155,7 +104,7 @@ class FormPresenterTest : RxJavaBaseTest() {
     }
 
     @Test
-    @Parameters(value = *arrayOf("PGE", "TAURON"))
+    @Parameters("PGE", "TAURON")
     fun calculateButtonClicked_forEnergyProvider_andTariffG12_whenValuesCorrect_saveAndOpenBillForDoubleReadings(
             provider: Provider) {
         sut.setup(provider)
@@ -205,6 +154,7 @@ class FormPresenterTest : RxJavaBaseTest() {
         verify(view).showReadingFieldError(any(), anyInt())
     }
 
+    @Suppress("unused")
     private fun paramsEnergyProviderWithTariff() = arrayOf(
             arrayOf(Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G11),
             arrayOf(Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G11),

@@ -1,6 +1,5 @@
 package pl.srw.billcalculator.form.fragment;
 
-import android.support.annotation.StringRes;
 import android.view.View;
 
 import javax.inject.Inject;
@@ -45,10 +44,6 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
     @Override
     protected void onNewViewRestoreState() {
         present(this::setFormValues);
-    }
-
-    public void settingsLinkClicked() {
-        present(view -> view.showProviderSettings(provider));
     }
 
     public void closeButtonClicked() {
@@ -115,9 +110,6 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
     }
 
     private void setFormValues(FormView view) {
-        view.setupSettingsLink();
-        view.setLogo(provider);
-        view.setReadingUnit(provider.formReadingUnit);
         if (provider == PGNIG) {
             view.setDoubleReadingsVisibility(View.GONE);
         } else {
@@ -129,7 +121,6 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
                 view.setDoubleReadingsVisibility(View.VISIBLE);
                 view.setSingleReadingsVisibility(View.GONE);
             }
-            view.setTariffText(tariff);
         }
     }
 
@@ -139,16 +130,6 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
     }
 
     public interface FormView {
-
-        void showProviderSettings(Provider provider);
-
-        void setLogo(Provider provider);
-
-        void setupSettingsLink();
-
-        void setTariffText(String tariff);
-
-        void setReadingUnit(@StringRes int unitResId);
 
         void hideForm();
 
