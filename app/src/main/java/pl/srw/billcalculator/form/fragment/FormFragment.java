@@ -70,10 +70,8 @@ public class FormFragment extends MvpFragment
     @Inject
     FormVMFactory formVMFactory;
 
-    @BindView(R.id.form_logo) RoundedLogoView logoView;
     @BindView(R.id.form_settings_link) TextView settingsLink;
     @BindView(R.id.form_entry_tariff) TextView tariffView;
-    @BindView(R.id.form_entry_reading_unit) TextView unitView;
     @BindViews({R.id.form_entry_reading_icon, R.id.form_entry_reading_from, R.id.form_entry_reading_separator,
             R.id.form_entry_reading_to, R.id.form_entry_reading_unit}) View[] singleReadingsGroup;
     @BindViews({R.id.form_entry_reading_day_icon, R.id.form_entry_reading_day_from, R.id.form_entry_reading_day_separator,
@@ -150,8 +148,6 @@ public class FormFragment extends MvpFragment
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        logoView.setImageResource(formVM.getLogoResource());
-        unitView.setText(formVM.getReadingsUnitTextResource());
         setDates(formVM.getFromDate(), formVM.getToDate());
         formPrevReadingsVM.getSinglePrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingFromInput, readings));
         formPrevReadingsVM.getDayPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingDayFromInput, readings));
@@ -180,12 +176,6 @@ public class FormFragment extends MvpFragment
     @OnTextChanged(value = R.id.form_entry_dates_to, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void onDateToChanged(CharSequence text) {
         formVM.setToDate(Dates.parse(text, DATE_PATTERN));
-    }
-
-    @OnClick(R.id.form_settings_link)
-    void onSettingsLinkClicked() {
-        Analytics.log("Form: Settings link clicked");
-        formVM.settingsLinkClicked();
     }
 
     @OnClick(R.id.close_button)

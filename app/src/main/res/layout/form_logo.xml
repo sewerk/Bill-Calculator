@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-       xmlns:tools="http://schemas.android.com/tools"
-       xmlns:app="http://schemas.android.com/apk/res-auto"
-       tools:showIn="@layout/form">
+<layout>
+    <data>
+        <variable name="vm" type="pl.srw.billcalculator.form.FormVM"/>
+    </data>
+    <merge
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:showIn="@layout/form">
 
-    <TextView
-        android:id="@+id/form_settings_link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/settings_label"
-        android:textColor="@color/blue"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/form_settings_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_label"
+            android:textColor="@color/blue"
+            android:onClick="@{vm::settingsLinkClicked}"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <pl.srw.billcalculator.form.view.RoundedLogoView
-        android:id="@+id/form_logo"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/form_logo_description"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/pgnig"/>
+        <pl.srw.billcalculator.form.view.RoundedLogoView
+            android:id="@+id/form_logo"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/form_logo_description"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:imageResource="@{vm.logoResource}"
+            tools:src="@drawable/pgnig"/>
 
-</merge>
+    </merge>
+</layout>

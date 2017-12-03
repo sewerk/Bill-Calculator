@@ -3,9 +3,11 @@ package pl.srw.billcalculator.form
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
+import android.view.View
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.Dates
 import pl.srw.billcalculator.util.SingleLiveEvent
+import pl.srw.billcalculator.wrapper.Analytics
 import pl.srw.billcalculator.wrapper.PricesRepo
 
 const val DEFAULT_TARIFF_LABEL_FOR_PGNIG = ""
@@ -33,7 +35,8 @@ class FormVM(val provider: Provider,
         else if (provider == Provider.TAURON) pricesRepo.tariffTauron.removeObserver(tariffObserver)
     }
 
-    fun settingsLinkClicked() {
+    fun settingsLinkClicked(ignored: View) {
+        Analytics.log("Form: Settings link clicked")
         openSettingsCommand.value = provider
     }
 }

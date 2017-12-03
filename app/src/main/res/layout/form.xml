@@ -28,7 +28,8 @@
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp">
 
-                <include layout="@layout/form_logo"/>
+                <include layout="@layout/form_logo"
+                    app:vm="@{vm}"/>
 
                 <View
                     android:layout_width="0dp"
@@ -66,7 +67,8 @@
                     app:layout_constraintRight_toRightOf="parent"
                     tools:text="G11"/>
 
-                <include layout="@layout/form_readings_single"/>
+                <include layout="@layout/form_readings_single"
+                         app:vm="@{vm}"/>
 
                 <include layout="@layout/form_readings_double"/>
 
