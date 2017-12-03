@@ -34,6 +34,7 @@ import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import butterknife.Unbinder;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.databinding.FormBinding;
 import pl.srw.billcalculator.form.FormPreviousReadingsVM;
 import pl.srw.billcalculator.form.FormVM;
 import pl.srw.billcalculator.form.FormVMFactory;
@@ -129,6 +130,8 @@ public class FormFragment extends MvpFragment
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = View.inflate(getContext(), R.layout.form, null);
+        FormBinding binding = FormBinding.bind(view);
+        binding.setVm(formVM);
         final AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setView(view)
                 .create();
@@ -148,7 +151,6 @@ public class FormFragment extends MvpFragment
         super.onActivityCreated(savedInstanceState);
 
         logoView.setImageResource(formVM.getLogoResource());
-        tariffView.setText(formVM.getTariffLabel());
         unitView.setText(formVM.getReadingsUnitTextResource());
         setDates(formVM.getFromDate(), formVM.getToDate());
         formPrevReadingsVM.getSinglePrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingFromInput, readings));

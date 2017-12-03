@@ -20,6 +20,10 @@ android {
         resConfig "pl"
     }
 
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes {
         debug {
             // Disable fabric build ID generation for debug builds
@@ -62,6 +66,7 @@ dependencies {
 
     kapt "com.google.dagger:dagger-compiler:$daggerVer"
     kapt "com.jakewharton:butterknife-compiler:$butterKnifeVer"
+    kapt "com.android.databinding:compiler:$gradlePluginVer"
 
     implementation project(':persistence')
     implementation fileTree(dir: 'libs', include: ['*.jar'])

@@ -2,10 +2,13 @@ package pl.srw.billcalculator.form
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModel
+import android.databinding.ObservableField
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.Dates
 import pl.srw.billcalculator.util.SingleLiveEvent
 import pl.srw.billcalculator.wrapper.PricesRepo
+
+const val DEFAULT_TARIFF_LABEL_FOR_PGNIG = ""
 
 class FormVM(val provider: Provider,
              private val pricesRepo: PricesRepo) : ViewModel() {
@@ -13,11 +16,11 @@ class FormVM(val provider: Provider,
     var fromDate = Dates.firstDayOfThisMonth()
     var toDate = Dates.lastDayOfThisMonth()
     val logoResource = provider.logoRes
-    var tariffLabel = ""
+    var tariffLabel = ObservableField<String>(DEFAULT_TARIFF_LABEL_FOR_PGNIG)
     val readingsUnitTextResource = provider.formReadingUnit
     val openSettingsCommand = SingleLiveEvent<Provider>()
 
-    private val tariffObserver = Observer<String> { tariffLabel = it!! }
+    private val tariffObserver = Observer<String> { tariffLabel.set(it!!) }
 
     init {
         if (provider == Provider.PGE) pricesRepo.tariffPge.observeForever(tariffObserver)
