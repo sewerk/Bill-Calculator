@@ -16,12 +16,10 @@ import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.wrapper.PricesRepo
 
-@Suppress("MemberVisibilityCanPrivate")
 @RunWith(JUnitParamsRunner::class)
 class FormVMTest {
 
-    @Rule @JvmField
-    var rule: TestRule = InstantTaskExecutorRule()
+    @get:Rule val rule: TestRule = InstantTaskExecutorRule()
 
     val provider = Provider.PGE
     val tariffLiveData = MutableLiveData<String>()
@@ -56,14 +54,14 @@ class FormVMTest {
     fun `sets tariff label for energy providers`(tariff: String) {
         setTariff(tariff)
 
-        assert(tariff == sut.tariffLabel)
+        assert(tariff == sut.tariffLabel.get())
     }
 
     @Test
     fun `sets empty tariff label for PGNIG`() {
         sut = FormVM(Provider.PGNIG, pricesRepo)
 
-        assert("" == sut.tariffLabel)
+        assert("" == sut.tariffLabel.get())
     }
 
     @Test
@@ -71,7 +69,7 @@ class FormVMTest {
         val observer:Observer<Provider?> = mock()
         sut.openSettingsCommand.observeForever(observer)
 
-        sut.settingsLinkClicked()
+        sut.settingsLinkClicked(mock())
 
         verify(observer).onChanged(provider)
     }

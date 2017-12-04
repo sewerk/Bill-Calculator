@@ -12,6 +12,7 @@ class FormVMFactory @Inject constructor(private val readingsRepo: ReadingsRepo,
 
     lateinit var provider: Provider
 
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>) =
         with(modelClass) {
             when {

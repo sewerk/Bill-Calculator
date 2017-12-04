@@ -18,12 +18,10 @@ import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.wrapper.PricesRepo
 import pl.srw.billcalculator.wrapper.ReadingsRepo
 
-@Suppress("MemberVisibilityCanPrivate")
 @RunWith(JUnitParamsRunner::class)
 class FormPreviousReadingsVMTest : RxJavaBaseTest() {
 
-    @Rule @JvmField
-    var rule: TestRule = InstantTaskExecutorRule()
+    @get:Rule val rule: TestRule = InstantTaskExecutorRule()
 
     val readings = intArrayOf(1, 2, 3)
     val readingsRepo: ReadingsRepo = mock {

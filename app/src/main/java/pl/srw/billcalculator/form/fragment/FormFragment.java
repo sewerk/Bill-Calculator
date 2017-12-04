@@ -42,7 +42,6 @@ import pl.srw.billcalculator.form.autocomplete.PreviousReadingsAdapter;
 import pl.srw.billcalculator.form.di.FormComponent;
 import pl.srw.billcalculator.form.view.DatePickingView;
 import pl.srw.billcalculator.form.view.InstantAutoCompleteTextInputEditText;
-import pl.srw.billcalculator.form.view.RoundedLogoView;
 import pl.srw.billcalculator.history.di.HistoryComponent;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
@@ -149,12 +148,11 @@ public class FormFragment extends MvpFragment
         super.onActivityCreated(savedInstanceState);
 
         setDates(formVM.getFromDate(), formVM.getToDate());
+        formVM.getOpenSettingsCommand().observe(this, provider ->
+                startActivity(ProviderSettingsActivity.createIntent(getContext(), provider)));
         formPrevReadingsVM.getSinglePrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingFromInput, readings));
         formPrevReadingsVM.getDayPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingDayFromInput, readings));
         formPrevReadingsVM.getNightPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingNightFromInput, readings));
-
-        formVM.getOpenSettingsCommand().observe(this, provider ->
-                startActivity(ProviderSettingsActivity.createIntent(getContext(), provider)));
     }
 
     @Override

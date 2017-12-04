@@ -15,8 +15,7 @@ import pl.srw.billcalculator.util.ProviderMapper
 
 class PricesRepoTest {
 
-    @Rule @JvmField
-    var rule: TestRule = InstantTaskExecutorRule()
+    @get:Rule val rule: TestRule = InstantTaskExecutorRule()
 
     val defaultTariff = SharedPreferencesEnergyPrices.TARIFF_G11
     val prices: SharedPreferencesEnergyPrices = mock {
