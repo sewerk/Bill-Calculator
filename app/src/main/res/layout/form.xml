@@ -72,7 +72,8 @@
 
                 <include layout="@layout/form_readings_double"/>
 
-                <include layout="@layout/form_dates"/>
+                <include layout="@layout/form_dates"
+                         app:vm="@{vm}"/>
 
             </android.support.constraint.ConstraintLayout>
         </ScrollView>

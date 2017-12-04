@@ -21,8 +21,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
-import org.threeten.bp.LocalDate;
-
 import java.util.Arrays;
 
 import javax.inject.Inject;
@@ -31,7 +29,6 @@ import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnTextChanged;
 import butterknife.Unbinder;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.databinding.FormBinding;
@@ -49,7 +46,6 @@ import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Animations;
-import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Views;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.mfvp.MvpFragment;
@@ -147,7 +143,6 @@ public class FormFragment extends MvpFragment
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        setDates(formVM.getFromDate(), formVM.getToDate());
         formVM.getOpenSettingsCommand().observe(this, provider ->
                 startActivity(ProviderSettingsActivity.createIntent(getContext(), provider)));
         formPrevReadingsVM.getSinglePrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingFromInput, readings));
@@ -164,16 +159,6 @@ public class FormFragment extends MvpFragment
     @Override
     public FormComponent prepareComponent(HistoryComponent historyComponent) {
         return historyComponent.getFormComponent();
-    }
-
-    @OnTextChanged(value = R.id.form_entry_dates_from, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
-    void onDateFromChanged(CharSequence text) {
-        formVM.setFromDate(Dates.parse(text, DATE_PATTERN));
-    }
-
-    @OnTextChanged(value = R.id.form_entry_dates_to, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
-    void onDateToChanged(CharSequence text) {
-        formVM.setToDate(Dates.parse(text, DATE_PATTERN));
     }
 
     @OnClick(R.id.close_button)
@@ -266,11 +251,6 @@ public class FormFragment extends MvpFragment
                         readingNightFrom.getEditText(), readingNightTo.getEditText(),
                         dateFromView, dateToView);
         getActivity().startActivity(intent);
-    }
-
-    private void setDates(LocalDate fromDate, LocalDate toDate) {
-        dateFromView.setText(Dates.format(fromDate, DATE_PATTERN));
-        dateToView.setText(Dates.format(toDate, DATE_PATTERN));
     }
 
     private void setReadingsForAutocomplete(InstantAutoCompleteTextInputEditText autoCompleteEditText, int[] readings) {

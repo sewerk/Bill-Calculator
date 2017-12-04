@@ -4,6 +4,9 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
 import android.view.View
+import org.threeten.bp.LocalDate
+import org.threeten.bp.format.DateTimeFormatter
+import pl.srw.billcalculator.form.fragment.FormFragment
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.Dates
 import pl.srw.billcalculator.util.SingleLiveEvent
@@ -15,11 +18,11 @@ const val DEFAULT_TARIFF_LABEL_FOR_PGNIG = ""
 class FormVM(val provider: Provider,
              private val pricesRepo: PricesRepo) : ViewModel() {
 
-    var fromDate = Dates.firstDayOfThisMonth()
-    var toDate = Dates.lastDayOfThisMonth()
     val logoResource = provider.logoRes
     var tariffLabel = ObservableField<String>(DEFAULT_TARIFF_LABEL_FOR_PGNIG)
     val readingsUnitTextResource = provider.formReadingUnit
+    var fromDate = ObservableField(Dates.firstDayOfThisMonth().toText())
+    var toDate = ObservableField(Dates.lastDayOfThisMonth().toText())
     val openSettingsCommand = SingleLiveEvent<Provider>()
 
     private val tariffObserver = Observer<String> { tariffLabel.set(it!!) }
@@ -39,4 +42,6 @@ class FormVM(val provider: Provider,
         Analytics.log("Form: Settings link clicked")
         openSettingsCommand.value = provider
     }
+
+    private fun LocalDate.toText(): String = format(DateTimeFormatter.ofPattern(FormFragment.DATE_PATTERN))
 }

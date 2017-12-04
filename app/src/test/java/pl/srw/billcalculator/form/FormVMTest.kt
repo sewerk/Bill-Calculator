@@ -12,8 +12,10 @@ import org.junit.Test
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.threeten.bp.LocalDate
+import pl.srw.billcalculator.form.fragment.FormFragment
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
+import pl.srw.billcalculator.util.Dates
 import pl.srw.billcalculator.wrapper.PricesRepo
 
 @RunWith(JUnitParamsRunner::class)
@@ -31,12 +33,12 @@ class FormVMTest {
 
     @Test
     fun `initialize fromDate with first day of current month`() {
-        assert(calculateDateFrom() == sut.fromDate)
+        assert(calculateDateFrom() == sut.fromDate.get())
     }
 
     @Test
     fun `initialize toDate with last dat of current month`() {
-        assert(calculateDateTo() == sut.toDate)
+        assert(calculateDateTo() == sut.toDate.get())
     }
 
     @Test
@@ -74,11 +76,11 @@ class FormVMTest {
         verify(observer).onChanged(provider)
     }
 
-    private fun calculateDateFrom(): LocalDate = LocalDate.now().withDayOfMonth(1)
+    private fun calculateDateFrom() = Dates.format(LocalDate.now().withDayOfMonth(1), FormFragment.DATE_PATTERN)
 
-    private fun calculateDateTo(): LocalDate {
+    private fun calculateDateTo(): String {
         val now = LocalDate.now()
-        return now.withDayOfMonth(now.lengthOfMonth())
+        return Dates.format(now.withDayOfMonth(now.lengthOfMonth()), FormFragment.DATE_PATTERN)
     }
 
     private fun setTariff(@SharedPreferencesEnergyPrices.TariffOption tariff: String) {
