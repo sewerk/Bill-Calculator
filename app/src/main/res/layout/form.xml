@@ -70,7 +70,8 @@
                 <include layout="@layout/form_readings_single"
                          app:vm="@{vm}"/>
 
-                <include layout="@layout/form_readings_double"/>
+                <include layout="@layout/form_readings_double"
+                         app:vm="@{vm}"/>
 
                 <include layout="@layout/form_dates"
                          app:vm="@{vm}"/>

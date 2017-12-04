@@ -26,7 +26,6 @@ import java.util.Arrays;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
@@ -67,12 +66,6 @@ public class FormFragment extends MvpFragment
 
     @BindView(R.id.form_settings_link) TextView settingsLink;
     @BindView(R.id.form_entry_tariff) TextView tariffView;
-    @BindViews({R.id.form_entry_reading_icon, R.id.form_entry_reading_from, R.id.form_entry_reading_separator,
-            R.id.form_entry_reading_to, R.id.form_entry_reading_unit}) View[] singleReadingsGroup;
-    @BindViews({R.id.form_entry_reading_day_icon, R.id.form_entry_reading_day_from, R.id.form_entry_reading_day_separator,
-            R.id.form_entry_reading_day_to, R.id.form_entry_reading_day_unit, R.id.form_entry_reading_night_icon,
-            R.id.form_entry_reading_night_from, R.id.form_entry_reading_night_separator,
-            R.id.form_entry_reading_night_to, R.id.form_entry_reading_night_unit}) View[] doubleReadingsGroups;
     @BindView(R.id.form_entry_dates_from) DatePickingView dateFromView;
     @BindView(R.id.form_entry_dates_to) DatePickingView dateToView;
 
@@ -174,16 +167,6 @@ public class FormFragment extends MvpFragment
                 Views.getText(dateFromView), Views.getText(dateToView),
                 Views.getText(readingDayFrom), Views.getText(readingDayTo),
                 Views.getText(readingNightFrom), Views.getText(readingNightTo));
-    }
-
-    @Override
-    public void setSingleReadingsVisibility(final int visibility) {
-        ButterKnife.apply(singleReadingsGroup, (ButterKnife.Action<View>) (view, index) -> view.setVisibility(visibility));
-    }
-
-    @Override
-    public void setDoubleReadingsVisibility(final int visibility) {
-        ButterKnife.apply(doubleReadingsGroups, (ButterKnife.Action<View>) (view, index) -> view.setVisibility(visibility));
     }
 
     @Override

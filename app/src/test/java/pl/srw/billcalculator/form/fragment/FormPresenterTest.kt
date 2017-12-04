@@ -1,7 +1,6 @@
 @file:Suppress("IllegalIdentifier")
 package pl.srw.billcalculator.form.fragment
 
-import android.view.View
 import com.nhaarman.mockito_kotlin.*
 import junitparams.JUnitParamsRunner
 import junitparams.Parameters
@@ -15,7 +14,6 @@ import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.ProviderMapper
 
-@Suppress("MemberVisibilityCanPrivate")
 @RunWith(JUnitParamsRunner::class)
 class FormPresenterTest : RxJavaBaseTest() {
 
@@ -38,56 +36,6 @@ class FormPresenterTest : RxJavaBaseTest() {
         sut.closeButtonClicked()
 
         verify(view).hideForm()
-    }
-
-    @Test
-    fun onFirstBind_forPGNIG_hidesDoubleReadingsVisibility() {
-        sut.setup(Provider.PGNIG)
-
-        sut.onFirstBind()
-
-        verify(view).setDoubleReadingsVisibility(View.GONE)
-    }
-
-    @Test
-    fun onNewViewRestoreState_forPGNIG_hidesDoubleReadingsVisibility() {
-        sut.setup(Provider.PGNIG)
-
-        sut.onNewViewRestoreState()
-
-        verify(view).setDoubleReadingsVisibility(View.GONE)
-    }
-
-    @Test
-    @Parameters(method = "paramsForReadingVisibility")
-    fun onFirstBind_hidesReadingsVisibility(provider: Provider, tariff: String, singleVisibility: Int, doubleVisibility: Int) {
-        sut.setup(provider)
-        given_tariff(tariff)
-
-        sut.onFirstBind()
-
-        verify(view).setSingleReadingsVisibility(singleVisibility)
-        verify(view).setDoubleReadingsVisibility(doubleVisibility)
-    }
-
-    @Suppress("unused")
-    private fun paramsForReadingVisibility() = arrayOf(
-            arrayOf(Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G11, View.VISIBLE, View.GONE),
-            arrayOf(Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G11, View.VISIBLE, View.GONE),
-            arrayOf(Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G12, View.GONE, View.VISIBLE),
-            arrayOf(Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G12, View.GONE, View.VISIBLE)
-    )
-
-    @Test
-    @Parameters(method = "paramsForReadingVisibility")
-    fun onNewViewRestoreState_hidesReadingsVisibility(provider: Provider, tariff: String, singleVisibility: Int, doubleVisibility: Int) {
-        sut.setup(provider)
-        given_tariff(tariff)
-
-        sut.onNewViewRestoreState()
-
-        verify(view).setSingleReadingsVisibility(singleVisibility)
-        verify(view).setDoubleReadingsVisibility(doubleVisibility)
     }
 
     @Test

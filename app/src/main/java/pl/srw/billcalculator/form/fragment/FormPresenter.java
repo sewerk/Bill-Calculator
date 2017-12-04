@@ -1,7 +1,5 @@
 package pl.srw.billcalculator.form.fragment;
 
-import android.view.View;
-
 import javax.inject.Inject;
 
 import pl.srw.billcalculator.form.FormValueValidator;
@@ -34,16 +32,6 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
 
     public void setup(Provider provider) {
         this.provider = provider;
-    }
-
-    @Override
-    protected void onFirstBind() {
-        present(this::setFormValues);
-    }
-
-    @Override
-    protected void onNewViewRestoreState() {
-        present(this::setFormValues);
     }
 
     public void closeButtonClicked() {
@@ -109,21 +97,6 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
         return errorMsgRes -> present(view -> view.showDateFieldError(errorMsgRes));
     }
 
-    private void setFormValues(FormView view) {
-        if (provider == PGNIG) {
-            view.setDoubleReadingsVisibility(View.GONE);
-        } else {
-            String tariff = getTariff();
-            if (SharedPreferencesEnergyPrices.TARIFF_G11.equals(tariff)) {
-                view.setSingleReadingsVisibility(View.VISIBLE);
-                view.setDoubleReadingsVisibility(View.GONE);
-            } else {
-                view.setDoubleReadingsVisibility(View.VISIBLE);
-                view.setSingleReadingsVisibility(View.GONE);
-            }
-        }
-    }
-
     @SharedPreferencesEnergyPrices.TariffOption
     private String getTariff() {
         return ((SharedPreferencesEnergyPrices)providerMapper.getPrices(provider)).getTariff();
@@ -132,10 +105,6 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
     public interface FormView {
 
         void hideForm();
-
-        void setSingleReadingsVisibility(int visibility);
-
-        void setDoubleReadingsVisibility(final int visibility);
 
         void showReadingFieldError(Field field, int errorMsgRes);
 

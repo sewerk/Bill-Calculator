@@ -4,6 +4,7 @@ package pl.srw.billcalculator.form
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
+import android.view.View
 import com.nhaarman.mockito_kotlin.*
 import junitparams.JUnitParamsRunner
 import junitparams.Parameters
@@ -64,6 +65,34 @@ class FormVMTest {
         sut = FormVM(Provider.PGNIG, pricesRepo)
 
         assert("" == sut.tariffLabel.get())
+    }
+
+    @Test
+    @Parameters("PGE", "TAURON")
+    fun `single readings are visible when tariff G11`(provider: Provider) {
+        sut = FormVM(provider, pricesRepo)
+        setTariff(SharedPreferencesEnergyPrices.TARIFF_G11)
+
+        assert(View.VISIBLE == sut.singleReadingsVisibility.get())
+        assert(View.GONE == sut.doubleReadingsVisibility.get())
+    }
+
+    @Test
+    @Parameters("PGE", "TAURON")
+    fun `double readings are visible when tariff G12`(provider: Provider) {
+        sut = FormVM(provider, pricesRepo)
+        setTariff(SharedPreferencesEnergyPrices.TARIFF_G12)
+
+        assert(View.GONE == sut.singleReadingsVisibility.get())
+        assert(View.VISIBLE == sut.doubleReadingsVisibility.get())
+    }
+
+    @Test
+    fun `single readings are visible when PGNIG provider`() {
+        sut = FormVM(Provider.PGNIG, pricesRepo)
+
+        assert(View.VISIBLE == sut.singleReadingsVisibility.get())
+        assert(View.GONE == sut.doubleReadingsVisibility.get())
     }
 
     @Test
