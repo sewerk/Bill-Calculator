@@ -38,8 +38,8 @@ public class BillCalculator extends Application {
             Database.enableDatabaseLogging();
         }
 
-        Dependencies.init(getApplicationContext());
-        Dependencies.inject(this);
+        Dependencies.INSTANCE.init(getApplicationContext());
+        Dependencies.INSTANCE.inject(this);
 
         Analytics.initialize(this);
         AndroidThreeTen.init(this);

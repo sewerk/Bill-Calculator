@@ -1,67 +1,56 @@
 package pl.srw.billcalculator.form.fragment;
 
-import javax.inject.Inject;
-
 import pl.srw.billcalculator.form.FormValueValidator;
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.type.ActionType;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.ProviderMapper;
 import pl.srw.billcalculator.wrapper.Analytics;
-import pl.srw.mfvp.MvpPresenter;
-import pl.srw.mfvp.di.scope.RetainFragmentScope;
 
 import static pl.srw.billcalculator.form.FormValueValidator.isDatesOrderCorrect;
 import static pl.srw.billcalculator.form.FormValueValidator.isValueFilled;
 import static pl.srw.billcalculator.form.FormValueValidator.isValueOrderCorrect;
 import static pl.srw.billcalculator.type.Provider.PGNIG;
 
-@RetainFragmentScope
-public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
+public class FormPresenter {
 
+    private final FormPresenter.FormView view;
+    private final Provider provider;
     private final ProviderMapper providerMapper;
-    private final HistoryUpdating historyUpdater;
 
-    private Provider provider;
+    private final HistoryChangeListener historyUpdater;
 
-    @Inject
-    public FormPresenter(ProviderMapper providerMapper, HistoryUpdating historyUpdater) {
+    public FormPresenter(FormView view, Provider provider, ProviderMapper providerMapper, HistoryChangeListener historyUpdater) {
+        this.view = view;
+        this.provider = provider;
         this.providerMapper = providerMapper;
         this.historyUpdater = historyUpdater;
     }
 
-    public void setup(Provider provider) {
-        this.provider = provider;
-    }
-
     public void closeButtonClicked() {
-        present(FormView::hideForm);
+        view.hideForm();
     }
 
     public void calculateButtonClicked(String readingFrom, String readingTo,
                                        String dateFrom, String dateTo,
                                        String readingDayFrom, String readingDayTo,
                                        String readingNightFrom, String readingNightTo) {
-        present(FormView::cleanErrorsOnFields);
+        view.cleanErrorsOnFields();
 
         if (provider == PGNIG || SharedPreferencesEnergyPrices.TARIFF_G11.equals(getTariff())) {
             if (!isSingleReadingsFormValid(readingFrom, readingTo, dateFrom, dateTo)) {
                 return;
             }
-            present(view -> {
-                view.startStoringServiceForSingleReadings(provider);
-                view.startBillActivityForSingleReadings(provider);
-                view.hideForm();
-            });
+            view.startStoringServiceForSingleReadings(provider);
+            view.startBillActivityForSingleReadings(provider);
+            view.hideForm();
         } else {
             if (!isDoubleReadingsFormValid(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo)) {
                 return;
             }
-            present(view -> {
-                view.startStoringServiceForDoubleReadings(provider);
-                view.startBillActivityForDoubleReadings(provider);
-                view.hideForm();
-            });
+            view.startStoringServiceForDoubleReadings(provider);
+            view.startBillActivityForDoubleReadings(provider);
+            view.hideForm();
         }
         historyUpdater.onHistoryChanged();
         Analytics.logAction(ActionType.CALCULATE, "provider", provider);
@@ -90,11 +79,11 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
     }
 
     private FormValueValidator.OnErrorCallback onErrorCallback(final FormView.Field field) {
-        return errorMsgRes -> present(view -> view.showReadingFieldError(field, errorMsgRes));
+        return errorMsgRes -> view.showReadingFieldError(field, errorMsgRes);
     }
 
     private FormValueValidator.OnErrorCallback onDateErrorCallback() {
-        return errorMsgRes -> present(view -> view.showDateFieldError(errorMsgRes));
+        return errorMsgRes -> view.showDateFieldError(errorMsgRes);
     }
 
     @SharedPreferencesEnergyPrices.TariffOption
@@ -127,7 +116,7 @@ public class FormPresenter extends MvpPresenter<FormPresenter.FormView> {
         }
     }
 
-    public interface HistoryUpdating {
+    public interface HistoryChangeListener {
         void onHistoryChanged();
     }
 }

@@ -1,4 +1,3 @@
-@file:Suppress("IllegalIdentifier")
 package pl.srw.billcalculator.form
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule

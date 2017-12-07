@@ -21,7 +21,7 @@ class FormVM(val provider: Provider,
              private val pricesRepo: PricesRepo) : ViewModel() {
 
     val logoResource = provider.logoRes
-    var tariffLabel = ObservableField<String>(DEFAULT_TARIFF_LABEL_FOR_PGNIG)
+    val tariffLabel = ObservableField<String>(DEFAULT_TARIFF_LABEL_FOR_PGNIG)
     val readingsUnitTextResource = provider.formReadingUnit
     val singleReadingsVisibility = ObservableInt(View.VISIBLE)
     val doubleReadingsVisibility = ObservableInt(View.GONE)

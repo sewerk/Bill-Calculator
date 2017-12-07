@@ -28,7 +28,7 @@ import timber.log.Timber;
 
 @RetainActivityScope
 public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
-        implements HistoryItemDismissHandling, HistoryItemClickListener, FormPresenter.HistoryUpdating {
+        implements HistoryItemDismissHandling, HistoryItemClickListener, FormPresenter.HistoryChangeListener {
 
     private final SettingsRepo settings;
     private final HistoryRepo history;

@@ -93,6 +93,12 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isFinishing()) Dependencies.INSTANCE.releaseHistoryComponent();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
@@ -144,7 +150,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
 
     @Override
     public HistoryComponent prepareComponent() {
-        return Dependencies.getApplicationComponent().getHistoryComponent();
+        return Dependencies.INSTANCE.getHistoryComponent();
     }
 
     @Override

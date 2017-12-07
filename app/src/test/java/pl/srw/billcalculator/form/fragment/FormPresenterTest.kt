@@ -1,15 +1,12 @@
-@file:Suppress("IllegalIdentifier")
 package pl.srw.billcalculator.form.fragment
 
 import com.nhaarman.mockito_kotlin.*
 import junitparams.JUnitParamsRunner
 import junitparams.Parameters
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyInt
 import pl.srw.billcalculator.RxJavaBaseTest
-import pl.srw.billcalculator.setState
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.ProviderMapper
@@ -22,14 +19,9 @@ class FormPresenterTest : RxJavaBaseTest() {
     val providerMapper: ProviderMapper = mock {
         on { getPrices(anyOrNull())} doReturn prices
     }
-    val historyUpdater: FormPresenter.HistoryUpdating = mock()
+    val historyUpdater: FormPresenter.HistoryChangeListener = mock()
 
-    val sut = FormPresenter(providerMapper, historyUpdater)
-
-    @Before
-    fun setUp() {
-        sut.setState("view", view)
-    }
+    var sut = FormPresenter(view, Provider.PGE, providerMapper, historyUpdater)
 
     @Test
     fun whenCloseButtonClicked_dismissForm() {
@@ -40,9 +32,8 @@ class FormPresenterTest : RxJavaBaseTest() {
 
     @Test
     @Parameters("PGE", "PGNIG", "TAURON")
-    fun calculateButtonClicked_forTariffG11_whenValuesCorrect_saveAndOpenBillForSingleReadings(
-            provider: Provider) {
-        sut.setup(provider)
+    fun calculateButtonClicked_forTariffG11_whenValuesCorrect_saveAndOpenBillForSingleReadings(provider: Provider) {
+        setup(provider)
         given_tariff(SharedPreferencesEnergyPrices.TARIFF_G11)
 
         sut.calculateButtonClicked("1", "2", "28.12.16", "31.12.16", "11", "12", "22", "23")
@@ -53,9 +44,8 @@ class FormPresenterTest : RxJavaBaseTest() {
 
     @Test
     @Parameters("PGE", "TAURON")
-    fun calculateButtonClicked_forEnergyProvider_andTariffG12_whenValuesCorrect_saveAndOpenBillForDoubleReadings(
-            provider: Provider) {
-        sut.setup(provider)
+    fun calculateButtonClicked_forEnergyProvider_andTariffG12_whenValuesCorrect_saveAndOpenBillForDoubleReadings(provider: Provider) {
+        setup(provider)
         given_tariff(SharedPreferencesEnergyPrices.TARIFF_G12)
 
         sut.calculateButtonClicked("1", "2", "28.12.16", "31.12.16", "11", "12", "22", "23")
@@ -67,7 +57,7 @@ class FormPresenterTest : RxJavaBaseTest() {
     @Test
     @Parameters(method = "paramsEnergyProviderWithTariff")
     fun calculateButtonClicked_whenValuesCorrect_dismissForm(provider: Provider, tariff: String) {
-        sut.setup(provider)
+        setup(provider)
         given_tariff(tariff)
 
         sut.calculateButtonClicked("1", "2", "28.12.16", "31.12.16", "11", "12", "22", "23")
@@ -84,7 +74,7 @@ class FormPresenterTest : RxJavaBaseTest() {
 
     @Test
     fun calculateButtonClicked_forPGNIG_whenReadingValueIncorrect_showsReadingsError() {
-        sut.setup(Provider.PGNIG)
+        setup(Provider.PGNIG)
 
         sut.calculateButtonClicked("", "", "28.12.16", "31.12.16", "", "", "", "")
 
@@ -94,7 +84,7 @@ class FormPresenterTest : RxJavaBaseTest() {
     @Test
     @Parameters(method = "paramsEnergyProviderWithTariff")
     fun calculateButtonClicked_forEnergyProvider_whenReadingValueIncorrect_showsReadingsError(provider: Provider, tariff: String) {
-        sut.setup(provider)
+        setup(provider)
         given_tariff(tariff)
 
         sut.calculateButtonClicked("", "", "28.12.16", "31.12.16", "", "", "", "")
@@ -112,7 +102,7 @@ class FormPresenterTest : RxJavaBaseTest() {
 
     @Test
     fun calculateButtonClicked_forPGNIG_whenDateValueIncorrect_showsDateError() {
-        sut.setup(Provider.PGNIG)
+        setup(Provider.PGNIG)
 
         sut.calculateButtonClicked("1", "2", "28.12.16", "31.11.16", "11", "12", "22", "23")
 
@@ -122,7 +112,7 @@ class FormPresenterTest : RxJavaBaseTest() {
     @Test
     @Parameters(method = "paramsEnergyProviderWithTariff")
     fun calculateButtonClicked_forEnergyProvider_whenDateValueIncorrect_showsDateError(provider: Provider, tariff: String) {
-        sut.setup(provider)
+        setup(provider)
         given_tariff(tariff)
 
         sut.calculateButtonClicked("1", "2", "28.12.16", "31.11.16", "11", "12", "22", "23")
@@ -150,5 +140,9 @@ class FormPresenterTest : RxJavaBaseTest() {
 
     private fun given_tariff(@SharedPreferencesEnergyPrices.TariffOption tariff: String) {
         whenever(prices.tariff).thenReturn(tariff)
+    }
+
+    private fun setup(provider: Provider) {
+        sut = FormPresenter(view, provider, providerMapper, historyUpdater)
     }
 }

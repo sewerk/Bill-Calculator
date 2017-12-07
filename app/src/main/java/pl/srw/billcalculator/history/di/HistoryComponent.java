@@ -9,7 +9,7 @@ import pl.srw.mfvp.di.MvpComponent;
 import pl.srw.mfvp.di.scope.RetainActivityScope;
 
 @RetainActivityScope
-@Subcomponent
+@Subcomponent(modules = HistoryModule.class)
 public interface HistoryComponent extends MvpComponent<DrawerActivity> {
 
     FormComponent getFormComponent();

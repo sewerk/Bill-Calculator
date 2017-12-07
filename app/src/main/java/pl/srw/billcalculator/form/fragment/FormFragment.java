@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
@@ -35,37 +36,30 @@ import pl.srw.billcalculator.form.FormPreviousReadingsVM;
 import pl.srw.billcalculator.form.FormVM;
 import pl.srw.billcalculator.form.FormVMFactory;
 import pl.srw.billcalculator.form.autocomplete.PreviousReadingsAdapter;
-import pl.srw.billcalculator.form.di.FormComponent;
 import pl.srw.billcalculator.form.view.DatePickingView;
 import pl.srw.billcalculator.form.view.InstantAutoCompleteTextInputEditText;
-import pl.srw.billcalculator.history.di.HistoryComponent;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
 import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Animations;
+import pl.srw.billcalculator.util.ProviderMapper;
 import pl.srw.billcalculator.util.Views;
 import pl.srw.billcalculator.wrapper.Analytics;
-import pl.srw.mfvp.MvpFragment;
-import pl.srw.mfvp.di.MvpFragmentScopedFragment;
+import pl.srw.billcalculator.wrapper.Dependencies;
 import timber.log.Timber;
 
-public class FormFragment extends MvpFragment
-        implements MvpFragmentScopedFragment<FormComponent, HistoryComponent>,
-        FormPresenter.FormView {
+public class FormFragment extends DialogFragment implements FormPresenter.FormView {
 
     public static final String DATE_PATTERN = "dd.MM.yy";
     private static final String EXTRA_PROVIDER = "PROVIDER";
 
-    @Inject
-    FormPresenter presenter;
-
-    @Inject
-    FormVMFactory formVMFactory;
+    @Inject FormVMFactory formVMFactory;
+    @Inject ProviderMapper providerMapper; // TODO replace with repo
+    @Inject FormPresenter.HistoryChangeListener historyUpdater;
 
     @BindView(R.id.form_settings_link) TextView settingsLink;
-    @BindView(R.id.form_entry_tariff) TextView tariffView;
     @BindView(R.id.form_entry_dates_from) DatePickingView dateFromView;
     @BindView(R.id.form_entry_dates_to) DatePickingView dateToView;
 
@@ -81,6 +75,7 @@ public class FormFragment extends MvpFragment
 
     private FormVM formVM;
     private FormPreviousReadingsVM formPrevReadingsVM;
+    private FormPresenter presenter;
     private Unbinder unbinder;
 
     private final DialogInterface.OnKeyListener onBackListener = (dialog, keyCode, event) -> {
@@ -102,10 +97,10 @@ public class FormFragment extends MvpFragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Dependencies.INSTANCE.inject(this);
         final int providerIdx = getArguments().getInt(EXTRA_PROVIDER);
         final Provider provider = Provider.values()[providerIdx];
-        presenter.setup(provider);
-        attachPresenter(presenter);
+        presenter = new FormPresenter(this, provider, providerMapper, historyUpdater);
 
         formVMFactory.setProvider(provider);
         formVM = ViewModelProviders.of(this, formVMFactory).get(FormVM.class);
@@ -147,11 +142,6 @@ public class FormFragment extends MvpFragment
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-    }
-
-    @Override
-    public FormComponent prepareComponent(HistoryComponent historyComponent) {
-        return historyComponent.getFormComponent();
     }
 
     @OnClick(R.id.close_button)

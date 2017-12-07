@@ -1,5 +1,7 @@
 package pl.srw.billcalculator.di;
 
+import android.support.annotation.NonNull;
+
 import javax.inject.Singleton;
 
 import dagger.Component;
@@ -22,17 +24,17 @@ import pl.srw.billcalculator.wrapper.PricesRepo;
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
 
-    HistoryComponent getHistoryComponent();
+    @NonNull HistoryComponent getHistoryComponent();
 
-    SettingsComponent getSettingsComponent();
+    @NonNull SettingsComponent getSettingsComponent();
 
-    ProviderSettingsComponent getProviderSettingsComponent();
+    @NonNull ProviderSettingsComponent getProviderSettingsComponent();
 
-    PgeBillComponent getPgeBillComponent();
+    @NonNull PgeBillComponent getPgeBillComponent();
 
-    PgnigBillComponent getPgnigBillComponent();
+    @NonNull PgnigBillComponent getPgnigBillComponent();
 
-    TauronBillComponent getTauronBillComponent();
+    @NonNull TauronBillComponent getTauronBillComponent();
 
     void inject(BillCalculator application);
 
@@ -42,11 +44,12 @@ public interface ApplicationComponent {
 
     void inject(TauronBillStoringService service);
 
-    PgePrices getPgePrices();
+    // Visible for UI tests
+    @NonNull PgePrices getPgePrices();
 
-    SettingsRepo getSettingsRepo();
+    @NonNull SettingsRepo getSettingsRepo();
 
-    BillSelection getBillSelection();
+    @NonNull BillSelection getBillSelection();
 
-    PricesRepo getPricesRepo();
+    @NonNull PricesRepo getPricesRepo();
 }
