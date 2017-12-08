@@ -44,10 +44,10 @@ import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Animations;
-import pl.srw.billcalculator.util.ProviderMapper;
 import pl.srw.billcalculator.util.Views;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
+import pl.srw.billcalculator.wrapper.PricesRepo;
 import timber.log.Timber;
 
 public class FormFragment extends DialogFragment implements FormPresenter.FormView {
@@ -56,7 +56,7 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
     private static final String EXTRA_PROVIDER = "PROVIDER";
 
     @Inject FormVMFactory formVMFactory;
-    @Inject ProviderMapper providerMapper; // TODO replace with repo
+    @Inject PricesRepo pricesRepo;
     @Inject FormPresenter.HistoryChangeListener historyUpdater;
 
     @BindView(R.id.form_settings_link) TextView settingsLink;
@@ -100,7 +100,7 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
         Dependencies.INSTANCE.inject(this);
         final int providerIdx = getArguments().getInt(EXTRA_PROVIDER);
         final Provider provider = Provider.values()[providerIdx];
-        presenter = new FormPresenter(this, provider, providerMapper, historyUpdater);
+        presenter = new FormPresenter(this, provider, pricesRepo, historyUpdater);
 
         formVMFactory.setProvider(provider);
         formVM = ViewModelProviders.of(this, formVMFactory).get(FormVM.class);

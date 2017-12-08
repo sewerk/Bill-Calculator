@@ -4,8 +4,8 @@ import pl.srw.billcalculator.form.FormValueValidator;
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.type.ActionType;
 import pl.srw.billcalculator.type.Provider;
-import pl.srw.billcalculator.util.ProviderMapper;
 import pl.srw.billcalculator.wrapper.Analytics;
+import pl.srw.billcalculator.wrapper.PricesRepo;
 
 import static pl.srw.billcalculator.form.FormValueValidator.isDatesOrderCorrect;
 import static pl.srw.billcalculator.form.FormValueValidator.isValueFilled;
@@ -16,14 +16,14 @@ public class FormPresenter {
 
     private final FormPresenter.FormView view;
     private final Provider provider;
-    private final ProviderMapper providerMapper;
+    private final PricesRepo pricesRepo;
 
     private final HistoryChangeListener historyUpdater;
 
-    public FormPresenter(FormView view, Provider provider, ProviderMapper providerMapper, HistoryChangeListener historyUpdater) {
+    public FormPresenter(FormView view, Provider provider, PricesRepo pricesRepo, HistoryChangeListener historyUpdater) {
         this.view = view;
         this.provider = provider;
-        this.providerMapper = providerMapper;
+        this.pricesRepo = pricesRepo;
         this.historyUpdater = historyUpdater;
     }
 
@@ -37,7 +37,7 @@ public class FormPresenter {
                                        String readingNightFrom, String readingNightTo) {
         view.cleanErrorsOnFields();
 
-        if (provider == PGNIG || SharedPreferencesEnergyPrices.TARIFF_G11.equals(getTariff())) {
+        if (provider == PGNIG || isSingleReadingTariff()) {
             if (!isSingleReadingsFormValid(readingFrom, readingTo, dateFrom, dateTo)) {
                 return;
             }
@@ -86,9 +86,8 @@ public class FormPresenter {
         return errorMsgRes -> view.showDateFieldError(errorMsgRes);
     }
 
-    @SharedPreferencesEnergyPrices.TariffOption
-    private String getTariff() {
-        return ((SharedPreferencesEnergyPrices)providerMapper.getPrices(provider)).getTariff();
+    private boolean isSingleReadingTariff() {
+        return SharedPreferencesEnergyPrices.TARIFF_G11.equals(pricesRepo.getTariff(provider));
     }
 
     public interface FormView {

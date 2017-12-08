@@ -1,6 +1,10 @@
 package pl.srw.billcalculator.form.fragment
 
-import com.nhaarman.mockito_kotlin.*
+import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.doReturn
+import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.verify
+import com.nhaarman.mockito_kotlin.whenever
 import junitparams.JUnitParamsRunner
 import junitparams.Parameters
 import org.junit.Test
@@ -9,19 +13,19 @@ import org.mockito.ArgumentMatchers.anyInt
 import pl.srw.billcalculator.RxJavaBaseTest
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
-import pl.srw.billcalculator.util.ProviderMapper
+import pl.srw.billcalculator.wrapper.PricesRepo
 
 @RunWith(JUnitParamsRunner::class)
 class FormPresenterTest : RxJavaBaseTest() {
 
     val view: FormPresenter.FormView = mock()
     val prices: SharedPreferencesEnergyPrices = mock()
-    val providerMapper: ProviderMapper = mock {
-        on { getPrices(anyOrNull())} doReturn prices
+    val pricesRepo: PricesRepo = mock {
+        on { getTariff(any())} doReturn SharedPreferencesEnergyPrices.TARIFF_G11
     }
     val historyUpdater: FormPresenter.HistoryChangeListener = mock()
 
-    var sut = FormPresenter(view, Provider.PGE, providerMapper, historyUpdater)
+    var sut = FormPresenter(view, Provider.PGE, pricesRepo, historyUpdater)
 
     @Test
     fun whenCloseButtonClicked_dismissForm() {
@@ -139,10 +143,10 @@ class FormPresenterTest : RxJavaBaseTest() {
     }
 
     private fun given_tariff(@SharedPreferencesEnergyPrices.TariffOption tariff: String) {
-        whenever(prices.tariff).thenReturn(tariff)
+        whenever(pricesRepo.getTariff(any())).thenReturn(tariff)
     }
 
     private fun setup(provider: Provider) {
-        sut = FormPresenter(view, provider, providerMapper, historyUpdater)
+        sut = FormPresenter(view, provider, pricesRepo, historyUpdater)
     }
 }
