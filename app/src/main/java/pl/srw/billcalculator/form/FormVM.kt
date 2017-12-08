@@ -46,7 +46,7 @@ class FormVM(val provider: Provider,
         else if (provider == Provider.TAURON) pricesRepo.tariffTauron.removeObserver(tariffObserver)
     }
 
-    fun settingsLinkClicked(ignored: View) {
+    fun settingsLinkClicked() {
         Analytics.log("Form: Settings link clicked")
         openSettingsCommand.value = provider
     }

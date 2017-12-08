@@ -28,6 +28,7 @@ public class FormPresenter {
     }
 
     public void closeButtonClicked() {
+        Analytics.log("Form: Close clicked");
         view.hideForm();
     }
 

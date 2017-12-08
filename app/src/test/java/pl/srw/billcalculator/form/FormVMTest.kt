@@ -99,7 +99,7 @@ class FormVMTest {
         val observer:Observer<Provider?> = mock()
         sut.openSettingsCommand.observeForever(observer)
 
-        sut.settingsLinkClicked(mock())
+        sut.settingsLinkClicked()
 
         verify(observer).onChanged(provider)
     }

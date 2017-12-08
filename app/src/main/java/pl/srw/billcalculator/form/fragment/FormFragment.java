@@ -98,6 +98,7 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Dependencies.INSTANCE.inject(this);
+
         final int providerIdx = getArguments().getInt(EXTRA_PROVIDER);
         final Provider provider = Provider.values()[providerIdx];
         presenter = new FormPresenter(this, provider, pricesRepo, historyUpdater);
@@ -113,6 +114,7 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
         View view = View.inflate(getContext(), R.layout.form, null);
         FormBinding binding = FormBinding.bind(view);
         binding.setVm(formVM);
+        binding.setPresenter(presenter);
         final AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setView(view)
                 .create();
@@ -142,12 +144,6 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-    }
-
-    @OnClick(R.id.close_button)
-    void closeButtonClicked() {
-        Analytics.log("Form: Close clicked");
-        presenter.closeButtonClicked();
     }
 
     @OnClick(R.id.calculate_button)

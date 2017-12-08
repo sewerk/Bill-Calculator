@@ -5,6 +5,7 @@
     </data>
     <merge
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/tools"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:showIn="@layout/form">
@@ -15,7 +16,7 @@
             android:layout_height="wrap_content"
             android:text="@string/settings_label"
             android:textColor="@color/blue"
-            android:onClick="@{vm::settingsLinkClicked}"
+            bind:onClick="@{vm::settingsLinkClicked}"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 

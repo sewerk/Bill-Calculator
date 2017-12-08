@@ -2,6 +2,7 @@
 <layout>
     <data>
         <variable name="vm" type="pl.srw.billcalculator.form.FormVM"/>
+        <variable name="presenter" type="pl.srw.billcalculator.form.fragment.FormPresenter"/>
     </data>
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                  xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -79,6 +80,7 @@
             </android.support.constraint.ConstraintLayout>
         </ScrollView>
 
-        <include layout="@layout/form_fabs"/>
+        <include layout="@layout/form_fabs"
+            app:presenter="@{presenter}"/>
     </FrameLayout>
 </layout>
