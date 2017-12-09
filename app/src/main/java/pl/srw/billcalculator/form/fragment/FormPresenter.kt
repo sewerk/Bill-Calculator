@@ -1,20 +1,18 @@
 package pl.srw.billcalculator.form.fragment
 
+import pl.srw.billcalculator.form.FormVM
 import pl.srw.billcalculator.form.FormValueValidator
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
-import pl.srw.billcalculator.type.ActionType
-import pl.srw.billcalculator.type.Provider
-import pl.srw.billcalculator.wrapper.Analytics
-import pl.srw.billcalculator.wrapper.PricesRepo
-
 import pl.srw.billcalculator.form.FormValueValidator.isDatesOrderCorrect
 import pl.srw.billcalculator.form.FormValueValidator.isValueFilled
 import pl.srw.billcalculator.form.FormValueValidator.isValueOrderCorrect
+import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
+import pl.srw.billcalculator.type.ActionType
+import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.type.Provider.PGNIG
+import pl.srw.billcalculator.wrapper.Analytics
 
 class FormPresenter(private val view: FormView,
                     private val provider: Provider,
-                    private val pricesRepo: PricesRepo,
                     private val historyUpdater: HistoryChangeListener) {
 
     fun closeButtonClicked() {
@@ -22,21 +20,20 @@ class FormPresenter(private val view: FormView,
         view.hideForm()
     }
 
-    fun calculateButtonClicked(readingFrom: String, readingTo: String,
-                               dateFrom: String, dateTo: String,
-                               readingDayFrom: String, readingDayTo: String,
-                               readingNightFrom: String, readingNightTo: String) {
+    fun calculateButtonClicked(vm: FormVM) {
+        Analytics.log("Form: Calculate clicked")
         view.cleanErrorsOnFields()
 
-        if (provider == PGNIG || isSingleReadingTariff()) {
-            if (!isSingleReadingsFormValid(readingFrom, readingTo, dateFrom, dateTo)) {
+        if (provider == PGNIG || vm.isSingleReadingTariff()) {
+            if (!isSingleReadingsFormValid(vm.readingFrom.get(), vm.readingTo.get(), vm.dateFrom.get(), vm.dateTo.get())) {
                 return
             }
             view.startStoringServiceForSingleReadings(provider)
             view.startBillActivityForSingleReadings(provider)
             view.hideForm()
         } else {
-            if (!isDoubleReadingsFormValid(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo, dateFrom, dateTo)) {
+            if (!isDoubleReadingsFormValid(vm.readingDayFrom.get(), vm.readingDayTo.get(),
+                    vm.readingNightFrom.get(), vm.readingNightTo.get(), vm.dateFrom.get(), vm.dateTo.get())) {
                 return
             }
             view.startStoringServiceForDoubleReadings(provider)
@@ -69,7 +66,7 @@ class FormPresenter(private val view: FormView,
 
     }
 
-    private fun isSingleReadingTariff(): Boolean = SharedPreferencesEnergyPrices.TARIFF_G11 == pricesRepo.getTariff(provider)
+    private fun FormVM.isSingleReadingTariff(): Boolean = SharedPreferencesEnergyPrices.TARIFF_G11 == tariffLabel
 
     private fun onErrorCallback(field: FormView.Field) = FormValueValidator.OnErrorCallback { view.showReadingFieldError(field, it) }
 

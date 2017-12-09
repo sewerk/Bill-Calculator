@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
+        <variable name="vm" type="pl.srw.billcalculator.form.FormVM"/>
         <variable name="presenter" type="pl.srw.billcalculator.form.fragment.FormPresenter"/>
     </data>
 
@@ -29,6 +30,7 @@
             android:layout_marginBottom="@dimen/form_calculate_button_margin_bottom"
             app:backgroundTint="@color/primary"
             app:rippleColor="@color/primaryDark"
+            android:onClick="@{(v) -> presenter.calculateButtonClicked(vm)}"
             app:srcCompat="@drawable/ic_arrow_forward_white_24dp"/>
     </merge>
 </layout>

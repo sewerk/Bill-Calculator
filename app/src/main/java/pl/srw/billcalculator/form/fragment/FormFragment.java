@@ -28,7 +28,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.databinding.FormBinding;
@@ -44,10 +43,8 @@ import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Animations;
-import pl.srw.billcalculator.util.Views;
 import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
-import pl.srw.billcalculator.wrapper.PricesRepo;
 import timber.log.Timber;
 
 public class FormFragment extends DialogFragment implements FormPresenter.FormView {
@@ -56,7 +53,6 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
     private static final String EXTRA_PROVIDER = "PROVIDER";
 
     @Inject FormVMFactory formVMFactory;
-    @Inject PricesRepo pricesRepo;
     @Inject FormPresenter.HistoryChangeListener historyUpdater;
 
     @BindView(R.id.form_settings_link) TextView settingsLink;
@@ -101,7 +97,7 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
 
         final int providerIdx = getArguments().getInt(EXTRA_PROVIDER);
         final Provider provider = Provider.values()[providerIdx];
-        presenter = new FormPresenter(this, provider, pricesRepo, historyUpdater);
+        presenter = new FormPresenter(this, provider, historyUpdater);
 
         formVMFactory.setProvider(provider);
         formVM = ViewModelProviders.of(this, formVMFactory).get(FormVM.class);
@@ -144,15 +140,6 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-    }
-
-    @OnClick(R.id.calculate_button)
-    void calculateButtonClicked() {
-        Analytics.log("Form: Calculate clicked");
-        presenter.calculateButtonClicked(Views.getText(readingFrom), Views.getText(readingTo),
-                Views.getText(dateFromView), Views.getText(dateToView),
-                Views.getText(readingDayFrom), Views.getText(readingDayTo),
-                Views.getText(readingNightFrom), Views.getText(readingNightTo));
     }
 
     @Override

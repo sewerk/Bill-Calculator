@@ -48,8 +48,8 @@ class FormVM(val provider: Provider,
     val readingNightFrom = ObservableField("")
     val readingNightTo = ObservableField("")
 
-    val fromDate = ObservableField(Dates.firstDayOfThisMonth().toText())
-    val toDate = ObservableField(Dates.lastDayOfThisMonth().toText())
+    val dateFrom = ObservableField(Dates.firstDayOfThisMonth().toText())
+    val dateTo = ObservableField(Dates.lastDayOfThisMonth().toText())
 
     // commands
     val openSettingsCommand = SingleLiveEvent<Provider>()

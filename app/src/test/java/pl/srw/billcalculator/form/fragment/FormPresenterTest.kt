@@ -1,31 +1,29 @@
 package pl.srw.billcalculator.form.fragment
 
+import android.databinding.ObservableField
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.whenever
 import junitparams.JUnitParamsRunner
 import junitparams.Parameters
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyInt
 import pl.srw.billcalculator.RxJavaBaseTest
+import pl.srw.billcalculator.form.FormVM
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
+import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices.TARIFF_G11
+import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices.TARIFF_G12
 import pl.srw.billcalculator.type.Provider
-import pl.srw.billcalculator.wrapper.PricesRepo
 
 @RunWith(JUnitParamsRunner::class)
 class FormPresenterTest : RxJavaBaseTest() {
 
     val view: FormPresenter.FormView = mock()
-    val prices: SharedPreferencesEnergyPrices = mock()
-    val pricesRepo: PricesRepo = mock {
-        on { getTariff(any())} doReturn SharedPreferencesEnergyPrices.TARIFF_G11
-    }
     val historyUpdater: FormPresenter.HistoryChangeListener = mock()
 
-    var sut = FormPresenter(view, Provider.PGE, pricesRepo, historyUpdater)
+    var sut = FormPresenter(view, Provider.PGE, historyUpdater)
 
     @Test
     fun whenCloseButtonClicked_dismissForm() {
@@ -38,9 +36,10 @@ class FormPresenterTest : RxJavaBaseTest() {
     @Parameters("PGE", "PGNIG", "TAURON")
     fun calculateButtonClicked_forTariffG11_whenValuesCorrect_saveAndOpenBillForSingleReadings(provider: Provider) {
         setup(provider)
-        given_tariff(SharedPreferencesEnergyPrices.TARIFF_G11)
+        val vm = mockFormVM(rf = "1", rt = "2", df = "28.12.16", dt = "31.12.16",
+                rdf = "11", rdt = "12", rnf = "22", rnt = "23", tariff = TARIFF_G11)
 
-        sut.calculateButtonClicked("1", "2", "28.12.16", "31.12.16", "11", "12", "22", "23")
+        sut.calculateButtonClicked(vm)
 
         verify(view).startStoringServiceForSingleReadings(provider)
         verify(view).startBillActivityForSingleReadings(provider)
@@ -50,9 +49,10 @@ class FormPresenterTest : RxJavaBaseTest() {
     @Parameters("PGE", "TAURON")
     fun calculateButtonClicked_forEnergyProvider_andTariffG12_whenValuesCorrect_saveAndOpenBillForDoubleReadings(provider: Provider) {
         setup(provider)
-        given_tariff(SharedPreferencesEnergyPrices.TARIFF_G12)
+        val vm = mockFormVM(rf = "1", rt = "2", df = "28.12.16", dt = "31.12.16",
+                rdf = "11", rdt = "12", rnf = "22", rnt = "23", tariff = TARIFF_G12)
 
-        sut.calculateButtonClicked("1", "2", "28.12.16", "31.12.16", "11", "12", "22", "23")
+        sut.calculateButtonClicked(vm)
 
         verify(view).startStoringServiceForDoubleReadings(provider)
         verify(view).startBillActivityForDoubleReadings(provider)
@@ -62,16 +62,17 @@ class FormPresenterTest : RxJavaBaseTest() {
     @Parameters(method = "paramsEnergyProviderWithTariff")
     fun calculateButtonClicked_whenValuesCorrect_dismissForm(provider: Provider, tariff: String) {
         setup(provider)
-        given_tariff(tariff)
+        val vm = mockFormVM(rf = "1", rt = "2", df = "28.12.16", dt = "31.12.16",
+                rdf = "11", rdt = "12", rnf = "22", rnt = "23", tariff = tariff)
 
-        sut.calculateButtonClicked("1", "2", "28.12.16", "31.12.16", "11", "12", "22", "23")
+        sut.calculateButtonClicked(vm)
 
         verify(view).hideForm()
     }
 
     @Test
     fun calculateButtonClicked_cleansErrorsOnFields() {
-        sut.calculateButtonClicked("", "", "", "", "", "", "", "")
+        sut.calculateButtonClicked(mockFormVM())
 
         verify(view).cleanErrorsOnFields()
     }
@@ -79,8 +80,9 @@ class FormPresenterTest : RxJavaBaseTest() {
     @Test
     fun calculateButtonClicked_forPGNIG_whenReadingValueIncorrect_showsReadingsError() {
         setup(Provider.PGNIG)
+        val vm = mockFormVM(df = "28.12.16", dt = "31.12.16")
 
-        sut.calculateButtonClicked("", "", "28.12.16", "31.12.16", "", "", "", "")
+        sut.calculateButtonClicked(vm)
 
         verify(view).showReadingFieldError(any(), anyInt())
     }
@@ -89,9 +91,9 @@ class FormPresenterTest : RxJavaBaseTest() {
     @Parameters(method = "paramsEnergyProviderWithTariff")
     fun calculateButtonClicked_forEnergyProvider_whenReadingValueIncorrect_showsReadingsError(provider: Provider, tariff: String) {
         setup(provider)
-        given_tariff(tariff)
+        val vm = mockFormVM(df = "28.12.16", dt = "31.12.16", tariff = tariff)
 
-        sut.calculateButtonClicked("", "", "28.12.16", "31.12.16", "", "", "", "")
+        sut.calculateButtonClicked(vm)
 
         verify(view).showReadingFieldError(any(), anyInt())
     }
@@ -107,8 +109,9 @@ class FormPresenterTest : RxJavaBaseTest() {
     @Test
     fun calculateButtonClicked_forPGNIG_whenDateValueIncorrect_showsDateError() {
         setup(Provider.PGNIG)
+        val vm = mockFormVM(rf = "1", rt = "2", df = "28.12.16", dt = "31.11.16", rdf = "11", rdt = "12", rnf = "22", rnt = "23")
 
-        sut.calculateButtonClicked("1", "2", "28.12.16", "31.11.16", "11", "12", "22", "23")
+        sut.calculateButtonClicked(vm)
 
         verify(view).showDateFieldError(anyInt())
     }
@@ -117,36 +120,54 @@ class FormPresenterTest : RxJavaBaseTest() {
     @Parameters(method = "paramsEnergyProviderWithTariff")
     fun calculateButtonClicked_forEnergyProvider_whenDateValueIncorrect_showsDateError(provider: Provider, tariff: String) {
         setup(provider)
-        given_tariff(tariff)
+        val vm = mockFormVM(rf = "1", rt = "2", df = "28.12.16", dt = "31.11.16",
+                rdf = "11", rdt = "12", rnf = "22", rnt = "23", tariff = tariff)
 
-        sut.calculateButtonClicked("1", "2", "28.12.16", "31.11.16", "11", "12", "22", "23")
+        sut.calculateButtonClicked(vm)
 
         verify(view).showDateFieldError(anyInt())
     }
 
     @Test
     fun `refetch history list when calculate button clicked for single readings and validation passed`() {
-        given_tariff(SharedPreferencesEnergyPrices.TARIFF_G11)
+        val vm = mockFormVM(rf = "1", rt = "2", df = "28.12.16", dt = "31.12.16", tariff = TARIFF_G11)
 
-        sut.calculateButtonClicked("1", "2", "28.12.16" , "31.12.16", "", "", "", "")
+        sut.calculateButtonClicked(vm)
 
         verify(historyUpdater).onHistoryChanged()
     }
 
     @Test
     fun `refetch history list when calculate button clicked for double readings and validation passed`() {
-        given_tariff(SharedPreferencesEnergyPrices.TARIFF_G12)
+        val vm = mockFormVM(rdf = "11", rdt = "12", rnf = "21", rnt = "22",
+                df = "28.12.16", dt = "31.12.16", tariff = TARIFF_G12)
 
-        sut.calculateButtonClicked("", "", "28.12.16" , "31.12.16", "11", "12", "21", "22")
+        sut.calculateButtonClicked(vm)
 
         verify(historyUpdater).onHistoryChanged()
     }
 
-    private fun given_tariff(@SharedPreferencesEnergyPrices.TariffOption tariff: String) {
-        whenever(pricesRepo.getTariff(any())).thenReturn(tariff)
+    private fun setup(provider: Provider) {
+        sut = FormPresenter(view, provider, historyUpdater)
     }
 
-    private fun setup(provider: Provider) {
-        sut = FormPresenter(view, provider, pricesRepo, historyUpdater)
+    private fun mockFormVM(rf: String = "", rt: String = "",
+                           df:String = "", dt:String = "",
+                           rdf: String = "", rdt: String = "",
+                           rnf: String="", rnt: String = "",
+                           tariff: String = TARIFF_G11): FormVM {
+        return mock {
+            on { readingFrom } doReturn field(rf)
+            on { readingTo } doReturn field(rt)
+            on { readingDayFrom } doReturn field(rdf)
+            on { readingDayTo } doReturn field(rdt)
+            on { readingNightFrom } doReturn field(rnf)
+            on { readingNightTo } doReturn field(rnt)
+            on { dateFrom } doReturn field(df)
+            on { dateTo } doReturn field(dt)
+            on { tariffLabel } doReturn tariff
+        }
     }
+
+    private fun field(value: String) = ObservableField(value)
 }

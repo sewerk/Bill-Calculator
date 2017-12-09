@@ -33,12 +33,12 @@ class FormVMTest {
 
     @Test
     fun `initialize fromDate with first day of current month`() {
-        assert(calculateDateFrom() == sut.fromDate.get())
+        assert(calculateDateFrom() == sut.dateFrom.get())
     }
 
     @Test
     fun `initialize toDate with last dat of current month`() {
-        assert(calculateDateTo() == sut.toDate.get())
+        assert(calculateDateTo() == sut.dateTo.get())
     }
 
     @Test
