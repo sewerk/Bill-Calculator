@@ -1,37 +1,62 @@
 package pl.srw.billcalculator.form
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModel
+import android.databinding.Bindable
 import android.databinding.ObservableField
-import android.databinding.ObservableInt
 import android.view.View
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
+import pl.srw.billcalculator.BR
 import pl.srw.billcalculator.form.fragment.FormFragment
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.Dates
 import pl.srw.billcalculator.util.SingleLiveEvent
+import pl.srw.billcalculator.util.binding.notifiable.ObservableViewModel
+import pl.srw.billcalculator.util.binding.notifiable.bindable
 import pl.srw.billcalculator.wrapper.Analytics
 import pl.srw.billcalculator.wrapper.PricesRepo
 
-const val DEFAULT_TARIFF_LABEL_FOR_PGNIG = ""
+private const val DEFAULT_TARIFF_LABEL_FOR_PGNIG = ""
 
 class FormVM(val provider: Provider,
-             private val pricesRepo: PricesRepo) : ViewModel() {
+             private val pricesRepo: PricesRepo)
+    : ObservableViewModel() {
 
+    // static properties
     val logoResource = provider.logoRes
-    val tariffLabel = ObservableField<String>(DEFAULT_TARIFF_LABEL_FOR_PGNIG)
     val readingsUnitTextResource = provider.formReadingUnit
-    val singleReadingsVisibility = ObservableInt(View.VISIBLE)
-    val doubleReadingsVisibility = ObservableInt(View.GONE)
-    var fromDate = ObservableField(Dates.firstDayOfThisMonth().toText())
-    var toDate = ObservableField(Dates.lastDayOfThisMonth().toText())
+
+    // read-only properties
+    @get:Bindable
+    var tariffLabel: String by bindable(DEFAULT_TARIFF_LABEL_FOR_PGNIG, BR.tariffLabel)
+        private set
+
+    @get:Bindable
+    var singleReadingsVisibility: Int by bindable(View.VISIBLE, BR.singleReadingsVisibility)
+        private set
+
+    @get:Bindable
+    var doubleReadingsVisibility: Int by bindable(View.GONE, BR.doubleReadingsVisibility)
+        private set
+
+    // read-write properties
+    val readingFrom = ObservableField("")
+    val readingTo = ObservableField("")
+    val readingDayFrom = ObservableField("")
+    val readingDayTo = ObservableField("")
+    val readingNightFrom = ObservableField("")
+    val readingNightTo = ObservableField("")
+
+    val fromDate = ObservableField(Dates.firstDayOfThisMonth().toText())
+    val toDate = ObservableField(Dates.lastDayOfThisMonth().toText())
+
+    // commands
     val openSettingsCommand = SingleLiveEvent<Provider>()
 
     private val tariffObserver = Observer<String> {
         val tariff = it!!
-        tariffLabel.set(tariff)
+        tariffLabel = tariff
         setReadingsVisibility(tariff)
     }
 
@@ -53,11 +78,11 @@ class FormVM(val provider: Provider,
 
     private fun setReadingsVisibility(tariff: String) {
         if (tariff == SharedPreferencesEnergyPrices.TARIFF_G11) {
-            singleReadingsVisibility.set(View.VISIBLE)
-            doubleReadingsVisibility.set(View.GONE)
+            singleReadingsVisibility = View.VISIBLE
+            doubleReadingsVisibility = View.GONE
         } else {
-            singleReadingsVisibility.set(View.GONE)
-            doubleReadingsVisibility.set(View.VISIBLE)
+            singleReadingsVisibility = View.GONE
+            doubleReadingsVisibility = View.VISIBLE
         }
     }
 

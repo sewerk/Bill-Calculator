@@ -56,14 +56,14 @@ class FormVMTest {
     fun `sets tariff label for energy providers`(tariff: String) {
         setTariff(tariff)
 
-        assert(tariff == sut.tariffLabel.get())
+        assert(tariff == sut.tariffLabel)
     }
 
     @Test
     fun `sets empty tariff label for PGNIG`() {
         sut = FormVM(Provider.PGNIG, pricesRepo)
 
-        assert("" == sut.tariffLabel.get())
+        assert("" == sut.tariffLabel)
     }
 
     @Test
@@ -72,8 +72,8 @@ class FormVMTest {
         sut = FormVM(provider, pricesRepo)
         setTariff(SharedPreferencesEnergyPrices.TARIFF_G11)
 
-        assert(View.VISIBLE == sut.singleReadingsVisibility.get())
-        assert(View.GONE == sut.doubleReadingsVisibility.get())
+        assert(View.VISIBLE == sut.singleReadingsVisibility)
+        assert(View.GONE == sut.doubleReadingsVisibility)
     }
 
     @Test
@@ -82,16 +82,16 @@ class FormVMTest {
         sut = FormVM(provider, pricesRepo)
         setTariff(SharedPreferencesEnergyPrices.TARIFF_G12)
 
-        assert(View.GONE == sut.singleReadingsVisibility.get())
-        assert(View.VISIBLE == sut.doubleReadingsVisibility.get())
+        assert(View.GONE == sut.singleReadingsVisibility)
+        assert(View.VISIBLE == sut.doubleReadingsVisibility)
     }
 
     @Test
     fun `single readings are visible when PGNIG provider`() {
         sut = FormVM(Provider.PGNIG, pricesRepo)
 
-        assert(View.VISIBLE == sut.singleReadingsVisibility.get())
-        assert(View.GONE == sut.doubleReadingsVisibility.get())
+        assert(View.VISIBLE == sut.singleReadingsVisibility)
+        assert(View.GONE == sut.doubleReadingsVisibility)
     }
 
     @Test

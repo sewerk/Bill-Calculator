@@ -36,6 +36,7 @@
                 android:nextFocusDown="@+id/form_entry_reading_day_to_input"
                 android:nextFocusForward="@+id/form_entry_reading_day_to_input"
                 android:nextFocusRight="@+id/form_entry_reading_day_to_input"
+                android:text="@={vm.readingDayFrom}"
                 tools:text="123"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -64,6 +65,7 @@
                 android:nextFocusLeft="@+id/form_entry_reading_day_from_input"
                 android:nextFocusRight="@+id/form_entry_reading_night_from_input"
                 android:nextFocusUp="@id/form_entry_reading_day_from_input"
+                android:text="@={vm.readingDayTo}"
                 tools:text="234"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -105,6 +107,7 @@
                 android:nextFocusLeft="@+id/form_entry_reading_day_to_input"
                 android:nextFocusRight="@+id/form_entry_reading_night_to_input"
                 android:nextFocusUp="@id/form_entry_reading_day_to_input"
+                android:text="@={vm.readingNightFrom}"
                 tools:text="123456789"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -130,6 +133,7 @@
                 style="@style/FormReadingInput"
                 android:nextFocusLeft="@id/form_entry_reading_night_from_input"
                 android:nextFocusUp="@id/form_entry_reading_night_from_input"
+                android:text="@={vm.readingNightTo}"
                 tools:text="234"/>
         </android.support.design.widget.TextInputLayout>
 

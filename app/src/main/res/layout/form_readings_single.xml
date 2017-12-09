@@ -33,6 +33,7 @@
                 android:nextFocusDown="@+id/form_entry_reading_to_input"
                 android:nextFocusForward="@+id/form_entry_reading_to_input"
                 android:nextFocusRight="@+id/form_entry_reading_to_input"
+                android:text="@={vm.readingFrom}"
                 tools:text="123"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -58,6 +59,7 @@
                 style="@style/FormReadingInput"
                 android:nextFocusLeft="@+id/form_entry_reading_from_input"
                 android:nextFocusUp="@+id/form_entry_reading_from_input"
+                android:text="@={vm.readingTo}"
                 tools:text="234"/>
         </android.support.design.widget.TextInputLayout>
 

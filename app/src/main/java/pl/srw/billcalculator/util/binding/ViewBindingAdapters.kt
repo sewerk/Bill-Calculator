@@ -1,8 +1,9 @@
-package pl.srw.billcalculator.util
+package pl.srw.billcalculator.util.binding
 
 import android.databinding.BindingAdapter
 import android.databinding.adapters.ViewBindingAdapter
 import android.view.View
+
 private const val BIND_ON_CLICK = "bind:onClick"
 
 interface OnClick {
