@@ -85,7 +85,6 @@
         </ScrollView>
 
         <include layout="@layout/form_fabs"
-                 android:id="@+id/fabs"
                  app:vm="@{vm}"
                  app:presenter="@{presenter}"/>
     </FrameLayout>

@@ -28,28 +28,33 @@ class FormVM(val provider: Provider,
     val readingsUnitTextResource = provider.formReadingUnit
 
     // read-only properties
-    @get:Bindable
     var tariffLabel: String by bindable(DEFAULT_TARIFF_LABEL_FOR_PGNIG, BR.tariffLabel)
+        @Bindable get
         private set
-
-    @get:Bindable
     var singleReadingsVisibility: Int by bindable(View.VISIBLE, BR.singleReadingsVisibility)
+        @Bindable get
         private set
-
-    @get:Bindable
     var doubleReadingsVisibility: Int by bindable(View.GONE, BR.doubleReadingsVisibility)
+        @Bindable get
         private set
 
     // read-write properties
-    val readingFrom = ObservableField("")
-    val readingTo = ObservableField("")
-    val readingDayFrom = ObservableField("")
-    val readingDayTo = ObservableField("")
-    val readingNightFrom = ObservableField("")
-    val readingNightTo = ObservableField("")
-
-    val dateFrom = ObservableField(Dates.firstDayOfThisMonth().toText())
-    val dateTo = ObservableField(Dates.lastDayOfThisMonth().toText())
+    @get:Bindable
+    var readingFrom: String by bindable("", BR.readingFrom)
+    @get:Bindable
+    var readingTo: String by bindable("", BR.readingTo)
+    @get:Bindable
+    var readingDayFrom: String by bindable("", BR.readingDayFrom)
+    @get:Bindable
+    var readingDayTo: String by bindable("", BR.readingDayTo)
+    @get:Bindable
+    var readingNightFrom: String by bindable("", BR.readingNightFrom)
+    @get:Bindable
+    var readingNightTo: String by bindable("", BR.readingNightTo)
+    @get:Bindable
+    var dateFrom: String by bindable(Dates.firstDayOfThisMonth().toText(), BR.dateFrom)
+    @get:Bindable
+    var dateTo: String by bindable(Dates.lastDayOfThisMonth().toText(), BR.dateTo)
 
     // commands
     val openSettingsCommand = SingleLiveEvent<Provider>()
@@ -76,7 +81,7 @@ class FormVM(val provider: Provider,
         openSettingsCommand.value = provider
     }
 
-    fun isSingleReadingTariff() = SharedPreferencesEnergyPrices.TARIFF_G11 == tariffLabel
+    fun isSingleReadingsProcessing() = singleReadingsVisibility == View.VISIBLE
 
     private fun setReadingsVisibility(tariff: String) {
         if (tariff == SharedPreferencesEnergyPrices.TARIFF_G11) {

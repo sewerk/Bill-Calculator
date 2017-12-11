@@ -1,6 +1,5 @@
 package pl.srw.billcalculator.form.fragment
 
-import android.databinding.ObservableField
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
@@ -157,18 +156,16 @@ class FormPresenterTest : RxJavaBaseTest() {
                            rnf: String="", rnt: String = "",
                            tariff: String = TARIFF_G11): FormVM {
         return mock {
-            on { readingFrom } doReturn field(rf)
-            on { readingTo } doReturn field(rt)
-            on { readingDayFrom } doReturn field(rdf)
-            on { readingDayTo } doReturn field(rdt)
-            on { readingNightFrom } doReturn field(rnf)
-            on { readingNightTo } doReturn field(rnt)
-            on { dateFrom } doReturn field(df)
-            on { dateTo } doReturn field(dt)
+            on { readingFrom } doReturn rf
+            on { readingTo } doReturn rt
+            on { readingDayFrom } doReturn rdf
+            on { readingDayTo } doReturn rdt
+            on { readingNightFrom } doReturn rnf
+            on { readingNightTo } doReturn rnt
+            on { dateFrom } doReturn df
+            on { dateTo } doReturn dt
             on { tariffLabel } doReturn tariff
-            on { isSingleReadingTariff() } doReturn(tariff == TARIFF_G11)
+            on { isSingleReadingsProcessing() } doReturn(tariff == TARIFF_G11)
         }
     }
-
-    private fun field(value: String) = ObservableField(value)
 }

@@ -15,16 +15,29 @@ import pl.srw.billcalculator.util.Dates
 import pl.srw.billcalculator.wrapper.Analytics
 
 class IntentCreator internal constructor(context: Context, aClass: Class<*>) {
+
+    companion object {
+        const val READING_FROM = "READING_FROM"
+        const val READING_TO = "READING_TO"
+        const val READING_DAY_FROM = "READING_DAY_FROM"
+        const val READING_DAY_TO = "READING_DAY_TO"
+        const val READING_NIGHT_FROM = "READING_NIGHT_FROM"
+        const val READING_NIGHT_TO = "READING_NIGHT_TO"
+        const val DATE_FROM = "DATE_FROM"
+        const val DATE_TO = "DATE_TO"
+        const val PRICES = "PRICES"
+    }
+
     private val intent: Intent = Intent(context, aClass)
 
     fun from(vm: FormVM): Intent {
-        return if (vm.isSingleReadingTariff()) {
-            from(vm.readingFrom.get().toInt(), vm.readingTo.get().toInt(),
-                    parse(vm.dateFrom.get()), parse(vm.dateTo.get()))
+        return if (vm.isSingleReadingsProcessing()) {
+            from(vm.readingFrom.toInt(), vm.readingTo.toInt(),
+                    parse(vm.dateFrom), parse(vm.dateTo))
         } else {
-            from(vm.readingDayFrom.get().toInt(), vm.readingDayTo.get().toInt(),
-                    vm.readingNightFrom.get().toInt(), vm.readingNightTo.get().toInt(),
-                    parse(vm.dateFrom.get()), parse(vm.dateTo.get()))
+            from(vm.readingDayFrom.toInt(), vm.readingDayTo.toInt(),
+                    vm.readingNightFrom.toInt(), vm.readingNightTo.toInt(),
+                    parse(vm.dateFrom), parse(vm.dateTo))
         }
     }
 
@@ -108,18 +121,5 @@ class IntentCreator internal constructor(context: Context, aClass: Class<*>) {
 
     private fun parse(text: String): LocalDate {
         return Dates.parse(text, FormFragment.DATE_PATTERN)
-    }
-
-    companion object {
-
-        const val READING_FROM = "READING_FROM"
-        const val READING_TO = "READING_TO"
-        const val READING_DAY_FROM = "READING_DAY_FROM"
-        const val READING_DAY_TO = "READING_DAY_TO"
-        const val READING_NIGHT_FROM = "READING_NIGHT_FROM"
-        const val READING_NIGHT_TO = "READING_NIGHT_TO"
-        const val DATE_FROM = "DATE_FROM"
-        const val DATE_TO = "DATE_TO"
-        const val PRICES = "PRICES"
     }
 }

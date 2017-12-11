@@ -23,12 +23,12 @@ class FormPresenter(private val view: FormView,
         Analytics.log("Form: Calculate clicked")
         view.cleanErrorsOnFields()
 
-        val singleReadings = provider == PGNIG || vm.isSingleReadingTariff()
+        val singleReadings = provider == PGNIG || vm.isSingleReadingsProcessing()
         val validInput = if (singleReadings) {
-            isSingleReadingsFormValid(vm.readingFrom.get(), vm.readingTo.get(), vm.dateFrom.get(), vm.dateTo.get())
+            isSingleReadingsFormValid(vm.readingFrom, vm.readingTo, vm.dateFrom, vm.dateTo)
         } else {
-            isDoubleReadingsFormValid(vm.readingDayFrom.get(), vm.readingDayTo.get(),
-                    vm.readingNightFrom.get(), vm.readingNightTo.get(), vm.dateFrom.get(), vm.dateTo.get())
+            isDoubleReadingsFormValid(vm.readingDayFrom, vm.readingDayTo,
+                    vm.readingNightFrom, vm.readingNightTo, vm.dateFrom, vm.dateTo)
         }
         if (!validInput) return
 

@@ -30,6 +30,7 @@ interface NotifiableObservable : Observable {
      * Must be called on initialisation. See [NotifiableObservable] for usage.
      */
     fun setDelegator(notifiableObservable: NotifiableObservable)
+
     /**
      * Notifies listeners that a specific property has changed.
      *
