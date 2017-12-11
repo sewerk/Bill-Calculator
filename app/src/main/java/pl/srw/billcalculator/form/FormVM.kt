@@ -76,6 +76,8 @@ class FormVM(val provider: Provider,
         openSettingsCommand.value = provider
     }
 
+    fun isSingleReadingTariff() = SharedPreferencesEnergyPrices.TARIFF_G11 == tariffLabel
+
     private fun setReadingsVisibility(tariff: String) {
         if (tariff == SharedPreferencesEnergyPrices.TARIFF_G11) {
             singleReadingsVisibility = View.VISIBLE

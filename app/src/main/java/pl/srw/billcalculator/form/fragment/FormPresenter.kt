@@ -5,7 +5,6 @@ import pl.srw.billcalculator.form.FormValueValidator
 import pl.srw.billcalculator.form.FormValueValidator.isDatesOrderCorrect
 import pl.srw.billcalculator.form.FormValueValidator.isValueFilled
 import pl.srw.billcalculator.form.FormValueValidator.isValueOrderCorrect
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.ActionType
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.type.Provider.PGNIG
@@ -24,22 +23,18 @@ class FormPresenter(private val view: FormView,
         Analytics.log("Form: Calculate clicked")
         view.cleanErrorsOnFields()
 
-        if (provider == PGNIG || vm.isSingleReadingTariff()) {
-            if (!isSingleReadingsFormValid(vm.readingFrom.get(), vm.readingTo.get(), vm.dateFrom.get(), vm.dateTo.get())) {
-                return
-            }
-            view.startStoringServiceForSingleReadings(provider)
-            view.startBillActivityForSingleReadings(provider)
-            view.hideForm()
+        val singleReadings = provider == PGNIG || vm.isSingleReadingTariff()
+        val validInput = if (singleReadings) {
+            isSingleReadingsFormValid(vm.readingFrom.get(), vm.readingTo.get(), vm.dateFrom.get(), vm.dateTo.get())
         } else {
-            if (!isDoubleReadingsFormValid(vm.readingDayFrom.get(), vm.readingDayTo.get(),
-                    vm.readingNightFrom.get(), vm.readingNightTo.get(), vm.dateFrom.get(), vm.dateTo.get())) {
-                return
-            }
-            view.startStoringServiceForDoubleReadings(provider)
-            view.startBillActivityForDoubleReadings(provider)
-            view.hideForm()
+            isDoubleReadingsFormValid(vm.readingDayFrom.get(), vm.readingDayTo.get(),
+                    vm.readingNightFrom.get(), vm.readingNightTo.get(), vm.dateFrom.get(), vm.dateTo.get())
         }
+        if (!validInput) return
+
+        view.startStoringService(provider)
+        view.startBillActivity(provider)
+        view.hideForm()
         historyUpdater.onHistoryChanged()
         Analytics.logAction(ActionType.CALCULATE, "provider", provider)
     }
@@ -66,8 +61,6 @@ class FormPresenter(private val view: FormView,
 
     }
 
-    private fun FormVM.isSingleReadingTariff(): Boolean = SharedPreferencesEnergyPrices.TARIFF_G11 == tariffLabel
-
     private fun onErrorCallback(field: FormView.Field) = FormValueValidator.OnErrorCallback { view.showReadingFieldError(field, it) }
 
     private fun onDateErrorCallback() = FormValueValidator.OnErrorCallback(view::showDateFieldError)
@@ -82,13 +75,9 @@ class FormPresenter(private val view: FormView,
 
         fun cleanErrorsOnFields()
 
-        fun startStoringServiceForSingleReadings(provider: Provider)
+        fun startStoringService(provider: Provider)
 
-        fun startBillActivityForSingleReadings(provider: Provider)
-
-        fun startStoringServiceForDoubleReadings(provider: Provider)
-
-        fun startBillActivityForDoubleReadings(provider: Provider)
+        fun startBillActivity(provider: Provider)
 
         enum class Field {
             READING_FROM, READING_TO,

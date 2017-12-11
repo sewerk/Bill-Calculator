@@ -41,8 +41,8 @@ class FormPresenterTest : RxJavaBaseTest() {
 
         sut.calculateButtonClicked(vm)
 
-        verify(view).startStoringServiceForSingleReadings(provider)
-        verify(view).startBillActivityForSingleReadings(provider)
+        verify(view).startStoringService(provider)
+        verify(view).startBillActivity(provider)
     }
 
     @Test
@@ -54,8 +54,8 @@ class FormPresenterTest : RxJavaBaseTest() {
 
         sut.calculateButtonClicked(vm)
 
-        verify(view).startStoringServiceForDoubleReadings(provider)
-        verify(view).startBillActivityForDoubleReadings(provider)
+        verify(view).startStoringService(provider)
+        verify(view).startBillActivity(provider)
     }
 
     @Test
@@ -166,6 +166,7 @@ class FormPresenterTest : RxJavaBaseTest() {
             on { dateFrom } doReturn field(df)
             on { dateTo } doReturn field(dt)
             on { tariffLabel } doReturn tariff
+            on { isSingleReadingTariff() } doReturn(tariff == TARIFF_G11)
         }
     }
 

@@ -52,9 +52,7 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
     @Inject FormVMFactory formVMFactory;
     @Inject FormPresenter.HistoryChangeListener historyUpdater;
 
-    private DatePickingView dateFromView;
     private DatePickingView dateToView;
-
     private TextInputLayout readingFrom;
     private InstantAutoCompleteTextInputEditText readingFromInput;
     private TextInputLayout readingTo;
@@ -163,38 +161,18 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
     }
 
     @Override
-    public void startStoringServiceForSingleReadings(Provider provider) {
+    public void startStoringService(@NonNull Provider provider) {
         final Intent intent = BillStoringServiceIntentFactory
                 .of(getContext(), provider)
-                .from(readingFrom.getEditText(), readingTo.getEditText(), dateFromView, dateToView);
+                .from(formVM);
         getActivity().startService(intent);
     }
 
     @Override
-    public void startBillActivityForSingleReadings(Provider provider) {
+    public void startBillActivity(@NonNull Provider provider) {
         final Intent intent = BillActivityIntentFactory
                 .of(getActivity(), provider)
-                .from(readingFrom.getEditText(), readingTo.getEditText(), dateFromView, dateToView);
-        getActivity().startActivity(intent);
-    }
-
-    @Override
-    public void startStoringServiceForDoubleReadings(Provider provider) {
-        final Intent intent = BillStoringServiceIntentFactory
-                .of(getContext(), provider)
-                .from(readingDayFrom.getEditText(), readingDayTo.getEditText(),
-                        readingNightFrom.getEditText(), readingNightTo.getEditText(),
-                        dateFromView, dateToView);
-        getActivity().startService(intent);
-    }
-
-    @Override
-    public void startBillActivityForDoubleReadings(Provider provider) {
-        final Intent intent = BillActivityIntentFactory
-                .of(getActivity(), provider)
-                .from(readingDayFrom.getEditText(), readingDayTo.getEditText(),
-                        readingNightFrom.getEditText(), readingNightTo.getEditText(),
-                        dateFromView, dateToView);
+                .from(formVM);
         getActivity().startActivity(intent);
     }
 
@@ -232,7 +210,6 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
     }
 
     private void bindViews(FormBinding binding) {
-        dateFromView = binding.dates.formEntryDatesFrom;
         dateToView = binding.dates.formEntryDatesTo;
         readingFrom = binding.singleReadings.formEntryReadingFrom;
         readingFromInput = binding.singleReadings.formEntryReadingFromInput;
