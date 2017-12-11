@@ -29,7 +29,8 @@
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp">
 
-                <include layout="@layout/form_logo"
+                <include layout="@layout/form_header"
+                         android:id="@+id/header"
                     app:vm="@{vm}"/>
 
                 <View
@@ -69,18 +70,22 @@
                     tools:text="G11"/>
 
                 <include layout="@layout/form_readings_single"
+                         android:id="@+id/single_readings"
                          app:vm="@{vm}"/>
 
                 <include layout="@layout/form_readings_double"
+                         android:id="@+id/double_readings"
                          app:vm="@{vm}"/>
 
                 <include layout="@layout/form_dates"
+                         android:id="@+id/dates"
                          app:vm="@{vm}"/>
 
             </android.support.constraint.ConstraintLayout>
         </ScrollView>
 
         <include layout="@layout/form_fabs"
+                 android:id="@+id/fabs"
                  app:vm="@{vm}"
                  app:presenter="@{presenter}"/>
     </FrameLayout>

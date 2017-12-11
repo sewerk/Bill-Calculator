@@ -26,9 +26,6 @@ import java.util.Arrays;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.databinding.FormBinding;
 import pl.srw.billcalculator.form.FormPreviousReadingsVM;
@@ -55,24 +52,22 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
     @Inject FormVMFactory formVMFactory;
     @Inject FormPresenter.HistoryChangeListener historyUpdater;
 
-    @BindView(R.id.form_settings_link) TextView settingsLink;
-    @BindView(R.id.form_entry_dates_from) DatePickingView dateFromView;
-    @BindView(R.id.form_entry_dates_to) DatePickingView dateToView;
+    private DatePickingView dateFromView;
+    private DatePickingView dateToView;
 
-    @BindView(R.id.form_entry_reading_from) TextInputLayout readingFrom;
-    @BindView(R.id.form_entry_reading_from_input) InstantAutoCompleteTextInputEditText readingFromInput;
-    @BindView(R.id.form_entry_reading_to) TextInputLayout readingTo;
-    @BindView(R.id.form_entry_reading_day_from) TextInputLayout readingDayFrom;
-    @BindView(R.id.form_entry_reading_day_from_input) InstantAutoCompleteTextInputEditText readingDayFromInput;
-    @BindView(R.id.form_entry_reading_day_to) TextInputLayout readingDayTo;
-    @BindView(R.id.form_entry_reading_night_from) TextInputLayout readingNightFrom;
-    @BindView(R.id.form_entry_reading_night_from_input) InstantAutoCompleteTextInputEditText readingNightFromInput;
-    @BindView(R.id.form_entry_reading_night_to) TextInputLayout readingNightTo;
+    private TextInputLayout readingFrom;
+    private InstantAutoCompleteTextInputEditText readingFromInput;
+    private TextInputLayout readingTo;
+    private TextInputLayout readingDayFrom;
+    private InstantAutoCompleteTextInputEditText readingDayFromInput;
+    private TextInputLayout readingDayTo;
+    private TextInputLayout readingNightFrom;
+    private InstantAutoCompleteTextInputEditText readingNightFromInput;
+    private TextInputLayout readingNightTo;
 
     private FormVM formVM;
     private FormPreviousReadingsVM formPrevReadingsVM;
     private FormPresenter presenter;
-    private Unbinder unbinder;
 
     private final DialogInterface.OnKeyListener onBackListener = (dialog, keyCode, event) -> {
         if (keyCode == KeyEvent.KEYCODE_BACK
@@ -119,8 +114,8 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
         dialog.setCanceledOnTouchOutside(false);
         dialog.setOnKeyListener(onBackListener);
 
-        unbinder = ButterKnife.bind(this, view);
-        setupSettingsLink();
+        bindViews(binding);
+        setupSettingsLink(binding.header.formSettingsLink);
 
         return dialog;
     }
@@ -134,12 +129,6 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
         formPrevReadingsVM.getSinglePrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingFromInput, readings));
         formPrevReadingsVM.getDayPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingDayFromInput, readings));
         formPrevReadingsVM.getNightPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingNightFromInput, readings));
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
     }
 
     @Override
@@ -226,7 +215,7 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
         throw new EnumVariantNotHandledException(field);
     }
 
-    private void setupSettingsLink() {
+    private void setupSettingsLink(TextView settingsLink) {
         final String settingsLabel = settingsLink.getText().toString();
         final SpannableString span = new SpannableString(settingsLabel);
         span.setSpan(new UnderlineSpan(), 0, settingsLabel.length(), 0);
@@ -242,4 +231,17 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
         }
     }
 
+    private void bindViews(FormBinding binding) {
+        dateFromView = binding.dates.formEntryDatesFrom;
+        dateToView = binding.dates.formEntryDatesTo;
+        readingFrom = binding.singleReadings.formEntryReadingFrom;
+        readingFromInput = binding.singleReadings.formEntryReadingFromInput;
+        readingTo = binding.singleReadings.formEntryReadingTo;
+        readingDayFrom = binding.doubleReadings.formEntryReadingDayFrom;
+        readingDayFromInput = binding.doubleReadings.formEntryReadingDayFromInput;
+        readingDayTo = binding.doubleReadings.formEntryReadingDayTo;
+        readingNightFrom = binding.doubleReadings.formEntryReadingNightFrom;
+        readingNightFromInput = binding.doubleReadings.formEntryReadingNightFromInput;
+        readingNightTo = binding.doubleReadings.formEntryReadingNightTo;
+    }
 }

@@ -15,7 +15,7 @@ public final class Views {
     private Views() {}
 
     public static void setTVInRow(View row, @IdRes int textViewId, @StringRes int stringId) {
-        TextView tv = (TextView) row.findViewById(textViewId);
+        TextView tv = row.findViewById(textViewId);
         tv.setText(stringId);
     }
 
@@ -24,12 +24,12 @@ public final class Views {
     }
 
     public static void setTV(Activity activity, @IdRes int textViewId, String string) {
-        TextView tv = (TextView) activity.findViewById(textViewId);
+        TextView tv = activity.findViewById(textViewId);
         tv.setText(string);
     }
 
     public static void setTV(View parent, @IdRes int textViewId, String string) {
-        TextView tv = (TextView) parent.findViewById(textViewId);
+        TextView tv = parent.findViewById(textViewId);
         tv.setText(string);
     }
 
