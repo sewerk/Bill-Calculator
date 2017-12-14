@@ -6,8 +6,7 @@
     </data>
 
     <merge xmlns:android="http://schemas.android.com/apk/res/android"
-           xmlns:app="http://schemas.android.com/apk/res-auto"
-           xmlns:bind="http://schemas.android.com/tools">
+           xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/close_button"
@@ -20,7 +19,7 @@
             app:fabSize="mini"
             app:rippleColor="@color/primaryDark"
             app:srcCompat="@drawable/ic_close_white_24dp"
-            bind:onClick="@{presenter::closeButtonClicked}"/>
+            app:onClick="@{presenter::closeButtonClicked}"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/calculate_button"

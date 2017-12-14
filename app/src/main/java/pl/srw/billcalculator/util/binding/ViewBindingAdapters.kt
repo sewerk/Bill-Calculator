@@ -4,7 +4,7 @@ import android.databinding.BindingAdapter
 import android.databinding.adapters.ViewBindingAdapter
 import android.view.View
 
-private const val BIND_ON_CLICK = "bind:onClick"
+private const val BIND_ON_CLICK = "onClick"
 
 interface OnClick {
     fun invoke()
@@ -20,9 +20,7 @@ interface OnClick {
 @BindingAdapter(value = [BIND_ON_CLICK])
 fun View.setOnClick(onClick: OnClick?) {
 
-    if (onClick != null) {
-        setOnClickListener { onClick.invoke() }
-    } else {
-        setOnClickListener(null)
+    onClick?.run {
+        setOnClickListener { invoke() }
     }
 }
