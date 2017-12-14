@@ -32,9 +32,11 @@ class FormPresenter(private val view: FormView,
         }
         if (!validInput) return
 
-        view.startStoringService(provider)
-        view.startBillActivity(provider)
-        view.hideForm()
+        with(view) {
+            startStoringService(provider)
+            startBillActivity(provider)
+            hideForm()
+        }
         historyUpdater.onHistoryChanged()
         Analytics.logAction(ActionType.CALCULATE, "provider", provider)
     }

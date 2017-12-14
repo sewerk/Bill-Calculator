@@ -10,6 +10,7 @@ import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
+@Suppress("MagicNumber")
 @Singleton
 class HistoryGenerator @Inject constructor(val prices: PgePrices) {
 
@@ -36,14 +37,16 @@ class HistoryGenerator @Inject constructor(val prices: PgePrices) {
         insertBill(readingTo, insertPrices().id)
     }
 
-    fun generatePgeG12Bill(readingDayTo: Int, readingNightTo: Int = 211) {
+    fun generatePgeG12Bill(readingDayTo: Int, readingNightTo: Int) {
         Timber.d("Create PGE G12 bill with readingTo=$readingDayTo")
         insertBill(readingDayTo, readingNightTo, insertPrices().id)
     }
 
     fun generatePgeG11Bills(count: Int) {
         Timber.d("Generate $count PGE G11 bills")
-        (1..count).forEach { i -> insertBill(i + 10, insertPrices().id)}
+        for (i in 1..count) {
+            insertBill(i + 10, insertPrices().id)
+        }
     }
 
     private fun insertBill(readingTo: Int, id: Long) {

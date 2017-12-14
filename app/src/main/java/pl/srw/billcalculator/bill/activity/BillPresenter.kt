@@ -17,8 +17,11 @@ import kotlin.properties.Delegates
 
 const val STORAGE_PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE
 
+@Suppress("TooManyFunctions")
 @RetainActivityScope
-class BillPresenter @Inject constructor(private val printer: Printer, printDirPath: String) : MvpPresenter<BillPresenter.BillView>(), Printer.Listener {
+class BillPresenter @Inject constructor(private val printer: Printer,
+                                        printDirPath: String)
+    : MvpPresenter<BillPresenter.BillView>(), Printer.Listener {
 
     private val printDir = File(printDirPath)
 

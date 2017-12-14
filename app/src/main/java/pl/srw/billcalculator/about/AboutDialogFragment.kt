@@ -10,7 +10,11 @@ import android.text.method.LinkMovementMethod
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import butterknife.*
+import butterknife.BindString
+import butterknife.BindView
+import butterknife.ButterKnife
+import butterknife.OnClick
+import butterknife.Unbinder
 import pl.srw.billcalculator.BuildConfig
 import pl.srw.billcalculator.R
 import pl.srw.billcalculator.history.di.HistoryComponent

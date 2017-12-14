@@ -2,7 +2,6 @@ package pl.srw.billcalculator.form
 
 import android.arch.lifecycle.Observer
 import android.databinding.Bindable
-import android.databinding.ObservableField
 import android.view.View
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter

@@ -62,6 +62,8 @@ android {
     }
 }
 
+check.dependsOn ':detektCheck'
+
 dependencies {
 
     kapt "com.google.dagger:dagger-compiler:$daggerVer"

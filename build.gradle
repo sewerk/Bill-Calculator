@@ -15,6 +15,18 @@ buildscript {
     }
 }
 
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC5-6"
+}
+
+detekt {
+    version = "1.0.0.RC5-6"
+    profile("main") {
+        input = "$projectDir/app"
+        config = "$projectDir/detekt-config.yml"
+    }
+}
+
 allprojects {
     repositories {
         jcenter()

@@ -14,6 +14,7 @@ import pl.srw.billcalculator.form.fragment.FormFragment
 import pl.srw.billcalculator.util.Dates
 import pl.srw.billcalculator.wrapper.Analytics
 
+@Suppress("TooManyFunctions")
 class IntentCreator internal constructor(context: Context, aClass: Class<*>) {
 
     companion object {
@@ -41,13 +42,16 @@ class IntentCreator internal constructor(context: Context, aClass: Class<*>) {
         }
     }
 
-    private fun from(readingFrom: Int, readingTo: Int, dateFrom: LocalDate, dateTo: LocalDate): Intent {
+    private fun from(readingFrom: Int, readingTo: Int,
+                     dateFrom: LocalDate, dateTo: LocalDate): Intent {
         putReadingsExtra(readingFrom, readingTo)
         putDatesExtra(dateFrom, dateTo)
         return intent
     }
 
-    private fun from(readingDayFrom: Int, readingDayTo: Int, readingNightFrom: Int, readingNightTo: Int, dateFrom: LocalDate, dateTo: LocalDate): Intent {
+    private fun from(readingDayFrom: Int, readingDayTo: Int,
+                     readingNightFrom: Int, readingNightTo: Int,
+                     dateFrom: LocalDate, dateTo: LocalDate): Intent {
         putReadingsG12Extra(readingDayFrom, readingDayTo, readingNightFrom, readingNightTo)
         putDatesExtra(dateFrom, dateTo)
         return intent

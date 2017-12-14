@@ -10,12 +10,14 @@ import pl.srw.billcalculator.R
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.Animations
 import pl.srw.billcalculator.util.debugMeasure
+import pl.srw.billcalculator.util.lazyUnsafe
 import pl.srw.billcalculator.wrapper.Analytics
 import javax.inject.Inject
 
 /**
  * Handles FABs menu view part
  */
+@Suppress("TooManyFunctions")
 class FabsMenuViewHandler @Inject constructor() : FabsMenuPresenter.View {
 
     @BindView(R.id.fab) lateinit var fab: FloatingActionButton
@@ -28,8 +30,8 @@ class FabsMenuViewHandler @Inject constructor() : FabsMenuPresenter.View {
     lateinit var activity: DrawerActivity
     val presenter: FabsMenuPresenter = FabsMenuPresenter(this)
 
-    private val expandAnimator: AnimatorSet by lazy(LazyThreadSafetyMode.NONE) { Animations.getExpandFabs(fab, fabPge, fabPgnig, fabTauron) }
-    private val collapseAnimator: AnimatorSet by lazy(LazyThreadSafetyMode.NONE) { Animations.getCollapseFabs(fab, fabPge, fabPgnig, fabTauron) }
+    private val expandAnimator: AnimatorSet by lazyUnsafe { Animations.getExpandFabs(fab, fabPge, fabPgnig, fabTauron) }
+    private val collapseAnimator: AnimatorSet by lazyUnsafe { Animations.getCollapseFabs(fab, fabPge, fabPgnig, fabTauron) }
 
     fun init(activity: DrawerActivity) {
         ButterKnife.bind(this, activity)
