@@ -108,5 +108,5 @@ dependencies {
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanaryVer"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanaryVer"
-    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanaryVer"
+    androidTestImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanaryVer"
 }

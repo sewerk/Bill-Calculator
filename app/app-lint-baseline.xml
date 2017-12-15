@@ -1416,34 +1416,34 @@
     <issue
         id="NegativeMargin"
         message="Margin values should not be negative"
-        errorLine1="        android:layout_marginStart=&quot;@dimen/form_close_fab_margin_left&quot;"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="            android:layout_marginStart=&quot;@dimen/form_close_fab_margin_left&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/layout/form_fabs.xml"
-            line="13"
-            column="9"/>
+            line="16"
+            column="13"/>
     </issue>
 
     <issue
         id="NegativeMargin"
         message="Margin values should not be negative"
-        errorLine1="        android:layout_marginTop=&quot;@dimen/form_close_fab_margin_top&quot;"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="            android:layout_marginTop=&quot;@dimen/form_close_fab_margin_top&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/layout/form_fabs.xml"
-            line="14"
-            column="9"/>
+            line="17"
+            column="13"/>
     </issue>
 
     <issue
         id="NegativeMargin"
         message="Margin values should not be negative"
-        errorLine1="        android:layout_marginBottom=&quot;@dimen/form_calculate_button_margin_bottom&quot;"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="            android:layout_marginBottom=&quot;@dimen/form_calculate_button_margin_bottom&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/layout/form_fabs.xml"
-            line="24"
-            column="9"/>
+            line="29"
+            column="13"/>
     </issue>
 
 </issues>
