@@ -14,7 +14,7 @@ ext {
     rxJavaVer = '2.0.4'
     rxAndroidVer = '2.0.1'
     timberVer = '4.6.0'
-    threeTenAbpVer = '1.0.3'
+    threeTenAbpVer = '1.0.5'
     tapTargetVer = '1.9.1'
     javaxVer = '1.0'
 
@@ -27,5 +27,5 @@ ext {
     mockitoKotlinVer = '1.5.0'
     espressoVer = '3.0.1'
     testRunnerVer = '1.0.1'
-    threeTenVer = '1.3.1'
+    threeTenVer = '1.3.3'
 }

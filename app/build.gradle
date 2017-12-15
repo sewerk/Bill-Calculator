@@ -94,7 +94,7 @@ dependencies {
     compileOnly "javax.annotation:jsr250-api:$javaxVer"
 
     testImplementation "junit:junit:$junitVer"
-    testImplementation "com.nhaarman:mockito-kotlin:$mockitoKotlinVer"
+    testImplementation "com.nhaarman:mockito-kotlin-kt1.1:$mockitoKotlinVer"
     testImplementation "pl.pragmatists:JUnitParams:$junitParamsVer"
     testImplementation "org.threeten:threetenbp:$threeTenVer"
     testImplementation "android.arch.core:core-testing:$archCompVer"
