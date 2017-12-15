@@ -100,6 +100,7 @@ dependencies {
     testImplementation "android.arch.core:core-testing:$archCompVer"
 
     kaptAndroidTest "com.google.dagger:dagger-compiler:$daggerVer"
+    androidTestCompileOnly "javax.annotation:jsr250-api:$javaxVer"
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espressoVer"
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espressoVer"
     androidTestImplementation "com.android.support.test:runner:$testRunnerVer"
