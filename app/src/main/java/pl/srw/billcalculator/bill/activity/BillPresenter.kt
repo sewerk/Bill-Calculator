@@ -118,7 +118,11 @@ class BillPresenter @Inject constructor(private val printer: Printer,
 
     private fun isPrintTaskRunning() = printer.isPrintInProgress(File(printDir.absolutePath, billIdentifier + ".pdf"))
 
-    private fun fileNamePrefix(name: String) = name.substring(0, name.indexOf('_'))
+    private fun fileNamePrefix(name: String): String {
+        var endIndex = name.indexOf('_')
+        if (endIndex < 0) endIndex = name.length
+        return name.substring(0, endIndex)
+    }
 
     interface BillView {
         fun setPrintInProgressIcon()

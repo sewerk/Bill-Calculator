@@ -1,12 +1,15 @@
 package pl.srw.billcalculator.util.analytics;
 
+import android.content.Context;
+
+import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.ContentViewEvent;
 import com.crashlytics.android.answers.CustomEvent;
 
 import java.util.Arrays;
 
-import pl.srw.billcalculator.BuildConfig;
+import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
 
 /**
@@ -14,8 +17,12 @@ import timber.log.Timber;
  */
 public class Analytics {
 
-    private static boolean ENABLED = !BuildConfig.DEBUG;
+    private static boolean ENABLED = false;
 
+    public static void enable(Context context) {
+        Fabric.with(context, new Crashlytics(), new Answers());
+        ENABLED = true;
+    }
     /**
      * Logs user viewed content. This will be used to see statistics
      */
