@@ -2,7 +2,13 @@ package pl.srw.billcalculator.settings.fragment;
 
 import android.content.SharedPreferences;
 
+import javax.inject.Inject;
+
+import pl.srw.billcalculator.wrapper.PricesRepo;
+
 abstract class EnergyProviderSettingsFragment extends ProviderSettingsFragment {
+
+    @Inject PricesRepo pricesRepo;
 
     private int preferencesSchemaResId;
 
@@ -25,6 +31,8 @@ abstract class EnergyProviderSettingsFragment extends ProviderSettingsFragment {
 
         if (key.equals(getTariffKey())) {
             refreshScreen();
+            String tariff = sharedPreferences.getString(key, null);
+            pricesRepo.updateTariff(getProvider(), tariff);
         }
     }
 

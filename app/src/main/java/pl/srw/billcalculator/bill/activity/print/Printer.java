@@ -19,7 +19,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import pl.srw.billcalculator.util.BillExporter;
 import pl.srw.billcalculator.util.Views;
-import pl.srw.billcalculator.wrapper.Analytics;
+import timber.log.Timber;
 
 @Singleton
 public class Printer {
@@ -61,7 +61,7 @@ public class Printer {
                         if (tmpImg != null) {
                             final boolean deleted = tmpImg.delete();
                             if (!deleted)
-                                Analytics.warning("Tmp file NOT deleted");
+                                Timber.w("Tmp file NOT deleted");
                         }
                     }
                 })

@@ -8,9 +8,6 @@ import pl.srw.billcalculator.bill.service.TauronBillStoringService;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 
-/**
- * Created by Kamil Seweryn.
- */
 public class BillStoringServiceIntentFactory {
 
     public static IntentCreator of(final Context context, final Provider billType) {

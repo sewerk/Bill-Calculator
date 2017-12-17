@@ -16,11 +16,10 @@ import pl.srw.billcalculator.history.list.item.HistoryItemClickListener;
 import pl.srw.billcalculator.history.list.item.HistoryItemDismissHandling;
 import pl.srw.billcalculator.history.list.item.HistoryViewItem;
 import pl.srw.billcalculator.settings.global.SettingsRepo;
-import pl.srw.billcalculator.type.ActionType;
-import pl.srw.billcalculator.type.ContentType;
+import pl.srw.billcalculator.util.analytics.EventType;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.BillSelection;
-import pl.srw.billcalculator.wrapper.Analytics;
+import pl.srw.billcalculator.util.analytics.Analytics;
 import pl.srw.billcalculator.wrapper.HistoryRepo;
 import pl.srw.mfvp.MvpPresenter;
 import pl.srw.mfvp.di.scope.RetainActivityScope;
@@ -28,7 +27,7 @@ import timber.log.Timber;
 
 @RetainActivityScope
 public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
-        implements HistoryItemDismissHandling, HistoryItemClickListener, FormPresenter.HistoryUpdating {
+        implements HistoryItemDismissHandling, HistoryItemClickListener, FormPresenter.HistoryChangeListener {
 
     private final SettingsRepo settings;
     private final HistoryRepo history;
@@ -48,7 +47,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     @Override
     protected void onFirstBind() {
         loadHistoryData();
-        Analytics.logContent(ContentType.HISTORY, "history size", historyData.size());
+        Timber.i("history size = %d", historyData.size());
 
         present(view -> {
             view.setListData(historyData);
@@ -92,7 +91,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
 
     @Override
     public void onListItemDismissed(final int position, Bill bill) {
-        Analytics.logAction(ActionType.DELETE_BILL, "dismissed", "true");
+        Analytics.event(EventType.DELETE_BILL, "dismissed", "true");
         Timber.d("bill id=%d", bill.getId());
         history.cacheBillForUndoDelete(bill);
         history.deleteBillWithPrices(bill);
@@ -182,7 +181,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     }
 
     void deleteClicked() {
-        Analytics.logAction(ActionType.DELETE_BILL,
+        Analytics.event(EventType.DELETE_BILL,
                 "dismissed", "false",
                 "selected", "" + selection.getItems().size());
         history.cacheBillsForUndoDelete(selection.getItems());
@@ -226,7 +225,7 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     }
 
     private void openBill(final HistoryViewItem item) {
-        Analytics.logAction(ActionType.OPEN_BILL,"provider", item.getBill().getClass().getSimpleName());
+        Timber.i("Open bill");
         Timber.d("bill id=%d", item.getBill().getId());
         present(view -> view.openBill(item.getBill(), item.getView()));
         savedBillsRegistry.register(item.getBill());

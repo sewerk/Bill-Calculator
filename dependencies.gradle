@@ -1,10 +1,11 @@
 ext {
-    gradlePluginVer = '3.0.0'
+    gradlePluginVer = '3.0.1'
     buildToolsVer = '26.0.2'
 
-    kotlinVer = '1.1.51'
-    supportLibVer = '25.3.1'
+    kotlinVer = '1.2.0'
+    supportLibVer = '26.1.0'
     constraintLayoutVer = '1.0.2'
+    archCompVer = "1.0.0"
 
     mfvpVer = '1.0-beta1'
     greenDaoVer = '3.1.0'
@@ -13,18 +14,18 @@ ext {
     rxJavaVer = '2.0.4'
     rxAndroidVer = '2.0.1'
     timberVer = '4.6.0'
-    threeTenAbpVer = '1.0.3'
+    threeTenAbpVer = '1.0.5'
     tapTargetVer = '1.9.1'
     javaxVer = '1.0'
 
-    fabricPluginVer = '1.24.4'
-    crashlyticsVer = '2.7.1'
+    fabricPluginVer = '1.25.1'
+    crashlyticsVer = '2.8.0'
     leakcanaryVer = '1.5.4'
 
     junitVer = '4.12'
     junitParamsVer = '1.0.4'
     mockitoKotlinVer = '1.5.0'
-    espressoVer = '2.2.2'
-    testRunnerVer = '0.5'
-    threeTenVer = '1.3.1'
+    espressoVer = '3.0.1'
+    testRunnerVer = '1.0.1'
+    threeTenVer = '1.3.3'
 }

@@ -12,7 +12,8 @@ import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
-import pl.srw.billcalculator.wrapper.Analytics;
+import pl.srw.billcalculator.util.analytics.Analytics;
+import pl.srw.billcalculator.util.analytics.CrashlyticsLoggingTree;
 import pl.srw.billcalculator.wrapper.Dependencies;
 import timber.log.Timber;
 
@@ -36,12 +37,14 @@ public class BillCalculator extends Application {
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
             Database.enableDatabaseLogging();
+        } else {
+            Analytics.enable(this);
+            Timber.plant(new CrashlyticsLoggingTree());
         }
 
-        Dependencies.init(getApplicationContext());
-        Dependencies.inject(this);
+        Dependencies.INSTANCE.init(getApplicationContext());
+        Dependencies.INSTANCE.inject(this);
 
-        Analytics.initialize(this);
         AndroidThreeTen.init(this);
         Database.initialize(this);
 

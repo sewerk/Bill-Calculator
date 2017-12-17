@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.util;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Size;
 
 import org.threeten.bp.DateTimeUtils;
@@ -20,7 +21,7 @@ public class Dates {
     public static final Locale PL_LOCALE = new Locale("pl", "PL");
     public static final String DEFAULT_DATE_PATTERN = "dd/MM/yyyy";
 
-    public static LocalDate parse(String text, String pattern) {
+    public static LocalDate parse(CharSequence text, String pattern) {
         return LocalDate.parse(text, DateTimeFormatter.ofPattern(pattern));
     }
 
@@ -76,10 +77,12 @@ public class Dates {
                 + period.getYears() * 12;
     }
 
+    @NonNull
     public static LocalDate firstDayOfThisMonth() {
         return LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
     }
 
+    @NonNull
     public static LocalDate lastDayOfThisMonth() {
         return LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());
     }

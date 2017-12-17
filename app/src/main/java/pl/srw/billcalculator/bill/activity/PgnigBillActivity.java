@@ -15,12 +15,12 @@ import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.bill.di.PgnigBillComponent;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
-import pl.srw.billcalculator.type.ContentType;
+import pl.srw.billcalculator.util.analytics.ContentType;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 import pl.srw.billcalculator.util.Views;
-import pl.srw.billcalculator.wrapper.Analytics;
+import pl.srw.billcalculator.util.analytics.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 
 public class PgnigBillActivity extends BillActivity<IPgnigPrices, PgnigPrices, PgnigBillComponent> {
@@ -33,7 +33,9 @@ public class PgnigBillActivity extends BillActivity<IPgnigPrices, PgnigPrices, P
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Analytics.logContent(ContentType.PGNIG_BILL, "PGNIG new", isNewBill());
+        Analytics.contentView(ContentType.BILL,
+                "view bill", "PGNIG",
+                "view bill from history", !isNewBill());
 
         this.bill = new PgnigCalculatedBill(readingFrom, readingTo, dateFrom, dateTo, prices);
 

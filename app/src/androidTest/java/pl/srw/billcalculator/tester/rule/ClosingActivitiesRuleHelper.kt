@@ -3,8 +3,6 @@ package pl.srw.billcalculator.tester.rule
 import android.app.Activity
 import android.app.Instrumentation
 import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.core.deps.guava.base.Throwables
-import android.support.test.espresso.core.deps.guava.collect.Sets
 import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry
 import android.support.test.runner.lifecycle.Stage
 import timber.log.Timber
@@ -32,11 +30,10 @@ class ClosingActivitiesRuleHelper {
             val instrumentation = InstrumentationRegistry.getInstrumentation()
             closeAllActivities(instrumentation)
         } catch (ex: Exception) {
-            Timber.e("Could not use close all activities", ex)
+            Timber.e(ex,"Could not use close all activities")
         }
     }
 
-    @Throws(Exception::class)
     private fun closeAllActivities(instrumentation: Instrumentation) {
         var i = 0
         while (closeActivity(instrumentation)) {
@@ -47,7 +44,6 @@ class ClosingActivitiesRuleHelper {
         }
     }
 
-    @Throws(Exception::class)
     private fun closeActivity(instrumentation: Instrumentation): Boolean {
         val activityClosed = callOnMainSync(instrumentation, Callable {
             val activities = getActivitiesInStages(Stage.RESUMED,
@@ -65,7 +61,6 @@ class ClosingActivitiesRuleHelper {
         return activityClosed
     }
 
-    @Throws(Exception::class)
     private fun callOnMainSync(instrumentation: Instrumentation, callable: Callable<Boolean>): Boolean {
         val retAtomic = AtomicReference<Boolean>()
         val exceptionAtomic = AtomicReference<Throwable>()
@@ -78,14 +73,13 @@ class ClosingActivitiesRuleHelper {
         }
         val exception = exceptionAtomic.get()
         if (exception != null) {
-            Throwables.propagateIfInstanceOf(exception, Exception::class.java)
-            Throwables.propagate(exception)
+            throw exception
         }
         return retAtomic.get()
     }
 
     private fun getActivitiesInStages(vararg stages: Stage): MutableSet<Activity> {
-        val activities = Sets.newHashSet<Activity>()
+        val activities = mutableSetOf<Activity>()
         val instance = ActivityLifecycleMonitorRegistry.getInstance()
         stages.mapNotNull { instance.getActivitiesInStage(it) }
                 .forEach { activities.addAll(it) }

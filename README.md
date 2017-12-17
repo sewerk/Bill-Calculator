@@ -12,9 +12,11 @@ Get on Google Play or <a href="https://appetize.io/app/turtj6n62ty2q9cuud3297jyy
 
 With help of
 ---------
+- [Architecture Components](https://developer.android.com/topic/libraries/architecture)
 - [ButterKnife](https://github.com/JakeWharton/butterknife)
 - [ConstraintLayout](https://developer.android.com/training/constraint-layout/index.html)
 - [Dagger 2](https://google.github.io/dagger/)
+- [DataBinding](https://developer.android.com/topic/libraries/data-binding/)
 - [GreenDao](http://greendao-orm.com/)
 - [ITEXTG](http://itextpdf.com/product/itextg)
 - [MfVP](https://github.com/sewerk/mfvp)
@@ -29,6 +31,7 @@ tools
 ---------
 - [Crashlytics](https://fabric.io)
 - [LeakCanary](https://github.com/square/leakcanary)
+- [Detekt](https://github.com/arturbosch/detekt)
 
 tests
 ---------

@@ -18,12 +18,12 @@ import pl.srw.billcalculator.bill.di.PgeBillComponent;
 import pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment;
 import pl.srw.billcalculator.pojo.IPgePrices;
 import pl.srw.billcalculator.settings.prices.PgePrices;
-import pl.srw.billcalculator.type.ContentType;
+import pl.srw.billcalculator.util.analytics.ContentType;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 import pl.srw.billcalculator.util.Views;
-import pl.srw.billcalculator.wrapper.Analytics;
+import pl.srw.billcalculator.util.analytics.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 
 public class PgeBillActivity extends EnergyBillActivity<IPgePrices, PgePrices, PgeBillComponent> {
@@ -34,9 +34,9 @@ public class PgeBillActivity extends EnergyBillActivity<IPgePrices, PgePrices, P
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Analytics.logContent(ContentType.PGE_BILL,
-                "PGE new", isNewBill(),
-                "PGE tariff", (isTwoUnitTariff() ? "G12" : "G11"));
+        Analytics.contentView(ContentType.BILL,
+                "view bill", "PGE" + (isTwoUnitTariff() ? "G12" : "G11"),
+                "view bill from history", !isNewBill());
 
         if (!isNewBill()
                 && savedInstanceState == null

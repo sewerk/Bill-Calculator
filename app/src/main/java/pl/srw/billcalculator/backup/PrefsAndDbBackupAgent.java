@@ -14,8 +14,8 @@ import java.util.concurrent.locks.ReentrantLock;
 import pl.srw.billcalculator.BuildConfig;
 import pl.srw.billcalculator.di.ApplicationModule;
 import pl.srw.billcalculator.persistence.Database;
-import pl.srw.billcalculator.type.ActionType;
-import pl.srw.billcalculator.wrapper.Analytics;
+import pl.srw.billcalculator.util.analytics.EventType;
+import pl.srw.billcalculator.util.analytics.Analytics;
 import timber.log.Timber;
 
 @Keep
@@ -34,7 +34,7 @@ public class PrefsAndDbBackupAgent extends BackupAgentHelper {
     @Override
     public void onBackup(ParcelFileDescriptor oldState, BackupDataOutput data,
                          ParcelFileDescriptor newState) throws IOException {
-        Timber.d("onBackup");
+        Timber.i("onBackup");
         lock.lock();
         try {
             super.onBackup(oldState, data, newState);
@@ -46,7 +46,7 @@ public class PrefsAndDbBackupAgent extends BackupAgentHelper {
     @Override
     public void onRestore(BackupDataInput data, int appVersionCode, ParcelFileDescriptor newState)
             throws IOException {
-        Analytics.logAction(ActionType.BACKUP_RESTORE, "onRestore -> current",
+        Analytics.event(EventType.BACKUP_RESTORE, "onRestore -> current",
                 appVersionCode + "/" + BuildConfig.VERSION_CODE);
 
         lock.lock();

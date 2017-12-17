@@ -10,14 +10,20 @@ import android.text.method.LinkMovementMethod
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import butterknife.*
+import butterknife.BindString
+import butterknife.BindView
+import butterknife.ButterKnife
+import butterknife.OnClick
+import butterknife.Unbinder
 import pl.srw.billcalculator.BuildConfig
 import pl.srw.billcalculator.R
 import pl.srw.billcalculator.history.di.HistoryComponent
-import pl.srw.billcalculator.type.ContentType
-import pl.srw.billcalculator.wrapper.Analytics
+import pl.srw.billcalculator.util.analytics.Analytics
+import pl.srw.billcalculator.util.analytics.ContentType
+import pl.srw.billcalculator.util.analytics.EventType
 import pl.srw.mfvp.MvpFragment
 import pl.srw.mfvp.di.MvpActivityScopedFragment
+import timber.log.Timber
 
 private const val RECEIVER_EMAIL = "kalkulator.rachunkow@gmail.com"
 private const val BETA_HTTP = "https://plus.google.com/communities/113263640175495853700"
@@ -34,7 +40,7 @@ class AboutDialogFragment : MvpFragment(), MvpActivityScopedFragment<HistoryComp
     @BindString(R.string.email_client_missing) lateinit var noEmailClientMsg: String
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        Analytics.logContent(ContentType.ABOUT)
+        Analytics.contentView(ContentType.ABOUT)
         val view = View.inflate(context, R.layout.about, null)
         val dialog = AlertDialog.Builder(activity)
                 .setTitle(R.string.about_label)
@@ -74,12 +80,19 @@ class AboutDialogFragment : MvpFragment(), MvpActivityScopedFragment<HistoryComp
     }
 
     private fun setLicenseLink() {
+        @Suppress("DEPRECATION")
         tvVersion.text = Html.fromHtml(getString(R.string.version_text, BuildConfig.VERSION_NAME))
         tvVersion.movementMethod = LinkMovementMethod.getInstance()
     }
 
+    @OnClick(R.id.tv_link_g_plus)
+    fun onGooglePlusLinkClicked() {
+        Analytics.event(EventType.CONTACT, "action", "gPlus")
+    }
+
     @OnClick(R.id.tv_link_emailme)
     fun sendEmail() {
+        Analytics.event(EventType.CONTACT, "action", "send mail")
         val i = Intent(Intent.ACTION_SENDTO)
         i.data = Uri.parse("mailto:" + RECEIVER_EMAIL)
         i.putExtra(Intent.EXTRA_SUBJECT, appName)
@@ -92,6 +105,7 @@ class AboutDialogFragment : MvpFragment(), MvpActivityScopedFragment<HistoryComp
 
     @OnClick(R.id.b_close)
     fun closeAboutDialog() {
+        Timber.i("About: close button")
         dismiss()
     }
 }

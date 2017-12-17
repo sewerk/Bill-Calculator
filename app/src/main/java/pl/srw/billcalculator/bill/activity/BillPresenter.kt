@@ -6,19 +6,23 @@ import android.support.annotation.StringRes
 import android.view.View
 import pl.srw.billcalculator.R
 import pl.srw.billcalculator.bill.activity.print.Printer
-import pl.srw.billcalculator.type.ActionType
-import pl.srw.billcalculator.wrapper.Analytics
+import pl.srw.billcalculator.util.analytics.Analytics
+import pl.srw.billcalculator.util.analytics.EventType
 import pl.srw.mfvp.MvpPresenter
 import pl.srw.mfvp.di.scope.RetainActivityScope
 import timber.log.Timber
 import java.io.File
+import java.io.IOException
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
 const val STORAGE_PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE
 
+@Suppress("TooManyFunctions")
 @RetainActivityScope
-class BillPresenter @Inject constructor(private val printer: Printer, printDirPath: String) : MvpPresenter<BillPresenter.BillView>(), Printer.Listener {
+class BillPresenter @Inject constructor(private val printer: Printer,
+                                        printDirPath: String)
+    : MvpPresenter<BillPresenter.BillView>(), Printer.Listener {
 
     private val printDir = File(printDirPath)
 
@@ -54,10 +58,10 @@ class BillPresenter @Inject constructor(private val printer: Printer, printDirPa
 
     fun processRequestPermissionResponse(grantResults: IntArray) {
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Timber.d("requested permission: GRANTED")
+            Analytics.event(EventType.PERMISSION, "result", "GRANTED")
             performPrint()
         } else {
-            Timber.d("requested permission: DENIED")
+            Analytics.event(EventType.PERMISSION, "result", "DENIED")
             present { it.showExplanationForRequestPermission(STORAGE_PERMISSION) }
         }
     }
@@ -66,15 +70,17 @@ class BillPresenter @Inject constructor(private val printer: Printer, printDirPa
         Timber.d("printing... permission granted")
         val targetFile: File? = getTargetFile()
         if (targetFile != null) {
-            Analytics.logAction(ActionType.PRINT,
-                    "print file", targetFile.name,
+            Analytics.event(EventType.PRINT,
+                    "for", fileNamePrefix(targetFile.name),
                     "print file exist", targetFile.exists())
             if (targetFile.exists())
                 present { it.openFile(targetFile, BillActivity.MIME_APPLICATION_PDF) }
             else
                 present { printer.printToPdf(it.getContentView(), targetFile) }
-        } else
+        } else {
+            Timber.w("Target file for print not created")
             present { it.showMessage(R.string.error_permission_storage_missing) }
+        }
     }
 
     override fun onPrintStarted(file: File) {
@@ -92,14 +98,14 @@ class BillPresenter @Inject constructor(private val printer: Printer, printDirPa
         present { view ->
             view.showMessage(R.string.print_failed)
             view.setPrintReadyIcon()
-            Analytics.error(exception, "print failed")
+            Timber.e(exception, "print failed")
         }
     }
 
     private fun getTargetFile(): File? {
         if (!printDir.exists())
             if (!printDir.mkdirs()) {
-                Analytics.warning("mkdir failed")
+                Timber.e(IOException("mkdir ${printDir.absolutePath} failed"))
                 return null
             }
         return File(printDir.absolutePath, billIdentifier + ".pdf")
@@ -111,6 +117,12 @@ class BillPresenter @Inject constructor(private val printer: Printer, printDirPa
     }
 
     private fun isPrintTaskRunning() = printer.isPrintInProgress(File(printDir.absolutePath, billIdentifier + ".pdf"))
+
+    private fun fileNamePrefix(name: String): String {
+        var endIndex = name.indexOf('_')
+        if (endIndex < 0) endIndex = name.length
+        return name.substring(0, endIndex)
+    }
 
     interface BillView {
         fun setPrintInProgressIcon()

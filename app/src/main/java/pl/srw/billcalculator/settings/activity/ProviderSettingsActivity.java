@@ -8,9 +8,7 @@ import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.di.ProviderSettingsComponent;
 import pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment;
-import pl.srw.billcalculator.type.ContentType;
 import pl.srw.billcalculator.type.Provider;
-import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 
 public class ProviderSettingsActivity extends BackableActivity<ProviderSettingsComponent>
@@ -30,7 +28,6 @@ public class ProviderSettingsActivity extends BackableActivity<ProviderSettingsC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_provider);
         Provider provider = (Provider) getIntent().getSerializableExtra(EXTRA_PROVIDER_NAME);
-        Analytics.logContent(ContentType.SETTINGS, "settings for", provider);
 
         if (savedInstanceState == null) {
             getFragmentManager()

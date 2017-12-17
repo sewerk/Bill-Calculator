@@ -93,6 +93,7 @@ abstract class BillActivity<P extends Prices, PP extends P, T extends MvpCompone
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_print) {
+            Timber.i("Print icon clicked");
             presenter.onPrintClicked();
             return true;
         }
@@ -126,7 +127,7 @@ abstract class BillActivity<P extends Prices, PP extends P, T extends MvpCompone
 
     @Override
     public void requestPermission(@NonNull String permission) {
-        Timber.d("requesting print permission");
+        Timber.i("requesting print permission");
         ActivityCompat.requestPermissions(this, new String[]{permission}, PERMISSION_REQUEST_CODE);
     }
 
