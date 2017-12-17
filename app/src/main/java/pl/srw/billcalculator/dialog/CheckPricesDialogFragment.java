@@ -14,8 +14,8 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.history.di.HistoryComponent;
 import pl.srw.billcalculator.settings.activity.SettingsActivity;
 import pl.srw.billcalculator.settings.global.SettingsRepo;
-import pl.srw.billcalculator.type.ContentType;
-import pl.srw.billcalculator.wrapper.Analytics;
+import pl.srw.billcalculator.util.analytics.EventType;
+import pl.srw.billcalculator.util.analytics.Analytics;
 import pl.srw.mfvp.MvpFragment;
 import pl.srw.mfvp.di.MvpActivityScopedFragment;
 
@@ -44,7 +44,7 @@ public class CheckPricesDialogFragment extends MvpFragment
 
     private DialogInterface.OnClickListener positiveClickListener() {
         return (dialog, which) -> {
-            Analytics.logContent(ContentType.CHECK_PRICES, "proceed", true);
+            Analytics.event(EventType.CHECK_PRICES, "proceed", true);
             getActivity().startActivity(new Intent(getActivity(), SettingsActivity.class));
             markDialogProcessed();
         };
@@ -52,7 +52,7 @@ public class CheckPricesDialogFragment extends MvpFragment
 
     private DialogInterface.OnClickListener negativeClickListener() {
         return (dialog, which) -> {
-            Analytics.logContent(ContentType.CHECK_PRICES, "proceed", false);
+            Analytics.event(EventType.CHECK_PRICES, "proceed", false);
             markDialogProcessed();
         };
     }
@@ -60,7 +60,7 @@ public class CheckPricesDialogFragment extends MvpFragment
     private DialogInterface.OnKeyListener backButtonListener() {
         return (dialog, keyCode, event) -> {
             if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-                Analytics.logContent(ContentType.CHECK_PRICES, "proceed", false);
+                Analytics.event(EventType.CHECK_PRICES, "proceed", false);
                 markDialogProcessed();
             }
             return false;

@@ -13,8 +13,8 @@ import pl.srw.billcalculator.util.Dates
 import pl.srw.billcalculator.util.SingleLiveEvent
 import pl.srw.billcalculator.util.binding.notifiable.ObservableViewModel
 import pl.srw.billcalculator.util.binding.notifiable.bindable
-import pl.srw.billcalculator.wrapper.Analytics
 import pl.srw.billcalculator.wrapper.PricesRepo
+import timber.log.Timber
 
 private const val DEFAULT_TARIFF_LABEL_FOR_PGNIG = ""
 
@@ -76,7 +76,7 @@ class FormVM(val provider: Provider,
     }
 
     fun settingsLinkClicked() {
-        Analytics.log("Form: Settings link clicked")
+        Timber.i("Form: Settings link clicked")
         openSettingsCommand.value = provider
     }
 

@@ -3,16 +3,19 @@ package pl.srw.billcalculator;
 import android.app.Application;
 import android.support.v7.app.AppCompatDelegate;
 
+import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.answers.Answers;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.squareup.leakcanary.LeakCanary;
 
 import javax.inject.Inject;
 
+import io.fabric.sdk.android.Fabric;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
-import pl.srw.billcalculator.wrapper.Analytics;
+import pl.srw.billcalculator.util.analytics.CrashlyticsLoggingTree;
 import pl.srw.billcalculator.wrapper.Dependencies;
 import timber.log.Timber;
 
@@ -36,12 +39,14 @@ public class BillCalculator extends Application {
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
             Database.enableDatabaseLogging();
+        } else {
+            Timber.plant(new CrashlyticsLoggingTree());
+            Fabric.with(this, new Crashlytics(), new Answers());
         }
 
         Dependencies.INSTANCE.init(getApplicationContext());
         Dependencies.INSTANCE.inject(this);
 
-        Analytics.initialize(this);
         AndroidThreeTen.init(this);
         Database.initialize(this);
 

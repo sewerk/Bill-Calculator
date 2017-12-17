@@ -37,10 +37,11 @@ import pl.srw.billcalculator.form.view.InstantAutoCompleteTextInputEditText;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
 import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
+import pl.srw.billcalculator.util.analytics.ContentType;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Animations;
-import pl.srw.billcalculator.wrapper.Analytics;
+import pl.srw.billcalculator.util.analytics.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 import timber.log.Timber;
 
@@ -70,7 +71,7 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
     private final DialogInterface.OnKeyListener onBackListener = (dialog, keyCode, event) -> {
         if (keyCode == KeyEvent.KEYCODE_BACK
                 && event.getAction() == KeyEvent.ACTION_UP) {
-            Analytics.log("Form: back pressed");
+            Timber.i("Form: back pressed");
         }
         return false;
     };
@@ -90,6 +91,7 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
 
         final int providerIdx = getArguments().getInt(EXTRA_PROVIDER);
         final Provider provider = Provider.values()[providerIdx];
+        Analytics.contentView(ContentType.FORM, "New bill form", provider);
         presenter = new FormPresenter(this, provider, historyUpdater);
 
         formVMFactory.setProvider(provider);
@@ -122,11 +124,16 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        formVM.getOpenSettingsCommand().observe(this, provider ->
-                startActivity(ProviderSettingsActivity.createIntent(getContext(), provider)));
+        formVM.getOpenSettingsCommand().observe(this, this::showProviderSettings);
         formPrevReadingsVM.getSinglePrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingFromInput, readings));
         formPrevReadingsVM.getDayPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingDayFromInput, readings));
         formPrevReadingsVM.getNightPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingNightFromInput, readings));
+    }
+
+    @Override
+    public void showProviderSettings(@NonNull Provider provider) {
+        Analytics.contentView(ContentType.SETTINGS, "settings from", "Form", "settings for", provider);
+        startActivity(ProviderSettingsActivity.createIntent(getContext(), provider));
     }
 
     @Override

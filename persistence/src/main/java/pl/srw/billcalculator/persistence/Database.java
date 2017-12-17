@@ -17,6 +17,7 @@ import pl.srw.billcalculator.db.dao.DaoSession;
 import pl.srw.billcalculator.db.dao.HistoryDao;
 import pl.srw.billcalculator.persistence.type.BillType;
 import pl.srw.billcalculator.persistence.type.CurrentReadingType;
+import timber.log.Timber;
 
 public class Database {
 
@@ -30,6 +31,7 @@ public class Database {
     }
 
     public static void restart(Context context) {
+        Timber.i("Database.restart()");
         close();
         initialize(context);
     }

@@ -5,22 +5,23 @@ import pl.srw.billcalculator.form.FormValueValidator
 import pl.srw.billcalculator.form.FormValueValidator.isDatesOrderCorrect
 import pl.srw.billcalculator.form.FormValueValidator.isValueFilled
 import pl.srw.billcalculator.form.FormValueValidator.isValueOrderCorrect
-import pl.srw.billcalculator.type.ActionType
+import pl.srw.billcalculator.util.analytics.EventType
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.type.Provider.PGNIG
-import pl.srw.billcalculator.wrapper.Analytics
+import pl.srw.billcalculator.util.analytics.Analytics
+import timber.log.Timber
 
 class FormPresenter(private val view: FormView,
                     private val provider: Provider,
                     private val historyUpdater: HistoryChangeListener) {
 
     fun closeButtonClicked() {
-        Analytics.log("Form: Close clicked")
+        Timber.i("Form: Close clicked")
         view.hideForm()
     }
 
     fun calculateButtonClicked(vm: FormVM) {
-        Analytics.log("Form: Calculate clicked")
+        Timber.i("Form: Calculate clicked")
         view.cleanErrorsOnFields()
 
         val singleReadings = provider == PGNIG || vm.isSingleReadingsProcessing()
@@ -38,7 +39,7 @@ class FormPresenter(private val view: FormView,
             hideForm()
         }
         historyUpdater.onHistoryChanged()
-        Analytics.logAction(ActionType.CALCULATE, "provider", provider)
+        Analytics.event(EventType.CALCULATE, "provider", provider)
     }
 
     private fun isSingleReadingsFormValid(readingFrom: String, readingTo: String,
@@ -68,6 +69,8 @@ class FormPresenter(private val view: FormView,
     private fun onDateErrorCallback() = FormValueValidator.OnErrorCallback(view::showDateFieldError)
 
     interface FormView {
+
+        fun showProviderSettings(provider: Provider)
 
         fun hideForm()
 

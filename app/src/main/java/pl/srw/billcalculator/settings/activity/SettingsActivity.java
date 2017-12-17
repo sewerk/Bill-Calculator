@@ -25,7 +25,9 @@ import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.SettingsPresenter;
 import pl.srw.billcalculator.settings.di.SettingsComponent;
 import pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment;
+import pl.srw.billcalculator.util.analytics.ContentType;
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.util.analytics.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 
 public class SettingsActivity extends BackableActivity<SettingsComponent>
@@ -69,12 +71,14 @@ public class SettingsActivity extends BackableActivity<SettingsComponent>
 
     @Override
     public void showSettingsScreenFor(Provider provider) {
+        Analytics.contentView(ContentType.SETTINGS, "settings from", "Settings phone", "settings for", provider);
         final Intent intent = ProviderSettingsActivity.createIntent(SettingsActivity.this, provider);
         startActivity(intent);
     }
 
     @Override
     public void showSettingsFor(Provider provider) {
+        Analytics.contentView(ContentType.SETTINGS, "settings from", "Settings tablet", "settings for", provider);
         final ProviderSettingsFragment fragment = ProviderSettingsFragment.newInstance(provider);
         getFragmentManager()
                 .beginTransaction()

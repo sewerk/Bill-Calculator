@@ -40,9 +40,9 @@ import pl.srw.billcalculator.settings.activity.SettingsActivity;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.BillSelection;
 import pl.srw.billcalculator.util.strategy.Transitions;
-import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 import pl.srw.mfvp.MvpActivity;
+import timber.log.Timber;
 
 public class DrawerActivity extends MvpActivity<HistoryComponent>
         implements HistoryPresenter.HistoryView,
@@ -122,18 +122,19 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         if (id == R.id.history) {
             presenter.historyClicked();
         } else if (id == R.id.new_bill_pge) {
-            Analytics.log("Drawer: New bill picked: PGE");
+            Timber.i("Drawer: New bill picked: PGE");
             presenter.newBillClicked(Provider.PGE);
         } else if (id == R.id.new_bill_pgnig) {
-            Analytics.log("Drawer: New bill picked: PGNIG");
+            Timber.i("Drawer: New bill picked: PGNIG");
             presenter.newBillClicked(Provider.PGNIG);
         } else if (id == R.id.new_bill_tauron) {
-            Analytics.log("Drawer: New bill picked: TAURON");
+            Timber.i("Drawer: New bill picked: TAURON");
             presenter.newBillClicked(Provider.TAURON);
         } else if (id == R.id.settings) {
-            Analytics.log("Drawer: Settings clicked");
+            Timber.i("Drawer: Settings clicked");
             presenter.settingsClicked();
         } else if (id == R.id.about) {
+            Timber.i("Drawer: About clicked");
             presenter.aboutClicked();
         }
         return true;
@@ -141,7 +142,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
 
     @Override
     public void onBackPressed() {
-        Analytics.log("Back clicked");
+        Timber.i("Back clicked");
         if (!presenter.handleBackPressed()
                 && !fabsMenuHandler.handleBackPressed()) {
             super.onBackPressed();
@@ -223,7 +224,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     public void showUndoDeleteMessage(final int... positions) {
         Snackbar.make(coordinatorLayout, R.string.bill_deleted, Snackbar.LENGTH_LONG)
                 .setAction(R.string.action_undo_delete, v -> {
-                    Analytics.log("Undo clicked");
+                    Timber.i("Undo clicked");
                     presenter.undoDeleteClicked(positions);
                 })
                 .setActionTextColor(getResources().getColor(R.color.yellow))

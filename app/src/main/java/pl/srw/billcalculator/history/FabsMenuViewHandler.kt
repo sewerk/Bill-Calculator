@@ -11,7 +11,7 @@ import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.Animations
 import pl.srw.billcalculator.util.debugMeasure
 import pl.srw.billcalculator.util.lazyUnsafe
-import pl.srw.billcalculator.wrapper.Analytics
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -46,7 +46,7 @@ class FabsMenuViewHandler @Inject constructor() : FabsMenuPresenter.View {
     @OnClick(R.id.fab_new_pge, R.id.fab_new_pgnig, R.id.fab_new_tauron)
     fun onNewBillButtonClicked(view: View) {
         val provider = Provider.getByViewId(view.id)
-        Analytics.log("FAB clicked: " + provider)
+        Timber.i("FAB clicked: $provider")
         presenter.fabClicked(provider)
     }
 

@@ -10,9 +10,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.type.ContentType;
+import pl.srw.billcalculator.util.analytics.ContentType;
 import pl.srw.billcalculator.type.Provider;
-import pl.srw.billcalculator.wrapper.Analytics;
+import pl.srw.billcalculator.util.analytics.Analytics;
 
 public class ProviderSettingsHelpActivity extends Activity {
 
@@ -30,7 +30,7 @@ public class ProviderSettingsHelpActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Provider provider = (Provider) getIntent().getSerializableExtra(EXTRA_PROVIDER);
-        Analytics.logContent(ContentType.HELP, "screen", provider + " settings");
+        Analytics.contentView(ContentType.SETTINGS_HELP, "Settings help for", provider);
 
         setContentView(provider.helpLayoutRes);
         ButterKnife.bind(this);

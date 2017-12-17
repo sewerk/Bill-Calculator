@@ -12,7 +12,7 @@ import pl.srw.billcalculator.db.TauronG12Bill
 import pl.srw.billcalculator.form.FormVM
 import pl.srw.billcalculator.form.fragment.FormFragment
 import pl.srw.billcalculator.util.Dates
-import pl.srw.billcalculator.wrapper.Analytics
+import timber.log.Timber
 
 @Suppress("TooManyFunctions")
 class IntentCreator internal constructor(context: Context, aClass: Class<*>) {
@@ -101,8 +101,7 @@ class IntentCreator internal constructor(context: Context, aClass: Class<*>) {
     private fun putReadingsExtra(readingFrom: Int, readingTo: Int) {
         intent.putExtra(READING_FROM, readingFrom)
         intent.putExtra(READING_TO, readingTo)
-        Analytics.setInt(READING_FROM, readingFrom)
-        Analytics.setInt(READING_TO, readingTo)
+        Timber.i("$READING_FROM=$readingFrom, $READING_TO=$readingTo")
     }
 
     private fun putReadingsG12Extra(readingDayFrom: Int, readingDayTo: Int, readingNightFrom: Int, readingNightTo: Int) {
@@ -110,17 +109,14 @@ class IntentCreator internal constructor(context: Context, aClass: Class<*>) {
         intent.putExtra(READING_DAY_TO, readingDayTo)
         intent.putExtra(READING_NIGHT_FROM, readingNightFrom)
         intent.putExtra(READING_NIGHT_TO, readingNightTo)
-        Analytics.setInt(READING_DAY_FROM, readingDayFrom)
-        Analytics.setInt(READING_DAY_TO, readingDayTo)
-        Analytics.setInt(READING_NIGHT_FROM, readingNightFrom)
-        Analytics.setInt(READING_NIGHT_TO, readingNightTo)
+        Timber.i("$READING_DAY_FROM=$readingDayFrom, $READING_DAY_TO=$readingDayTo, " +
+                "$READING_NIGHT_FROM=$readingNightFrom, $READING_NIGHT_TO=$readingNightTo")
     }
 
     private fun putDatesExtra(dateFrom: LocalDate, dateTo: LocalDate) {
         intent.putExtra(DATE_FROM, dateFrom)
         intent.putExtra(DATE_TO, dateTo)
-        Analytics.setString(DATE_FROM, dateFrom.toString())
-        Analytics.setString(DATE_TO, dateTo.toString())
+        Timber.i("$DATE_FROM=$dateFrom, $DATE_TO=$dateTo")
     }
 
     private fun parse(text: String): LocalDate {

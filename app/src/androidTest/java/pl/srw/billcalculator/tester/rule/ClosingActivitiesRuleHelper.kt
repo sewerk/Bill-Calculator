@@ -30,7 +30,7 @@ class ClosingActivitiesRuleHelper {
             val instrumentation = InstrumentationRegistry.getInstrumentation()
             closeAllActivities(instrumentation)
         } catch (ex: Exception) {
-            Timber.e("Could not use close all activities", ex)
+            Timber.e(ex,"Could not use close all activities")
         }
     }
 

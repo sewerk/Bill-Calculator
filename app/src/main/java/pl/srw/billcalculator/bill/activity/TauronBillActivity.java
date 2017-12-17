@@ -19,12 +19,12 @@ import pl.srw.billcalculator.bill.di.TauronBillComponent;
 import pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment;
 import pl.srw.billcalculator.pojo.ITauronPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
-import pl.srw.billcalculator.type.ContentType;
+import pl.srw.billcalculator.util.analytics.ContentType;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 import pl.srw.billcalculator.util.Views;
-import pl.srw.billcalculator.wrapper.Analytics;
+import pl.srw.billcalculator.util.analytics.Analytics;
 import pl.srw.billcalculator.wrapper.Dependencies;
 
 public class TauronBillActivity extends EnergyBillActivity<ITauronPrices, TauronPrices, TauronBillComponent> {
@@ -35,9 +35,9 @@ public class TauronBillActivity extends EnergyBillActivity<ITauronPrices, Tauron
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Analytics.logContent(ContentType.TAURON_BILL,
-                "Tauron new", isNewBill(),
-                "Tauron tariff", (isTwoUnitTariff() ? "G12" : "G11"));
+        Analytics.contentView(ContentType.BILL,
+                "view bill", "TAURON" + (isTwoUnitTariff() ? "G12" : "G11"),
+                "view bill from history", !isNewBill());
 
         if (!isNewBill()
                 && savedInstanceState == null
