@@ -9,7 +9,6 @@ import java.util.Random;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.db.PgeG12Bill;
@@ -22,7 +21,7 @@ import pl.srw.billcalculator.pojo.IPgnigPrices;
 import pl.srw.billcalculator.pojo.ITauronPrices;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
-import pl.srw.billcalculator.wrapper.Analytics;
+import timber.log.Timber;
 
 @Singleton
 public class SavedBillsRegistry {
@@ -34,8 +33,8 @@ public class SavedBillsRegistry {
         registry = new SimpleArrayMap<>();
     }
 
-    @DebugLog
     public String register(Bill bill) {
+        Timber.d("register() called with: bill = [%s]", bill);
         String key;
         if (bill instanceof PgnigBill) {
             PgnigBill b = (PgnigBill) bill;
@@ -63,8 +62,10 @@ public class SavedBillsRegistry {
         return getIdentifier(provider, readingFrom, readingTo, 0, 0, dateFrom, dateTo, prices);
     }
 
-    @DebugLog
     public String getIdentifier(Provider provider, int readingFrom, int readingTo, int readingFrom2, int readingTo2, LocalDate dateFrom, LocalDate dateTo, Prices prices) {
+        Timber.d("getIdentifier() called with: provider = [%s], readingFrom = [%d], readingTo = [%d], readingFrom2 = [%d], readingTo2 = [%d], dateFrom = [%s], dateTo = [%s], prices = [%s]",
+                provider, readingFrom, readingTo, readingFrom2, readingTo2, dateFrom, dateTo, prices);
+
         final Long id = getId(provider, readingFrom, readingTo, readingFrom2, readingTo2, dateFrom, dateTo, prices);
         final String prefix = provider == Provider.PGNIG ? provider.toString()
                 : (readingTo2 > 0 ? provider.toString() + "12" : provider.toString() + "11");
@@ -75,7 +76,7 @@ public class SavedBillsRegistry {
         String key = getKey(provider, readingFrom, readingTo, readingFrom2, readingTo2, dateFrom, dateTo, prices);
         Long foundId = registry.get(key);
         if (foundId == null) {
-            Analytics.warning("SavedBillsRegistry is missing ID for key " + key);
+            Timber.w("SavedBillsRegistry is missing ID for key %s", key);
             foundId = (long) (1000 + new Random().nextInt(9000));//1000-9999
         }
         return foundId;

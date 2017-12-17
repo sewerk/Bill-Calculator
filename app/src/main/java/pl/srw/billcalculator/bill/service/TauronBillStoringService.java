@@ -25,7 +25,7 @@ public class TauronBillStoringService extends BillStoringService<TauronPrices, C
     @Override
     public void onCreate() {
         super.onCreate();
-        Dependencies.inject(this);
+        Dependencies.INSTANCE.inject(this);
     }
 
     @Override

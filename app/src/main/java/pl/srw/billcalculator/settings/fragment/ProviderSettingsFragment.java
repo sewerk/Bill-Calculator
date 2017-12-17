@@ -15,14 +15,13 @@ import android.view.MenuItem;
 
 import java.util.Map;
 
-import hugo.weaving.DebugLog;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.help.ProviderSettingsHelpActivity;
 import pl.srw.billcalculator.settings.restore.ConfirmRestoreSettingsDialogFragment;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
-import pl.srw.billcalculator.wrapper.Analytics;
+import timber.log.Timber;
 
 public abstract class ProviderSettingsFragment extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -47,7 +46,6 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
         throw new EnumVariantNotHandledException(provider);
     }
 
-    @DebugLog
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +90,7 @@ public abstract class ProviderSettingsFragment extends PreferenceFragment
             showHelp();
             return true;
         } else if (item.getItemId() == R.id.action_default) {
-            Analytics.log("Restore prices clicked for " + getProvider());
+            Timber.i("Restore prices clicked for %s", getProvider());
             ConfirmRestoreSettingsDialogFragment.newInstance(getProvider())
                     .show(((BackableActivity) getActivity()).getSupportFragmentManager(), TAG_CONFIRM_RESTORE);
             return true;

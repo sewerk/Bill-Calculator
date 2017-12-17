@@ -13,7 +13,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.srw.billcalculator.form.fragment.FormFragment;
 import pl.srw.billcalculator.util.Dates;
-import pl.srw.billcalculator.wrapper.Analytics;
+import timber.log.Timber;
 
 public class DatePickingView extends AppCompatTextView {
 
@@ -49,7 +49,7 @@ public class DatePickingView extends AppCompatTextView {
 
     @OnClick
     void showDatePicker() {
-        Analytics.log("Form: Date picking clicked");
+        Timber.i("Form: Date picking clicked");
         final LocalDate date = Dates.parse(this.getText().toString(), FormFragment.DATE_PATTERN);
         final int year = date.getYear();
         final int monthValue = date.getMonthValue() - 1;

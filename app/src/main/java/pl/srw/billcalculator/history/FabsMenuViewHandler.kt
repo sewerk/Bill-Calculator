@@ -10,12 +10,14 @@ import pl.srw.billcalculator.R
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.Animations
 import pl.srw.billcalculator.util.debugMeasure
-import pl.srw.billcalculator.wrapper.Analytics
+import pl.srw.billcalculator.util.lazyUnsafe
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
  * Handles FABs menu view part
  */
+@Suppress("TooManyFunctions")
 class FabsMenuViewHandler @Inject constructor() : FabsMenuPresenter.View {
 
     @BindView(R.id.fab) lateinit var fab: FloatingActionButton
@@ -28,8 +30,8 @@ class FabsMenuViewHandler @Inject constructor() : FabsMenuPresenter.View {
     lateinit var activity: DrawerActivity
     val presenter: FabsMenuPresenter = FabsMenuPresenter(this)
 
-    private val expandAnimator: AnimatorSet by lazy(LazyThreadSafetyMode.NONE) { Animations.getExpandFabs(fab, fabPge, fabPgnig, fabTauron) }
-    private val collapseAnimator: AnimatorSet by lazy(LazyThreadSafetyMode.NONE) { Animations.getCollapseFabs(fab, fabPge, fabPgnig, fabTauron) }
+    private val expandAnimator: AnimatorSet by lazyUnsafe { Animations.getExpandFabs(fab, fabPge, fabPgnig, fabTauron) }
+    private val collapseAnimator: AnimatorSet by lazyUnsafe { Animations.getCollapseFabs(fab, fabPge, fabPgnig, fabTauron) }
 
     fun init(activity: DrawerActivity) {
         ButterKnife.bind(this, activity)
@@ -44,7 +46,7 @@ class FabsMenuViewHandler @Inject constructor() : FabsMenuPresenter.View {
     @OnClick(R.id.fab_new_pge, R.id.fab_new_pgnig, R.id.fab_new_tauron)
     fun onNewBillButtonClicked(view: View) {
         val provider = Provider.getByViewId(view.id)
-        Analytics.log("FAB clicked: " + provider)
+        Timber.i("FAB clicked: $provider")
         presenter.fabClicked(provider)
     }
 

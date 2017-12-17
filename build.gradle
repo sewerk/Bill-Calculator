@@ -5,23 +5,33 @@ buildscript {
 
     repositories {
         jcenter()
+        google()
         maven { url 'https://maven.fabric.io/public' }
-        maven { url 'https://maven.google.com' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta2'
-        classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
+        classpath "com.android.tools.build:gradle:$gradlePluginVer"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVer"
-        classpath 'io.fabric.tools:gradle:1.22.1'
+        classpath "io.fabric.tools:gradle:$fabricPluginVer"
+    }
+}
+
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC5-6"
+}
+
+detekt {
+    version = "1.0.0.RC5-6"
+    profile("main") {
+        input = "$projectDir/app"
+        config = "$projectDir/detekt-config.yml"
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        google()
         maven { url "https://jitpack.io" }
-        maven { url 'https://maven.fabric.io/public' }
-        maven { url 'https://maven.google.com' }
     }
 }
 

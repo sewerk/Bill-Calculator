@@ -12,8 +12,6 @@ import android.view.inputmethod.InputConnection;
 import android.widget.Filterable;
 import android.widget.ListAdapter;
 
-import hugo.weaving.DebugLog;
-
 public class InstantAutoCompleteTextInputEditText extends AppCompatAutoCompleteTextView {
 
     public InstantAutoCompleteTextInputEditText(Context context) {
@@ -46,7 +44,6 @@ public class InstantAutoCompleteTextInputEditText extends AppCompatAutoCompleteT
         return true;
     }
 
-    @DebugLog
     @Override
     protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
         super.onFocusChanged(focused, direction, previouslyFocusedRect);

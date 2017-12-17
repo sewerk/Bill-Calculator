@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.settings.prices;
 
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -100,6 +101,7 @@ public class PgePrices extends SharedPreferencesEnergyPrices implements IPgePric
     }
 
     @Override
+    @NonNull
     public @TariffOption String getTariff() {
         //noinspection WrongConstant
         return getPref(KEY_TARIFF, this.pge_tariff);

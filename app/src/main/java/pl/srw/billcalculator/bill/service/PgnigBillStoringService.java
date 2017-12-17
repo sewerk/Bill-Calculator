@@ -22,7 +22,7 @@ public class PgnigBillStoringService extends BillStoringService<PgnigPrices, Pgn
     @Override
     public void onCreate() {
         super.onCreate();
-        Dependencies.inject(this);
+        Dependencies.INSTANCE.inject(this);
     }
 
     @Override

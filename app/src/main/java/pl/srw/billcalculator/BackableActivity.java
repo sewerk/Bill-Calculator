@@ -3,9 +3,9 @@ package pl.srw.billcalculator;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import pl.srw.billcalculator.wrapper.Analytics;
 import pl.srw.mfvp.MvpActivity;
 import pl.srw.mfvp.di.MvpComponent;
+import timber.log.Timber;
 
 public abstract class BackableActivity<T extends MvpComponent> extends MvpActivity<T> {
 
@@ -28,7 +28,7 @@ public abstract class BackableActivity<T extends MvpComponent> extends MvpActivi
 
     @Override
     public void onBackPressed() {
-        Analytics.log("Back pressed");
+        Timber.i("Back pressed");
         super.onBackPressed();
     }
 }

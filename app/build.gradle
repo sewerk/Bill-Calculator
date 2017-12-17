@@ -3,20 +3,25 @@ apply plugin: 'io.fabric'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply from: 'signing.gradle'
-apply plugin: 'hugo'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion "$buildToolsVer"
     defaultConfig {
         applicationId "pl.srw.billcalculator"
         minSdkVersion 15
-        targetSdkVersion 25
-        versionCode 28
-        versionName "2.0"
+        targetSdkVersion 26
+
+        versionCode 29
+        versionName "2.0.1"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         resConfig "pl"
+    }
+
+    dataBinding {
+        enabled = true
     }
 
     buildTypes {
@@ -57,45 +62,52 @@ android {
     }
 }
 
+check.dependsOn ':detektCheck'
+
 dependencies {
 
     kapt "com.google.dagger:dagger-compiler:$daggerVer"
     kapt "com.jakewharton:butterknife-compiler:$butterKnifeVer"
+    kapt "com.android.databinding:compiler:$gradlePluginVer"
 
-    compile project(':persistence')
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':persistence')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVer"
-    compile "com.android.support:design:$supportLibVer"
-    compile "com.android.support:cardview-v7:$supportLibVer"
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVer"
+    implementation "com.android.support:design:$supportLibVer"
+    implementation "com.android.support:cardview-v7:$supportLibVer"
+    implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVer"
+    implementation "android.arch.lifecycle:extensions:$archCompVer"
 
-    compile 'com.github.sewerk:mfvp:1.0-beta1'
-    compile "com.google.dagger:dagger:$daggerVer"
-    compile "com.jakewharton:butterknife:$butterKnifeVer"
-    compile 'com.jakewharton.threetenabp:threetenabp:1.0.3'
-    compile 'io.reactivex.rxjava2:rxjava:2.0.4'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile 'com.getkeepsafe.taptargetview:taptargetview:1.9.1'
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
+    implementation "com.jakewharton.timber:timber:$timberVer"
+    implementation "com.github.sewerk:mfvp:$mfvpVer"
+    implementation "com.google.dagger:dagger:$daggerVer"
+    implementation "com.jakewharton:butterknife:$butterKnifeVer"
+    implementation "com.jakewharton.threetenabp:threetenabp:$threeTenAbpVer"
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVer"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVer"
+    implementation "com.getkeepsafe.taptargetview:taptargetview:$tapTargetVer"
+    implementation("com.crashlytics.sdk.android:crashlytics:$crashlyticsVer@aar") {
         transitive = true
     }
 
-    provided 'javax.annotation:jsr250-api:1.0'
+    compileOnly "javax.annotation:jsr250-api:$javaxVer"
 
-    testCompile 'junit:junit:4.12'
-    testCompile 'com.nhaarman:mockito-kotlin:1.1.0'
-    testCompile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVer" // version conflict with mockito-kotlin
-    testCompile 'pl.pragmatists:JUnitParams:1.0.4'
-    testCompile 'org.threeten:threetenbp:1.3.1'
+    testImplementation "junit:junit:$junitVer"
+    testImplementation "com.nhaarman:mockito-kotlin-kt1.1:$mockitoKotlinVer"
+    testImplementation "pl.pragmatists:JUnitParams:$junitParamsVer"
+    testImplementation "org.threeten:threetenbp:$threeTenVer"
+    testImplementation "android.arch.core:core-testing:$archCompVer"
 
     kaptAndroidTest "com.google.dagger:dagger-compiler:$daggerVer"
-    androidTestCompile "com.android.support.test.espresso:espresso-contrib:$espressoVer"
-    androidTestCompile "com.android.support.test.espresso:espresso-intents:$espressoVer"
-    androidTestCompile 'com.android.support.test:runner:0.5'
-    androidTestCompile "com.android.support:design:$supportLibVer"
+    androidTestCompileOnly "javax.annotation:jsr250-api:$javaxVer"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espressoVer"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espressoVer"
+    androidTestImplementation "com.android.support.test:runner:$testRunnerVer"
+    androidTestImplementation "com.android.support:design:$supportLibVer"
+    androidTestImplementation "android.arch.core:core-testing:$archCompVer"
 
-    debugCompile "com.squareup.leakcanary:leakcanary-android:$leakcanaryVer"
-    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanaryVer"
-    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanaryVer"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanaryVer"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanaryVer"
+    androidTestImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanaryVer"
 }

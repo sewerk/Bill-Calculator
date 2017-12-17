@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.settings.prices;
 
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringDef;
 
 import java.lang.annotation.Retention;
@@ -19,9 +20,7 @@ public abstract class SharedPreferencesEnergyPrices extends SharedPreferencesPri
         super(prefs);
     }
 
-    @TariffOption public abstract String getTariff();
-
-    public boolean isTariffG12() {
-        return TARIFF_G12.equals(getTariff());
-    }
+    @TariffOption
+    @NonNull
+    public abstract String getTariff();
 }

@@ -11,7 +11,9 @@ import javax.inject.Inject;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.settings.activity.ProviderSettingsFragmentOwner;
 import pl.srw.billcalculator.settings.di.ConfirmRestoreSettingsComponentInjectable;
+import pl.srw.billcalculator.util.analytics.EventType;
 import pl.srw.billcalculator.type.Provider;
+import pl.srw.billcalculator.util.analytics.Analytics;
 import pl.srw.mfvp.MvpFragment;
 import pl.srw.mfvp.di.MvpActivityScopedFragment;
 
@@ -21,6 +23,7 @@ public class ConfirmRestoreSettingsDialogFragment extends MvpFragment
 
     private static final String EXTRA_PROVIDER = "EXTRA_PROVIDER";
     @Inject ConfirmRestoreSettingsPresenter presenter;
+    private Provider provider;
 
     public static ConfirmRestoreSettingsDialogFragment newInstance(Provider provider) {
         Bundle args = new Bundle();
@@ -34,7 +37,7 @@ public class ConfirmRestoreSettingsDialogFragment extends MvpFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final int providerIdx = getArguments().getInt(EXTRA_PROVIDER);
-        final Provider provider = Provider.values()[providerIdx];
+        provider = Provider.values()[providerIdx];
         presenter.setup(provider);
         attachPresenter(presenter);
     }
@@ -47,7 +50,7 @@ public class ConfirmRestoreSettingsDialogFragment extends MvpFragment
             .setTitle(R.string.action_restore)
             .setMessage(R.string.confirm_restore_prices_message)
             .setPositiveButton(R.string.restore_prices_confirm, onPositiveButton())
-            .setNegativeButton(R.string.restore_prices_cancel, null);
+            .setNegativeButton(R.string.restore_prices_cancel, onNegativeButton());
         return builder.create();
     }
 
@@ -58,12 +61,17 @@ public class ConfirmRestoreSettingsDialogFragment extends MvpFragment
 
     @Override
     public void refresh() {
+        Analytics.event(EventType.RESTORE_PRICES, "restored", true, "for", provider);
         ProviderSettingsFragmentOwner activity = (ProviderSettingsFragmentOwner) getActivity();
         activity.getProviderSettingsFragment().refreshScreen();
     }
 
     private DialogInterface.OnClickListener onPositiveButton() {
         return (dialog, which) -> presenter.onConfirmedClicked();
+    }
+
+    private DialogInterface.OnClickListener onNegativeButton() {
+        return (dialog, which) -> Analytics.event(EventType.RESTORE_PRICES, "restored", false, "for", provider);
     }
 
 }

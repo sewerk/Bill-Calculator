@@ -23,7 +23,7 @@
 ### Crashanalytics
 -keepattributes *Annotation*
 -keepattributes SourceFile,LineNumberTable
--keep public class **Exception
+-keep public class * extends java.lang.Exception
 
 ## TapTarget
 -keep class android.support.v7.widget.Toolbar { *** mMenuView; }

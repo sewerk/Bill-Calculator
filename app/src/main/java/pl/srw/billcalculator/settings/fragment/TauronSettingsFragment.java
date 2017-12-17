@@ -3,6 +3,7 @@ package pl.srw.billcalculator.settings.fragment;
 import javax.inject.Inject;
 
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.wrapper.Dependencies;
@@ -28,7 +29,7 @@ public class TauronSettingsFragment extends EnergyProviderSettingsFragment {
 
     @Override
     protected boolean isTariffG12() {
-        return tauronPrices.isTariffG12();
+        return SharedPreferencesEnergyPrices.TARIFF_G12.equals(tauronPrices.getTariff());
     }
 
     @Override

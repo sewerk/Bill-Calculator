@@ -25,7 +25,7 @@ public class PgeBillStoringService extends BillStoringService<PgePrices, Calcula
     @Override
     public void onCreate() {
         super.onCreate();
-        Dependencies.inject(this);
+        Dependencies.INSTANCE.inject(this);
     }
 
     @Override
