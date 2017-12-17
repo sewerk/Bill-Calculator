@@ -1,3 +1,9 @@
+v.2.0.1
+ - improve analytics, Timber tree to Crashlytics
+ - Kotlin quality check tool
+ - Form converted to Databinding, remove mfvp from form presenter
+ - fix: restore state after process kill on form fragment opened
+ - upgrade target sdk to 26
 v.2.0
  - fix: dialog-activity cause unbind presenter on pre-L
  - crunch images
