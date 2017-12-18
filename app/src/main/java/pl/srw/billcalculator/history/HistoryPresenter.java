@@ -16,10 +16,10 @@ import pl.srw.billcalculator.history.list.item.HistoryItemClickListener;
 import pl.srw.billcalculator.history.list.item.HistoryItemDismissHandling;
 import pl.srw.billcalculator.history.list.item.HistoryViewItem;
 import pl.srw.billcalculator.settings.global.SettingsRepo;
-import pl.srw.billcalculator.util.analytics.EventType;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.BillSelection;
 import pl.srw.billcalculator.util.analytics.Analytics;
+import pl.srw.billcalculator.util.analytics.EventType;
 import pl.srw.billcalculator.wrapper.HistoryRepo;
 import pl.srw.mfvp.MvpPresenter;
 import pl.srw.mfvp.di.scope.RetainActivityScope;
@@ -53,6 +53,9 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
             view.setListData(historyData);
 
             if (settings.isFirstLaunch()) {
+                if (historyData.size() > 0) {
+                    Timber.e(new IllegalStateException("Db exist with clean SharedPrefs"));
+                }
                 view.showWelcomeDialog();
                 settings.markHelpShown();
             } else if (!settings.wasHelpShown()) {

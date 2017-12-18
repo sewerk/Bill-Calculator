@@ -21,6 +21,7 @@ import pl.srw.billcalculator.pojo.IPgnigPrices;
 import pl.srw.billcalculator.pojo.ITauronPrices;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
+import pl.srw.billcalculator.util.analytics.Analytics;
 import timber.log.Timber;
 
 @Singleton
@@ -76,7 +77,7 @@ public class SavedBillsRegistry {
         String key = getKey(provider, readingFrom, readingTo, readingFrom2, readingTo2, dateFrom, dateTo, prices);
         Long foundId = registry.get(key);
         if (foundId == null) {
-            Timber.w("SavedBillsRegistry is missing ID for key %s", key);
+            Analytics.warning("SavedBillsRegistry is missing ID", "missing for key", key);
             foundId = (long) (1000 + new Random().nextInt(9000));//1000-9999
         }
         return foundId;
