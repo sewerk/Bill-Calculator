@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 apply from: 'signing.gradle'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion "$buildToolsVer"
     defaultConfig {
         applicationId "pl.srw.billcalculator"
