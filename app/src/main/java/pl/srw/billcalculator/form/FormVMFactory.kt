@@ -2,6 +2,7 @@ package pl.srw.billcalculator.form
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import android.os.Bundle
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.wrapper.PricesRepo
 import pl.srw.billcalculator.wrapper.ReadingsRepo
@@ -12,13 +13,19 @@ class FormVMFactory @Inject constructor(private val readingsRepo: ReadingsRepo,
 
     lateinit var provider: Provider
 
+    var bundle: Bundle? = null
+
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>) =
         with(modelClass) {
             when {
-                isAssignableFrom(FormVM::class.java) -> FormVM(provider, pricesRepo)
+                isAssignableFrom(FormVM::class.java) -> createFormVM()
                 isAssignableFrom(FormPreviousReadingsVM::class.java) -> FormPreviousReadingsVM(provider, readingsRepo, pricesRepo)
                 else -> throw IllegalArgumentException("Don't know how to create ${modelClass.simpleName}")
             }
         } as T
+
+    private fun createFormVM() = FormVM(provider, pricesRepo).apply {
+        bundle?.let { readFrom(it) }
+    }
 }

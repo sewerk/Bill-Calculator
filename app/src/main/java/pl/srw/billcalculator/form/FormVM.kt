@@ -2,6 +2,7 @@ package pl.srw.billcalculator.form
 
 import android.arch.lifecycle.Observer
 import android.databinding.Bindable
+import android.os.Bundle
 import android.view.View
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
@@ -11,6 +12,7 @@ import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.Dates
 import pl.srw.billcalculator.util.SingleLiveEvent
+import pl.srw.billcalculator.util.StateRestorable
 import pl.srw.billcalculator.util.binding.notifiable.ObservableViewModel
 import pl.srw.billcalculator.util.binding.notifiable.bindable
 import pl.srw.billcalculator.wrapper.PricesRepo
@@ -20,7 +22,7 @@ private const val DEFAULT_TARIFF_LABEL_FOR_PGNIG = ""
 
 class FormVM(val provider: Provider,
              private val pricesRepo: PricesRepo)
-    : ObservableViewModel() {
+    : ObservableViewModel(), StateRestorable {
 
     // static properties
     val logoResource = provider.logoRes
@@ -73,6 +75,14 @@ class FormVM(val provider: Provider,
         super.onCleared()
         if (provider == Provider.PGE) pricesRepo.tariffPge.removeObserver(tariffObserver)
         else if (provider == Provider.TAURON) pricesRepo.tariffTauron.removeObserver(tariffObserver)
+    }
+
+    override fun writeTo(bundle: Bundle) {
+        FormStateHelper.put(bundle, this)
+    }
+
+    override fun readFrom(bundle: Bundle) {
+        FormStateHelper.retrieve(bundle, this)
     }
 
     fun settingsLinkClicked() {

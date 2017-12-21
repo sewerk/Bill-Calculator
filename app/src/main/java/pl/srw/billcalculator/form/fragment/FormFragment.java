@@ -37,11 +37,11 @@ import pl.srw.billcalculator.form.view.InstantAutoCompleteTextInputEditText;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
 import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
-import pl.srw.billcalculator.util.analytics.ContentType;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Animations;
 import pl.srw.billcalculator.util.analytics.Analytics;
+import pl.srw.billcalculator.util.analytics.ContentType;
 import pl.srw.billcalculator.wrapper.Dependencies;
 import timber.log.Timber;
 
@@ -95,6 +95,7 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
         presenter = new FormPresenter(this, provider, historyUpdater);
 
         formVMFactory.setProvider(provider);
+        formVMFactory.setBundle(savedInstanceState);
         formVM = ViewModelProviders.of(this, formVMFactory).get(FormVM.class);
         formPrevReadingsVM = ViewModelProviders.of(this, formVMFactory).get(FormPreviousReadingsVM.class);
     }
@@ -128,6 +129,12 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
         formPrevReadingsVM.getSinglePrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingFromInput, readings));
         formPrevReadingsVM.getDayPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingDayFromInput, readings));
         formPrevReadingsVM.getNightPrevReadings().observe(this, readings -> setReadingsForAutocomplete(readingNightFromInput, readings));
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        formVM.writeTo(outState);
     }
 
     @Override
