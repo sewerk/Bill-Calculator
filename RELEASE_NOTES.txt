@@ -1,3 +1,6 @@
+v.2.0.2
+ - upgrade support lib to 27
+ - restore state after process kill on form dialog
 v.2.0.1
  - improve analytics, Timber tree to Crashlytics
  - Kotlin quality check tool
