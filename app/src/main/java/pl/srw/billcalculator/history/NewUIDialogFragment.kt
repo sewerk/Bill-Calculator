@@ -25,7 +25,7 @@ class NewUIDialogFragment : MvpFragment(), MvpActivityScopedFragment<HistoryComp
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val view = LayoutInflater.from(context).inflate(R.layout.dialog_new_ui, null)
-        val dialog = AlertDialog.Builder(context)
+        val dialog = AlertDialog.Builder(context!!)
                 .setView(view)
                 .create()
         dialog.setCanceledOnTouchOutside(false)
@@ -42,6 +42,6 @@ class NewUIDialogFragment : MvpFragment(), MvpActivityScopedFragment<HistoryComp
     @OnClick(R.id.new_ui_ok)
     fun onButtonClicked() {
         this.dismiss()
-        helpHandler.show(activity)
+        helpHandler.show(activity!!)
     }
 }

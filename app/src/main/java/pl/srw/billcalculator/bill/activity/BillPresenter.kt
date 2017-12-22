@@ -78,7 +78,7 @@ class BillPresenter @Inject constructor(private val printer: Printer,
             else
                 present { printer.printToPdf(it.getContentView(), targetFile) }
         } else {
-            Timber.w("Target file for print not created")
+            Analytics.warning("Target file for print not created")
             present { it.showMessage(R.string.error_permission_storage_missing) }
         }
     }

@@ -55,17 +55,13 @@ public class Analytics {
     /**
      * Logs unexpected event happened. This will be used to see statistics
      */
-    static void warning(String message) {
-        if (!ENABLED) return;
-
-        CustomEvent event = new CustomEvent(EventType.UNEXPECTED);
-        event.putCustomAttribute("case", message);
-        Answers.getInstance().logCustom(event);
+    public static void warning(String event, Object... args) {
+        event(EventType.UNEXPECTED, event, args);
     }
 
     private static int getEvenLength(String id, Object[] args) {
         if (args.length % 2 != 0) {
-            warning("Args length should be even for: " + id);
+            warning("Args length not even", "Args not even for", id);
             return args.length - 1;
         }
         return args.length;

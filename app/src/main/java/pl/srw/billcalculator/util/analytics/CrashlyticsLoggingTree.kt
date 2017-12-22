@@ -12,11 +12,8 @@ class CrashlyticsLoggingTree : Timber.Tree() {
 
     override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
         Crashlytics.log(message)
-        if (priority >= Log.WARN) {
-            if (t != null) {
-                Crashlytics.logException(t)
-            }
-            Analytics.warning(message)
+        if (priority >= Log.WARN && t != null) {
+            Crashlytics.logException(t)
         }
     }
 }

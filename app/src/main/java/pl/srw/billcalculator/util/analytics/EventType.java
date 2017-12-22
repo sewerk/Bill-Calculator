@@ -8,13 +8,14 @@ import java.lang.annotation.RetentionPolicy;
 import static pl.srw.billcalculator.util.analytics.EventType.BACKUP_RESTORE;
 import static pl.srw.billcalculator.util.analytics.EventType.CALCULATE;
 import static pl.srw.billcalculator.util.analytics.EventType.CHECK_PRICES;
+import static pl.srw.billcalculator.util.analytics.EventType.CONTACT;
 import static pl.srw.billcalculator.util.analytics.EventType.DELETE_BILL;
 import static pl.srw.billcalculator.util.analytics.EventType.PERMISSION;
 import static pl.srw.billcalculator.util.analytics.EventType.PRINT;
 import static pl.srw.billcalculator.util.analytics.EventType.RESTORE_PRICES;
-import static pl.srw.billcalculator.util.analytics.EventType.CONTACT;
+import static pl.srw.billcalculator.util.analytics.EventType.UNEXPECTED;
 
-@StringDef({PRINT, RESTORE_PRICES, BACKUP_RESTORE, DELETE_BILL, CALCULATE, CHECK_PRICES, CONTACT, PERMISSION})
+@StringDef({PRINT, RESTORE_PRICES, BACKUP_RESTORE, DELETE_BILL, CALCULATE, CHECK_PRICES, CONTACT, PERMISSION, UNEXPECTED})
 @Retention(RetentionPolicy.SOURCE)
 public @interface EventType {
     String PRINT = "Print";
