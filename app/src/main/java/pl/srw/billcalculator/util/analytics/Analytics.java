@@ -55,8 +55,15 @@ public class Analytics {
     /**
      * Logs unexpected event happened. This will be used to see statistics
      */
-    public static void warning(String event, Object... args) {
-        event(EventType.UNEXPECTED, event, args);
+    public static void warning(String event) {
+        event(EventType.UNEXPECTED, "case", event);
+    }
+
+    /**
+     * Logs unexpected event happened. This will be used to see statistics
+     */
+    public static void warning(String event, String key, Object value) {
+        event(EventType.UNEXPECTED, "case", event, key, value);
     }
 
     private static int getEvenLength(String id, Object[] args) {
