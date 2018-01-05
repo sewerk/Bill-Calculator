@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.wrapper
+package pl.srw.billcalculator.data.settings
 
 import android.arch.lifecycle.MutableLiveData
 import pl.srw.billcalculator.settings.prices.RestorablePrices

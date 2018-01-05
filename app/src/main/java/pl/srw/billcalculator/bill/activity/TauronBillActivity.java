@@ -16,16 +16,16 @@ import pl.srw.billcalculator.bill.calculation.TauronCalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG11CalculatedBill;
 import pl.srw.billcalculator.bill.calculation.TauronG12CalculatedBill;
 import pl.srw.billcalculator.bill.di.TauronBillComponent;
+import pl.srw.billcalculator.di.Dependencies;
 import pl.srw.billcalculator.dialog.BillCalculatedBeforeOZEChangeDialogFragment;
 import pl.srw.billcalculator.pojo.ITauronPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
-import pl.srw.billcalculator.util.analytics.ContentType;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 import pl.srw.billcalculator.util.Views;
 import pl.srw.billcalculator.util.analytics.Analytics;
-import pl.srw.billcalculator.wrapper.Dependencies;
+import pl.srw.billcalculator.util.analytics.ContentType;
 
 public class TauronBillActivity extends EnergyBillActivity<ITauronPrices, TauronPrices, TauronBillComponent> {
 

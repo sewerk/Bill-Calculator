@@ -9,9 +9,9 @@ import pl.srw.billcalculator.bill.calculation.TauronG12CalculatedBill;
 import pl.srw.billcalculator.db.TauronG11Bill;
 import pl.srw.billcalculator.db.TauronG12Bill;
 import pl.srw.billcalculator.db.TauronPrices;
+import pl.srw.billcalculator.di.Dependencies;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.util.Dates;
-import pl.srw.billcalculator.wrapper.Dependencies;
 
 public class TauronBillStoringService extends BillStoringService<TauronPrices, CalculatedEnergyBill> {
 

@@ -7,6 +7,7 @@ import android.view.View
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import pl.srw.billcalculator.BR
+import pl.srw.billcalculator.data.settings.PricesRepo
 import pl.srw.billcalculator.form.fragment.FormFragment
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
@@ -15,7 +16,6 @@ import pl.srw.billcalculator.util.SingleLiveEvent
 import pl.srw.billcalculator.util.StateRestorable
 import pl.srw.billcalculator.util.binding.notifiable.ObservableViewModel
 import pl.srw.billcalculator.util.binding.notifiable.bindable
-import pl.srw.billcalculator.wrapper.PricesRepo
 import timber.log.Timber
 
 private const val DEFAULT_TARIFF_LABEL_FOR_PGNIG = ""

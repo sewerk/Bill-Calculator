@@ -3,9 +3,9 @@ package pl.srw.billcalculator.form
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
+import pl.srw.billcalculator.data.bill.ReadingsRepo
+import pl.srw.billcalculator.data.settings.PricesRepo
 import pl.srw.billcalculator.type.Provider
-import pl.srw.billcalculator.wrapper.PricesRepo
-import pl.srw.billcalculator.wrapper.ReadingsRepo
 import javax.inject.Inject
 
 class FormVMFactory @Inject constructor(private val readingsRepo: ReadingsRepo,

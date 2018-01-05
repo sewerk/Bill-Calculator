@@ -28,6 +28,7 @@ import javax.inject.Inject;
 
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.databinding.FormBinding;
+import pl.srw.billcalculator.di.Dependencies;
 import pl.srw.billcalculator.form.FormPreviousReadingsVM;
 import pl.srw.billcalculator.form.FormVM;
 import pl.srw.billcalculator.form.FormVMFactory;
@@ -42,7 +43,6 @@ import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Animations;
 import pl.srw.billcalculator.util.analytics.Analytics;
 import pl.srw.billcalculator.util.analytics.ContentType;
-import pl.srw.billcalculator.wrapper.Dependencies;
 import timber.log.Timber;
 
 public class FormFragment extends DialogFragment implements FormPresenter.FormView {

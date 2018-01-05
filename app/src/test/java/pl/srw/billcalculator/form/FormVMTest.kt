@@ -12,13 +12,13 @@ import org.junit.Test
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.threeten.bp.LocalDate
+import pl.srw.billcalculator.data.settings.PricesRepo
 import pl.srw.billcalculator.form.fragment.FormFragment
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices.TARIFF_G11
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices.TARIFF_G12
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.Dates
-import pl.srw.billcalculator.wrapper.PricesRepo
 
 @RunWith(JUnitParamsRunner::class)
 class FormVMTest {

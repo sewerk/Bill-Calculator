@@ -6,9 +6,9 @@ import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.db.PgnigBill;
 import pl.srw.billcalculator.db.PgnigPrices;
+import pl.srw.billcalculator.di.Dependencies;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.util.Dates;
-import pl.srw.billcalculator.wrapper.Dependencies;
 
 public class PgnigBillStoringService extends BillStoringService<PgnigPrices, PgnigCalculatedBill> {
 

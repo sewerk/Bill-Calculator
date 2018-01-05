@@ -9,9 +9,9 @@ import android.widget.TextView;
 import javax.inject.Inject;
 
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.di.Dependencies;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
 import pl.srw.billcalculator.type.Provider;
-import pl.srw.billcalculator.wrapper.Dependencies;
 
 public class PgnigSettingsFragment extends ProviderSettingsFragment {
 

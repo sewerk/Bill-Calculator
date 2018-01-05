@@ -3,10 +3,10 @@ package pl.srw.billcalculator.settings.fragment;
 import javax.inject.Inject;
 
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.di.Dependencies;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.type.Provider;
-import pl.srw.billcalculator.wrapper.Dependencies;
 
 public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
 
