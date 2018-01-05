@@ -8,13 +8,13 @@ import com.squareup.leakcanary.LeakCanary;
 
 import javax.inject.Inject;
 
+import pl.srw.billcalculator.di.Dependencies;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
 import pl.srw.billcalculator.util.analytics.Analytics;
 import pl.srw.billcalculator.util.analytics.CrashlyticsLoggingTree;
-import pl.srw.billcalculator.wrapper.Dependencies;
 import timber.log.Timber;
 
 public class BillCalculator extends Application {

@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.wrapper
+package pl.srw.billcalculator.data.bill
 
 import io.reactivex.Single
 import pl.srw.billcalculator.persistence.Database

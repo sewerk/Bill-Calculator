@@ -13,15 +13,15 @@ import java.math.BigDecimal;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.bill.calculation.PgnigCalculatedBill;
 import pl.srw.billcalculator.bill.di.PgnigBillComponent;
+import pl.srw.billcalculator.di.Dependencies;
 import pl.srw.billcalculator.pojo.IPgnigPrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
-import pl.srw.billcalculator.util.analytics.ContentType;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Dates;
 import pl.srw.billcalculator.util.Display;
 import pl.srw.billcalculator.util.Views;
 import pl.srw.billcalculator.util.analytics.Analytics;
-import pl.srw.billcalculator.wrapper.Dependencies;
+import pl.srw.billcalculator.util.analytics.ContentType;
 
 public class PgnigBillActivity extends BillActivity<IPgnigPrices, PgnigPrices, PgnigBillComponent> {
 

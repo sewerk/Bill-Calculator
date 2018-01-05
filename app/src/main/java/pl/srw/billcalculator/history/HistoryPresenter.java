@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.data.ApplicationRepo;
+import pl.srw.billcalculator.data.bill.HistoryRepo;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.form.fragment.FormPresenter;
@@ -20,7 +21,6 @@ import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.BillSelection;
 import pl.srw.billcalculator.util.analytics.Analytics;
 import pl.srw.billcalculator.util.analytics.EventType;
-import pl.srw.billcalculator.wrapper.HistoryRepo;
 import pl.srw.mfvp.MvpPresenter;
 import pl.srw.mfvp.di.scope.RetainActivityScope;
 import timber.log.Timber;

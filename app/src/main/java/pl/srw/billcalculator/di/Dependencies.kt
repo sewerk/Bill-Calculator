@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.wrapper
+package pl.srw.billcalculator.di
 
 import android.content.Context
 
@@ -6,9 +6,6 @@ import pl.srw.billcalculator.BillCalculator
 import pl.srw.billcalculator.bill.service.PgeBillStoringService
 import pl.srw.billcalculator.bill.service.PgnigBillStoringService
 import pl.srw.billcalculator.bill.service.TauronBillStoringService
-import pl.srw.billcalculator.di.ApplicationComponent
-import pl.srw.billcalculator.di.ApplicationModule
-import pl.srw.billcalculator.di.DaggerApplicationComponent
 import pl.srw.billcalculator.form.fragment.FormFragment
 import pl.srw.billcalculator.history.di.HistoryComponent
 import timber.log.Timber

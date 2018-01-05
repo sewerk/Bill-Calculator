@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.wrapper
+package pl.srw.billcalculator.data.bill
 
 import org.greenrobot.greendao.query.LazyList
 import pl.srw.billcalculator.db.Bill

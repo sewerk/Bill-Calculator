@@ -14,6 +14,7 @@ import org.mockito.Mockito.never
 import org.mockito.Mockito.verify
 import pl.srw.billcalculator.bill.SavedBillsRegistry
 import pl.srw.billcalculator.data.ApplicationRepo
+import pl.srw.billcalculator.data.bill.HistoryRepo
 import pl.srw.billcalculator.db.Bill
 import pl.srw.billcalculator.db.History
 import pl.srw.billcalculator.db.PgeG11Bill
@@ -21,7 +22,6 @@ import pl.srw.billcalculator.history.list.item.HistoryViewItem
 import pl.srw.billcalculator.setState
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.BillSelection
-import pl.srw.billcalculator.wrapper.HistoryRepo
 import java.util.*
 
 @RunWith(JUnitParamsRunner::class)

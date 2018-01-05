@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.wrapper
+package pl.srw.billcalculator.data.settings
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockito_kotlin.any

@@ -22,13 +22,13 @@ import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.di.Dependencies;
 import pl.srw.billcalculator.settings.SettingsPresenter;
 import pl.srw.billcalculator.settings.di.SettingsComponent;
 import pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment;
-import pl.srw.billcalculator.util.analytics.ContentType;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.analytics.Analytics;
-import pl.srw.billcalculator.wrapper.Dependencies;
+import pl.srw.billcalculator.util.analytics.ContentType;
 
 public class SettingsActivity extends BackableActivity<SettingsComponent>
         implements SettingsPresenter.SettingsView,

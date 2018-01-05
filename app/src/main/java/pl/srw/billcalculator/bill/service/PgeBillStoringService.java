@@ -9,9 +9,9 @@ import pl.srw.billcalculator.bill.calculation.PgeG12CalculatedBill;
 import pl.srw.billcalculator.db.PgeG11Bill;
 import pl.srw.billcalculator.db.PgeG12Bill;
 import pl.srw.billcalculator.db.PgePrices;
+import pl.srw.billcalculator.di.Dependencies;
 import pl.srw.billcalculator.persistence.Database;
 import pl.srw.billcalculator.util.Dates;
-import pl.srw.billcalculator.wrapper.Dependencies;
 
 public class PgeBillStoringService extends BillStoringService<PgePrices, CalculatedEnergyBill> {
 
