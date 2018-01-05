@@ -9,13 +9,13 @@ import java.util.Arrays;
 import javax.inject.Inject;
 
 import pl.srw.billcalculator.bill.SavedBillsRegistry;
+import pl.srw.billcalculator.data.ApplicationRepo;
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.form.fragment.FormPresenter;
 import pl.srw.billcalculator.history.list.item.HistoryItemClickListener;
 import pl.srw.billcalculator.history.list.item.HistoryItemDismissHandling;
 import pl.srw.billcalculator.history.list.item.HistoryViewItem;
-import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.BillSelection;
 import pl.srw.billcalculator.util.analytics.Analytics;
@@ -29,7 +29,7 @@ import timber.log.Timber;
 public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         implements HistoryItemDismissHandling, HistoryItemClickListener, FormPresenter.HistoryChangeListener {
 
-    private final SettingsRepo settings;
+    private final ApplicationRepo applicationRepo;
     private final HistoryRepo history;
     private final SavedBillsRegistry savedBillsRegistry;
     private final BillSelection selection;
@@ -37,8 +37,8 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     private boolean needRefresh;
 
     @Inject
-    HistoryPresenter(SettingsRepo settings, HistoryRepo history, SavedBillsRegistry savedBillsRegistry, BillSelection selection) {
-        this.settings = settings;
+    HistoryPresenter(ApplicationRepo applicationRepo, HistoryRepo history, SavedBillsRegistry savedBillsRegistry, BillSelection selection) {
+        this.applicationRepo = applicationRepo;
         this.history = history;
         this.savedBillsRegistry = savedBillsRegistry;
         this.selection = selection;
@@ -52,15 +52,15 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         present(view -> {
             view.setListData(historyData);
 
-            if (settings.isFirstLaunch()) {
+            if (applicationRepo.isFirstLaunch()) {
                 if (historyData.size() > 0) {
                     Timber.e(new IllegalStateException("Db exist with clean SharedPrefs"));
                 }
                 view.showWelcomeDialog();
-                settings.markHelpShown();
-            } else if (!settings.wasHelpShown()) {
+                applicationRepo.markHelpShown();
+            } else if (!applicationRepo.wasHelpShown()) {
                 view.showNewUIDialog();
-                settings.markHelpShown();
+                applicationRepo.markHelpShown();
             }
         });
     }

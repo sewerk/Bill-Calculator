@@ -4,7 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import pl.srw.billcalculator.settings.global.SettingsRepo;
+import pl.srw.billcalculator.data.ApplicationRepo;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.util.BillSelection;
 import pl.srw.billcalculator.wrapper.PricesRepo;
@@ -26,8 +26,8 @@ class TestApplicationModule {
 
     @Provides
     @Singleton
-    SettingsRepo provideSettingsRepo() {
-        return productionComponent.getSettingsRepo();
+    ApplicationRepo provideApplicationRepo() {
+        return productionComponent.getApplicationRepo();
     }
 
     @Provides

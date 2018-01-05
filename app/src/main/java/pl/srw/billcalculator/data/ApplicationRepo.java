@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.settings.global;
+package pl.srw.billcalculator.data;
 
 import android.content.SharedPreferences;
 
@@ -11,14 +11,14 @@ import javax.inject.Singleton;
 import static pl.srw.billcalculator.di.ApplicationModule.GLOBAL_SHARED_PREFS;
 
 @Singleton
-public class SettingsRepo {
+public class ApplicationRepo {
 
     private static final String PREFERENCE_KEY_FIRST_LAUNCH = "first_launch";
     private static final String PREFERENCE_KEY_HELP_SHOWN = "help_shown";
     private final SharedPreferences prefs;
 
     @Inject
-    SettingsRepo(@Named(GLOBAL_SHARED_PREFS) SharedPreferences prefs) {
+    ApplicationRepo(@Named(GLOBAL_SHARED_PREFS) SharedPreferences prefs) {
         this.prefs = prefs;
     }
 

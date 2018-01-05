@@ -13,12 +13,12 @@ import org.junit.runner.RunWith
 import org.mockito.Mockito.never
 import org.mockito.Mockito.verify
 import pl.srw.billcalculator.bill.SavedBillsRegistry
+import pl.srw.billcalculator.data.ApplicationRepo
 import pl.srw.billcalculator.db.Bill
 import pl.srw.billcalculator.db.History
 import pl.srw.billcalculator.db.PgeG11Bill
 import pl.srw.billcalculator.history.list.item.HistoryViewItem
 import pl.srw.billcalculator.setState
-import pl.srw.billcalculator.settings.global.SettingsRepo
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.BillSelection
 import pl.srw.billcalculator.wrapper.HistoryRepo
@@ -29,14 +29,14 @@ class HistoryPresenterTest {
 
     val listData: LazyList<History> = mock()
     val view: HistoryPresenter.HistoryView = mock()
-    val settings: SettingsRepo = mock()
+    val applicationRepo: ApplicationRepo = mock()
     val history: HistoryRepo = mock {
         on { getAll() } doReturn listData
     }
     val savedBillsRegistry: SavedBillsRegistry = mock()
     val selection: BillSelection = mock()
 
-    val sut = HistoryPresenter(settings, history, savedBillsRegistry, selection)
+    val sut = HistoryPresenter(applicationRepo, history, savedBillsRegistry, selection)
 
     @Before
     fun setUp() {
@@ -60,7 +60,7 @@ class HistoryPresenterTest {
     @Test
     fun onFirstBind_whenFirstLaunch_showsWelcomeDialog() {
         // GIVEN
-        whenever(settings.isFirstLaunch).thenReturn(true)
+        whenever(applicationRepo.isFirstLaunch).thenReturn(true)
 
         // WHEN
         sut.onFirstBind()
@@ -72,7 +72,7 @@ class HistoryPresenterTest {
     @Test
     fun onFirstBind_whenFirstLaunch_doesNotShowNewUIDialog() {
         // GIVEN
-        whenever(settings.isFirstLaunch).thenReturn(true)
+        whenever(applicationRepo.isFirstLaunch).thenReturn(true)
 
         // WHEN
         sut.onFirstBind()
@@ -84,19 +84,19 @@ class HistoryPresenterTest {
     @Test
     fun onFirstBind_whenFirstLaunch_marksHelpShown() {
         // GIVEN
-        whenever(settings.isFirstLaunch).thenReturn(true)
+        whenever(applicationRepo.isFirstLaunch).thenReturn(true)
 
         // WHEN
         sut.onFirstBind()
 
         // THEN
-        verify(settings).markHelpShown()
+        verify(applicationRepo).markHelpShown()
     }
 
     @Test
     fun onFirstBind_whenNotFirstLaunch_dontShowsWelcomeDialog() {
         // GIVEN
-        whenever(settings.isFirstLaunch).thenReturn(false)
+        whenever(applicationRepo.isFirstLaunch).thenReturn(false)
 
         // WHEN
         sut.onFirstBind()
@@ -108,22 +108,22 @@ class HistoryPresenterTest {
     @Test
     fun onFirstBind_whenNotFirstLaunch_andHelpWasNotShown_showsNewUIDialogAndMarkShown() {
         // GIVEN
-        whenever(settings.isFirstLaunch).thenReturn(false)
-        whenever(settings.wasHelpShown()).thenReturn(false)
+        whenever(applicationRepo.isFirstLaunch).thenReturn(false)
+        whenever(applicationRepo.wasHelpShown()).thenReturn(false)
 
         // WHEN
         sut.onFirstBind()
 
         // THEN
         verify(view).showNewUIDialog()
-        verify(settings).markHelpShown()
+        verify(applicationRepo).markHelpShown()
     }
 
     @Test
     fun onFirstBind_whenNotFirstLaunch_andHelpWasMarkShown_doesNotShowNewUIDialog() {
         // GIVEN
-        whenever(settings.isFirstLaunch).thenReturn(false)
-        whenever(settings.wasHelpShown()).thenReturn(true)
+        whenever(applicationRepo.isFirstLaunch).thenReturn(false)
+        whenever(applicationRepo.wasHelpShown()).thenReturn(true)
 
         // WHEN
         sut.onFirstBind()
