@@ -12,10 +12,10 @@ import pl.srw.billcalculator.bill.di.TauronBillComponent;
 import pl.srw.billcalculator.bill.service.PgeBillStoringService;
 import pl.srw.billcalculator.bill.service.PgnigBillStoringService;
 import pl.srw.billcalculator.bill.service.TauronBillStoringService;
+import pl.srw.billcalculator.data.ApplicationRepo;
 import pl.srw.billcalculator.history.di.HistoryComponent;
 import pl.srw.billcalculator.settings.di.ProviderSettingsComponent;
 import pl.srw.billcalculator.settings.di.SettingsComponent;
-import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.util.BillSelection;
 import pl.srw.billcalculator.wrapper.PricesRepo;
@@ -47,7 +47,7 @@ public interface ApplicationComponent {
     // Visible for UI tests
     @NonNull PgePrices getPgePrices();
 
-    @NonNull SettingsRepo getSettingsRepo();
+    @NonNull ApplicationRepo getApplicationRepo();
 
     @NonNull BillSelection getBillSelection();
 

@@ -8,9 +8,9 @@ import org.junit.Test;
 
 import javax.inject.Inject;
 
+import pl.srw.billcalculator.data.ApplicationRepo;
 import pl.srw.billcalculator.di.TestDependencies;
 import pl.srw.billcalculator.history.DrawerActivity;
-import pl.srw.billcalculator.settings.global.SettingsRepo;
 import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.tester.rule.ClosingActivityTestRule;
 import pl.srw.billcalculator.type.Provider;
@@ -20,7 +20,7 @@ public class SettingsUITest {
     @Rule
     public ActivityTestRule<DrawerActivity> testRule = new ClosingActivityTestRule<>(DrawerActivity.class, false, false);
 
-    @Inject SettingsRepo settingsRepo;
+    @Inject ApplicationRepo applicationRepo;
 
     AppTester tester = new AppTester();
 
@@ -28,7 +28,7 @@ public class SettingsUITest {
     public void setUp() throws Exception {
         TestDependencies.inject(this);
 
-        settingsRepo.markFirstLaunch();
+        applicationRepo.markFirstLaunch();
 
         testRule.launchActivity(null);
     }
