@@ -3,11 +3,17 @@ package pl.srw.billcalculator.util.binding
 import android.databinding.BindingAdapter
 import android.databinding.adapters.ViewBindingAdapter
 import android.view.View
+import android.widget.ListView
 
 private const val BIND_ON_CLICK = "onClick"
+private const val BIND_ON_ITEM_CLICK = "onItemClick"
 
 interface OnClick {
     fun invoke()
+}
+
+interface OnClickPosition {
+    fun invoke(position: Int)
 }
 
 /**
@@ -17,10 +23,14 @@ interface OnClick {
  *
  * This results in simpler databinding expressions in xml.
  */
-@BindingAdapter(value = [BIND_ON_CLICK])
+@BindingAdapter(BIND_ON_CLICK)
 fun View.setOnClick(onClick: OnClick?) {
-
     onClick?.run {
         setOnClickListener { invoke() }
     }
+}
+
+@BindingAdapter(BIND_ON_ITEM_CLICK)
+fun ListView.setOnItemClick(onClick: OnClickPosition) {
+    setOnItemClickListener { _, _, position, _ -> onClick.invoke(position) }
 }
