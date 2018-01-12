@@ -7,7 +7,9 @@ import pl.srw.billcalculator.data.bill.ReadingsRepo
 import pl.srw.billcalculator.data.settings.prices.PricesRepo
 import pl.srw.billcalculator.type.Provider
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class FormVMFactory @Inject constructor(private val readingsRepo: ReadingsRepo,
                                         private val pricesRepo: PricesRepo) : ViewModelProvider.Factory {
 
