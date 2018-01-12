@@ -13,7 +13,7 @@ import pl.srw.billcalculator.bill.service.PgeBillStoringService;
 import pl.srw.billcalculator.bill.service.PgnigBillStoringService;
 import pl.srw.billcalculator.bill.service.TauronBillStoringService;
 import pl.srw.billcalculator.data.ApplicationRepo;
-import pl.srw.billcalculator.data.settings.PricesRepo;
+import pl.srw.billcalculator.data.settings.prices.PricesRepo;
 import pl.srw.billcalculator.history.di.HistoryComponent;
 import pl.srw.billcalculator.settings.di.ProviderSettingsComponent;
 import pl.srw.billcalculator.settings.di.SettingsComponent;

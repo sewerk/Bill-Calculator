@@ -7,7 +7,7 @@ import android.view.View
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import pl.srw.billcalculator.BR
-import pl.srw.billcalculator.data.settings.PricesRepo
+import pl.srw.billcalculator.data.settings.prices.PricesRepo
 import pl.srw.billcalculator.form.fragment.FormFragment
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
