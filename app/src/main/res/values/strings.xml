@@ -163,6 +163,11 @@
         <item>Taryfa dwustrefowa (G12)</item>
     </string-array>
     <string name="settings_help_example_content_desc">Where to look at bill example</string>
+    <string name="settings_energy_tariff_pick_G11" translatable="false">Taryfa całodobowa (G11)</string>
+    <string name="settings_energy_tariff_pick_G12" translatable="false">Taryfa dwustrefowa (G12)</string>
+    <string name="price_measure_zl_kWh" translatable="false">zł/kWh</string>
+    <string name="price_measure_zl_MWh" translatable="false">zł/MWh</string>
+    <string name="price_measure_zl_month" translatable="false">zł/m-c</string>
 
     <!-- PGE settings -->
     <string name="settings_pge" translatable="false">PGE</string>
