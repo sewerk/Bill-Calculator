@@ -4,7 +4,9 @@ import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
 import android.view.View
-import com.nhaarman.mockito_kotlin.*
+import com.nhaarman.mockito_kotlin.doReturn
+import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.verify
 import junitparams.JUnitParamsRunner
 import junitparams.Parameters
 import org.junit.Rule
@@ -136,6 +138,5 @@ class FormVMTest {
 
     private fun setTariff(@SharedPreferencesEnergyPrices.TariffOption tariff: String) {
         tariffLiveData.value = tariff
-        whenever(pricesRepo.getTariff(any())).thenReturn(tariff)
     }
 }

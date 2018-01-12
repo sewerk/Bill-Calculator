@@ -113,7 +113,6 @@ class FormPreviousReadingsVMTest : RxJavaBaseTest() {
 
     private fun setTariff(@SharedPreferencesEnergyPrices.TariffOption tariff: String) {
         tariffLiveData.value = tariff
-        whenever(pricesRepo.getTariff(any())).thenReturn(tariff)
         waitToFinish() // tariff change after observing trigger prev reading fetch
     }
 

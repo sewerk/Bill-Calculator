@@ -2,6 +2,9 @@ package pl.srw.billcalculator.form
 
 import android.os.Bundle
 
+/**
+ * Helps with saving and restoring form state
+ */
 object FormStateHelper {
     private const val FROM = "form.state.from"
     private const val TO = "form.state.to"

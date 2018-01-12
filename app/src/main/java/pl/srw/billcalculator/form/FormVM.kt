@@ -40,22 +40,14 @@ class FormVM(val provider: Provider,
         private set
 
     // read-write properties
-    @get:Bindable
-    var readingFrom: String by bindable("", BR.readingFrom)
-    @get:Bindable
-    var readingTo: String by bindable("", BR.readingTo)
-    @get:Bindable
-    var readingDayFrom: String by bindable("", BR.readingDayFrom)
-    @get:Bindable
-    var readingDayTo: String by bindable("", BR.readingDayTo)
-    @get:Bindable
-    var readingNightFrom: String by bindable("", BR.readingNightFrom)
-    @get:Bindable
-    var readingNightTo: String by bindable("", BR.readingNightTo)
-    @get:Bindable
-    var dateFrom: String by bindable(Dates.firstDayOfThisMonth().toText(), BR.dateFrom)
-    @get:Bindable
-    var dateTo: String by bindable(Dates.lastDayOfThisMonth().toText(), BR.dateTo)
+    @get:Bindable var readingFrom: String by bindable("", BR.readingFrom)
+    @get:Bindable var readingTo: String by bindable("", BR.readingTo)
+    @get:Bindable var readingDayFrom: String by bindable("", BR.readingDayFrom)
+    @get:Bindable var readingDayTo: String by bindable("", BR.readingDayTo)
+    @get:Bindable var readingNightFrom: String by bindable("", BR.readingNightFrom)
+    @get:Bindable var readingNightTo: String by bindable("", BR.readingNightTo)
+    @get:Bindable var dateFrom: String by bindable(Dates.firstDayOfThisMonth().toText(), BR.dateFrom)
+    @get:Bindable var dateTo: String by bindable(Dates.lastDayOfThisMonth().toText(), BR.dateTo)
 
     // commands
     val openSettingsCommand = SingleLiveEvent<Provider>()
