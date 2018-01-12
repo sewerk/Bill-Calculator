@@ -1,37 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<layout>
+    <data>
+        <variable name="vm" type="pl.srw.billcalculator.settings.SettingsVM"/>
+    </data>
 
-    <ListView
-              android:clipToPadding="false"
-              android:drawSelectorOnTop="true"
-              android:scrollbarAlwaysDrawVerticalTrack="true"
-              android:choiceMode="singleChoice"
-              android:paddingTop="@dimen/padding"
-              android:paddingStart="@dimen/padding"
-              android:paddingLeft="@dimen/padding"
-              android:paddingBottom="@dimen/padding"
-        android:id="@+id/list"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="@integer/preferences_left_pane_weight"
-        tools:listitem="@layout/settings_list_item"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
 
-    <View
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:background="@color/gray_light" />
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="@integer/preferences_left_pane_weight"
+            android:choiceMode="singleChoice"
+            android:clipToPadding="false"
+            android:drawSelectorOnTop="true"
+            android:paddingBottom="@dimen/padding"
+            android:paddingLeft="@dimen/padding"
+            android:paddingStart="@dimen/padding"
+            android:paddingTop="@dimen/padding"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            app:onItemClick="@{vm::onRowClicked}"
+            tools:ignore="RtlSymmetry"
+            tools:listitem="@layout/settings_list_item"/>
 
-    <FrameLayout
-        android:id="@+id/prefs_frame"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:padding="@dimen/padding"
-        android:layout_weight="@integer/preferences_right_pane_weight"
-        tools:ignore="InconsistentLayout">
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray_light"/>
 
-    </FrameLayout>
+        <FrameLayout
+            android:id="@+id/prefs_frame"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="@integer/preferences_right_pane_weight"
+            android:padding="@dimen/padding"
+            tools:ignore="InconsistentLayout">
 
-</LinearLayout>
+        </FrameLayout>
+
+    </LinearLayout>
+</layout>

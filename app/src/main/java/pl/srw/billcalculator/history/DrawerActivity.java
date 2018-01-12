@@ -37,7 +37,7 @@ import pl.srw.billcalculator.history.list.HistoryAdapter;
 import pl.srw.billcalculator.history.list.ShowViewOnEmptyDataObserver;
 import pl.srw.billcalculator.history.list.item.HistoryItemTouchCallback;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
-import pl.srw.billcalculator.settings.activity.SettingsActivity;
+import pl.srw.billcalculator.settings.SettingsActivity;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.BillSelection;
 import pl.srw.billcalculator.util.strategy.Transitions;

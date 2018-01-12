@@ -47,7 +47,7 @@
                   android:theme="@style/AppTheme.Tauron" />
 
         <activity
-            android:name=".settings.activity.SettingsActivity"
+            android:name=".settings.SettingsActivity"
             android:label="@string/settings_label">
         </activity>
 

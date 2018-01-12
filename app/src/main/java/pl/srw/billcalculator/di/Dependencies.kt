@@ -8,8 +8,12 @@ import pl.srw.billcalculator.bill.service.PgnigBillStoringService
 import pl.srw.billcalculator.bill.service.TauronBillStoringService
 import pl.srw.billcalculator.form.fragment.FormFragment
 import pl.srw.billcalculator.history.di.HistoryComponent
+import pl.srw.billcalculator.settings.SettingsController
+import pl.srw.billcalculator.settings.details.SettingsDetailsController
+import pl.srw.billcalculator.settings.di.SettingsComponent
 import timber.log.Timber
 
+@SuppressWarnings("TooManyFunctions")
 object Dependencies {
 
     @JvmStatic
@@ -17,6 +21,7 @@ object Dependencies {
         private set
 
     private var historyComponent: HistoryComponent? = null
+    private var settingsComponent: SettingsComponent? = null
 
     fun init(application: Context) {
         applicationComponent = DaggerApplicationComponent.builder()
@@ -48,6 +53,14 @@ object Dependencies {
         getHistoryComponent().formComponent.inject(fragment)
     }
 
+    fun inject(controller: SettingsController) {
+        getSettingsComponent().inject(controller)
+    }
+
+    fun inject(controller: SettingsDetailsController) {
+        getSettingsComponent().inject(controller)
+    }
+
     // COMPONENTS MANAGEMENT
     fun getHistoryComponent(): HistoryComponent {
         if (historyComponent == null) {
@@ -60,5 +73,18 @@ object Dependencies {
     fun releaseHistoryComponent() {
         Timber.v("Releasing HistoryComponent")
         historyComponent = null
+    }
+
+    fun getSettingsComponent(): SettingsComponent {
+        if (settingsComponent == null) {
+            Timber.v("Creating SettingsComponent")
+            settingsComponent = applicationComponent.settingsComponent
+        }
+        return settingsComponent!!
+    }
+
+    fun releaseSettingsComponent() {
+        Timber.v("Releasing SettingsComponent")
+        settingsComponent = null
     }
 }
