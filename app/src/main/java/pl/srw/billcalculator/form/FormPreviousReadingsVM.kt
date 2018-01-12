@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import pl.srw.billcalculator.data.bill.ReadingsRepo
-import pl.srw.billcalculator.data.settings.PricesRepo
+import pl.srw.billcalculator.data.settings.prices.PricesRepo
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.plusAssign

@@ -5,7 +5,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import pl.srw.billcalculator.data.ApplicationRepo;
-import pl.srw.billcalculator.data.settings.PricesRepo;
+import pl.srw.billcalculator.data.settings.prices.PricesRepo;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.util.BillSelection;
 

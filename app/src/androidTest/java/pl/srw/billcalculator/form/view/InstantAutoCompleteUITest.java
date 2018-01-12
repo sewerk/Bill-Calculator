@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import javax.inject.Inject;
 
-import pl.srw.billcalculator.data.settings.PricesRepo;
+import pl.srw.billcalculator.data.settings.prices.PricesRepo;
 import pl.srw.billcalculator.di.TestDependencies;
 import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.history.HistoryGenerator;

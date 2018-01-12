@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 
 import javax.inject.Inject;
 
-import pl.srw.billcalculator.data.settings.PricesRepo;
+import pl.srw.billcalculator.data.settings.prices.PricesRepo;
 
 abstract class EnergyProviderSettingsFragment extends ProviderSettingsFragment {
 

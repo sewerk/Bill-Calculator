@@ -13,7 +13,7 @@ import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import pl.srw.billcalculator.RxJavaBaseTest
 import pl.srw.billcalculator.data.bill.ReadingsRepo
-import pl.srw.billcalculator.data.settings.PricesRepo
+import pl.srw.billcalculator.data.settings.prices.PricesRepo
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
 
