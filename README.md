@@ -14,6 +14,7 @@ With help of
 ---------
 - [Architecture Components](https://developer.android.com/topic/libraries/architecture)
 - [ButterKnife](https://github.com/JakeWharton/butterknife)
+- [Conductor](https://github.com/bluelinelabs/Conductor)
 - [ConstraintLayout](https://developer.android.com/training/constraint-layout/index.html)
 - [Dagger 2](https://google.github.io/dagger/)
 - [DataBinding](https://developer.android.com/topic/libraries/data-binding/)

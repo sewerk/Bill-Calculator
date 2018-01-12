@@ -8,6 +8,7 @@ ext {
     archCompVer = "1.0.0"
 
     mfvpVer = '1.0-beta1'
+    conductorVer = "2.1.4"
     greenDaoVer = '3.1.0'
     daggerVer = '2.0.1'
     butterKnifeVer = '8.8.1'
