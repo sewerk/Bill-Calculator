@@ -9,6 +9,7 @@ import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import junitparams.JUnitParamsRunner
 import junitparams.Parameters
+import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
@@ -37,22 +38,22 @@ class FormVMTest {
 
     @Test
     fun `initialize fromDate with first day of current month`() {
-        assert(calculateDateFrom() == sut.dateFrom)
+        assertEquals(calculateDateFrom(), sut.dateFrom)
     }
 
     @Test
     fun `initialize toDate with last dat of current month`() {
-        assert(calculateDateTo() == sut.dateTo)
+        assertEquals(calculateDateTo(), sut.dateTo)
     }
 
     @Test
     fun `initialize provider logo with given provider`() {
-        assert(provider.logoRes == sut.logoResource)
+        assertEquals(provider.logoRes, sut.logoResource)
     }
 
     @Test
     fun `sets readings unit for given provider`() {
-        assert(provider.formReadingUnit == sut.readingsUnitTextResource)
+        assertEquals(provider.formReadingUnit, sut.readingsUnitTextResource)
     }
 
     @Test
@@ -60,14 +61,14 @@ class FormVMTest {
     fun `sets tariff label for energy providers`(tariff: String) {
         setTariff(tariff)
 
-        assert(tariff == sut.tariffLabel)
+        assertEquals(tariff, sut.tariffLabel)
     }
 
     @Test
     fun `sets empty tariff label for PGNIG`() {
         sut = FormVM(Provider.PGNIG, pricesRepo)
 
-        assert("" == sut.tariffLabel)
+        assertEquals("", sut.tariffLabel)
     }
 
     @Test
@@ -76,8 +77,8 @@ class FormVMTest {
         sut = FormVM(provider, pricesRepo)
         setTariff(TARIFF_G11)
 
-        assert(View.VISIBLE == sut.singleReadingsVisibility)
-        assert(View.GONE == sut.doubleReadingsVisibility)
+        assertEquals(View.VISIBLE, sut.singleReadingsVisibility)
+        assertEquals(View.GONE, sut.doubleReadingsVisibility)
     }
 
     @Test
@@ -86,16 +87,16 @@ class FormVMTest {
         sut = FormVM(provider, pricesRepo)
         setTariff(TARIFF_G12)
 
-        assert(View.GONE == sut.singleReadingsVisibility)
-        assert(View.VISIBLE == sut.doubleReadingsVisibility)
+        assertEquals(View.GONE, sut.singleReadingsVisibility)
+        assertEquals(View.VISIBLE, sut.doubleReadingsVisibility)
     }
 
     @Test
     fun `single readings are visible when PGNIG provider`() {
         sut = FormVM(Provider.PGNIG, pricesRepo)
 
-        assert(View.VISIBLE == sut.singleReadingsVisibility)
-        assert(View.GONE == sut.doubleReadingsVisibility)
+        assertEquals(View.VISIBLE, sut.singleReadingsVisibility)
+        assertEquals(View.GONE, sut.doubleReadingsVisibility)
     }
 
     @Test
@@ -112,21 +113,21 @@ class FormVMTest {
     fun `is single readings processing when tariff G11`() {
         setTariff(TARIFF_G11)
 
-        assert(sut.isSingleReadingsProcessing())
+        assertTrue(sut.isSingleReadingsProcessing())
     }
 
     @Test
     fun `is not single readings processing when tariff G12`() {
         setTariff(TARIFF_G12)
 
-        assert(!sut.isSingleReadingsProcessing())
+        assertFalse(sut.isSingleReadingsProcessing())
     }
 
     @Test
     fun `is single readings processing for PGNiG provider`() {
         sut = FormVM(Provider.PGNIG, pricesRepo)
 
-        assert(sut.isSingleReadingsProcessing())
+        assertTrue(sut.isSingleReadingsProcessing())
     }
 
     private fun calculateDateFrom() = Dates.format(LocalDate.now().withDayOfMonth(1), FormFragment.DATE_PATTERN)

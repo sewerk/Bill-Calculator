@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.data
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import pl.srw.billcalculator.data.settings.SettingsRepo
 import pl.srw.billcalculator.type.Provider
@@ -10,6 +11,6 @@ class SettingsRepoTest {
 
     @Test
     fun `global settings list contains all Providers`() {
-        assert(sut.globalList().size == Provider.values().size)
+        assertEquals(sut.globalList().size, Provider.values().size)
     }
 }

@@ -4,6 +4,7 @@ import android.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
+import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
@@ -24,8 +25,8 @@ class PricesRepoTest {
 
     @Test
     fun `return default tariff if not changed`() {
-        assert(defaultTariff == sut.tariffPge.value)
-        assert(defaultTariff == sut.tariffTauron.value)
+        assertEquals(defaultTariff, sut.tariffPge.value)
+        assertEquals(defaultTariff, sut.tariffTauron.value)
     }
 
     @Test
@@ -33,7 +34,7 @@ class PricesRepoTest {
         val tariff = SharedPreferencesEnergyPrices.TARIFF_G12
 
         sut.updateTariff(Provider.PGE, tariff)
-        assert(tariff == sut.tariffPge.value)
+        assertEquals(tariff, sut.tariffPge.value)
     }
 
     @Test
@@ -41,7 +42,7 @@ class PricesRepoTest {
         val tariff = SharedPreferencesEnergyPrices.TARIFF_G12
 
         sut.updateTariff(Provider.TAURON, tariff)
-        assert(tariff == sut.tariffTauron.value)
+        assertEquals(tariff, sut.tariffTauron.value)
     }
 
     @Test
@@ -49,6 +50,6 @@ class PricesRepoTest {
         val prices = mapOf<String, PriceValue>()
         whenever(pricesBridge.getItemsForPgnig()).thenReturn(prices)
 
-        assert(prices == sut.getProviderSettings(Provider.PGNIG).prices)
+        assertEquals(prices, sut.getProviderSettings(Provider.PGNIG).prices)
     }
 }

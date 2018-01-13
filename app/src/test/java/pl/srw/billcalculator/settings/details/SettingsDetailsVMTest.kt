@@ -2,6 +2,7 @@ package pl.srw.billcalculator.settings.details
 
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import pl.srw.billcalculator.R
 import pl.srw.billcalculator.data.settings.prices.*
@@ -23,11 +24,11 @@ class SettingsDetailsVMTest {
 
         sut.getFor(provider)
 
-        assert(1 == sut.items.size)
+        assertEquals(1, sut.items.size)
         val item = sut.items[0] as InputSettingsDetailsListItem
-        assert(title == item.title)
-        assert(price == item.summary)
-        assert(measure.resId == item.measure)
+        assertEquals(title, item.title)
+        assertEquals(price, item.summary)
+        assertEquals(measure.resId, item.measure)
     }
 
     @Test
@@ -39,10 +40,10 @@ class SettingsDetailsVMTest {
 
         sut.getFor(provider)
 
-        assert(1 == sut.items.size)
+        assertEquals(1, sut.items.size)
         val item = sut.items[0] as PickingSettingsDetailsListItem
-        assert(R.string.settings_pge_tariff_title == item.title)
-        assert(tariff.summaryRes == item.summary)
+        assertEquals(R.string.settings_pge_tariff_title, item.title)
+        assertEquals(tariff.summaryRes, item.summary)
     }
 
     @Test
@@ -54,9 +55,9 @@ class SettingsDetailsVMTest {
 
         sut.getFor(provider)
 
-        assert(1 == sut.items.size)
+        assertEquals(1, sut.items.size)
         val item = sut.items[0] as PickingSettingsDetailsListItem
-        assert(R.string.settings_tauron_tariff == item.title)
-        assert(tariff.summaryRes == item.summary)
+        assertEquals(R.string.settings_tauron_tariff, item.title)
+        assertEquals(tariff.summaryRes, item.summary)
     }
 }
