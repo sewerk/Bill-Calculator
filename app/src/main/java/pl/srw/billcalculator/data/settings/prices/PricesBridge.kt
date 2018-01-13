@@ -2,6 +2,7 @@ package pl.srw.billcalculator.data.settings.prices
 
 import pl.srw.billcalculator.settings.prices.PgePrices
 import pl.srw.billcalculator.settings.prices.PgnigPrices
+import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.settings.prices.TauronPrices
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.ProviderMapper
@@ -79,14 +80,9 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
                 TAURON.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH))
     }
 
-    fun getPgeTariff(): String {
-        val prices = providerMapper.getPrices(Provider.PGE) as PgePrices
-        return prices.tariff
-    }
-
-    fun getTauronTariff(): String {
-        val prices = providerMapper.getPrices(Provider.TAURON) as TauronPrices
-        return prices.tariff
+    fun getTariff(provider: Provider): EnergyTariff {
+        val prices = providerMapper.getPrices(provider) as SharedPreferencesEnergyPrices
+        return EnergyTariff.valueOf(prices.tariff)
     }
 }
 

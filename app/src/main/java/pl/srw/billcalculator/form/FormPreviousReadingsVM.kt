@@ -6,8 +6,8 @@ import android.arch.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import pl.srw.billcalculator.data.bill.ReadingsRepo
+import pl.srw.billcalculator.data.settings.prices.EnergyTariff
 import pl.srw.billcalculator.data.settings.prices.PricesRepo
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.plusAssign
 import timber.log.Timber
@@ -21,12 +21,12 @@ class FormPreviousReadingsVM(private val provider: Provider,
     val nightPrevReadings = MutableLiveData<IntArray>()
 
     private val subscriptions = CompositeDisposable()
-    private val pgeTariffObserver = Observer<String> { t ->
-        if (SharedPreferencesEnergyPrices.TARIFF_G11 == t) fetchSinglePrevReadingsFor(Provider.PGE)
+    private val pgeTariffObserver = Observer<EnergyTariff> { t ->
+        if (EnergyTariff.G11 == t) fetchSinglePrevReadingsFor(Provider.PGE)
         else fetchDoublePrevReadingsFor(Provider.PGE)
     }
-    private val tauronTariffObserver = Observer<String> { t ->
-        if (SharedPreferencesEnergyPrices.TARIFF_G11 == t) fetchSinglePrevReadingsFor(Provider.TAURON)
+    private val tauronTariffObserver = Observer<EnergyTariff> { t ->
+        if (EnergyTariff.G11 == t) fetchSinglePrevReadingsFor(Provider.TAURON)
         else fetchDoublePrevReadingsFor(Provider.TAURON)
     }
 

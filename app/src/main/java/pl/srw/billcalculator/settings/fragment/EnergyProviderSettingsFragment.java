@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 
 import javax.inject.Inject;
 
+import pl.srw.billcalculator.data.settings.prices.EnergyTariff;
 import pl.srw.billcalculator.data.settings.prices.PricesRepo;
 
 abstract class EnergyProviderSettingsFragment extends ProviderSettingsFragment {
@@ -32,7 +33,7 @@ abstract class EnergyProviderSettingsFragment extends ProviderSettingsFragment {
         if (key.equals(getTariffKey())) {
             refreshScreen();
             String tariff = sharedPreferences.getString(key, null);
-            pricesRepo.updateTariff(getProvider(), tariff);
+            pricesRepo.updateTariff(getProvider(), EnergyTariff.valueOf(tariff));
         }
     }
 

@@ -13,8 +13,8 @@ import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import pl.srw.billcalculator.RxJavaBaseTest
 import pl.srw.billcalculator.data.bill.ReadingsRepo
+import pl.srw.billcalculator.data.settings.prices.EnergyTariff
 import pl.srw.billcalculator.data.settings.prices.PricesRepo
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
 
 @RunWith(JUnitParamsRunner::class)
@@ -26,7 +26,7 @@ class FormPreviousReadingsVMTest : RxJavaBaseTest() {
     val readingsRepo: ReadingsRepo = mock {
         on { getPreviousReadingsFor(any()) } doReturn Single.just(readings)
     }
-    val tariffLiveData = MutableLiveData<String>()
+    val tariffLiveData = MutableLiveData<EnergyTariff>()
     val pricesRepo: PricesRepo = mock {
         on { tariffPge } doReturn tariffLiveData
         on { tariffTauron } doReturn tariffLiveData
@@ -38,7 +38,7 @@ class FormPreviousReadingsVMTest : RxJavaBaseTest() {
     @Test
     @Parameters("PGNIG", "PGE", "TAURON")
     fun `fetches single previous readings for PGNIG or G11 tariff`(provider: Provider) {
-        setTariff(SharedPreferencesEnergyPrices.TARIFF_G11)
+        setTariff(EnergyTariff.G11)
 
         init(provider)
 
@@ -49,7 +49,7 @@ class FormPreviousReadingsVMTest : RxJavaBaseTest() {
     @Test
     @Parameters("PGNIG", "PGE", "TAURON")
     fun `does not fetch double previous readings for PGNIG or G11 tariff`(provider: Provider) {
-        setTariff(SharedPreferencesEnergyPrices.TARIFF_G11)
+        setTariff(EnergyTariff.G11)
 
         init(provider)
 
@@ -61,7 +61,7 @@ class FormPreviousReadingsVMTest : RxJavaBaseTest() {
     @Test
     @Parameters("PGE", "TAURON")
     fun `fetches double previous readings for G12 tariff`(provider: Provider) {
-        setTariff(SharedPreferencesEnergyPrices.TARIFF_G12)
+        setTariff(EnergyTariff.G12)
 
         init(provider)
 
@@ -73,7 +73,7 @@ class FormPreviousReadingsVMTest : RxJavaBaseTest() {
     @Test
     @Parameters("PGE", "TAURON")
     fun `does not fetch single previous readings for G12 tariff`(provider: Provider) {
-        setTariff(SharedPreferencesEnergyPrices.TARIFF_G12)
+        setTariff(EnergyTariff.G12)
 
         init(provider)
 
@@ -84,13 +84,13 @@ class FormPreviousReadingsVMTest : RxJavaBaseTest() {
     @Test
     @Parameters("PGE", "TAURON")
     fun `fetch previous readings when tariff changes`(provider: Provider) {
-        setTariff(SharedPreferencesEnergyPrices.TARIFF_G11)
+        setTariff(EnergyTariff.G11)
         init(provider)
         sut.dayPrevReadings.observeForever(testObserver)
         sut.nightPrevReadings.observeForever(testObserver)
 
         clearInvocations(testObserver, readingsRepo)
-        setTariff(SharedPreferencesEnergyPrices.TARIFF_G12)
+        setTariff(EnergyTariff.G12)
 
         verify(readingsRepo, times(2)).getPreviousReadingsFor(any())
         verify(testObserver, times(2)).onChanged(readings)
@@ -99,7 +99,7 @@ class FormPreviousReadingsVMTest : RxJavaBaseTest() {
     @Test
     @Parameters("PGE", "TAURON")
     fun `does not re-fetch previous readings but notifies cached value, when view re-attached`(provider: Provider) {
-        setTariff(SharedPreferencesEnergyPrices.TARIFF_G11)
+        setTariff(EnergyTariff.G11)
         init(provider)
         sut.singlePrevReadings.observeForever(testObserver)
 
@@ -111,7 +111,7 @@ class FormPreviousReadingsVMTest : RxJavaBaseTest() {
         verify(afterReAttachObserver).onChanged(readings)
     }
 
-    private fun setTariff(@SharedPreferencesEnergyPrices.TariffOption tariff: String) {
+    private fun setTariff(tariff: EnergyTariff) {
         tariffLiveData.value = tariff
         waitToFinish() // tariff change after observing trigger prev reading fetch
     }

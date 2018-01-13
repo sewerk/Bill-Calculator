@@ -15,11 +15,9 @@ import org.junit.Test
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.threeten.bp.LocalDate
+import pl.srw.billcalculator.data.settings.prices.EnergyTariff
 import pl.srw.billcalculator.data.settings.prices.PricesRepo
 import pl.srw.billcalculator.form.fragment.FormFragment
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices.TARIFF_G11
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices.TARIFF_G12
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.Dates
 
@@ -29,7 +27,7 @@ class FormVMTest {
     @get:Rule val rule: TestRule = InstantTaskExecutorRule()
 
     val provider = Provider.PGE
-    val tariffLiveData = MutableLiveData<String>()
+    val tariffLiveData = MutableLiveData<EnergyTariff>()
     val pricesRepo: PricesRepo = mock {
         on { tariffPge } doReturn tariffLiveData
         on { tariffTauron } doReturn tariffLiveData
@@ -57,11 +55,11 @@ class FormVMTest {
     }
 
     @Test
-    @Parameters(TARIFF_G11, TARIFF_G12)
-    fun `sets tariff label for energy providers`(tariff: String) {
+    @Parameters("G11", "G12")
+    fun `sets tariff label for energy providers`(tariff: EnergyTariff) {
         setTariff(tariff)
 
-        assertEquals(tariff, sut.tariffLabel)
+        assertEquals(tariff.name, sut.tariffLabel)
     }
 
     @Test
@@ -75,7 +73,7 @@ class FormVMTest {
     @Parameters("PGE", "TAURON")
     fun `single readings are visible when tariff G11`(provider: Provider) {
         sut = FormVM(provider, pricesRepo)
-        setTariff(TARIFF_G11)
+        setTariff(EnergyTariff.G11)
 
         assertEquals(View.VISIBLE, sut.singleReadingsVisibility)
         assertEquals(View.GONE, sut.doubleReadingsVisibility)
@@ -85,7 +83,7 @@ class FormVMTest {
     @Parameters("PGE", "TAURON")
     fun `double readings are visible when tariff G12`(provider: Provider) {
         sut = FormVM(provider, pricesRepo)
-        setTariff(TARIFF_G12)
+        setTariff(EnergyTariff.G12)
 
         assertEquals(View.GONE, sut.singleReadingsVisibility)
         assertEquals(View.VISIBLE, sut.doubleReadingsVisibility)
@@ -111,14 +109,14 @@ class FormVMTest {
 
     @Test
     fun `is single readings processing when tariff G11`() {
-        setTariff(TARIFF_G11)
+        setTariff(EnergyTariff.G11)
 
         assertTrue(sut.isSingleReadingsProcessing())
     }
 
     @Test
     fun `is not single readings processing when tariff G12`() {
-        setTariff(TARIFF_G12)
+        setTariff(EnergyTariff.G12)
 
         assertFalse(sut.isSingleReadingsProcessing())
     }
@@ -137,7 +135,7 @@ class FormVMTest {
         return Dates.format(now.withDayOfMonth(now.lengthOfMonth()), FormFragment.DATE_PATTERN)
     }
 
-    private fun setTariff(@SharedPreferencesEnergyPrices.TariffOption tariff: String) {
+    private fun setTariff(tariff: EnergyTariff) {
         tariffLiveData.value = tariff
     }
 }

@@ -7,9 +7,9 @@ import android.view.View
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import pl.srw.billcalculator.BR
+import pl.srw.billcalculator.data.settings.prices.EnergyTariff
 import pl.srw.billcalculator.data.settings.prices.PricesRepo
 import pl.srw.billcalculator.form.fragment.FormFragment
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.Dates
 import pl.srw.billcalculator.util.SingleLiveEvent
@@ -52,9 +52,9 @@ class FormVM(val provider: Provider,
     // commands
     val openSettingsCommand = SingleLiveEvent<Provider>()
 
-    private val tariffObserver = Observer<String> {
+    private val tariffObserver = Observer<EnergyTariff> {
         val tariff = it!!
-        tariffLabel = tariff
+        tariffLabel = tariff.name
         setReadingsVisibility(tariff)
     }
 
@@ -84,8 +84,8 @@ class FormVM(val provider: Provider,
 
     fun isSingleReadingsProcessing() = singleReadingsVisibility == View.VISIBLE
 
-    private fun setReadingsVisibility(tariff: String) {
-        if (tariff == SharedPreferencesEnergyPrices.TARIFF_G11) {
+    private fun setReadingsVisibility(tariff: EnergyTariff) {
+        if (tariff == EnergyTariff.G11) {
             singleReadingsVisibility = View.VISIBLE
             doubleReadingsVisibility = View.GONE
         } else {
