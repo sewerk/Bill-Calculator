@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer
 import com.nhaarman.mockito_kotlin.clearInvocations
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
+import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
@@ -25,14 +26,14 @@ class SettingsVMTest {
 
     @Test
     fun `provides items given by settings repo`() {
-        assert(sut.items.size == settingsRepo.globalList().size)
+        assertEquals(sut.items.size, settingsRepo.globalList().size)
     }
 
     @Test
     fun `provides items with provider title, summary and icon`() {
-        assert(sut.items[idx].titleRes == provider.settingsTitleRes)
-        assert(sut.items[idx].summaryRes == provider.settingsDescRes)
-        assert(sut.items[idx].logoRes == provider.logoSmallRes)
+        assertEquals(sut.items[idx].titleRes, provider.settingsTitleRes)
+        assertEquals(sut.items[idx].summaryRes, provider.settingsDescRes)
+        assertEquals(sut.items[idx].logoRes, provider.logoSmallRes)
     }
 
     @Test
@@ -74,6 +75,6 @@ class SettingsVMTest {
 
         sut.onRowClicked(picked)
 
-        assert(sut.selectedIndex == picked)
+        assertEquals(sut.selectedIndex, picked)
     }
 }
