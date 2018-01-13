@@ -1,7 +1,6 @@
 package pl.srw.billcalculator.data.settings.prices
 
 import android.arch.lifecycle.MutableLiveData
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.EnumVariantNotHandledException
 import pl.srw.billcalculator.type.Provider
 import timber.log.Timber
@@ -11,8 +10,8 @@ import javax.inject.Singleton
 @Singleton
 class PricesRepo @Inject constructor(private val pricesBridge: PricesBridge) {
 
-    val tariffPge = MutableLiveData<String>() // TODO: replace with EnergyTariff
-    val tariffTauron = MutableLiveData<String>()
+    val tariffPge = MutableLiveData<EnergyTariff>()
+    val tariffTauron = MutableLiveData<EnergyTariff>()
 
     init {
         tariffPge.value = getTariff(Provider.PGE)
@@ -23,18 +22,18 @@ class PricesRepo @Inject constructor(private val pricesBridge: PricesBridge) {
     fun getProviderSettings(provider: Provider): ProviderSettings = when(provider) {
         Provider.PGNIG -> SimpleProviderSettings(Provider.PGNIG, pricesBridge.getItemsForPgnig())
         Provider.PGE -> {
-            if (SharedPreferencesEnergyPrices.TARIFF_G11 == tariffPge.value)
+            if (EnergyTariff.G11 == tariffPge.value)
                 TariffProviderSettings(Provider.PGE, EnergyTariff.G11, pricesBridge.getItemsForPgeG11())
             else TariffProviderSettings(Provider.PGE, EnergyTariff.G12, pricesBridge.getItemsForPgeG12())
         }
         Provider.TAURON -> {
-            if (SharedPreferencesEnergyPrices.TARIFF_G11 == tariffTauron.value)
+            if (EnergyTariff.G11 == tariffTauron.value)
                 TariffProviderSettings(Provider.TAURON, EnergyTariff.G11, pricesBridge.getItemsForTauronG11())
             else TariffProviderSettings(Provider.TAURON, EnergyTariff.G12, pricesBridge.getItemsForTauronG12())
         }
     }
 
-    fun updateTariff(provider: Provider, tariff: String) {
+    fun updateTariff(provider: Provider, tariff: EnergyTariff) {
         Timber.d("Upgrading $provider tariff to $tariff")
         when (provider) {
             Provider.PGE -> tariffPge.value = tariff
@@ -43,10 +42,8 @@ class PricesRepo @Inject constructor(private val pricesBridge: PricesBridge) {
         }
     }
 
-    @SharedPreferencesEnergyPrices.TariffOption
     private fun getTariff(provider: Provider) = when(provider) {
-        Provider.PGE -> pricesBridge.getPgeTariff()
-        Provider.TAURON -> pricesBridge.getTauronTariff()
+        Provider.PGE, Provider.TAURON -> pricesBridge.getTariff(provider)
         else -> throw EnumVariantNotHandledException(provider)
     }
 }

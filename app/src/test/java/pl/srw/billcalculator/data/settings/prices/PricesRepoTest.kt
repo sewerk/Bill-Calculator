@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.data.settings.prices
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
+import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
@@ -8,17 +9,15 @@ import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.type.Provider
 
 class PricesRepoTest {
 
     @get:Rule val rule: TestRule = InstantTaskExecutorRule()
 
-    val defaultTariff = SharedPreferencesEnergyPrices.TARIFF_G11
+    val defaultTariff = EnergyTariff.G11
     val pricesBridge: PricesBridge = mock {
-        on { getPgeTariff() } doReturn defaultTariff
-        on { getTauronTariff() } doReturn defaultTariff
+        on { getTariff(any()) } doReturn defaultTariff
     }
 
     val sut by lazy { PricesRepo(pricesBridge) } // to delay init after rule is ready
@@ -31,7 +30,7 @@ class PricesRepoTest {
 
     @Test
     fun `returns new tariff if changed for PGE`() {
-        val tariff = SharedPreferencesEnergyPrices.TARIFF_G12
+        val tariff = EnergyTariff.G12
 
         sut.updateTariff(Provider.PGE, tariff)
         assertEquals(tariff, sut.tariffPge.value)
@@ -39,7 +38,7 @@ class PricesRepoTest {
 
     @Test
     fun `returns new tariff if changed for TAURON`() {
-        val tariff = SharedPreferencesEnergyPrices.TARIFF_G12
+        val tariff = EnergyTariff.G12
 
         sut.updateTariff(Provider.TAURON, tariff)
         assertEquals(tariff, sut.tariffTauron.value)
