@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import javax.inject.Inject;
 
+import pl.srw.billcalculator.data.settings.prices.EnergyTariff;
 import pl.srw.billcalculator.data.settings.prices.PricesRepo;
 import pl.srw.billcalculator.di.TestDependencies;
 import pl.srw.billcalculator.history.DrawerActivity;
@@ -38,7 +39,7 @@ public class InstantAutoCompleteUITest {
     public void setUp() throws Exception {
         TestDependencies.inject(this);
         HistoryGenerator.clear();
-        pricesRepo.updateTariff(Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G11);
+        pricesRepo.updateTariff(Provider.PGE, EnergyTariff.G11);
         pgePrices.setTariff(SharedPreferencesEnergyPrices.TARIFF_G11);
 
         testRule.launchActivity(null);
