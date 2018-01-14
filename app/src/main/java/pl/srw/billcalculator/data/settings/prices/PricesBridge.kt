@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.data.settings.prices
 
+import android.support.annotation.VisibleForTesting
 import pl.srw.billcalculator.settings.prices.PgePrices
 import pl.srw.billcalculator.settings.prices.PgnigPrices
 import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
@@ -86,8 +87,8 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
     }
 }
 
-
-private object PGNIG {
+@VisibleForTesting
+object PGNIG {
     const val WSP_KONW = "Wspolczynnik konwersji"
     const val ABONAMENTOWA = "Opłata abonamentowa"
     const val PALIWO_GAZ = "Paliwo gazowe"
@@ -95,7 +96,8 @@ private object PGNIG {
     const val DYSTR_ZMIENNA = "Dystrybucja zmienna"
 }
 
-private object PGE {
+@VisibleForTesting
+object PGE {
     const val ENERGIA = "za energię czynną"
     const val OZE = "opłata OZE"
     const val SKL_JAKOSC = "składnik jakościowy"
@@ -110,7 +112,8 @@ private object PGE {
     const val SIECIOWA_NOC = "opłata sieciowa (strefa nocna)"
 }
 
-private object TAURON {
+@VisibleForTesting
+object TAURON {
     const val ENERGIA = "Energia elektryczna czynna całodobowa"
     const val OZE = "Opłata OZE całodobowa"
     const val DYST_ZMIENNA = "Opłata dystr. zm. całodobowa"
