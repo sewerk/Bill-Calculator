@@ -47,8 +47,8 @@
                   android:theme="@style/AppTheme.Tauron" />
 
         <activity
-            android:name=".settings.SettingsActivity"
-            android:label="@string/settings_label">
+            android:name=".settings.activity.SettingsActivity"
+            android:label="@string/settings_label"> <!--TODO-->
         </activity>
 
         <activity android:name=".settings.activity.ProviderSettingsActivity">
