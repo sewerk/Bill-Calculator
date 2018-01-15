@@ -33,7 +33,7 @@ class SettingsController : Controller() {
     private fun onViewBound() {
        getViewModel().also {
            binding.vm = it
-           binding.list.adapter = SettingsListAdapter(it.items)
+           binding.settingsList.adapter = SettingsListAdapter(it.items)
        }.apply {
            switchProviderTab.observe(activity, switchSettingsDetailsFor)
            openProviderSettings.observe(activity, showProviderSettingsScreen)
@@ -44,7 +44,7 @@ class SettingsController : Controller() {
     private val switchSettingsDetailsFor = Observer<Provider> { provider: Provider? ->
         val detailsModel = SettingsDetailsController.createFor(provider!!)
         getChildRouter(binding.prefsFrame!!).setRoot(RouterTransaction.with(detailsModel))
-        binding.list.setItemChecked(binding.vm!!.selectedIndex, true)
+        binding.settingsList.setItemChecked(binding.vm!!.selectedIndex, true)
     }
 
     private val showProviderSettingsScreen = Observer<Provider> { provider: Provider? ->
