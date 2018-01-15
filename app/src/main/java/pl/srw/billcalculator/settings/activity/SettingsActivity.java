@@ -40,7 +40,7 @@ public class SettingsActivity extends BackableActivity<SettingsComponent>
     private static final String DESCRIPTION = "DESCRIPTION";
     private static final String[] COLUMNS = {ICON, TITLE, DESCRIPTION};
 
-    @BindView(R.id.list) ListView list;
+    @BindView(R.id.settings_list) ListView list;
     @Nullable @BindView(R.id.prefs_frame) FrameLayout frameView;
 
     @Inject SettingsPresenter presenter;
@@ -91,7 +91,7 @@ public class SettingsActivity extends BackableActivity<SettingsComponent>
         list.setAdapter(prepareAdapter(providers));
     }
 
-    @OnItemClick(R.id.list)
+    @OnItemClick(R.id.settings_list)
     void onProviderClicked(int position) {
         presenter.providerClicked(position);
     }
