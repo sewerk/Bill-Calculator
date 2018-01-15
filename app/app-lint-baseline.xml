@@ -3,9 +3,21 @@
 
     <issue
         id="ObsoleteLintCustomCheck"
-        message="Lint found one or more custom checks using its older Java API; these checks are still run in compatibility mode, but this causes duplicated parsing, and in the next version lint will no longer include this legacy mode. Make sure the following lint detectors are upgraded to the new API: butterknife.lint.InvalidR2UsageDetector">
+        message="Lint found one or more custom checks using its older Java API; these checks are still run in compatibility mode, but this causes duplicated parsing, and in the next version lint will no longer include this legacy mode. Make sure the following lint detectors are upgraded to the new API: butterknife.lint.InvalidR2UsageDetector, com.bluelinelabs.conductor.lint.ControllerChangeHandlerIssueDetector, com.bluelinelabs.conductor.lint.ControllerIssueDetector">
         <location
             file="app"/>
+    </issue>
+
+    <issue
+        id="MissingRegistered"
+        message="Class referenced in the manifest, `pl.srw.billcalculator.settings.SettingsActivity`, was not found in the project or the libraries"
+        errorLine1="        &lt;activity
+"
+        errorLine2="        ^">
+        <location
+            file="src\main\AndroidManifest.xml"
+            line="45"
+            column="9"/>
     </issue>
 
     <issue
@@ -27,35 +39,26 @@
     </issue>
 
     <issue
+        id="Registered"
+        message="The `&lt;activity> pl.srw.billcalculator.settings.activity.SettingsActivity` is not registered in the manifest"
+        errorLine1="import pl.srw.billcalculator.util.analytics.ContentType;
+"
+        errorLine2="                                         ^">
+        <location
+            file="src\main\java\pl\srw\billcalculator\settings\activity\SettingsActivity.java"
+            line="31"
+            column="42"/>
+    </issue>
+
+    <issue
         id="UnusedAttribute"
-        message="Attribute `fullBackupOnly` is only used in API level 21 and higher (current min is 15)"
-        errorLine1="        android:fullBackupOnly=&quot;true&quot;"
+        message="Attribute `fullBackupOnly` is only used in API level 21 and higher (current min is 16)"
+        errorLine1="        android:fullBackupOnly=&quot;true&quot;
+"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/AndroidManifest.xml"
+            file="src\main\AndroidManifest.xml"
             line="12"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="UnusedAttribute"
-        message="Attribute `fontFamily` is only used in API level 16 and higher (current min is 15)"
-        errorLine1="          android:fontFamily=&quot;sans-serif-medium&quot;"
-        errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/layout/activity_drawer_nav_header.xml"
-            line="10"
-            column="11"/>
-    </issue>
-
-    <issue
-        id="TimberExceptionLogging"
-        message="Use single-argument log method instead of null/empty message"
-        errorLine1="        Timber.e(exception, message);"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/pl/srw/billcalculator/wrapper/Analytics.java"
-            line="74"
             column="9"/>
     </issue>
 
@@ -342,7 +345,43 @@
         errorLine1="&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
         errorLine2="^">
         <location
-            file="src/main/res/drawable/new_ui_border.xml"
+            file="src\main\res\drawable\new_ui_border.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.settings_activity` appears to be unused"
+        errorLine1="&lt;layout>
+"
+        errorLine2="^">
+        <location
+            file="src\main\res\layout\settings_activity.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.settings_details` appears to be unused"
+        errorLine1="&lt;android.support.v7.widget.RecyclerView
+"
+        errorLine2="^">
+        <location
+            file="src\main\res\layout\settings_details.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.settings_details_item` appears to be unused"
+        errorLine1="&lt;layout>
+"
+        errorLine2="^">
+        <location
+            file="src\main\res\layout\settings_details_item.xml"
             line="2"
             column="1"/>
     </issue>
@@ -499,15 +538,76 @@
 
     <issue
         id="UnusedResources"
+        message="The resource `R.string.settings_energy_tariff_pick_G11` appears to be unused"
+        errorLine1="    &lt;string name=&quot;settings_energy_tariff_pick_G11&quot; translatable=&quot;false&quot;>Taryfa całodobowa (G11)&lt;/string>
+"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="166"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.settings_energy_tariff_pick_G12` appears to be unused"
+        errorLine1="    &lt;string name=&quot;settings_energy_tariff_pick_G12&quot; translatable=&quot;false&quot;>Taryfa dwustrefowa (G12)&lt;/string>
+"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="167"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.price_measure_zl_kWh` appears to be unused"
+        errorLine1="    &lt;string name=&quot;price_measure_zl_kWh&quot; translatable=&quot;false&quot;>zł/kWh&lt;/string>
+"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="168"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.price_measure_zl_MWh` appears to be unused"
+        errorLine1="    &lt;string name=&quot;price_measure_zl_MWh&quot; translatable=&quot;false&quot;>zł/MWh&lt;/string>
+"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="169"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.price_measure_zl_month` appears to be unused"
+        errorLine1="    &lt;string name=&quot;price_measure_zl_month&quot; translatable=&quot;false&quot;>zł/m-c&lt;/string>
+"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="170"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
         message="The resource `R.string.version_text` appears to be unused"
-        errorLine1="    &lt;string name=&quot;version_text&quot;>Version %1$s&lt;![CDATA[&lt;br/>under &lt;a href=&quot;http://opensource.org/licenses/MIT&quot;>MIT license&lt;/a>]]&gt;&lt;/string>"
+        errorLine1="    &lt;string name=&quot;version_text&quot;>Version %1$s&lt;![CDATA[&lt;br/>under &lt;a href=&quot;http://opensource.org/licenses/MIT&quot;>MIT license&lt;/a>]]&gt;&lt;/string>
+"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/res/values/strings.xml"
-            line="202"
+            file="src\main\res\values\strings.xml"
+            line="207"
             column="13"/>
         <location
-            file="src/main/res/values-pl/strings.xml"
+            file="src\main\res\values-pl\strings.xml"
             line="82"
             column="13"/>
     </issue>
@@ -515,14 +615,15 @@
     <issue
         id="UnusedResources"
         message="The resource `R.string.description` appears to be unused"
-        errorLine1="    &lt;string name=&quot;description&quot;>Calculate the cost of utility bill&lt;/string>"
+        errorLine1="    &lt;string name=&quot;description&quot;>Calculate the cost of utility bill&lt;/string>
+"
         errorLine2="            ~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/res/values/strings.xml"
-            line="203"
+            file="src\main\res\values\strings.xml"
+            line="208"
             column="13"/>
         <location
-            file="src/main/res/values-pl/strings.xml"
+            file="src\main\res\values-pl\strings.xml"
             line="83"
             column="13"/>
     </issue>
@@ -530,14 +631,15 @@
     <issue
         id="UnusedResources"
         message="The resource `R.string.contact_header` appears to be unused"
-        errorLine1="    &lt;string name=&quot;contact_header&quot;>In case of problems/ideas:&lt;/string>"
+        errorLine1="    &lt;string name=&quot;contact_header&quot;>In case of problems/ideas:&lt;/string>
+"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/res/values/strings.xml"
-            line="204"
+            file="src\main\res\values\strings.xml"
+            line="209"
             column="13"/>
         <location
-            file="src/main/res/values-pl/strings.xml"
+            file="src\main\res\values-pl\strings.xml"
             line="84"
             column="13"/>
     </issue>
@@ -545,14 +647,15 @@
     <issue
         id="UnusedResources"
         message="The resource `R.string.emailme` appears to be unused"
-        errorLine1="    &lt;string name=&quot;emailme&quot;>write what you think&lt;/string>"
+        errorLine1="    &lt;string name=&quot;emailme&quot;>write what you think&lt;/string>
+"
         errorLine2="            ~~~~~~~~~~~~~~">
         <location
-            file="src/main/res/values/strings.xml"
-            line="205"
+            file="src\main\res\values\strings.xml"
+            line="210"
             column="13"/>
         <location
-            file="src/main/res/values-pl/strings.xml"
+            file="src\main\res\values-pl\strings.xml"
             line="85"
             column="13"/>
     </issue>
@@ -560,14 +663,15 @@
     <issue
         id="UnusedResources"
         message="The resource `R.string.link_gplus` appears to be unused"
-        errorLine1="    &lt;string name=&quot;link_gplus&quot;>or join early version testing&lt;/string>"
+        errorLine1="    &lt;string name=&quot;link_gplus&quot;>or join early version testing&lt;/string>
+"
         errorLine2="            ~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/res/values/strings.xml"
-            line="206"
+            file="src\main\res\values\strings.xml"
+            line="211"
             column="13"/>
         <location
-            file="src/main/res/values-pl/strings.xml"
+            file="src\main\res\values-pl\strings.xml"
             line="86"
             column="13"/>
     </issue>
@@ -575,14 +679,15 @@
     <issue
         id="UnusedResources"
         message="The resource `R.string.clause` appears to be unused"
-        errorLine1="    &lt;string name=&quot;clause&quot;>The names, logos and trade marks are owned by distribution companies. Given calculations are just approximate value of the bill and cannot be used as ground for financial claiming.&lt;/string>"
+        errorLine1="    &lt;string name=&quot;clause&quot;>The names, logos and trade marks are owned by distribution companies. Given calculations are just approximate value of the bill and cannot be used as ground for financial claiming.&lt;/string>
+"
         errorLine2="            ~~~~~~~~~~~~~">
         <location
-            file="src/main/res/values/strings.xml"
-            line="207"
+            file="src\main\res\values\strings.xml"
+            line="212"
             column="13"/>
         <location
-            file="src/main/res/values-pl/strings.xml"
+            file="src\main\res\values-pl\strings.xml"
             line="87"
             column="13"/>
     </issue>
@@ -590,14 +695,15 @@
     <issue
         id="UnusedResources"
         message="The resource `R.string.email_client_missing` appears to be unused"
-        errorLine1="    &lt;string name=&quot;email_client_missing&quot;>I could not find any e-mail client installed&lt;/string>"
+        errorLine1="    &lt;string name=&quot;email_client_missing&quot;>I could not find any e-mail client installed&lt;/string>
+"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/res/values/strings.xml"
-            line="208"
+            file="src\main\res\values\strings.xml"
+            line="213"
             column="13"/>
         <location
-            file="src/main/res/values-pl/strings.xml"
+            file="src\main\res\values-pl\strings.xml"
             line="88"
             column="13"/>
     </issue>
@@ -605,14 +711,15 @@
     <issue
         id="UnusedResources"
         message="The resource `R.string.about_logo_content_desc` appears to be unused"
-        errorLine1="    &lt;string name=&quot;about_logo_content_desc&quot;>Application logo&lt;/string>"
+        errorLine1="    &lt;string name=&quot;about_logo_content_desc&quot;>Application logo&lt;/string>
+"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/res/values/strings.xml"
-            line="209"
+            file="src\main\res\values\strings.xml"
+            line="214"
             column="13"/>
         <location
-            file="src/main/res/values-pl/strings.xml"
+            file="src\main\res\values-pl\strings.xml"
             line="89"
             column="13"/>
     </issue>
@@ -1152,32 +1259,11 @@
     <issue
         id="SelectableText"
         message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
-        errorLine1="    &lt;TextView"
+        errorLine1="    &lt;TextView
+"
         errorLine2="    ^">
         <location
-            file="src/main/res/layout/settings_list_item.xml"
-            line="25"
-            column="5"/>
-    </issue>
-
-    <issue
-        id="SelectableText"
-        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
-        errorLine1="    &lt;TextView"
-        errorLine2="    ^">
-        <location
-            file="src/main/res/layout/settings_list_item.xml"
-            line="39"
-            column="5"/>
-    </issue>
-
-    <issue
-        id="SelectableText"
-        message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
-        errorLine1="    &lt;TextView"
-        errorLine2="    ^">
-        <location
-            file="src/main/res/layout/tauron_components_table_row.xml"
+            file="src\main\res\layout\tauron_components_table_row.xml"
             line="18"
             column="5"/>
     </issue>
