@@ -9,45 +9,22 @@
     </issue>
 
     <issue
-        id="MissingRegistered"
-        message="Class referenced in the manifest, `pl.srw.billcalculator.settings.SettingsActivity`, was not found in the project or the libraries"
-        errorLine1="        &lt;activity
-"
-        errorLine2="        ^">
-        <location
-            file="src\main\AndroidManifest.xml"
-            line="45"
-            column="9"/>
-    </issue>
-
-    <issue
         id="InvalidPackage"
         message="Invalid package reference in library; not included in Android: `javax.management`. Referenced from `com.itextpdf.testutils.ITextTest`.">
         <location
-            file="libs/itextg-5.5.4.jar"/>
+            file="libs\itextg-5.5.4.jar"/>
     </issue>
 
     <issue
         id="OldTargetApi"
         message="Not targeting the latest versions of Android; compatibility &#xA;modes apply. Consider testing and updating this version. &#xA;Consult the android.os.Build.VERSION_CODES javadoc for details."
-        errorLine1="        targetSdkVersion 26"
+        errorLine1="        targetSdkVersion 26
+"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
             line="13"
             column="9"/>
-    </issue>
-
-    <issue
-        id="Registered"
-        message="The `&lt;activity> pl.srw.billcalculator.settings.activity.SettingsActivity` is not registered in the manifest"
-        errorLine1="import pl.srw.billcalculator.util.analytics.ContentType;
-"
-        errorLine2="                                         ^">
-        <location
-            file="src\main\java\pl\srw\billcalculator\settings\activity\SettingsActivity.java"
-            line="31"
-            column="42"/>
     </issue>
 
     <issue
@@ -924,6 +901,18 @@
             file="src/debug/res/menu/drawer_activity.xml"
             line="19"
             column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.settings_details_list` appears to be unused"
+        errorLine1="    android:id=&quot;@+id/settings_details_list&quot;
+"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src\main\res\layout\settings_details.xml"
+            line="4"
+            column="5"/>
     </issue>
 
     <issue
