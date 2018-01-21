@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.util.binding.notifiable
+package pl.srw.billcalculator.common.binding.notifiable
 
 import android.databinding.BaseObservable
 import android.databinding.Observable

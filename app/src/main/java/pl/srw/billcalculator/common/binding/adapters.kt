@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.util.binding
+package pl.srw.billcalculator.common.binding
 
 import android.databinding.BindingAdapter
 import android.databinding.adapters.ViewBindingAdapter
