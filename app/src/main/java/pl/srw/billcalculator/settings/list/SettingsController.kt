@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.settings
+package pl.srw.billcalculator.settings.list
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
