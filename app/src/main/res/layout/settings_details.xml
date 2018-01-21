@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/settings_details_list"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-</android.support.v7.widget.RecyclerView>
+<layout>
+    <data>
+        <variable name="vm" type="pl.srw.billcalculator.settings.details.SettingsDetailsVM" />
+    </data>
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/settings_details_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:items="@{vm.items}" />
+</layout>

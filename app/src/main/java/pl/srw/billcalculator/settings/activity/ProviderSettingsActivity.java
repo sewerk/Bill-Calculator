@@ -11,8 +11,7 @@ import pl.srw.billcalculator.settings.di.ProviderSettingsComponent;
 import pl.srw.billcalculator.settings.fragment.ProviderSettingsFragment;
 import pl.srw.billcalculator.type.Provider;
 
-public class ProviderSettingsActivity extends BackableActivity<ProviderSettingsComponent>
-        implements ProviderSettingsFragmentOwner {
+public class ProviderSettingsActivity extends BackableActivity<ProviderSettingsComponent> {
 
     private static final String FRAGMENT_TAG = "SettingsFragment";
     private static final String EXTRA_PROVIDER_NAME = "PROVIDER_NAME";
@@ -38,11 +37,6 @@ public class ProviderSettingsActivity extends BackableActivity<ProviderSettingsC
 
         if (getSupportActionBar() != null)
             getSupportActionBar().setTitle(provider.settingsTitleRes);
-    }
-
-    @Override
-    public ProviderSettingsFragment getProviderSettingsFragment() {
-        return (ProviderSettingsFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
     }
 
     @Override

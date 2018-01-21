@@ -1,7 +1,6 @@
 package pl.srw.billcalculator.di
 
 import android.content.Context
-
 import pl.srw.billcalculator.BillCalculator
 import pl.srw.billcalculator.bill.service.PgeBillStoringService
 import pl.srw.billcalculator.bill.service.PgnigBillStoringService
@@ -10,6 +9,8 @@ import pl.srw.billcalculator.form.fragment.FormFragment
 import pl.srw.billcalculator.history.di.HistoryComponent
 import pl.srw.billcalculator.settings.SettingsController
 import pl.srw.billcalculator.settings.details.SettingsDetailsController
+import pl.srw.billcalculator.settings.details.SettingsDetailsVM
+import pl.srw.billcalculator.settings.details.restore.ConfirmRestoreSettingsDialogFragment
 import pl.srw.billcalculator.settings.di.SettingsComponent
 import timber.log.Timber
 
@@ -29,7 +30,7 @@ object Dependencies {
                 .build()
     }
 
-    // APLICATION SCOPE
+    // APPLICATION SCOPE
     fun inject(application: BillCalculator) {
         applicationComponent.inject(application)
     }
@@ -61,6 +62,10 @@ object Dependencies {
         getSettingsComponent().inject(controller)
     }
 
+    fun inject(fragment: ConfirmRestoreSettingsDialogFragment) {
+        getSettingsComponent().inject(fragment)
+    }
+
     // COMPONENTS MANAGEMENT
     fun getHistoryComponent(): HistoryComponent {
         if (historyComponent == null) {
@@ -86,5 +91,9 @@ object Dependencies {
     fun releaseSettingsComponent() {
         Timber.v("Releasing SettingsComponent")
         settingsComponent = null
+    }
+
+    fun set(vm: SettingsDetailsVM) {
+        getSettingsComponent().module().settingsDetailsVM = vm
     }
 }

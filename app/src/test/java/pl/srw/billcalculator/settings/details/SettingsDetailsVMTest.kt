@@ -22,7 +22,7 @@ class SettingsDetailsVMTest {
         val providerSettings = SimpleProviderSettings(provider, mapOf(title to PriceValue(price, measure)))
         whenever(pricesRepo.getProviderSettings(provider)).thenReturn(providerSettings)
 
-        sut.getFor(provider)
+        sut.updateItemsFor(provider)
 
         assertEquals(1, sut.items.size)
         val item = sut.items[0] as InputSettingsDetailsListItem
@@ -38,7 +38,7 @@ class SettingsDetailsVMTest {
         val providerSettings = TariffProviderSettings(provider, tariff, mapOf())
         whenever(pricesRepo.getProviderSettings(provider)).thenReturn(providerSettings)
 
-        sut.getFor(provider)
+        sut.updateItemsFor(provider)
 
         assertEquals(1, sut.items.size)
         val item = sut.items[0] as PickingSettingsDetailsListItem
@@ -53,7 +53,7 @@ class SettingsDetailsVMTest {
         val providerSettings = TariffProviderSettings(provider, tariff, mapOf())
         whenever(pricesRepo.getProviderSettings(provider)).thenReturn(providerSettings)
 
-        sut.getFor(provider)
+        sut.updateItemsFor(provider)
 
         assertEquals(1, sut.items.size)
         val item = sut.items[0] as PickingSettingsDetailsListItem

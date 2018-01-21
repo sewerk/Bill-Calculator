@@ -31,8 +31,7 @@ import pl.srw.billcalculator.util.analytics.Analytics;
 import pl.srw.billcalculator.util.analytics.ContentType;
 
 public class SettingsActivity extends BackableActivity<SettingsComponent>
-        implements SettingsPresenter.SettingsView,
-        ProviderSettingsFragmentOwner {
+        implements SettingsPresenter.SettingsView {
 
     private static final String FRAGMENT_TAG = "SettingsFragment";
     private static final String ICON = "ICON";
@@ -57,11 +56,6 @@ public class SettingsActivity extends BackableActivity<SettingsComponent>
     @Override
     public SettingsComponent prepareComponent() {
         return Dependencies.getApplicationComponent().getSettingsComponent();
-    }
-
-    @Override
-    public ProviderSettingsFragment getProviderSettingsFragment() {
-        return (ProviderSettingsFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
     }
 
     @Override

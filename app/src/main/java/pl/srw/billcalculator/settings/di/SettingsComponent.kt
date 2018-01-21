@@ -4,17 +4,18 @@ import dagger.Subcomponent
 import pl.srw.billcalculator.settings.SettingsController
 import pl.srw.billcalculator.settings.activity.SettingsActivity
 import pl.srw.billcalculator.settings.details.SettingsDetailsController
+import pl.srw.billcalculator.settings.details.restore.ConfirmRestoreSettingsDialogFragment
 import pl.srw.billcalculator.settings.fragment.PgeSettingsFragment
 import pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment
 import pl.srw.billcalculator.settings.fragment.TauronSettingsFragment
-import pl.srw.billcalculator.settings.restore.ConfirmRestoreSettingsDialogFragment
+import pl.srw.mfvp.di.MvpComponent
 import pl.srw.mfvp.di.scope.RetainActivityScope
 
 @RetainActivityScope
-@Subcomponent
-interface SettingsComponent : ConfirmRestoreSettingsComponentInjectable<SettingsActivity> {
+@Subcomponent(modules = [SettingsModule::class])
+interface SettingsComponent : MvpComponent<SettingsActivity> {
 
-    override fun inject(fragment: ConfirmRestoreSettingsDialogFragment)
+    fun inject(fragment: ConfirmRestoreSettingsDialogFragment)
 
     fun inject(pgeSettingsFragment: PgeSettingsFragment)
 
@@ -25,4 +26,6 @@ interface SettingsComponent : ConfirmRestoreSettingsComponentInjectable<Settings
     fun inject(controller: SettingsController)
 
     fun inject(controller: SettingsDetailsController)
+
+    fun module(): SettingsModule
 }

@@ -17,8 +17,8 @@ import java.util.Map;
 
 import pl.srw.billcalculator.BackableActivity;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.settings.details.restore.ConfirmRestoreSettingsDialogFragment;
 import pl.srw.billcalculator.settings.help.ProviderSettingsHelpActivity;
-import pl.srw.billcalculator.settings.restore.ConfirmRestoreSettingsDialogFragment;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 import timber.log.Timber;

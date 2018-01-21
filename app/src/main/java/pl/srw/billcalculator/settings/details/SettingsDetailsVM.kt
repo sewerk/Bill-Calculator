@@ -1,18 +1,20 @@
 package pl.srw.billcalculator.settings.details
 
 import android.arch.lifecycle.ViewModel
+import android.databinding.ObservableArrayList
 import pl.srw.billcalculator.R
 import pl.srw.billcalculator.data.settings.prices.PricesRepo
 import pl.srw.billcalculator.data.settings.prices.TariffProviderSettings
 import pl.srw.billcalculator.type.EnumVariantNotHandledException
 import pl.srw.billcalculator.type.Provider
+import timber.log.Timber
 
 class SettingsDetailsVM(private val pricesRepo: PricesRepo) : ViewModel() {
 
-    lateinit var items: List<SettingsDetailsListItem>
-        private set
+    val items = ObservableArrayList<SettingsDetailsListItem>()
 
-    fun getFor(provider: Provider) {
+    fun updateItemsFor(provider: Provider) {
+        Timber.d("getting settings details list for $provider")
         val newItems = mutableListOf<SettingsDetailsListItem>()
         val data = pricesRepo.getProviderSettings(provider)
         if (data is TariffProviderSettings) {
@@ -21,7 +23,8 @@ class SettingsDetailsVM(private val pricesRepo: PricesRepo) : ViewModel() {
         for (entry in data.prices) {
             newItems += InputSettingsDetailsListItem(entry.key, entry.value.value, entry.value.measure.resId)
         }
-        items = newItems
+        items.clear()
+        items.addAll(newItems)
     }
 
     private fun getTariffResource(provider: Provider) = when (provider) {

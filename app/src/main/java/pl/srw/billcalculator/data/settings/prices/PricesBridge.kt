@@ -85,6 +85,10 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
         val prices = providerMapper.getPrices(provider) as SharedPreferencesEnergyPrices
         return EnergyTariff.valueOf(prices.tariff)
     }
+
+    fun setDefaults(provider: Provider) {
+        providerMapper.getPrices(provider).setDefault()
+    }
 }
 
 @VisibleForTesting
