@@ -9,6 +9,7 @@ import pl.srw.billcalculator.R
 import pl.srw.billcalculator.common.BackableActivity
 import pl.srw.billcalculator.databinding.SettingsActivityBinding
 import pl.srw.billcalculator.di.Dependencies
+import pl.srw.billcalculator.settings.list.SettingsController
 import timber.log.Timber
 
 class SettingsActivity : BackableActivity() {

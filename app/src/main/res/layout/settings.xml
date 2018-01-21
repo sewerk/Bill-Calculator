@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
-        <variable name="vm" type="pl.srw.billcalculator.settings.SettingsVM" />
+        <variable name="vm" type="pl.srw.billcalculator.settings.list.SettingsVM" />
     </data>
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"

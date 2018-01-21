@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.settings
+package pl.srw.billcalculator.settings.list
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.arch.lifecycle.Observer

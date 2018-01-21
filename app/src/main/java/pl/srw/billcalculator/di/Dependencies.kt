@@ -7,11 +7,11 @@ import pl.srw.billcalculator.bill.service.PgnigBillStoringService
 import pl.srw.billcalculator.bill.service.TauronBillStoringService
 import pl.srw.billcalculator.form.fragment.FormFragment
 import pl.srw.billcalculator.history.di.HistoryComponent
-import pl.srw.billcalculator.settings.SettingsController
 import pl.srw.billcalculator.settings.details.SettingsDetailsController
 import pl.srw.billcalculator.settings.details.SettingsDetailsVM
 import pl.srw.billcalculator.settings.details.restore.ConfirmRestoreSettingsDialogFragment
 import pl.srw.billcalculator.settings.di.SettingsComponent
+import pl.srw.billcalculator.settings.list.SettingsController
 import timber.log.Timber
 
 @SuppressWarnings("TooManyFunctions")

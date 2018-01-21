@@ -1,13 +1,13 @@
 package pl.srw.billcalculator.settings.di
 
 import dagger.Subcomponent
-import pl.srw.billcalculator.settings.SettingsController
 import pl.srw.billcalculator.settings.activity.SettingsActivity
 import pl.srw.billcalculator.settings.details.SettingsDetailsController
 import pl.srw.billcalculator.settings.details.restore.ConfirmRestoreSettingsDialogFragment
 import pl.srw.billcalculator.settings.fragment.PgeSettingsFragment
 import pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment
 import pl.srw.billcalculator.settings.fragment.TauronSettingsFragment
+import pl.srw.billcalculator.settings.list.SettingsController
 import pl.srw.mfvp.di.MvpComponent
 import pl.srw.mfvp.di.scope.RetainActivityScope
 
