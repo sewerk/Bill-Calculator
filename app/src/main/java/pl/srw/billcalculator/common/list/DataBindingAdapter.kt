@@ -53,6 +53,7 @@ abstract class DataBindingAdapter <T, V : ViewDataBinding> : RecyclerView.Adapte
 
     protected abstract fun areContentsTheSame(oldItem: T, newItem: T): Boolean
 
+    @SuppressWarnings("ReturnCount")
     private fun calculateDiff(update: List<T>): DiffUtil.DiffResult {
         val oldItems = items
         return DiffUtil.calculateDiff(object : DiffUtil.Callback() {

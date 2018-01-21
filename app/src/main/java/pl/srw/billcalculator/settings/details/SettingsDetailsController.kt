@@ -6,7 +6,12 @@ import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import com.bluelinelabs.conductor.Controller
 import pl.srw.billcalculator.R
 import pl.srw.billcalculator.databinding.SettingsDetailsBinding
@@ -53,6 +58,7 @@ class SettingsDetailsController(bundle: Bundle) : Controller(bundle) {
         inflater.inflate(R.menu.settings, menu)
     }
 
+    @SuppressWarnings("ReturnCount")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_help) { // FIXME: move to presenter
             showHelp()
