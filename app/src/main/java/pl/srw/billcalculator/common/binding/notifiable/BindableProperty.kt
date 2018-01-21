@@ -1,4 +1,4 @@
-package pl.srw.billcalculator.util.binding.notifiable
+package pl.srw.billcalculator.common.binding.notifiable
 
 import kotlin.properties.ObservableProperty
 import kotlin.reflect.KProperty
