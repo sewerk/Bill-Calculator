@@ -33,6 +33,10 @@ class PricesRepo @Inject constructor(private val pricesBridge: PricesBridge) {
         }
     }
 
+    fun setDefaultPricesFor(provider: Provider) {
+        pricesBridge.setDefaults(provider)
+    }
+
     fun updateTariff(provider: Provider, tariff: EnergyTariff) {
         Timber.d("Upgrading $provider tariff to $tariff")
         when (provider) {

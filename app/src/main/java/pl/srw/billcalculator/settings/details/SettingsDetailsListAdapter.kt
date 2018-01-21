@@ -9,9 +9,8 @@ import pl.srw.billcalculator.databinding.SettingsDetailsItemBinding
 import pl.srw.billcalculator.settings.details.SettingsDetailsListItemTextExtractor.getSummary
 import pl.srw.billcalculator.settings.details.SettingsDetailsListItemTextExtractor.getTitle
 
-class SettingsDetailsListAdapter(items : List<SettingsDetailsListItem>,
-                                 private val clickVisitor: SettingsDetailsItemClickVisitor)
-    : DataBindingAdapter<SettingsDetailsListItem, SettingsDetailsItemBinding>(items) {
+class SettingsDetailsListAdapter(private val clickVisitor: SettingsDetailsItemClickVisitor)
+    : DataBindingAdapter<SettingsDetailsListItem, SettingsDetailsItemBinding>() {
 
     override fun createBinding(inflater: LayoutInflater, parent: ViewGroup): SettingsDetailsItemBinding =
             DataBindingUtil.inflate(inflater, R.layout.settings_details_item, parent, false)
@@ -21,5 +20,16 @@ class SettingsDetailsListAdapter(items : List<SettingsDetailsListItem>,
         binding.titleValue = getTitle(context, item)
         binding.summaryValue = getSummary(context, item)
         binding.settingsDetailsItem.setOnClickListener { item.visit(clickVisitor) }
+    }
+
+    override fun areItemsTheSame(oldItem: SettingsDetailsListItem, newItem: SettingsDetailsListItem) = when (oldItem) {
+        is InputSettingsDetailsListItem -> newItem is InputSettingsDetailsListItem && oldItem.title == newItem.title
+        is PickingSettingsDetailsListItem -> newItem is PickingSettingsDetailsListItem && oldItem.title == newItem.title
+    }
+
+    override fun areContentsTheSame(oldItem: SettingsDetailsListItem, newItem: SettingsDetailsListItem) = when (oldItem) {
+        is InputSettingsDetailsListItem -> oldItem.summary == (newItem as InputSettingsDetailsListItem).summary &&
+                oldItem.measure == newItem.measure
+        is PickingSettingsDetailsListItem -> oldItem.summary == (newItem as PickingSettingsDetailsListItem).summary
     }
 }
