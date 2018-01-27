@@ -27,7 +27,6 @@ private const val ARG_PROVIDER = "settings.provider.arg.provider"
 class SettingsDetailsController(bundle: Bundle) : Controller(bundle) {
 
     @Inject lateinit var vmFactory: SettingsDetailsVMFactory
-    @Inject lateinit var clickVisitor: SettingsDetailsItemClickVisitor
 
     private lateinit var binding: SettingsDetailsBinding
     private val provider by lazy { args.getSerializable(ARG_PROVIDER) as Provider }
@@ -79,7 +78,7 @@ class SettingsDetailsController(bundle: Bundle) : Controller(bundle) {
         val layoutManager = LinearLayoutManager(activity)
         view.layoutManager = layoutManager
         view.addItemDecoration(DividerItemDecoration(activity, layoutManager.orientation))
-        view.adapter = SettingsDetailsListAdapter(clickVisitor)
+        view.adapter = SettingsDetailsListAdapter(SettingsDetailsItemClickVisitor(router))
     }
 
     private fun showHelp() {

@@ -5,6 +5,7 @@ import android.databinding.ObservableArrayList
 import pl.srw.billcalculator.R
 import pl.srw.billcalculator.data.settings.prices.PricesRepo
 import pl.srw.billcalculator.data.settings.prices.TariffProviderSettings
+import pl.srw.billcalculator.settings.details.dialog.SettingsTitleDescriptionMatcher
 import pl.srw.billcalculator.type.EnumVariantNotHandledException
 import pl.srw.billcalculator.type.Provider
 import timber.log.Timber
@@ -20,8 +21,12 @@ class SettingsDetailsVM(private val pricesRepo: PricesRepo) : ViewModel() {
         if (data is TariffProviderSettings) {
             newItems += PickingSettingsDetailsListItem(getTariffResource(provider), data.tariff.summaryRes)
         }
-        for (entry in data.prices) {
-            newItems += InputSettingsDetailsListItem(entry.key, entry.value.value, entry.value.measure.resId)
+        for ((title, price) in data.prices) {
+            newItems += InputSettingsDetailsListItem(
+                    title = title,
+                    summary = price.value,
+                    measure = price.measure.resId,
+                    description = SettingsTitleDescriptionMatcher.mapping[title])
         }
         items.clear()
         items.addAll(newItems)

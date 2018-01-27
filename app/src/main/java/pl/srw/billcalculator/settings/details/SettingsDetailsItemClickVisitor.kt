@@ -1,16 +1,16 @@
 package pl.srw.billcalculator.settings.details
 
-import javax.inject.Inject
-import javax.inject.Singleton
+import android.support.v4.app.FragmentActivity
+import com.bluelinelabs.conductor.Router
+import pl.srw.billcalculator.settings.details.dialog.InputSettingsDialogFragment
 
-@Singleton
-class SettingsDetailsItemClickVisitor @Inject constructor() {
+class SettingsDetailsItemClickVisitor(private val router: Router) {
 
     fun visit(item: PickingSettingsDetailsListItem) {
         TODO("not implemented")
     }
 
     fun visit(item: InputSettingsDetailsListItem) {
-        TODO("not implemented")
+        InputSettingsDialogFragment.show(router.activity as FragmentActivity, item)
     }
 }
