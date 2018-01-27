@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:locale="en" >
 
+    <string name="empty" translatable="false"/>
     <!-- Drawer activity -->
     <string name="app_name">Bill Calculator</string>
     <string name="app_name_short">Bill Calculator</string>
@@ -168,6 +169,9 @@
     <string name="price_measure_zl_kWh" translatable="false">zł/kWh</string>
     <string name="price_measure_zl_MWh" translatable="false">zł/MWh</string>
     <string name="price_measure_zl_month" translatable="false">zł/m-c</string>
+
+    <string name="settings_input_accept">Save</string>
+    <string name="settings_input_cancel">Cancel</string>
 
     <!-- PGE settings -->
     <string name="settings_pge" translatable="false">PGE</string>
