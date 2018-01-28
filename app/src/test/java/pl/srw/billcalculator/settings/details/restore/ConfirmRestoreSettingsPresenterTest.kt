@@ -6,15 +6,13 @@ import com.nhaarman.mockito_kotlin.verifyZeroInteractions
 import org.junit.Before
 import org.junit.Test
 import pl.srw.billcalculator.data.settings.prices.PricesRepo
-import pl.srw.billcalculator.settings.details.SettingsDetailsVM
 import pl.srw.billcalculator.type.Provider
 
 class ConfirmRestoreSettingsPresenterTest {
 
     val provider = Provider.PGNIG
     val pricesRepo: PricesRepo = mock()
-    val viewModel: SettingsDetailsVM = mock()
-    val sut = ConfirmRestoreSettingsPresenter(pricesRepo, viewModel)
+    val sut = ConfirmRestoreSettingsPresenter(pricesRepo)
 
     @Before
     fun setUp() {
@@ -29,17 +27,9 @@ class ConfirmRestoreSettingsPresenterTest {
     }
 
     @Test
-    fun `update settings details list on confirm restore`() {
-        sut.onConfirmClicked()
-
-        verify(viewModel).updateItemsFor(provider)
-    }
-
-    @Test
     fun `don't change prices on restore canceled`() {
         sut.onCancelClicked()
 
-        verifyZeroInteractions(viewModel)
         verifyZeroInteractions(pricesRepo)
     }
 }

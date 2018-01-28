@@ -11,10 +11,10 @@ object SettingsDetailsListItemTextExtractor {
     }
 
     fun getSummary(context: Context, item: SettingsDetailsListItem): String = when (item) {
-        is PickingSettingsDetailsListItem -> context.getString(item.summary)
+        is PickingSettingsDetailsListItem -> context.getString(item.value)
         is InputSettingsDetailsListItem -> {
             val measure = if (item.measure == R.string.empty) "" else "[${context.getString(item.measure)}]"
-            "${item.summary} $measure"
+            "${item.value} $measure"
         }
     }
 }

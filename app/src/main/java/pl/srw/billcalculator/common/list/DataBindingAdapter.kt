@@ -30,7 +30,7 @@ abstract class DataBindingAdapter <T, V : ViewDataBinding> : RecyclerView.Adapte
         Timber.d("Replacing data")
         if (update.isEmpty()) throw IllegalArgumentException("New list cannot be empty")
         else if (items.isEmpty() && update.isNotEmpty()) {
-            items = update
+            items = update.copy()
             notifyDataSetChanged()
         }
         else Single.just(update)
@@ -38,7 +38,7 @@ abstract class DataBindingAdapter <T, V : ViewDataBinding> : RecyclerView.Adapte
                 .map { calculateDiff(it) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { diffResult -> diffResult.run {
-                    items = update
+                    items = update.copy()
                     diffResult.dispatchUpdatesTo(this@DataBindingAdapter)
                 }}
     }
@@ -68,15 +68,16 @@ abstract class DataBindingAdapter <T, V : ViewDataBinding> : RecyclerView.Adapte
             override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
                 val oldItem = oldItems[oldItemPosition]
                 val newItem = update[newItemPosition]
-                return this@DataBindingAdapter.areItemsTheSame(oldItem, newItem)
+                return areItemsTheSame(oldItem, newItem)
             }
 
             override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
                 val oldItem = oldItems[oldItemPosition]
                 val newItem = update[newItemPosition]
-                return this@DataBindingAdapter.areContentsTheSame(oldItem, newItem)
+                return areContentsTheSame(oldItem, newItem)
             }
         })
     }
-
 }
+
+private fun <E> List<E>.copy(): List<E> = this.toList()

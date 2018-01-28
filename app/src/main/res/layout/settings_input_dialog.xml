@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
-        <variable name="item" type="pl.srw.billcalculator.settings.details.InputSettingsDetailsListItem" />
+        <variable name="value" type="String" />
+        <variable name="measureId" type="int" />
     </data>
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -19,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:text="@{item.summary}"
+            android:text="@={value}"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
@@ -31,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:text="@{item.measure}"
+            android:text="@{measureId}"
             tools:text="@string/price_measure_zl_kWh"/>
 
     </LinearLayout>
