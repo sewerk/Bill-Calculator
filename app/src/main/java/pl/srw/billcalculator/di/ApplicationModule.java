@@ -14,6 +14,8 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.data.settings.prices.PricesRepo;
+import pl.srw.billcalculator.data.settings.prices.PricesRepoImpl;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
 import pl.srw.billcalculator.settings.prices.RestorablePrices;
@@ -84,5 +86,11 @@ public class ApplicationModule {
     @Singleton
     Resources provideResources() {
         return context.getResources();
+    }
+
+    @Provides
+    @Singleton
+    PricesRepo providePricesRepo(PricesRepoImpl repo) {
+        return repo;
     }
 }

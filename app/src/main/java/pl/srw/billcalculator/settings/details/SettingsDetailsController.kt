@@ -47,7 +47,6 @@ class SettingsDetailsController(bundle: Bundle) : Controller(bundle) {
             vm = ViewModelProviders.of(activity, vmFactory).get(SettingsDetailsVM::class.java)
         }
         onViewBound()
-        Dependencies.set(binding.vm!!)
         setHasOptionsMenu(true)
         return binding.root
     }
@@ -73,7 +72,7 @@ class SettingsDetailsController(bundle: Bundle) : Controller(bundle) {
 
     private fun onViewBound() {
         val view = binding.settingsDetailsList
-        binding.vm!!.updateItemsFor(provider)
+        binding.vm!!.listItemsFor(provider)
 
         val layoutManager = LinearLayoutManager(activity)
         view.layoutManager = layoutManager

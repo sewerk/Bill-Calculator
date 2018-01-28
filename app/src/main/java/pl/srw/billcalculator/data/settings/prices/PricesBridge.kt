@@ -16,9 +16,12 @@ import javax.inject.Singleton
  */
 @Singleton
 class PricesBridge @Inject constructor(private val providerMapper: ProviderMapper) {
+    private val pgnigPrices = providerMapper.getPrices(Provider.PGNIG) as PgnigPrices
+    private val pgePrices = providerMapper.getPrices(Provider.PGE) as PgePrices
+    private val tauronPrices = providerMapper.getPrices(Provider.TAURON) as TauronPrices
 
     fun getItemsForPgnig(): Map<String, PriceValue> {
-        val prices = providerMapper.getPrices(Provider.PGNIG) as PgnigPrices
+        val prices = pgnigPrices
         return mapOf(PGNIG.WSP_KONW to PriceValue(prices.wspolczynnikKonwersji, PriceMeasure.NONE),
                 PGNIG.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH),
                 PGNIG.PALIWO_GAZ to PriceValue(prices.paliwoGazowe, PriceMeasure.KWH),
@@ -26,17 +29,20 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
                 PGNIG.DYSTR_ZMIENNA to PriceValue(prices.dystrybucyjnaZmienna, PriceMeasure.KWH))
     }
 
-    fun updatePgnig(items: Map<String, String>) {
-        val prices = providerMapper.getPrices(Provider.PGNIG) as PgnigPrices
-        if (prices.wspolczynnikKonwersji != items[PGNIG.WSP_KONW]) prices.wspolczynnikKonwersji = items[PGNIG.WSP_KONW]
-        if (prices.oplataAbonamentowa != items[PGNIG.ABONAMENTOWA]) prices.oplataAbonamentowa = items[PGNIG.ABONAMENTOWA]
-        if (prices.paliwoGazowe != items[PGNIG.PALIWO_GAZ]) prices.paliwoGazowe = items[PGNIG.PALIWO_GAZ]
-        if (prices.dystrybucyjnaStala != items[PGNIG.DYSTR_STALA]) prices.dystrybucyjnaStala = items[PGNIG.DYSTR_STALA]
-        if (prices.dystrybucyjnaZmienna != items[PGNIG.DYSTR_ZMIENNA]) prices.dystrybucyjnaZmienna = items[PGNIG.DYSTR_ZMIENNA]
+    fun updatePgnig(name: String, value: String) {
+        val prices = pgnigPrices
+        when (name) {
+            PGNIG.WSP_KONW -> if (prices.wspolczynnikKonwersji != value) prices.wspolczynnikKonwersji = value
+            PGNIG.ABONAMENTOWA -> if (prices.oplataAbonamentowa != value) prices.oplataAbonamentowa = value
+            PGNIG.PALIWO_GAZ -> if (prices.paliwoGazowe != value) prices.paliwoGazowe = value
+            PGNIG.DYSTR_STALA -> if (prices.dystrybucyjnaStala != value) prices.dystrybucyjnaStala = value
+            PGNIG.DYSTR_ZMIENNA -> if (prices.dystrybucyjnaZmienna != value) prices.dystrybucyjnaZmienna = value
+            else IllegalArgumentException("Unknown PGNIG price name: $name")
+        }
     }
 
     fun getItemsForPgeG11(): Map<String, PriceValue> {
-        val prices = providerMapper.getPrices(Provider.PGE) as PgePrices
+        val prices = pgePrices
         return mapOf(PGE.ENERGIA to PriceValue(prices.zaEnergieCzynna, PriceMeasure.KWH),
                 PGE.OZE to PriceValue(prices.oplataOze, PriceMeasure.MWH),
                 PGE.SKL_JAKOSC to PriceValue(prices.skladnikJakosciowy, PriceMeasure.KWH),
@@ -47,7 +53,7 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
     }
 
     fun getItemsForPgeG12(): Map<String, PriceValue> {
-        val prices = providerMapper.getPrices(Provider.PGE) as PgePrices
+        val prices = pgePrices
         return mapOf(PGE.ENERGIA_DZIEN to PriceValue(prices.zaEnergieCzynnaDzien, PriceMeasure.KWH),
                 PGE.SIECIOWA_DZIEN to PriceValue(prices.oplataSieciowaDzien, PriceMeasure.KWH),
                 PGE.OZE to PriceValue(prices.oplataOze, PriceMeasure.MWH),
@@ -59,8 +65,26 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
                 PGE.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH))
     }
 
+    fun updatePge(name: String, value: String) {
+        val prices = pgePrices
+        when (name) {
+            PGE.ENERGIA -> if (prices.zaEnergieCzynna != value) prices.zaEnergieCzynna = value
+            PGE.OZE -> if (prices.oplataOze != value) prices.oplataOze = value
+            PGE.SKL_JAKOSC -> if (prices.skladnikJakosciowy != value) prices.skladnikJakosciowy = value
+            PGE.SIECIOWA -> if (prices.oplataSieciowa != value) prices.oplataSieciowa = value
+            PGE.PRZEJSCIOWA -> if (prices.oplataPrzejsciowa != value) prices.oplataPrzejsciowa = value
+            PGE.STALA -> if (prices.oplataStalaZaPrzesyl != value) prices.oplataStalaZaPrzesyl = value
+            PGE.ABONAMENTOWA -> if (prices.oplataAbonamentowa != value) prices.oplataAbonamentowa = value
+            PGE.ENERGIA_DZIEN -> if (prices.zaEnergieCzynnaDzien != value) prices.zaEnergieCzynnaDzien = value
+            PGE.ENERGIA_NOC -> if (prices.zaEnergieCzynnaNoc != value) prices.zaEnergieCzynnaNoc = value
+            PGE.SIECIOWA_DZIEN -> if (prices.oplataSieciowaDzien != value) prices.oplataSieciowaDzien = value
+            PGE.SIECIOWA_NOC -> if (prices.oplataSieciowaNoc != value) prices.oplataSieciowaNoc = value
+            else IllegalArgumentException("Unknown PGE price name: $name")
+        }
+    }
+
     fun getItemsForTauronG11(): Map<String, PriceValue> {
-        val prices = providerMapper.getPrices(Provider.TAURON) as TauronPrices
+        val prices = tauronPrices
         return mapOf(TAURON.ENERGIA to PriceValue(prices.energiaElektrycznaCzynna, PriceMeasure.KWH),
                 TAURON.OZE to PriceValue(prices.oplataOze, PriceMeasure.KWH),
                 TAURON.DYST_ZMIENNA to PriceValue(prices.oplataDystrybucyjnaZmienna, PriceMeasure.KWH),
@@ -70,7 +94,7 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
     }
 
     fun getItemsForTauronG12(): Map<String, PriceValue> {
-        val prices = providerMapper.getPrices(Provider.TAURON) as TauronPrices
+        val prices = tauronPrices
         return mapOf(TAURON.ENERGIA_DZIEN to PriceValue(prices.energiaElektrycznaCzynnaDzien, PriceMeasure.KWH),
                 TAURON.ENERGIA_NOC to PriceValue(prices.energiaElektrycznaCzynnaNoc, PriceMeasure.KWH),
                 TAURON.OZE to PriceValue(prices.oplataOze, PriceMeasure.KWH),
@@ -79,6 +103,23 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
                 TAURON.DYST_STALA to PriceValue(prices.oplataDystrybucyjnaStala, PriceMeasure.MONTH),
                 TAURON.PRZEJSCIOWA to PriceValue(prices.oplataPrzejsciowa, PriceMeasure.MONTH),
                 TAURON.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH))
+    }
+
+    fun updateTauron(name: String, value: String) {
+        val prices = tauronPrices
+        when (name) {
+            TAURON.ENERGIA -> if (prices.energiaElektrycznaCzynna != value) prices.energiaElektrycznaCzynna = value
+            TAURON.OZE -> if (prices.oplataOze != value) prices.oplataOze = value
+            TAURON.DYST_ZMIENNA -> if (prices.oplataDystrybucyjnaZmienna != value) prices.oplataDystrybucyjnaZmienna = value
+            TAURON.DYST_STALA -> if (prices.oplataDystrybucyjnaStala != value) prices.oplataDystrybucyjnaStala = value
+            TAURON.PRZEJSCIOWA -> if (prices.oplataPrzejsciowa != value) prices.oplataPrzejsciowa = value
+            TAURON.ABONAMENTOWA -> if (prices.oplataAbonamentowa != value) prices.oplataAbonamentowa = value
+            TAURON.ENERGIA_DZIEN -> if (prices.energiaElektrycznaCzynnaDzien != value) prices.energiaElektrycznaCzynnaDzien = value
+            TAURON.ENERGIA_NOC -> if (prices.energiaElektrycznaCzynnaNoc != value) prices.energiaElektrycznaCzynnaNoc = value
+            TAURON.DYST_ZMIENNA_DZIEN -> if (prices.oplataDystrybucyjnaZmiennaDzien != value) prices.oplataDystrybucyjnaZmiennaDzien = value
+            TAURON.DYST_ZMIENNA_NOC -> if (prices.oplataDystrybucyjnaZmiennaNoc != value) prices.oplataDystrybucyjnaZmiennaNoc = value
+            else IllegalArgumentException("Unknown TAURON price name: $name")
+        }
     }
 
     fun getTariff(provider: Provider): EnergyTariff {

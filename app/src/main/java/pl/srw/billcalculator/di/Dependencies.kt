@@ -8,7 +8,7 @@ import pl.srw.billcalculator.bill.service.TauronBillStoringService
 import pl.srw.billcalculator.form.fragment.FormFragment
 import pl.srw.billcalculator.history.di.HistoryComponent
 import pl.srw.billcalculator.settings.details.SettingsDetailsController
-import pl.srw.billcalculator.settings.details.SettingsDetailsVM
+import pl.srw.billcalculator.settings.details.dialog.InputSettingsDialogFragment
 import pl.srw.billcalculator.settings.details.restore.ConfirmRestoreSettingsDialogFragment
 import pl.srw.billcalculator.settings.di.SettingsComponent
 import pl.srw.billcalculator.settings.list.SettingsController
@@ -62,8 +62,12 @@ object Dependencies {
         getSettingsComponent().inject(controller)
     }
 
-    fun inject(fragment: ConfirmRestoreSettingsDialogFragment) {
-        getSettingsComponent().inject(fragment)
+    fun inject(dialog: ConfirmRestoreSettingsDialogFragment) {
+        getSettingsComponent().inject(dialog)
+    }
+
+    fun inject(dialog: InputSettingsDialogFragment) {
+        getSettingsComponent().inject(dialog)
     }
 
     // COMPONENTS MANAGEMENT
@@ -91,9 +95,5 @@ object Dependencies {
     fun releaseSettingsComponent() {
         Timber.v("Releasing SettingsComponent")
         settingsComponent = null
-    }
-
-    fun set(vm: SettingsDetailsVM) {
-        getSettingsComponent().module().settingsDetailsVM = vm
     }
 }

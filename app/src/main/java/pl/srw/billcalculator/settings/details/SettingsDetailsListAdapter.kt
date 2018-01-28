@@ -28,8 +28,8 @@ class SettingsDetailsListAdapter(private val clickVisitor: SettingsDetailsItemCl
     }
 
     override fun areContentsTheSame(oldItem: SettingsDetailsListItem, newItem: SettingsDetailsListItem) = when (oldItem) {
-        is InputSettingsDetailsListItem -> oldItem.summary == (newItem as InputSettingsDetailsListItem).summary &&
+        is InputSettingsDetailsListItem -> oldItem.value == (newItem as InputSettingsDetailsListItem).value &&
                 oldItem.measure == newItem.measure
-        is PickingSettingsDetailsListItem -> oldItem.summary == (newItem as PickingSettingsDetailsListItem).summary
+        is PickingSettingsDetailsListItem -> oldItem.value == (newItem as PickingSettingsDetailsListItem).value
     }
 }

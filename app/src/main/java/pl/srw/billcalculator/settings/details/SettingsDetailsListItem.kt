@@ -9,7 +9,7 @@ sealed class SettingsDetailsListItem {
 }
 
 data class PickingSettingsDetailsListItem(@StringRes val title: Int,
-                                          @StringRes val summary: Int) : SettingsDetailsListItem() {
+                                          @StringRes val value: Int) : SettingsDetailsListItem() {
 
     override fun visit(visitor: SettingsDetailsItemClickVisitor) {
         visitor.visit(this)
@@ -18,7 +18,7 @@ data class PickingSettingsDetailsListItem(@StringRes val title: Int,
 
 @Parcelize
 data class InputSettingsDetailsListItem(val title: String,
-                                        val summary: String,
+                                        val value: String,
                                         @StringRes val measure: Int,
                                         val description: Int?) : SettingsDetailsListItem(), Parcelable {
 

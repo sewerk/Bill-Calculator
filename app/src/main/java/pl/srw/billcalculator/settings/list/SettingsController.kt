@@ -35,7 +35,7 @@ class SettingsController : Controller() {
            binding.vm = it
            binding.settingsList.adapter = SettingsListAdapter(it.items)
        }.apply {
-           switchProviderTab.observe(activity, switchSettingsDetailsFor)
+           switchProviderTab.observe(activity, switchSettingsDetailsFor) // TODO: bug registering multiple times on each back from details
            openProviderSettings.observe(activity, showProviderSettingsScreen)
            isOnTablet = binding.prefsFrame != null
        }
