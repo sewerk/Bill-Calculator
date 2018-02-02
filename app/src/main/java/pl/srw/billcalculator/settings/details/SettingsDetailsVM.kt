@@ -3,6 +3,7 @@ package pl.srw.billcalculator.settings.details
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
+import android.support.annotation.VisibleForTesting
 import pl.srw.billcalculator.R
 import pl.srw.billcalculator.data.settings.prices.PricesRepo
 import pl.srw.billcalculator.data.settings.prices.ProviderSettings
@@ -12,16 +13,15 @@ import pl.srw.billcalculator.type.EnumVariantNotHandledException
 import pl.srw.billcalculator.type.Provider
 import timber.log.Timber
 
-class SettingsDetailsVM(private val pricesRepo: PricesRepo) : ViewModel() {
+class SettingsDetailsVM(private val provider: Provider,
+                        private val pricesRepo: PricesRepo) : ViewModel() {
 
     val items = ObservableArrayList<SettingsDetailsListItem>()
 
-    private lateinit var provider: Provider
     private val settingsChangesObserver = Observer<ProviderSettings> { transform(it!!)}
 
-    fun listItemsFor(provider: Provider) {
+    init {
         Timber.d("Getting settings details list for $provider")
-        this.provider = provider
         when (provider) {
             Provider.PGE -> pricesRepo.pgeSettings.observeForever(settingsChangesObserver)
             Provider.PGNIG -> pricesRepo.pgnigSettings.observeForever(settingsChangesObserver)
@@ -30,15 +30,16 @@ class SettingsDetailsVM(private val pricesRepo: PricesRepo) : ViewModel() {
     }
 
     fun updatePrice(title: String, value: String) {
-        // TODO : validate value
-        pricesRepo.updatePrice(provider, title, value)
+        pricesRepo.updatePrice(provider, title, value.autoCorrect())
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        pricesRepo.pgeSettings.removeObserver(settingsChangesObserver)
-        pricesRepo.pgnigSettings.removeObserver(settingsChangesObserver)
-        pricesRepo.tauronSettings.removeObserver(settingsChangesObserver)
+    @VisibleForTesting(otherwise = VisibleForTesting.PROTECTED)
+    override public fun onCleared() {
+        when (provider) {
+            Provider.PGE -> pricesRepo.pgeSettings.removeObserver(settingsChangesObserver)
+            Provider.PGNIG -> pricesRepo.pgnigSettings.removeObserver(settingsChangesObserver)
+            Provider.TAURON -> pricesRepo.tauronSettings.removeObserver(settingsChangesObserver)
+        }
     }
 
     private fun transform(data: ProviderSettings) {
@@ -62,5 +63,10 @@ class SettingsDetailsVM(private val pricesRepo: PricesRepo) : ViewModel() {
         Provider.PGE -> R.string.settings_pge_tariff_title
         Provider.TAURON -> R.string.settings_tauron_tariff
         else -> throw EnumVariantNotHandledException(provider)
+    }
+
+    private fun String.autoCorrect(): String {
+        return if (this.isBlank() || "0.0".contains(this)) "0.00"
+        else this
     }
 }
