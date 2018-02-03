@@ -35,6 +35,7 @@ class SettingsDetailsVMTest {
         on { pgnigSettings } doReturn settings
         on { tauronSettings } doReturn settings
     }
+    val sut = SettingsDetailsVM(pricesRepo)
 
     @Test
     fun `items contains input item from prices map`() {
@@ -45,7 +46,7 @@ class SettingsDetailsVMTest {
         val providerSettings = SimpleProviderSettings(provider, mapOf(title to PriceValue(price, measure)))
         settings.value = providerSettings
 
-        val sut = SettingsDetailsVM(provider, pricesRepo)
+        sut.listItemsFor(provider)
 
         assertEquals(1, sut.items.size)
         val item = sut.items[0] as InputSettingsDetailsListItem
@@ -61,7 +62,7 @@ class SettingsDetailsVMTest {
         val providerSettings = TariffProviderSettings(provider, tariff, mapOf())
         settings.value = providerSettings
 
-        val sut = SettingsDetailsVM(provider, pricesRepo)
+        sut.listItemsFor(provider)
 
         assertEquals(1, sut.items.size)
         val item = sut.items[0] as PickingSettingsDetailsListItem
@@ -76,7 +77,7 @@ class SettingsDetailsVMTest {
         val providerSettings = TariffProviderSettings(provider, tariff, mapOf())
         settings.value = providerSettings
 
-        val sut = SettingsDetailsVM(provider, pricesRepo)
+        sut.listItemsFor(provider)
 
         assertEquals(1, sut.items.size)
         val item = sut.items[0] as PickingSettingsDetailsListItem
@@ -86,9 +87,9 @@ class SettingsDetailsVMTest {
 
     @Parameters("PGE", "PGNIG", "TAURON")
     @Test fun `update price forward for repository`(provider: Provider) {
-        val sut = SettingsDetailsVM(provider, pricesRepo)
         val title = "name"
         val value = "value"
+        sut.listItemsFor(provider)
 
         sut.updatePrice(title, value)
 
@@ -97,8 +98,8 @@ class SettingsDetailsVMTest {
 
     @Parameters("PGE", "PGNIG", "TAURON")
     @Test fun `if value changed to empty then update price to default value`(provider: Provider) {
-        val sut = SettingsDetailsVM(provider, pricesRepo)
         val title = "name"
+        sut.listItemsFor(provider)
 
         sut.updatePrice(title, "")
 
@@ -107,8 +108,8 @@ class SettingsDetailsVMTest {
 
     @Parameters("PGE", "PGNIG", "TAURON")
     @Test fun `if value changed to 0 then update price to default value`(provider: Provider) {
-        val sut = SettingsDetailsVM(provider, pricesRepo)
         val title = "name"
+        sut.listItemsFor(provider)
 
         sut.updatePrice(title, "0.")
 
@@ -117,9 +118,18 @@ class SettingsDetailsVMTest {
 
     @Parameters("PGE", "PGNIG", "TAURON")
     @Test fun `on cleanup remove observers from repository`(provider: Provider) {
-        val sut = SettingsDetailsVM(provider, pricesRepo)
+        sut.listItemsFor(provider)
 
         sut.onCleared()
+
+        verify(settings).removeObserver(any())
+    }
+
+    @Parameters("PGE", "PGNIG", "TAURON")
+    @Test fun `on second entry remove observers from repository`(provider: Provider) {
+        sut.listItemsFor(provider)
+
+        sut.listItemsFor(Provider.PGE)
 
         verify(settings).removeObserver(any())
     }
