@@ -43,9 +43,9 @@ class SettingsDetailsController(bundle: Bundle) : Controller(bundle) {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         Dependencies.inject(this)
-        vmFactory.provider = provider
         binding = SettingsDetailsBinding.inflate(inflater, container, false).apply {
             vm = ViewModelProviders.of(activity, vmFactory).get(SettingsDetailsVM::class.java)
+            vm!!.listItemsFor(provider)
         }
         onViewBound()
         setHasOptionsMenu(true)
@@ -72,12 +72,11 @@ class SettingsDetailsController(bundle: Bundle) : Controller(bundle) {
     }
 
     private fun onViewBound() {
-        val view = binding.settingsDetailsList
-
+        val listView = binding.settingsDetailsList
         val layoutManager = LinearLayoutManager(activity)
-        view.layoutManager = layoutManager
-        view.addItemDecoration(DividerItemDecoration(activity, layoutManager.orientation))
-        view.adapter = SettingsDetailsListAdapter(SettingsDetailsItemClickVisitor(router))
+        listView.layoutManager = layoutManager
+        listView.addItemDecoration(DividerItemDecoration(activity, layoutManager.orientation))
+        listView.adapter = SettingsDetailsListAdapter(SettingsDetailsItemClickVisitor(router))
     }
 
     private fun showHelp() {

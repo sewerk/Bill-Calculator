@@ -13,33 +13,26 @@ import pl.srw.billcalculator.type.EnumVariantNotHandledException
 import pl.srw.billcalculator.type.Provider
 import timber.log.Timber
 
-class SettingsDetailsVM(private val provider: Provider,
-                        private val pricesRepo: PricesRepo) : ViewModel() {
+class SettingsDetailsVM(private val pricesRepo: PricesRepo) : ViewModel() {
 
     val items = ObservableArrayList<SettingsDetailsListItem>()
 
+    private var provider: Provider? = null // view model has activity scope
     private val settingsChangesObserver = Observer<ProviderSettings> { transform(it!!)}
 
-    init {
-        Timber.d("Getting settings details list for $provider")
-        when (provider) {
-            Provider.PGE -> pricesRepo.pgeSettings.observeForever(settingsChangesObserver)
-            Provider.PGNIG -> pricesRepo.pgnigSettings.observeForever(settingsChangesObserver)
-            Provider.TAURON -> pricesRepo.tauronSettings.observeForever(settingsChangesObserver)
-        }
+    fun listItemsFor(newProvider: Provider) {
+        provider?.let { unregisterObserver(it) }
+        provider = newProvider
+        registerObserver(newProvider)
     }
 
     fun updatePrice(title: String, value: String) {
-        pricesRepo.updatePrice(provider, title, value.autoCorrect())
+        pricesRepo.updatePrice(provider!!, title, value.autoCorrect())
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PROTECTED)
     override public fun onCleared() {
-        when (provider) {
-            Provider.PGE -> pricesRepo.pgeSettings.removeObserver(settingsChangesObserver)
-            Provider.PGNIG -> pricesRepo.pgnigSettings.removeObserver(settingsChangesObserver)
-            Provider.TAURON -> pricesRepo.tauronSettings.removeObserver(settingsChangesObserver)
-        }
+        unregisterObserver(provider!!)
     }
 
     private fun transform(data: ProviderSettings) {
@@ -65,8 +58,25 @@ class SettingsDetailsVM(private val provider: Provider,
         else -> throw EnumVariantNotHandledException(provider)
     }
 
-    private fun String.autoCorrect(): String {
-        return if (this.isBlank() || "0.0".contains(this)) "0.00"
-        else this
+    private fun registerObserver(newProvider: Provider) {
+        Timber.d("Getting settings details list for $newProvider")
+        when (newProvider) {
+            Provider.PGE -> pricesRepo.pgeSettings.observeForever(settingsChangesObserver)
+            Provider.PGNIG -> pricesRepo.pgnigSettings.observeForever(settingsChangesObserver)
+            Provider.TAURON -> pricesRepo.tauronSettings.observeForever(settingsChangesObserver)
+        }
     }
+
+    private fun unregisterObserver(oldProvider: Provider) {
+        when (oldProvider) {
+            Provider.PGE -> pricesRepo.pgeSettings.removeObserver(settingsChangesObserver)
+            Provider.PGNIG -> pricesRepo.pgnigSettings.removeObserver(settingsChangesObserver)
+            Provider.TAURON -> pricesRepo.tauronSettings.removeObserver(settingsChangesObserver)
+        }
+    }
+}
+
+private fun String.autoCorrect(): String {
+    return if (this.isBlank() || "0.0".contains(this)) "0.00"
+    else this
 }
