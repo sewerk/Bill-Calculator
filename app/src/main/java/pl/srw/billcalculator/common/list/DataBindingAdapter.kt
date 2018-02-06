@@ -5,9 +5,9 @@ import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import org.jetbrains.anko.coroutines.experimental.bg
 import timber.log.Timber
 
 abstract class DataBindingAdapter <T, V : ViewDataBinding> : RecyclerView.Adapter<DataBindingVH<V>>() {
@@ -33,14 +33,7 @@ abstract class DataBindingAdapter <T, V : ViewDataBinding> : RecyclerView.Adapte
             items = update.copy()
             notifyDataSetChanged()
         }
-        else Single.just(update)
-                .subscribeOn(Schedulers.computation())
-                .map { calculateDiff(it) }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { diffResult -> diffResult.run {
-                    items = update.copy()
-                    diffResult.dispatchUpdatesTo(this@DataBindingAdapter)
-                }}
+        else calculateDiffAsnc(update)
     }
 
     override fun getItemCount() = items.size
@@ -53,9 +46,18 @@ abstract class DataBindingAdapter <T, V : ViewDataBinding> : RecyclerView.Adapte
 
     protected abstract fun areContentsTheSame(oldItem: T, newItem: T): Boolean
 
+    private fun calculateDiffAsnc(update: List<T>) {
+        async(UI) {
+            val diffResult = bg { calculateDiff(items, update) }
+            diffResult.await().run {
+                items = update.copy()
+                dispatchUpdatesTo(this@DataBindingAdapter)
+            }
+        }
+    }
+
     @SuppressWarnings("ReturnCount")
-    private fun calculateDiff(update: List<T>): DiffUtil.DiffResult {
-        val oldItems = items
+    private fun calculateDiff(oldItems: List<T>, update: List<T>): DiffUtil.DiffResult {
         return DiffUtil.calculateDiff(object : DiffUtil.Callback() {
             override fun getOldListSize(): Int {
                 return oldItems.size
