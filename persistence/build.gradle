@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 23
@@ -29,6 +30,7 @@ dependencies {
 
     api "org.greenrobot:greendao:$greenDaoVer"
     implementation "com.jakewharton.timber:timber:$timberVer"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVer"
 
     testImplementation "junit:junit:$junitVer"
 }

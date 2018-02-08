@@ -18,7 +18,7 @@ import pl.srw.billcalculator.data.settings.prices.PricesRepo;
 import pl.srw.billcalculator.data.settings.prices.PricesRepoImpl;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.settings.prices.PgnigPrices;
-import pl.srw.billcalculator.settings.prices.RestorablePrices;
+import pl.srw.billcalculator.settings.prices.SharedPrefsPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
 import pl.srw.billcalculator.type.Provider;
 
@@ -45,21 +45,21 @@ public class ApplicationModule {
     @Provides(type = Provides.Type.MAP)
     @Singleton
     @DependencyMapProviderKey(Provider.PGE)
-    RestorablePrices providePgeSharedPreferencesPrices(SharedPreferences prefs) {
+    SharedPrefsPrices providePgeSharedPreferencesPrices(SharedPreferences prefs) {
         return new PgePrices(prefs);
     }
 
     @Provides(type = Provides.Type.MAP)
     @Singleton
     @DependencyMapProviderKey(Provider.PGNIG)
-    RestorablePrices providePgnigSharedPreferencesPrices(SharedPreferences prefs) {
+    SharedPrefsPrices providePgnigSharedPreferencesPrices(SharedPreferences prefs) {
         return new PgnigPrices(prefs);
     }
 
     @Provides(type = Provides.Type.MAP)
     @Singleton
     @DependencyMapProviderKey(Provider.TAURON)
-    RestorablePrices provideTauronSharedPreferencesPrices(SharedPreferences prefs) {
+    SharedPrefsPrices provideTauronSharedPreferencesPrices(SharedPreferences prefs) {
         return new TauronPrices(prefs);
     }
 

@@ -1,8 +1,7 @@
-package pl.srw.billcalculator.data
+package pl.srw.billcalculator.data.settings
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import pl.srw.billcalculator.data.settings.SettingsRepo
 import pl.srw.billcalculator.type.Provider
 
 class SettingsRepoTest {
