@@ -4,7 +4,6 @@ import javax.inject.Inject;
 
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.di.Dependencies;
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.settings.prices.TauronPrices;
 import pl.srw.billcalculator.type.Provider;
 
@@ -24,12 +23,12 @@ public class TauronSettingsFragment extends EnergyProviderSettingsFragment {
 
     @Override
     protected String getTariffKey() {
-        return TauronPrices.KEY_TARIFF;
+        return "preferences_tauron_tariff";
     }
 
     @Override
     protected boolean isTariffG12() {
-        return SharedPreferencesEnergyPrices.TARIFF_G12.equals(tauronPrices.getTariff());
+        return "G12".equals(tauronPrices.getTariff());
     }
 
     @Override

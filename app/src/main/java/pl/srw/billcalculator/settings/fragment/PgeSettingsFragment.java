@@ -5,7 +5,6 @@ import javax.inject.Inject;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.di.Dependencies;
 import pl.srw.billcalculator.settings.prices.PgePrices;
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.type.Provider;
 
 public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
@@ -24,12 +23,12 @@ public class PgeSettingsFragment extends EnergyProviderSettingsFragment {
 
     @Override
     protected String getTariffKey() {
-        return PgePrices.KEY_TARIFF;
+        return "pge_tariff";
     }
 
     @Override
     protected boolean isTariffG12() {
-        return SharedPreferencesEnergyPrices.TARIFF_G12.equals(pgePrices.getTariff());
+        return "G12".equals(pgePrices.getTariff());
     }
 
     @Override

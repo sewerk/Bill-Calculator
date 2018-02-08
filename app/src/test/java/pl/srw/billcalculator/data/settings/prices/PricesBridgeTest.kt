@@ -9,7 +9,6 @@ import org.junit.Test
 import org.mockito.Mockito
 import pl.srw.billcalculator.settings.prices.PgePrices
 import pl.srw.billcalculator.settings.prices.PgnigPrices
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
 import pl.srw.billcalculator.settings.prices.TauronPrices
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.ProviderMapper
@@ -20,16 +19,16 @@ class PricesBridgeTest {
     val tauronPrices: TauronPrices = mock(defaultAnswer = Mockito.RETURNS_MOCKS)
     val pgnigPrices: PgnigPrices = mock(defaultAnswer = Mockito.RETURNS_MOCKS)
     val providerMapper: ProviderMapper = mock {
-        on { getPrices(Provider.PGE) } doReturn pgePrices
-        on { getPrices(Provider.PGNIG) } doReturn pgnigPrices
-        on { getPrices(Provider.TAURON) } doReturn tauronPrices
+        on { getPrefsPrices(Provider.PGE) } doReturn pgePrices
+        on { getPrefsPrices(Provider.PGNIG) } doReturn pgnigPrices
+        on { getPrefsPrices(Provider.TAURON) } doReturn tauronPrices
     }
 
     val sut = PricesBridge(providerMapper)
 
     @Test fun `returns PGE tariff from shared prefs`() {
-        whenever(pgePrices.tariff).thenReturn(SharedPreferencesEnergyPrices.TARIFF_G12)
-        whenever(providerMapper.getPrices(Provider.PGE)).thenReturn(pgePrices)
+        whenever(pgePrices.tariff).thenReturn(EnergyTariff.G12)
+        whenever(providerMapper.getPrefsPrices(Provider.PGE)).thenReturn(pgePrices)
 
         val result = sut.getTariff(Provider.PGE)
 
@@ -37,8 +36,8 @@ class PricesBridgeTest {
     }
 
     @Test fun `returns TAURON tariff from shared prefs`() {
-        whenever(tauronPrices.tariff).thenReturn(SharedPreferencesEnergyPrices.TARIFF_G11)
-        whenever(providerMapper.getPrices(Provider.TAURON)).thenReturn(tauronPrices)
+        whenever(tauronPrices.tariff).thenReturn(EnergyTariff.G11)
+        whenever(providerMapper.getPrefsPrices(Provider.TAURON)).thenReturn(tauronPrices)
 
         val result = sut.getTariff(Provider.TAURON)
 
@@ -50,7 +49,7 @@ class PricesBridgeTest {
         val dystStalaPrice = "3.21"
         whenever(pgnigPrices.paliwoGazowe).thenReturn(paliwoPrice)
         whenever(pgnigPrices.dystrybucyjnaStala).thenReturn(dystStalaPrice)
-        whenever(providerMapper.getPrices(Provider.PGNIG)).thenReturn(pgnigPrices)
+        whenever(providerMapper.getPrefsPrices(Provider.PGNIG)).thenReturn(pgnigPrices)
 
         val result = sut.getItemsForPgnig()
 
@@ -63,7 +62,7 @@ class PricesBridgeTest {
         val abonamentPrice = "2.33"
         whenever(pgePrices.zaEnergieCzynna).thenReturn(energiaPrice)
         whenever(pgePrices.oplataAbonamentowa).thenReturn(abonamentPrice)
-        whenever(providerMapper.getPrices(Provider.PGE)).thenReturn(pgePrices)
+        whenever(providerMapper.getPrefsPrices(Provider.PGE)).thenReturn(pgePrices)
 
         val result = sut.getItemsForPgeG11()
 
@@ -76,7 +75,7 @@ class PricesBridgeTest {
         val ozePrice = "2.23"
         whenever(pgePrices.zaEnergieCzynnaDzien).thenReturn(energiaDzienPrice)
         whenever(pgePrices.oplataOze).thenReturn(ozePrice)
-        whenever(providerMapper.getPrices(Provider.PGE)).thenReturn(pgePrices)
+        whenever(providerMapper.getPrefsPrices(Provider.PGE)).thenReturn(pgePrices)
 
         val result = sut.getItemsForPgeG12()
 
@@ -89,7 +88,7 @@ class PricesBridgeTest {
         val dystrZmiennaPrice = "2.343"
         whenever(tauronPrices.oplataPrzejsciowa).thenReturn(przejsciowaPrice)
         whenever(tauronPrices.oplataDystrybucyjnaZmienna).thenReturn(dystrZmiennaPrice)
-        whenever(providerMapper.getPrices(Provider.TAURON)).thenReturn(tauronPrices)
+        whenever(providerMapper.getPrefsPrices(Provider.TAURON)).thenReturn(tauronPrices)
 
         val result = sut.getItemsForTauronG11()
 
@@ -102,7 +101,7 @@ class PricesBridgeTest {
         val abonamentowaPrice = "7.33"
         whenever(tauronPrices.energiaElektrycznaCzynnaNoc).thenReturn(energiaNocPrice)
         whenever(tauronPrices.oplataAbonamentowa).thenReturn(abonamentowaPrice)
-        whenever(providerMapper.getPrices(Provider.TAURON)).thenReturn(tauronPrices)
+        whenever(providerMapper.getPrefsPrices(Provider.TAURON)).thenReturn(tauronPrices)
 
         val result = sut.getItemsForTauronG12()
 

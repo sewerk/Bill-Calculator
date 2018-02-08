@@ -11,10 +11,10 @@ import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyInt
 import pl.srw.billcalculator.RxJavaBaseTest
 import pl.srw.billcalculator.form.FormVM
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices.TARIFF_G11
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices.TARIFF_G12
 import pl.srw.billcalculator.type.Provider
+
+private const val TARIFF_G11 = "G11"
+private const val TARIFF_G12 = "G12"
 
 @RunWith(JUnitParamsRunner::class)
 class FormPresenterTest : RxJavaBaseTest() {
@@ -99,10 +99,10 @@ class FormPresenterTest : RxJavaBaseTest() {
 
     @Suppress("unused")
     private fun paramsEnergyProviderWithTariff() = arrayOf(
-            arrayOf(Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G11),
-            arrayOf(Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G11),
-            arrayOf(Provider.PGE, SharedPreferencesEnergyPrices.TARIFF_G12),
-            arrayOf(Provider.TAURON, SharedPreferencesEnergyPrices.TARIFF_G12)
+            arrayOf(Provider.PGE, TARIFF_G11),
+            arrayOf(Provider.TAURON, TARIFF_G11),
+            arrayOf(Provider.PGE, TARIFF_G12),
+            arrayOf(Provider.TAURON, TARIFF_G12)
     )
 
     @Test

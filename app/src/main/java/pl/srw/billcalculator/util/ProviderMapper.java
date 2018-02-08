@@ -4,19 +4,19 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import pl.srw.billcalculator.settings.prices.RestorablePrices;
+import pl.srw.billcalculator.settings.prices.SharedPrefsPrices;
 import pl.srw.billcalculator.type.Provider;
 
 public class ProviderMapper {
 
-    private final Map<Provider, RestorablePrices> pricesMap;
+    private final Map<Provider, SharedPrefsPrices> pricesMap;
 
     @Inject
-    public ProviderMapper(Map<Provider, RestorablePrices> pricesMap) {
+    public ProviderMapper(Map<Provider, SharedPrefsPrices> pricesMap) {
         this.pricesMap = pricesMap;
     }
 
-    public RestorablePrices getPrices(Provider provider) {
+    public SharedPrefsPrices getPrefsPrices(Provider provider) {
         return pricesMap.get(provider);
     }
 }

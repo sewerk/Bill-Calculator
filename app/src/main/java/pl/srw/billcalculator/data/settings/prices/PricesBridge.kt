@@ -1,9 +1,10 @@
 package pl.srw.billcalculator.data.settings.prices
 
 import android.support.annotation.VisibleForTesting
+import pl.srw.billcalculator.settings.prices.EnergyPrices
 import pl.srw.billcalculator.settings.prices.PgePrices
 import pl.srw.billcalculator.settings.prices.PgnigPrices
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices
+import pl.srw.billcalculator.settings.prices.Restorable
 import pl.srw.billcalculator.settings.prices.TauronPrices
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.util.ProviderMapper
@@ -16,9 +17,9 @@ import javax.inject.Singleton
  */
 @Singleton
 class PricesBridge @Inject constructor(private val providerMapper: ProviderMapper) {
-    private val pgnigPrices = providerMapper.getPrices(Provider.PGNIG) as PgnigPrices
-    private val pgePrices = providerMapper.getPrices(Provider.PGE) as PgePrices
-    private val tauronPrices = providerMapper.getPrices(Provider.TAURON) as TauronPrices
+    private val pgnigPrices = providerMapper.getPrefsPrices(Provider.PGNIG) as PgnigPrices
+    private val pgePrices = providerMapper.getPrefsPrices(Provider.PGE) as PgePrices
+    private val tauronPrices = providerMapper.getPrefsPrices(Provider.TAURON) as TauronPrices
 
     fun getItemsForPgnig(): Map<String, PriceValue> {
         val prices = pgnigPrices
@@ -123,12 +124,13 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
     }
 
     fun getTariff(provider: Provider): EnergyTariff {
-        val prices = providerMapper.getPrices(provider) as SharedPreferencesEnergyPrices
-        return EnergyTariff.valueOf(prices.tariff)
+        val prices = providerMapper.getPrefsPrices(provider) as EnergyPrices
+        return prices.tariff
     }
 
     fun setDefaults(provider: Provider) {
-        providerMapper.getPrices(provider).setDefault()
+        val prices = providerMapper.getPrefsPrices(provider) as Restorable
+        prices.setDefault()
     }
 }
 
