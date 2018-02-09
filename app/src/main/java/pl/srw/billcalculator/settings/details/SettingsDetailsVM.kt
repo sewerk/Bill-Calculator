@@ -4,12 +4,11 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
 import android.support.annotation.VisibleForTesting
-import pl.srw.billcalculator.R
+import pl.srw.billcalculator.data.settings.prices.EnergyTariff
 import pl.srw.billcalculator.data.settings.prices.PricesRepo
 import pl.srw.billcalculator.data.settings.prices.ProviderSettings
 import pl.srw.billcalculator.data.settings.prices.TariffProviderSettings
 import pl.srw.billcalculator.settings.details.dialog.SettingsTitleDescriptionMatcher
-import pl.srw.billcalculator.type.EnumVariantNotHandledException
 import pl.srw.billcalculator.type.Provider
 import timber.log.Timber
 
@@ -26,12 +25,22 @@ class SettingsDetailsVM(private val pricesRepo: PricesRepo) : ViewModel() {
         registerObserver(newProvider)
     }
 
-    fun updatePrice(title: String, value: String) {
+    fun valueChanged(title: String, value: String) {
         pricesRepo.updatePrice(provider!!, title, value.autoCorrect())
     }
 
+    fun optionPicked(titleResId: Int, valueResId: Int) {
+        for (item in items) {
+            if (item is PickingSettingsDetailsListItem
+                && item.title == titleResId) {
+                if (item.value != valueResId) pricesRepo.updateTariff(provider!!, EnergyTariff.findByStringRes(valueResId))
+                return
+            }
+        }
+    }
+
     @VisibleForTesting(otherwise = VisibleForTesting.PROTECTED)
-    override public fun onCleared() {
+    public override fun onCleared() {
         unregisterObserver(provider!!)
     }
 
@@ -39,7 +48,11 @@ class SettingsDetailsVM(private val pricesRepo: PricesRepo) : ViewModel() {
         Timber.d("Setting settings details list")
         val newItems = mutableListOf<SettingsDetailsListItem>()
         if (data is TariffProviderSettings) {
-            newItems += PickingSettingsDetailsListItem(getTariffResource(), data.tariff.summaryRes)
+            newItems += PickingSettingsDetailsListItem(
+                title = provider!!.tariffResource,
+                value = data.tariff.stringRes,
+                options = EnergyTariff.allStringResources()
+            )
         }
         for ((title, price) in data.prices) {
             newItems += InputSettingsDetailsListItem(
@@ -50,12 +63,6 @@ class SettingsDetailsVM(private val pricesRepo: PricesRepo) : ViewModel() {
         }
         items.clear()
         items.addAll(newItems)
-    }
-
-    private fun getTariffResource() = when (provider) {
-        Provider.PGE -> R.string.settings_pge_tariff_title
-        Provider.TAURON -> R.string.settings_tauron_tariff
-        else -> throw EnumVariantNotHandledException(provider)
     }
 
     private fun registerObserver(newProvider: Provider) {

@@ -35,25 +35,58 @@ class PricesRepoImplTest {
         assertEquals(defaultTariff, sut.tariffTauron.value)
     }
 
-    @Test fun `returns new tariff if changed for PGE`() {
+    @Test fun `returns new PGE tariff value if changed through bridge`() {
+        val provider = Provider.PGE
         val tariff = EnergyTariff.G12
+        whenever(pricesBridge.getTariff(provider)).thenReturn(tariff)
 
-        sut.updateTariff(Provider.PGE, tariff)
+        sut.updateTariff(provider, tariff)
 
         assertEquals(tariff, sut.tariffPge.value)
     }
 
-    @Test fun `returns new tariff if changed for TAURON`() {
+    @Test fun `returns new TAURON tariff value if changed through bridge`() {
+        val provider = Provider.TAURON
         val tariff = EnergyTariff.G12
+        whenever(pricesBridge.getTariff(provider)).thenReturn(tariff)
 
-        sut.updateTariff(Provider.TAURON, tariff)
+        sut.updateTariff(provider, tariff)
 
         assertEquals(tariff, sut.tariffTauron.value)
+    }
+
+    @Parameters("PGE", "TAURON")
+    @Test fun `updates tariff through bridge`(provider: Provider) {
+        val tariff = EnergyTariff.G12
+
+        sut.updateTariff(provider, tariff)
+
+        verify(pricesBridge).updateTariff(provider, tariff)
     }
 
     @Test(expected = EnumVariantNotHandledException::class)
     fun `throws exception if tariff change for non-energy provider`() {
         sut.updateTariff(Provider.PGNIG, EnergyTariff.G11)
+    }
+
+    @Test fun `refresh provider settings for PGE, when tariff changed`() {
+        val observer: Observer<ProviderSettings?> = mock()
+        sut.pgeSettings.observeForever(observer)
+        clearInvocations(observer)
+
+        sut.updateTariff(Provider.PGE, EnergyTariff.G12)
+
+        verify(observer).onChanged(any())
+    }
+
+    @Test fun `refresh provider settings for TAURON, when tariff changed`() {
+        val observer: Observer<ProviderSettings?> = mock()
+        sut.tauronSettings.observeForever(observer)
+        clearInvocations(observer)
+
+        sut.updateTariff(Provider.TAURON, EnergyTariff.G12)
+
+        verify(observer).onChanged(any())
     }
 
     @Test fun `prices are taken from prices bridge`() {
@@ -90,7 +123,7 @@ class PricesRepoImplTest {
         verify(pricesBridge).updateTauron(priceName, priceValue)
     }
 
-    @Test fun `update prices for PGE refreshes current settings values`() {
+    @Test fun `refreshes current settings values, when update prices for PGE`() {
         val observer: Observer<ProviderSettings?> = mock()
         sut.pgeSettings.observeForever(observer)
         clearInvocations(observer)
@@ -100,7 +133,7 @@ class PricesRepoImplTest {
         verify(observer).onChanged(any())
     }
 
-    @Test fun `update prices for PGNIG refreshes current settings values`() {
+    @Test fun `refreshes current settings values, when update prices for PGNIG`() {
         val observer: Observer<ProviderSettings?> = mock()
         sut.pgnigSettings.observeForever(observer)
         clearInvocations(observer)
@@ -110,7 +143,7 @@ class PricesRepoImplTest {
         verify(observer).onChanged(any())
     }
 
-    @Test fun `update prices for TAURON refreshes current settings values`() {
+    @Test fun `refreshes current settings values, when update prices for TAURON`() {
         val observer: Observer<ProviderSettings?> = mock()
         sut.tauronSettings.observeForever(observer)
         clearInvocations(observer)
@@ -127,7 +160,27 @@ class PricesRepoImplTest {
         verify(pricesBridge).setDefaults(provider)
     }
 
-    @Test fun `set defaults for PGE refreshes current settings values`() {
+    @Test fun `refreshes PGE tariff to G11, when set defaults for PGE`() {
+        val observer: Observer<EnergyTariff?> = mock()
+        sut.tariffPge.observeForever(observer)
+        clearInvocations(observer)
+
+        sut.setDefaultPricesFor(Provider.PGE)
+
+        verify(observer).onChanged(EnergyTariff.G11)
+    }
+
+    @Test fun `refreshes TAURON tariff to G11, when set defaults for TAURON`() {
+        val observer: Observer<EnergyTariff?> = mock()
+        sut.tariffTauron.observeForever(observer)
+        clearInvocations(observer)
+
+        sut.setDefaultPricesFor(Provider.TAURON)
+
+        verify(observer).onChanged(EnergyTariff.G11)
+    }
+
+    @Test fun `refreshes PGE current settings, when set defaults for PGE`() {
         val observer: Observer<ProviderSettings?> = mock()
         sut.pgeSettings.observeForever(observer)
         clearInvocations(observer)
@@ -137,7 +190,7 @@ class PricesRepoImplTest {
         verify(observer).onChanged(any())
     }
 
-    @Test fun `set defaults for PGNIG refreshes current settings values`() {
+    @Test fun `refreshes PGNIG current settings, when set defaults for PGNIG`() {
         val observer: Observer<ProviderSettings?> = mock()
         sut.pgnigSettings.observeForever(observer)
         clearInvocations(observer)
@@ -147,7 +200,7 @@ class PricesRepoImplTest {
         verify(observer).onChanged(any())
     }
 
-    @Test fun `set defaults for TAURON refreshes current settings values`() {
+    @Test fun `refreshes TAURON current settings, when set defaults for TAURON`() {
         val observer: Observer<ProviderSettings?> = mock()
         sut.tauronSettings.observeForever(observer)
         clearInvocations(observer)

@@ -18,44 +18,45 @@ class PricesRepoImpl @Inject constructor(private val pricesBridge: PricesBridge)
     override val tauronSettings = MutableLiveData<ProviderSettings>()
 
     init {
-        tariffPge.value = getTariff(Provider.PGE)
-        tariffTauron.value = getTariff(Provider.TAURON)
-        Timber.d("PGE tariff = ${tariffPge.value}, TAURON tariff = ${tariffTauron.value}")
         debugMeasure("Retrieving prices data from shared prefs") {
-            for (provider in Provider.values()) refreshProviderSettings(provider)
+            for (provider in Provider.values()) {
+                refreshTariff(provider)
+                refreshProviderSettings(provider)
+            }
         }
+        Timber.i("PGE tariff = ${tariffPge.value}, TAURON tariff = ${tariffTauron.value}")
     }
 
     override fun setDefaultPricesFor(provider: Provider) {
         Timber.d("Setting defaults for $provider")
         pricesBridge.setDefaults(provider)
+        refreshTariff(provider)
         refreshProviderSettings(provider)
     }
 
     override fun updateTariff(provider: Provider, tariff: EnergyTariff) {
-        Timber.d("Upgrading $provider tariff to $tariff")
-        when (provider) {
-            Provider.PGE -> tariffPge.value = tariff
-            Provider.TAURON -> tariffTauron.value = tariff
-            else -> throw EnumVariantNotHandledException(provider)
-        }
+        checkEnergyProvider(provider)
+        Timber.i("Upgrading $provider tariff to $tariff")
+        pricesBridge.updateTariff(provider, tariff)
+        refreshTariff(provider)
+        refreshProviderSettings(provider)
     }
 
     override fun updatePrice(provider: Provider, priceName: String, priceValue: String) {
         Timber.d("Updating $provider price: $priceName = $priceValue")
         when (provider) {
-            Provider.PGE -> {
-                pricesBridge.updatePge(priceName, priceValue)
-                refreshProviderSettings(Provider.PGE)
-            }
-            Provider.PGNIG -> {
-                pricesBridge.updatePgnig(priceName, priceValue)
-                refreshProviderSettings(Provider.PGNIG)
-            }
-            Provider.TAURON -> {
-                pricesBridge.updateTauron(priceName, priceValue)
-                refreshProviderSettings(Provider.TAURON)
-            }
+            Provider.PGE -> pricesBridge.updatePge(priceName, priceValue)
+            Provider.PGNIG -> pricesBridge.updatePgnig(priceName, priceValue)
+            Provider.TAURON -> pricesBridge.updateTauron(priceName, priceValue)
+        }
+        refreshProviderSettings(provider)
+    }
+
+    private fun refreshTariff(provider: Provider) {
+        when (provider) {
+            Provider.PGE -> tariffPge.value = pricesBridge.getTariff(Provider.PGE)
+            Provider.TAURON -> tariffTauron.value = pricesBridge.getTariff(Provider.TAURON)
+            else -> Timber.w("Refresh tariff for $provider invoked")
         }
     }
 
@@ -76,8 +77,9 @@ class PricesRepoImpl @Inject constructor(private val pricesBridge: PricesBridge)
         }
     }
 
-    private fun getTariff(provider: Provider) = when(provider) {
-        Provider.PGE, Provider.TAURON -> pricesBridge.getTariff(provider)
-        else -> throw EnumVariantNotHandledException(provider)
+    private fun checkEnergyProvider(provider: Provider) {
+        if (!isEnergy(provider)) throw EnumVariantNotHandledException(provider)
     }
+
+    private fun isEnergy(provider: Provider) = provider == Provider.PGE || provider == Provider.TAURON
 }

@@ -7,25 +7,25 @@ import android.support.v4.app.DialogFragment
 import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
-import pl.srw.billcalculator.R
-import pl.srw.billcalculator.databinding.SettingsInputDialogBinding
+import android.widget.LinearLayout
+import pl.srw.billcalculator.databinding.SettingsPickingDialogItemBinding
 import pl.srw.billcalculator.di.Dependencies
-import pl.srw.billcalculator.settings.details.InputSettingsDetailsListItem
+import pl.srw.billcalculator.settings.details.PickingSettingsDetailsListItem
 import pl.srw.billcalculator.settings.details.SettingsDetailsVM
 import pl.srw.billcalculator.settings.details.SettingsDetailsVMFactory
 import javax.inject.Inject
 
-private const val ARG_DATA = "Settings.details.dialog.input.data"
+private const val ARG_DATA = "Settings.details.dialog.picking.data"
 
-class InputSettingsDialogFragment : DialogFragment() {
+class PickingSettingsDialogFragment : DialogFragment() {
 
     companion object {
         fun show(activity: FragmentActivity,
-                 item: InputSettingsDetailsListItem) {
+                 item: PickingSettingsDetailsListItem) {
             val bundle = Bundle()
             bundle.putParcelable(ARG_DATA, item)
 
-            val dialogFragment = InputSettingsDialogFragment()
+            val dialogFragment = PickingSettingsDialogFragment()
             dialogFragment.arguments = bundle
             dialogFragment.show(activity.supportFragmentManager, null)
         }
@@ -33,7 +33,7 @@ class InputSettingsDialogFragment : DialogFragment() {
 
     @Inject lateinit var vmFactory: SettingsDetailsVMFactory
 
-    private val data by lazy { arguments!!.getParcelable(ARG_DATA) as InputSettingsDetailsListItem }
+    private val data by lazy { arguments!!.getParcelable(ARG_DATA) as PickingSettingsDetailsListItem }
     private val vm by lazy { ViewModelProviders.of(activity!!, vmFactory).get(SettingsDetailsVM::class.java)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,18 +42,25 @@ class InputSettingsDialogFragment : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val layoutInflater = LayoutInflater.from(context)
-        val binding = SettingsInputDialogBinding.inflate(layoutInflater).apply {
-            this.value = data.value
-            this.measureId = data.measure
-        }
-
         return AlertDialog.Builder(context!!)
-                .setTitle(data.title)
-                .setMessage(data.description?: R.string.empty)
-                .setView(binding.root)
-                .setPositiveButton(R.string.settings_input_accept, { _, _ -> vm.valueChanged(data.title, binding.value!!) })
-                .setNegativeButton(R.string.settings_input_cancel, { _, _ -> dismiss() })
-                .create()
+            .setTitle(data.title)
+            .setView(prepareListView(data.options))
+            .create()
+    }
+
+    private fun prepareListView(options: List<Int>): LinearLayout {
+        val layoutInflater = LayoutInflater.from(context)
+        val group = LinearLayout(context)
+        group.orientation = LinearLayout.VERTICAL
+        for (optionTextId in options) {
+            SettingsPickingDialogItemBinding.inflate(layoutInflater, group, true).apply {
+                textId = optionTextId
+                isChecked = optionTextId == data.value
+            }.root.setOnClickListener {
+                vm.optionPicked(data.title, optionTextId)
+                dismiss()
+            }
+        }
+        return group
     }
 }

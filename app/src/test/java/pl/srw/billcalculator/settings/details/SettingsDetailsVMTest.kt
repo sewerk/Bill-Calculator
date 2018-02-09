@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.never
 import com.nhaarman.mockito_kotlin.spy
 import com.nhaarman.mockito_kotlin.verify
 import junitparams.JUnitParamsRunner
@@ -67,7 +68,7 @@ class SettingsDetailsVMTest {
         assertEquals(1, sut.items.size)
         val item = sut.items[0] as PickingSettingsDetailsListItem
         assertEquals(R.string.settings_pge_tariff_title, item.title)
-        assertEquals(tariff.summaryRes, item.value)
+        assertEquals(tariff.stringRes, item.value)
     }
 
     @Test
@@ -82,16 +83,16 @@ class SettingsDetailsVMTest {
         assertEquals(1, sut.items.size)
         val item = sut.items[0] as PickingSettingsDetailsListItem
         assertEquals(R.string.settings_tauron_tariff, item.title)
-        assertEquals(tariff.summaryRes, item.value)
+        assertEquals(tariff.stringRes, item.value)
     }
 
     @Parameters("PGE", "PGNIG", "TAURON")
-    @Test fun `update price forward for repository`(provider: Provider) {
+    @Test fun `updates price in repository when input value changed`(provider: Provider) {
         val title = "name"
         val value = "value"
         sut.listItemsFor(provider)
 
-        sut.updatePrice(title, value)
+        sut.valueChanged(title, value)
 
         verify(pricesRepo).updatePrice(provider, title, value)
     }
@@ -101,7 +102,7 @@ class SettingsDetailsVMTest {
         val title = "name"
         sut.listItemsFor(provider)
 
-        sut.updatePrice(title, "")
+        sut.valueChanged(title, "")
 
         verify(pricesRepo).updatePrice(provider, title, "0.00")
     }
@@ -111,9 +112,30 @@ class SettingsDetailsVMTest {
         val title = "name"
         sut.listItemsFor(provider)
 
-        sut.updatePrice(title, "0.")
+        sut.valueChanged(title, "0.")
 
         verify(pricesRepo).updatePrice(provider, title, "0.00")
+    }
+
+    @Test fun `updates tariff in repository when option picked`() {
+        val provider = Provider.PGE
+        val tariff = EnergyTariff.G12
+        given_providerSettings(provider, EnergyTariff.G11)
+
+        sut.optionPicked(provider.tariffResource, tariff.stringRes)
+
+        verify(pricesRepo).updateTariff(provider, tariff)
+    }
+
+    @Test
+    fun `does nothing if picked current value`() {
+        val provider = Provider.PGE
+        val tariff = EnergyTariff.G12
+        given_providerSettings(provider, tariff)
+
+        sut.optionPicked(provider.tariffResource, tariff.stringRes)
+
+        verify(pricesRepo, never()).updateTariff(provider, tariff)
     }
 
     @Parameters("PGE", "PGNIG", "TAURON")
@@ -132,5 +154,11 @@ class SettingsDetailsVMTest {
         sut.listItemsFor(Provider.PGE)
 
         verify(settings).removeObserver(any())
+    }
+
+    private fun given_providerSettings(provider: Provider, tariff: EnergyTariff) {
+        val providerSettings = TariffProviderSettings(provider, tariff, mapOf())
+        settings.value = providerSettings
+        sut.listItemsFor(provider)
     }
 }

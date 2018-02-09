@@ -9,6 +9,7 @@ import pl.srw.billcalculator.form.fragment.FormFragment
 import pl.srw.billcalculator.history.di.HistoryComponent
 import pl.srw.billcalculator.settings.details.SettingsDetailsController
 import pl.srw.billcalculator.settings.details.dialog.InputSettingsDialogFragment
+import pl.srw.billcalculator.settings.details.dialog.PickingSettingsDialogFragment
 import pl.srw.billcalculator.settings.details.restore.ConfirmRestoreSettingsDialogFragment
 import pl.srw.billcalculator.settings.di.SettingsComponent
 import pl.srw.billcalculator.settings.list.SettingsController
@@ -67,6 +68,10 @@ object Dependencies {
     }
 
     fun inject(dialog: InputSettingsDialogFragment) {
+        getSettingsComponent().inject(dialog)
+    }
+
+    fun inject(dialog: PickingSettingsDialogFragment) {
         getSettingsComponent().inject(dialog)
     }
 

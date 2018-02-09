@@ -49,6 +49,13 @@ public enum Provider {
         this.doubleReadingTypes = doubleReadingTypes;
     }
 
+    @StringRes
+    public int getTariffResource() {
+        if (this == Provider.PGE) return R.string.settings_pge_tariff_title;
+        if (this == Provider.TAURON) return R.string.settings_tauron_tariff;
+        throw new EnumVariantNotHandledException(this);
+    }
+
     public static Provider getByViewId(@IdRes int id) {
         if (id == R.id.fab_new_pge)
             return Provider.PGE;
@@ -59,5 +66,4 @@ public enum Provider {
         else
             throw new RuntimeException("Unhandled view Id=" + id);
     }
-
 }
