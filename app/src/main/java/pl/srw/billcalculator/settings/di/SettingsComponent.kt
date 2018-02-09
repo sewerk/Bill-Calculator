@@ -4,6 +4,7 @@ import dagger.Subcomponent
 import pl.srw.billcalculator.settings.activity.SettingsActivity
 import pl.srw.billcalculator.settings.details.SettingsDetailsController
 import pl.srw.billcalculator.settings.details.dialog.InputSettingsDialogFragment
+import pl.srw.billcalculator.settings.details.dialog.PickingSettingsDialogFragment
 import pl.srw.billcalculator.settings.details.restore.ConfirmRestoreSettingsDialogFragment
 import pl.srw.billcalculator.settings.fragment.PgeSettingsFragment
 import pl.srw.billcalculator.settings.fragment.PgnigSettingsFragment
@@ -29,4 +30,6 @@ interface SettingsComponent : MvpComponent<SettingsActivity> {
     fun inject(dialog: ConfirmRestoreSettingsDialogFragment)
 
     fun inject(dialog: InputSettingsDialogFragment)
+
+    fun inject(dialog: PickingSettingsDialogFragment)
 }

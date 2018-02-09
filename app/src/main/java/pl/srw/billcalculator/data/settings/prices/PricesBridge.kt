@@ -128,6 +128,11 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
         return prices.tariff
     }
 
+    fun updateTariff(provider: Provider, value: EnergyTariff) {
+        val prices = providerMapper.getPrefsPrices(provider) as EnergyPrices
+        prices.tariff = value
+    }
+
     fun setDefaults(provider: Provider) {
         val prices = providerMapper.getPrefsPrices(provider) as Restorable
         prices.setDefault()

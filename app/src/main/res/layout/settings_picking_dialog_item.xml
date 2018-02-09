@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="textId" type="int"/>
+        <variable name="isChecked" type="boolean" />
+    </data>
+    <RadioButton
+        android:id="@+id/settingsPickingDialogOption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:paddingLeft="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="8dp"
+        android:paddingRight="8dp"
+        android:text="@{textId}"
+        android:textSize="16sp"
+        android:checked="@{isChecked}"
+        tools:text="Grupa taryfowa"/>
+</layout>

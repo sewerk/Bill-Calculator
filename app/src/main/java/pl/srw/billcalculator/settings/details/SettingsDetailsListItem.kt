@@ -8,8 +8,10 @@ sealed class SettingsDetailsListItem {
     abstract fun visit(visitor: SettingsDetailsItemClickVisitor)
 }
 
+@Parcelize
 data class PickingSettingsDetailsListItem(@StringRes val title: Int,
-                                          @StringRes val value: Int) : SettingsDetailsListItem() {
+                                          @StringRes val value: Int,
+                                          val options: List<Int>) : SettingsDetailsListItem(), Parcelable {
 
     override fun visit(visitor: SettingsDetailsItemClickVisitor) {
         visitor.visit(this)
