@@ -10,6 +10,7 @@ ext {
 
     mfvpVer = '1.0-beta1'
     conductorVer = "2.1.4"
+    conductorArchVer = "0.1.1"
     greenDaoVer = '3.1.0'
     daggerVer = '2.0.1'
     butterKnifeVer = '8.8.1'
