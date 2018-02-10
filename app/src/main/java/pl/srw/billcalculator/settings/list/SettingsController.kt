@@ -6,8 +6,8 @@ import android.support.v4.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.RouterTransaction
+import com.bluelinelabs.conductor.archlifecycle.LifecycleController
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
 import pl.srw.billcalculator.databinding.SettingsBinding
 import pl.srw.billcalculator.di.Dependencies
@@ -15,30 +15,38 @@ import pl.srw.billcalculator.settings.details.SettingsDetailsController
 import pl.srw.billcalculator.type.Provider
 import javax.inject.Inject
 
-class SettingsController : Controller() {
+class SettingsController : LifecycleController() {
 
     @Inject internal lateinit var vmFactory: SettingsVMFactory
 
+    private val viewModel: SettingsVM by lazy { ViewModelProviders.of(activity, vmFactory).get(SettingsVM::class.java) }
     private lateinit var binding: SettingsBinding
     private val activity: FragmentActivity
         get() = super.getActivity() as FragmentActivity
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         Dependencies.inject(this)
-        binding = SettingsBinding.inflate(inflater, container, false)
+        binding = SettingsBinding.inflate(inflater, container, false).apply {
+            vm = viewModel
+            settingsList.adapter = SettingsListAdapter(viewModel.items)
+        }
         onViewBound()
         return binding.root
     }
 
     private fun onViewBound() {
-       getViewModel().also {
-           binding.vm = it
-           binding.settingsList.adapter = SettingsListAdapter(it.items)
-       }.apply {
-           switchProviderTab.observe(activity, switchSettingsDetailsFor) // TODO: bug registering multiple times on each back from details
-           openProviderSettings.observe(activity, showProviderSettingsScreen)
+       with(viewModel) {
+           switchProviderTab.observe(this@SettingsController, switchSettingsDetailsFor)
+           openProviderSettings.observe(this@SettingsController, showProviderSettingsScreen)
            isOnTablet = binding.prefsFrame != null
        }
+    }
+
+    override fun onDestroyView(view: View) {
+        with(viewModel) {
+            switchProviderTab.removeObservers(this@SettingsController)
+            openProviderSettings.removeObservers(this@SettingsController)
+        }
     }
 
     private val switchSettingsDetailsFor = Observer<Provider> { provider: Provider? ->
@@ -53,6 +61,4 @@ class SettingsController : Controller() {
                 .pushChangeHandler(HorizontalChangeHandler())
                 .popChangeHandler(HorizontalChangeHandler()))
     }
-
-    private fun getViewModel() = ViewModelProviders.of(activity, vmFactory).get(SettingsVM::class.java)
 }
