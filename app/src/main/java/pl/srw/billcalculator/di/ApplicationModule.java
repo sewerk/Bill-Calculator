@@ -45,21 +45,21 @@ public class ApplicationModule {
     @Provides(type = Provides.Type.MAP)
     @Singleton
     @DependencyMapProviderKey(Provider.PGE)
-    SharedPrefsPrices providePgeSharedPreferencesPrices(SharedPreferences prefs) {
+    static SharedPrefsPrices providePgeSharedPreferencesPrices(SharedPreferences prefs) {
         return new PgePrices(prefs);
     }
 
     @Provides(type = Provides.Type.MAP)
     @Singleton
     @DependencyMapProviderKey(Provider.PGNIG)
-    SharedPrefsPrices providePgnigSharedPreferencesPrices(SharedPreferences prefs) {
+    static SharedPrefsPrices providePgnigSharedPreferencesPrices(SharedPreferences prefs) {
         return new PgnigPrices(prefs);
     }
 
     @Provides(type = Provides.Type.MAP)
     @Singleton
     @DependencyMapProviderKey(Provider.TAURON)
-    SharedPrefsPrices provideTauronSharedPreferencesPrices(SharedPreferences prefs) {
+    static SharedPrefsPrices provideTauronSharedPreferencesPrices(SharedPreferences prefs) {
         return new TauronPrices(prefs);
     }
 
@@ -72,7 +72,7 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    Provider[] providerProviders() {
+    static Provider[] providerProviders() {
         return Provider.values();
     }
 
