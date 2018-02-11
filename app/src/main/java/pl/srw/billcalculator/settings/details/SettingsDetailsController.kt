@@ -2,7 +2,6 @@ package pl.srw.billcalculator.settings.details
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -30,8 +29,9 @@ class SettingsDetailsController(bundle: Bundle) : Controller(bundle) {
 
     private lateinit var binding: SettingsDetailsBinding
     private val provider by lazy { args.getSerializable(ARG_PROVIDER) as Provider }
-    private val activity: FragmentActivity
-        get() = super.getActivity() as FragmentActivity
+    private val viewModel: SettingsDetailsVM by lazy { ViewModelProviders.of(activity, vmFactory).get(SettingsDetailsVM::class.java) }
+    private val activity: AppCompatActivity
+        get() = super.getActivity() as AppCompatActivity
 
     companion object {
         fun createFor(provider: Provider): SettingsDetailsController {
@@ -44,7 +44,7 @@ class SettingsDetailsController(bundle: Bundle) : Controller(bundle) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         Dependencies.inject(this)
         binding = SettingsDetailsBinding.inflate(inflater, container, false).apply {
-            vm = ViewModelProviders.of(activity, vmFactory).get(SettingsDetailsVM::class.java)
+            vm = viewModel
             vm!!.listItemsFor(provider)
         }
         onViewBound()
@@ -72,6 +72,11 @@ class SettingsDetailsController(bundle: Bundle) : Controller(bundle) {
     }
 
     private fun onViewBound() {
+        setupList()
+        setupToolbar()
+    }
+
+    private fun setupList() {
         val listView = binding.settingsDetailsList
         val layoutManager = LinearLayoutManager(activity)
         listView.layoutManager = layoutManager
@@ -79,9 +84,12 @@ class SettingsDetailsController(bundle: Bundle) : Controller(bundle) {
         listView.adapter = SettingsDetailsListAdapter(SettingsDetailsItemClickVisitor(router))
     }
 
+    private fun setupToolbar() {
+        activity.supportActionBar!!.setTitle(provider.settingsTitleRes)
+    }
+
     private fun showHelp() {
         val intent = ProviderSettingsHelpActivity.createIntent(getActivity(), provider)
         startActivity(intent)
     }
-
 }

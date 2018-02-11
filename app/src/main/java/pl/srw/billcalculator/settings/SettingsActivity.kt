@@ -5,6 +5,7 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import com.bluelinelabs.conductor.Conductor
+import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import pl.srw.billcalculator.R
@@ -36,17 +37,10 @@ class SettingsActivity : BackableActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<SettingsActivityBinding>(this, R.layout.settings_activity)
         val provider = intent.getSerializableExtra(ARG_PROVIDER) as Provider?
+        val binding = DataBindingUtil.setContentView<SettingsActivityBinding>(this, R.layout.settings_activity)
 
-        router = Conductor.attachRouter(this, binding.container, savedInstanceState)
-        if (!router.hasRootController()) {
-            val controller = if (provider != null)
-                SettingsDetailsController.createFor(provider)
-            else
-                SettingsController()
-            router.setRoot(RouterTransaction.with(controller))
-        }
+        initControllerRouter(binding, savedInstanceState, provider)
     }
 
     override fun onDestroy() {
@@ -55,10 +49,32 @@ class SettingsActivity : BackableActivity() {
     }
 
     override fun onBackPressed() {
-        if (!router.handleBack()) {
-            super.onBackPressed()
+        if (router.handleBack()) {
+            Timber.i("Back pressed from provider screen")
+            // phone config
+            supportActionBar!!.setTitle(R.string.settings_label)
         } else {
-            Timber.i("Back pressed")
+            super.onBackPressed()
         }
+    }
+
+    private fun initControllerRouter(
+        binding: SettingsActivityBinding,
+        savedInstanceState: Bundle?,
+        provider: Provider?
+    ) {
+        router = Conductor.attachRouter(this, binding.container, savedInstanceState)
+        if (!router.hasRootController()) {
+            val controller = getController(provider)
+            val transaction = RouterTransaction.with(controller)
+            router.setRoot(transaction)
+        }
+    }
+
+    private fun getController(provider: Provider?): Controller {
+        return if (provider != null)
+            SettingsDetailsController.createFor(provider)
+        else
+            SettingsController()
     }
 }
