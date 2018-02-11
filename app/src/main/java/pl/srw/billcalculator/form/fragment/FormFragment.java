@@ -37,7 +37,7 @@ import pl.srw.billcalculator.form.view.DatePickingView;
 import pl.srw.billcalculator.form.view.InstantAutoCompleteTextInputEditText;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
 import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
-import pl.srw.billcalculator.settings.activity.ProviderSettingsActivity;
+import pl.srw.billcalculator.settings.SettingsActivity;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.Animations;
@@ -140,7 +140,7 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
     @Override
     public void showProviderSettings(@NonNull Provider provider) {
         Analytics.contentView(ContentType.SETTINGS, "settings from", "Form", "settings for", provider);
-        startActivity(ProviderSettingsActivity.createIntent(getContext(), provider));
+        SettingsActivity.start(getContext(), provider);
     }
 
     @Override

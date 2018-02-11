@@ -2,7 +2,6 @@ package pl.srw.billcalculator.dialog;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -13,7 +12,7 @@ import javax.inject.Inject;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.data.ApplicationRepo;
 import pl.srw.billcalculator.history.di.HistoryComponent;
-import pl.srw.billcalculator.settings.activity.SettingsActivity;
+import pl.srw.billcalculator.settings.SettingsActivity;
 import pl.srw.billcalculator.util.analytics.Analytics;
 import pl.srw.billcalculator.util.analytics.EventType;
 import pl.srw.mfvp.MvpFragment;
@@ -45,7 +44,7 @@ public class CheckPricesDialogFragment extends MvpFragment
     private DialogInterface.OnClickListener positiveClickListener() {
         return (dialog, which) -> {
             Analytics.event(EventType.CHECK_PRICES, "proceed", true);
-            getActivity().startActivity(new Intent(getActivity(), SettingsActivity.class));
+            SettingsActivity.start(getContext());
             markDialogProcessed();
         };
     }
