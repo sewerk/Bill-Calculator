@@ -9,7 +9,7 @@ import pl.srw.billcalculator.data.bill.ReadingsRepo
 import pl.srw.billcalculator.data.settings.prices.EnergyTariff
 import pl.srw.billcalculator.data.settings.prices.PricesRepo
 import pl.srw.billcalculator.type.Provider
-import pl.srw.billcalculator.util.plusAssign
+import pl.srw.billcalculator.util.addTo
 import timber.log.Timber
 
 class FormPreviousReadingsVM(private val provider: Provider,
@@ -46,19 +46,24 @@ class FormPreviousReadingsVM(private val provider: Provider,
     }
 
     private fun fetchSinglePrevReadingsFor(provider: Provider) {
-        subscriptions += readingsRepo.getPreviousReadingsFor(provider.singleReadingType)
-                .subscribeOn(Schedulers.io())
-                .subscribe(singlePrevReadings::postValue, logException(provider))
+        readingsRepo.getPreviousReadingsFor(provider.singleReadingType)
+            .subscribeOn(Schedulers.io())
+            .subscribe(singlePrevReadings::postValue, logException(provider))
+            .addTo(subscriptions)
     }
 
     private fun fetchDoublePrevReadingsFor(provider: Provider) {
-        provider.doubleReadingTypes[0]?.let { subscriptions += readingsRepo.getPreviousReadingsFor(it)
+        provider.doubleReadingTypes[0]?.let {
+            readingsRepo.getPreviousReadingsFor(it)
                 .subscribeOn(Schedulers.io())
                 .subscribe(dayPrevReadings::postValue, logException(provider))
+                .addTo(subscriptions)
         }
-        provider.doubleReadingTypes[1]?.let { subscriptions += readingsRepo.getPreviousReadingsFor(it)
+        provider.doubleReadingTypes[1]?.let {
+            readingsRepo.getPreviousReadingsFor(it)
                 .subscribeOn(Schedulers.io())
                 .subscribe(nightPrevReadings::postValue, logException(provider))
+                .addTo(subscriptions)
         }
     }
 
