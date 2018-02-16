@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.di
 
 import android.content.Context
+import android.os.Looper
 import pl.srw.billcalculator.BillCalculator
 import pl.srw.billcalculator.bill.service.PgeBillStoringService
 import pl.srw.billcalculator.bill.service.PgnigBillStoringService
@@ -77,6 +78,7 @@ object Dependencies {
 
     // COMPONENTS MANAGEMENT
     fun getHistoryComponent(): HistoryComponent {
+        checkMainThread()
         if (historyComponent == null) {
             Timber.v("Creating HistoryComponent")
             historyComponent = applicationComponent.historyComponent
@@ -90,6 +92,7 @@ object Dependencies {
     }
 
     fun getSettingsComponent(): SettingsComponent {
+        checkMainThread()
         if (settingsComponent == null) {
             Timber.v("Creating SettingsComponent")
             settingsComponent = applicationComponent.settingsComponent
@@ -100,5 +103,15 @@ object Dependencies {
     fun releaseSettingsComponent() {
         Timber.v("Releasing SettingsComponent")
         settingsComponent = null
+    }
+
+    // OTHER
+
+    private fun checkMainThread() {
+        if (!isMainThread()) throw RuntimeException("This method should be executed on main thread!")
+    }
+
+    private fun isMainThread(): Boolean {
+        return Looper.getMainLooper().thread === Thread.currentThread()
     }
 }
