@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import pl.srw.billcalculator.common.bundleOf
 import pl.srw.billcalculator.databinding.SettingsPickingDialogItemBinding
 import pl.srw.billcalculator.di.Dependencies
 import pl.srw.billcalculator.settings.details.PickingSettingsDetailsListItem
@@ -22,11 +23,9 @@ class PickingSettingsDialogFragment : DialogFragment() {
     companion object {
         fun show(activity: FragmentActivity,
                  item: PickingSettingsDetailsListItem) {
-            val bundle = Bundle()
-            bundle.putParcelable(ARG_DATA, item)
 
             val dialogFragment = PickingSettingsDialogFragment()
-            dialogFragment.arguments = bundle
+            dialogFragment.arguments = bundleOf(ARG_DATA, item)
             dialogFragment.show(activity.supportFragmentManager, null)
         }
     }

@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bluelinelabs.conductor.Controller
 import pl.srw.billcalculator.R
+import pl.srw.billcalculator.common.bundleOf
 import pl.srw.billcalculator.databinding.SettingsDetailsBinding
 import pl.srw.billcalculator.di.Dependencies
 import pl.srw.billcalculator.settings.details.restore.ConfirmRestoreSettingsDialogFragment
@@ -34,11 +35,7 @@ class SettingsDetailsController(bundle: Bundle) : Controller(bundle) {
         get() = super.getActivity() as AppCompatActivity
 
     companion object {
-        fun createFor(provider: Provider): SettingsDetailsController {
-            val bundle = Bundle()
-            bundle.putSerializable(ARG_PROVIDER, provider)
-            return SettingsDetailsController(bundle)
-        }
+        fun createFor(provider: Provider) = SettingsDetailsController(bundleOf(ARG_PROVIDER, provider))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
