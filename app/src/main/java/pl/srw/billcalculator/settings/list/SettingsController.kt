@@ -13,6 +13,8 @@ import pl.srw.billcalculator.databinding.SettingsBinding
 import pl.srw.billcalculator.di.Dependencies
 import pl.srw.billcalculator.settings.details.SettingsDetailsController
 import pl.srw.billcalculator.type.Provider
+import pl.srw.billcalculator.util.analytics.Analytics
+import pl.srw.billcalculator.util.analytics.ContentType
 import javax.inject.Inject
 
 class SettingsController : LifecycleController() {
@@ -50,12 +52,14 @@ class SettingsController : LifecycleController() {
     }
 
     private val switchSettingsDetailsFor = Observer<Provider> { provider: Provider? ->
+        Analytics.contentView(ContentType.SETTINGS, "settings from", "Settings tablet", "settings for", provider)
         val detailsModel = SettingsDetailsController.createFor(provider!!)
         getChildRouter(binding.prefsFrame!!).setRoot(RouterTransaction.with(detailsModel))
         binding.settingsList.setItemChecked(binding.vm!!.selectedIndex, true)
     }
 
     private val showProviderSettingsScreen = Observer<Provider> { provider: Provider? ->
+        Analytics.contentView(ContentType.SETTINGS, "settings from", "Settings phone", "settings for", provider)
         val detailsModel = SettingsDetailsController.createFor(provider!!)
         router.pushController(RouterTransaction.with(detailsModel)
                 .pushChangeHandler(HorizontalChangeHandler())
