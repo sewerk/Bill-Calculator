@@ -15,7 +15,6 @@ import pl.srw.billcalculator.bill.service.TauronBillStoringService;
 import pl.srw.billcalculator.data.ApplicationRepo;
 import pl.srw.billcalculator.data.settings.prices.PricesRepo;
 import pl.srw.billcalculator.history.di.HistoryComponent;
-import pl.srw.billcalculator.settings.di.ProviderSettingsComponent;
 import pl.srw.billcalculator.settings.di.SettingsComponent;
 import pl.srw.billcalculator.settings.prices.PgePrices;
 import pl.srw.billcalculator.util.BillSelection;
@@ -27,8 +26,6 @@ public interface ApplicationComponent {
     @NonNull HistoryComponent getHistoryComponent();
 
     @NonNull SettingsComponent getSettingsComponent();
-
-    @NonNull ProviderSettingsComponent getProviderSettingsComponent();
 
     @NonNull PgeBillComponent getPgeBillComponent();
 

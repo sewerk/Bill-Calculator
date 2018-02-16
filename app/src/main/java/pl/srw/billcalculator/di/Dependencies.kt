@@ -91,7 +91,7 @@ object Dependencies {
         historyComponent = null
     }
 
-    fun getSettingsComponent(): SettingsComponent {
+    private fun getSettingsComponent(): SettingsComponent {
         checkMainThread()
         if (settingsComponent == null) {
             Timber.v("Creating SettingsComponent")

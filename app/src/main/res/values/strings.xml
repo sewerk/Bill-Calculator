@@ -157,12 +157,6 @@
     <string name="restore_prices_confirm">Yes</string>
     <string name="restore_prices_cancel">Cancel</string>
 
-    <string name="energy_tariff_G11_in_preferences" translatable="false">G11</string>
-    <string name="energy_tariff_G12_in_preferences" translatable="false">G12</string>
-    <string-array name="energy_tariff_picks" translatable="false">
-        <item>Taryfa całodobowa (G11)</item>
-        <item>Taryfa dwustrefowa (G12)</item>
-    </string-array>
     <string name="settings_help_example_content_desc">Where to look at bill example</string>
     <string name="settings_energy_tariff_pick_G11" translatable="false">Taryfa całodobowa (G11)</string>
     <string name="settings_energy_tariff_pick_G12" translatable="false">Taryfa dwustrefowa (G12)</string>
