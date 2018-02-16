@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import pl.srw.billcalculator.R
+import pl.srw.billcalculator.common.bundleOf
 import pl.srw.billcalculator.databinding.SettingsInputDialogBinding
 import pl.srw.billcalculator.di.Dependencies
 import pl.srw.billcalculator.settings.details.InputSettingsDetailsListItem
@@ -22,11 +23,9 @@ class InputSettingsDialogFragment : DialogFragment() {
     companion object {
         fun show(activity: FragmentActivity,
                  item: InputSettingsDetailsListItem) {
-            val bundle = Bundle()
-            bundle.putParcelable(ARG_DATA, item)
 
             val dialogFragment = InputSettingsDialogFragment()
-            dialogFragment.arguments = bundle
+            dialogFragment.arguments = bundleOf(ARG_DATA, item)
             dialogFragment.show(activity.supportFragmentManager, null)
         }
     }
