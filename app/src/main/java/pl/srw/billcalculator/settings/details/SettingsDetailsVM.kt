@@ -85,5 +85,6 @@ class SettingsDetailsVM(private val pricesRepo: PricesRepo) : ViewModel() {
 
 private fun String.autoCorrect(): String {
     return if (this.isBlank() || "0.0".contains(this)) "0.00"
+    else if (this.startsWith('.')) "0$this"
     else this
 }
