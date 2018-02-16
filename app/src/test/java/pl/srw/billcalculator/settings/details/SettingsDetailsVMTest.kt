@@ -98,7 +98,7 @@ class SettingsDetailsVMTest {
     }
 
     @Parameters("PGE", "PGNIG", "TAURON")
-    @Test fun `if value changed to empty then update price to default value`(provider: Provider) {
+    @Test fun `if value changed to empty, then update price to default value`(provider: Provider) {
         val title = "name"
         sut.listItemsFor(provider)
 
@@ -108,13 +108,43 @@ class SettingsDetailsVMTest {
     }
 
     @Parameters("PGE", "PGNIG", "TAURON")
-    @Test fun `if value changed to 0 then update price to default value`(provider: Provider) {
+    @Test fun `if value changed to zero-dot, then update price to default value`(provider: Provider) {
         val title = "name"
         sut.listItemsFor(provider)
 
         sut.valueChanged(title, "0.")
 
         verify(pricesRepo).updatePrice(provider, title, "0.00")
+    }
+
+    @Parameters("PGE", "PGNIG", "TAURON")
+    @Test fun `if value changed to zero, then update price to default value`(provider: Provider) {
+        val title = "name"
+        sut.listItemsFor(provider)
+
+        sut.valueChanged(title, "0")
+
+        verify(pricesRepo).updatePrice(provider, title, "0.00")
+    }
+
+    @Parameters("PGE", "PGNIG", "TAURON")
+    @Test fun `if value changed to dot, then update price to default value`(provider: Provider) {
+        val title = "name"
+        sut.listItemsFor(provider)
+
+        sut.valueChanged(title, ".")
+
+        verify(pricesRepo).updatePrice(provider, title, "0.00")
+    }
+
+    @Parameters("PGE", "PGNIG", "TAURON")
+    @Test fun `if value changed to dot-something, then update price to zero-dot-something`(provider: Provider) {
+        val title = "name"
+        sut.listItemsFor(provider)
+
+        sut.valueChanged(title, ".9")
+
+        verify(pricesRepo).updatePrice(provider, title, "0.9")
     }
 
     @Test fun `updates tariff in repository when option picked`() {
