@@ -51,9 +51,6 @@
             android:label="@string/settings_label">
         </activity>
 
-        <activity android:name=".settings.activity.ProviderSettingsActivity">
-        </activity>
-
         <activity android:name=".settings.help.ProviderSettingsHelpActivity"
                   android:label="@string/action_help"
                   android:theme="@style/DialogTheme" />
