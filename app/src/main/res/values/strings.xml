@@ -189,7 +189,7 @@
     <string name="settings_pgnig" translatable="false">PGNiG</string>
     <string name="settings_pgnig_summary">Set gas conversion ratio and prices</string>
 
-    <string name="wsp_konwersji_desc" translatable="false">Współczynnik konwersji to mnożnik, dzięki któremu można zamienić jednostki objętości [m\u00B3] na jednostki energii [kWh]. Więcej na <![CDATA[<a href="www.pgnig.pl/dla-domu/poradnik/nowa-jednostka-rozliczeniowa">www.pgnig.pl/dla-domu/poradnik/nowa-jednostka-rozliczeniowa</a>]]></string>
+    <string name="wsp_konwersji_desc" translatable="false">Współczynnik konwersji to mnożnik, dzięki któremu można zamienić jednostki objętości [m\u00B3] na jednostki energii [kWh]. Więcej na <![CDATA[<a href="http://www.pgnig.pl/dla-domu/poradnik/nowa-jednostka-rozliczeniowa">www.pgnig.pl/dla-domu/poradnik/nowa-jednostka-rozliczeniowa</a>]]></string>
     <string name="abonamentowa_desc" translatable="false">Stała cena za abonament, naliczana co miesiąc, niezależnie od zużycia.</string>
     <string name="paliwo_gazowe_desc" translatable="false">Cena netto jednej kilowatogodziny paliwa gazowego.</string>
     <string name="dystrybucyjna_stala_desc" translatable="false">Cena za dostarczanie gazu (wcześniej opłata sieciowa stała), naliczana co miesiąc, niezależnie od zużycia.</string>
