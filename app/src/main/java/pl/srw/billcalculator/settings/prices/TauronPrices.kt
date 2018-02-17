@@ -26,17 +26,17 @@ class TauronPrices @Inject constructor(private val prefs: SharedPreferences)
 
 
     fun convertToDb() = pl.srw.billcalculator.db.TauronPrices().apply {
-        setEnergiaElektrycznaCzynna(energiaElektrycznaCzynna)
-        setOplataDystrybucyjnaZmienna(oplataDystrybucyjnaZmienna)
-        setOplataDystrybucyjnaStala(oplataDystrybucyjnaStala)
-        setOplataPrzejsciowa(oplataPrzejsciowa)
-        setOplataAbonamentowa(oplataAbonamentowa)
-        setOplataOze(oplataOze)
+        setEnergiaElektrycznaCzynna(this@TauronPrices.energiaElektrycznaCzynna)
+        setOplataDystrybucyjnaZmienna(this@TauronPrices.oplataDystrybucyjnaZmienna)
+        setOplataDystrybucyjnaStala(this@TauronPrices.oplataDystrybucyjnaStala)
+        setOplataPrzejsciowa(this@TauronPrices.oplataPrzejsciowa)
+        setOplataAbonamentowa(this@TauronPrices.oplataAbonamentowa)
+        setOplataOze(this@TauronPrices.oplataOze)
 
-        setEnergiaElektrycznaCzynnaDzien(energiaElektrycznaCzynnaDzien)
-        setOplataDystrybucyjnaZmiennaDzien(oplataDystrybucyjnaZmiennaDzien)
-        setEnergiaElektrycznaCzynnaNoc(energiaElektrycznaCzynnaNoc)
-        setOplataDystrybucyjnaZmiennaNoc(oplataDystrybucyjnaZmiennaNoc)
+        setEnergiaElektrycznaCzynnaDzien(this@TauronPrices.energiaElektrycznaCzynnaDzien)
+        setOplataDystrybucyjnaZmiennaDzien(this@TauronPrices.oplataDystrybucyjnaZmiennaDzien)
+        setEnergiaElektrycznaCzynnaNoc(this@TauronPrices.energiaElektrycznaCzynnaNoc)
+        setOplataDystrybucyjnaZmiennaNoc(this@TauronPrices.oplataDystrybucyjnaZmiennaNoc)
     }
 
     override fun setDefault() {

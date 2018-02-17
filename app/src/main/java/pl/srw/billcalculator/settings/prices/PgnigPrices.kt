@@ -16,11 +16,11 @@ class PgnigPrices @Inject constructor(private val prefs: SharedPreferences)
     override var wspolczynnikKonwersji: String by stringPref(KEYS.WSP_KONWERSJI)
 
     fun convertToDb() = pl.srw.billcalculator.db.PgnigPrices().apply {
-        setDystrybucyjnaStala(dystrybucyjnaStala)
-        setDystrybucyjnaZmienna(dystrybucyjnaZmienna)
-        setOplataAbonamentowa(oplataAbonamentowa)
-        setPaliwoGazowe(paliwoGazowe)
-        setWspolczynnikKonwersji(wspolczynnikKonwersji)
+        setDystrybucyjnaStala(this@PgnigPrices.dystrybucyjnaStala)
+        setDystrybucyjnaZmienna(this@PgnigPrices.dystrybucyjnaZmienna)
+        setOplataAbonamentowa(this@PgnigPrices.oplataAbonamentowa)
+        setPaliwoGazowe(this@PgnigPrices.paliwoGazowe)
+        setWspolczynnikKonwersji(this@PgnigPrices.wspolczynnikKonwersji)
     }
 
     override fun setDefault() {
