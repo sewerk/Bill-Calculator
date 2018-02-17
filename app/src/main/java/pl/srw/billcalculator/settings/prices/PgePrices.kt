@@ -24,17 +24,17 @@ class PgePrices @Inject constructor(private val prefs: SharedPreferences)
     override var oplataOze by stringPref(KEYS.CENA_OPLATA_OZE)
 
     fun convertToDb() = pl.srw.billcalculator.db.PgePrices().apply {
-        setOplataAbonamentowa(oplataAbonamentowa)
-        setOplataPrzejsciowa(oplataPrzejsciowa)
-        setOplataSieciowa(oplataSieciowa)
-        setOplataStalaZaPrzesyl(oplataStalaZaPrzesyl)
-        setSkladnikJakosciowy(skladnikJakosciowy)
-        setZaEnergieCzynna(zaEnergieCzynna)
-        setOplataOze(oplataOze)
-        setOplataSieciowaDzien(oplataSieciowaDzien)
-        setOplataSieciowaNoc(oplataSieciowaNoc)
-        setZaEnergieCzynnaDzien(zaEnergieCzynnaDzien)
-        setZaEnergieCzynnaNoc(zaEnergieCzynnaNoc)
+        setOplataAbonamentowa(this@PgePrices.oplataAbonamentowa)
+        setOplataPrzejsciowa(this@PgePrices.oplataPrzejsciowa)
+        setOplataSieciowa(this@PgePrices.oplataSieciowa)
+        setOplataStalaZaPrzesyl(this@PgePrices.oplataStalaZaPrzesyl)
+        setSkladnikJakosciowy(this@PgePrices.skladnikJakosciowy)
+        setZaEnergieCzynna(this@PgePrices.zaEnergieCzynna)
+        setOplataOze(this@PgePrices.oplataOze)
+        setOplataSieciowaDzien(this@PgePrices.oplataSieciowaDzien)
+        setOplataSieciowaNoc(this@PgePrices.oplataSieciowaNoc)
+        setZaEnergieCzynnaDzien(this@PgePrices.zaEnergieCzynnaDzien)
+        setZaEnergieCzynnaNoc(this@PgePrices.zaEnergieCzynnaNoc)
     }
 
     override fun setDefault() {
