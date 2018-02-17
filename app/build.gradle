@@ -62,7 +62,7 @@ android {
 
     lintOptions {
         baseline file('app-lint-baseline.xml')
-        disable 'NewerVersionAvailable', 'GradleDependency'
+        disable 'NewerVersionAvailable', 'GradleDependency', 'UnusedResources', 'UnusedIds'
         checkAllWarnings true
         warningsAsErrors true
     }
