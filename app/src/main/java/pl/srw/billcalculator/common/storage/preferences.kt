@@ -60,9 +60,10 @@ operator fun SharedPreferences.set(key: String, value: Any?) {
 /**
  * finds value on given key.
  * [T] is the type of value
- * @param defaultValue optional default value - will take null for strings, false for bool and 0 for numeric values if [defaultValue] is not specified
+ * @param defaultValue optional default value - will take null for strings,
+ * false for bool and 0 for numeric values if [defaultValue] is not specified
  */
-operator inline fun <reified T : Any> SharedPreferences.get(key: String, defaultValue: T? = null): T {
+inline operator fun <reified T : Any> SharedPreferences.get(key: String, defaultValue: T? = null): T {
     return when (T::class) {
         String::class -> getString(key, defaultValue as? String) as T
         Int::class -> getInt(key, defaultValue as? Int ?: 0) as T
