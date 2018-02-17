@@ -120,8 +120,8 @@ abstract class Tester {
         };
     }
 
-    RecyclerViewInteraction onRecyclerViewItem(Matcher<View> viewMatcher, int position) {
-        return new RecyclerViewInteraction(onView(viewMatcher), position);
+    RecyclerViewInteraction onRecyclerViewItem(Matcher<View> rcMatcher, int position) {
+        return new RecyclerViewInteraction(onView(rcMatcher), position);
     }
 
     protected boolean isOnTablet() {
