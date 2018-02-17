@@ -16,7 +16,6 @@ import pl.srw.billcalculator.di.TestDependencies;
 import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.history.HistoryGenerator;
 import pl.srw.billcalculator.settings.prices.PgePrices;
-import pl.srw.billcalculator.settings.prices.SharedPreferencesEnergyPrices;
 import pl.srw.billcalculator.tester.AppTester;
 import pl.srw.billcalculator.tester.rule.ClosingActivityTestRule;
 import pl.srw.billcalculator.type.Provider;
@@ -40,7 +39,7 @@ public class InstantAutoCompleteUITest {
         TestDependencies.inject(this);
         HistoryGenerator.clear();
         pricesRepo.updateTariff(Provider.PGE, EnergyTariff.G11);
-        pgePrices.setTariff(SharedPreferencesEnergyPrices.TARIFF_G11);
+        pgePrices.setTariff(EnergyTariff.G11);
 
         testRule.launchActivity(null);
     }

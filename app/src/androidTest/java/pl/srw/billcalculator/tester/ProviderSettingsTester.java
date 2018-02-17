@@ -1,28 +1,23 @@
 package pl.srw.billcalculator.tester;
 
-import android.preference.EditTextPreference;
 import android.support.annotation.StringRes;
-import android.support.test.espresso.DataInteraction;
+import android.support.test.espresso.ViewInteraction;
 
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.tester.interactor.RecyclerViewInteraction;
 
-import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.replaceText;
-import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.PreferenceMatchers.withTitle;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
+import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
+import static android.support.test.espresso.contrib.RecyclerViewActions.scrollTo;
+import static android.support.test.espresso.matcher.ViewMatchers.withChild;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.anything;
-import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
 
 public class ProviderSettingsTester<T extends Tester> extends Tester {
@@ -50,51 +45,68 @@ public class ProviderSettingsTester<T extends Tester> extends Tester {
         return parent;
     }
 
-    public Preference getPreferenceAtLine(int index) {
-        DataInteraction dataInteraction = onData(anything())
-                .inAdapterView(withId(android.R.id.list))
-                .atPosition(index);
-        return new Preference(dataInteraction);
+    public SettingsDetailsListItem getPreferenceAtLine(int index) {
+        RecyclerViewInteraction listInteraction = onRecyclerViewItem(withId(R.id.settings_details_list), index);
+        return new SettingsDetailsListItem(listInteraction, index);
     }
 
-    public Preference getPreferenceWithTitle(@StringRes int id) {
-        DataInteraction dataInteraction = onData(allOf(instanceOf(EditTextPreference.class), withTitle(id)));
-        return new Preference(dataInteraction);
+    public SettingsDetailsItem getPreferenceWithTitle(@StringRes int titleId) {
+        onView(withId(R.id.settings_details_list)).perform(scrollTo(withChild(withText(titleId))));
+        ViewInteraction itemInteraction = onView(withText(titleId));
+        return new SettingsDetailsItem(itemInteraction);
     }
 
-    public class Preference {
+    public class SettingsDetailsItem {
 
-        private DataInteraction dataInteraction;
+        private final ViewInteraction itemInteraction;
 
-        private Preference(DataInteraction dataInteraction) {
-            this.dataInteraction = dataInteraction;
+        private SettingsDetailsItem(ViewInteraction itemInteraction) {
+            this.itemInteraction = itemInteraction;
+        }
+
+        public ProviderSettingsTester<T> changeValueTo(String value) {
+            itemInteraction.perform(click());
+            onView(withId(R.id.settingsDialogInput))
+                    .perform(replaceText(value), closeSoftKeyboard());
+            clickText(R.string.settings_input_accept);
+            return ProviderSettingsTester.this;
+        }
+    }
+
+    public class SettingsDetailsListItem {
+
+        private final RecyclerViewInteraction viewInteraction;
+        private final int position;
+
+        private SettingsDetailsListItem(RecyclerViewInteraction interaction, int position) {
+            this.viewInteraction = interaction;
+            this.position = position;
         }
 
         public ProviderSettingsTester<T> hasTitle(String title) {
-            dataInteraction
-                    .onChildView(withId(android.R.id.title))
-                    .check(matches(withText(title)));
+            viewInteraction.checkView(R.id.title, matches(withText(title)));
             return ProviderSettingsTester.this;
         }
 
         public void hasSummary(String summary) {
-            dataInteraction
-                    .onChildView(withId(android.R.id.summary))
-                    .check(matches(withText(startsWith(summary))));
+            viewInteraction.checkView(R.id.summary, matches(withText(startsWith(summary))));
         }
 
         public ProviderSettingsTester<T> changeValueTo(String value) {
-            dataInteraction.perform(click());
-            onView(allOf(withId(android.R.id.edit), withParent(withClassName(is("android.widget.LinearLayout")))))
-                    .perform(scrollTo(), replaceText(value), closeSoftKeyboard());
-            clickText("OK");
+            open();
+            onView(withId(R.id.settingsDialogInput)).perform(replaceText(value), closeSoftKeyboard());
+            clickText(R.string.settings_input_accept);
             return ProviderSettingsTester.this;
         }
 
         public ProviderSettingsTester<T> pickOption(String option) {
-            dataInteraction.perform(click());
-            onView(allOf(withId(android.R.id.text1), withText(option))).perform(click());
+            open();
+            onView(allOf(withId(R.id.settingsPickingDialogOption), withText(option))).perform(click());
             return ProviderSettingsTester.this;
+        }
+
+        private void open() {
+            onView(withId(R.id.settings_details_list)).perform(actionOnItemAtPosition(position, click()));
         }
     }
 
