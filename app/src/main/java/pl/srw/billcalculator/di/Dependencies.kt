@@ -108,7 +108,7 @@ object Dependencies {
     // OTHER
 
     private fun checkMainThread() {
-        if (!isMainThread()) throw RuntimeException("This method should be executed on main thread!")
+        if (!isMainThread()) throw IllegalStateException("This method should be executed on main thread!")
     }
 
     private fun isMainThread(): Boolean {

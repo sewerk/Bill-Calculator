@@ -15,6 +15,7 @@ import javax.inject.Singleton
  * Wraps operations for prices with dynamic positions to operate
  * on shared-prefs prices with static fields
  */
+@SuppressWarnings("ComplexMethod", "TooManyFunctions")
 @Singleton
 class PricesBridge @Inject constructor(private val providerMapper: ProviderMapper) {
     private val pgnigPrices = providerMapper.getPrefsPrices(Provider.PGNIG) as PgnigPrices
