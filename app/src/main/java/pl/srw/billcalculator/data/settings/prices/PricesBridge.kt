@@ -142,11 +142,11 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
 
 @VisibleForTesting
 object PGNIG {
-    const val WSP_KONW = "Wspolczynnik konwersji"
+    const val WSP_KONW = "Współczynnik konwersji"
     const val ABONAMENTOWA = "Opłata abonamentowa"
     const val PALIWO_GAZ = "Paliwo gazowe"
-    const val DYSTR_STALA = "Dystrybucja stala"
-    const val DYSTR_ZMIENNA = "Dystrybucja zmienna"
+    const val DYSTR_STALA = "Dystrybucyjna stała"
+    const val DYSTR_ZMIENNA = "Dystrybucyjna zmienna"
 }
 
 @VisibleForTesting
