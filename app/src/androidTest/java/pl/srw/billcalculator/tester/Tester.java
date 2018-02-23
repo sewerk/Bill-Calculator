@@ -15,7 +15,6 @@ import android.support.test.espresso.action.Press;
 import android.support.test.espresso.action.Swipe;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.rule.ActivityTestRule;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -125,16 +124,8 @@ abstract class Tester {
     }
 
     protected boolean isOnTablet() {
-        return isScreenSw(600);
-    }
-
-    private boolean isScreenSw(int dp) {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        DisplayMetrics displayMetrics = context.getApplicationContext().getResources().getDisplayMetrics();
-        float widthDp = displayMetrics.widthPixels / displayMetrics.density;
-        float heightDp = displayMetrics.heightPixels / displayMetrics.density;
-        float screenSw = Math.min(widthDp, heightDp);
-        return screenSw >= dp;
+        return context.getResources().getBoolean(R.bool.isOnTablet);
     }
 
     private ViewAction click() {
