@@ -168,7 +168,7 @@ object PGE {
 @VisibleForTesting
 object TAURON {
     const val ENERGIA = "Energia elektryczna czynna całodobowa"
-    const val OZE = "Opłata OZE całodobowa"
+    const val OZE = "Opłata OZE"
     const val DYST_ZMIENNA = "Opłata dystr. zm. całodobowa"
     const val DYST_STALA = "Opłata dystrybucyjna stała"
     const val PRZEJSCIOWA = "Opłata przejściowa"
