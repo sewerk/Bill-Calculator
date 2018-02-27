@@ -13,9 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="?attr/selectableItemBackground"
+        android:paddingRight="8dp"
         android:paddingEnd="8dp"
         android:paddingLeft="16dp"
-        android:paddingRight="8dp"
         android:paddingStart="16dp">
 
         <TextView
