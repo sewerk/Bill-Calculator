@@ -155,7 +155,7 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
     }
 
     @Override
-    public void showReadingFieldError(Field field, int errorMsgRes) {
+    public void showReadingFieldError(@NonNull Field field, int errorMsgRes) {
         TextInputLayout view = getViewFor(field);
         Animations.shake(view);
         view.setError(getString(errorMsgRes));

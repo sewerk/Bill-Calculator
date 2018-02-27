@@ -7,7 +7,7 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:scrollbars="none"
-            tools:context=".AboutActivity">
+            tools:context=".history.DrawerActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
