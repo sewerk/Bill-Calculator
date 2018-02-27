@@ -37,7 +37,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="@integer/preferences_right_pane_weight"
-            android:padding="@dimen/padding"
+            android:paddingStart="@dimen/padding"
+            android:paddingEnd="@dimen/padding"
             tools:ignore="InconsistentLayout">
 
         </FrameLayout>
