@@ -66,7 +66,7 @@ public class PgnigBillActivity extends BillActivity<IPgnigPrices, PgnigPrices, P
     }
 
     private void setReadingsTable() {
-        TableLayout readingsTable = (TableLayout) findViewById(R.id.t_readings);
+        TableLayout readingsTable = findViewById(R.id.t_readings);
 
         Views.setTV(readingsTable, R.id.tv_prev_reading_date, Dates.format(dateFrom, DATE_PATTERN));
         Views.setTV(readingsTable, R.id.tv_previous_reading, getString(R.string.odczyt_na_dzien, readingFrom));
@@ -80,7 +80,7 @@ public class PgnigBillActivity extends BillActivity<IPgnigPrices, PgnigPrices, P
     }
 
     private void setChargeDetailsTable() {
-        TableLayout chargeTable = (TableLayout) findViewById(R.id.t_charge_details);
+        TableLayout chargeTable = findViewById(R.id.t_charge_details);
 
         setRow(chargeTable, R.id.row_abonamentowa, R.string.abonamentowa, ""+bill.getMonthCount()+".0000", R.string.mc,
                 new BigDecimal(prices.getOplataAbonamentowa()), bill.getOplataAbonamentowaNetCharge(), "");
@@ -117,7 +117,7 @@ public class PgnigBillActivity extends BillActivity<IPgnigPrices, PgnigPrices, P
     }
 
     private void setSummaryTable() {
-        TableLayout summaryTable = (TableLayout) findViewById(R.id.t_summary);
+        TableLayout summaryTable = findViewById(R.id.t_summary);
 
         Views.setTV(summaryTable, R.id.pgnig_sum_net_charge, Display.toPay(bill.getNetChargeSum()));
         Views.setTV(summaryTable, R.id.pgnig_sum_vat_amount, Display.toPay(bill.getVatChargeSum()));

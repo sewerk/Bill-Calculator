@@ -81,7 +81,7 @@ public class PgeBillActivity extends EnergyBillActivity<IPgePrices, PgePrices, P
     }
 
     private void setChargeDetailsTable() {
-        TableLayout chargeDetailsTable = (TableLayout) findViewById(R.id.t_charge_details);
+        TableLayout chargeDetailsTable = findViewById(R.id.t_charge_details);
 
         if(isTwoUnitTariff()) {
             Views.setTV(this, R.id.tv_tariff, getString(R.string.tariff_G12_on_bill));
@@ -196,7 +196,7 @@ public class PgeBillActivity extends EnergyBillActivity<IPgePrices, PgePrices, P
     }
 
     private void setSummaryTable() {
-        TableLayout summaryTable = (TableLayout) findViewById(R.id.t_summary);
+        TableLayout summaryTable = findViewById(R.id.t_summary);
         Views.setTVInRow(summaryTable, R.id.pge_sum_net_charge, Display.toPay(bill.getNetChargeSum()));
         Views.setTVInRow(summaryTable, R.id.pge_sum_vat_amount, Display.toPay(bill.getVatChargeSum()));
         Views.setTVInRow(summaryTable, R.id.pge_sum_gross_charge, Display.toPay(bill.getGrossChargeSum()));

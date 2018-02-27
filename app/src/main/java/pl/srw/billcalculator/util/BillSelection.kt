@@ -10,7 +10,7 @@ class BillSelection @Inject constructor() {
     private val selectedItems = mutableMapOf<Int, Bill>()
 
     fun select(position: Int, o: Bill) {
-        selectedItems.put(position, o)
+        selectedItems[position] = o
     }
 
     fun deselect(position: Int) {
@@ -36,7 +36,7 @@ class BillSelection @Inject constructor() {
             val (position, bill) = iterator.next()
             if (position >= atPosition) {
                 iterator.remove()
-                updated.put(position + 1, bill)
+                updated[position + 1] = bill
             }
         }
         selectedItems.putAll(updated)

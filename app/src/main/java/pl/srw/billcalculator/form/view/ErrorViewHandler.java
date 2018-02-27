@@ -36,7 +36,7 @@ class ErrorViewHandler {
 
     private TextView obtainView(View view) {
         if (errorView == null)
-            errorView = (TextView) view.getRootView().findViewById(errorViewId);
+            errorView = view.getRootView().findViewById(errorViewId);
         return errorView;
     }
 

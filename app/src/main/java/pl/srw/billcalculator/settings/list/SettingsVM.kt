@@ -12,7 +12,7 @@ import timber.log.Timber
 
 private const val STATE_SELECTED_INDEX = "settings.state.selectedIndex"
 
-class SettingsVM(private val settingsRepo: SettingsRepo) : ViewModel(), StateRestorable {
+class SettingsVM(settingsRepo: SettingsRepo) : ViewModel(), StateRestorable {
 
     val switchProviderTab = SingleLiveEvent<Provider>()
     val openProviderSettings = SingleLiveEvent<Provider>()

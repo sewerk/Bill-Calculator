@@ -2,6 +2,7 @@ package pl.srw.billcalculator.bill.calculation
 
 import org.threeten.bp.LocalDate
 import pl.srw.billcalculator.pojo.ITauronPrices
+import java.math.BigDecimal
 
 class TauronG12CalculatedBill(readingDayFrom: Int, readingDayTo: Int,
                               readingNightFrom: Int, readingNightTo: Int,
@@ -29,7 +30,7 @@ class TauronG12CalculatedBill(readingDayFrom: Int, readingDayTo: Int,
 
     override val totalConsumption = dayConsumption + nightConsumption
 
-    override val sellNetCharge = energiaElektrycznaDayNetCharge.round().add(energiaElektrycznaNightNetCharge.round())
+    override val sellNetCharge: BigDecimal = energiaElektrycznaDayNetCharge.round().add(energiaElektrycznaNightNetCharge.round())
 
-    override val sellVatCharge = energiaElektrycznaDayVatCharge.round().add(energiaElektrycznaNightVatCharge.round())
+    override val sellVatCharge: BigDecimal = energiaElektrycznaDayVatCharge.round().add(energiaElektrycznaNightVatCharge.round())
 }

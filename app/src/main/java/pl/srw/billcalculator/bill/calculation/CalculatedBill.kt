@@ -22,7 +22,7 @@ abstract class CalculatedBill(private val greedy: Boolean, dateFrom: LocalDate, 
     val grossChargeSum: BigDecimal
         get() = netChargeSum.add(vatChargeSum)
 
-    var netChargeSum = BigDecimal.ZERO
+    var netChargeSum: BigDecimal = BigDecimal.ZERO
         private set
 
     private var _vatChargeSum = BigDecimal.ZERO

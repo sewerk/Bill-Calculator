@@ -139,7 +139,7 @@ public class TauronBillActivity extends EnergyBillActivity<ITauronPrices, Tauron
     }
 
     private void setRow(@IdRes int rowId, @StringRes int descId, String meterNo, String prevReading, String currReading, String count, String consumption, BigDecimal price, BigDecimal amount) {
-        final TableRow row = (TableRow) findViewById(rowId);
+        final TableRow row = findViewById(rowId);
         Views.setTVInRow(row, R.id.tv_description, descId);
         Views.setTVInRow(row, R.id.tv_meter_no, meterNo);
         Views.setTVInRow(row, R.id.tv_prev_date, getDateStringFor(rowId, dateFrom));

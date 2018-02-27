@@ -4,15 +4,16 @@ import org.threeten.bp.LocalDate
 import pl.srw.billcalculator.pojo.IPgnigPrices
 import pl.srw.billcalculator.util.Dates
 import java.math.BigDecimal
+import java.math.BigInteger
 import java.math.RoundingMode
 
 class PgnigCalculatedBill(readingFrom: Int, readingTo: Int, dateFrom: LocalDate, dateTo: LocalDate, prices: IPgnigPrices)
     : CalculatedBill(true, dateFrom, dateTo) {
 
-    val monthCountExact = Dates.countMonth(dateFrom, dateTo)
+    val monthCountExact: BigDecimal = Dates.countMonth(dateFrom, dateTo)
 
     val consumptionM3 = readingTo - readingFrom
-    val consumptionKWh = BigDecimal(consumptionM3).multiply(BigDecimal(prices.wspolczynnikKonwersji))
+    val consumptionKWh: BigInteger = BigDecimal(consumptionM3).multiply(BigDecimal(prices.wspolczynnikKonwersji))
             .setScale(0, RoundingMode.HALF_UP).toBigInteger()
 
     val oplataAbonamentowaNetCharge = countNetAndAddToSum(prices.oplataAbonamentowa, monthCount)
