@@ -6,8 +6,10 @@
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/settings_details_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:items="@{vm.items}" />
+        app:items="@{vm.items}"
+        tools:listitem="@layout/settings_details_item"/>
 </layout>
