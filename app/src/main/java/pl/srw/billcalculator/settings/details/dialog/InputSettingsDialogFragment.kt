@@ -10,6 +10,8 @@ import android.text.Html
 import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
+import android.view.WindowManager
+import android.widget.EditText
 import android.widget.TextView
 import pl.srw.billcalculator.R
 import pl.srw.billcalculator.common.bundleOf
@@ -26,9 +28,10 @@ private const val HTML_PATTERN_TO_HANDLE = "href"
 class InputSettingsDialogFragment : DialogFragment() {
 
     companion object {
-        fun show(activity: FragmentActivity,
-                 item: InputSettingsDetailsListItem) {
-
+        fun show(
+            activity: FragmentActivity,
+            item: InputSettingsDetailsListItem
+        ) {
             val dialogFragment = InputSettingsDialogFragment()
             dialogFragment.arguments = bundleOf(ARG_DATA, item)
             dialogFragment.show(activity.supportFragmentManager, null)
@@ -54,23 +57,26 @@ class InputSettingsDialogFragment : DialogFragment() {
 
         val description = getStringDescription(data.description)
         return buildDialog(description, binding)
+            .also { it.showKeyboard() }
     }
 
     override fun onResume() {
         super.onResume()
+        moveInputCursorToEnd()
         // setting movement link clickable need to happen after show()
         makeMessageClickable(dialog)
     }
 
-    private fun buildDialog(description: CharSequence?,
-                            binding: SettingsInputDialogBinding) =
-        AlertDialog.Builder(context!!)
-            .setTitle(data.title)
-            .setMessage(description)
-            .setView(binding.root)
-            .setPositiveButton(R.string.settings_input_accept, { _, _ -> vm.valueChanged(data.title, binding.value!!) })
-            .setNegativeButton(R.string.settings_input_cancel, { _, _ -> dismiss() })
-            .create()
+    private fun buildDialog(
+        description: CharSequence?,
+        binding: SettingsInputDialogBinding
+    ) = AlertDialog.Builder(context!!)
+        .setTitle(data.title)
+        .setMessage(description)
+        .setView(binding.root)
+        .setPositiveButton(R.string.settings_input_accept, { _, _ -> vm.valueChanged(data.title, binding.value!!) })
+        .setNegativeButton(R.string.settings_input_cancel, { _, _ -> dismiss() })
+        .create()
 
     private fun getStringDescription(resId: Int?): CharSequence? {
         val description = resId?.let { getString(it) }
@@ -86,5 +92,21 @@ class InputSettingsDialogFragment : DialogFragment() {
     private fun makeMessageClickable(dialog: Dialog) {
         val textView = dialog.findViewById<TextView>(android.R.id.message)
         if (textView?.text is Spanned) textView.movementMethod = LinkMovementMethod.getInstance()
+    }
+
+    private fun moveInputCursorToEnd() {
+        getInputView().apply {
+            post { moveSelectionToEndIfAtBeginning() }
+        }
+    }
+
+    private fun getInputView() = dialog.findViewById<EditText>(R.id.settingsDialogInput)
+
+    private fun EditText.moveSelectionToEndIfAtBeginning() {
+        if (selectionEnd == 0) setSelection(text.length)
+    }
+
+    private fun AlertDialog.showKeyboard() {
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
     }
 }
