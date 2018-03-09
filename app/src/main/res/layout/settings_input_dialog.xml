@@ -22,7 +22,6 @@
             android:layout_marginLeft="16dp"
             android:text="@={value}"
             android:maxLines="1"
-            android:selectAllOnFocus="true"
             android:singleLine="true"
             android:inputType="numberDecimal"/>
 
