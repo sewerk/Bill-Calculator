@@ -93,20 +93,38 @@ public class ProviderSettingsTester<T extends Tester> extends Tester {
         }
 
         public ProviderSettingsTester<T> changeValueTo(String value) {
-            open();
-            onView(withId(R.id.settingsDialogInput)).perform(replaceText(value), closeSoftKeyboard());
-            clickText(R.string.settings_input_accept);
+            openInput()
+                    .changeValue(value)
+                    .save();
             return ProviderSettingsTester.this;
         }
 
         public ProviderSettingsTester<T> pickOption(String option) {
-            open();
+            openInput();
             onView(allOf(withId(R.id.settingsPickingDialogOption), withText(option))).perform(click());
             return ProviderSettingsTester.this;
         }
 
-        private void open() {
+        public InputDialog openInput() {
             onView(withId(R.id.settings_details_list)).perform(actionOnItemAtPosition(position, click()));
+            return new InputDialog();
+        }
+
+        public class InputDialog {
+
+            public InputDialog changeValue(String value) {
+                onView(withId(R.id.settingsDialogInput)).perform(replaceText(value), closeSoftKeyboard());
+                return this;
+            }
+
+            public ProviderSettingsTester<T> save() {
+                clickText(R.string.settings_input_accept);
+                return ProviderSettingsTester.this;
+            }
+
+            public void hasValue(String value) {
+                onView(withId(R.id.settingsDialogInput)).check(matches(withText(value)));
+            }
         }
     }
 

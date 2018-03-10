@@ -10,19 +10,19 @@ import javax.inject.Inject;
 
 import pl.srw.billcalculator.data.ApplicationRepo;
 import pl.srw.billcalculator.di.TestDependencies;
-import pl.srw.billcalculator.history.DrawerActivity;
-import pl.srw.billcalculator.tester.AppTester;
+import pl.srw.billcalculator.tester.ProviderSettingsTester;
+import pl.srw.billcalculator.tester.SettingsTester;
 import pl.srw.billcalculator.tester.rule.ClosingActivityTestRule;
 import pl.srw.billcalculator.type.Provider;
 
 public class SettingsUITest {
 
     @Rule
-    public ActivityTestRule<DrawerActivity> testRule = new ClosingActivityTestRule<>(DrawerActivity.class, false, false);
+    public ActivityTestRule<SettingsActivity> testRule = new ClosingActivityTestRule<>(SettingsActivity.class, false, false);
 
     @Inject ApplicationRepo applicationRepo;
 
-    AppTester tester = new AppTester();
+    SettingsTester tester = new SettingsTester();
 
     @Before
     public void setUp() throws Exception {
@@ -35,7 +35,7 @@ public class SettingsUITest {
 
     @Test
     public void providerSettingsTariffChangeCauseScreenChangeDisplayedValues() {
-        tester.openSettings()
+        tester
                 .pickProvider(Provider.PGE)
 
                 .getPreferenceAtLine(0)
@@ -53,7 +53,7 @@ public class SettingsUITest {
 
     @Test
     public void settingPreferenceValueUpdatedSummary() {
-        tester.openSettings()
+        tester
                 .pickProvider(Provider.PGNIG)
                 .getPreferenceAtLine(0)
                 .changeValueTo("1.234")
@@ -64,7 +64,7 @@ public class SettingsUITest {
 
     @Test
     public void settingPreferenceEmptyValueFillZeroSummary() {
-        tester.openSettings()
+        tester
                 .pickProvider(Provider.PGNIG)
                 .getPreferenceAtLine(0)
                 .changeValueTo("")
@@ -75,7 +75,7 @@ public class SettingsUITest {
 
     @Test
     public void restoreSettingsSetDefaultValues() {
-        tester.openSettings()
+        tester
                 .pickProvider(Provider.TAURON)
                 .getPreferenceAtLine(0)
                 .pickOption("Taryfa dwustrefowa (G12)")
@@ -86,8 +86,23 @@ public class SettingsUITest {
     }
 
     @Test
+    public void inputValueStaysUnchangedAfterScreenRotation() throws Exception {
+        String value = "1.23456";
+        ProviderSettingsTester<SettingsTester>.SettingsDetailsListItem.InputDialog inputDialog =
+                tester
+                        .pickProvider(Provider.PGNIG)
+                        .getPreferenceAtLine(1)
+                        .openInput()
+                        .changeValue(value);
+
+        tester.changeOrientation(testRule);
+
+        inputDialog.hasValue(value);
+    }
+
+    @Test
     public void opensPgeSettingsHelp() {
-        tester.openSettings()
+        tester
                 .pickProvider(Provider.PGE)
                 .openHelp()
                 .clickOk();
@@ -95,7 +110,7 @@ public class SettingsUITest {
 
     @Test
     public void opensPgnigSettingsHelp() {
-        tester.openSettings()
+        tester
                 .pickProvider(Provider.PGNIG)
                 .openHelp()
                 .clickOk();
@@ -103,7 +118,7 @@ public class SettingsUITest {
 
     @Test
     public void opensTauronSettingsHelp() {
-        tester.openSettings()
+        tester
                 .pickProvider(Provider.TAURON)
                 .openHelp()
                 .clickOk();

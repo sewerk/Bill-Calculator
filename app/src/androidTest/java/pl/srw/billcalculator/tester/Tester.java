@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.tester;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
@@ -24,7 +25,6 @@ import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
 import pl.srw.billcalculator.R;
-import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.tester.action.CustomClickAction;
 import pl.srw.billcalculator.tester.interactor.RecyclerViewInteraction;
 
@@ -42,19 +42,23 @@ import static org.hamcrest.Matchers.allOf;
 
 abstract class Tester {
 
-    public void changeOrientation(ActivityTestRule<DrawerActivity> testRule) {
-        int current = testRule.getActivity().getRequestedOrientation();
+    public void changeOrientation(ActivityTestRule<? extends Activity> testRule) {
+        changeOrientation(testRule.getActivity());
+    }
+
+    public void changeOrientation(Activity activity) {
+        int current = activity.getRequestedOrientation();
         int change;
         if (current == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
             change = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
         } else if (current == ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
             change = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
-            testRule.getActivity().setRequestedOrientation(change);
+            activity.setRequestedOrientation(change);
             change = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
         } else {
             change = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         }
-        testRule.getActivity().setRequestedOrientation(change);
+        activity.setRequestedOrientation(change);
     }
 
     void openDrawer() {

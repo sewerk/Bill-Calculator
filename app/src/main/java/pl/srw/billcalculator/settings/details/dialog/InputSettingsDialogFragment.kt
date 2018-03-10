@@ -51,8 +51,9 @@ class InputSettingsDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val layoutInflater = LayoutInflater.from(context)
         val binding = SettingsInputDialogBinding.inflate(layoutInflater).apply {
-            this.value = data.value
-            this.measureId = data.measure
+            value = data.value
+            measureId = data.measure
+            executePendingBindings()
         }
 
         val description = getStringDescription(data.description)

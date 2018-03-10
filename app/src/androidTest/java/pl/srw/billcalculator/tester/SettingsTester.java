@@ -16,6 +16,10 @@ public class SettingsTester extends Tester {
     private final AppTester parent;
     private final ProviderSettingsTester<SettingsTester> providerSettingsTester;
 
+    public SettingsTester() {
+        this(new AppTester());
+    }
+
     SettingsTester(AppTester parent) {
         this.parent = parent;
         this.providerSettingsTester = new ProviderSettingsTester<>(this);
