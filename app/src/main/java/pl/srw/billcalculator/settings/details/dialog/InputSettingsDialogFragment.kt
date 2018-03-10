@@ -102,12 +102,12 @@ class InputSettingsDialogFragment : DialogFragment() {
     }
 
     private fun getInputView() = dialog.findViewById<EditText>(R.id.settingsDialogInput)
+}
 
-    private fun EditText.moveSelectionToEndIfAtBeginning() {
-        if (selectionEnd == 0) setSelection(text.length)
-    }
+private fun EditText.moveSelectionToEndIfAtBeginning() {
+    if (selectionEnd == 0) setSelection(text.length)
+}
 
-    private fun AlertDialog.showKeyboard() {
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
-    }
+private fun AlertDialog.showKeyboard() {
+    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
 }
