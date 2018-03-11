@@ -28,7 +28,7 @@ public class SettingsTester extends Tester {
     public ProviderSettingsTester<SettingsTester> pickProvider(Provider provider) {
         ViewInteraction settingsItem = onView(
                 allOf(withId(R.id.settings_list_item),
-                        childAtPosition(withId(R.id.settings_list), provider.ordinal())));
+                        childAtPosition(withId(R.id.settingsList), provider.ordinal())));
         settingsItem.perform(click());
         return providerSettingsTester;
     }

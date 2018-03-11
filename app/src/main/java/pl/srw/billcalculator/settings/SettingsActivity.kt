@@ -56,7 +56,7 @@ class SettingsActivity : BackableActivity() {
         supportFragmentManager
             .beginTransaction()
             .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
-            .replace(R.id.container, detailsFragment)
+            .replace(R.id.settingsContainer, detailsFragment)
             .addToBackStack(null)
             .commit()
     }
@@ -66,7 +66,7 @@ class SettingsActivity : BackableActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.container, getFragment())
+            .add(R.id.settingsContainer, getFragment())
             .commit()
     }
 
