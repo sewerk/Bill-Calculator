@@ -2,6 +2,7 @@ package pl.srw.billcalculator.settings.details
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -11,7 +12,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import com.bluelinelabs.conductor.Controller
 import pl.srw.billcalculator.R
 import pl.srw.billcalculator.common.bundleOf
 import pl.srw.billcalculator.databinding.SettingsDetailsBinding
@@ -24,29 +24,37 @@ import javax.inject.Inject
 
 private const val ARG_PROVIDER = "settings.provider.arg.provider"
 
-class SettingsDetailsController(bundle: Bundle) : Controller(bundle) {
+class SettingsDetailsFragment : Fragment() {
+
+    companion object {
+        fun createFor(provider: Provider) = SettingsDetailsFragment().apply {
+            arguments = bundleOf(ARG_PROVIDER, provider)
+        }
+    }
 
     @Inject lateinit var vmFactory: SettingsDetailsVMFactory
 
     private lateinit var binding: SettingsDetailsBinding
-    private val provider by lazy { args.getSerializable(ARG_PROVIDER) as Provider }
-    private val viewModel: SettingsDetailsVM by lazy { ViewModelProviders.of(activity, vmFactory).get(SettingsDetailsVM::class.java) }
-    private val activity: AppCompatActivity
-        get() = super.getActivity() as AppCompatActivity
+    private val provider by lazy { arguments!!.getSerializable(ARG_PROVIDER) as Provider }
+    private val viewModel: SettingsDetailsVM by lazy { ViewModelProviders.of(activity!!, vmFactory).get(SettingsDetailsVM::class.java) }
 
-    companion object {
-        fun createFor(provider: Provider) = SettingsDetailsController(bundleOf(ARG_PROVIDER, provider))
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Dependencies.inject(this)
+        setHasOptionsMenu(true)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
-        Dependencies.inject(this)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = SettingsDetailsBinding.inflate(inflater, container, false).apply {
             vm = viewModel
             vm!!.listItemsFor(provider)
         }
-        onViewBound()
-        setHasOptionsMenu(true)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setupList()
+        setupToolbar()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -62,15 +70,10 @@ class SettingsDetailsController(bundle: Bundle) : Controller(bundle) {
         } else if (item.itemId == R.id.action_default) {
             Timber.i("Restore prices clicked for %s", provider)
             ConfirmRestoreSettingsDialogFragment.newInstance(provider)
-                    .show((getActivity() as AppCompatActivity).supportFragmentManager, null)
+                .show(activity!!.supportFragmentManager, null)
             return true
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun onViewBound() {
-        setupList()
-        setupToolbar()
     }
 
     private fun setupList() {
@@ -78,11 +81,11 @@ class SettingsDetailsController(bundle: Bundle) : Controller(bundle) {
         val layoutManager = LinearLayoutManager(activity)
         listView.layoutManager = layoutManager
         listView.addItemDecoration(DividerItemDecoration(activity, layoutManager.orientation))
-        listView.adapter = SettingsDetailsListAdapter(SettingsDetailsItemClickVisitor(router))
+        listView.adapter = SettingsDetailsListAdapter(SettingsDetailsItemClickVisitor(activity!!))
     }
 
     private fun setupToolbar() {
-        activity.supportActionBar!!.setTitle(provider.settingsTitleRes)
+        (activity as AppCompatActivity).supportActionBar!!.setTitle(provider.settingsTitleRes)
     }
 
     private fun showHelp() {
