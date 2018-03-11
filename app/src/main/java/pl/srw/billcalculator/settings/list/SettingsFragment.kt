@@ -23,6 +23,7 @@ class SettingsFragment : Fragment() {
 
     private val viewModel: SettingsVM by lazy { ViewModelProviders.of(activity!!, vmFactory).get(SettingsVM::class.java) }
     private lateinit var binding: SettingsBinding
+    private var initialTabSwitch = true
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Dependencies.inject(this)
@@ -49,19 +50,27 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    private val switchSettingsDetailsFor = Observer<Provider> { provider: Provider? ->
-        Analytics.contentView(ContentType.SETTINGS, "settings from", "Settings tablet", "settings for", provider)
-        val detailsFragment = SettingsDetailsFragment.createFor(provider!!)
-        childFragmentManager
-            .beginTransaction()
-            .replace(R.id.prefs_frame, detailsFragment)
-            .commit()
-        binding.settingsList.setItemChecked(binding.vm!!.selectedIndex, true)
-    }
-
     private val showProviderSettingsScreen = Observer<Provider> { provider: Provider? ->
         Analytics.contentView(ContentType.SETTINGS, "settings from", "Settings phone", "settings for", provider)
         val detailsFragment = SettingsDetailsFragment.createFor(provider!!)
         (activity as SettingsActivity).replaceFragment(detailsFragment)
+    }
+
+    private val switchSettingsDetailsFor = Observer<Provider> { provider: Provider? ->
+        Analytics.contentView(ContentType.SETTINGS, "settings from", "Settings tablet", "settings for", provider)
+        val detailsFragment = SettingsDetailsFragment.createFor(provider!!)
+        switchFragment(detailsFragment)
+        binding.settingsList.setItemChecked(binding.vm!!.selectedIndex, true)
+    }
+
+    private fun switchFragment(detailsFragment: SettingsDetailsFragment) {
+        val transaction = childFragmentManager.beginTransaction()
+
+        if (initialTabSwitch) initialTabSwitch = false
+        else transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.fade_out)
+
+        transaction
+            .replace(R.id.prefs_frame, detailsFragment)
+            .commit()
     }
 }
