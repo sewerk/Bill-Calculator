@@ -1,5 +1,5 @@
 ![Logo](img/icon_small.png) Bill-Calculator
-[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=57a501adecce840100848f7c&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/57a501adecce840100848f7c/build/latest)
+[![Build Status](https://www.bitrise.io/app/c3d4a909665ac85c/status.svg?token=9Gn2QXyN8dILleGNDmeKOQ)](https://www.bitrise.io/app/c3d4a909665ac85c)
 ===============
 
 Android app to calculate bill value for PGE, PGNiG and Tauron providers.
