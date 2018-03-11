@@ -1,20 +1,23 @@
 package pl.srw.billcalculator.settings.di
 
 import dagger.Subcomponent
-import pl.srw.billcalculator.settings.details.SettingsDetailsController
+import pl.srw.billcalculator.settings.SettingsActivity
+import pl.srw.billcalculator.settings.details.SettingsDetailsFragment
 import pl.srw.billcalculator.settings.details.dialog.InputSettingsDialogFragment
 import pl.srw.billcalculator.settings.details.dialog.PickingSettingsDialogFragment
 import pl.srw.billcalculator.settings.details.restore.ConfirmRestoreSettingsDialogFragment
-import pl.srw.billcalculator.settings.list.SettingsController
+import pl.srw.billcalculator.settings.list.SettingsFragment
 import pl.srw.mfvp.di.scope.RetainActivityScope
 
 @RetainActivityScope
 @Subcomponent
 interface SettingsComponent {
 
-    fun inject(controller: SettingsController)
+    fun inject(activity: SettingsActivity)
 
-    fun inject(controller: SettingsDetailsController)
+    fun inject(fragment: SettingsFragment)
+
+    fun inject(fragment: SettingsDetailsFragment)
 
     fun inject(dialog: ConfirmRestoreSettingsDialogFragment)
 

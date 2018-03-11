@@ -8,12 +8,12 @@ import pl.srw.billcalculator.bill.service.PgnigBillStoringService
 import pl.srw.billcalculator.bill.service.TauronBillStoringService
 import pl.srw.billcalculator.form.fragment.FormFragment
 import pl.srw.billcalculator.history.di.HistoryComponent
-import pl.srw.billcalculator.settings.details.SettingsDetailsController
+import pl.srw.billcalculator.settings.details.SettingsDetailsFragment
 import pl.srw.billcalculator.settings.details.dialog.InputSettingsDialogFragment
 import pl.srw.billcalculator.settings.details.dialog.PickingSettingsDialogFragment
 import pl.srw.billcalculator.settings.details.restore.ConfirmRestoreSettingsDialogFragment
 import pl.srw.billcalculator.settings.di.SettingsComponent
-import pl.srw.billcalculator.settings.list.SettingsController
+import pl.srw.billcalculator.settings.list.SettingsFragment
 import timber.log.Timber
 
 @SuppressWarnings("TooManyFunctions")
@@ -28,8 +28,8 @@ object Dependencies {
 
     fun init(application: Context) {
         applicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(ApplicationModule(application))
-                .build()
+            .applicationModule(ApplicationModule(application))
+            .build()
     }
 
     // APPLICATION SCOPE
@@ -56,12 +56,12 @@ object Dependencies {
         getHistoryComponent().formComponent.inject(fragment)
     }
 
-    fun inject(controller: SettingsController) {
-        getSettingsComponent().inject(controller)
+    fun inject(fragment: SettingsFragment) {
+        getSettingsComponent().inject(fragment)
     }
 
-    fun inject(controller: SettingsDetailsController) {
-        getSettingsComponent().inject(controller)
+    fun inject(fragment: SettingsDetailsFragment) {
+        getSettingsComponent().inject(fragment)
     }
 
     fun inject(dialog: ConfirmRestoreSettingsDialogFragment) {

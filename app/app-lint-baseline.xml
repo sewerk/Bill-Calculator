@@ -3,7 +3,7 @@
 
     <issue
         id="ObsoleteLintCustomCheck"
-        message="Lint found one or more custom checks using its older Java API; these checks are still run in compatibility mode, but this causes duplicated parsing, and in the next version lint will no longer include this legacy mode. Make sure the following lint detectors are upgraded to the new API: butterknife.lint.InvalidR2UsageDetector, com.bluelinelabs.conductor.lint.ControllerChangeHandlerIssueDetector, com.bluelinelabs.conductor.lint.ControllerIssueDetector">
+        message="Lint found one or more custom checks using its older Java API; these checks are still run in compatibility mode, but this causes duplicated parsing, and in the next version lint will no longer include this legacy mode. Make sure the following lint detectors are upgraded to the new API: butterknife.lint.InvalidR2UsageDetector">
         <location
             file="app"/>
     </issue>
@@ -39,13 +39,24 @@
 
     <issue
         id="UnusedAttribute"
-        message="Attribute `fullBackupOnly` is only used in API level 21 and higher (current min is 16)"
+        message="Attribute `fullBackupOnly` is only used in API level 21 and higher (current min is 15)"
         errorLine1="        android:fullBackupOnly=&quot;true&quot;"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/AndroidManifest.xml"
             line="12"
             column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fontFamily` is only used in API level 16 and higher (current min is 15)"
+        errorLine1="          android:fontFamily=&quot;sans-serif-medium&quot;"
+        errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_drawer_nav_header.xml"
+            line="10"
+            column="11"/>
     </issue>
 
     <issue
