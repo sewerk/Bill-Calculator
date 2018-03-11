@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="cardAmount">1</integer>
-    <integer name="animation_time_half">200</integer>
+    <integer name="animationFullTime">400</integer>
+    <integer name="animationHalfTime">200</integer>
 </resources>
