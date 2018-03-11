@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import pl.srw.billcalculator.R
-import pl.srw.billcalculator.databinding.SettingsBinding
+import pl.srw.billcalculator.databinding.SettingsListBinding
 import pl.srw.billcalculator.di.Dependencies
 import pl.srw.billcalculator.settings.SettingsActivity
 import pl.srw.billcalculator.settings.details.SettingsDetailsFragment
@@ -22,12 +22,12 @@ class SettingsFragment : Fragment() {
     @Inject lateinit var vmFactory: SettingsVMFactory
 
     private val viewModel: SettingsVM by lazy { ViewModelProviders.of(activity!!, vmFactory).get(SettingsVM::class.java) }
-    private lateinit var binding: SettingsBinding
+    private lateinit var binding: SettingsListBinding
     private var initialTabSwitch = true
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Dependencies.inject(this)
-        binding = SettingsBinding.inflate(inflater, container, false).apply {
+        binding = SettingsListBinding.inflate(inflater, container, false).apply {
             vm = viewModel
             settingsList.adapter = SettingsListAdapter(viewModel.items)
         }
@@ -38,7 +38,7 @@ class SettingsFragment : Fragment() {
         with(viewModel) {
             switchProviderTab.observe(this@SettingsFragment, switchSettingsDetailsFor)
             openProviderSettings.observe(this@SettingsFragment, showProviderSettingsScreen)
-            isOnTablet = binding.prefsFrame != null
+            isOnTablet = binding.settingsDetailsFrame != null
         }
     }
 
@@ -70,7 +70,7 @@ class SettingsFragment : Fragment() {
         else transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.fade_out)
 
         transaction
-            .replace(R.id.prefs_frame, detailsFragment)
+            .replace(R.id.settingsDetailsFrame, detailsFragment)
             .commit()
     }
 }
