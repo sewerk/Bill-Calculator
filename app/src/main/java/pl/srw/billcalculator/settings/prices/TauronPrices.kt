@@ -76,16 +76,16 @@ class TauronPrices @Inject constructor(private val prefs: SharedPreferences)
 
     private object DEFAULTS {
         @JvmField val tariff = EnergyTariff.G11
-        const val energiaElektrycznaCzynna = "0.2425"
-        const val oplataDystrybucyjnaZmienna = "0.1763"
-        const val oplataDystrybucyjnaStala = "1.62"
+        const val energiaElektrycznaCzynna = "0.2445"
+        const val oplataDystrybucyjnaZmienna = "0.1803"
+        const val oplataDystrybucyjnaStala = "2.00"
         const val oplataPrzejsciowa = "1.90"
-        const val oplataAbonamentowa = "4.80"
-        const val oplataOze = "0.0037"
+        const val oplataAbonamentowa = "4.56"
+        const val oplataOze = "0.00"
 
-        const val energiaElektrycznaCzynnaDzien = "0.2989"
-        const val oplataDystrybucyjnaZmiennaDzien = "0.1888"
-        const val energiaElektrycznaCzynnaNoc = "0.1540"
-        const val oplataDystrybucyjnaZmiennaNoc = "0.0659"
+        const val energiaElektrycznaCzynnaDzien = "0.3015"
+        const val oplataDystrybucyjnaZmiennaDzien = "0.1928"
+        const val energiaElektrycznaCzynnaNoc = "0.1556"
+        const val oplataDystrybucyjnaZmiennaNoc = "0.0633"
     }
 }

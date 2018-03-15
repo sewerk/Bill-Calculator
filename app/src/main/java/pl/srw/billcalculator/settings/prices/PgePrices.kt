@@ -61,17 +61,17 @@ class PgePrices @Inject constructor(private val prefs: SharedPreferences)
 
     private object DEFAULTS {
         @JvmField val tariff = EnergyTariff.G11
-        const val cena_za_energie_czynna = "0.2410"
-        const val cena_za_energie_czynna_G12dzien = "0.2760"
-        const val cena_za_energie_czynna_G12noc = "0.1770"
-        const val cena_oplata_sieciowa = "0.2075"
-        const val cena_oplata_sieciowa_G12dzien = "0.2360"
-        const val cena_oplata_sieciowa_G12noc = "0.0720"
-        const val cena_skladnik_jakosciowy = "0.0127"
+        const val cena_za_energie_czynna = "0.2430"
+        const val cena_za_energie_czynna_G12dzien = "0.2769"
+        const val cena_za_energie_czynna_G12noc = "0.1768"
+        const val cena_oplata_sieciowa = "0.2096"
+        const val cena_oplata_sieciowa_G12dzien = "0.2409"
+        const val cena_oplata_sieciowa_G12noc = "0.0723"
+        const val cena_skladnik_jakosciowy = "0.0125"
         const val cena_oplata_przejsciowa = "1.90"
-        const val cena_oplata_stala_za_przesyl = "1.96"
-        const val cena_oplata_abonamentowa = "5.10"
-        const val cena_oplata_oze = "3.70"
+        const val cena_oplata_stala_za_przesyl = "2.01"
+        const val cena_oplata_abonamentowa = "4.80"
+        const val cena_oplata_oze = "0.00"
     }
 
     private object KEYS {
