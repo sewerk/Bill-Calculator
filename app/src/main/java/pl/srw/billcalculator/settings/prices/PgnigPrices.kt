@@ -41,7 +41,7 @@ class PgnigPrices @Inject constructor(private val prefs: SharedPreferences)
         const val paliwo_gazowe = "0.09392"
         const val dystrybucyjna_stala = "11.39"
         const val dystrybucyjna_zmienna = "0.02821"
-        const val wsp_konwersji = "11.253"
+        const val wsp_konwersji = "11.241"
     }
 
     private object KEYS {
