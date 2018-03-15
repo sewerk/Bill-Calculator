@@ -1,3 +1,8 @@
+v.2.1
+ - refactor settings:preferences to custom list+dialogs
+ - dynamic setting based on prices bridge
+ - fix: open link from settings dialog
+ - fix: analytics pair for unexpected case
 v.2.0.2
  - upgrade support lib to 27
  - restore state after process kill on form dialog
