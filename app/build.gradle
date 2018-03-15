@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply from: 'signing.gradle'
+apply from: '../gradle/fabric.gradle'
 
 android {
     compileSdkVersion 27
