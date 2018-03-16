@@ -32,6 +32,8 @@ class HistoryGenerator @Inject constructor(val prices: PgePrices) {
         }
     }
 
+    private val currentYear = LocalDate.now().year
+
     fun generatePgeG11Bill(readingTo: Int) {
         Timber.d("Create PGE G11 bill with readingTo=$readingTo")
         insertBill(readingTo, insertPrices().id)
@@ -51,8 +53,9 @@ class HistoryGenerator @Inject constructor(val prices: PgePrices) {
 
     private fun insertBill(readingTo: Int, id: Long) {
         val day = if (readingTo % 335 == 0) 1 else readingTo % 335
-        val fromDate = Dates.toDate(LocalDate.ofYearDay(2017, day))
-        val toDate = Dates.toDate(LocalDate.ofYearDay(2017, day + 30))
+        val date = LocalDate.ofYearDay(currentYear, day)
+        val fromDate = Dates.toDate(date)
+        val toDate = Dates.toDate(date.plusDays(30))
 
         val readingFrom = if (readingTo - 10 < 0) 0 else readingTo - 10
         val bill = PgeG11Bill(null, readingFrom, readingTo, fromDate, toDate, readingTo * 11.11, id)
@@ -61,8 +64,9 @@ class HistoryGenerator @Inject constructor(val prices: PgePrices) {
 
     private fun insertBill(readingDayTo: Int, readingNightTo: Int, id: Long) {
         val day = if (readingDayTo % 335 == 0) 1 else readingDayTo % 335
-        val fromDate = Dates.toDate(LocalDate.ofYearDay(2017, day))
-        val toDate = Dates.toDate(LocalDate.ofYearDay(2017, day + 30))
+        val date = LocalDate.ofYearDay(currentYear, day)
+        val fromDate = Dates.toDate(date)
+        val toDate = Dates.toDate(date.plusDays(30))
 
         val readingDayFrom = if (readingDayTo - 10 < 0) 0 else readingDayTo - 10
         val readingNightFrom = if (readingNightTo - 10 < 0) 0 else readingNightTo - 10
