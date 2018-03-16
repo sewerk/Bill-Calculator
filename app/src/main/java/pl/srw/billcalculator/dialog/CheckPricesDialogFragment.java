@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 
@@ -11,21 +13,19 @@ import javax.inject.Inject;
 
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.data.ApplicationRepo;
-import pl.srw.billcalculator.history.di.HistoryComponent;
+import pl.srw.billcalculator.di.Dependencies;
 import pl.srw.billcalculator.settings.SettingsActivity;
 import pl.srw.billcalculator.util.analytics.Analytics;
 import pl.srw.billcalculator.util.analytics.EventType;
-import pl.srw.mfvp.MvpFragment;
-import pl.srw.mfvp.di.MvpActivityScopedFragment;
 
-public class CheckPricesDialogFragment extends MvpFragment
-        implements MvpActivityScopedFragment<HistoryComponent> {
+public class CheckPricesDialogFragment extends DialogFragment {
 
     @Inject ApplicationRepo dataRepo;
 
     @Override
-    public void injectDependencies(HistoryComponent historyComponent) {
-        historyComponent.inject(this);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Dependencies.INSTANCE.inject(this);
     }
 
     @NonNull

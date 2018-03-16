@@ -6,7 +6,9 @@ import pl.srw.billcalculator.BillCalculator
 import pl.srw.billcalculator.bill.service.PgeBillStoringService
 import pl.srw.billcalculator.bill.service.PgnigBillStoringService
 import pl.srw.billcalculator.bill.service.TauronBillStoringService
+import pl.srw.billcalculator.dialog.CheckPricesDialogFragment
 import pl.srw.billcalculator.form.fragment.FormFragment
+import pl.srw.billcalculator.history.NewUIDialogFragment
 import pl.srw.billcalculator.history.di.HistoryComponent
 import pl.srw.billcalculator.settings.details.SettingsDetailsFragment
 import pl.srw.billcalculator.settings.details.dialog.InputSettingsDialogFragment
@@ -54,6 +56,14 @@ object Dependencies {
     // FRAGMENTS
     fun inject(fragment: FormFragment) {
         getHistoryComponent().formComponent.inject(fragment)
+    }
+
+    fun inject(dialog: CheckPricesDialogFragment) {
+        getHistoryComponent().inject(dialog)
+    }
+
+    fun inject(dialog: NewUIDialogFragment) {
+        getHistoryComponent().inject(dialog)
     }
 
     fun inject(fragment: SettingsFragment) {
