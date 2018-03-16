@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.app.DialogFragment
 import android.text.Html
 import android.text.method.LinkMovementMethod
 import android.view.View
@@ -17,18 +18,15 @@ import butterknife.OnClick
 import butterknife.Unbinder
 import pl.srw.billcalculator.BuildConfig
 import pl.srw.billcalculator.R
-import pl.srw.billcalculator.history.di.HistoryComponent
 import pl.srw.billcalculator.util.analytics.Analytics
 import pl.srw.billcalculator.util.analytics.ContentType
 import pl.srw.billcalculator.util.analytics.EventType
-import pl.srw.mfvp.MvpFragment
-import pl.srw.mfvp.di.MvpActivityScopedFragment
 import timber.log.Timber
 
 private const val RECEIVER_EMAIL = "kalkulator.rachunkow@gmail.com"
 private const val BETA_HTTP = "https://plus.google.com/communities/113263640175495853700"
 
-class AboutDialogFragment : MvpFragment(), MvpActivityScopedFragment<HistoryComponent> {
+class AboutDialogFragment : DialogFragment() {
 
     private lateinit var unbinder: Unbinder
 
@@ -54,10 +52,6 @@ class AboutDialogFragment : MvpFragment(), MvpActivityScopedFragment<HistoryComp
     override fun onDestroyView() {
         super.onDestroyView()
         unbinder.unbind()
-    }
-
-    override fun injectDependencies(component: HistoryComponent) {
-        // no injections needed
     }
 
     private fun setLinks() {
