@@ -42,7 +42,8 @@ public class TauronBillActivity extends EnergyBillActivity<ITauronPrices, Tauron
         if (!isNewBill()
                 && savedInstanceState == null
                 && "0.00".equals(prices.getOplataOze())
-                && dateTo.isAfter(LocalDate.of(2016, Month.JULY, 1))) {
+                && dateTo.isAfter(LocalDate.of(2016, Month.JULY, 1))
+                && dateTo.isBefore(LocalDate.ofYearDay(2018, 1))) {
             new BillCalculatedBeforeOZEChangeDialogFragment()
                     .show(getFragmentManager(), null);
         }
