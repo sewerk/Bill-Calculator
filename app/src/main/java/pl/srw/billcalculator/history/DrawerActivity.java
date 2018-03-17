@@ -45,7 +45,7 @@ import pl.srw.mfvp.MvpActivity;
 import timber.log.Timber;
 
 public class DrawerActivity extends MvpActivity<HistoryComponent>
-        implements HistoryPresenter.HistoryView,
+        implements HistoryPresenter.HistoryView, DrawerPresenter.View,
         NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.coordinator_layout) CoordinatorLayout coordinatorLayout;
@@ -58,12 +58,12 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @BindInt(R.integer.cardAmount) int cardAmount;
 
     @Inject HistoryPresenter presenter;
-//FIXME    @Inject DrawerPresenter drawerPresenter;
     @Inject FabsMenuViewHandler fabsMenuHandler;
     @Inject HelpHandler helpHandler;
     @Inject BillSelection selection;
     @Inject MenuClickHandlerExtension menuHandlerExtension;
 
+    private DrawerPresenter drawerPresenter;
     private HistoryAdapter adapter;
     private MenuItem deleteMenuAction;
     private HistoryItemTouchCallback touchCallback;
@@ -79,6 +79,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         setupDrawer();
         setupList();
 
+        drawerPresenter = new DrawerPresenter(this);
         attachPresenter(presenter);
     }
 
@@ -120,22 +121,22 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         int id = item.getItemId();
 
         if (id == R.id.history) {
-            presenter.historyClicked();
+            drawerPresenter.historyClicked();
         } else if (id == R.id.new_bill_pge) {
             Timber.i("Drawer: New bill picked: PGE");
-            presenter.newBillClicked(Provider.PGE);
+            drawerPresenter.newBillClicked(Provider.PGE);
         } else if (id == R.id.new_bill_pgnig) {
             Timber.i("Drawer: New bill picked: PGNIG");
-            presenter.newBillClicked(Provider.PGNIG);
+            drawerPresenter.newBillClicked(Provider.PGNIG);
         } else if (id == R.id.new_bill_tauron) {
             Timber.i("Drawer: New bill picked: TAURON");
-            presenter.newBillClicked(Provider.TAURON);
+            drawerPresenter.newBillClicked(Provider.TAURON);
         } else if (id == R.id.settings) {
             Timber.i("Drawer: Settings clicked");
-            presenter.settingsClicked();
+            drawerPresenter.settingsClicked();
         } else if (id == R.id.about) {
             Timber.i("Drawer: About clicked");
-            presenter.aboutClicked();
+            drawerPresenter.aboutClicked();
         }
         return true;
     }
@@ -143,7 +144,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @Override
     public void onBackPressed() {
         Timber.i("Back clicked");
-        if (!presenter.handleBackPressed()
+        if (!drawerPresenter.handleBackPressed()
                 && !fabsMenuHandler.handleBackPressed()) {
             super.onBackPressed();
         }
