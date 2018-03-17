@@ -165,6 +165,12 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         selection.deselectAll();
     }
 
+    @Override
+    protected void onFinish() {
+        super.onFinish();
+        historyData.close();
+    }
+
     private void loadHistoryData() {
         if (historyData != null)
             historyData.close();
