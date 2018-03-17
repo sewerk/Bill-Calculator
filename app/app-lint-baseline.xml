@@ -10,12 +10,23 @@
 
     <issue
         id="MissingRegistered"
+        message="Class referenced in the manifest, `pl.srw.billcalculator.BillCalculator`, was not found in the project or the libraries"
+        errorLine1="    &lt;application"
+        errorLine2="    ^">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="8"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="MissingRegistered"
         message="Class referenced in the manifest, `pl.srw.billcalculator.settings.SettingsActivity`, was not found in the project or the libraries"
         errorLine1="        &lt;activity"
         errorLine2="        ^">
         <location
             file="src/main/AndroidManifest.xml"
-            line="49"
+            line="45"
             column="9"/>
     </issue>
 
@@ -33,7 +44,7 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="14"
+            line="15"
             column="9"/>
     </issue>
 
