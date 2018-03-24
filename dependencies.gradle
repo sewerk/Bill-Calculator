@@ -6,7 +6,7 @@ ext {
     anko_version = '0.10.4'
     supportLibVer = '27.1.0'
     constraintLayoutVer = '1.0.2'
-    archCompVer = "1.0.0"
+    archCompVer = "1.1.1"
 
     mfvpVer = '1.0-beta1'
     greenDaoVer = '3.1.0'
