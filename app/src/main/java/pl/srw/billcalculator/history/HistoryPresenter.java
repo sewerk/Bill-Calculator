@@ -138,7 +138,9 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         loadHistoryData();
         present(view -> {
             Arrays.sort(positions);
-            selection.onInsert(positions[0]);
+            for (int position : positions) {
+                selection.onInsert(position);
+            }
             view.setListData(historyData);
             for (int position : positions) {
                 view.onItemInsertedToList(position);

@@ -363,6 +363,18 @@ class HistoryPresenterTest {
     }
 
     @Test
+    fun `updates selection, after undo on multiple items`() {
+        whenever(history.isUndoDeletePossible()).thenReturn(true)
+
+        sut.undoDeleteClicked(1, 3, 2)
+
+        val inOrder = inOrder(selection)
+        inOrder.verify(selection).onInsert(1)
+        inOrder.verify(selection).onInsert(2)
+        inOrder.verify(selection).onInsert(3)
+    }
+
+    @Test
     fun onListItemClicked_whenNotInSelectMode_opensBill() {
         // GIVEN
         val bill: PgeG11Bill = mock()

@@ -86,6 +86,13 @@ public class HistoryTester extends Tester {
         return this;
     }
 
+    public HistoryTester checkItemNotSelected(int position) {
+        onView(withId(R.id.bill_list)).perform(scrollToPosition(position + 1));
+        onRecyclerViewItem(withId(R.id.bill_list), position)
+                .checkView(R.id.history_item_logo, matches(not(isSelected())));
+        return this;
+    }
+
     public HistoryTester checkNoSelection() {
         onView(isSelected()).check(doesNotExist());
         return this;
