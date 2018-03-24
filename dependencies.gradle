@@ -1,6 +1,6 @@
 ext {
     gradlePluginVer = '3.0.1'
-    buildToolsVer = '26.0.2'
+    buildToolsVer = '27.0.3'
 
     kotlinVer = '1.2.30'
     anko_version = '0.10.4'
