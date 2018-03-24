@@ -123,6 +123,30 @@ class HistoryUITest {
     }
 
     @Test
+    fun shouldHoldProperItemsSelectedAfterUndoActionClicked() {
+        // given
+        historyGenerator.generatePgeG11Bills(7)
+        testRule.launchActivity(null)
+
+        tester.skipCheckPricesDialogIfVisible()
+            .onHistory()
+            .changeItemSelectionAtPosition(1)
+            .changeItemSelectionAtPosition(2)
+            .deleteSelected()
+
+        // when
+            .changeItemSelectionAtPosition(1)
+            .changeItemSelectionAtPosition(2)
+            .undoDelete()
+
+        // then
+            .checkItemNotSelected(1)
+            .checkItemNotSelected(2)
+            .checkItemSelected(3)
+            .checkItemSelected(4)
+    }
+
+    @Test
     fun shouldRestoreBillAfterSelectDeleteWhenUndoActionClicked() {
         // given: one bill in history
         historyGenerator.generatePgeG11Bill(11)
