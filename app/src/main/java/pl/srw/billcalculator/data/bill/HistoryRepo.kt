@@ -17,6 +17,16 @@ class HistoryRepo @Inject internal constructor() {
     // FIXME: Rewrite to Rx
     fun getAll(): LazyList<History> = Database.getHistory()
 
+    fun insert(bill: Bill): Bill {
+        Database.insert(bill)
+        return bill
+    }
+
+    fun insert(prices: Prices): Prices {
+        Database.insert(prices)
+        return prices
+    }
+
     fun deleteBillsWithPrices(bills: Collection<Bill>) {
         bills.forEach { deleteBillWithPrices(it) }
     }
@@ -36,7 +46,8 @@ class HistoryRepo @Inject internal constructor() {
 
     fun undoDelete() {
         for ((bill, prices) in deleted) {
-            Database.insert(bill, prices)
+            insert(prices)
+            insert(bill)
         }
         deleted = emptyList()
     }
