@@ -181,6 +181,206 @@
     </issue>
 
     <issue
+        id="UnusedResources"
+        message="The resource `R.dimen.activity_vertical_margin` appears to be unused"
+        errorLine1="    &lt;dimen name=&quot;activity_vertical_margin&quot;>16dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/dimens.xml"
+            line="3"
+            column="12"/>
+        <location
+            file="src/main/res/values-sw600dp/dimens.xml"
+            line="8"
+            column="12"/>
+        <location
+            file="src/main/res/values-sw720dp-land/dimens.xml"
+            line="8"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.integer.preferences_left_pane_weight` appears to be unused"
+        errorLine1="    &lt;integer name=&quot;preferences_left_pane_weight&quot;>4&lt;/integer>"
+        errorLine2="             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/dimens.xml"
+            line="21"
+            column="14"/>
+        <location
+            file="src/main/res/values-sw720dp/dimens.xml"
+            line="4"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.integer.preferences_right_pane_weight` appears to be unused"
+        errorLine1="    &lt;integer name=&quot;preferences_right_pane_weight&quot;>6&lt;/integer>"
+        errorLine2="             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/dimens.xml"
+            line="23"
+            column="14"/>
+        <location
+            file="src/main/res/values-sw720dp/dimens.xml"
+            line="6"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.settings_details` appears to be unused"
+        errorLine1="&lt;layout>"
+        errorLine2="^">
+        <location
+            file="src/main/res/layout/settings_details.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.settings_input_dialog` appears to be unused"
+        errorLine1="&lt;layout>"
+        errorLine2="^">
+        <location
+            file="src/main/res/layout/settings_input_dialog.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.settings_list` appears to be unused"
+        errorLine1="&lt;layout>"
+        errorLine2="^">
+        <location
+            file="src/main/res/layout/settings_list.xml"
+            line="2"
+            column="1"/>
+        <location
+            file="src/main/res/layout-sw600dp/settings_list.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.settings_list_item` appears to be unused"
+        errorLine1="&lt;layout>"
+        errorLine2="^">
+        <location
+            file="src/main/res/layout/settings_list_item.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.settings_list_item_bg_selector` appears to be unused"
+        errorLine1="&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/settings_list_item_bg_selector.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.settings_picking_dialog_item` appears to be unused"
+        errorLine1="&lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/layout/settings_picking_dialog_item.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.settings_list_item_logo_content_desc` appears to be unused"
+        errorLine1="    &lt;string name=&quot;settings_list_item_logo_content_desc&quot;>provider icon&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="147"
+            column="13"/>
+        <location
+            file="src/main/res/values-pl/strings.xml"
+            line="68"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.settings_energy_tariff_pick_G11` appears to be unused"
+        errorLine1="    &lt;string name=&quot;settings_energy_tariff_pick_G11&quot; translatable=&quot;false&quot;>Taryfa całodobowa (G11)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="161"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.settings_energy_tariff_pick_G12` appears to be unused"
+        errorLine1="    &lt;string name=&quot;settings_energy_tariff_pick_G12&quot; translatable=&quot;false&quot;>Taryfa dwustrefowa (G12)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="162"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.price_measure_zl_kWh` appears to be unused"
+        errorLine1="    &lt;string name=&quot;price_measure_zl_kWh&quot; translatable=&quot;false&quot;>zł/kWh&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="163"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.price_measure_zl_MWh` appears to be unused"
+        errorLine1="    &lt;string name=&quot;price_measure_zl_MWh&quot; translatable=&quot;false&quot;>zł/MWh&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="164"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.price_measure_zl_month` appears to be unused"
+        errorLine1="    &lt;string name=&quot;price_measure_zl_month&quot; translatable=&quot;false&quot;>zł/m-c&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="165"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.settings_input_hint` appears to be unused"
+        errorLine1="    &lt;string name=&quot;settings_input_hint&quot; translatable=&quot;false&quot;>Cena netto&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="169"
+            column="13"/>
+    </issue>
+
+    <issue
         id="SelectableText"
         message="Consider making the text value selectable by specifying `android:textIsSelectable=&quot;true&quot;`"
         errorLine1="        &lt;TextView"

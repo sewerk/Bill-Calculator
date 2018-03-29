@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="UnusedResources">
     <color name="primary">@color/red</color>
     <color name="primaryDark">#B71C1C</color>
     <color name="accent">@color/blue_gray</color>
