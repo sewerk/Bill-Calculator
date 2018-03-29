@@ -13,7 +13,7 @@ class SettingsListAdapter(private val items: List<SettingsListItem> = emptyList(
         val binding = if (view == null) {
             val inflater = LayoutInflater.from(viewGroup.context)
             SettingsListItemBinding.inflate(inflater, viewGroup, false)
-        } else DataBindingUtil.getBinding(view)
+        } else DataBindingUtil.getBinding(view)!!
 
         with(binding) {
             item = getItem(position)
