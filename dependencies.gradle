@@ -1,5 +1,5 @@
 ext {
-    gradlePluginVer = '3.0.1'
+    gradlePluginVer = '3.1.0'
     buildToolsVer = '27.0.3'
 
     kotlinVer = '1.2.30'
