@@ -24,7 +24,7 @@ public class RxJavaBaseTest {
     }
 
     @After
-    public void shutDown() throws Exception {
+    public void shutDown() {
         RxJavaPlugins.reset();
         RxAndroidPlugins.reset();
     }

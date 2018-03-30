@@ -4,12 +4,15 @@ import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
+import io.reactivex.Completable
 import junitparams.JUnitParamsRunner
 import junitparams.Parameters
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyInt
 import pl.srw.billcalculator.RxJavaBaseTest
+import pl.srw.billcalculator.bill.save.BillSaver
+import pl.srw.billcalculator.bill.save.model.NewBillInput
 import pl.srw.billcalculator.form.FormVM
 import pl.srw.billcalculator.type.Provider
 
@@ -21,8 +24,11 @@ class FormPresenterTest : RxJavaBaseTest() {
 
     val view: FormPresenter.FormView = mock()
     val historyUpdater: FormPresenter.HistoryChangeListener = mock()
+    val billSaver: BillSaver = mock {
+        on { storeBill(any()) } doReturn Completable.complete()
+    }
 
-    var sut = FormPresenter(view, Provider.PGE, historyUpdater)
+    var sut = FormPresenter(view, Provider.PGE, billSaver, historyUpdater)
 
     @Test
     fun whenCloseButtonClicked_dismissForm() {
@@ -33,27 +39,51 @@ class FormPresenterTest : RxJavaBaseTest() {
 
     @Test
     @Parameters("PGE", "PGNIG", "TAURON")
-    fun calculateButtonClicked_forTariffG11_whenValuesCorrect_saveAndOpenBillForSingleReadings(provider: Provider) {
+    fun calculateButtonClicked_forTariffG11_whenValuesCorrect_saveBillForSingleReadings(provider: Provider) {
         setup(provider)
         val vm = mockFormVM(rf = "1", rt = "2", df = "28.12.16", dt = "31.12.16",
                 rdf = "11", rdt = "12", rnf = "22", rnt = "23", tariff = TARIFF_G11)
 
         sut.calculateButtonClicked(vm)
 
-        verify(view).startStoringService(provider)
+        verify(billSaver).storeBill(NewBillInput.from(vm, true))
+    }
+
+    @Test
+    @Parameters("PGE", "PGNIG", "TAURON")
+    fun calculateButtonClicked_forTariffG11_whenValuesCorrect_openBillForSingleReadings(provider: Provider) {
+        setup(provider)
+        val vm = mockFormVM(rf = "1", rt = "2", df = "28.12.16", dt = "31.12.16",
+                rdf = "11", rdt = "12", rnf = "22", rnt = "23", tariff = TARIFF_G11)
+
+        sut.calculateButtonClicked(vm)
+        waitToFinish()
+
         verify(view).startBillActivity(provider)
     }
 
     @Test
     @Parameters("PGE", "TAURON")
-    fun calculateButtonClicked_forEnergyProvider_andTariffG12_whenValuesCorrect_saveAndOpenBillForDoubleReadings(provider: Provider) {
+    fun calculateButtonClicked_forEnergyProvider_andTariffG12_whenValuesCorrect_saveBillForDoubleReadings(provider: Provider) {
         setup(provider)
         val vm = mockFormVM(rf = "1", rt = "2", df = "28.12.16", dt = "31.12.16",
                 rdf = "11", rdt = "12", rnf = "22", rnt = "23", tariff = TARIFF_G12)
 
         sut.calculateButtonClicked(vm)
 
-        verify(view).startStoringService(provider)
+        verify(billSaver).storeBill(NewBillInput.from(vm, false))
+    }
+
+    @Test
+    @Parameters("PGE", "TAURON")
+    fun calculateButtonClicked_forEnergyProvider_andTariffG12_whenValuesCorrect_openBillForDoubleReadings(provider: Provider) {
+        setup(provider)
+        val vm = mockFormVM(rf = "1", rt = "2", df = "28.12.16", dt = "31.12.16",
+                rdf = "11", rdt = "12", rnf = "22", rnt = "23", tariff = TARIFF_G12)
+
+        sut.calculateButtonClicked(vm)
+        waitToFinish()
+
         verify(view).startBillActivity(provider)
     }
 
@@ -65,6 +95,7 @@ class FormPresenterTest : RxJavaBaseTest() {
                 rdf = "11", rdt = "12", rnf = "22", rnt = "23", tariff = tariff)
 
         sut.calculateButtonClicked(vm)
+        waitToFinish()
 
         verify(view).hideForm()
     }
@@ -132,6 +163,7 @@ class FormPresenterTest : RxJavaBaseTest() {
         val vm = mockFormVM(rf = "1", rt = "2", df = "28.12.16", dt = "31.12.16", tariff = TARIFF_G11)
 
         sut.calculateButtonClicked(vm)
+        waitToFinish()
 
         verify(historyUpdater).onHistoryChanged()
     }
@@ -142,19 +174,21 @@ class FormPresenterTest : RxJavaBaseTest() {
                 df = "28.12.16", dt = "31.12.16", tariff = TARIFF_G12)
 
         sut.calculateButtonClicked(vm)
+        waitToFinish()
 
         verify(historyUpdater).onHistoryChanged()
     }
 
     private fun setup(provider: Provider) {
-        sut = FormPresenter(view, provider, historyUpdater)
+        sut = FormPresenter(view, provider, billSaver, historyUpdater)
     }
 
     private fun mockFormVM(rf: String = "", rt: String = "",
                            df:String = "", dt:String = "",
                            rdf: String = "", rdt: String = "",
                            rnf: String="", rnt: String = "",
-                           tariff: String = TARIFF_G11): FormVM {
+                           tariff: String = TARIFF_G11,
+                           provider: Provider = Provider.PGE): FormVM {
         return mock {
             on { readingFrom } doReturn rf
             on { readingTo } doReturn rt
@@ -166,6 +200,7 @@ class FormPresenterTest : RxJavaBaseTest() {
             on { dateTo } doReturn dt
             on { tariffLabel } doReturn tariff
             on { isSingleReadingsProcessing() } doReturn(tariff == TARIFF_G11)
+            on { this@on.provider } doReturn provider
         }
     }
 }
