@@ -20,6 +20,7 @@ import pl.srw.billcalculator.di.Dependencies
 import pl.srw.billcalculator.settings.details.InputSettingsDetailsListItem
 import pl.srw.billcalculator.settings.details.SettingsDetailsVM
 import pl.srw.billcalculator.settings.details.SettingsDetailsVMFactory
+import timber.log.Timber
 import javax.inject.Inject
 
 private const val ARG_DATA = "Settings.details.dialog.input.data"
@@ -49,6 +50,7 @@ class InputSettingsDialogFragment : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        Timber.i("Setting input opened for ${data.title}=${data.value}")
         val layoutInflater = LayoutInflater.from(context)
         val binding = SettingsInputDialogBinding.inflate(layoutInflater).apply {
             value = data.value

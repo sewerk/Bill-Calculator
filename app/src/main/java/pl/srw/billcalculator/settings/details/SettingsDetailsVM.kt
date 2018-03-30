@@ -26,6 +26,7 @@ class SettingsDetailsVM(private val pricesRepo: PricesRepo) : ViewModel() {
     }
 
     fun valueChanged(title: String, value: String) {
+        Timber.i("Settings details: $title value changed to: $value")
         pricesRepo.updatePrice(provider!!, title, value.autoCorrect())
     }
 
