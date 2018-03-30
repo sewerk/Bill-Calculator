@@ -23,8 +23,10 @@ class SharedPreferencesStringProperty(private val key: String,
  */
 class SharedPreferencesTariffProperty(private val key: String,
                                       private val prefs: SharedPreferences): ReadWriteProperty<Any?, EnergyTariff> {
-    override fun getValue(thisRef: Any?, property: KProperty<*>) =
-            EnergyTariff.valueOf(prefs[key])
+    override fun getValue(thisRef: Any?, property: KProperty<*>): EnergyTariff {
+        val value: String = prefs[key, EnergyTariff.G11.name]
+        return EnergyTariff.valueOf(value)
+    }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: EnergyTariff) {
         prefs[key] = value.name
