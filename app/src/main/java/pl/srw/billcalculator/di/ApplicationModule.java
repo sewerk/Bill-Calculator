@@ -93,4 +93,10 @@ public class ApplicationModule {
     PricesRepo providePricesRepo(PricesRepoImpl repo) {
         return repo;
     }
+
+    @Provides
+    @Singleton
+    Context applicationContext() {
+        return context;
+    }
 }

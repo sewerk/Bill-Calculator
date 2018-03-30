@@ -51,12 +51,6 @@
                   android:label="@string/action_help"
                   android:theme="@style/DialogTheme" />
 
-        <service android:name=".bill.service.PgnigBillStoringService" />
-
-        <service android:name=".bill.service.PgeBillStoringService" />
-
-        <service android:name=".bill.service.TauronBillStoringService" />
-
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"

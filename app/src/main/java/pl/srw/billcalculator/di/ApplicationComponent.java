@@ -9,9 +9,6 @@ import pl.srw.billcalculator.BillCalculator;
 import pl.srw.billcalculator.bill.di.PgeBillComponent;
 import pl.srw.billcalculator.bill.di.PgnigBillComponent;
 import pl.srw.billcalculator.bill.di.TauronBillComponent;
-import pl.srw.billcalculator.bill.service.PgeBillStoringService;
-import pl.srw.billcalculator.bill.service.PgnigBillStoringService;
-import pl.srw.billcalculator.bill.service.TauronBillStoringService;
 import pl.srw.billcalculator.data.ApplicationRepo;
 import pl.srw.billcalculator.data.settings.prices.PricesRepo;
 import pl.srw.billcalculator.history.di.HistoryComponent;
@@ -34,12 +31,6 @@ public interface ApplicationComponent {
     @NonNull TauronBillComponent getTauronBillComponent();
 
     void inject(BillCalculator application);
-
-    void inject(PgeBillStoringService service);
-
-    void inject(PgnigBillStoringService service);
-
-    void inject(TauronBillStoringService service);
 
     // Visible for UI tests
     @NonNull PgePrices getPgePrices();

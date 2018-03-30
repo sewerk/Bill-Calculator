@@ -1,19 +1,26 @@
 package pl.srw.billcalculator.form.fragment
 
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import pl.srw.billcalculator.bill.save.BillSaver
+import pl.srw.billcalculator.bill.save.model.NewBillInput
 import pl.srw.billcalculator.form.FormVM
 import pl.srw.billcalculator.form.FormValueValidator
 import pl.srw.billcalculator.form.FormValueValidator.isDatesOrderCorrect
 import pl.srw.billcalculator.form.FormValueValidator.isValueFilled
 import pl.srw.billcalculator.form.FormValueValidator.isValueOrderCorrect
-import pl.srw.billcalculator.util.analytics.EventType
 import pl.srw.billcalculator.type.Provider
 import pl.srw.billcalculator.type.Provider.PGNIG
 import pl.srw.billcalculator.util.analytics.Analytics
+import pl.srw.billcalculator.util.analytics.EventType
 import timber.log.Timber
 
-class FormPresenter(private val view: FormView,
-                    private val provider: Provider,
-                    private val historyUpdater: HistoryChangeListener) {
+class FormPresenter(
+    private val view: FormView,
+    private val provider: Provider,
+    private val billSaver: BillSaver,
+    private val historyUpdater: HistoryChangeListener
+) {
 
     fun closeButtonClicked() {
         Timber.i("Form: Close clicked")
@@ -26,24 +33,36 @@ class FormPresenter(private val view: FormView,
 
         val singleReadings = provider == PGNIG || vm.isSingleReadingsProcessing()
         val validInput = if (singleReadings) {
-            isSingleReadingsFormValid(vm.readingFrom, vm.readingTo, vm.dateFrom, vm.dateTo)
+            isSingleReadingsFormValid(
+                vm.readingFrom, vm.readingTo,
+                vm.dateFrom, vm.dateTo
+            )
         } else {
-            isDoubleReadingsFormValid(vm.readingDayFrom, vm.readingDayTo,
-                    vm.readingNightFrom, vm.readingNightTo, vm.dateFrom, vm.dateTo)
+            isDoubleReadingsFormValid(
+                vm.readingDayFrom, vm.readingDayTo,
+                vm.readingNightFrom, vm.readingNightTo,
+                vm.dateFrom, vm.dateTo
+            )
         }
         if (!validInput) return
 
-        with(view) {
-            startStoringService(provider)
-            startBillActivity(provider)
-            hideForm()
-        }
-        historyUpdater.onHistoryChanged()
+        billSaver.storeBill(NewBillInput.from(vm, singleReadings))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                historyUpdater.onHistoryChanged()
+                with(view) {
+                    startBillActivity(provider)
+                    hideForm()
+                }
+            }
         Analytics.event(EventType.CALCULATE, "provider", provider)
     }
 
-    private fun isSingleReadingsFormValid(readingFrom: String, readingTo: String,
-                                          dateFrom: String, dateTo: String): Boolean {
+    private fun isSingleReadingsFormValid(
+        readingFrom: String, readingTo: String,
+        dateFrom: String, dateTo: String
+    ): Boolean {
         return (isValueFilled(readingFrom, onErrorCallback(FormView.Field.READING_FROM))
                 && isValueFilled(readingTo, onErrorCallback(FormView.Field.READING_TO))
                 && isValueOrderCorrect(readingFrom, readingTo, onErrorCallback(FormView.Field.READING_TO))
@@ -51,9 +70,11 @@ class FormPresenter(private val view: FormView,
 
     }
 
-    private fun isDoubleReadingsFormValid(readingDayFrom: String, readingDayTo: String,
-                                          readingNightFrom: String, readingNightTo: String,
-                                          dateFrom: String, dateTo: String): Boolean {
+    private fun isDoubleReadingsFormValid(
+        readingDayFrom: String, readingDayTo: String,
+        readingNightFrom: String, readingNightTo: String,
+        dateFrom: String, dateTo: String
+    ): Boolean {
         return (isValueFilled(readingDayFrom, onErrorCallback(FormView.Field.READING_DAY_FROM))
                 && isValueFilled(readingDayTo, onErrorCallback(FormView.Field.READING_DAY_TO))
                 && isValueFilled(readingNightFrom, onErrorCallback(FormView.Field.READING_NIGHT_FROM))
@@ -79,8 +100,6 @@ class FormPresenter(private val view: FormView,
         fun showDateFieldError(errorMsgRes: Int)
 
         fun cleanErrorsOnFields()
-
-        fun startStoringService(provider: Provider)
 
         fun startBillActivity(provider: Provider)
 

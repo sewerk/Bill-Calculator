@@ -3,9 +3,6 @@ package pl.srw.billcalculator.di
 import android.content.Context
 import android.os.Looper
 import pl.srw.billcalculator.BillCalculator
-import pl.srw.billcalculator.bill.service.PgeBillStoringService
-import pl.srw.billcalculator.bill.service.PgnigBillStoringService
-import pl.srw.billcalculator.bill.service.TauronBillStoringService
 import pl.srw.billcalculator.dialog.CheckPricesDialogFragment
 import pl.srw.billcalculator.form.fragment.FormFragment
 import pl.srw.billcalculator.history.NewUIDialogFragment
@@ -37,18 +34,6 @@ object Dependencies {
     // APPLICATION SCOPE
     fun inject(application: BillCalculator) {
         applicationComponent.inject(application)
-    }
-
-    fun inject(service: PgeBillStoringService) {
-        applicationComponent.inject(service)
-    }
-
-    fun inject(service: PgnigBillStoringService) {
-        applicationComponent.inject(service)
-    }
-
-    fun inject(service: TauronBillStoringService) {
-        applicationComponent.inject(service)
     }
 
     // ACTIVITIES
