@@ -1,5 +1,10 @@
+v.2.1.1
+ - fix: don't show OZE dialog when data from 2018
+ - fix: selection incorrect after undo delete multiple bills
+ - refactor: storing service to Rx
+ - fix: missing pge tariff in shared prefs crash app
 v.2.1
- - refactor settings:preferences to custom list+dialogs
+ - refactor: settings preferences to custom list+dialogs
  - dynamic setting based on prices bridge
  - fix: open link from settings dialog
  - fix: analytics pair for unexpected case
