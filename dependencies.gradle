@@ -20,7 +20,7 @@ ext {
     javaxVer = '1.0'
 
     fabricPluginVer = '1.25.1'
-    crashlyticsVer = '2.8.0'
+    crashlyticsVer = '2.9.1'
     leakcanaryVer = '1.5.4'
 
     junitVer = '4.12'
