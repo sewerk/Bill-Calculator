@@ -1,20 +1,20 @@
 ext {
-    gradlePluginVer = '3.0.1'
-    buildToolsVer = '26.0.2'
+    gradlePluginVer = '3.1.0'
+    buildToolsVer = '27.0.3'
 
-    kotlinVer = '1.2.30'
+    kotlinVer = '1.2.31'
     anko_version = '0.10.4'
     supportLibVer = '27.0.2'
     constraintLayoutVer = '1.0.2'
-    archCompVer = "1.0.0"
+    archCompVer = "1.1.1"
 
     mfvpVer = '1.0-beta1'
     greenDaoVer = '3.1.0'
     daggerVer = '2.0.1'
     butterKnifeVer = '8.8.1'
-    rxJavaVer = '2.0.4'
-    rxAndroidVer = '2.0.1'
-    timberVer = '4.6.1'
+    rxJavaVer = '2.1.12'
+    rxAndroidVer = '2.0.2'
+    timberVer = '4.7.0'
     threeTenAbpVer = '1.0.5'
     tapTargetVer = '1.9.1'
     javaxVer = '1.0'

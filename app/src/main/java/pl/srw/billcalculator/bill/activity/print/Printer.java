@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.bill.activity.print;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.support.annotation.VisibleForTesting;
 import android.view.View;
@@ -40,6 +41,7 @@ public class Printer {
         this.listener = null;
     }
 
+    @SuppressLint("CheckResult")
     public void printToPdf(final View contentView, final File targetFile) {
         inProgressFiles.add(targetFile.getAbsolutePath());
         if (listener != null) {

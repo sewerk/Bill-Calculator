@@ -17,7 +17,6 @@ import pl.srw.billcalculator.form.fragment.FormPresenter;
 import pl.srw.billcalculator.history.list.item.HistoryItemClickListener;
 import pl.srw.billcalculator.history.list.item.HistoryItemDismissHandling;
 import pl.srw.billcalculator.history.list.item.HistoryViewItem;
-import pl.srw.billcalculator.type.Provider;
 import pl.srw.billcalculator.util.BillSelection;
 import pl.srw.billcalculator.util.analytics.Analytics;
 import pl.srw.billcalculator.util.analytics.EventType;
@@ -130,42 +129,6 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         present(HistoryView::showHelp);
     }
 
-    void settingsClicked() {
-        present(view -> {
-            view.openSettings();
-            view.closeDrawer();
-        });
-    }
-
-    boolean handleBackPressed() {
-        final boolean[] handled = {false};
-        present(view -> {
-            if (view.isDrawerOpen()) {
-                view.closeDrawer();
-                handled[0] = true;
-            }
-        });
-        return handled[0];
-    }
-
-    void historyClicked() {
-        present(HistoryView::closeDrawer);
-    }
-
-    void newBillClicked(final Provider provider) {
-        present(view -> {
-            view.showNewBillForm(provider);
-            view.closeDrawer();
-        });
-    }
-
-    void aboutClicked() {
-        present(view -> {
-            view.showAbout();
-            view.closeDrawer();
-        });
-    }
-
     void undoDeleteClicked(final int... positions) {
         if (!history.isUndoDeletePossible()) {
             Timber.d("Undo delete clicked twice");
@@ -175,7 +138,9 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         loadHistoryData();
         present(view -> {
             Arrays.sort(positions);
-            selection.onInsert(positions[0]);
+            for (int position : positions) {
+                selection.onInsert(position);
+            }
             view.setListData(historyData);
             for (int position : positions) {
                 view.onItemInsertedToList(position);
@@ -200,6 +165,12 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
             view.showUndoDeleteMessage(selection.getPositionsReverseOrder()); // FIXME: return non ordered, sort when needed
         });
         selection.deselectAll();
+    }
+
+    @Override
+    protected void onFinish() {
+        super.onFinish();
+        historyData.close();
     }
 
     private void loadHistoryData() {
@@ -237,16 +208,6 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     public interface HistoryView {
 
         void showHelp();
-
-        void openSettings();
-
-        boolean isDrawerOpen();
-
-        void closeDrawer();
-
-        void showAbout();
-
-        void showNewBillForm(Provider provider);
 
         void showWelcomeDialog();
 

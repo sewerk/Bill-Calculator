@@ -166,6 +166,7 @@
 
     <string name="settings_input_accept">Save</string>
     <string name="settings_input_cancel">Cancel</string>
+    <string name="settings_input_hint" translatable="false">Cena netto</string>
 
     <!-- PGE settings -->
     <string name="settings_pge" translatable="false">PGE</string>

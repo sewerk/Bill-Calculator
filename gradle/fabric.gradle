@@ -1,5 +1,5 @@
 def getFabricApiKey = { ->
-    def noKey = "0000000000000000000000000000000000000000"
+    def noKey = "abcdeabcde123456789012345678901234567890"
     def key = project.hasProperty('fabricApiKey') ? fabricApiKey.toString() :
             System.getenv("FABRIC_API_KEY") ?: noKey
     if (key == noKey)

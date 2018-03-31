@@ -27,6 +27,7 @@ import java.util.Arrays;
 import javax.inject.Inject;
 
 import pl.srw.billcalculator.R;
+import pl.srw.billcalculator.bill.save.BillSaver;
 import pl.srw.billcalculator.databinding.FormBinding;
 import pl.srw.billcalculator.di.Dependencies;
 import pl.srw.billcalculator.form.FormPreviousReadingsVM;
@@ -36,7 +37,6 @@ import pl.srw.billcalculator.form.autocomplete.PreviousReadingsAdapter;
 import pl.srw.billcalculator.form.view.DatePickingView;
 import pl.srw.billcalculator.form.view.InstantAutoCompleteTextInputEditText;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
-import pl.srw.billcalculator.intent.BillStoringServiceIntentFactory;
 import pl.srw.billcalculator.settings.SettingsActivity;
 import pl.srw.billcalculator.type.EnumVariantNotHandledException;
 import pl.srw.billcalculator.type.Provider;
@@ -52,6 +52,7 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
 
     @Inject FormVMFactory formVMFactory;
     @Inject FormPresenter.HistoryChangeListener historyUpdater;
+    @Inject BillSaver billSaver;
 
     private DatePickingView dateToView;
     private TextInputLayout readingFrom;
@@ -92,7 +93,7 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
         final int providerIdx = getArguments().getInt(EXTRA_PROVIDER);
         final Provider provider = Provider.values()[providerIdx];
         Analytics.contentView(ContentType.FORM, "New bill form", provider);
-        presenter = new FormPresenter(this, provider, historyUpdater);
+        presenter = new FormPresenter(this, provider, billSaver, historyUpdater);
 
         formVMFactory.setProvider(provider);
         formVMFactory.setBundle(savedInstanceState);
@@ -172,14 +173,6 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
         readingNightFrom.setError(null);
         readingNightTo.setError(null);
         dateToView.setError(null);
-    }
-
-    @Override
-    public void startStoringService(@NonNull Provider provider) {
-        final Intent intent = BillStoringServiceIntentFactory
-                .of(getContext(), provider)
-                .from(formVM);
-        getActivity().startService(intent);
     }
 
     @Override

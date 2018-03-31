@@ -124,9 +124,9 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         setActivityIntent(intent);
 
         sut = getActivity();
-        checkNaleznoscInRow(pgePrices.getZaEnergieCzynna(), ilosc, R.id.row_za_energie_czynna);
-        checkNaleznoscInRow(pgePrices.getSkladnikJakosciowy(), ilosc, R.id.row_skladnik_jakosciowy);
-        checkNaleznoscInRow(pgePrices.getOplataSieciowa(), ilosc, R.id.row_oplata_sieciowa);
+        checkChargeInRow(pgePrices.getZaEnergieCzynna(), ilosc, R.id.row_za_energie_czynna);
+        checkChargeInRow(pgePrices.getSkladnikJakosciowy(), ilosc, R.id.row_skladnik_jakosciowy);
+        checkChargeInRow(pgePrices.getOplataSieciowa(), ilosc, R.id.row_oplata_sieciowa);
     }
 
     public void testSumCostForG11Readings() {
@@ -190,38 +190,41 @@ public class PgeBillActivityTest extends ActivityInstrumentationTestCase2<PgeBil
         assEqTextInRow("" + expectedIlosc, R.id.tv_count, rowId);
     }
 
-    private void checkNaleznoscInRow(String price, int ilosc, int rowId) {
-        BigDecimal cena = new BigDecimal(price);
-        String expected = countKoszt(cena, ilosc).toString();
+    private void checkChargeInRow(String price, int ilosc, int rowId) {
+        BigDecimal bdPrice = new BigDecimal(price);
+        String expected = countCost(bdPrice, ilosc).toString();
         assEqTextInRow(expected, R.id.tv_charge, rowId);
     }
 
-    private BigDecimal countKoszt(BigDecimal cena, int ilosc) {
-        return cena.multiply(new BigDecimal(ilosc)).setScale(2, BigDecimal.ROUND_HALF_UP);
+    private BigDecimal countCost(BigDecimal cena, int ilosc) {
+        return cena.multiply(new BigDecimal(ilosc))
+                .setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
     private BigDecimal countSum(int ilosc) {
         BigDecimal sum = BigDecimal.ZERO.setScale(2, BigDecimal.ROUND_HALF_UP);
-        return sum.add(countKoszt(new BigDecimal(pgePrices.getZaEnergieCzynna()), ilosc))
-                .add(countKoszt(new BigDecimal(pgePrices.getSkladnikJakosciowy()), ilosc))
-                .add(countKoszt(new BigDecimal(pgePrices.getOplataSieciowa()), ilosc))
+        return sum.add(countCost(new BigDecimal(pgePrices.getZaEnergieCzynna()), ilosc))
+                .add(countCost(new BigDecimal(pgePrices.getSkladnikJakosciowy()), ilosc))
+                .add(countCost(new BigDecimal(pgePrices.getOplataSieciowa()), ilosc))
                 .add(new BigDecimal(pgePrices.getOplataPrzejsciowa()))
                 .add(new BigDecimal(pgePrices.getOplataStalaZaPrzesyl()))
                 .add(new BigDecimal(pgePrices.getOplataAbonamentowa()));
     }
 
     private BigDecimal countVatSum(int ilosc) {
-        BigDecimal sum = BigDecimal.ZERO.setScale(2, BigDecimal.ROUND_HALF_UP);
-        return sum.add(countVat(new BigDecimal(pgePrices.getZaEnergieCzynna()), ilosc))
+        return BigDecimal.ZERO
+                .add(countVat(new BigDecimal(pgePrices.getZaEnergieCzynna()), ilosc))
                 .add(countVat(new BigDecimal(pgePrices.getSkladnikJakosciowy()), ilosc))
                 .add(countVat(new BigDecimal(pgePrices.getOplataSieciowa()), ilosc))
                 .add(countVat(new BigDecimal(pgePrices.getOplataPrzejsciowa()), 1))
                 .add(countVat(new BigDecimal(pgePrices.getOplataStalaZaPrzesyl()),1))
-                .add(countVat(new BigDecimal(pgePrices.getOplataAbonamentowa()), 1));
+                .add(countVat(new BigDecimal(pgePrices.getOplataAbonamentowa()), 1))
+                .setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
     private BigDecimal countVat(BigDecimal cena, int ilosc) {
-        return countKoszt(cena, ilosc).multiply(new BigDecimal("0.23")).setScale(2, BigDecimal.ROUND_HALF_UP);
+        return cena.multiply(new BigDecimal(ilosc))
+                .multiply(new BigDecimal("0.23"));
     }
 
     private void assEqText(String expected, int tvId) {

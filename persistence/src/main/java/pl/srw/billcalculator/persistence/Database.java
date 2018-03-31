@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.query.LazyList;
 import org.greenrobot.greendao.query.Query;
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -96,10 +95,8 @@ public class Database {
         type.getDao().deleteByKey(billId);
     }
 
-    public static void insert(Bill deletedBill, Prices deletedPrices) {
-            final BillType type = BillType.valueOf(deletedBill);
-            ((AbstractDao<Prices, Long>) type.getPricesDao()).insert(deletedPrices);
-            ((AbstractDao<Bill, Long>) type.getDao()).insert(deletedBill);
+    public static <T> void insert(T entry) {
+        daoSession.insert(entry);
     }
 
     private static void close() {

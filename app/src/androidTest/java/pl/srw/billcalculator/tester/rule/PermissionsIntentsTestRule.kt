@@ -2,6 +2,7 @@ package pl.srw.billcalculator.tester.rule
 
 import android.app.Activity
 import android.os.Build
+import android.os.ParcelFileDescriptor
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.intent.rule.IntentsTestRule
 import org.junit.runner.Description
@@ -35,9 +36,15 @@ class PermissionsIntentsTestRule<T : Activity>(clazz: Class<T>,
     private fun allowPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             for (permission in permissions) {
-                InstrumentationRegistry.getInstrumentation().uiAutomation.executeShellCommand(
-                        "pm grant " + InstrumentationRegistry.getTargetContext().packageName
-                                + " " + permission)
+                var command: ParcelFileDescriptor? = null
+                try {
+                     command = InstrumentationRegistry.getInstrumentation().uiAutomation.executeShellCommand(
+                        "pm grant " + InstrumentationRegistry.getTargetContext().packageName + " " + permission
+                    )
+                } finally {
+                    command?.close()
+                }
+
             }
         }
     }
