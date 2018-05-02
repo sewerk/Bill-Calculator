@@ -4,9 +4,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import org.greenrobot.greendao.query.LazyList;
 import org.greenrobot.greendao.query.Query;
 import org.greenrobot.greendao.query.QueryBuilder;
+
+import java.util.List;
 
 import pl.srw.billcalculator.db.Bill;
 import pl.srw.billcalculator.db.History;
@@ -74,12 +75,12 @@ public class Database {
         return readings;
     }
 
-    public static LazyList<History> getHistory() {
+    public static List<History> getHistory() {
         if (historyQuery == null)
             historyQuery = getSession().getHistoryDao().queryBuilder()
                     .orderDesc(HistoryDao.Properties.DateFrom, HistoryDao.Properties.BillType, HistoryDao.Properties.BillId)
                     .build();
-        return historyQuery.listLazy();
+        return historyQuery.list();
     }
 
     public static Bill loadBill(final BillType type, final Long billId) {

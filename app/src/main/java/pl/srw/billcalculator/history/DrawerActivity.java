@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.history;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,8 +19,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import org.greenrobot.greendao.query.LazyList;
-
 import javax.inject.Inject;
 
 import butterknife.BindInt;
@@ -28,12 +27,13 @@ import butterknife.ButterKnife;
 import pl.srw.billcalculator.R;
 import pl.srw.billcalculator.about.AboutDialogFragment;
 import pl.srw.billcalculator.db.Bill;
-import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.di.Dependencies;
 import pl.srw.billcalculator.dialog.CheckPricesDialogFragment;
 import pl.srw.billcalculator.form.fragment.FormFragment;
 import pl.srw.billcalculator.history.di.HistoryComponent;
 import pl.srw.billcalculator.history.list.HistoryAdapter;
+import pl.srw.billcalculator.history.list.HistoryVM;
+import pl.srw.billcalculator.history.list.HistoryVMFactory;
 import pl.srw.billcalculator.history.list.ShowViewOnEmptyDataObserver;
 import pl.srw.billcalculator.history.list.item.HistoryItemTouchCallback;
 import pl.srw.billcalculator.intent.BillActivityIntentFactory;
@@ -57,6 +57,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     @BindView(R.id.empty_history) View emptyHistoryView;
     @BindInt(R.integer.cardAmount) int cardAmount;
 
+    @Inject HistoryVMFactory vmFactory;
     @Inject HistoryPresenter presenter;
     @Inject FabsMenuViewHandler fabsMenuHandler;
     @Inject HelpHandler helpHandler;
@@ -67,6 +68,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     private HistoryAdapter adapter;
     private MenuItem deleteMenuAction;
     private HistoryItemTouchCallback touchCallback;
+    private HistoryVM viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,8 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
         setupList();
 
         drawerPresenter = new DrawerPresenter(this);
+        viewModel = ViewModelProviders.of(this, vmFactory).get(HistoryVM.class);
+        viewModel.getData().observe(this, history -> adapter.submitList(history));
         attachPresenter(presenter);
     }
 
@@ -166,7 +170,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     }
 
     @Override
-    public void showNewBillForm(Provider provider) {
+    public void showNewBillForm(@NonNull Provider provider) {
         FormFragment.newInstance(provider).show(getSupportFragmentManager(), "FORM");
     }
 
@@ -233,23 +237,7 @@ public class DrawerActivity extends MvpActivity<HistoryComponent>
     }
 
     @Override
-    public void setListData(LazyList<History> data) {
-        adapter.setData(data);
-    }
-
-    @Override
-    public void redrawList() {
-        adapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onItemRemoveFromList(int position) {
-        adapter.notifyItemRemoved(position);
-    }
-
-    @Override
-    public void onItemInsertedToList(int position) {
-        adapter.notifyItemInserted(position);
+    public void scrollToPosition(int position) {
         listView.smoothScrollToPosition(position);
     }
 

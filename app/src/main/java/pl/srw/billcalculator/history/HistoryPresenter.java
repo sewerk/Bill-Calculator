@@ -2,8 +2,6 @@ package pl.srw.billcalculator.history;
 
 import android.view.View;
 
-import org.greenrobot.greendao.query.LazyList;
-
 import java.util.Arrays;
 
 import javax.inject.Inject;
@@ -12,7 +10,6 @@ import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.data.ApplicationRepo;
 import pl.srw.billcalculator.data.bill.HistoryRepo;
 import pl.srw.billcalculator.db.Bill;
-import pl.srw.billcalculator.db.History;
 import pl.srw.billcalculator.form.fragment.FormPresenter;
 import pl.srw.billcalculator.history.list.item.HistoryItemClickListener;
 import pl.srw.billcalculator.history.list.item.HistoryItemDismissHandling;
@@ -29,32 +26,22 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
         implements HistoryItemDismissHandling, HistoryItemClickListener, FormPresenter.HistoryChangeListener {
 
     private final ApplicationRepo applicationRepo;
-    private final HistoryRepo history;
+    private final HistoryRepo historyRepo;
     private final SavedBillsRegistry savedBillsRegistry;
     private final BillSelection selection;
-    private LazyList<History> historyData; // FIXME: remove state from presenter?
-    private boolean needRefresh;
 
     @Inject
-    HistoryPresenter(ApplicationRepo applicationRepo, HistoryRepo history, SavedBillsRegistry savedBillsRegistry, BillSelection selection) {
+    HistoryPresenter(ApplicationRepo applicationRepo, HistoryRepo historyRepo, SavedBillsRegistry savedBillsRegistry, BillSelection selection) {
         this.applicationRepo = applicationRepo;
-        this.history = history;
+        this.historyRepo = historyRepo;
         this.savedBillsRegistry = savedBillsRegistry;
         this.selection = selection;
     }
 
     @Override
     protected void onFirstBind() {
-        loadHistoryData();
-        Timber.i("history size = %d", historyData.size());
-
         present(view -> {
-            view.setListData(historyData);
-
             if (applicationRepo.isFirstLaunch()) {
-                if (historyData.size() > 0) {
-                    Timber.e(new IllegalStateException("Db exist with clean SharedPrefs"));
-                }
                 view.showWelcomeDialog();
                 applicationRepo.markHelpShown();
             } else if (!applicationRepo.wasHelpShown()) {
@@ -66,24 +53,15 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
 
     @Override
     protected void onNewViewRestoreState() {
-        if (needRefresh) { // FIXME: when BillActivity will be closed quickly then DrawerActivity.onStart will not be called - will not refresh
-            loadHistoryData();
-        }
         present(view -> {
-            view.setListData(historyData);
-            if (needRefresh) {
-                view.redrawList();
-            }
             if (selection.isAnySelected()) {
                 view.disableSwipeDelete();
             }
         });
-        needRefresh = false;
     }
 
     @Override
     public void onHistoryChanged() {
-        needRefresh = true;
         selection.deselectAll();
         present(view -> {
             view.hideDeleteButton();
@@ -95,14 +73,9 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     public void onListItemDismissed(final int position, Bill bill) {
         Analytics.event(EventType.DELETE_BILL, "dismissed", "true");
         Timber.d("bill id=%d", bill.getId());
-        history.cacheBillForUndoDelete(bill);
-        history.deleteBillWithPrices(bill);
-        loadHistoryData();
-        present(view -> {
-            view.setListData(historyData);
-            view.onItemRemoveFromList(position);
-            view.showUndoDeleteMessage(position);
-        });
+        historyRepo.cacheBillForUndoDelete(bill);
+        historyRepo.deleteBillWithPrices(bill);
+        present(view -> view.showUndoDeleteMessage(position));
     }
 
     @Override
@@ -130,54 +103,30 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
     }
 
     void undoDeleteClicked(final int... positions) {
-        if (!history.isUndoDeletePossible()) {
+        if (!historyRepo.isUndoDeletePossible()) {
             Timber.d("Undo delete clicked twice");
             return;
         }
-        history.undoDelete();
-        loadHistoryData();
-        present(view -> {
-            Arrays.sort(positions);
-            for (int position : positions) {
-                selection.onInsert(position);
-            }
-            view.setListData(historyData);
-            for (int position : positions) {
-                view.onItemInsertedToList(position);
-            }
-        });
+        Arrays.sort(positions);
+        for (int position : positions) {
+            selection.onInsert(position);
+        }
+        historyRepo.undoDelete();
+        present(view -> view.scrollToPosition(positions[positions.length - 1]));
     }
 
     void deleteClicked() {
         Analytics.event(EventType.DELETE_BILL,
                 "dismissed", "false",
                 "selected", "" + selection.getItems().size());
-        history.cacheBillsForUndoDelete(selection.getItems());
-        history.deleteBillsWithPrices(selection.getItems());
-        loadHistoryData();
+        historyRepo.cacheBillsForUndoDelete(selection.getItems());
+        historyRepo.deleteBillsWithPrices(selection.getItems());
         present(view -> {
-            view.setListData(historyData);
-            for (int position : selection.getPositionsReverseOrder()) {
-                view.onItemRemoveFromList(position);
-            }
             view.hideDeleteButton();
             view.enableSwipeDelete();
             view.showUndoDeleteMessage(selection.getPositionsReverseOrder()); // FIXME: return non ordered, sort when needed
         });
         selection.deselectAll();
-    }
-
-    @Override
-    protected void onFinish() {
-        super.onFinish();
-        historyData.close();
-    }
-
-    private void loadHistoryData() {
-        if (historyData != null)
-            historyData.close();
-
-        historyData = history.getAll();
     }
 
     private void handleSelection(HistoryViewItem item) {
@@ -211,15 +160,9 @@ public class HistoryPresenter extends MvpPresenter<HistoryPresenter.HistoryView>
 
         void showWelcomeDialog();
 
-        void setListData(LazyList<History> data);
-
         void showUndoDeleteMessage(int... position);
 
-        void redrawList();
-
-        void onItemRemoveFromList(int position);
-
-        void onItemInsertedToList(int position);
+        void scrollToPosition(int position);
 
         void openBill(Bill bill, View viewClicked);
 
