@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.history
 
 import org.threeten.bp.LocalDate
+import pl.srw.billcalculator.data.bill.HistoryRepo
 import pl.srw.billcalculator.db.PgeG11Bill
 import pl.srw.billcalculator.db.PgeG12Bill
 import pl.srw.billcalculator.persistence.Database
@@ -12,7 +13,10 @@ import javax.inject.Singleton
 
 @Suppress("MagicNumber")
 @Singleton
-class HistoryGenerator @Inject constructor(val prices: PgePrices) {
+class HistoryGenerator @Inject constructor(
+    private val prices: PgePrices,
+    private val historyRepo: HistoryRepo
+) {
 
     companion object {
         @JvmStatic
@@ -59,7 +63,7 @@ class HistoryGenerator @Inject constructor(val prices: PgePrices) {
 
         val readingFrom = if (readingTo - 10 < 0) 0 else readingTo - 10
         val bill = PgeG11Bill(null, readingFrom, readingTo, fromDate, toDate, readingTo * 11.11, id)
-        Database.getSession().insert(bill)
+        historyRepo.insert(bill)
     }
 
     private fun insertBill(readingDayTo: Int, readingNightTo: Int, id: Long) {
@@ -70,14 +74,16 @@ class HistoryGenerator @Inject constructor(val prices: PgePrices) {
 
         val readingDayFrom = if (readingDayTo - 10 < 0) 0 else readingDayTo - 10
         val readingNightFrom = if (readingNightTo - 10 < 0) 0 else readingNightTo - 10
-        val bill = PgeG12Bill(null, readingDayFrom, readingDayTo, readingNightFrom, readingNightTo,
-                fromDate, toDate, readingDayTo * 11.11, id)
-        Database.getSession().insert(bill)
+        val bill = PgeG12Bill(
+            null, readingDayFrom, readingDayTo, readingNightFrom, readingNightTo,
+            fromDate, toDate, readingDayTo * 11.11, id
+        )
+        historyRepo.insert(bill)
     }
 
     private fun insertPrices(): pl.srw.billcalculator.db.PgePrices {
         val prices = prices.convertToDb()
-        Database.getSession().insert(prices)
+        historyRepo.insert(prices)
         return prices
     }
 }
