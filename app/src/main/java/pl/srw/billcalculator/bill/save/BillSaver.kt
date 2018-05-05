@@ -20,9 +20,9 @@ class BillSaver @Inject constructor(
         val creator = chooseEntityCreator(input.provider)
 
         return Single.fromCallable { creator.createDbPrices() }
-            .flatMap { prices -> historyRepo.insert(prices) }
+            .map { prices -> historyRepo.insert(prices) }
             .map { prices -> creator.createDbBill(prices, input) }
-            .flatMap { bill -> historyRepo.insert(bill) }
+            .map { bill -> historyRepo.insert(bill) }
             .toCompletable()
     }
 

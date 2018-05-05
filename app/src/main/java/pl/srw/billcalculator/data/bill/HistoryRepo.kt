@@ -32,18 +32,18 @@ class HistoryRepo @Inject constructor(
     fun getAll(): LiveData<List<History>> = all
 
     @CheckResult
-    fun insert(bill: Bill): Single<Bill> = Single.fromCallable {
+    fun insert(bill: Bill): Bill {
         Database.insert(bill)
-        loadAllAsync() // TODO: fromCallable inside fromCallable
+        loadAllAsync()
         BackupManager(applicationContext).dataChanged()
         savedBillsRegistry.register(bill)
-        bill
+        return bill
     }
 
     @CheckResult
-    fun insert(prices: Prices): Single<Prices> = Single.fromCallable<Prices> {
+    fun insert(prices: Prices): Prices {
         Database.insert(prices)
-        prices
+        return prices
     }
 
 //    fun insertNew(prices: Prices, bull: Bill) { bill.pricesId = prices.id } // FIXME: single call for save with backup update
@@ -84,7 +84,7 @@ class HistoryRepo @Inject constructor(
 
     private fun loadAllAsync() {
         Single.fromCallable { Database.getHistory() }
-            .subscribeOn(AndroidSchedulers.mainThread()) // TODO: GreenDao requires single thread
+            .subscribeOn(AndroidSchedulers.mainThread()) // FIXME: GreenDao requires single thread
             .subscribe { list -> all.value = list }
     }
 
