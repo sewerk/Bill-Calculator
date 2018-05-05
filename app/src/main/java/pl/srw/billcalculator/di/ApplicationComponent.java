@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.di;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import javax.inject.Singleton;
@@ -40,4 +41,6 @@ public interface ApplicationComponent {
     @NonNull BillSelection getBillSelection();
 
     @NonNull PricesRepo getPricesRepo();
+
+    @NonNull Context getContext();
 }

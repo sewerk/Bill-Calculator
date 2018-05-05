@@ -1,5 +1,7 @@
 package pl.srw.billcalculator.di;
 
+import android.content.Context;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -39,4 +41,10 @@ class TestApplicationModule {
     @Provides
     @Singleton
     PricesRepo providePricesRepo() { return productionComponent.getPricesRepo(); }
+
+    @Provides
+    @Singleton
+    Context applicationContext() {
+        return productionComponent.getContext();
+    }
 }
