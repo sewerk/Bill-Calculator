@@ -3,7 +3,9 @@ package pl.srw.billcalculator.settings.list
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.arch.lifecycle.Observer
 import com.nhaarman.mockito_kotlin.clearInvocations
+import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.never
 import com.nhaarman.mockito_kotlin.verify
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -17,11 +19,11 @@ class SettingsVMTest {
 
     @get:Rule val rule: TestRule = InstantTaskExecutorRule()
 
-    val provider = Provider.PGNIG
+    val provider = Provider.PGE
     val settingsRepo: SettingsRepo = mock {
-        on { globalList() }.thenReturn(listOf(ProviderSettingsElement(provider), ProviderSettingsElement(Provider.PGE)))
+        on { globalList() } doReturn listOf(ProviderSettingsElement(provider), ProviderSettingsElement(Provider.PGE))
     }
-    val idx = 0 // index in list returned by repo
+    val idx = 1 // index in list returned by repo
     val sut: SettingsVM = SettingsVM(settingsRepo)
 
     @Test
@@ -57,6 +59,18 @@ class SettingsVMTest {
         sut.onRowClicked(idx)
 
         verify(observer).onChanged(provider)
+    }
+
+    @Test
+    fun `does not signal switch settings tab when clicked selected row`() {
+        sut.isOnTablet = true
+        val observer: Observer<Provider?> = mock()
+        sut.switchProviderTab.observeForever(observer)
+        clearInvocations(observer)
+
+        sut.onRowClicked(0)
+
+        verify(observer, never()).onChanged(provider)
     }
 
     @Test
