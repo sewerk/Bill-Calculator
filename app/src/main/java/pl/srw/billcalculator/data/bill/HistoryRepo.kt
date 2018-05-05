@@ -16,6 +16,7 @@ import pl.srw.billcalculator.persistence.type.BillType
 import javax.inject.Inject
 import javax.inject.Singleton
 
+@SuppressWarnings("TooManyFunctions")
 @Singleton
 class HistoryRepo @Inject constructor(
     private val applicationContext: Context,
