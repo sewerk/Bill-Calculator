@@ -29,13 +29,13 @@ class HistoryUITest {
     @Before
     fun setUp() {
         TestDependencies.inject(this)
-        HistoryGenerator.clear()
+        historyGenerator.clear()
     }
 
     @After
     fun tearDown() {
         selection.deselectAll()
-        HistoryGenerator.clear()
+        historyGenerator.clear()
     }
 
     @Test
@@ -73,13 +73,13 @@ class HistoryUITest {
     @Test
     fun shouldShowUndoMessageAfterSwipeDelete() {
         // given: one bill in history
-        historyGenerator.generatePgeG11Bill(11)
+        historyGenerator.generatePgeG11Bill(12)
         testRule.launchActivity(null)
 
         // when: deleting one bill
         val historyTester = tester.skipCheckPricesDialogIfVisible()
                 .onHistory()
-                .deleteBillWithReadings("1", "11")
+                .deleteBillWithReadings("2", "12")
 
         // then:
         historyTester

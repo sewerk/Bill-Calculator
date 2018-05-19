@@ -12,7 +12,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.inject.Inject;
+
 import io.reactivex.plugins.RxJavaPlugins;
+import pl.srw.billcalculator.di.TestDependencies;
 import pl.srw.billcalculator.history.DrawerActivity;
 import pl.srw.billcalculator.history.HistoryGenerator;
 import pl.srw.billcalculator.tester.AppTester;
@@ -40,6 +43,8 @@ public abstract class AbstractVerifyBillCreationUITest {
 
     private final static RxEspressoScheduleHandler rxEspressoScheduleHandler = new RxEspressoScheduleHandler();
 
+    @Inject HistoryGenerator historyGenerator;
+
     @Rule
     public final IntentsTestRule<DrawerActivity> testRule
             = new PermissionsIntentsTestRule<>(DrawerActivity.class, false, false,
@@ -48,16 +53,17 @@ public abstract class AbstractVerifyBillCreationUITest {
     private AppTester tester = new AppTester();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         RxJavaPlugins.setScheduleHandler(rxEspressoScheduleHandler);
         Espresso.registerIdlingResources(rxEspressoScheduleHandler.getIdlingResource());
-        HistoryGenerator.clear();
+        TestDependencies.INSTANCE.inject(this);
+        historyGenerator.clear();
         testRule.launchActivity(null);
     }
 
     @After
-    public void tearDown() throws Exception {
-        HistoryGenerator.clear();
+    public void tearDown() {
+        historyGenerator.clear();
     }
 
     @Test

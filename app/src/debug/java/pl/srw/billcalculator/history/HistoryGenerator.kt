@@ -18,25 +18,24 @@ class HistoryGenerator @Inject constructor(
     private val historyRepo: HistoryRepo
 ) {
 
-    companion object {
-        @JvmStatic
-        fun clear() {
-            Timber.d("Clear Database")
-            val session = Database.getSession()
-            //bills
-            session.pgnigBillDao.deleteAll()
-            session.pgeG11BillDao.deleteAll()
-            session.pgeG12BillDao.deleteAll()
-            session.tauronG11BillDao.deleteAll()
-            session.tauronG12BillDao.deleteAll()
-            //prices
-            session.pgnigPricesDao.deleteAll()
-            session.pgePricesDao.deleteAll()
-            session.tauronPricesDao.deleteAll()
-        }
-    }
-
     private val currentYear = LocalDate.now().year
+
+    fun clear() {
+        Timber.d("Clear Database")
+        val session = Database.getSession()
+        //bills
+        session.pgnigBillDao.deleteAll()
+        session.pgeG11BillDao.deleteAll()
+        session.pgeG12BillDao.deleteAll()
+        session.tauronG11BillDao.deleteAll()
+        session.tauronG12BillDao.deleteAll()
+        //prices
+        session.pgnigPricesDao.deleteAll()
+        session.pgePricesDao.deleteAll()
+        session.tauronPricesDao.deleteAll()
+
+        historyRepo.deleteBillsWithPrices(emptyList()) // FIXME: Workaround to load latest state
+    }
 
     fun generatePgeG11Bill(readingTo: Int) {
         Timber.d("Create PGE G11 bill with readingTo=$readingTo")
