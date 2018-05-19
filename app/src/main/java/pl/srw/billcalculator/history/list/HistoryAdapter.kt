@@ -28,7 +28,7 @@ class HistoryAdapter(
 
     override fun submitList(list: MutableList<History>?) {
         super.submitList(list)
-        dataChangeObserver.onChanged(this)
+        dataChangeObserver.onChanged(list)
     }
 }
 

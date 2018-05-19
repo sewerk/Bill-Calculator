@@ -1,7 +1,8 @@
 package pl.srw.billcalculator.history.list;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import java.util.Collection;
 
 public class ShowViewOnEmptyDataObserver {
 
@@ -11,8 +12,8 @@ public class ShowViewOnEmptyDataObserver {
         view = emptyHistoryView;
     }
 
-    public void onChanged(RecyclerView.Adapter adapter) {
-        if (adapter.getItemCount() == 0) {
+    public void onChanged(Collection data) {
+        if (data.isEmpty()) {
             view.setVisibility(View.VISIBLE);
         } else {
             view.setVisibility(View.INVISIBLE);
