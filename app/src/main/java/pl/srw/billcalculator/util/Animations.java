@@ -7,7 +7,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.design.widget.CoordinatorLayout;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -29,25 +29,30 @@ public final class Animations {
         shakeAnimation.start();
     }
 
-    public static AnimatorSet getExpandFabs(final FloatingActionButton baseFab, final FloatingActionButton... fabs) {
+    public static AnimatorSet getExpandFabs(final FloatingActionButton baseFab, final View[][] animatedViews) {
+        final View[] fabs = animatedViews[0];
         final ValueAnimator fabRotation = rotationAnimator(baseFab, 0f, ROTATION_TO_ANGLE);
-        final ValueAnimator translationY = translationYAnimator(fabs, true, getShift(baseFab, fabs.length));
-        final ValueAnimator alpha = alphaAnimator(0f, 1f, fabs);
+        final ValueAnimator translationY = translationYAnimator(animatedViews, true, getShift(baseFab, fabs.length));
+        final ValueAnimator alpha = alphaAnimator(0f, 1f, animatedViews);
 
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(fabRotation, translationY, alpha);
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
-                for (FloatingActionButton fab : fabs) {
+                for (View fab : fabs) {
                     fab.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-                    fab.setVisibility(View.VISIBLE);
+                }
+                for (View[] views : animatedViews) {
+                    for (View view : views) {
+                        view.setVisibility(View.VISIBLE);
+                    }
                 }
             }
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                for (FloatingActionButton fab : fabs) {
+                for (View fab : fabs) {
                     fab.setLayerType(View.LAYER_TYPE_NONE, null);
                     fab.setClickable(true);
                 }
@@ -58,17 +63,18 @@ public final class Animations {
         return animatorSet;
     }
 
-    public static AnimatorSet getCollapseFabs(final FloatingActionButton baseFab, final FloatingActionButton... fabs) {
+    public static AnimatorSet getCollapseFabs(final FloatingActionButton baseFab, final View[][] animatedViews) {
+        final View[] fabs = animatedViews[0];
         final ValueAnimator fabRotation = rotationAnimator(baseFab, ROTATION_TO_ANGLE, 0f);
-        final ValueAnimator translationY = translationYAnimator(fabs, false, getShift(baseFab, fabs.length));
-        final ValueAnimator alpha = alphaAnimator(1f, 0f, fabs);
+        final ValueAnimator translationY = translationYAnimator(animatedViews, false, getShift(baseFab, fabs.length));
+        final ValueAnimator alpha = alphaAnimator(1f, 0f, animatedViews);
 
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(fabRotation, translationY, alpha);
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
-                for (FloatingActionButton fab : fabs) {
+                for (View fab : fabs) {
                     fab.setLayerType(View.LAYER_TYPE_HARDWARE, null);
                     fab.setClickable(false);
                 }
@@ -76,9 +82,13 @@ public final class Animations {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                for (FloatingActionButton fab : fabs) {
-                    fab.setVisibility(View.GONE);
+                for (View fab : fabs) {
                     fab.setLayerType(View.LAYER_TYPE_NONE, null);
+                }
+                for (View[] views : animatedViews) {
+                    for (View view : views) {
+                        view.setVisibility(View.GONE);
+                    }
                 }
             }
         });
@@ -98,20 +108,21 @@ public final class Animations {
     }
 
     @NonNull
-    private static ValueAnimator translationYAnimator(final FloatingActionButton[] targets, final boolean topDirection, int shift) {
+    private static ValueAnimator translationYAnimator(final View[][] targets, final boolean topDirection, int shift) {
         final ValueAnimator translationY = topDirection
                 ? ValueAnimator.ofInt(0, shift)
                 : ValueAnimator.ofInt(shift, 0);
         translationY.addUpdateListener(animation -> {
             final int dY = (int) animation.getAnimatedValue();
             for (int i = 0; i < targets.length; i++)
-                targets[i].setTranslationY((i + 1) * -dY);
+                for (int j = 0; j < targets[i].length; j++)
+                    targets[i][j].setTranslationY((j + 1) * -dY);
         });
         return translationY;
     }
 
     private static int getShift(FloatingActionButton source, int count) {
-        final int bottomMargin = ((CoordinatorLayout.LayoutParams) source.getLayoutParams()).bottomMargin;
+        final int bottomMargin = ((ConstraintLayout.LayoutParams) source.getLayoutParams()).bottomMargin;
         int shift = source.getHeight() + bottomMargin;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
             shift -= source.getPaddingBottom() / 2;
@@ -127,13 +138,14 @@ public final class Animations {
     }
 
     @NonNull
-    private static ValueAnimator alphaAnimator(float from, float to, final FloatingActionButton[] targets) {
+    private static ValueAnimator alphaAnimator(float from, float to, final View[][] targets) {
         final ValueAnimator alpha = ValueAnimator.ofFloat(from, to);
         alpha.addUpdateListener(animation -> {
             final float value = (float) animation.getAnimatedValue();
             if (value >= 0.0f && value <= 1.0)
-                for (FloatingActionButton target : targets)
-                    target.setAlpha(value);
+                for (View[] views : targets)
+                    for (View view : views)
+                        view.setAlpha(value);
         });
         return alpha;
     }
