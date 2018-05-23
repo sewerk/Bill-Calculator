@@ -35,9 +35,9 @@ public class InstantAutoCompleteUITest {
     private AppTester tester = new AppTester();
 
     @Before
-    public void setUp() throws Exception {
-        TestDependencies.inject(this);
-        HistoryGenerator.clear();
+    public void setUp() {
+        TestDependencies.INSTANCE.inject(this);
+        historyGenerator.clear();
         pricesRepo.updateTariff(Provider.PGE, EnergyTariff.G11);
         pgePrices.setTariff(EnergyTariff.G11);
 
@@ -45,8 +45,8 @@ public class InstantAutoCompleteUITest {
     }
 
     @After
-    public void tearDown() throws Exception {
-        HistoryGenerator.clear();
+    public void tearDown() {
+        historyGenerator.clear();
     }
 
     @Test

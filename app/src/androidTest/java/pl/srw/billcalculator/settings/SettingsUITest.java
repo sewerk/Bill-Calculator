@@ -26,7 +26,7 @@ public class SettingsUITest {
 
     @Before
     public void setUp() throws Exception {
-        TestDependencies.inject(this);
+        TestDependencies.INSTANCE.inject(this);
 
         applicationRepo.markFirstLaunch();
 

@@ -18,16 +18,18 @@ class SettingsVM(settingsRepo: SettingsRepo) : ViewModel(), StateRestorable {
     val openProviderSettings = SingleLiveEvent<Provider>()
     val items: List<SettingsListItem> = settingsRepo.globalList().map(this::convert)
 
-    var selectedIndex = 0
+    var selectedIndex = -1
         private set
     var isOnTablet: Boolean = false
         set(value) {
             Timber.d("settings isOnTablet flag")
             field = value
-            if (value) onRowClicked(selectedIndex)
+            if (value) onRowClicked(0)
         }
 
     fun onRowClicked(position: Int) {
+        if (selectedIndex == position) return
+
         selectedIndex = position
         val provider = getProvider(position) // FIXME: make more generic
         Timber.i("Settings: $provider picked")

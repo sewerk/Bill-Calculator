@@ -1,14 +1,10 @@
 package pl.srw.billcalculator.history
 
 import android.view.View
-import com.nhaarman.mockito_kotlin.any
-import com.nhaarman.mockito_kotlin.doReturn
-import com.nhaarman.mockito_kotlin.eq
 import com.nhaarman.mockito_kotlin.inOrder
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
 import junitparams.JUnitParamsRunner
-import org.greenrobot.greendao.query.LazyList
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -18,7 +14,6 @@ import pl.srw.billcalculator.bill.SavedBillsRegistry
 import pl.srw.billcalculator.data.ApplicationRepo
 import pl.srw.billcalculator.data.bill.HistoryRepo
 import pl.srw.billcalculator.db.Bill
-import pl.srw.billcalculator.db.History
 import pl.srw.billcalculator.db.PgeG11Bill
 import pl.srw.billcalculator.history.list.item.HistoryViewItem
 import pl.srw.billcalculator.setState
@@ -28,12 +23,9 @@ import java.util.Arrays
 @RunWith(JUnitParamsRunner::class)
 class HistoryPresenterTest {
 
-    val listData: LazyList<History> = mock()
     val view: HistoryPresenter.HistoryView = mock()
     val applicationRepo: ApplicationRepo = mock()
-    val history: HistoryRepo = mock {
-        on { getAll() } doReturn listData
-    }
+    val history: HistoryRepo = mock()
     val savedBillsRegistry: SavedBillsRegistry = mock()
     val selection: BillSelection = mock()
 
@@ -42,20 +34,6 @@ class HistoryPresenterTest {
     @Before
     fun setUp() {
         sut.setState("view", view)
-    }
-
-    @Test
-    fun onFirstBind_setsHistoryDataOnList() {
-        // GIVEN
-        val list: LazyList<History> = mock()
-        whenever(history.getAll()).thenReturn(list)
-
-        // WHEN
-        sut.onFirstBind()
-
-        // THEN
-        verify(view).setListData(list)
-        verify(view, never()).redrawList()
     }
 
     @Test
@@ -134,57 +112,6 @@ class HistoryPresenterTest {
     }
 
     @Test
-    fun onFirstBind_fetchAllHistory() {
-        // WHEN
-        sut.onFirstBind()
-
-        // THEN
-        verify(history).getAll()
-    }
-
-    @Test
-    fun `sets list data, on new restore state`() {
-        // GIVEN
-        val list: LazyList<History> = mock()
-        sut.setState("historyData", list)
-
-        // WHEN
-        sut.onNewViewRestoreState()
-
-        // THEN
-        verify(view).setListData(list)
-    }
-
-    @Test
-    fun `redraw list, on new view restore state, when history changed`() {
-        // GIVEN
-        val list: LazyList<History> = mock()
-        whenever(history.getAll()).thenReturn(list)
-        sut.onHistoryChanged()
-
-        // WHEN
-        sut.onNewViewRestoreState()
-
-        // THEN
-        verify(view).redrawList()
-    }
-
-    @Test
-    fun `closes old and featches new list, on new view restore state, when history changed`() {
-        // GIVEN
-        val list: LazyList<History> = mock()
-        sut.setState("historyData", list)
-        sut.onHistoryChanged()
-
-        // WHEN
-        sut.onNewViewRestoreState()
-
-        // THEN
-        verify(list).close()
-        verify(history).getAll()
-    }
-
-    @Test
     fun `disables swipe delete, on new view restore state, when any item selected`() {
         whenever(selection.isAnySelected()).thenReturn(true)
 
@@ -236,7 +163,7 @@ class HistoryPresenterTest {
     }
 
     @Test
-    fun `on list item dismissed, cache item for undo posibility`() {
+    fun `on list item dismissed, cache item for undo possibility`() {
         // GIVEN
         val bill: PgeG11Bill = mock()
 
@@ -245,32 +172,6 @@ class HistoryPresenterTest {
 
         // THEN
         verify(history).cacheBillForUndoDelete(bill)
-    }
-
-    @Test
-    fun onListItemDismissed_fetchAllHistory() {
-        // GIVEN
-        val bill: PgeG11Bill = mock()
-
-        // WHEN
-        sut.onListItemDismissed(0, bill)
-
-        // THEN
-        verify(history).getAll()
-    }
-
-    @Test
-    fun onListItemDismissed_viewRemovesItemFromList() {
-        // GIVEN
-        val position = 1
-        val bill: PgeG11Bill = mock()
-
-        // WHEN
-        sut.onListItemDismissed(position, bill)
-
-        // THEN
-        verify(view).setListData(any())
-        verify(view).onItemRemoveFromList(eq(position))
     }
 
     @Test
@@ -287,7 +188,7 @@ class HistoryPresenterTest {
     }
 
     @Test
-    fun `undo delete clicked, add view items to list, in natural order`() {
+    fun `undo delete clicked, scroll to last inserted item`() {
         // GIVEN
         whenever(history.isUndoDeletePossible()).thenReturn(true)
 
@@ -295,11 +196,7 @@ class HistoryPresenterTest {
         sut.undoDeleteClicked(3, 2, 5)
 
         // THEN
-        val inOrder = inOrder(view)
-        inOrder.verify(view).setListData(any())
-        inOrder.verify(view).onItemInsertedToList(2)
-        inOrder.verify(view).onItemInsertedToList(3)
-        inOrder.verify(view).onItemInsertedToList(5)
+        verify(view).scrollToPosition(5)
     }
 
     @Test
@@ -328,50 +225,30 @@ class HistoryPresenterTest {
     }
 
     @Test
-    fun undoDeleteClicked_fetchAllHistory() {
-        // GIVEN
-        whenever(history.isUndoDeletePossible()).thenReturn(true)
-
-        // WHEN
-        sut.undoDeleteClicked(0)
-
-        // THEN
-        verify(history).getAll()
-    }
-
-    @Test
-    fun `update selection, when undo clicked`() {
-        whenever(history.isUndoDeletePossible()).thenReturn(true)
-        val lowestPosition = 1
-
-        sut.undoDeleteClicked(4, lowestPosition, 2)
-
-        verify(selection).onInsert(lowestPosition)
-    }
-
-    @Test
-    fun `updates selection, after undo clicked, before list data changed`() {
-        whenever(history.isUndoDeletePossible()).thenReturn(true)
-        val lowestPosition = 1
-
-        sut.undoDeleteClicked(lowestPosition)
-
-        val inOrder = inOrder(selection, view)
-        inOrder.verify(selection).onInsert(lowestPosition)
-        inOrder.verify(view).setListData(any())
-        inOrder.verify(view).onItemInsertedToList(lowestPosition)
-    }
-
-    @Test
     fun `updates selection, after undo on multiple items`() {
         whenever(history.isUndoDeletePossible()).thenReturn(true)
 
         sut.undoDeleteClicked(1, 3, 2)
 
-        val inOrder = inOrder(selection)
-        inOrder.verify(selection).onInsert(1)
-        inOrder.verify(selection).onInsert(2)
-        inOrder.verify(selection).onInsert(3)
+        inOrder(selection) {
+            verify(selection).onInsert(1)
+            verify(selection).onInsert(2)
+            verify(selection).onInsert(3)
+        }
+    }
+
+    @Test
+    fun `updates selection, after undo clicked, before actual data changed`() {
+        whenever(history.isUndoDeletePossible()).thenReturn(true)
+        val lowestPosition = 1
+
+        sut.undoDeleteClicked(lowestPosition)
+
+        inOrder(selection, view, history) {
+            verify(selection).onInsert(lowestPosition)
+            verify(history).undoDelete()
+            verify(view).scrollToPosition(lowestPosition)
+        }
     }
 
     @Test
@@ -614,7 +491,7 @@ class HistoryPresenterTest {
     }
 
     @Test
-    fun `delete button clicked, caches bills for undo posibility`() {
+    fun `delete button clicked, caches bills for undo possibility`() {
         // GIVEN
         val items = listOf(mock<Bill>(), mock<Bill>())
         whenever(selection.getItems()).thenReturn(items)
@@ -640,22 +517,6 @@ class HistoryPresenterTest {
 
         // THEN
         verify(history).deleteBillsWithPrices(bills)
-    }
-
-    @Test
-    fun `delete button clicked, remove view items to list, in reverse order`() {
-        // GIVEN
-        whenever(selection.isAnySelected()).thenReturn(true)
-        whenever(selection.getPositionsReverseOrder()).thenReturn(intArrayOf(5, 2))
-
-        // WHEN
-        sut.deleteClicked()
-
-        // THEN
-        val inOrder = inOrder(view)
-        inOrder.verify(view).setListData(any())
-        inOrder.verify(view).onItemRemoveFromList(5)
-        inOrder.verify(view).onItemRemoveFromList(2)
     }
 
     @Test

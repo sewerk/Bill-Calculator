@@ -1,5 +1,6 @@
 package pl.srw.billcalculator.di;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import javax.inject.Singleton;
@@ -10,6 +11,7 @@ import pl.srw.billcalculator.bill.di.PgeBillComponent;
 import pl.srw.billcalculator.bill.di.PgnigBillComponent;
 import pl.srw.billcalculator.bill.di.TauronBillComponent;
 import pl.srw.billcalculator.data.ApplicationRepo;
+import pl.srw.billcalculator.data.bill.HistoryRepo;
 import pl.srw.billcalculator.data.settings.prices.PricesRepo;
 import pl.srw.billcalculator.history.di.HistoryComponent;
 import pl.srw.billcalculator.settings.di.SettingsComponent;
@@ -40,4 +42,8 @@ public interface ApplicationComponent {
     @NonNull BillSelection getBillSelection();
 
     @NonNull PricesRepo getPricesRepo();
+
+    @NonNull HistoryRepo getHistoryRepo();
+
+    @NonNull Context getContext();
 }

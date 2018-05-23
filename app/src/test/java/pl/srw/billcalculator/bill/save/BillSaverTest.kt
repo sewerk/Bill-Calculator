@@ -6,7 +6,6 @@ import com.nhaarman.mockito_kotlin.eq
 import com.nhaarman.mockito_kotlin.inOrder
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
-import io.reactivex.Single
 import org.junit.Test
 import pl.srw.billcalculator.data.bill.HistoryRepo
 import pl.srw.billcalculator.db.Bill
@@ -34,8 +33,8 @@ class BillSaverTest {
         on { createDbBill(any(), any()) } doReturn mock<TauronG11Bill>()
     }
     val historyRepo: HistoryRepo = mock {
-        on { insert(any<Prices>()) } doReturn Single.just(mock())
-        on { insert(any<Bill>()) } doReturn Single.just(mock())
+        on { insert(any<Prices>()) } doReturn mock<Prices>()
+        on { insert(any<Bill>()) } doReturn mock<Bill>()
     }
 
     val sut = BillSaver(pgeDbEntityCreator, pgnigDbEntityCreator, tauronDbEntityCreator, historyRepo)

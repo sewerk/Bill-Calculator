@@ -29,6 +29,24 @@
         <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless.Colored</item>
     </style>
 
+    <style name="NewBillFab">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/fab_margin</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:clickable">false</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="NewBillFabLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
     <!--<editor-fold desc="Bill styles">-->
     <style name="AppTheme.Pge">
         <item name="colorPrimary">@color/pge</item>

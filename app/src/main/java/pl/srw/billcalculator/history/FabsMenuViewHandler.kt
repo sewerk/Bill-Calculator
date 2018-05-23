@@ -3,6 +3,7 @@ package pl.srw.billcalculator.history
 import android.animation.AnimatorSet
 import android.support.design.widget.FloatingActionButton
 import android.view.View
+import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
@@ -24,14 +25,31 @@ class FabsMenuViewHandler @Inject constructor() : FabsMenuPresenter.View {
     @BindView(R.id.fab_new_pge) lateinit var fabPge: FloatingActionButton
     @BindView(R.id.fab_new_pgnig) lateinit var fabPgnig: FloatingActionButton
     @BindView(R.id.fab_new_tauron) lateinit var fabTauron: FloatingActionButton
+    @BindView(R.id.fab_new_pge_label) lateinit var fabPgeLabel: TextView
+    @BindView(R.id.fab_new_pgnig_label) lateinit var fabPgnigLabel: TextView
+    @BindView(R.id.fab_new_tauron_label) lateinit var fabTauronLabel: TextView
     @BindView(R.id.fabs_dim_view) lateinit var dim: View
     @BindView(R.id.app_bar) lateinit var toolbar: View
 
     lateinit var activity: DrawerActivity
     val presenter: FabsMenuPresenter = FabsMenuPresenter(this)
 
-    private val expandAnimator: AnimatorSet by lazyUnsafe { Animations.getExpandFabs(fab, fabPge, fabPgnig, fabTauron) }
-    private val collapseAnimator: AnimatorSet by lazyUnsafe { Animations.getCollapseFabs(fab, fabPge, fabPgnig, fabTauron) }
+    private val expandAnimator: AnimatorSet by lazyUnsafe {
+        Animations.getExpandFabs(
+            fab, arrayOf(
+                arrayOf(fabPge, fabPgnig, fabTauron),
+                arrayOf(fabPgeLabel, fabPgnigLabel, fabTauronLabel)
+            )
+        )
+    }
+    private val collapseAnimator: AnimatorSet by lazyUnsafe {
+        Animations.getCollapseFabs(
+            fab, arrayOf(
+                arrayOf(fabPge, fabPgnig, fabTauron),
+                arrayOf(fabPgeLabel, fabPgnigLabel, fabTauronLabel)
+            )
+        )
+    }
 
     fun init(activity: DrawerActivity) {
         ButterKnife.bind(this, activity)

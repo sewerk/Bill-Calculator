@@ -1,6 +1,7 @@
 package pl.srw.billcalculator.history
 
 import org.threeten.bp.LocalDate
+import pl.srw.billcalculator.data.bill.HistoryRepo
 import pl.srw.billcalculator.db.PgeG11Bill
 import pl.srw.billcalculator.db.PgeG12Bill
 import pl.srw.billcalculator.persistence.Database
@@ -12,27 +13,29 @@ import javax.inject.Singleton
 
 @Suppress("MagicNumber")
 @Singleton
-class HistoryGenerator @Inject constructor(val prices: PgePrices) {
-
-    companion object {
-        @JvmStatic
-        fun clear() {
-            Timber.d("Clear Database")
-            val session = Database.getSession()
-            //bills
-            session.pgnigBillDao.deleteAll()
-            session.pgeG11BillDao.deleteAll()
-            session.pgeG12BillDao.deleteAll()
-            session.tauronG11BillDao.deleteAll()
-            session.tauronG12BillDao.deleteAll()
-            //prices
-            session.pgnigPricesDao.deleteAll()
-            session.pgePricesDao.deleteAll()
-            session.tauronPricesDao.deleteAll()
-        }
-    }
+class HistoryGenerator @Inject constructor(
+    private val prices: PgePrices,
+    private val historyRepo: HistoryRepo
+) {
 
     private val currentYear = LocalDate.now().year
+
+    fun clear() {
+        Timber.d("Clear Database")
+        val session = Database.getSession()
+        //bills
+        session.pgnigBillDao.deleteAll()
+        session.pgeG11BillDao.deleteAll()
+        session.pgeG12BillDao.deleteAll()
+        session.tauronG11BillDao.deleteAll()
+        session.tauronG12BillDao.deleteAll()
+        //prices
+        session.pgnigPricesDao.deleteAll()
+        session.pgePricesDao.deleteAll()
+        session.tauronPricesDao.deleteAll()
+
+        historyRepo.deleteBillsWithPrices(emptyList()) // FIXME: Workaround to load latest state
+    }
 
     fun generatePgeG11Bill(readingTo: Int) {
         Timber.d("Create PGE G11 bill with readingTo=$readingTo")
@@ -59,7 +62,7 @@ class HistoryGenerator @Inject constructor(val prices: PgePrices) {
 
         val readingFrom = if (readingTo - 10 < 0) 0 else readingTo - 10
         val bill = PgeG11Bill(null, readingFrom, readingTo, fromDate, toDate, readingTo * 11.11, id)
-        Database.getSession().insert(bill)
+        historyRepo.insert(bill)
     }
 
     private fun insertBill(readingDayTo: Int, readingNightTo: Int, id: Long) {
@@ -70,14 +73,16 @@ class HistoryGenerator @Inject constructor(val prices: PgePrices) {
 
         val readingDayFrom = if (readingDayTo - 10 < 0) 0 else readingDayTo - 10
         val readingNightFrom = if (readingNightTo - 10 < 0) 0 else readingNightTo - 10
-        val bill = PgeG12Bill(null, readingDayFrom, readingDayTo, readingNightFrom, readingNightTo,
-                fromDate, toDate, readingDayTo * 11.11, id)
-        Database.getSession().insert(bill)
+        val bill = PgeG12Bill(
+            null, readingDayFrom, readingDayTo, readingNightFrom, readingNightTo,
+            fromDate, toDate, readingDayTo * 11.11, id
+        )
+        historyRepo.insert(bill)
     }
 
     private fun insertPrices(): pl.srw.billcalculator.db.PgePrices {
         val prices = prices.convertToDb()
-        Database.getSession().insert(prices)
+        historyRepo.insert(prices)
         return prices
     }
 }
