@@ -1,3 +1,7 @@
+v.2.1.2
+ - add labels to FABs
+ - refactor: history return in flat list from repo with auto-update view model
+ - fix: prevent settings tab switch on click already selected row
 v.2.1.1
  - fix: don't show OZE dialog when data from 2018
  - fix: selection incorrect after undo delete multiple bills
