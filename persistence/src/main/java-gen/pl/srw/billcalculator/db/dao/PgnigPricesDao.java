@@ -5,9 +5,9 @@ import android.database.sqlite.SQLiteStatement;
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.Property;
-import org.greenrobot.greendao.internal.DaoConfig;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.database.DatabaseStatement;
+import org.greenrobot.greendao.internal.DaoConfig;
 
 import pl.srw.billcalculator.db.PgnigPrices;
 
@@ -31,6 +31,7 @@ public class PgnigPricesDao extends AbstractDao<PgnigPrices, Long> {
         public final static Property DystrybucyjnaStala = new Property(3, String.class, "dystrybucyjnaStala", false, "DYSTRYBUCYJNA_STALA");
         public final static Property DystrybucyjnaZmienna = new Property(4, String.class, "dystrybucyjnaZmienna", false, "DYSTRYBUCYJNA_ZMIENNA");
         public final static Property WspolczynnikKonwersji = new Property(5, String.class, "wspolczynnikKonwersji", false, "WSPOLCZYNNIK_KONWERSJI");
+        public final static Property OplataHandlowa = new Property(6, String.class, "oplataHandlowa", false, "OPLATA_HANDLOWA");
     }
 
 
@@ -51,7 +52,8 @@ public class PgnigPricesDao extends AbstractDao<PgnigPrices, Long> {
                 "\"PALIWO_GAZOWE\" TEXT," + // 2: paliwoGazowe
                 "\"DYSTRYBUCYJNA_STALA\" TEXT," + // 3: dystrybucyjnaStala
                 "\"DYSTRYBUCYJNA_ZMIENNA\" TEXT," + // 4: dystrybucyjnaZmienna
-                "\"WSPOLCZYNNIK_KONWERSJI\" TEXT);"); // 5: wspolczynnikKonwersji
+                "\"WSPOLCZYNNIK_KONWERSJI\" TEXT," + // 5: wspolczynnikKonwersji
+                "\"OPLATA_HANDLOWA\" TEXT);"); // 6: oplataHandlowa
     }
 
     /** Drops the underlying database table. */
@@ -93,6 +95,11 @@ public class PgnigPricesDao extends AbstractDao<PgnigPrices, Long> {
         if (wspolczynnikKonwersji != null) {
             stmt.bindString(6, wspolczynnikKonwersji);
         }
+ 
+        String oplataHandlowa = entity.getOplataHandlowa();
+        if (oplataHandlowa != null) {
+            stmt.bindString(7, oplataHandlowa);
+        }
     }
 
     @Override
@@ -128,6 +135,11 @@ public class PgnigPricesDao extends AbstractDao<PgnigPrices, Long> {
         if (wspolczynnikKonwersji != null) {
             stmt.bindString(6, wspolczynnikKonwersji);
         }
+ 
+        String oplataHandlowa = entity.getOplataHandlowa();
+        if (oplataHandlowa != null) {
+            stmt.bindString(7, oplataHandlowa);
+        }
     }
 
     @Override
@@ -143,7 +155,8 @@ public class PgnigPricesDao extends AbstractDao<PgnigPrices, Long> {
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // paliwoGazowe
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // dystrybucyjnaStala
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // dystrybucyjnaZmienna
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // wspolczynnikKonwersji
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // wspolczynnikKonwersji
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // oplataHandlowa
         );
         return entity;
     }
@@ -156,6 +169,7 @@ public class PgnigPricesDao extends AbstractDao<PgnigPrices, Long> {
         entity.setDystrybucyjnaStala(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setDystrybucyjnaZmienna(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setWspolczynnikKonwersji(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setOplataHandlowa(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
      }
     
     @Override

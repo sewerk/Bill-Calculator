@@ -1,18 +1,19 @@
 package pl.srw.billcalculator.database;
 
-import java.io.File;
-
 import org.greenrobot.greendao.generator.DaoGenerator;
 import org.greenrobot.greendao.generator.Entity;
 import org.greenrobot.greendao.generator.Property;
 import org.greenrobot.greendao.generator.Schema;
 
+import java.io.File;
+
 public class GreenDaoGenerator {
 
     private static final String OUTPUT_DIR = "persistence/src/main/java-gen";
+    private static final int SCHEMA_VERSION = 4;
 
     public static void main(String[] args) throws Exception {
-        Schema schema = new Schema(3, "pl.srw.billcalculator.db");
+        Schema schema = new Schema(SCHEMA_VERSION, "pl.srw.billcalculator.db");
         schema.setDefaultJavaPackageDao("pl.srw.billcalculator.db.dao");
 
         Entity pgePrices = addPgePrices(schema);
@@ -89,6 +90,7 @@ public class GreenDaoGenerator {
         pgePrices.addStringProperty("oplataPrzejsciowa");
         pgePrices.addStringProperty("oplataStalaZaPrzesyl");
         pgePrices.addStringProperty("oplataAbonamentowa");
+        pgePrices.addStringProperty("oplataHandlowa");
 
         pgePrices.addStringProperty("zaEnergieCzynnaDzien");
         pgePrices.addStringProperty("zaEnergieCzynnaNoc");
@@ -127,6 +129,7 @@ public class GreenDaoGenerator {
         pgnigPrices.addStringProperty("dystrybucyjnaStala");
         pgnigPrices.addStringProperty("dystrybucyjnaZmienna");
         pgnigPrices.addStringProperty("wspolczynnikKonwersji");
+        pgnigPrices.addStringProperty("oplataHandlowa");
 
         return pgnigPrices;
     }
@@ -178,6 +181,7 @@ public class GreenDaoGenerator {
         prices.addStringProperty("oplataDystrybucyjnaStala");
         prices.addStringProperty("oplataPrzejsciowa");
         prices.addStringProperty("oplataAbonamentowa");
+        prices.addStringProperty("oplataHandlowa");
 
         prices.addStringProperty("energiaElektrycznaCzynnaDzien");
         prices.addStringProperty("energiaElektrycznaCzynnaNoc");

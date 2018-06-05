@@ -1,10 +1,12 @@
 package pl.srw.billcalculator.db;
 
-import org.greenrobot.greendao.annotation.*;
+import org.greenrobot.greendao.DaoException;
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.ToOne;
 
 import pl.srw.billcalculator.db.dao.DaoSession;
-import org.greenrobot.greendao.DaoException;
-
 import pl.srw.billcalculator.db.dao.PgeG11BillDao;
 import pl.srw.billcalculator.db.dao.PgePricesDao;
 

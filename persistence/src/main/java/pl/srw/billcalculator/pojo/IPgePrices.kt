@@ -11,6 +11,7 @@ interface IPgePrices : Prices {
     val oplataStalaZaPrzesyl: String
     val oplataAbonamentowa: String
     val oplataOze: String
+    val oplataHandlowa: String
 
     val zaEnergieCzynnaDzien: String
     val zaEnergieCzynnaNoc: String

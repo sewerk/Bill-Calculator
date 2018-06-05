@@ -5,9 +5,9 @@ import android.database.sqlite.SQLiteStatement;
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.Property;
-import org.greenrobot.greendao.internal.DaoConfig;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.database.DatabaseStatement;
+import org.greenrobot.greendao.internal.DaoConfig;
 
 import pl.srw.billcalculator.db.PgePrices;
 
@@ -32,11 +32,12 @@ public class PgePricesDao extends AbstractDao<PgePrices, Long> {
         public final static Property OplataPrzejsciowa = new Property(4, String.class, "oplataPrzejsciowa", false, "OPLATA_PRZEJSCIOWA");
         public final static Property OplataStalaZaPrzesyl = new Property(5, String.class, "oplataStalaZaPrzesyl", false, "OPLATA_STALA_ZA_PRZESYL");
         public final static Property OplataAbonamentowa = new Property(6, String.class, "oplataAbonamentowa", false, "OPLATA_ABONAMENTOWA");
-        public final static Property ZaEnergieCzynnaDzien = new Property(7, String.class, "zaEnergieCzynnaDzien", false, "ZA_ENERGIE_CZYNNA_DZIEN");
-        public final static Property ZaEnergieCzynnaNoc = new Property(8, String.class, "zaEnergieCzynnaNoc", false, "ZA_ENERGIE_CZYNNA_NOC");
-        public final static Property OplataSieciowaDzien = new Property(9, String.class, "oplataSieciowaDzien", false, "OPLATA_SIECIOWA_DZIEN");
-        public final static Property OplataSieciowaNoc = new Property(10, String.class, "oplataSieciowaNoc", false, "OPLATA_SIECIOWA_NOC");
-        public final static Property OplataOze = new Property(11, String.class, "oplataOze", false, "OPLATA_OZE");
+        public final static Property OplataHandlowa = new Property(7, String.class, "oplataHandlowa", false, "OPLATA_HANDLOWA");
+        public final static Property ZaEnergieCzynnaDzien = new Property(8, String.class, "zaEnergieCzynnaDzien", false, "ZA_ENERGIE_CZYNNA_DZIEN");
+        public final static Property ZaEnergieCzynnaNoc = new Property(9, String.class, "zaEnergieCzynnaNoc", false, "ZA_ENERGIE_CZYNNA_NOC");
+        public final static Property OplataSieciowaDzien = new Property(10, String.class, "oplataSieciowaDzien", false, "OPLATA_SIECIOWA_DZIEN");
+        public final static Property OplataSieciowaNoc = new Property(11, String.class, "oplataSieciowaNoc", false, "OPLATA_SIECIOWA_NOC");
+        public final static Property OplataOze = new Property(12, String.class, "oplataOze", false, "OPLATA_OZE");
     }
 
 
@@ -59,11 +60,12 @@ public class PgePricesDao extends AbstractDao<PgePrices, Long> {
                 "\"OPLATA_PRZEJSCIOWA\" TEXT," + // 4: oplataPrzejsciowa
                 "\"OPLATA_STALA_ZA_PRZESYL\" TEXT," + // 5: oplataStalaZaPrzesyl
                 "\"OPLATA_ABONAMENTOWA\" TEXT," + // 6: oplataAbonamentowa
-                "\"ZA_ENERGIE_CZYNNA_DZIEN\" TEXT," + // 7: zaEnergieCzynnaDzien
-                "\"ZA_ENERGIE_CZYNNA_NOC\" TEXT," + // 8: zaEnergieCzynnaNoc
-                "\"OPLATA_SIECIOWA_DZIEN\" TEXT," + // 9: oplataSieciowaDzien
-                "\"OPLATA_SIECIOWA_NOC\" TEXT," + // 10: oplataSieciowaNoc
-                "\"OPLATA_OZE\" TEXT);"); // 11: oplataOze
+                "\"OPLATA_HANDLOWA\" TEXT," + // 7: oplataHandlowa
+                "\"ZA_ENERGIE_CZYNNA_DZIEN\" TEXT," + // 8: zaEnergieCzynnaDzien
+                "\"ZA_ENERGIE_CZYNNA_NOC\" TEXT," + // 9: zaEnergieCzynnaNoc
+                "\"OPLATA_SIECIOWA_DZIEN\" TEXT," + // 10: oplataSieciowaDzien
+                "\"OPLATA_SIECIOWA_NOC\" TEXT," + // 11: oplataSieciowaNoc
+                "\"OPLATA_OZE\" TEXT);"); // 12: oplataOze
     }
 
     /** Drops the underlying database table. */
@@ -111,29 +113,34 @@ public class PgePricesDao extends AbstractDao<PgePrices, Long> {
             stmt.bindString(7, oplataAbonamentowa);
         }
  
+        String oplataHandlowa = entity.getOplataHandlowa();
+        if (oplataHandlowa != null) {
+            stmt.bindString(8, oplataHandlowa);
+        }
+ 
         String zaEnergieCzynnaDzien = entity.getZaEnergieCzynnaDzien();
         if (zaEnergieCzynnaDzien != null) {
-            stmt.bindString(8, zaEnergieCzynnaDzien);
+            stmt.bindString(9, zaEnergieCzynnaDzien);
         }
  
         String zaEnergieCzynnaNoc = entity.getZaEnergieCzynnaNoc();
         if (zaEnergieCzynnaNoc != null) {
-            stmt.bindString(9, zaEnergieCzynnaNoc);
+            stmt.bindString(10, zaEnergieCzynnaNoc);
         }
  
         String oplataSieciowaDzien = entity.getOplataSieciowaDzien();
         if (oplataSieciowaDzien != null) {
-            stmt.bindString(10, oplataSieciowaDzien);
+            stmt.bindString(11, oplataSieciowaDzien);
         }
  
         String oplataSieciowaNoc = entity.getOplataSieciowaNoc();
         if (oplataSieciowaNoc != null) {
-            stmt.bindString(11, oplataSieciowaNoc);
+            stmt.bindString(12, oplataSieciowaNoc);
         }
  
         String oplataOze = entity.getOplataOze();
         if (oplataOze != null) {
-            stmt.bindString(12, oplataOze);
+            stmt.bindString(13, oplataOze);
         }
     }
 
@@ -176,29 +183,34 @@ public class PgePricesDao extends AbstractDao<PgePrices, Long> {
             stmt.bindString(7, oplataAbonamentowa);
         }
  
+        String oplataHandlowa = entity.getOplataHandlowa();
+        if (oplataHandlowa != null) {
+            stmt.bindString(8, oplataHandlowa);
+        }
+ 
         String zaEnergieCzynnaDzien = entity.getZaEnergieCzynnaDzien();
         if (zaEnergieCzynnaDzien != null) {
-            stmt.bindString(8, zaEnergieCzynnaDzien);
+            stmt.bindString(9, zaEnergieCzynnaDzien);
         }
  
         String zaEnergieCzynnaNoc = entity.getZaEnergieCzynnaNoc();
         if (zaEnergieCzynnaNoc != null) {
-            stmt.bindString(9, zaEnergieCzynnaNoc);
+            stmt.bindString(10, zaEnergieCzynnaNoc);
         }
  
         String oplataSieciowaDzien = entity.getOplataSieciowaDzien();
         if (oplataSieciowaDzien != null) {
-            stmt.bindString(10, oplataSieciowaDzien);
+            stmt.bindString(11, oplataSieciowaDzien);
         }
  
         String oplataSieciowaNoc = entity.getOplataSieciowaNoc();
         if (oplataSieciowaNoc != null) {
-            stmt.bindString(11, oplataSieciowaNoc);
+            stmt.bindString(12, oplataSieciowaNoc);
         }
  
         String oplataOze = entity.getOplataOze();
         if (oplataOze != null) {
-            stmt.bindString(12, oplataOze);
+            stmt.bindString(13, oplataOze);
         }
     }
 
@@ -217,11 +229,12 @@ public class PgePricesDao extends AbstractDao<PgePrices, Long> {
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // oplataPrzejsciowa
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // oplataStalaZaPrzesyl
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // oplataAbonamentowa
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // zaEnergieCzynnaDzien
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // zaEnergieCzynnaNoc
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // oplataSieciowaDzien
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // oplataSieciowaNoc
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11) // oplataOze
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // oplataHandlowa
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // zaEnergieCzynnaDzien
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // zaEnergieCzynnaNoc
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // oplataSieciowaDzien
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // oplataSieciowaNoc
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12) // oplataOze
         );
         return entity;
     }
@@ -235,11 +248,12 @@ public class PgePricesDao extends AbstractDao<PgePrices, Long> {
         entity.setOplataPrzejsciowa(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setOplataStalaZaPrzesyl(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setOplataAbonamentowa(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setZaEnergieCzynnaDzien(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setZaEnergieCzynnaNoc(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setOplataSieciowaDzien(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setOplataSieciowaNoc(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setOplataOze(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setOplataHandlowa(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setZaEnergieCzynnaDzien(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setZaEnergieCzynnaNoc(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setOplataSieciowaDzien(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setOplataSieciowaNoc(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setOplataOze(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
      }
     
     @Override
