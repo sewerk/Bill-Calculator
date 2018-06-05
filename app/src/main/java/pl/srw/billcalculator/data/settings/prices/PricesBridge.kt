@@ -24,11 +24,14 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
 
     fun getItemsForPgnig(): Map<String, PriceValue> {
         val prices = pgnigPrices
-        return mapOf(PGNIG.WSP_KONW to PriceValue(prices.wspolczynnikKonwersji, PriceMeasure.NONE),
+        return mapOf(
+                PGNIG.WSP_KONW to PriceValue(prices.wspolczynnikKonwersji, PriceMeasure.NONE),
                 PGNIG.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH),
+                PGNIG.HANDLOWA to PriceValue(prices.oplataHandlowa, PriceMeasure.MONTH),
                 PGNIG.PALIWO_GAZ to PriceValue(prices.paliwoGazowe, PriceMeasure.KWH),
                 PGNIG.DYSTR_STALA to PriceValue(prices.dystrybucyjnaStala, PriceMeasure.MONTH),
-                PGNIG.DYSTR_ZMIENNA to PriceValue(prices.dystrybucyjnaZmienna, PriceMeasure.KWH))
+                PGNIG.DYSTR_ZMIENNA to PriceValue(prices.dystrybucyjnaZmienna, PriceMeasure.KWH)
+        )
     }
 
     fun updatePgnig(name: String, value: String) {
@@ -36,6 +39,7 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
         when (name) {
             PGNIG.WSP_KONW -> if (prices.wspolczynnikKonwersji != value) prices.wspolczynnikKonwersji = value
             PGNIG.ABONAMENTOWA -> if (prices.oplataAbonamentowa != value) prices.oplataAbonamentowa = value
+            PGNIG.HANDLOWA -> if (prices.oplataHandlowa != value) prices.oplataHandlowa = value
             PGNIG.PALIWO_GAZ -> if (prices.paliwoGazowe != value) prices.paliwoGazowe = value
             PGNIG.DYSTR_STALA -> if (prices.dystrybucyjnaStala != value) prices.dystrybucyjnaStala = value
             PGNIG.DYSTR_ZMIENNA -> if (prices.dystrybucyjnaZmienna != value) prices.dystrybucyjnaZmienna = value
@@ -45,32 +49,39 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
 
     fun getItemsForPgeG11(): Map<String, PriceValue> {
         val prices = pgePrices
-        return mapOf(PGE.ENERGIA to PriceValue(prices.zaEnergieCzynna, PriceMeasure.KWH),
+        return mapOf(
+                PGE.ENERGIA to PriceValue(prices.zaEnergieCzynna, PriceMeasure.KWH),
+                PGE.HANDLOWA to PriceValue(prices.oplataHandlowa, PriceMeasure.MONTH),
                 PGE.OZE to PriceValue(prices.oplataOze, PriceMeasure.MWH),
                 PGE.SKL_JAKOSC to PriceValue(prices.skladnikJakosciowy, PriceMeasure.KWH),
                 PGE.SIECIOWA to PriceValue(prices.oplataSieciowa, PriceMeasure.KWH),
                 PGE.PRZEJSCIOWA to PriceValue(prices.oplataPrzejsciowa, PriceMeasure.MONTH),
                 PGE.STALA to PriceValue(prices.oplataStalaZaPrzesyl, PriceMeasure.MONTH),
-                PGE.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH))
+                PGE.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH)
+        )
     }
 
     fun getItemsForPgeG12(): Map<String, PriceValue> {
         val prices = pgePrices
-        return mapOf(PGE.ENERGIA_DZIEN to PriceValue(prices.zaEnergieCzynnaDzien, PriceMeasure.KWH),
+        return mapOf(
+                PGE.ENERGIA_DZIEN to PriceValue(prices.zaEnergieCzynnaDzien, PriceMeasure.KWH),
                 PGE.SIECIOWA_DZIEN to PriceValue(prices.oplataSieciowaDzien, PriceMeasure.KWH),
+                PGE.HANDLOWA to PriceValue(prices.oplataHandlowa, PriceMeasure.MONTH),
                 PGE.OZE to PriceValue(prices.oplataOze, PriceMeasure.MWH),
                 PGE.SKL_JAKOSC to PriceValue(prices.skladnikJakosciowy, PriceMeasure.KWH),
                 PGE.ENERGIA_NOC to PriceValue(prices.zaEnergieCzynnaNoc, PriceMeasure.KWH),
                 PGE.SIECIOWA_NOC to PriceValue(prices.oplataSieciowaNoc, PriceMeasure.KWH),
                 PGE.PRZEJSCIOWA to PriceValue(prices.oplataPrzejsciowa, PriceMeasure.MONTH),
                 PGE.STALA to PriceValue(prices.oplataStalaZaPrzesyl, PriceMeasure.MONTH),
-                PGE.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH))
+                PGE.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH)
+        )
     }
 
     fun updatePge(name: String, value: String) {
         val prices = pgePrices
         when (name) {
             PGE.ENERGIA -> if (prices.zaEnergieCzynna != value) prices.zaEnergieCzynna = value
+            PGE.HANDLOWA -> if (prices.oplataHandlowa != value) prices.oplataHandlowa = value
             PGE.OZE -> if (prices.oplataOze != value) prices.oplataOze = value
             PGE.SKL_JAKOSC -> if (prices.skladnikJakosciowy != value) prices.skladnikJakosciowy = value
             PGE.SIECIOWA -> if (prices.oplataSieciowa != value) prices.oplataSieciowa = value
@@ -87,24 +98,30 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
 
     fun getItemsForTauronG11(): Map<String, PriceValue> {
         val prices = tauronPrices
-        return mapOf(TAURON.ENERGIA to PriceValue(prices.energiaElektrycznaCzynna, PriceMeasure.KWH),
+        return mapOf(
+                TAURON.ENERGIA to PriceValue(prices.energiaElektrycznaCzynna, PriceMeasure.KWH),
+                TAURON.HANDLOWA to PriceValue(prices.oplataHandlowa, PriceMeasure.MONTH),
                 TAURON.OZE to PriceValue(prices.oplataOze, PriceMeasure.KWH),
                 TAURON.DYST_ZMIENNA to PriceValue(prices.oplataDystrybucyjnaZmienna, PriceMeasure.KWH),
                 TAURON.DYST_STALA to PriceValue(prices.oplataDystrybucyjnaStala, PriceMeasure.MONTH),
                 TAURON.PRZEJSCIOWA to PriceValue(prices.oplataPrzejsciowa, PriceMeasure.MONTH),
-                TAURON.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH))
+                TAURON.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH)
+        )
     }
 
     fun getItemsForTauronG12(): Map<String, PriceValue> {
         val prices = tauronPrices
-        return mapOf(TAURON.ENERGIA_DZIEN to PriceValue(prices.energiaElektrycznaCzynnaDzien, PriceMeasure.KWH),
+        return mapOf(
+                TAURON.ENERGIA_DZIEN to PriceValue(prices.energiaElektrycznaCzynnaDzien, PriceMeasure.KWH),
                 TAURON.ENERGIA_NOC to PriceValue(prices.energiaElektrycznaCzynnaNoc, PriceMeasure.KWH),
+                TAURON.HANDLOWA to PriceValue(prices.oplataHandlowa, PriceMeasure.MONTH),
                 TAURON.OZE to PriceValue(prices.oplataOze, PriceMeasure.KWH),
                 TAURON.DYST_ZMIENNA_DZIEN to PriceValue(prices.oplataDystrybucyjnaZmiennaDzien, PriceMeasure.KWH),
                 TAURON.DYST_ZMIENNA_NOC to PriceValue(prices.oplataDystrybucyjnaZmiennaNoc, PriceMeasure.KWH),
                 TAURON.DYST_STALA to PriceValue(prices.oplataDystrybucyjnaStala, PriceMeasure.MONTH),
                 TAURON.PRZEJSCIOWA to PriceValue(prices.oplataPrzejsciowa, PriceMeasure.MONTH),
-                TAURON.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH))
+                TAURON.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH)
+        )
     }
 
     fun updateTauron(name: String, value: String) {
@@ -112,6 +129,7 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
         when (name) {
             TAURON.ENERGIA -> if (prices.energiaElektrycznaCzynna != value) prices.energiaElektrycznaCzynna = value
             TAURON.OZE -> if (prices.oplataOze != value) prices.oplataOze = value
+            TAURON.HANDLOWA -> if (prices.oplataHandlowa != value) prices.oplataHandlowa = value
             TAURON.DYST_ZMIENNA -> if (prices.oplataDystrybucyjnaZmienna != value) prices.oplataDystrybucyjnaZmienna = value
             TAURON.DYST_STALA -> if (prices.oplataDystrybucyjnaStala != value) prices.oplataDystrybucyjnaStala = value
             TAURON.PRZEJSCIOWA -> if (prices.oplataPrzejsciowa != value) prices.oplataPrzejsciowa = value
@@ -147,6 +165,7 @@ object PGNIG {
     const val PALIWO_GAZ = "Paliwo gazowe"
     const val DYSTR_STALA = "Dystrybucyjna stała"
     const val DYSTR_ZMIENNA = "Dystrybucyjna zmienna"
+    const val HANDLOWA = "Opłata handlowa"
 }
 
 @VisibleForTesting
@@ -158,6 +177,7 @@ object PGE {
     const val PRZEJSCIOWA = "opłata przejściowa"
     const val STALA = "opł. stała za przesył"
     const val ABONAMENTOWA = "opłata abonamentowa"
+    const val HANDLOWA = "opłata handlowa"
 
     const val ENERGIA_DZIEN = "za energię czynną (strefa dzienna)"
     const val ENERGIA_NOC = "za energię czynną (strefa nocna)"
@@ -173,6 +193,7 @@ object TAURON {
     const val DYST_STALA = "Opłata dystrybucyjna stała"
     const val PRZEJSCIOWA = "Opłata przejściowa"
     const val ABONAMENTOWA = "Opłata abonamentowa"
+    const val HANDLOWA = "Opłata handlowa"
 
     const val ENERGIA_DZIEN = "Energia elektryczna czynna dzienna"
     const val ENERGIA_NOC = "Energia elektryczna czynna nocna"

@@ -22,6 +22,7 @@ class PgePrices @Inject constructor(private val prefs: SharedPreferences)
     override var oplataStalaZaPrzesyl by stringPref(KEYS.CENA_OPLATA_STALA_ZA_PRZESYL)
     override var oplataAbonamentowa by stringPref(KEYS.CENA_OPLATA_ABONAMENTOWA)
     override var oplataOze by stringPref(KEYS.CENA_OPLATA_OZE)
+    override var oplataHandlowa by stringPref(KEYS.HANDLOWA)
 
     fun convertToDb() = pl.srw.billcalculator.db.PgePrices().apply {
         setOplataAbonamentowa(this@PgePrices.oplataAbonamentowa)
@@ -35,6 +36,7 @@ class PgePrices @Inject constructor(private val prefs: SharedPreferences)
         setOplataSieciowaNoc(this@PgePrices.oplataSieciowaNoc)
         setZaEnergieCzynnaDzien(this@PgePrices.zaEnergieCzynnaDzien)
         setZaEnergieCzynnaNoc(this@PgePrices.zaEnergieCzynnaNoc)
+        setOplataHandlowa(this@PgePrices.oplataHandlowa)
     }
 
     override fun setDefault() {
@@ -50,6 +52,7 @@ class PgePrices @Inject constructor(private val prefs: SharedPreferences)
         oplataStalaZaPrzesyl = DEFAULTS.cena_oplata_stala_za_przesyl
         oplataAbonamentowa = DEFAULTS.cena_oplata_abonamentowa
         oplataOze = DEFAULTS.cena_oplata_oze
+        oplataHandlowa = DEFAULTS.cena_oplata_handlowa
     }
 
     override fun setDefaultIfNotSet() {
@@ -59,6 +62,8 @@ class PgePrices @Inject constructor(private val prefs: SharedPreferences)
             tariff = DEFAULTS.tariff
         else if (!prefs.contains(KEYS.CENA_OPLATA_OZE))
             oplataOze = DEFAULTS.cena_oplata_oze
+        else if (!prefs.contains(KEYS.HANDLOWA))
+            oplataHandlowa = DEFAULTS.cena_oplata_handlowa
     }
 
     private object DEFAULTS {
@@ -74,6 +79,7 @@ class PgePrices @Inject constructor(private val prefs: SharedPreferences)
         const val cena_oplata_stala_za_przesyl = "2.01"
         const val cena_oplata_abonamentowa = "4.80"
         const val cena_oplata_oze = "0.00"
+        const val cena_oplata_handlowa = "0.00"
     }
 
     private object KEYS {
@@ -89,5 +95,6 @@ class PgePrices @Inject constructor(private val prefs: SharedPreferences)
         const val CENA_OPLATA_STALA_ZA_PRZESYL = "cena_oplata_stala_za_przesyl"
         const val CENA_OPLATA_ABONAMENTOWA = "cena_oplata_abonamentowa"
         const val CENA_OPLATA_OZE = "cena_oplata_oze"
+        const val HANDLOWA = "pge_oplata_handlowa"
     }
 }
