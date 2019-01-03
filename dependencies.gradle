@@ -13,7 +13,7 @@ ext {
     butterKnifeVer = '8.8.1'
     rxJavaVer = '2.1.12'
     rxAndroidVer = '2.0.2'
-    timberVer = '4.7.0'
+    timberVer = '4.7.1'
     threeTenAbpVer = '1.0.5'
     tapTargetVer = '1.9.1'
     javaxVer = '1.0'
