@@ -1,11 +1,16 @@
+file("fabric.properties").withReader {
+    Properties props = new Properties()
+    props.load(it)
+    project.ext.fabric = props
+}
+
 def getFabricApiKey = { ->
     def noKey = "abcdeabcde123456789012345678901234567890"
-    def key = project.hasProperty('fabricApiKey') ? fabricApiKey.toString() :
-            System.getenv("FABRIC_API_KEY") ?: noKey
-    if (key == noKey)
-        println "Fabric API key not found in variables"
-    else
-        println "Fabric API key found in variables (will be set if not exist)"
+    def key = project.ext.fabric.apiKey ?: System.getenv("FABRIC_API_KEY") ?: noKey
+    if (System.getenv("CI") == "true")
+        println "Fabric Api key not found in variables. Please set it in CI secret env vars" + key
+    else if (key == noKey)
+        println "Make sure correct Fabric Api key is set in fabric.properties"
     return key
 }
 
