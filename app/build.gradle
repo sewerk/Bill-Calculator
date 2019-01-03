@@ -7,12 +7,11 @@ apply from: 'signing.gradle'
 apply from: '../gradle/fabric.gradle'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "$buildToolsVer"
+    compileSdkVersion 28
     defaultConfig {
         applicationId "pl.srw.billcalculator"
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
 
         versionCode 33
         versionName "2.1.2"
