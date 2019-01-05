@@ -15,6 +15,18 @@
             file="libs/itextg-5.5.4.jar"/>
     </issue>
 
+    <!--GreenDao android test does not compile on newer compileSdkVersion-->
+    <issue
+        id="OldTargetApi"
+        message="Not targeting the latest versions of Android; compatibility &#xA;modes apply. Consider testing and updating this version. &#xA;Consult the android.os.Build.VERSION_CODES javadoc for details."
+        errorLine1="        targetSdkVersion 27"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="14"
+            column="9"/>
+    </issue>
+
     <issue
         id="UnusedAttribute"
         message="Attribute `fullBackupOnly` is only used in API level 21 and higher (current min is 15)"
@@ -43,7 +55,7 @@
         errorLine1="                android:importantForAutofill=&quot;noExcludeDescendants&quot;"
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src\main\res\layout\form.xml"
+            file="src/main/res/layout/form.xml"
             line="29"
             column="17"/>
     </issue>
@@ -54,7 +66,7 @@
         errorLine1="            android:importantForAutofill=&quot;no&quot;"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src\main\res\layout\settings_input_dialog.xml"
+            file="src/main/res/layout/settings_input_dialog.xml"
             line="26"
             column="13"/>
     </issue>

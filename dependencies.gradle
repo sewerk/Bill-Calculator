@@ -3,12 +3,12 @@ ext {
 
     kotlinVer = '1.2.40'
     anko_version = '0.10.4'
-    supportLibVer = '28.0.0'
+    supportLibVer = '27.1.1'
     constraintLayoutVer = '1.0.2'
     archCompVer = "1.1.1"
 
     mfvpVer = '1.0-beta1'
-    greenDaoVer = '3.1.0'
+    greenDaoVer = '3.2.2'
     daggerVer = '2.0.1'
     butterKnifeVer = '8.8.1'
     rxJavaVer = '2.1.12'
