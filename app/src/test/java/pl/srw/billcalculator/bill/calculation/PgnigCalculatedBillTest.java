@@ -16,11 +16,12 @@ import static org.junit.Assert.assertThat;
  * Created by Kamil Seweryn.
  */
 public class PgnigCalculatedBillTest {
+// TODO add tests for opłata handlowa
 
     @Test
     public void shouldProperlyCalculateBill() {
         // prepare
-        final PgnigPrices prices = new PgnigPrices(1L, "1.01", "2.02", "3.03", "4.04", "5.05");
+        final PgnigPrices prices = new PgnigPrices(1L, "1.01", "2.02", "3.03", "4.04", "5.05", "0.00");
 
         // calculate
         final PgnigCalculatedBill sut = new PgnigCalculatedBill(100, 200, LocalDate.of(2015, Month.JULY, 31), LocalDate.of(2015, Month.SEPTEMBER, 24), prices);

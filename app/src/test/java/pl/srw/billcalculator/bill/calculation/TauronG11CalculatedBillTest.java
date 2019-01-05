@@ -13,11 +13,12 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class TauronG11CalculatedBillTest {
+// TODO add tests for opłata handlowa
 
     @Test
     public void expectProperCalculations() {
         // prepare
-        final TauronPrices prices = new TauronPrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", null, null, null, null, "0.00");
+        final TauronPrices prices = new TauronPrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", "0.00", null, null, null, null, "0.00");
 
         // calculate
         final TauronG11CalculatedBill sut = new TauronG11CalculatedBill(20, 30, LocalDate.of(2015, Month.MARCH, 1), LocalDate.of(2015, Month.APRIL, 30), prices);
@@ -54,7 +55,7 @@ public class TauronG11CalculatedBillTest {
     @Test
     public void whenAfterJuly16IncludeOplataOze() throws Exception {
         // prepare
-        final TauronPrices prices = new TauronPrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", null, null, null, null, "0.00251");
+        final TauronPrices prices = new TauronPrices(1L, "1.11", "2.02", "3.03", "4.04", "5.05", "0.00", null, null, null, null, "0.00251");
 
         // calculate
         final TauronG11CalculatedBill sut = new TauronG11CalculatedBill(20, 30, LocalDate.of(2016, Month.JULY, 1), LocalDate.of(2016, Month.AUGUST, 30), prices);
@@ -80,8 +81,8 @@ public class TauronG11CalculatedBillTest {
     @Test
     public void realLifeExample() {
         // prepare
-        final TauronPrices prices1 = new TauronPrices(1L, "0.25470", "0.18670", "1.46", "2.44", "0.80", null, null, null, null, "0.00");
-        final TauronPrices prices2 = new TauronPrices(2L, "0.25680", "0.19130", "1.55", "3.29", "0.80", null, null, null, null, "0.00");
+        final TauronPrices prices1 = new TauronPrices(1L, "0.25470", "0.18670", "1.46", "2.44", "0.80", "0.00",null, null, null, null, "0.00");
+        final TauronPrices prices2 = new TauronPrices(2L, "0.25680", "0.19130", "1.55", "3.29", "0.80", "0.00", null, null, null, null, "0.00");
 
         // calculate
         final TauronG11CalculatedBill bill1 = new TauronG11CalculatedBill(7869, 8681, LocalDate.of(2014, Month.AUGUST, 1), LocalDate.of(2014, Month.DECEMBER, 31), prices1);

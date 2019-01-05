@@ -15,11 +15,12 @@ import static org.junit.Assert.assertThat;
  * Created by Kamil Seweryn.
  */
 public class PgeG12CalculatedBillTest {
+// TODO add tests for opłata handlowa
 
     @Test
     public void expectProperCalculations() {
         // prepare
-        final PgePrices prices = new PgePrices(1L, null, "2.02", null, "4.04", "5.05", "6.06", "7.07", "8.08", "9.09", "11.11", "0.00");
+        final PgePrices prices = new PgePrices(1L, null, "2.02", null, "4.04", "5.05", "6.06", "0.00", "7.07", "8.08", "9.09", "11.11", "0.00");
 
         // calculate
         final PgeG12CalculatedBill sut = new PgeG12CalculatedBill(20, 30, 35, 55, LocalDate.of(2015, Month.JANUARY, 1), LocalDate.of(2015, Month.OCTOBER, 30), prices);
@@ -59,7 +60,7 @@ public class PgeG12CalculatedBillTest {
     @Test
     public void whenAfterJuly16IncludeOplataOze() throws Exception {
         // prepare
-        final PgePrices prices = new PgePrices(1L, null, "2.02", null, "4.04", "5.05", "6.06", "7.07", "8.08", "9.09", "11.11", "2.51");
+        final PgePrices prices = new PgePrices(1L, null, "2.02", null, "4.04", "5.05", "6.06", "0.00", "7.07", "8.08", "9.09", "11.11", "2.51");
 
         // calculate
         final PgeG12CalculatedBill sut = new PgeG12CalculatedBill(20, 30, 35, 55, LocalDate.of(2016, Month.JULY, 1), LocalDate.of(2017, Month.APRIL, 30), prices);

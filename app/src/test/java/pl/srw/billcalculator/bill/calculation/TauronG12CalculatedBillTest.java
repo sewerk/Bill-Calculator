@@ -12,11 +12,12 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class TauronG12CalculatedBillTest {
+// TODO add tests for opłata handlowa
 
     @Test
     public void expectsProperCalculation() {
         // prepare
-        final TauronPrices prices = new TauronPrices(1L, null, null, "4.04", "5.05", "6.06", "7.07", "8.08", "9.09", "11.11", "0.00");
+        final TauronPrices prices = new TauronPrices(1L, null, null, "4.04", "5.05", "6.06", "0.00", "7.07", "8.08", "9.09", "11.11", "0.00");
 
         // calculate
         final TauronG12CalculatedBill sut = new TauronG12CalculatedBill(11, 21, 25, 45, LocalDate.of(2015, Month.JANUARY, 1), LocalDate.of(2015, Month.OCTOBER, 30), prices);
@@ -59,7 +60,7 @@ public class TauronG12CalculatedBillTest {
     @Test
     public void whenAfterJuly16IncludeOplataOze() throws Exception {
         // prepare
-        final TauronPrices prices = new TauronPrices(1L, null, null, "4.04", "5.05", "6.06", "7.07", "8.08", "9.09", "11.11", "0.00251");
+        final TauronPrices prices = new TauronPrices(1L, null, null, "4.04", "5.05", "6.06", "0.00", "7.07", "8.08", "9.09", "11.11", "0.00251");
 
         // calculate
         final TauronG12CalculatedBill sut = new TauronG12CalculatedBill(11, 21, 25, 45, LocalDate.of(2016, Month.JULY, 1), LocalDate.of(2017, Month.APRIL, 30), prices);
