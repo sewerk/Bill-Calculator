@@ -1,7 +1,7 @@
 ext {
     gradlePluginVer = '3.1.2'
 
-    kotlinVer = '1.2.40'
+    kotlinVer = '1.2.71'
     anko_version = '0.10.4'
     supportLibVer = '27.1.1'
     constraintLayoutVer = '1.0.2'
