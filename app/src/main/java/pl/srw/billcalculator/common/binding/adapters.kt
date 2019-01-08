@@ -7,10 +7,6 @@ import android.view.View
 import android.widget.ListView
 import pl.srw.billcalculator.common.list.DataBindingAdapter
 
-private const val BIND_ON_CLICK = "onClick"
-private const val BIND_ON_ITEM_CLICK = "onItemClick"
-private const val BIND_LIST_ITEMS = "items"
-
 interface OnClick {
     fun invoke()
 }
@@ -26,19 +22,24 @@ interface OnClickPosition {
  *
  * This results in simpler databinding expressions in xml.
  */
-@BindingAdapter(BIND_ON_CLICK)
+@BindingAdapter("onClick")
 fun View.setOnClick(onClick: OnClick?) {
     onClick?.run {
         setOnClickListener { invoke() }
     }
 }
 
-@BindingAdapter(BIND_ON_ITEM_CLICK)
+@BindingAdapter("visible")
+fun View.setVisible(visible: Boolean) {
+    visibility = if (visible) View.VISIBLE else View.GONE
+}
+
+@BindingAdapter("onItemClick")
 fun ListView.setOnItemClick(onClick: OnClickPosition) {
     setOnItemClickListener { _, _, position, _ -> onClick.invoke(position) }
 }
 
-@BindingAdapter(BIND_LIST_ITEMS)
+@BindingAdapter("items")
 fun <T> RecyclerView.setItems(items: List<T>) {
     with(adapter as DataBindingAdapter<T, *>) {
         replaceData(items)

@@ -166,6 +166,7 @@
 
     <string name="settings_input_accept">Save</string>
     <string name="settings_input_cancel">Cancel</string>
+    <string name="settings_input_show_on_bill">Include on bill</string>
     <string name="settings_input_hint" translatable="false">Cena netto</string>
 
     <!-- PGE settings -->
@@ -176,6 +177,7 @@
     <string name="oplata_przejsciowa_desc" translatable="false">Składnik opłaty przejściowej jest zależny od rocznego zużycia kWh:\n - do 500 kWH/rok wynosi 0.45 zł netto\n - od 500 do 1200 kWh/rok wynosi 1.90 zł netto\n - od 1200 kWh/rok wynosi 6.50 zł netto</string>
     <string name="oplata_stala_za_przesyl_desc" translatable="false">Inne nazwy:\n - składnik stały stawki sieciowej,\n - opłata przesyłowa stała.\nCena naliczana co miesiąc, niezależnie od zużycia.</string>
     <string name="oplata_abonamentowa_desc" translatable="false">Stała cena za abonament, naliczana co miesiąc, niezależnie od zużycia.</string>
+    <string name="oplata_handlowa_desc" translatable="false">Opłaty sprzedawcy mediów, naliczana co miesiąc, niezależnie od zużycia.</string>
     <string name="oplata_oze_desc" translatable="false">Opłata na Odnawialne Źródła Energii, obowiązująca od lipca 2016 r., zależna od zużycia.</string>
     <string name="skladnik_jakosciowy_desc" translatable="false">Inne nazwy:\n - składnik jakościowy opłaty systemowej,\n - opłata dystrybucyjna jakościowa.\nCena zapewnienia odpowiedniej jakości dostaw energii.</string>
     <string name="za_energie_czynna_desc" translatable="false">Cena netto jednej kilowatogodziny energii.</string>

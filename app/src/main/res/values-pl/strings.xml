@@ -65,6 +65,7 @@
     <string name="settings_label">Ustawienia</string>
     <string name="settings_input_accept">Zapisz</string>
     <string name="settings_input_cancel">Anuluj</string>
+    <string name="settings_input_show_on_bill">Pokazuj na rachunku</string>
     <string name="settings_list_item_logo_content_desc">Logo dystrybutora</string>
     <string name="action_help">Pomoc</string>
     <string name="settings_help_example_content_desc">Przykład gdzie szukać wartości</string>

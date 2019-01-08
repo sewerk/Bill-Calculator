@@ -25,12 +25,12 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
     fun getItemsForPgnig(): Map<String, PriceValue> {
         val prices = pgnigPrices
         return mapOf(
-                PGNIG.WSP_KONW to PriceValue(prices.wspolczynnikKonwersji, PriceMeasure.NONE),
-                PGNIG.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH),
-                PGNIG.HANDLOWA to PriceValue(prices.oplataHandlowa, PriceMeasure.MONTH),
-                PGNIG.PALIWO_GAZ to PriceValue(prices.paliwoGazowe, PriceMeasure.KWH),
-                PGNIG.DYSTR_STALA to PriceValue(prices.dystrybucyjnaStala, PriceMeasure.MONTH),
-                PGNIG.DYSTR_ZMIENNA to PriceValue(prices.dystrybucyjnaZmienna, PriceMeasure.KWH)
+                PGNIG.WSP_KONW to AlwaysEnabledPriceValue(prices.wspolczynnikKonwersji, PriceMeasure.NONE),
+                PGNIG.ABONAMENTOWA to AlwaysEnabledPriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH),
+                PGNIG.HANDLOWA to OptionalPriceValue(prices.oplataHandlowa, PriceMeasure.MONTH, true), //TODO: get enabled from prefs
+                PGNIG.PALIWO_GAZ to AlwaysEnabledPriceValue(prices.paliwoGazowe, PriceMeasure.KWH),
+                PGNIG.DYSTR_STALA to AlwaysEnabledPriceValue(prices.dystrybucyjnaStala, PriceMeasure.MONTH),
+                PGNIG.DYSTR_ZMIENNA to AlwaysEnabledPriceValue(prices.dystrybucyjnaZmienna, PriceMeasure.KWH)
         )
     }
 
@@ -50,30 +50,30 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
     fun getItemsForPgeG11(): Map<String, PriceValue> {
         val prices = pgePrices
         return mapOf(
-                PGE.ENERGIA to PriceValue(prices.zaEnergieCzynna, PriceMeasure.KWH),
-                PGE.HANDLOWA to PriceValue(prices.oplataHandlowa, PriceMeasure.MONTH),
-                PGE.OZE to PriceValue(prices.oplataOze, PriceMeasure.MWH),
-                PGE.SKL_JAKOSC to PriceValue(prices.skladnikJakosciowy, PriceMeasure.KWH),
-                PGE.SIECIOWA to PriceValue(prices.oplataSieciowa, PriceMeasure.KWH),
-                PGE.PRZEJSCIOWA to PriceValue(prices.oplataPrzejsciowa, PriceMeasure.MONTH),
-                PGE.STALA to PriceValue(prices.oplataStalaZaPrzesyl, PriceMeasure.MONTH),
-                PGE.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH)
+                PGE.ENERGIA to AlwaysEnabledPriceValue(prices.zaEnergieCzynna, PriceMeasure.KWH),
+                PGE.HANDLOWA to OptionalPriceValue(prices.oplataHandlowa, PriceMeasure.MONTH, true), //TODO: get enabled from prefs
+                PGE.OZE to AlwaysEnabledPriceValue(prices.oplataOze, PriceMeasure.MWH),
+                PGE.SKL_JAKOSC to AlwaysEnabledPriceValue(prices.skladnikJakosciowy, PriceMeasure.KWH),
+                PGE.SIECIOWA to AlwaysEnabledPriceValue(prices.oplataSieciowa, PriceMeasure.KWH),
+                PGE.PRZEJSCIOWA to AlwaysEnabledPriceValue(prices.oplataPrzejsciowa, PriceMeasure.MONTH),
+                PGE.STALA to AlwaysEnabledPriceValue(prices.oplataStalaZaPrzesyl, PriceMeasure.MONTH),
+                PGE.ABONAMENTOWA to AlwaysEnabledPriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH)
         )
     }
 
     fun getItemsForPgeG12(): Map<String, PriceValue> {
         val prices = pgePrices
         return mapOf(
-                PGE.ENERGIA_DZIEN to PriceValue(prices.zaEnergieCzynnaDzien, PriceMeasure.KWH),
-                PGE.SIECIOWA_DZIEN to PriceValue(prices.oplataSieciowaDzien, PriceMeasure.KWH),
-                PGE.HANDLOWA to PriceValue(prices.oplataHandlowa, PriceMeasure.MONTH),
-                PGE.OZE to PriceValue(prices.oplataOze, PriceMeasure.MWH),
-                PGE.SKL_JAKOSC to PriceValue(prices.skladnikJakosciowy, PriceMeasure.KWH),
-                PGE.ENERGIA_NOC to PriceValue(prices.zaEnergieCzynnaNoc, PriceMeasure.KWH),
-                PGE.SIECIOWA_NOC to PriceValue(prices.oplataSieciowaNoc, PriceMeasure.KWH),
-                PGE.PRZEJSCIOWA to PriceValue(prices.oplataPrzejsciowa, PriceMeasure.MONTH),
-                PGE.STALA to PriceValue(prices.oplataStalaZaPrzesyl, PriceMeasure.MONTH),
-                PGE.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH)
+                PGE.ENERGIA_DZIEN to AlwaysEnabledPriceValue(prices.zaEnergieCzynnaDzien, PriceMeasure.KWH),
+                PGE.SIECIOWA_DZIEN to AlwaysEnabledPriceValue(prices.oplataSieciowaDzien, PriceMeasure.KWH),
+                PGE.HANDLOWA to OptionalPriceValue(prices.oplataHandlowa, PriceMeasure.MONTH, true), //TODO: get enabled from prefs
+                PGE.OZE to AlwaysEnabledPriceValue(prices.oplataOze, PriceMeasure.MWH),
+                PGE.SKL_JAKOSC to AlwaysEnabledPriceValue(prices.skladnikJakosciowy, PriceMeasure.KWH),
+                PGE.ENERGIA_NOC to AlwaysEnabledPriceValue(prices.zaEnergieCzynnaNoc, PriceMeasure.KWH),
+                PGE.SIECIOWA_NOC to AlwaysEnabledPriceValue(prices.oplataSieciowaNoc, PriceMeasure.KWH),
+                PGE.PRZEJSCIOWA to AlwaysEnabledPriceValue(prices.oplataPrzejsciowa, PriceMeasure.MONTH),
+                PGE.STALA to AlwaysEnabledPriceValue(prices.oplataStalaZaPrzesyl, PriceMeasure.MONTH),
+                PGE.ABONAMENTOWA to AlwaysEnabledPriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH)
         )
     }
 
@@ -99,28 +99,28 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
     fun getItemsForTauronG11(): Map<String, PriceValue> {
         val prices = tauronPrices
         return mapOf(
-                TAURON.ENERGIA to PriceValue(prices.energiaElektrycznaCzynna, PriceMeasure.KWH),
-                TAURON.HANDLOWA to PriceValue(prices.oplataHandlowa, PriceMeasure.MONTH),
-                TAURON.OZE to PriceValue(prices.oplataOze, PriceMeasure.KWH),
-                TAURON.DYST_ZMIENNA to PriceValue(prices.oplataDystrybucyjnaZmienna, PriceMeasure.KWH),
-                TAURON.DYST_STALA to PriceValue(prices.oplataDystrybucyjnaStala, PriceMeasure.MONTH),
-                TAURON.PRZEJSCIOWA to PriceValue(prices.oplataPrzejsciowa, PriceMeasure.MONTH),
-                TAURON.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH)
+                TAURON.ENERGIA to AlwaysEnabledPriceValue(prices.energiaElektrycznaCzynna, PriceMeasure.KWH),
+                TAURON.HANDLOWA to OptionalPriceValue(prices.oplataHandlowa, PriceMeasure.MONTH, true), //TODO: get enabled from prefs
+                TAURON.OZE to AlwaysEnabledPriceValue(prices.oplataOze, PriceMeasure.KWH),
+                TAURON.DYST_ZMIENNA to AlwaysEnabledPriceValue(prices.oplataDystrybucyjnaZmienna, PriceMeasure.KWH),
+                TAURON.DYST_STALA to AlwaysEnabledPriceValue(prices.oplataDystrybucyjnaStala, PriceMeasure.MONTH),
+                TAURON.PRZEJSCIOWA to AlwaysEnabledPriceValue(prices.oplataPrzejsciowa, PriceMeasure.MONTH),
+                TAURON.ABONAMENTOWA to AlwaysEnabledPriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH)
         )
     }
 
     fun getItemsForTauronG12(): Map<String, PriceValue> {
         val prices = tauronPrices
         return mapOf(
-                TAURON.ENERGIA_DZIEN to PriceValue(prices.energiaElektrycznaCzynnaDzien, PriceMeasure.KWH),
-                TAURON.ENERGIA_NOC to PriceValue(prices.energiaElektrycznaCzynnaNoc, PriceMeasure.KWH),
-                TAURON.HANDLOWA to PriceValue(prices.oplataHandlowa, PriceMeasure.MONTH),
-                TAURON.OZE to PriceValue(prices.oplataOze, PriceMeasure.KWH),
-                TAURON.DYST_ZMIENNA_DZIEN to PriceValue(prices.oplataDystrybucyjnaZmiennaDzien, PriceMeasure.KWH),
-                TAURON.DYST_ZMIENNA_NOC to PriceValue(prices.oplataDystrybucyjnaZmiennaNoc, PriceMeasure.KWH),
-                TAURON.DYST_STALA to PriceValue(prices.oplataDystrybucyjnaStala, PriceMeasure.MONTH),
-                TAURON.PRZEJSCIOWA to PriceValue(prices.oplataPrzejsciowa, PriceMeasure.MONTH),
-                TAURON.ABONAMENTOWA to PriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH)
+                TAURON.ENERGIA_DZIEN to AlwaysEnabledPriceValue(prices.energiaElektrycznaCzynnaDzien, PriceMeasure.KWH),
+                TAURON.ENERGIA_NOC to AlwaysEnabledPriceValue(prices.energiaElektrycznaCzynnaNoc, PriceMeasure.KWH),
+                TAURON.HANDLOWA to OptionalPriceValue(prices.oplataHandlowa, PriceMeasure.MONTH, true), //TODO: get enabled from prefs
+                TAURON.OZE to AlwaysEnabledPriceValue(prices.oplataOze, PriceMeasure.KWH),
+                TAURON.DYST_ZMIENNA_DZIEN to AlwaysEnabledPriceValue(prices.oplataDystrybucyjnaZmiennaDzien, PriceMeasure.KWH),
+                TAURON.DYST_ZMIENNA_NOC to AlwaysEnabledPriceValue(prices.oplataDystrybucyjnaZmiennaNoc, PriceMeasure.KWH),
+                TAURON.DYST_STALA to AlwaysEnabledPriceValue(prices.oplataDystrybucyjnaStala, PriceMeasure.MONTH),
+                TAURON.PRZEJSCIOWA to AlwaysEnabledPriceValue(prices.oplataPrzejsciowa, PriceMeasure.MONTH),
+                TAURON.ABONAMENTOWA to AlwaysEnabledPriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH)
         )
     }
 
