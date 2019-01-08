@@ -51,6 +51,36 @@ class SettingsDetailsVMTest {
     }
 
     @Test
+    fun `item marked non-optional and enabled for AlwaysEnabledPriceValue`() {
+        val provider = Provider.PGNIG
+        val title = "price1"
+        val price = "1.00"
+        val measure = PriceMeasure.KWH
+        val providerSettings = SimpleProviderSettings(provider, mapOf(title to AlwaysEnabledPriceValue(price, measure)))
+        settings.value = providerSettings
+
+        sut.listItemsFor(provider)
+
+        val item = sut.items[0] as InputSettingsDetailsListItem
+        assertEquals(false, item.optional)
+        assertEquals(true, item.enabled)
+    }
+
+    @Test
+    fun `item marked optional and matches enabled flag for OptionalPriceValue`() {
+        val provider = Provider.PGNIG
+        val enabled = false
+        val providerSettings = SimpleProviderSettings(provider, mapOf("price1" to OptionalPriceValue("1.00", PriceMeasure.KWH, enabled)))
+        settings.value = providerSettings
+
+        sut.listItemsFor(provider)
+
+        val item = sut.items[0] as InputSettingsDetailsListItem
+        assertEquals(true, item.optional)
+        assertEquals(enabled, item.enabled)
+    }
+
+    @Test
     fun `items contains picking item for tariff PGE provider settings`() {
         val provider = Provider.PGE
         val tariff = EnergyTariff.G12
