@@ -4,7 +4,11 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
 import android.support.annotation.VisibleForTesting
-import pl.srw.billcalculator.data.settings.prices.*
+import pl.srw.billcalculator.data.settings.prices.EnergyTariff
+import pl.srw.billcalculator.data.settings.prices.OptionalPriceValue
+import pl.srw.billcalculator.data.settings.prices.PricesRepo
+import pl.srw.billcalculator.data.settings.prices.ProviderSettings
+import pl.srw.billcalculator.data.settings.prices.TariffProviderSettings
 import pl.srw.billcalculator.settings.details.dialog.SettingsTitleDescriptionMatcher
 import pl.srw.billcalculator.type.Provider
 import timber.log.Timber
