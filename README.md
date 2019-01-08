@@ -1,5 +1,5 @@
 ![Logo](img/icon_small.png) Bill-Calculator
-[![Build Status](https://app.bitrise.io/app/c3d4a909665ac85c/status.svg?token=9Gn2QXyN8dILleGNDmeKOQ)](https://app.bitrise.io/app/c3d4a909665ac85c)
+[![Build Status](https://app.bitrise.io/app/7ba303811214809f/status.svg?token=UIcsMVWoxC4o-Ky9uJfI0g)](https://app.bitrise.io/app/7ba303811214809f)
 ===============
 
 Android app to calculate bill value for PGE, PGNiG and Tauron providers.
