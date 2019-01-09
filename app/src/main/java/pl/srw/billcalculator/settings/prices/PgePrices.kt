@@ -23,20 +23,21 @@ class PgePrices @Inject constructor(private val prefs: SharedPreferences)
     override var oplataAbonamentowa by stringPref(KEYS.CENA_OPLATA_ABONAMENTOWA)
     override var oplataOze by stringPref(KEYS.CENA_OPLATA_OZE)
     override var oplataHandlowa by stringPref(KEYS.HANDLOWA)
+    var enabledOplataHandlowa by booleanPref(KEYS.HANDLOWA_ENABLED)
 
-    fun convertToDb() = pl.srw.billcalculator.db.PgePrices().apply {
-        setOplataAbonamentowa(this@PgePrices.oplataAbonamentowa)
-        setOplataPrzejsciowa(this@PgePrices.oplataPrzejsciowa)
-        setOplataSieciowa(this@PgePrices.oplataSieciowa)
-        setOplataStalaZaPrzesyl(this@PgePrices.oplataStalaZaPrzesyl)
-        setSkladnikJakosciowy(this@PgePrices.skladnikJakosciowy)
-        setZaEnergieCzynna(this@PgePrices.zaEnergieCzynna)
-        setOplataOze(this@PgePrices.oplataOze)
-        setOplataSieciowaDzien(this@PgePrices.oplataSieciowaDzien)
-        setOplataSieciowaNoc(this@PgePrices.oplataSieciowaNoc)
-        setZaEnergieCzynnaDzien(this@PgePrices.zaEnergieCzynnaDzien)
-        setZaEnergieCzynnaNoc(this@PgePrices.zaEnergieCzynnaNoc)
-        setOplataHandlowa(this@PgePrices.oplataHandlowa)
+    fun convertToDb() = pl.srw.billcalculator.db.PgePrices().also {
+        it.setOplataAbonamentowa(oplataAbonamentowa)
+        it.setOplataPrzejsciowa(oplataPrzejsciowa)
+        it.setOplataSieciowa(oplataSieciowa)
+        it.setOplataStalaZaPrzesyl(oplataStalaZaPrzesyl)
+        it.setSkladnikJakosciowy(skladnikJakosciowy)
+        it.setZaEnergieCzynna(zaEnergieCzynna)
+        it.setOplataOze(oplataOze)
+        it.setOplataSieciowaDzien(oplataSieciowaDzien)
+        it.setOplataSieciowaNoc(oplataSieciowaNoc)
+        it.setZaEnergieCzynnaDzien(zaEnergieCzynnaDzien)
+        it.setZaEnergieCzynnaNoc(zaEnergieCzynnaNoc)
+        it.setOplataHandlowa(if (enabledOplataHandlowa) oplataHandlowa else DISABLED_OPLATA_HANDLOWA)
     }
 
     override fun setDefault() {
@@ -53,17 +54,20 @@ class PgePrices @Inject constructor(private val prefs: SharedPreferences)
         oplataAbonamentowa = DEFAULTS.cena_oplata_abonamentowa
         oplataOze = DEFAULTS.cena_oplata_oze
         oplataHandlowa = DEFAULTS.cena_oplata_handlowa
+        enabledOplataHandlowa = DEFAULTS.oplata_handlowa_enabled
     }
 
     override fun setDefaultIfNotSet() {
-        if (!prefs.contains(KEYS.CENA_ZA_ENERGIE_CZYNNA))
+        if (!prefs.contains(KEYS.CENA_ZA_ENERGIE_CZYNNA)) {
             setDefault()
-        else if (!prefs.contains(KEYS.TARIFF))
+        } else if (!prefs.contains(KEYS.TARIFF)) {
             tariff = DEFAULTS.tariff
-        else if (!prefs.contains(KEYS.CENA_OPLATA_OZE))
+        } else if (!prefs.contains(KEYS.CENA_OPLATA_OZE)) {
             oplataOze = DEFAULTS.cena_oplata_oze
-        else if (!prefs.contains(KEYS.HANDLOWA))
+        } else if (!prefs.contains(KEYS.HANDLOWA)) {
             oplataHandlowa = DEFAULTS.cena_oplata_handlowa
+            enabledOplataHandlowa = DEFAULTS.oplata_handlowa_enabled
+        }
     }
 
     private object DEFAULTS {
@@ -80,6 +84,7 @@ class PgePrices @Inject constructor(private val prefs: SharedPreferences)
         const val cena_oplata_abonamentowa = "4.80"
         const val cena_oplata_oze = "0.00"
         const val cena_oplata_handlowa = "0.00"
+        const val oplata_handlowa_enabled = true
     }
 
     private object KEYS {
@@ -96,5 +101,6 @@ class PgePrices @Inject constructor(private val prefs: SharedPreferences)
         const val CENA_OPLATA_ABONAMENTOWA = "cena_oplata_abonamentowa"
         const val CENA_OPLATA_OZE = "cena_oplata_oze"
         const val HANDLOWA = "pge_oplata_handlowa"
+        const val HANDLOWA_ENABLED = "pge_oplata_handlowa_enabled"
     }
 }

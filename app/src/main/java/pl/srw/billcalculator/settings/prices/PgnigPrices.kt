@@ -5,9 +5,10 @@ import pl.srw.billcalculator.pojo.IPgnigPrices
 import javax.inject.Inject
 import javax.inject.Singleton
 
+const val DISABLED_OPLATA_HANDLOWA = "-1"
+
 @Singleton
-class PgnigPrices @Inject constructor(private val prefs: SharedPreferences)
-    : SharedPrefsPrices(prefs), Restorable, IPgnigPrices {
+class PgnigPrices @Inject constructor(private val prefs: SharedPreferences) : SharedPrefsPrices(prefs), Restorable, IPgnigPrices {
 
     override var oplataAbonamentowa by stringPref(KEYS.ABONAMENTOWA)
     override var paliwoGazowe by stringPref(KEYS.PALIWO_GAZOWE)
@@ -15,14 +16,15 @@ class PgnigPrices @Inject constructor(private val prefs: SharedPreferences)
     override var dystrybucyjnaZmienna by stringPref(KEYS.DYSTRYBUCYJNA_ZMIENNA)
     override var wspolczynnikKonwersji by stringPref(KEYS.WSP_KONWERSJI)
     override var oplataHandlowa by stringPref(KEYS.HANDLOWA)
+    var enabledOplataHandlowa by booleanPref(KEYS.HANDLOWA_ENABLED)
 
-    fun convertToDb() = pl.srw.billcalculator.db.PgnigPrices().apply {
-        setDystrybucyjnaStala(this@PgnigPrices.dystrybucyjnaStala)
-        setDystrybucyjnaZmienna(this@PgnigPrices.dystrybucyjnaZmienna)
-        setOplataAbonamentowa(this@PgnigPrices.oplataAbonamentowa)
-        setPaliwoGazowe(this@PgnigPrices.paliwoGazowe)
-        setWspolczynnikKonwersji(this@PgnigPrices.wspolczynnikKonwersji)
-        setOplataHandlowa(this@PgnigPrices.oplataHandlowa)
+    fun convertToDb() = pl.srw.billcalculator.db.PgnigPrices().also {
+        it.setDystrybucyjnaStala(dystrybucyjnaStala)
+        it.setDystrybucyjnaZmienna(dystrybucyjnaZmienna)
+        it.setOplataAbonamentowa(oplataAbonamentowa)
+        it.setPaliwoGazowe(paliwoGazowe)
+        it.setWspolczynnikKonwersji(wspolczynnikKonwersji)
+        it.setOplataHandlowa(if (enabledOplataHandlowa) oplataHandlowa else DISABLED_OPLATA_HANDLOWA)
     }
 
     override fun setDefault() {
@@ -32,22 +34,26 @@ class PgnigPrices @Inject constructor(private val prefs: SharedPreferences)
         paliwoGazowe = DEFAULTS.paliwo_gazowe
         wspolczynnikKonwersji = DEFAULTS.wsp_konwersji
         oplataHandlowa = DEFAULTS.handlowa
+        enabledOplataHandlowa = DEFAULTS.handlowa_enabled
     }
 
     override fun setDefaultIfNotSet() {
         if (!prefs.contains(KEYS.ABONAMENTOWA))
             setDefault()
-        else if (!prefs.contains(KEYS.HANDLOWA))
+        else if (!prefs.contains(KEYS.HANDLOWA)) {
             oplataHandlowa = DEFAULTS.handlowa
+            enabledOplataHandlowa = DEFAULTS.handlowa_enabled
+        }
     }
 
-    private object DEFAULTS{
+    private object DEFAULTS {
         const val abonamentowa = "8.67"
         const val paliwo_gazowe = "0.09392"
         const val dystrybucyjna_stala = "11.39"
         const val dystrybucyjna_zmienna = "0.02821"
         const val wsp_konwersji = "11.241"
         const val handlowa = "0.00"
+        const val handlowa_enabled = true
     }
 
     private object KEYS {
@@ -57,5 +63,6 @@ class PgnigPrices @Inject constructor(private val prefs: SharedPreferences)
         const val DYSTRYBUCYJNA_ZMIENNA = "dystrybucyjna_zmienna"
         const val WSP_KONWERSJI = "wsp_konwersji"
         const val HANDLOWA = "pgnig_oplata_handlowa"
+        const val HANDLOWA_ENABLED = "pgnig_oplata_handlowa_enabled"
     }
 }

@@ -22,20 +22,21 @@ class TauronPrices @Inject constructor(private val prefs: SharedPreferences)
     override var energiaElektrycznaCzynnaNoc by stringPref(KEYS.ENERGIA_ELEKTRYCZNA_CZYNNA_NOC)
     override var oplataDystrybucyjnaZmiennaNoc by stringPref(KEYS.OPLATA_DYSTRYBUCYJNA_ZMIENNA_NOC)
     override var oplataHandlowa by stringPref(KEYS.HANDLOWA)
+    var enabledOplataHandlowa by booleanPref(KEYS.HANDLOWA_ENABLED)
 
-    fun convertToDb() = pl.srw.billcalculator.db.TauronPrices().apply {
-        setEnergiaElektrycznaCzynna(this@TauronPrices.energiaElektrycznaCzynna)
-        setOplataDystrybucyjnaZmienna(this@TauronPrices.oplataDystrybucyjnaZmienna)
-        setOplataDystrybucyjnaStala(this@TauronPrices.oplataDystrybucyjnaStala)
-        setOplataPrzejsciowa(this@TauronPrices.oplataPrzejsciowa)
-        setOplataAbonamentowa(this@TauronPrices.oplataAbonamentowa)
-        setOplataOze(this@TauronPrices.oplataOze)
-        setOplataHandlowa(this@TauronPrices.oplataHandlowa)
+    fun convertToDb() = pl.srw.billcalculator.db.TauronPrices().also {
+        it.setEnergiaElektrycznaCzynna(energiaElektrycznaCzynna)
+        it.setOplataDystrybucyjnaZmienna(oplataDystrybucyjnaZmienna)
+        it.setOplataDystrybucyjnaStala(oplataDystrybucyjnaStala)
+        it.setOplataPrzejsciowa(oplataPrzejsciowa)
+        it.setOplataAbonamentowa(oplataAbonamentowa)
+        it.setOplataOze(oplataOze)
+        it.setOplataHandlowa(if (enabledOplataHandlowa) oplataHandlowa else DISABLED_OPLATA_HANDLOWA)
 
-        setEnergiaElektrycznaCzynnaDzien(this@TauronPrices.energiaElektrycznaCzynnaDzien)
-        setOplataDystrybucyjnaZmiennaDzien(this@TauronPrices.oplataDystrybucyjnaZmiennaDzien)
-        setEnergiaElektrycznaCzynnaNoc(this@TauronPrices.energiaElektrycznaCzynnaNoc)
-        setOplataDystrybucyjnaZmiennaNoc(this@TauronPrices.oplataDystrybucyjnaZmiennaNoc)
+        it.setEnergiaElektrycznaCzynnaDzien(energiaElektrycznaCzynnaDzien)
+        it.setOplataDystrybucyjnaZmiennaDzien(oplataDystrybucyjnaZmiennaDzien)
+        it.setEnergiaElektrycznaCzynnaNoc(energiaElektrycznaCzynnaNoc)
+        it.setOplataDystrybucyjnaZmiennaNoc(oplataDystrybucyjnaZmiennaNoc)
     }
 
     override fun setDefault() {
@@ -51,15 +52,18 @@ class TauronPrices @Inject constructor(private val prefs: SharedPreferences)
         energiaElektrycznaCzynnaNoc = DEFAULTS.energiaElektrycznaCzynnaNoc
         oplataDystrybucyjnaZmiennaNoc = DEFAULTS.oplataDystrybucyjnaZmiennaNoc
         oplataHandlowa = DEFAULTS.oplataHandlowa
+        enabledOplataHandlowa = DEFAULTS.oplataHandlowaEnabled
     }
 
     override fun setDefaultIfNotSet() {
-        if (!prefs.contains(KEYS.ENERGIA_ELEKTRYCZNA_CZYNNA))
+        if (!prefs.contains(KEYS.ENERGIA_ELEKTRYCZNA_CZYNNA)) {
             setDefault()
-        else if (!prefs.contains(KEYS.OPLATA_OZE))
+        } else if (!prefs.contains(KEYS.OPLATA_OZE)) {
             oplataOze = DEFAULTS.oplataOze
-        else if (!prefs.contains(KEYS.HANDLOWA))
+        } else if (!prefs.contains(KEYS.HANDLOWA)) {
             oplataHandlowa = DEFAULTS.oplataHandlowa
+            enabledOplataHandlowa = DEFAULTS.oplataHandlowaEnabled
+        }
     }
 
     private object DEFAULTS {
@@ -71,6 +75,7 @@ class TauronPrices @Inject constructor(private val prefs: SharedPreferences)
         const val oplataAbonamentowa = "4.56"
         const val oplataOze = "0.00"
         const val oplataHandlowa = "0.00"
+        const val oplataHandlowaEnabled = true
 
         const val energiaElektrycznaCzynnaDzien = "0.3015"
         const val oplataDystrybucyjnaZmiennaDzien = "0.1928"
@@ -91,5 +96,6 @@ class TauronPrices @Inject constructor(private val prefs: SharedPreferences)
         const val OPLATA_DYSTRYBUCYJNA_ZMIENNA_NOC = "oplataDystrybucyjnaZmiennaNoc"
         const val ENERGIA_ELEKTRYCZNA_CZYNNA_NOC = "energiaElektrycznaCzynnaNoc"
         const val HANDLOWA = "tauron_oplata_handlowa"
+        const val HANDLOWA_ENABLED = "tauron_oplata_handlowa_enabled"
     }
 }

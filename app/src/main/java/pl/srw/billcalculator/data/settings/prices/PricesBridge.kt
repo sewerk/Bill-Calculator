@@ -27,19 +27,22 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
         return mapOf(
                 PGNIG.WSP_KONW to AlwaysEnabledPriceValue(prices.wspolczynnikKonwersji, PriceMeasure.NONE),
                 PGNIG.ABONAMENTOWA to AlwaysEnabledPriceValue(prices.oplataAbonamentowa, PriceMeasure.MONTH),
-                PGNIG.HANDLOWA to OptionalPriceValue(prices.oplataHandlowa, PriceMeasure.MONTH, true), //TODO: get enabled from prefs
+                PGNIG.HANDLOWA to OptionalPriceValue(prices.oplataHandlowa, PriceMeasure.MONTH, prices.enabledOplataHandlowa),
                 PGNIG.PALIWO_GAZ to AlwaysEnabledPriceValue(prices.paliwoGazowe, PriceMeasure.KWH),
                 PGNIG.DYSTR_STALA to AlwaysEnabledPriceValue(prices.dystrybucyjnaStala, PriceMeasure.MONTH),
                 PGNIG.DYSTR_ZMIENNA to AlwaysEnabledPriceValue(prices.dystrybucyjnaZmienna, PriceMeasure.KWH)
         )
     }
 
-    fun updatePgnig(name: String, value: String) {
+    fun updatePgnig(name: String, value: String, enabled: Boolean) {
         val prices = pgnigPrices
         when (name) {
             PGNIG.WSP_KONW -> if (prices.wspolczynnikKonwersji != value) prices.wspolczynnikKonwersji = value
             PGNIG.ABONAMENTOWA -> if (prices.oplataAbonamentowa != value) prices.oplataAbonamentowa = value
-            PGNIG.HANDLOWA -> if (prices.oplataHandlowa != value) prices.oplataHandlowa = value
+            PGNIG.HANDLOWA -> {
+                if (prices.oplataHandlowa != value) prices.oplataHandlowa = value
+                if (prices.enabledOplataHandlowa != enabled) prices.enabledOplataHandlowa = enabled
+            }
             PGNIG.PALIWO_GAZ -> if (prices.paliwoGazowe != value) prices.paliwoGazowe = value
             PGNIG.DYSTR_STALA -> if (prices.dystrybucyjnaStala != value) prices.dystrybucyjnaStala = value
             PGNIG.DYSTR_ZMIENNA -> if (prices.dystrybucyjnaZmienna != value) prices.dystrybucyjnaZmienna = value
@@ -51,7 +54,7 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
         val prices = pgePrices
         return mapOf(
                 PGE.ENERGIA to AlwaysEnabledPriceValue(prices.zaEnergieCzynna, PriceMeasure.KWH),
-                PGE.HANDLOWA to OptionalPriceValue(prices.oplataHandlowa, PriceMeasure.MONTH, true), //TODO: get enabled from prefs
+                PGE.HANDLOWA to OptionalPriceValue(prices.oplataHandlowa, PriceMeasure.MONTH, prices.enabledOplataHandlowa),
                 PGE.OZE to AlwaysEnabledPriceValue(prices.oplataOze, PriceMeasure.MWH),
                 PGE.SKL_JAKOSC to AlwaysEnabledPriceValue(prices.skladnikJakosciowy, PriceMeasure.KWH),
                 PGE.SIECIOWA to AlwaysEnabledPriceValue(prices.oplataSieciowa, PriceMeasure.KWH),
@@ -66,7 +69,7 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
         return mapOf(
                 PGE.ENERGIA_DZIEN to AlwaysEnabledPriceValue(prices.zaEnergieCzynnaDzien, PriceMeasure.KWH),
                 PGE.SIECIOWA_DZIEN to AlwaysEnabledPriceValue(prices.oplataSieciowaDzien, PriceMeasure.KWH),
-                PGE.HANDLOWA to OptionalPriceValue(prices.oplataHandlowa, PriceMeasure.MONTH, true), //TODO: get enabled from prefs
+                PGE.HANDLOWA to OptionalPriceValue(prices.oplataHandlowa, PriceMeasure.MONTH, prices.enabledOplataHandlowa),
                 PGE.OZE to AlwaysEnabledPriceValue(prices.oplataOze, PriceMeasure.MWH),
                 PGE.SKL_JAKOSC to AlwaysEnabledPriceValue(prices.skladnikJakosciowy, PriceMeasure.KWH),
                 PGE.ENERGIA_NOC to AlwaysEnabledPriceValue(prices.zaEnergieCzynnaNoc, PriceMeasure.KWH),
@@ -77,11 +80,14 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
         )
     }
 
-    fun updatePge(name: String, value: String) {
+    fun updatePge(name: String, value: String, enabled: Boolean) {
         val prices = pgePrices
         when (name) {
             PGE.ENERGIA -> if (prices.zaEnergieCzynna != value) prices.zaEnergieCzynna = value
-            PGE.HANDLOWA -> if (prices.oplataHandlowa != value) prices.oplataHandlowa = value
+            PGE.HANDLOWA -> {
+                if (prices.oplataHandlowa != value) prices.oplataHandlowa = value
+                if (prices.enabledOplataHandlowa != enabled) prices.enabledOplataHandlowa = enabled
+            }
             PGE.OZE -> if (prices.oplataOze != value) prices.oplataOze = value
             PGE.SKL_JAKOSC -> if (prices.skladnikJakosciowy != value) prices.skladnikJakosciowy = value
             PGE.SIECIOWA -> if (prices.oplataSieciowa != value) prices.oplataSieciowa = value
@@ -100,7 +106,7 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
         val prices = tauronPrices
         return mapOf(
                 TAURON.ENERGIA to AlwaysEnabledPriceValue(prices.energiaElektrycznaCzynna, PriceMeasure.KWH),
-                TAURON.HANDLOWA to OptionalPriceValue(prices.oplataHandlowa, PriceMeasure.MONTH, true), //TODO: get enabled from prefs
+                TAURON.HANDLOWA to OptionalPriceValue(prices.oplataHandlowa, PriceMeasure.MONTH, prices.enabledOplataHandlowa),
                 TAURON.OZE to AlwaysEnabledPriceValue(prices.oplataOze, PriceMeasure.KWH),
                 TAURON.DYST_ZMIENNA to AlwaysEnabledPriceValue(prices.oplataDystrybucyjnaZmienna, PriceMeasure.KWH),
                 TAURON.DYST_STALA to AlwaysEnabledPriceValue(prices.oplataDystrybucyjnaStala, PriceMeasure.MONTH),
@@ -114,7 +120,7 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
         return mapOf(
                 TAURON.ENERGIA_DZIEN to AlwaysEnabledPriceValue(prices.energiaElektrycznaCzynnaDzien, PriceMeasure.KWH),
                 TAURON.ENERGIA_NOC to AlwaysEnabledPriceValue(prices.energiaElektrycznaCzynnaNoc, PriceMeasure.KWH),
-                TAURON.HANDLOWA to OptionalPriceValue(prices.oplataHandlowa, PriceMeasure.MONTH, true), //TODO: get enabled from prefs
+                TAURON.HANDLOWA to OptionalPriceValue(prices.oplataHandlowa, PriceMeasure.MONTH, prices.enabledOplataHandlowa),
                 TAURON.OZE to AlwaysEnabledPriceValue(prices.oplataOze, PriceMeasure.KWH),
                 TAURON.DYST_ZMIENNA_DZIEN to AlwaysEnabledPriceValue(prices.oplataDystrybucyjnaZmiennaDzien, PriceMeasure.KWH),
                 TAURON.DYST_ZMIENNA_NOC to AlwaysEnabledPriceValue(prices.oplataDystrybucyjnaZmiennaNoc, PriceMeasure.KWH),
@@ -124,12 +130,15 @@ class PricesBridge @Inject constructor(private val providerMapper: ProviderMappe
         )
     }
 
-    fun updateTauron(name: String, value: String) {
+    fun updateTauron(name: String, value: String, enabled: Boolean) {
         val prices = tauronPrices
         when (name) {
             TAURON.ENERGIA -> if (prices.energiaElektrycznaCzynna != value) prices.energiaElektrycznaCzynna = value
             TAURON.OZE -> if (prices.oplataOze != value) prices.oplataOze = value
-            TAURON.HANDLOWA -> if (prices.oplataHandlowa != value) prices.oplataHandlowa = value
+            TAURON.HANDLOWA -> {
+                if (prices.oplataHandlowa != value) prices.oplataHandlowa = value
+                if (prices.enabledOplataHandlowa != enabled) prices.enabledOplataHandlowa = enabled
+            }
             TAURON.DYST_ZMIENNA -> if (prices.oplataDystrybucyjnaZmienna != value) prices.oplataDystrybucyjnaZmienna = value
             TAURON.DYST_STALA -> if (prices.oplataDystrybucyjnaStala != value) prices.oplataDystrybucyjnaStala = value
             TAURON.PRZEJSCIOWA -> if (prices.oplataPrzejsciowa != value) prices.oplataPrzejsciowa = value

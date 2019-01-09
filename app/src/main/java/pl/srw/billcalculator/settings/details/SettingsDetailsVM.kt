@@ -28,7 +28,7 @@ class SettingsDetailsVM(private val pricesRepo: PricesRepo) : ViewModel() {
 
     fun valueChanged(title: String, value: String, enabled: Boolean) {
         Timber.i("Settings details: $title value changed to: $value and enabled=$enabled")
-        pricesRepo.updatePrice(provider!!, title, value.autoCorrect()) // TODO: pass enabled
+        pricesRepo.updatePrice(provider!!, title, value.autoCorrect(), enabled)
     }
 
     fun optionPicked(titleResId: Int, valueResId: Int) {

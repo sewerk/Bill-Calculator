@@ -13,8 +13,12 @@ object SettingsDetailsListItemTextExtractor {
     fun getSummary(context: Context, item: SettingsDetailsListItem): String = when (item) {
         is PickingSettingsDetailsListItem -> context.getString(item.value)
         is InputSettingsDetailsListItem -> {
-            val measure = if (item.measure == R.string.empty) "" else "[${context.getString(item.measure)}]"
-            "${item.value} $measure"
+            if (!item.enabled) {
+                context.getString(R.string.price_disabled)
+            } else {
+                val measure = if (item.measure == R.string.empty) "" else "[${context.getString(item.measure)}]"
+                "${item.value} $measure"
+            }
         }
     }
 }

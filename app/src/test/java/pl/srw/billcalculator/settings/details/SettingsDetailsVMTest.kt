@@ -119,7 +119,7 @@ class SettingsDetailsVMTest {
 
         sut.valueChanged(title, value, enabled)
 
-        verify(pricesRepo).updatePrice(provider, title, value)
+        verify(pricesRepo).updatePrice(provider, title, value, enabled)
     }
 
     @Parameters("PGE", "PGNIG", "TAURON")
@@ -129,7 +129,7 @@ class SettingsDetailsVMTest {
 
         sut.valueChanged(title, "", true)
 
-        verify(pricesRepo).updatePrice(provider, title, "0.00")
+        verify(pricesRepo).updatePrice(provider, title, "0.00", true)
     }
 
     @Parameters("PGE", "PGNIG", "TAURON")
@@ -139,7 +139,7 @@ class SettingsDetailsVMTest {
 
         sut.valueChanged(title, "0.", true)
 
-        verify(pricesRepo).updatePrice(provider, title, "0.00")
+        verify(pricesRepo).updatePrice(provider, title, "0.00", true)
     }
 
     @Parameters("PGE", "PGNIG", "TAURON")
@@ -149,7 +149,7 @@ class SettingsDetailsVMTest {
 
         sut.valueChanged(title, "0", true)
 
-        verify(pricesRepo).updatePrice(provider, title, "0.00")
+        verify(pricesRepo).updatePrice(provider, title, "0.00", true)
     }
 
     @Parameters("PGE", "PGNIG", "TAURON")
@@ -159,7 +159,7 @@ class SettingsDetailsVMTest {
 
         sut.valueChanged(title, ".", true)
 
-        verify(pricesRepo).updatePrice(provider, title, "0.00")
+        verify(pricesRepo).updatePrice(provider, title, "0.00", true)
     }
 
     @Parameters("PGE", "PGNIG", "TAURON")
@@ -169,7 +169,7 @@ class SettingsDetailsVMTest {
 
         sut.valueChanged(title, ".9", true)
 
-        verify(pricesRepo).updatePrice(provider, title, "0.9")
+        verify(pricesRepo).updatePrice(provider, title, "0.9", true)
     }
 
     @Test fun `updates tariff in repository when option picked`() {

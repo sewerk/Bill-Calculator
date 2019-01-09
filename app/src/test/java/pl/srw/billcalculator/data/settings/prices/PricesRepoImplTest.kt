@@ -99,28 +99,31 @@ class PricesRepoImplTest {
     @Test fun `update PGE prices through bridge`() {
         val priceValue = "1"
         val priceName = "energia"
+        val enabled = true
 
-        sut.updatePrice(Provider.PGE, priceName, priceValue)
+        sut.updatePrice(Provider.PGE, priceName, priceValue, enabled)
 
-        verify(pricesBridge).updatePge(priceName, priceValue)
+        verify(pricesBridge).updatePge(priceName, priceValue, enabled)
     }
 
     @Test fun `update PGNIG prices through bridge`() {
         val priceValue = "1"
         val priceName = "energia"
+        val enabled = true
 
-        sut.updatePrice(Provider.PGNIG, priceName, priceValue)
+        sut.updatePrice(Provider.PGNIG, priceName, priceValue, enabled)
 
-        verify(pricesBridge).updatePgnig(priceName, priceValue)
+        verify(pricesBridge).updatePgnig(priceName, priceValue, enabled)
     }
 
     @Test fun `update TAURON prices through bridge`() {
         val priceValue = "1"
         val priceName = "energia"
+        val enabled = true
 
-        sut.updatePrice(Provider.TAURON, priceName, priceValue)
+        sut.updatePrice(Provider.TAURON, priceName, priceValue, enabled)
 
-        verify(pricesBridge).updateTauron(priceName, priceValue)
+        verify(pricesBridge).updateTauron(priceName, priceValue, enabled)
     }
 
     @Test fun `refreshes current settings values, when update prices for PGE`() {
@@ -128,7 +131,7 @@ class PricesRepoImplTest {
         sut.pgeSettings.observeForever(observer)
         clearInvocations(observer)
 
-        sut.updatePrice(Provider.PGE, "name", "value")
+        sut.updatePrice(Provider.PGE, "name", "value", true)
 
         verify(observer).onChanged(any())
     }
@@ -138,7 +141,7 @@ class PricesRepoImplTest {
         sut.pgnigSettings.observeForever(observer)
         clearInvocations(observer)
 
-        sut.updatePrice(Provider.PGNIG, "name", "value")
+        sut.updatePrice(Provider.PGNIG, "name", "value", true)
 
         verify(observer).onChanged(any())
     }
@@ -148,7 +151,7 @@ class PricesRepoImplTest {
         sut.tauronSettings.observeForever(observer)
         clearInvocations(observer)
 
-        sut.updatePrice(Provider.TAURON, "name", "value")
+        sut.updatePrice(Provider.TAURON, "name", "value", true)
 
         verify(observer).onChanged(any())
     }

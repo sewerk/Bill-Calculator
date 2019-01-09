@@ -17,6 +17,21 @@ class SharedPreferencesStringProperty(private val key: String,
         prefs[key] = value
     }
 }
+/**
+ * Delegates [Boolean] property getter and setter to Shared Preferences associated with give key
+ */
+class SharedPreferencesBooleanProperty(
+    private val key: String,
+    private val prefs: SharedPreferences
+): ReadWriteProperty<Any?, Boolean> {
+
+    override fun getValue(thisRef: Any?, property: KProperty<*>): Boolean =
+            prefs[key]
+
+    override fun setValue(thisRef: Any?, property: KProperty<*>, value: Boolean) {
+        prefs[key] = value
+    }
+}
 
 /**
  * Delegates [EnergyTariff] property getter and setter to Shared Preferences associated with give key

@@ -50,7 +50,7 @@ class InputSettingsDialogFragment : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        Timber.i("Setting input opened for ${data.title}=${data.value}")
+        Timber.i("Setting input opened for $data")
         val layoutInflater = LayoutInflater.from(context)
         val binding = SettingsInputDialogBinding.inflate(layoutInflater).apply {
             value = data.value
