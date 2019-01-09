@@ -62,6 +62,19 @@ class SettingsVMTest {
     }
 
     @Test
+    fun `signal open settings details for provider when settings row clicked second time in a row for phone`() {
+        sut.isOnTablet = false
+        val observer: Observer<Provider?> = mock()
+        sut.openProviderSettings.observeForever(observer)
+        sut.onRowClicked(0)
+        clearInvocations(observer)
+
+        sut.onRowClicked(0)
+
+        verify(observer).onChanged(provider)
+    }
+
+    @Test
     fun `does not signal switch settings tab when clicked selected row`() {
         sut.isOnTablet = true
         val observer: Observer<Provider?> = mock()
