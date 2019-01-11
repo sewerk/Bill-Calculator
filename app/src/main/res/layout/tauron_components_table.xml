@@ -32,6 +32,10 @@
             android:id="@+id/row_za_energie_czynna2"
             layout="@layout/tauron_components_table_row" />
 
+        <include
+            android:id="@+id/row_oplata_handlowa"
+            layout="@layout/tauron_components_table_row" />
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"

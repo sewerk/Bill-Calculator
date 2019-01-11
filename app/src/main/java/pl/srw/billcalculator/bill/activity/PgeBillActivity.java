@@ -84,7 +84,7 @@ public class PgeBillActivity extends EnergyBillActivity<IPgePrices, PgePrices, P
     private void setChargeDetailsTable() {
         TableLayout chargeDetailsTable = findViewById(R.id.t_charge_details);
 
-        if(isTwoUnitTariff()) {
+        if (isTwoUnitTariff()) {
             Views.setTV(this, R.id.tv_tariff, getString(R.string.tariff_G12_on_bill));
             setG12Rows(chargeDetailsTable, countDayConsumption(), countNightConsumption());
         } else {
@@ -96,6 +96,7 @@ public class PgeBillActivity extends EnergyBillActivity<IPgePrices, PgePrices, P
                 new BigDecimal(prices.getOplataPrzejsciowa()), bill.getOplataPrzejsciowaNetCharge());
         setRow(chargeDetailsTable, R.id.row_oplata_stala_za_przesyl, R.string.strefa_pusta, R.string.oplata_stala_za_przesyl, bill.getMonthCount(), R.string.m_c,
                 new BigDecimal(prices.getOplataStalaZaPrzesyl()), bill.getOplataDystrybucyjnaStalaNetCharge());
+        setOplataHandlowaRow(chargeDetailsTable);
         setRow(chargeDetailsTable, R.id.row_oplata_abonamentowa, R.string.strefa_pusta, R.string.oplata_abonamentowa, bill.getMonthCount(), R.string.m_c,
                 new BigDecimal(prices.getOplataAbonamentowa()), bill.getOplataAbonamentowaNetCharge());
 
@@ -141,6 +142,15 @@ public class PgeBillActivity extends EnergyBillActivity<IPgePrices, PgePrices, P
         }
     }
 
+    private void setOplataHandlowaRow(TableLayout chargeDetailsTable) {
+        if (isOplataHandlowaEnabled()) {
+            setRow(chargeDetailsTable, R.id.row_oplata_handlowa, R.string.strefa_pusta, R.string.pge_bill_oplata_handlowa, bill.getMonthCount(), R.string.m_c,
+                    new BigDecimal(prices.getOplataHandlowa()), bill.getOplataHandlowaNetCharge());
+        } else {
+            chargeDetailsTable.findViewById(R.id.row_oplata_handlowa).setVisibility(View.GONE);
+        }
+    }
+
     private void setRow(View componentsTable, @IdRes int rowId, @StringRes int zoneId, @StringRes int descriptionId, int count, @StringRes int jmId,
                         BigDecimal netPrice, BigDecimal netCharge) {
         View row = componentsTable.findViewById(rowId);
@@ -152,7 +162,7 @@ public class PgeBillActivity extends EnergyBillActivity<IPgePrices, PgePrices, P
         if (jmId == R.string.kWh) {
             setReadingsInRow(row, zoneId, count);
             Views.setTVInRow(row, R.id.tv_count, Integer.toString(count));
-        } else if (jmId == R.string.MWh){
+        } else if (jmId == R.string.MWh) {
             setReadingsInRow(row, zoneId, count);
             Views.setTVInRow(row, R.id.tv_count, String.format(Dates.PL_LOCALE, "%.3f", (count * 0.001)));
         } else {

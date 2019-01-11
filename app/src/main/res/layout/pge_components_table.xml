@@ -55,6 +55,10 @@
             layout="@layout/pge_components_table_row" />
 
         <include
+            android:id="@+id/row_oplata_handlowa"
+            layout="@layout/pge_components_table_row" />
+
+        <include
             android:id="@+id/row_oplata_abonamentowa"
             layout="@layout/pge_components_table_row" />
 

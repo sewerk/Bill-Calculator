@@ -31,7 +31,7 @@ public class PgnigBillActivity extends BillActivity<IPgnigPrices, PgnigPrices, P
     private PgnigCalculatedBill bill;
 
     @Override
-	protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Analytics.contentView(ContentType.BILL,
                 "view bill", "PGNIG",
@@ -82,16 +82,26 @@ public class PgnigBillActivity extends BillActivity<IPgnigPrices, PgnigPrices, P
     private void setChargeDetailsTable() {
         TableLayout chargeTable = findViewById(R.id.t_charge_details);
 
-        setRow(chargeTable, R.id.row_abonamentowa, R.string.abonamentowa, ""+bill.getMonthCount()+".0000", R.string.mc,
+        setRow(chargeTable, R.id.row_abonamentowa, R.string.abonamentowa, "" + bill.getMonthCount() + ".0000", R.string.mc,
                 new BigDecimal(prices.getOplataAbonamentowa()), bill.getOplataAbonamentowaNetCharge(), "");
+        setOplataHandlowaRow(chargeTable);
         setRow(chargeTable, R.id.row_paliwo_gazowe, R.string.paliwo_gazowe, bill.getConsumptionKWh().toString(), R.string.kWh,
                 new BigDecimal(prices.getPaliwoGazowe()), bill.getPaliwoGazoweNetCharge(), "ZW");
-        setRow(chargeTable, R.id.row_dystrybucyjna_stala, R.string.dystrybucyjna_stala, ""+bill.getMonthCountExact(), R.string.mc,
+        setRow(chargeTable, R.id.row_dystrybucyjna_stala, R.string.dystrybucyjna_stala, "" + bill.getMonthCountExact(), R.string.mc,
                 new BigDecimal(prices.getDystrybucyjnaStala()), bill.getDystrybucyjnaStalaNetCharge(), "");
         setRow(chargeTable, R.id.row_dystrybucyjna_zmienna, R.string.dystrybucyjna_zmienna, bill.getConsumptionKWh().toString(), R.string.kWh,
                 new BigDecimal(prices.getDystrybucyjnaZmienna()), bill.getDystrybucyjnaZmiennaNetCharge(), "");
 
         setChargeSummary(chargeTable);
+    }
+
+    private void setOplataHandlowaRow(TableLayout chargeTable) {
+        if (isOplataHandlowaEnabled()) {
+            setRow(chargeTable, R.id.row_handlowa, R.string.pgnig_bill_oplata_handlowa, "" + bill.getMonthCount() + ".0000", R.string.mc,
+                    new BigDecimal(prices.getOplataHandlowa()), bill.getOplataHandlowaNetCharge(), "");
+        } else {
+            chargeTable.findViewById(R.id.row_handlowa).setVisibility(View.GONE);
+        }
     }
 
     private void setRow(TableLayout chargeTable, @IdRes int rowId, @StringRes int descId, String count, @StringRes int jmId,
