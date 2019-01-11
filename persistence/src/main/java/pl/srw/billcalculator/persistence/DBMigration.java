@@ -5,6 +5,8 @@ import pl.srw.billcalculator.db.dao.TauronG12BillDao;
 import pl.srw.billcalculator.db.dao.TauronPricesDao;
 import timber.log.Timber;
 
+import static pl.srw.billcalculator.db.PricesKt.DISABLED_OPLATA_HANDLOWA;
+
 /**
  * Migration done on db schema:
  * ver.1: PGE and PGNiG bill and prices tables
@@ -51,14 +53,19 @@ class DBMigration {
     }
 
     private static void addOplataHandlowaColumnTo(org.greenrobot.greendao.database.Database db, String tableName) {
-        addColumnTo(db, tableName, "OPLATA_HANDLOWA");
+        addColumnTo(db, tableName, "OPLATA_HANDLOWA", DISABLED_OPLATA_HANDLOWA);
     }
 
     private static void addOplataOzeColumnTo(org.greenrobot.greendao.database.Database db, String tableName) {
-        addColumnTo(db, tableName, "OPLATA_OZE");
+        addColumnTo(db, tableName, "OPLATA_OZE", "0.00");
     }
 
-    private static void addColumnTo(org.greenrobot.greendao.database.Database db, String tableName, final String columnName) {
-        db.execSQL("ALTER TABLE " + tableName + " ADD COLUMN '" + columnName + "' TEXT DEFAULT '0.00';");
+    private static void addColumnTo(
+            org.greenrobot.greendao.database.Database db,
+            final String tableName,
+            final String columnName,
+            final String defaultValue
+    ) {
+        db.execSQL("ALTER TABLE " + tableName + " ADD COLUMN '" + columnName + "' TEXT DEFAULT '" + defaultValue + "';");
     }
 }

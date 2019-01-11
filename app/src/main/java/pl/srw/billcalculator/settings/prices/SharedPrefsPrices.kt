@@ -4,8 +4,7 @@ import android.content.SharedPreferences
 import pl.srw.billcalculator.common.storage.SharedPreferencesBooleanProperty
 import pl.srw.billcalculator.common.storage.SharedPreferencesStringProperty
 import pl.srw.billcalculator.common.storage.SharedPreferencesTariffProperty
-
-const val DISABLED_OPLATA_HANDLOWA = "-1"
+import pl.srw.billcalculator.db.DISABLED_OPLATA_HANDLOWA
 
 abstract class SharedPrefsPrices(private val prefs: SharedPreferences) {
 

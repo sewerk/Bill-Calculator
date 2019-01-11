@@ -1,8 +1,8 @@
 package pl.srw.billcalculator.bill.calculation
 
 import org.threeten.bp.LocalDate
+import pl.srw.billcalculator.db.DISABLED_OPLATA_HANDLOWA
 import pl.srw.billcalculator.db.Prices
-import pl.srw.billcalculator.settings.prices.DISABLED_OPLATA_HANDLOWA
 import pl.srw.billcalculator.settings.prices.SharedPrefsPrices
 import pl.srw.billcalculator.util.Dates
 import java.math.BigDecimal

@@ -42,7 +42,7 @@ import pl.srw.billcalculator.util.strategy.Transitions;
 import pl.srw.mfvp.di.MvpComponent;
 import timber.log.Timber;
 
-import static pl.srw.billcalculator.settings.prices.SharedPrefsPricesKt.DISABLED_OPLATA_HANDLOWA;
+import static pl.srw.billcalculator.db.PricesKt.DISABLED_OPLATA_HANDLOWA;
 
 abstract class BillActivity<P extends Prices, PP extends P, T extends MvpComponent>
         extends BackableActivity<T>
