@@ -7,14 +7,19 @@ import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.RoundingMode
 
-class PgnigCalculatedBill(readingFrom: Int, readingTo: Int, dateFrom: LocalDate, dateTo: LocalDate, prices: IPgnigPrices)
-    : CalculatedBill(true, dateFrom, dateTo) {
+class PgnigCalculatedBill(
+    readingFrom: Int,
+    readingTo: Int,
+    dateFrom: LocalDate,
+    dateTo: LocalDate,
+    prices: IPgnigPrices
+) : CalculatedBill(true, dateFrom, dateTo, prices) {
 
     val monthCountExact: BigDecimal = Dates.countMonth(dateFrom, dateTo)
 
     val consumptionM3 = readingTo - readingFrom
     val consumptionKWh: BigInteger = BigDecimal(consumptionM3).multiply(BigDecimal(prices.wspolczynnikKonwersji))
-            .setScale(0, RoundingMode.HALF_UP).toBigInteger()
+        .setScale(0, RoundingMode.HALF_UP).toBigInteger()
 
     val oplataAbonamentowaNetCharge = countNetAndAddToSum(prices.oplataAbonamentowa, monthCount)
     val paliwoGazoweNetCharge = countNetAndAddToSum(prices.paliwoGazowe, consumptionKWh)

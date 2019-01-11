@@ -1,12 +1,18 @@
 package pl.srw.billcalculator.bill.calculation
 
 import org.threeten.bp.LocalDate
+import pl.srw.billcalculator.db.Prices
 import pl.srw.billcalculator.util.Dates
 import java.math.BigDecimal
 
-abstract class CalculatedEnergyBill(dateFrom: LocalDate, dateTo: LocalDate,
-                                    oplataAbonamentowa: String, oplataPrzejsciowa: String, oplataStalaZaPrzesyl: String)
-    : CalculatedBill(false, dateFrom, dateTo) {
+abstract class CalculatedEnergyBill(
+    dateFrom: LocalDate,
+    dateTo: LocalDate,
+    oplataAbonamentowa: String,
+    oplataPrzejsciowa: String,
+    oplataStalaZaPrzesyl: String,
+    prices: Prices
+) : CalculatedBill(false, dateFrom, dateTo, prices) {
 
     companion object {
         private val EXCISE = BigDecimal("0.02")

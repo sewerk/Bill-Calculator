@@ -5,10 +5,9 @@ import pl.srw.billcalculator.pojo.IPgnigPrices
 import javax.inject.Inject
 import javax.inject.Singleton
 
-const val DISABLED_OPLATA_HANDLOWA = "-1"
-
 @Singleton
-class PgnigPrices @Inject constructor(private val prefs: SharedPreferences) : SharedPrefsPrices(prefs), Restorable, IPgnigPrices {
+class PgnigPrices @Inject constructor(private val prefs: SharedPreferences)
+    : SharedPrefsPrices(prefs), Restorable, IPgnigPrices {
 
     override var oplataAbonamentowa by stringPref(KEYS.ABONAMENTOWA)
     override var paliwoGazowe by stringPref(KEYS.PALIWO_GAZOWE)
@@ -16,7 +15,7 @@ class PgnigPrices @Inject constructor(private val prefs: SharedPreferences) : Sh
     override var dystrybucyjnaZmienna by stringPref(KEYS.DYSTRYBUCYJNA_ZMIENNA)
     override var wspolczynnikKonwersji by stringPref(KEYS.WSP_KONWERSJI)
     override var oplataHandlowa by stringPref(KEYS.HANDLOWA)
-    var enabledOplataHandlowa by booleanPref(KEYS.HANDLOWA_ENABLED)
+    override var enabledOplataHandlowa by booleanPref(KEYS.HANDLOWA_ENABLED)
 
     fun convertToDb() = pl.srw.billcalculator.db.PgnigPrices().also {
         it.setDystrybucyjnaStala(dystrybucyjnaStala)
@@ -24,7 +23,7 @@ class PgnigPrices @Inject constructor(private val prefs: SharedPreferences) : Sh
         it.setOplataAbonamentowa(oplataAbonamentowa)
         it.setPaliwoGazowe(paliwoGazowe)
         it.setWspolczynnikKonwersji(wspolczynnikKonwersji)
-        it.setOplataHandlowa(if (enabledOplataHandlowa) oplataHandlowa else DISABLED_OPLATA_HANDLOWA)
+        it.setOplataHandlowa(oplataHandlowaForDb)
     }
 
     override fun setDefault() {

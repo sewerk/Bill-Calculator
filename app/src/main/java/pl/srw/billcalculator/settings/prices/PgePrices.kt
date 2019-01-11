@@ -23,7 +23,7 @@ class PgePrices @Inject constructor(private val prefs: SharedPreferences)
     override var oplataAbonamentowa by stringPref(KEYS.CENA_OPLATA_ABONAMENTOWA)
     override var oplataOze by stringPref(KEYS.CENA_OPLATA_OZE)
     override var oplataHandlowa by stringPref(KEYS.HANDLOWA)
-    var enabledOplataHandlowa by booleanPref(KEYS.HANDLOWA_ENABLED)
+    override var enabledOplataHandlowa by booleanPref(KEYS.HANDLOWA_ENABLED)
 
     fun convertToDb() = pl.srw.billcalculator.db.PgePrices().also {
         it.setOplataAbonamentowa(oplataAbonamentowa)
@@ -37,7 +37,7 @@ class PgePrices @Inject constructor(private val prefs: SharedPreferences)
         it.setOplataSieciowaNoc(oplataSieciowaNoc)
         it.setZaEnergieCzynnaDzien(zaEnergieCzynnaDzien)
         it.setZaEnergieCzynnaNoc(zaEnergieCzynnaNoc)
-        it.setOplataHandlowa(if (enabledOplataHandlowa) oplataHandlowa else DISABLED_OPLATA_HANDLOWA)
+        it.setOplataHandlowa(oplataHandlowaForDb)
     }
 
     override fun setDefault() {

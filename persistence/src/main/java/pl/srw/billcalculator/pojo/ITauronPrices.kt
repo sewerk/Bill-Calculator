@@ -10,7 +10,6 @@ interface ITauronPrices : Prices {
     val oplataPrzejsciowa: String
     val oplataAbonamentowa: String
     val oplataOze: String
-    val oplataHandlowa: String
 
     val oplataDystrybucyjnaZmiennaNoc: String
     val oplataDystrybucyjnaZmiennaDzien: String

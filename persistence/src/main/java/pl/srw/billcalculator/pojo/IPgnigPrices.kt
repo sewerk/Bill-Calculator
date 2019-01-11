@@ -9,5 +9,4 @@ interface IPgnigPrices : Prices {
     val dystrybucyjnaStala: String
     val dystrybucyjnaZmienna: String
     val wspolczynnikKonwersji: String
-    val oplataHandlowa: String
 }

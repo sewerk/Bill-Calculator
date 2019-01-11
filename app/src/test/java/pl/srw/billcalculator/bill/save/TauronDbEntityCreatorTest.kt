@@ -37,7 +37,7 @@ class TauronDbEntityCreatorTest {
     }
 
     @Test
-    fun `creates G12 DB bill when double readins are set`() {
+    fun `creates G12 DB bill when double readings are set`() {
         val input = buildInput(readingFrom = 0, readingTo = 0)
 
         val result = sut.createDbBill(mockTauronPrices(), input)
@@ -56,5 +56,6 @@ class TauronDbEntityCreatorTest {
         on { oplataDystrybucyjnaZmiennaDzien } doReturn "0.00"
         on { energiaElektrycznaCzynnaNoc } doReturn "0.00"
         on { oplataDystrybucyjnaZmiennaNoc } doReturn "0.00"
+        on { oplataHandlowa } doReturn "0.00"
     }
 }

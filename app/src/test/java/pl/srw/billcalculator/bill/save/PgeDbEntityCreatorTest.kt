@@ -57,5 +57,6 @@ class PgeDbEntityCreatorTest {
         on { oplataSieciowaNoc } doReturn "0.00"
         on { zaEnergieCzynnaDzien } doReturn "0.00"
         on { zaEnergieCzynnaNoc } doReturn "0.00"
+        on { oplataHandlowa } doReturn "0.00"
     }
 }

@@ -22,7 +22,7 @@ class TauronPrices @Inject constructor(private val prefs: SharedPreferences)
     override var energiaElektrycznaCzynnaNoc by stringPref(KEYS.ENERGIA_ELEKTRYCZNA_CZYNNA_NOC)
     override var oplataDystrybucyjnaZmiennaNoc by stringPref(KEYS.OPLATA_DYSTRYBUCYJNA_ZMIENNA_NOC)
     override var oplataHandlowa by stringPref(KEYS.HANDLOWA)
-    var enabledOplataHandlowa by booleanPref(KEYS.HANDLOWA_ENABLED)
+    override var enabledOplataHandlowa by booleanPref(KEYS.HANDLOWA_ENABLED)
 
     fun convertToDb() = pl.srw.billcalculator.db.TauronPrices().also {
         it.setEnergiaElektrycznaCzynna(energiaElektrycznaCzynna)
@@ -31,7 +31,7 @@ class TauronPrices @Inject constructor(private val prefs: SharedPreferences)
         it.setOplataPrzejsciowa(oplataPrzejsciowa)
         it.setOplataAbonamentowa(oplataAbonamentowa)
         it.setOplataOze(oplataOze)
-        it.setOplataHandlowa(if (enabledOplataHandlowa) oplataHandlowa else DISABLED_OPLATA_HANDLOWA)
+        it.setOplataHandlowa(oplataHandlowaForDb)
 
         it.setEnergiaElektrycznaCzynnaDzien(energiaElektrycznaCzynnaDzien)
         it.setOplataDystrybucyjnaZmiennaDzien(oplataDystrybucyjnaZmiennaDzien)
