@@ -75,7 +75,7 @@ class TauronPrices @Inject constructor(private val prefs: SharedPreferences)
         const val oplataAbonamentowa = "4.56"
         const val oplataOze = "0.00"
         const val oplataHandlowa = "0.00"
-        const val oplataHandlowaEnabled = true
+        const val oplataHandlowaEnabled = false
 
         const val energiaElektrycznaCzynnaDzien = "0.3015"
         const val oplataDystrybucyjnaZmiennaDzien = "0.1928"

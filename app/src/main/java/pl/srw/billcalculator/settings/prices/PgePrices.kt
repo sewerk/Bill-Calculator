@@ -84,7 +84,7 @@ class PgePrices @Inject constructor(private val prefs: SharedPreferences)
         const val cena_oplata_abonamentowa = "4.80"
         const val cena_oplata_oze = "0.00"
         const val cena_oplata_handlowa = "0.00"
-        const val oplata_handlowa_enabled = true
+        const val oplata_handlowa_enabled = false
     }
 
     private object KEYS {

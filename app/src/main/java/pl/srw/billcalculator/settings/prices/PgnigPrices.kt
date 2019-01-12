@@ -52,7 +52,7 @@ class PgnigPrices @Inject constructor(private val prefs: SharedPreferences)
         const val dystrybucyjna_zmienna = "0.02821"
         const val wsp_konwersji = "11.241"
         const val handlowa = "0.00"
-        const val handlowa_enabled = true
+        const val handlowa_enabled = false
     }
 
     private object KEYS {
