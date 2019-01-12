@@ -1,3 +1,7 @@
+v.2.2
+ - add oplata handlowa
+ - fix: cannot enter provider preferences for second time (when selected) on phone
+ - fix: disable autofill on settings
 v.2.1.2
  - add labels to FABs
  - refactor: history return in flat list from repo with auto-update view model
