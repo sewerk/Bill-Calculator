@@ -3,8 +3,20 @@ package pl.srw.billcalculator.bill.calculation
 import org.threeten.bp.LocalDate
 import pl.srw.billcalculator.pojo.ITauronPrices
 
-class TauronG11CalculatedBill(readingFrom: Int, readingTo: Int, dateFrom: LocalDate, dateTo: LocalDate, prices: ITauronPrices)
-    : TauronCalculatedBill(dateFrom, dateTo, prices.oplataAbonamentowa, prices.oplataPrzejsciowa, prices.oplataDystrybucyjnaStala) {
+class TauronG11CalculatedBill(
+    readingFrom: Int,
+    readingTo: Int,
+    dateFrom: LocalDate,
+    dateTo: LocalDate,
+    prices: ITauronPrices
+) : TauronCalculatedBill(
+    dateFrom,
+    dateTo,
+    prices.oplataAbonamentowa,
+    prices.oplataPrzejsciowa,
+    prices.oplataDystrybucyjnaStala,
+    prices
+) {
 
     override val totalConsumption = readingTo - readingFrom
     val consumptionFromJuly16 = countConsumptionPartFromJuly16(dateFrom, dateTo, totalConsumption)
@@ -17,7 +29,11 @@ class TauronG11CalculatedBill(readingFrom: Int, readingTo: Int, dateFrom: LocalD
     val oplataDystrybucyjnaZmiennaVatCharge = countVatAndAddToSum(oplataDystrybucyjnaZmiennaNetCharge)
     val oplataOzeVatCharge = countVatAndAddToSum(oplataOzeNetCharge)
 
-    override val sellNetCharge = energiaElektrycznaNetCharge.round()
+    override val sellNetCharge = energiaElektrycznaNetCharge
+        .add(oplataHandlowaNetCharge)
+        .round()
 
-    override val sellVatCharge = energiaElektrycznaVatCharge.round()
+    override val sellVatCharge = energiaElektrycznaVatCharge
+        .add(oplataHandlowaVatCharge)
+        .round()
 }

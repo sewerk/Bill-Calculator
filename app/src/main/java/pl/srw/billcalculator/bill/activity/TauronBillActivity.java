@@ -106,7 +106,7 @@ public class TauronBillActivity extends EnergyBillActivity<ITauronPrices, Tauron
         final TauronG12CalculatedBill bill = (TauronG12CalculatedBill) this.bill;
         setRow(R.id.row_za_energie_czynna, R.string.tauron_energia_elektryczna_G12dzien, "00000000", "" + readingDayFrom, "" + readingDayTo, "1", "" + bill.getDayConsumption(), new BigDecimal(prices.getEnergiaElektrycznaCzynnaDzien()), bill.getEnergiaElektrycznaDayNetCharge());
         setRow(R.id.row_za_energie_czynna2, R.string.tauron_energia_elektryczna_G12noc, "00000000", "" + readingNightFrom, "" + readingNightTo, "1", "" + bill.getNightConsumption(), new BigDecimal(prices.getEnergiaElektrycznaCzynnaNoc()), bill.getEnergiaElektrycznaNightNetCharge());
-        findViewById(R.id.row_za_energie_czynna2).setBackgroundResource(R.drawable.underline);
+        setOplataHandlowaRow(bill, R.id.row_za_energie_czynna2);
 
         setRow(R.id.row_oplata_dyst_zm, R.string.tauron_oplata_dyst_zmienna_G12dzien, "00000000", "" + readingDayFrom, "" + readingDayTo, "1", "" + bill.getDayConsumption(), new BigDecimal(prices.getOplataDystrybucyjnaZmiennaDzien()), bill.getOplataDystrybucyjnaZmiennaDayNetCharge());
         setRow(R.id.row_oplata_dyst_zm2, R.string.tauron_oplata_dyst_zmienna_G12noc, "00000000", "" + readingNightFrom, "" + readingNightTo, "1", "" + bill.getNightConsumption(), new BigDecimal(prices.getOplataDystrybucyjnaZmiennaNoc()), bill.getOplataDystrybucyjnaZmiennaNightNetCharge());
@@ -126,8 +126,8 @@ public class TauronBillActivity extends EnergyBillActivity<ITauronPrices, Tauron
         final String currReading = Integer.toString(readingTo);
         final String consumption = Integer.toString(bill.getTotalConsumption());
         setRow(R.id.row_za_energie_czynna, R.string.tauron_energia_elektryczna, "00000000", prevReading, currReading, "1", consumption, new BigDecimal(prices.getEnergiaElektrycznaCzynna()), bill.getEnergiaElektrycznaNetCharge());
-        findViewById(R.id.row_za_energie_czynna).setBackgroundResource(R.drawable.underline);
         findViewById(R.id.row_za_energie_czynna2).setVisibility(View.GONE);
+        setOplataHandlowaRow(bill, R.id.row_za_energie_czynna);
 
         setRow(R.id.row_oplata_dyst_zm, R.string.tauron_oplata_dyst_zmienna, "00000000", prevReading, currReading, "1", consumption, new BigDecimal(prices.getOplataDystrybucyjnaZmienna()), bill.getOplataDystrybucyjnaZmiennaNetCharge());
         findViewById(R.id.row_oplata_dyst_zm2).setVisibility(View.GONE);
@@ -137,6 +137,16 @@ public class TauronBillActivity extends EnergyBillActivity<ITauronPrices, Tauron
         else
             findViewById(R.id.row_oplata_oze).setVisibility(View.GONE);
         findViewById(R.id.row_oplata_oze2).setVisibility(View.GONE);
+    }
+
+    private void setOplataHandlowaRow(TauronCalculatedBill bill, int previousRowId) {
+        if (isOplataHandlowaEnabled()) {
+            setRow(R.id.row_oplata_handlowa, R.string.tauron_bill_oplata_handlowa, "", "", "", "" + bill.getMonthCount(), "", new BigDecimal(prices.getOplataHandlowa()), bill.getOplataHandlowaNetCharge());
+            findViewById(R.id.row_oplata_handlowa).setBackgroundResource(R.drawable.underline);
+        } else {
+            findViewById(R.id.row_oplata_handlowa).setVisibility(View.GONE);
+            findViewById(previousRowId).setBackgroundResource(R.drawable.underline);
+        }
     }
 
     private void setRow(@IdRes int rowId, @StringRes int descId, String meterNo, String prevReading, String currReading, String count, String consumption, BigDecimal price, BigDecimal amount) {

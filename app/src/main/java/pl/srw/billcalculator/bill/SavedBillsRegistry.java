@@ -103,6 +103,7 @@ public class SavedBillsRegistry {
             IPgePrices p = (IPgePrices) prices;
             return new StringBuilder()
                     .append(p.getZaEnergieCzynna()).append("_")
+                    .append(p.getOplataHandlowa()).append("_")
                     .append(p.getSkladnikJakosciowy()).append("_")
                     .append(p.getOplataSieciowa()).append("_")
                     .append(p.getOplataPrzejsciowa()).append("_")
@@ -116,6 +117,7 @@ public class SavedBillsRegistry {
             IPgnigPrices p = (IPgnigPrices) prices;
             return new StringBuilder()
                     .append(p.getOplataAbonamentowa()).append("_")
+                    .append(p.getOplataHandlowa()).append("_")
                     .append(p.getPaliwoGazowe()).append("_")
                     .append(p.getDystrybucyjnaStala()).append("_")
                     .append(p.getDystrybucyjnaZmienna()).append("_")
@@ -124,6 +126,7 @@ public class SavedBillsRegistry {
             ITauronPrices p = (ITauronPrices) prices;
             return new StringBuilder()
                     .append(p.getEnergiaElektrycznaCzynna()).append("_")
+                    .append(p.getOplataHandlowa()).append("_")
                     .append(p.getOplataDystrybucyjnaZmienna()).append("_")
                     .append(p.getOplataDystrybucyjnaStala()).append("_")
                     .append(p.getOplataPrzejsciowa()).append("_")

@@ -39,5 +39,6 @@ class PgnigDbEntityCreatorTest {
         on { oplataAbonamentowa } doReturn "0.00"
         on { paliwoGazowe } doReturn "0.00"
         on { wspolczynnikKonwersji } doReturn "0.00"
+        on { oplataHandlowa } doReturn "0.00"
     }
 }

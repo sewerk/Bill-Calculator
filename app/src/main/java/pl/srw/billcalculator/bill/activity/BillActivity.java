@@ -37,9 +37,12 @@ import pl.srw.billcalculator.bill.SavedBillsRegistry;
 import pl.srw.billcalculator.db.Prices;
 import pl.srw.billcalculator.dialog.ExplainPermissionRequestDialogFragment;
 import pl.srw.billcalculator.intent.IntentCreator;
+import pl.srw.billcalculator.settings.prices.SharedPrefsPrices;
 import pl.srw.billcalculator.util.strategy.Transitions;
 import pl.srw.mfvp.di.MvpComponent;
 import timber.log.Timber;
+
+import static pl.srw.billcalculator.db.PricesKt.DISABLED_OPLATA_HANDLOWA;
 
 abstract class BillActivity<P extends Prices, PP extends P, T extends MvpComponent>
         extends BackableActivity<T>
@@ -156,14 +159,15 @@ abstract class BillActivity<P extends Prices, PP extends P, T extends MvpCompone
 
     @StringDef({MIME_APPLICATION_PDF, MIME_IMAGE})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface FileType {}
+    public @interface FileType {
+    }
 
     @Override
     public void openFile(@NonNull File file, @NonNull @FileType String type) {
         final Uri uri = FileProvider.getUriForFile(this, FILE_PROVIDER_AUTHORITY, file);
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(uri, type);
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NEW_TASK);
         try {
             startActivity(intent);
         } catch (ActivityNotFoundException e) {
@@ -198,6 +202,13 @@ abstract class BillActivity<P extends Prices, PP extends P, T extends MvpCompone
 
     protected boolean isNewBill() {
         return !getIntent().hasExtra(IntentCreator.PRICES);
+    }
+
+    protected boolean isOplataHandlowaEnabled() {
+        if (prices instanceof SharedPrefsPrices)
+            return ((SharedPrefsPrices) prices).getEnabledOplataHandlowa();
+        else
+            return !prices.getOplataHandlowa().equals(DISABLED_OPLATA_HANDLOWA);
     }
 
     private P getPricesFromIntentOr(PP prefsPrices) {

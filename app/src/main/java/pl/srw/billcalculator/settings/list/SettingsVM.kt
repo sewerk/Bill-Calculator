@@ -22,13 +22,13 @@ class SettingsVM(settingsRepo: SettingsRepo) : ViewModel(), StateRestorable {
         private set
     var isOnTablet: Boolean = false
         set(value) {
-            Timber.d("settings isOnTablet flag")
+            Timber.d("settings isOnTablet flag=$value")
             field = value
             if (value) onRowClicked(0)
         }
 
     fun onRowClicked(position: Int) {
-        if (selectedIndex == position) return
+        if (isOnTablet && selectedIndex == position) return
 
         selectedIndex = position
         val provider = getProvider(position) // FIXME: make more generic

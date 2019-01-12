@@ -42,12 +42,12 @@ class PricesRepoImpl @Inject constructor(private val pricesBridge: PricesBridge)
         refreshProviderSettings(provider)
     }
 
-    override fun updatePrice(provider: Provider, priceName: String, priceValue: String) {
-        Timber.d("Updating $provider price: $priceName = $priceValue")
+    override fun updatePrice(provider: Provider, priceName: String, priceValue: String, priceEnabled: Boolean) {
+        Timber.d("Updating $provider price: $priceName = $priceValue, enabled=$priceEnabled")
         when (provider) {
-            Provider.PGE -> pricesBridge.updatePge(priceName, priceValue)
-            Provider.PGNIG -> pricesBridge.updatePgnig(priceName, priceValue)
-            Provider.TAURON -> pricesBridge.updateTauron(priceName, priceValue)
+            Provider.PGE -> pricesBridge.updatePge(priceName, priceValue, priceEnabled)
+            Provider.PGNIG -> pricesBridge.updatePgnig(priceName, priceValue, priceEnabled)
+            Provider.TAURON -> pricesBridge.updateTauron(priceName, priceValue, priceEnabled)
         }
         refreshProviderSettings(provider)
     }

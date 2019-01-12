@@ -246,7 +246,7 @@ style:
     active: false
   ForbiddenComment:
     active: true
-    values: 'TODO:,STOPSHIP:'
+    values: 'STOPSHIP:'
   ForbiddenImport:
     active: false
     imports: ''

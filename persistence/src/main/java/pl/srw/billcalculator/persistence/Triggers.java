@@ -12,11 +12,12 @@ import pl.srw.billcalculator.db.dao.TauronG11BillDao;
 import pl.srw.billcalculator.db.dao.TauronG12BillDao;
 import pl.srw.billcalculator.persistence.type.BillType;
 
-import static pl.srw.billcalculator.persistence.SqlTriggerBuilder.*;
+import static pl.srw.billcalculator.persistence.SqlTriggerBuilder.createTrigger;
+import static pl.srw.billcalculator.persistence.SqlTriggerBuilder.deleteFrom;
+import static pl.srw.billcalculator.persistence.SqlTriggerBuilder.getNew;
+import static pl.srw.billcalculator.persistence.SqlTriggerBuilder.getOld;
+import static pl.srw.billcalculator.persistence.SqlTriggerBuilder.insertInto;
 
-/**
- * Created by Kamil Seweryn.
- */
 public final class Triggers {
 
     private static final String DELETE = "DELETE";

@@ -4,10 +4,22 @@ import org.threeten.bp.LocalDate
 import pl.srw.billcalculator.pojo.ITauronPrices
 import java.math.BigDecimal
 
-class TauronG12CalculatedBill(readingDayFrom: Int, readingDayTo: Int,
-                              readingNightFrom: Int, readingNightTo: Int,
-                              dateFrom: LocalDate, dateTo: LocalDate, prices: ITauronPrices)
-    : TauronCalculatedBill(dateFrom, dateTo, prices.oplataAbonamentowa, prices.oplataPrzejsciowa, prices.oplataDystrybucyjnaStala) {
+class TauronG12CalculatedBill(
+    readingDayFrom: Int,
+    readingDayTo: Int,
+    readingNightFrom: Int,
+    readingNightTo: Int,
+    dateFrom: LocalDate,
+    dateTo: LocalDate,
+    prices: ITauronPrices
+) : TauronCalculatedBill(
+    dateFrom,
+    dateTo,
+    prices.oplataAbonamentowa,
+    prices.oplataPrzejsciowa,
+    prices.oplataDystrybucyjnaStala,
+    prices
+) {
 
     val dayConsumption = readingDayTo - readingDayFrom
     val nightConsumption = readingNightTo - readingNightFrom
@@ -30,7 +42,13 @@ class TauronG12CalculatedBill(readingDayFrom: Int, readingDayTo: Int,
 
     override val totalConsumption = dayConsumption + nightConsumption
 
-    override val sellNetCharge: BigDecimal = energiaElektrycznaDayNetCharge.round().add(energiaElektrycznaNightNetCharge.round())
+    override val sellNetCharge: BigDecimal = energiaElektrycznaDayNetCharge
+        .add(energiaElektrycznaNightNetCharge)
+        .add(oplataHandlowaNetCharge)
+        .round()
 
-    override val sellVatCharge: BigDecimal = energiaElektrycznaDayVatCharge.round().add(energiaElektrycznaNightVatCharge.round())
+    override val sellVatCharge: BigDecimal = energiaElektrycznaDayVatCharge
+        .add(energiaElektrycznaNightVatCharge)
+        .add(oplataHandlowaVatCharge)
+        .round()
 }

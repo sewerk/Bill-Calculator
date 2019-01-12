@@ -15,5 +15,5 @@ interface PricesRepo {
 
     fun updateTariff(provider: Provider, tariff: EnergyTariff)
 
-    fun updatePrice(provider: Provider, priceName: String, priceValue: String)
+    fun updatePrice(provider: Provider, priceName: String, priceValue: String, priceEnabled: Boolean)
 }

@@ -50,11 +50,13 @@ class InputSettingsDialogFragment : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        Timber.i("Setting input opened for ${data.title}=${data.value}")
+        Timber.i("Setting input opened for $data")
         val layoutInflater = LayoutInflater.from(context)
         val binding = SettingsInputDialogBinding.inflate(layoutInflater).apply {
             value = data.value
             measureId = data.measure
+            enabled = data.enabled
+            canDisable = data.optional
             executePendingBindings()
         }
 
@@ -77,8 +79,8 @@ class InputSettingsDialogFragment : DialogFragment() {
         .setTitle(data.title)
         .setMessage(description)
         .setView(binding.root)
-        .setPositiveButton(R.string.settings_input_accept, { _, _ -> vm.valueChanged(data.title, binding.value!!) })
-        .setNegativeButton(R.string.settings_input_cancel, { _, _ -> dismiss() })
+        .setPositiveButton(R.string.settings_input_accept) { _, _ -> vm.valueChanged(data.title, binding.value!!, binding.enabled) }
+        .setNegativeButton(R.string.settings_input_cancel) { _, _ -> dismiss() }
         .create()
 
     private fun getStringDescription(resId: Int?): CharSequence? {

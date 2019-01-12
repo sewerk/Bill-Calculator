@@ -5,11 +5,14 @@ import pl.srw.billcalculator.db.dao.TauronG12BillDao;
 import pl.srw.billcalculator.db.dao.TauronPricesDao;
 import timber.log.Timber;
 
+import static pl.srw.billcalculator.db.PricesKt.DISABLED_OPLATA_HANDLOWA;
+
 /**
  * Migration done on db schema:
  * ver.1: PGE and PGNiG bill and prices tables
  * ver.2: Tauron bill and prices tables
  * ver.3: oplata_oze column added to PGE and Tauron
+ * var.4: oplata_handlowa added to PGE, PGNIG and Tauron
  */
 class DBMigration {
 
@@ -17,21 +20,25 @@ class DBMigration {
         Timber.i("Upgrading schema from version %d to %d", oldVersion, newVersion);
         switch (oldVersion) {
             case 1:
-                migrate_1_3(db);
-                break; // conflict with 2-3
+                migrate_1_4(db);
+                break; // conflict with 2-4
             case 2:
                 migrate_2_3(db);
-//            case 3: migrate_3_4(db);
+            case 3:
+                migrate_3_4(db);
         }
     }
 
-    private static void migrate_1_3(final org.greenrobot.greendao.database.Database db) {
-        TauronPricesDao.createTable(db, true); // this will handle partially the migrate_2_3
+    private static void migrate_1_4(final org.greenrobot.greendao.database.Database db) {
+        TauronPricesDao.createTable(db, true); // this will handle partially the migrate_2_4
         TauronG11BillDao.createTable(db, true);
         TauronG12BillDao.createTable(db, true);
 
         // more migrate_2_3
         addOplataOzeColumnTo(db, "PGE_PRICES");
+        // more migrate_3_4
+        addOplataHandlowaColumnTo(db, "PGE_PRICES");
+        addOplataHandlowaColumnTo(db, "PGNIG_PRICES");
     }
 
     private static void migrate_2_3(org.greenrobot.greendao.database.Database db) {
@@ -39,7 +46,26 @@ class DBMigration {
         addOplataOzeColumnTo(db, "TAURON_PRICES");
     }
 
+    private static void migrate_3_4(org.greenrobot.greendao.database.Database db) {
+        addOplataHandlowaColumnTo(db, "PGE_PRICES");
+        addOplataHandlowaColumnTo(db, "PGNIG_PRICES");
+        addOplataHandlowaColumnTo(db, "TAURON_PRICES");
+    }
+
+    private static void addOplataHandlowaColumnTo(org.greenrobot.greendao.database.Database db, String tableName) {
+        addColumnTo(db, tableName, "OPLATA_HANDLOWA", DISABLED_OPLATA_HANDLOWA);
+    }
+
     private static void addOplataOzeColumnTo(org.greenrobot.greendao.database.Database db, String tableName) {
-        db.execSQL("ALTER TABLE " + tableName + " ADD COLUMN 'OPLATA_OZE' TEXT DEFAULT '0.00';");
+        addColumnTo(db, tableName, "OPLATA_OZE", "0.00");
+    }
+
+    private static void addColumnTo(
+            org.greenrobot.greendao.database.Database db,
+            final String tableName,
+            final String columnName,
+            final String defaultValue
+    ) {
+        db.execSQL("ALTER TABLE " + tableName + " ADD COLUMN '" + columnName + "' TEXT DEFAULT '" + defaultValue + "';");
     }
 }

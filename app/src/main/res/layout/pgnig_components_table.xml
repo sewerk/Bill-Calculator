@@ -18,6 +18,10 @@
             layout="@layout/pgnig_components_table_row" />
 
         <include
+            android:id="@+id/row_handlowa"
+            layout="@layout/pgnig_components_table_row" />
+
+        <include
             android:id="@+id/row_paliwo_gazowe"
             layout="@layout/pgnig_components_table_row" />
 

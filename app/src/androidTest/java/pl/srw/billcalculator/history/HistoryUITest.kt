@@ -58,9 +58,9 @@ class HistoryUITest {
 
         // when: deleting one bill
         val historyTester = tester.skipCheckPricesDialogIfVisible()
-                .onHistory()
-                .changeItemSelectionWithReadings("1", "11")
-                .deleteSelected()
+            .onHistory()
+            .changeItemSelectionWithReadings("1", "11")
+            .deleteSelected()
 
         // then:
         historyTester.checkEmptyHistoryIsShown()
@@ -78,13 +78,13 @@ class HistoryUITest {
 
         // when: deleting one bill
         val historyTester = tester.skipCheckPricesDialogIfVisible()
-                .onHistory()
-                .deleteBillWithReadings("2", "12")
+            .onHistory()
+            .deleteBillWithReadings("2", "12")
 
         // then:
         historyTester
-                .checkUndoMessageIsShown()
-                .checkEmptyHistoryIsShown()
+            .checkUndoMessageIsShown()
+            .checkEmptyHistoryIsShown()
     }
 
     @Test
@@ -95,14 +95,14 @@ class HistoryUITest {
 
         // when: deleting one bill
         val historyTester = tester.skipCheckPricesDialogIfVisible()
-                .onHistory()
-                .changeItemSelectionAtPosition(1)
-                .changeItemSelectionAtPosition(3)
-                .deleteSelected()
+            .onHistory()
+            .changeItemSelectionAtPosition(1)
+            .changeItemSelectionAtPosition(3)
+            .deleteSelected()
 
         // then:
         historyTester
-                .checkUndoMessageIsShown()
+            .checkUndoMessageIsShown()
     }
 
     @Test
@@ -113,13 +113,13 @@ class HistoryUITest {
 
         // when: deleting one bill
         val historyTester = tester.skipCheckPricesDialogIfVisible()
-                .onHistory()
-                .deleteBillWithReadings("1", "11")
-                .undoDelete()
+            .onHistory()
+            .deleteBillWithReadings("1", "11")
+            .undoDelete()
 
         // then:
         historyTester.checkEmptyHistoryIsNotShown()
-                .openBillWithReadings("1", "11")
+            .openBillWithReadings("1", "11")
     }
 
     @Test
@@ -128,18 +128,21 @@ class HistoryUITest {
         historyGenerator.generatePgeG11Bills(7)
         testRule.launchActivity(null)
 
-        tester.skipCheckPricesDialogIfVisible()
+        val historyTester = tester
+            .skipCheckPricesDialogIfVisible()
             .onHistory()
             .changeItemSelectionAtPosition(1)
             .changeItemSelectionAtPosition(2)
             .deleteSelected()
 
-        // when
+            // when
+        historyTester
             .changeItemSelectionAtPosition(1)
             .changeItemSelectionAtPosition(2)
             .undoDelete()
 
         // then
+        historyTester
             .checkItemNotSelected(1)
             .checkItemNotSelected(2)
             .checkItemSelected(3)
@@ -155,14 +158,14 @@ class HistoryUITest {
 
         // when: deleting one bill
         val historyTester = tester.skipCheckPricesDialogIfVisible()
-                .onHistory()
-                .changeItemSelectionWithReadings("1", "11")
-                .deleteSelected()
-                .undoDelete()
+            .onHistory()
+            .changeItemSelectionWithReadings("1", "11")
+            .deleteSelected()
+            .undoDelete()
 
         // then:
         historyTester.checkEmptyHistoryIsNotShown()
-                .openBillWithReadings("1", "11")
+            .openBillWithReadings("1", "11")
     }
 
     @Test
@@ -173,17 +176,17 @@ class HistoryUITest {
 
         // when: select second entry and delete
         val historyTester = tester.skipCheckPricesDialogIfVisible()
-                .onHistory()
-                .changeItemSelectionAtPosition(1)
-                .deleteSelected()
-                // and select second and third entry and delete
-                .changeItemSelectionAtPosition(1)
-                .changeItemSelectionAtPosition(2)
-                .deleteSelected()
+            .onHistory()
+            .changeItemSelectionAtPosition(1)
+            .deleteSelected()
+            // and select second and third entry and delete
+            .changeItemSelectionAtPosition(1)
+            .changeItemSelectionAtPosition(2)
+            .deleteSelected()
 
         // then:
         historyTester.checkNoSelection()
-                .checkDeleteButtonHidden()
+            .checkDeleteButtonHidden()
     }
 
     @Test
@@ -194,25 +197,25 @@ class HistoryUITest {
 
         // and one item is selected
         tester.skipCheckPricesDialogIfVisible()
-                .onHistory()
-                .changeItemSelectionAtPosition(1)
-                .checkItemSelected(1)
+            .onHistory()
+            .changeItemSelectionAtPosition(1)
+            .checkItemSelected(1)
 
         // when:
         tester.changeOrientation(testRule)
 
         // then: item is selected
         tester.onHistory()
-                .checkItemSelected(1)
-                .checkDeleteButtonShown()
+            .checkItemSelected(1)
+            .checkDeleteButtonShown()
 
-                // when:
-                .deleteSelected()
+            // when:
+            .deleteSelected()
         tester.changeOrientation(testRule)
 
         // then:
         tester.onHistory()
-                .checkNoSelection()
+            .checkNoSelection()
     }
 
     @Test
@@ -223,19 +226,19 @@ class HistoryUITest {
 
         // and one item is selected
         val historyTester = tester.skipCheckPricesDialogIfVisible()
-                .onHistory()
-                .changeItemSelectionAtPosition(0)
-                .changeItemSelectionAtPosition(1)
+            .onHistory()
+            .changeItemSelectionAtPosition(0)
+            .changeItemSelectionAtPosition(1)
 
         // when:
         tester.openForm(Provider.PGNIG)
-                .putIntoReadingFrom("12")
-                .putIntoReadingTo("23")
-                .calculate()
+            .putIntoReadingFrom("12")
+            .putIntoReadingTo("23")
+            .calculate()
 
         // then:
         historyTester.checkNoSelection()
-                .checkDeleteButtonHidden()
+            .checkDeleteButtonHidden()
     }
 
     @Test
@@ -248,8 +251,8 @@ class HistoryUITest {
 
         // when:
         val historyTester = tester
-                .skipCheckPricesDialogIfVisible()
-                .onHistory()
+            .skipCheckPricesDialogIfVisible()
+            .onHistory()
 
         // then:
         historyTester.checkItemReadings(0, "91 - 101", "191 - 201")
@@ -269,13 +272,13 @@ class HistoryUITest {
 
         // when:
         tester
-                .skipCheckPricesDialogIfVisible()
-                .onHistory()
-                .openBillAtPosition(16)
-                .close()
-                .onHistory()
-                .openBillAtPosition(1)
-                .close()
+            .skipCheckPricesDialogIfVisible()
+            .onHistory()
+            .openBillAtPosition(16)
+            .close()
+            .onHistory()
+            .openBillAtPosition(1)
+            .close()
 
         // then: no crash
     }
@@ -285,16 +288,16 @@ class HistoryUITest {
         testRule.launchActivity(null)
 
         tester.skipCheckPricesDialogIfVisible()
-                .clickHelp()
-                .clickInCenter()
-                .clickInCenter()
-                .clickInCenter()
-                .clickInCenter()
+            .clickHelp()
+            .clickInCenter()
+            .clickInCenter()
+            .clickInCenter()
+            .clickInCenter()
     }
 
     private fun cleanFirstLaunch() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE)
-                .edit().remove("first_launch").apply()
+            .edit().remove("first_launch").apply()
     }
 }

@@ -3,10 +3,22 @@ package pl.srw.billcalculator.bill.calculation
 import org.threeten.bp.LocalDate
 import pl.srw.billcalculator.pojo.IPgePrices
 
-class PgeG12CalculatedBill(readingDayFrom: Int, readingDayTo: Int,
-                           readingNightFrom: Int, readingNightTo: Int,
-                           dateFrom: LocalDate, dateTo: LocalDate, prices: IPgePrices)
-    : CalculatedEnergyBill(dateFrom, dateTo, prices.oplataAbonamentowa, prices.oplataPrzejsciowa, prices.oplataStalaZaPrzesyl) {
+class PgeG12CalculatedBill(
+    readingDayFrom: Int,
+    readingDayTo: Int,
+    readingNightFrom: Int,
+    readingNightTo: Int,
+    dateFrom: LocalDate,
+    dateTo: LocalDate,
+    prices: IPgePrices
+) : CalculatedEnergyBill(
+    dateFrom,
+    dateTo,
+    prices.oplataAbonamentowa,
+    prices.oplataPrzejsciowa,
+    prices.oplataStalaZaPrzesyl,
+    prices
+) {
 
     val dayConsumption = readingDayTo - readingDayFrom
     val nightConsumption = readingNightTo - readingNightFrom

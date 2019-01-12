@@ -112,7 +112,7 @@ class PricesBridgeTest {
     @Test fun `update PGNIG by shared prefs`() {
         val value = "1.2"
 
-        sut.updatePgnig(PGNIG.WSP_KONW, value)
+        sut.updatePgnig(PGNIG.WSP_KONW, value, true)
 
         verify(pgnigPrices).wspolczynnikKonwersji = value
     }
@@ -120,7 +120,7 @@ class PricesBridgeTest {
     @Test fun `update PGE by shared prefs`() {
         val value = "1.2"
 
-        sut.updatePge(PGE.SIECIOWA, value)
+        sut.updatePge(PGE.SIECIOWA, value, true)
 
         verify(pgePrices).oplataSieciowa = value
     }
@@ -128,9 +128,39 @@ class PricesBridgeTest {
     @Test fun `update TAURON by shared prefs`() {
         val value = "1.2"
 
-        sut.updateTauron(TAURON.DYST_STALA, value)
+        sut.updateTauron(TAURON.DYST_STALA, value, true)
 
         verify(tauronPrices).oplataDystrybucyjnaStala = value
+    }
+
+    @Test fun `update PGNIG oplata handlowa by shared prefs`() {
+        val value = "1.2"
+        val enabled = true
+
+        sut.updatePgnig(PGNIG.HANDLOWA, value, enabled)
+
+        verify(pgnigPrices).oplataHandlowa = value
+        verify(pgnigPrices).enabledOplataHandlowa = enabled
+    }
+
+    @Test fun `update PGE oplata handlowa by shared prefs`() {
+        val value = "1.2"
+        val enabled = true
+
+        sut.updatePge(PGE.HANDLOWA, value, enabled)
+
+        verify(pgePrices).oplataHandlowa = value
+        verify(pgePrices).enabledOplataHandlowa = enabled
+    }
+
+    @Test fun `update TAURON oplata handlowa by shared prefs`() {
+        val value = "1.2"
+        val enabled = true
+
+        sut.updateTauron(TAURON.HANDLOWA, value, enabled)
+
+        verify(tauronPrices).oplataHandlowa = value
+        verify(tauronPrices).enabledOplataHandlowa = enabled
     }
 
     @Test fun `set defaults for PGE to shared prefs`() {

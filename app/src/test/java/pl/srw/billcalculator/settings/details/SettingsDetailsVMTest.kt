@@ -16,13 +16,7 @@ import org.junit.Test
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import pl.srw.billcalculator.R
-import pl.srw.billcalculator.data.settings.prices.EnergyTariff
-import pl.srw.billcalculator.data.settings.prices.PriceMeasure
-import pl.srw.billcalculator.data.settings.prices.PriceValue
-import pl.srw.billcalculator.data.settings.prices.PricesRepo
-import pl.srw.billcalculator.data.settings.prices.ProviderSettings
-import pl.srw.billcalculator.data.settings.prices.SimpleProviderSettings
-import pl.srw.billcalculator.data.settings.prices.TariffProviderSettings
+import pl.srw.billcalculator.data.settings.prices.*
 import pl.srw.billcalculator.type.Provider
 
 @RunWith(JUnitParamsRunner::class)
@@ -44,7 +38,7 @@ class SettingsDetailsVMTest {
         val title = "price1"
         val price = "1.00"
         val measure = PriceMeasure.KWH
-        val providerSettings = SimpleProviderSettings(provider, mapOf(title to PriceValue(price, measure)))
+        val providerSettings = SimpleProviderSettings(provider, mapOf(title to AlwaysEnabledPriceValue(price, measure)))
         settings.value = providerSettings
 
         sut.listItemsFor(provider)
@@ -54,6 +48,36 @@ class SettingsDetailsVMTest {
         assertEquals(title, item.title)
         assertEquals(price, item.value)
         assertEquals(measure.resId, item.measure)
+    }
+
+    @Test
+    fun `item marked non-optional and enabled for AlwaysEnabledPriceValue`() {
+        val provider = Provider.PGNIG
+        val title = "price1"
+        val price = "1.00"
+        val measure = PriceMeasure.KWH
+        val providerSettings = SimpleProviderSettings(provider, mapOf(title to AlwaysEnabledPriceValue(price, measure)))
+        settings.value = providerSettings
+
+        sut.listItemsFor(provider)
+
+        val item = sut.items[0] as InputSettingsDetailsListItem
+        assertEquals(false, item.optional)
+        assertEquals(true, item.enabled)
+    }
+
+    @Test
+    fun `item marked optional and matches enabled flag for OptionalPriceValue`() {
+        val provider = Provider.PGNIG
+        val enabled = false
+        val providerSettings = SimpleProviderSettings(provider, mapOf("price1" to OptionalPriceValue("1.00", PriceMeasure.KWH, enabled)))
+        settings.value = providerSettings
+
+        sut.listItemsFor(provider)
+
+        val item = sut.items[0] as InputSettingsDetailsListItem
+        assertEquals(true, item.optional)
+        assertEquals(enabled, item.enabled)
     }
 
     @Test
@@ -90,11 +114,12 @@ class SettingsDetailsVMTest {
     @Test fun `updates price in repository when input value changed`(provider: Provider) {
         val title = "name"
         val value = "value"
+        val enabled = true
         sut.listItemsFor(provider)
 
-        sut.valueChanged(title, value)
+        sut.valueChanged(title, value, enabled)
 
-        verify(pricesRepo).updatePrice(provider, title, value)
+        verify(pricesRepo).updatePrice(provider, title, value, enabled)
     }
 
     @Parameters("PGE", "PGNIG", "TAURON")
@@ -102,9 +127,9 @@ class SettingsDetailsVMTest {
         val title = "name"
         sut.listItemsFor(provider)
 
-        sut.valueChanged(title, "")
+        sut.valueChanged(title, "", true)
 
-        verify(pricesRepo).updatePrice(provider, title, "0.00")
+        verify(pricesRepo).updatePrice(provider, title, "0.00", true)
     }
 
     @Parameters("PGE", "PGNIG", "TAURON")
@@ -112,9 +137,9 @@ class SettingsDetailsVMTest {
         val title = "name"
         sut.listItemsFor(provider)
 
-        sut.valueChanged(title, "0.")
+        sut.valueChanged(title, "0.", true)
 
-        verify(pricesRepo).updatePrice(provider, title, "0.00")
+        verify(pricesRepo).updatePrice(provider, title, "0.00", true)
     }
 
     @Parameters("PGE", "PGNIG", "TAURON")
@@ -122,9 +147,9 @@ class SettingsDetailsVMTest {
         val title = "name"
         sut.listItemsFor(provider)
 
-        sut.valueChanged(title, "0")
+        sut.valueChanged(title, "0", true)
 
-        verify(pricesRepo).updatePrice(provider, title, "0.00")
+        verify(pricesRepo).updatePrice(provider, title, "0.00", true)
     }
 
     @Parameters("PGE", "PGNIG", "TAURON")
@@ -132,9 +157,9 @@ class SettingsDetailsVMTest {
         val title = "name"
         sut.listItemsFor(provider)
 
-        sut.valueChanged(title, ".")
+        sut.valueChanged(title, ".", true)
 
-        verify(pricesRepo).updatePrice(provider, title, "0.00")
+        verify(pricesRepo).updatePrice(provider, title, "0.00", true)
     }
 
     @Parameters("PGE", "PGNIG", "TAURON")
@@ -142,9 +167,9 @@ class SettingsDetailsVMTest {
         val title = "name"
         sut.listItemsFor(provider)
 
-        sut.valueChanged(title, ".9")
+        sut.valueChanged(title, ".9", true)
 
-        verify(pricesRepo).updatePrice(provider, title, "0.9")
+        verify(pricesRepo).updatePrice(provider, title, "0.9", true)
     }
 
     @Test fun `updates tariff in repository when option picked`() {

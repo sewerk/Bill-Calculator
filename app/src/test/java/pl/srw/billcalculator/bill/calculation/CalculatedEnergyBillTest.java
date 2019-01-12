@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import pl.srw.billcalculator.db.PgnigPrices;
+import pl.srw.billcalculator.db.Prices;
 import pl.srw.billcalculator.util.Dates;
 
 import static org.junit.Assert.assertEquals;
@@ -18,7 +20,24 @@ public class CalculatedEnergyBillTest {
 
     private int consumption;
 
-    private CalculatedEnergyBill sut = new CalculatedEnergyBill(LocalDate.of(2000, Month.JANUARY, 1), LocalDate.of(2000, Month.JANUARY, 1), "0.00", "0.00", "0.00") {
+    private Prices prices = new PgnigPrices(
+            1L,
+            "0.00",
+            "0.00",
+            "0.00",
+            "0.00",
+            "0.00",
+            "0.00"
+    );
+
+    private CalculatedEnergyBill sut = new CalculatedEnergyBill(
+            LocalDate.of(2000, Month.JANUARY, 1),
+            LocalDate.of(2000, Month.JANUARY, 1),
+            "0.00",
+            "0.00",
+            "0.00",
+            prices
+    ) {
         @Override
         public int getTotalConsumption() {
             return consumption;
@@ -35,7 +54,7 @@ public class CalculatedEnergyBillTest {
             "01/05/2016,31/08/2016,100|50",
             "01/01/2016,31/12/2016,100|50",
     })
-    public void countConsumptionPartFromJuly16(String dateFrom, String dateTo, int consumption, int expected) throws Exception {
+    public void countConsumptionPartFromJuly16(String dateFrom, String dateTo, int consumption, int expected) {
         // WHEN
         final int result = sut.countConsumptionPartFromJuly16(
                 Dates.parse(dateFrom, Dates.DEFAULT_DATE_PATTERN),
@@ -47,7 +66,7 @@ public class CalculatedEnergyBillTest {
     }
 
     @Test
-    public void getExcise() throws Exception {
+    public void getExcise() {
         // GIVEN
         consumption = 100;
 

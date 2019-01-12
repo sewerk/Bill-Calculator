@@ -23,6 +23,8 @@ data class PickingSettingsDetailsListItem(
 @Parcelize
 data class InputSettingsDetailsListItem(
     val title: String,
+    val optional: Boolean,
+    val enabled: Boolean = true,
     val value: String,
     @StringRes val measure: Int,
     val description: Int?

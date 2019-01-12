@@ -139,6 +139,12 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbindViews();
+    }
+
+    @Override
     public void showProviderSettings(@NonNull Provider provider) {
         Analytics.contentView(ContentType.SETTINGS, "settings from", "Form", "settings for", provider);
         SettingsActivity.start(getContext(), provider);
@@ -227,5 +233,18 @@ public class FormFragment extends DialogFragment implements FormPresenter.FormVi
         readingNightFrom = binding.doubleReadings.formEntryReadingNightFrom;
         readingNightFromInput = binding.doubleReadings.formEntryReadingNightFromInput;
         readingNightTo = binding.doubleReadings.formEntryReadingNightTo;
+    }
+
+    private void unbindViews() {
+        dateToView = null;
+        readingFrom = null;
+        readingFromInput = null;
+        readingTo = null;
+        readingDayFrom = null;
+        readingDayFromInput = null;
+        readingDayTo = null;
+        readingNightFrom = null;
+        readingNightFromInput = null;
+        readingNightTo = null;
     }
 }
