@@ -18,8 +18,6 @@ ext {
     tapTargetVer = '1.9.1'
     javaxVer = '1.0'
 
-    fabricPluginVer = '1.25.1'
-    crashlyticsVer = '2.9.1'
     leakcanaryVer = '1.5.4'
 
     junitVer = '4.12'
