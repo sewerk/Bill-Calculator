@@ -6,12 +6,10 @@ buildscript {
     repositories {
         jcenter()
         google()
-        maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$gradlePluginVer"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVer"
-        classpath "io.fabric.tools:gradle:$fabricPluginVer"
     }
 }
 

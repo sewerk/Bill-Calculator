@@ -58,9 +58,12 @@ class TauronPrices @Inject constructor(private val prefs: SharedPreferences)
     override fun setDefaultIfNotSet() {
         if (!prefs.contains(KEYS.ENERGIA_ELEKTRYCZNA_CZYNNA)) {
             setDefault()
-        } else if (!prefs.contains(KEYS.OPLATA_OZE)) {
+            return
+        }
+        if (!prefs.contains(KEYS.OPLATA_OZE)) {
             oplataOze = DEFAULTS.oplataOze
-        } else if (!prefs.contains(KEYS.HANDLOWA)) {
+        }
+        if (!prefs.contains(KEYS.HANDLOWA)) {
             oplataHandlowa = DEFAULTS.oplataHandlowa
             enabledOplataHandlowa = DEFAULTS.oplataHandlowaEnabled
         }

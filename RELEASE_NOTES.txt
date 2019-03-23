@@ -1,3 +1,6 @@
+v.2.2.1
+ - remove Fabric Answers and Crashlytics
+ - fix: set default shared prefs value on update
 v.2.2
  - add oplata handlowa
  - fix: cannot enter provider preferences for second time (when selected) on phone

@@ -29,7 +29,6 @@ With help of
 
 tools
 ---------
-- [Crashlytics](https://fabric.io)
 - [LeakCanary](https://github.com/square/leakcanary)
 - [Detekt](https://github.com/arturbosch/detekt)
 

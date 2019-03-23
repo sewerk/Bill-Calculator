@@ -1,10 +1,8 @@
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply from: 'signing.gradle'
-apply from: '../gradle/fabric.gradle'
 
 android {
     compileSdkVersion 27
@@ -13,8 +11,8 @@ android {
         minSdkVersion 15
         targetSdkVersion 27
 
-        versionCode 34
-        versionName "2.2"
+        versionCode 35
+        versionName "2.2.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -37,8 +35,6 @@ android {
 
     buildTypes {
         debug {
-            // Disable fabric build ID generation for debug builds
-            ext.enableCrashlytics = false
         }
 
         release {
@@ -99,9 +95,6 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVer"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVer"
     implementation "com.getkeepsafe.taptargetview:taptargetview:$tapTargetVer"
-    implementation("com.crashlytics.sdk.android:crashlytics:$crashlyticsVer@aar") {
-        transitive = true
-    }
 
     compileOnly "javax.annotation:jsr250-api:$javaxVer"
 
