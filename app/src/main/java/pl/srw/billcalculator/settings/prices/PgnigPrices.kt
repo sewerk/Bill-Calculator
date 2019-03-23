@@ -37,9 +37,11 @@ class PgnigPrices @Inject constructor(private val prefs: SharedPreferences)
     }
 
     override fun setDefaultIfNotSet() {
-        if (!prefs.contains(KEYS.ABONAMENTOWA))
+        if (!prefs.contains(KEYS.ABONAMENTOWA)) {
             setDefault()
-        else if (!prefs.contains(KEYS.HANDLOWA)) {
+            return
+        }
+        if (!prefs.contains(KEYS.HANDLOWA)) {
             oplataHandlowa = DEFAULTS.handlowa
             enabledOplataHandlowa = DEFAULTS.handlowa_enabled
         }

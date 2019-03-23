@@ -60,11 +60,15 @@ class PgePrices @Inject constructor(private val prefs: SharedPreferences)
     override fun setDefaultIfNotSet() {
         if (!prefs.contains(KEYS.CENA_ZA_ENERGIE_CZYNNA)) {
             setDefault()
-        } else if (!prefs.contains(KEYS.TARIFF)) {
+            return
+        }
+        if (!prefs.contains(KEYS.TARIFF)) {
             tariff = DEFAULTS.tariff
-        } else if (!prefs.contains(KEYS.CENA_OPLATA_OZE)) {
+        }
+        if (!prefs.contains(KEYS.CENA_OPLATA_OZE)) {
             oplataOze = DEFAULTS.cena_oplata_oze
-        } else if (!prefs.contains(KEYS.HANDLOWA)) {
+        }
+        if (!prefs.contains(KEYS.HANDLOWA)) {
             oplataHandlowa = DEFAULTS.cena_oplata_handlowa
             enabledOplataHandlowa = DEFAULTS.oplata_handlowa_enabled
         }
